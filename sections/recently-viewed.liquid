@@ -1,0 +1,1082 @@
+<style>
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.modal-variants-container button.show-more-variants{
+    border: 1px solid #373A3666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+}
+.modal-variants-container{
+    flex-wrap: wrap;
+}
+.main-title-recently-viewed{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.main-title-recently-viewed em{
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 30px;
+    letter-spacing: -1px;
+    text-transform: capitalize;
+}
+.container.container-recently-viewed-products{
+    margin: 0;
+    padding-left: 20px;
+}
+recently-viewed-products div.swiper-button-prev-collection{
+    position: absolute;
+    z-index: 9999;
+    left: 0px;
+}
+recently-viewed-products div.swiper-button-next-collection{
+    z-index: 999999;
+    right: 0;
+}
+recently-viewed-products .swiper-wrapper.swiper-wrapper-main-collection{
+    display: flex;
+}
+recently-viewed-products .mySwiperCollection {
+    width: fit-content;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    recently-viewed-products .conatiner-collection-main{
+        width: 100%;
+    }
+    .container.container-recently-viewed-products{
+        padding: 0;
+        margin: 0 auto;
+    }
+    .main-title-recently-viewed{
+        font-weight: 300;
+        font-size: 40px;
+        text-align: left;
+        padding-bottom: 40px;
+        max-width: 660px;
+        margin: 0 auto;
+    }
+    .main-title-recently-viewed em{
+        font-weight: 400;
+        font-size: 47px;
+    }
+    recently-viewed-products .main-description-collection-product{
+        line-height: 18px;
+        height: 20px;
+        overflow: hidden;
+    }
+    .recently-viewed-products-section{
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    recently-viewed-products .mySwiperCollection {
+        max-width: 660px;
+        margin: 0 auto;
+        position: static;
+    }
+}
+@media (min-width: 1024px) {
+    .recently-viewed-products-section{
+        max-width: 960px;
+    }
+    .main-title-recently-viewed,
+    recently-viewed-products .mySwiperCollection {
+        max-width: 900px;
+    }
+}
+@media (min-width: 1440px) {
+    .recently-viewed-products-section{
+        max-width: 1380px;
+    }
+    .main-title-recently-viewed,
+    recently-viewed-products .mySwiperCollection{
+        max-width: 1280px;
+    }
+}
+
+
+.main-ring-size .main-title-ring{
+    display: flex;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 15px 10px;
+    gap: 5px;
+    padding-bottom: 0;
+    text-align: left;
+    padding-left: 0;
+}
+.main-ring-size .modal-size-container{
+    display: flex;
+    justify-content: flex-start;
+    gap: 5.17px;
+    margin-top: 15px;
+}
+
+.modal-main-size-two button.active,
+.main-ring-size .modal-size-container button.active{
+    background-color: black;
+    color: white;
+}
+.main-ring-size .modal-size-container button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #373A361A;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+.links-details-recently-viewed-container{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #373A3666;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.links-details-recently-viewed-container div,
+.links-details-recently-viewed-container a{
+    border-bottom: 1px solid #373A3633;
+    cursor: pointer;
+    padding-bottom: 3px;
+}
+.modal-select-size-button-cart{
+    width: 100%;
+    min-height: 54px;
+    background: #D3D3D3;
+    margin-top: 30px;
+    color: white;
+    border-radius: 4px;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    border: 1px solid #D3D3D3;
+    transition: all 0.3s ease;
+}
+.modal-select-size-button-cart:hover{
+    color: #807371;
+    background: none;
+    border-color: #807371;
+}
+</style>
+<section class='recently-viewed-products-section'>
+    {% if section.settings.main_title != blank %}
+        <h2 class="main-title-recently-viewed">{{section.settings.main_title }}</h2>
+    {% endif %}
+    
+    {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+    <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+        <div class="container container-recently-viewed-products">
+            <div class="section-stack">
+                {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content -%}
+                <recently-viewed-products products-count="{{ section.settings.products_count }}" {% if request.page_type == 'product' %}exclude-id="{{ product.id }}"{% endif %}>
+                    {% if search.performed and search.results_count > 0 %}
+                        {% assign parsed_terms = search.terms | split: ' OR ' %}
+                        <div class="conatiner-collection-main">
+                            <div class="swiper mySwiperCollection">
+                                <div class="swiper-wrapper swiper-wrapper-main-collection">
+                                    {% for parsed_term in parsed_terms %}
+                                        {% assign id = parsed_term | split: 'id:' | last | times: 1 %}
+                                        {% assign product = search.results | where: 'id', id | first %}
+                                        {% if product %}
+                                            {% render 'recently-viewed-product', product: product %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="swiper-button-next-collection">
+                                    {{ "Vector.svg" | asset_url | img_tag: "Next" }}
+                                </div>
+                                <div class="swiper-button-prev-collection">
+                                    {{ "Vector.svg" | asset_url | img_tag: "Prev" }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </recently-viewed-products>
+            </div>
+        </div>
+    </div> 
+</section>
+
+<template id="addToCartModalTemplateRecently">
+    <div class="container-modal-collection-main fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-50"></div>
+        
+        <div class="modal-content relative bg-white p-6 rounded-lg shadow-lg text-center w-[486px] mx-auto my-auto">
+            <div class='main-modal-header'>
+                <p class="main-text-modal">quick add</p>
+                <button type="button" class="absolute top-2 right-2 text-gray-500 hover:text-black close-modal">
+                    {{ "iconCancel.svg" | asset_url | img_tag: "Prev" }}
+                </button>
+            </div>
+            <div class="main-container-product-modal">
+                <div class="swiper modal-swiper-collection mb-4">
+                    <div class="swiper-wrapper modal-images-container"></div>
+                    <div class="swiper-button-prev swiper-button-prev-modal">     
+                        {{ "VectorModal.svg" | asset_url | img_tag: "Prev" }}   
+                    </div>
+                    <div class="swiper-button-next swiper-button-next-modal">
+                        {{ "VectorModal.svg" | asset_url | img_tag: "Next" }}   
+                    </div>
+                </div>
+                <div>
+                    <div class='main-text-modal-container'>
+                        <a href='#' class="modal-product-title mb-2"></a>
+                        <div class="conatainer-first-stars modal-reviews flex items-center gap-2 mt-2" style="display:none;">
+                            <div class="modal-stars"></div>
+                            <div class="modal-rating-text text-sm reviews_text"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex justify-center items-center gap-4 container-main-button-modal">
+                        <div class=" conatiner-quantity-mobile flex items-center gap-2">
+                            <button type="button" class="qty-btn px-3 py-1 border rounded" data-action="decrease">
+                                {{ "Modal.svg" | asset_url | img_tag: "Icon" }}
+                            </button>
+                            <input type="number" name="quantity" value="1" min="1" class="w-16 text-center border rounded" />
+                            <button type="button" class="qty-btn px-3 py-1 border rounded" data-action="increase">
+                                {{ "Modal1.svg" | asset_url | img_tag: "Icon" }}
+                            </button>
+                        </div>
+                        <div>
+                            <span class="modal-product-price text-lg font-bold"></span>
+                            <span class="modal-product-compare-price line-through text-gray-500 ml-2"></span>
+                        </div>
+                    </div>
+                    <div class="modal-variants-container mb-4 flex flex-wrap gap-2 justify-center"></div>
+                    <div class='main-ring-size'>
+                        <h2 class='main-title-ring'>Size: <span class="main-size-viewed"></span></h2>
+                        <div class="modal-size-container mb-4 flex justify-center gap-2"></div>
+                    </div>
+                    <div class='modal-main-size-two'>
+                        <div class='modal-size-buttons1'>
+                            <div class="modal-size-buttons mt-4 mb-2">
+                                <div class='main-container-modal-product'>
+                                    <label class="main-size-modal-product block mb-1 font-medium">male rings size: <span class='main-rings-size-viewed'></span></label>
+                                </div>
+                                <div class="size-buttons-wrapper option1-size flex flex-wrap gap-2"></div>
+                            </div>
+                        </div>
+                        <div class='modal-size-buttons2'>
+                            <div class="modal-size-buttons mt-4 mb-2">
+                                <div class='main-container-modal-product'>
+                                    <label class="main-size-modal-product block mb-1 font-medium">female rings size: <span class='main-female-size-viewed'></span></label>
+                                </div>
+                                <div class="size-buttons-wrapper option2-size flex flex-wrap gap-2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" action="/cart/add" class="modal-add-to-cart-form">
+                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="option1" value="">
+                        <input type="hidden" name="option2" value="">
+                        <input type="hidden" name="quantity" value="1" />
+                        <div class="flex justify-center">
+                            <button class="modal-buy-button-cart bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+                                add to cart -  <span class="modal-product-price-text"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <button class="modal-select-size-button-cart">
+                        Choose size
+                    </button>
+                    <div class='links-details-recently-viewed-container'>
+                        <a class="more-details-recently-viewed" href='#'>more details</a> or 
+                        <div class="continue-shopping-recently-viewed">continue shopping</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    function initVariantThumbSwitcher() {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const mainImg = card.querySelector('.main-product-image');
+            const variantInput = card.querySelector('.variant-input');
+            
+            const variantThumbs = card.querySelectorAll('.variant-thumb');
+            
+            variantThumbs.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    const imgSrc = btn.dataset.image;
+                    if (mainImg) mainImg.src = imgSrc;
+                    
+                    const variantId = btn.dataset.variantId;
+                    if (variantInput) variantInput.value = variantId;
+                    
+                    variantThumbs.forEach(b => b.classList.remove('ring-2', 'ring-black'));
+                    btn.classList.add('ring-2', 'ring-black');
+                });
+                
+                if (index === 0 && variantInput) {
+                    variantInput.value = btn.dataset.variantId;
+                }
+            });
+            
+            const showMoreBtn = card.querySelector('.show-more-variants');
+            if (showMoreBtn) {
+                showMoreBtn.addEventListener('click', () => {
+                    card.querySelectorAll('.hidden-variant').forEach(el => el.classList.remove('hidden-variant'));
+                    showMoreBtn.remove();
+                });
+            }
+        });
+    }
+    
+    function initCollectionSwiper() {
+        document.querySelectorAll(".mySwiperCollection").forEach(swiperEl => {
+            if (swiperEl.classList.contains("swiper-initialized")) return;
+
+            const nextBtn = swiperEl.querySelector('.swiper-button-next-collection');
+            const prevBtn = swiperEl.querySelector('.swiper-button-prev-collection');
+        
+            const swiper = new Swiper(swiperEl, {
+                slidesPerView: 'auto',
+                spaceBetween: 10,
+                watchOverflow: true,
+                pagination: {
+                    el: swiperEl.querySelector('.swiper-pagination-collections'),
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: nextBtn,
+                    prevEl: prevBtn,
+                },
+                on: {
+                    init: function () {
+                        const wrapperWidth = swiperEl.querySelector('.swiper-wrapper').scrollWidth;
+                        const containerWidth = swiperEl.clientWidth;
+                        const windowWidth = window.innerWidth;
+                        
+                        if (windowWidth < 768 || wrapperWidth <= containerWidth) {
+                            nextBtn.style.display = 'none';
+                            prevBtn.style.display = 'none';
+                        } else {
+                            nextBtn.style.display = 'block';
+                            prevBtn.style.display = 'block';
+                        }
+                    },
+                    resize: function () {
+                        const wrapperWidth = swiperEl.querySelector('.swiper-wrapper').scrollWidth;
+                        const containerWidth = swiperEl.clientWidth;
+                        const windowWidth = window.innerWidth;
+                        
+                        if (windowWidth < 768 || wrapperWidth <= containerWidth) {
+                            nextBtn.style.display = 'none';
+                            prevBtn.style.display = 'none';
+                        } else {
+                            nextBtn.style.display = 'flex';
+                            prevBtn.style.display = 'flex';
+                        }
+                    }
+                }
+            });
+            swiperEl.classList.add("swiper-initialized");
+        });
+    }
+    
+    const formatMoney = cents => "$" + (cents / 100).toFixed(2);
+    
+    const getCoreFromSlide = src => src.match(/\/files\/(.+?)_400x/)?.[1] || null;
+    const getCoreFromVariant = src => src.match(/\/files\/(.+?)_100x100/)?.[1] || null;
+    
+    function setupQuantityControls(modal, qtyInput, hiddenQtyInput, modalPrice, currentVariantPrice) {
+        modal.querySelectorAll(".qty-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                let val = parseInt(qtyInput.value) || 1;
+                if (btn.dataset.action === "increase") val++;
+                else if (btn.dataset.action === "decrease" && val > 1) val--;
+                qtyInput.value = val;
+                
+                modalPrice.textContent = formatMoney(currentVariantPrice * val);
+                modal.querySelector(".modal-product-price-text").textContent = formatMoney(currentVariantPrice * val);
+                
+                hiddenQtyInput.value = val;
+            });
+        });
+        
+        qtyInput.addEventListener("input", () => {
+            let val = parseInt(qtyInput.value) || 1;
+            if (val < 1) val = 1;
+                qtyInput.value = val;
+                modalPrice.textContent = formatMoney(currentVariantPrice * val);
+                hiddenQtyInput.value = val;
+            });
+        }
+  
+            
+        function updateModal(modal, productData) {
+            var option1Main = false;
+            var option2Main = false; 
+            const modalContent = modal.querySelector(".modal-content");
+            const addToCartBtn = modalContent.querySelector(".modal-buy-button-cart");
+            const chooseSizeBtn = modalContent.querySelector(".modal-select-size-button-cart");
+            const modalRingSize = modal.querySelector(".main-ring-size");
+            const modalTwoSize = modal.querySelector(".modal-main-size-two");
+            const sizesWrapper = modalContent.querySelector(".modal-size-container");
+            const modalTitle = modalContent.querySelector(".modal-product-title");
+            const imagesWrapper = modalContent.querySelector(".modal-images-container");
+            const variantsContainer = modalContent.querySelector(".modal-variants-container");
+            const modalPrice = modalContent.querySelector(".modal-product-price");
+            const modalComparePrice = modalContent.querySelector(".modal-product-compare-price");
+            const qtyInput = modalContent.querySelector("input[name='quantity']");
+            const hiddenQtyInput = modalContent.querySelector("input[name='quantity'][type='hidden']");
+            const hiddenInput = modalContent.querySelector("input[name='id']");
+            const sizeRingsMainViewed = modalContent.querySelector('.main-rings-size-viewed');
+            const sizeFemaleMainViewed = modalContent.querySelector('.main-female-size-viewed');
+            const sizeMainViewed = modalContent.querySelector(".main-size-viewed");
+            if (addToCartBtn && chooseSizeBtn) {
+                addToCartBtn.style.display = "none";
+                chooseSizeBtn.style.display = "inline-block";
+            } 
+  
+
+            modalTitle.textContent = productData.title;
+            modalTitle.href = `/products/${productData.handle}`;
+
+            sizesWrapper.innerHTML = "";
+            const variant2Set = new Set();
+            let selectedVariant = productData.variants[0]; 
+            let first = true; 
+            
+            const moreDetailsLink = modal.querySelector('.more-details-recently-viewed');
+            if (moreDetailsLink && productData.handle) {
+                moreDetailsLink.href = `/products/${productData.handle}`;
+            }
+
+            function updateSelectedVariantId() {
+                const hiddenIdInput = modalContent.querySelector("input[name='id']");
+                const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                const hiddenOption2Input = modalContent.querySelector("input[name='option2']");
+
+                const option1 = hiddenOption1Input?.value?.trim() || "";
+                const option2 = hiddenOption2Input?.value?.trim() || "";
+
+                const matchedVariant = productData.variants.find(v => {
+                    return (
+                        v.option1?.trim() === option1 &&
+                        v.option2?.trim() === option2
+                    );
+                });
+                
+                if (matchedVariant && hiddenIdInput) {
+                    hiddenIdInput.value = matchedVariant.id;
+                } else {
+                    console.warn("Варіант не знайдено для", option1, option2);
+                }
+            }
+
+            // Helper function to clean size values
+            function cleanSizeValue(size) {
+                if (!size) return size;
+                if (size.includes('Select Size ')) {
+                    return size.replace('Select Size ', '').trim();
+                } else if (size.includes('Size')) {
+                    return size.replace('Size', '').trim();
+                }
+                return size;
+            }
+
+            productData.variants.forEach(variant => {
+                const value = variant.option1;
+                const value2 = variant.option2;
+                 
+                if (!isNaN(parseFloat(value)) && isFinite(value) && value2 == null) {
+                    modalTwoSize.style.display = "none";
+                    modalRingSize.style.display = 'block';
+                        
+                    if (!variant2Set.has(variant.option1)) {
+                        variant2Set.add(variant.option1);
+                    
+                        const sizeTwo = document.createElement("div");
+                        sizeTwo.className = "swiper-slide-size";
+                            
+                        const btnSize = document.createElement("button");
+                        btnSize.textContent = cleanSizeValue(variant.option1);
+                            
+                        btnSize.addEventListener("click", () => {
+                            sizeMainViewed.textContent = btnSize.textContent;
+                            option1Main = true;
+                            option2Main = true;
+                            addToCartBtn.style.display = "inline-block";
+                            chooseSizeBtn.style.display = "none";
+                            const hiddenIdInput = modalContent.querySelector("input[name='id']");
+                            const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                            if (hiddenOption1Input) hiddenOption1Input.value = variant.option1;
+                                
+                            const matchedVariant = productData.variants.find(v => v.option1 == variant.option1);
+                            if (matchedVariant) hiddenIdInput.value = matchedVariant.id;
+                                
+                            sizesWrapper.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+                            btnSize.classList.add("active");
+                        });
+                            
+                        sizeTwo.appendChild(btnSize);
+                        sizesWrapper.appendChild(sizeTwo);
+                            
+                        if (first) {
+                            hiddenInput.value = selectedVariant.id;
+                        }
+                        
+                        first = false;
+                    }
+                }else if (!isNaN(parseFloat(value)) && isFinite(value)) {
+                    
+                    if (variant.option2) {
+                        modalRingSize.style.display = 'none';
+                        modalTwoSize.style.display = "flex";
+                        const maleWrapper = modalContent.querySelector(".option1-size");
+                        const femaleWrapper = modalContent.querySelector(".option2-size");
+                        
+                        if (variant.option1 && !maleWrapper.querySelector(`[data-size="${variant.option1}"]`)) {
+                            const btnMale = document.createElement("button");
+                            btnMale.textContent = cleanSizeValue(variant.option1);
+                            btnMale.dataset.size = variant.option1;
+                            btnMale.className = "size-btn";
+                            
+                            if (maleWrapper.children.length === 0) {
+                                const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                                if (hiddenOption1Input) hiddenOption1Input.value = variant.option1;
+                            }
+                            
+                            btnMale.addEventListener("click", () => {
+                                sizeRingsMainViewed.textContent = btnMale.textContent;
+                                option1Main = true;
+                                
+                                const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                                if (hiddenOption1Input) hiddenOption1Input.value = btnMale.dataset.size;
+                                
+                                maleWrapper.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+                                btnMale.classList.add("active");
+                                
+                                updateSelectedVariantId();
+                               
+                                if (option2Main && option1Main) {
+                                    addToCartBtn.style.display = "inline-block";
+                                    chooseSizeBtn.style.display = "none";
+                                }
+                            });
+                            
+                            maleWrapper.appendChild(btnMale);
+                        }
+                        
+                        if (variant.option2 && !femaleWrapper.querySelector(`[data-size="${variant.option2}"]`)) {
+                            const btnFemale = document.createElement("button");
+                            btnFemale.textContent = cleanSizeValue(variant.option2);
+                            btnFemale.dataset.size = variant.option2;
+                            btnFemale.className = "size-btn";
+                            
+                            if (femaleWrapper.children.length === 0) {
+                                const hiddenOption2Input = modalContent.querySelector("input[name='option2']");
+                                if (hiddenOption2Input) hiddenOption2Input.value = variant.option2;
+                            }
+                            
+                            btnFemale.addEventListener("click", () => {
+                                sizeFemaleMainViewed.textContent = btnFemale.textContent;
+                                option2Main = true;
+                                const hiddenOption2Input = modalContent.querySelector("input[name='option2']");
+                                if (hiddenOption2Input) hiddenOption2Input.value = btnFemale.dataset.size;
+                                
+                                femaleWrapper.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+                                btnFemale.classList.add("active");
+                                
+                                updateSelectedVariantId();
+                                
+                                if (option2Main && option1Main) {
+                                    addToCartBtn.style.display = "inline-block";
+                                    chooseSizeBtn.style.display = "none";
+                                }
+                            });
+                            
+                            femaleWrapper.appendChild(btnFemale);
+                        }
+                    } 
+                    else {
+                        modalTwoSize.style.display = "none";
+                        modalRingSize.style.display = 'block';
+                        
+                        if (!variant2Set.has(variant.option1)) {
+                            variant2Set.add(variant.option1);
+                    
+                            const sizeTwo = document.createElement("div");
+                            sizeTwo.className = "swiper-slide-size";
+                            
+                            const btnSize = document.createElement("button");
+                            btnSize.textContent = cleanSizeValue(variant.option1);
+                            
+                            btnSize.addEventListener("click", () => {
+                                sizeMainViewed.textContent = btnSize.textContent;
+                                option1Main = true;
+                                option2Main = true;
+                                const hiddenIdInput = modalContent.querySelector("input[name='id']");
+                                const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                                if (hiddenOption1Input) hiddenOption1Input.value = variant.option1;
+                                
+                                const matchedVariant = productData.variants.find(v => v.option1 == variant.option1);
+                                if (matchedVariant) hiddenIdInput.value = matchedVariant.id;
+                                
+                                sizesWrapper.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+                                btnSize.classList.add("active");
+                            });
+                            
+                            sizeTwo.appendChild(btnSize);
+                            sizesWrapper.appendChild(sizeTwo);
+                            
+                            if (first) {
+                                hiddenInput.value = selectedVariant.id;
+                            }
+                            
+                            if (option2Main && option1Main) {
+                                addToCartBtn.style.display = "inline-block";
+                                chooseSizeBtn.style.display = "none";
+                            }
+
+                            first = false;
+                        }
+                    }
+                } else if(value2 == null) {
+                    modalTwoSize.style.display = "none";
+                    modalRingSize.style.display = 'none';
+                    addToCartBtn.style.display = "inline-block";
+                    chooseSizeBtn.style.display = "none";
+                }else{
+                    modalTwoSize.style.display = "none";
+                    modalRingSize.style.display = 'block';
+                    
+                    if (variant.option2 && !variant2Set.has(variant.option2)) {
+                        variant2Set.add(variant.option2);
+                        
+                        const sizeTwo = document.createElement("div");
+                        sizeTwo.className = "swiper-slide-size";
+                        
+                        const btnSize = document.createElement("button");
+                        btnSize.textContent = cleanSizeValue(variant.option2).replace(/[^\d]/g, "");
+                        
+                        btnSize.addEventListener("click", () => {
+                            sizeMainViewed.textContent = btnSize.textContent
+                            const hiddenIdInput = modalContent.querySelector("input[name='id']");
+                            const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                            const hiddenOption2Input = modalContent.querySelector("input[name='option2']");
+                            option1Main = true;
+                            option2Main = true;
+                            const sizeName = btnSize.textContent;
+                            if (hiddenOption2Input) hiddenOption2Input.value = sizeName;
+                            
+                            const activeColorBtn = variantsContainer.querySelector(".ring-2");
+                            const colorName = activeColorBtn ? (activeColorBtn.dataset.color || activeColorBtn.textContent) : "";
+                            
+                            if (hiddenOption1Input) hiddenOption1Input.value = colorName;
+                            
+                            const matchedVariant = productData.variants.find(v => {
+                                const vColor = v.title.split("/")[0].trim();
+                                const vSize = v.option2;
+                                return vColor === colorName && vSize === sizeName;
+                            });
+                            
+                            if (matchedVariant) {
+                                hiddenIdInput.value = matchedVariant.id;
+                            }
+                            
+                            if (option2Main && option1Main) {
+                                addToCartBtn.style.display = "inline-block";
+                                chooseSizeBtn.style.display = "none";
+                            }
+                            
+                            sizesWrapper.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+                            btnSize.classList.add("active");
+                        });
+                        
+                        sizeTwo.appendChild(btnSize);
+                        sizesWrapper.appendChild(sizeTwo);
+                        
+                        if (first) {
+                            hiddenInput.value = selectedVariant.id;
+                        }
+                        first = false;
+                    }
+                }
+            });
+
+
+            imagesWrapper.innerHTML = "";
+            const addedImages = new Set();
+            
+            productData.images.forEach((imgSrc, i) => {
+                if (!addedImages.has(imgSrc)) {
+                    addedImages.add(imgSrc);
+                    const slide = document.createElement("div");
+                    slide.className = "swiper-slide";
+                    slide.dataset.image = imgSrc;
+                    slide.innerHTML = `
+                        <a href='/products/${productData.handle}'>
+                            <img src="${imgSrc}" alt="${productData.title} ${i+1}" class="w-full h-auto">
+                        </a>
+                    `;
+                    imagesWrapper.appendChild(slide);
+                }
+            });
+            
+            if (modal.swiperInstance) {
+                modal.swiperInstance.destroy(true, true);
+            }
+            
+            modal.swiperInstance = new Swiper(modalContent.querySelector(".modal-swiper-collection"), {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                loop: true,
+                navigation: {
+                    nextEl: modalContent.querySelector(".swiper-button-next"),
+                    prevEl: modalContent.querySelector(".swiper-button-prev"),
+                },
+                pagination: {
+                    el: modalContent.querySelector(".swiper-pagination"),
+                    clickable: true,
+                },
+            });
+            
+           variantsContainer.innerHTML = "";
+           const addedVariantImages = new Set();
+           let currentVariantPrice = 0;
+           
+           let visibleCount = 0; 
+           let hiddenButtons = [];
+           
+           productData.variants.forEach((variant, index) => {
+            if (!variant.featured_image) return;
+            const imgSrc = variant.featured_image.src;
+            if (addedVariantImages.has(imgSrc)) return;
+            addedVariantImages.add(imgSrc);
+            
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = `variant-button-collection-main variant-thumb w-8 h-8 rounded-full overflow-hidden border
+            ${index === 0 ? "ring-2 ring-black" : "border-gray-300 hover:border-black"}`;
+            btn.dataset.image = imgSrc.replace('.jpg','_400x.jpg');
+            let colorName = variant.title.split("/")[0].trim(); 
+            btn.dataset.color = colorName;
+
+            btn.dataset.variantId = variant.id;
+            btn.dataset.price = variant.price;
+            btn.dataset.compareAtPrice = variant.compare_at_price || 0;
+            btn.innerHTML = `<img src="${imgSrc.replace('.jpg','_100x100.jpg')}" alt="${variant.title}" class="w-full h-full object-cover">`;
+            btn.addEventListener("click", () => {
+                const hiddenIdInput = modalContent.querySelector("input[name='id']");
+                const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                const hiddenOption2Input = modalContent.querySelector("input[name='option2']");
+                const colorName = btn.dataset.color || btn.textContent;
+                
+                if (hiddenOption1Input) hiddenOption1Input.value = colorName;
+                
+                const activeSizeBtn = sizesWrapper.querySelector("button.active");
+                const sizeName = activeSizeBtn ? activeSizeBtn.textContent : "";
+                if (hiddenOption2Input) hiddenOption2Input.value = sizeName;
+                
+                const variantId = btn.dataset.variantId;
+                if (hiddenIdInput) hiddenIdInput.value = variantId;
+                
+                variantsContainer.querySelectorAll("button").forEach(b => b.classList.remove("ring-2", "ring-black"));
+                btn.classList.add("ring-2", "ring-black");
+                updateSelectedVariantId(); 
+                
+                const targetImage = btn.dataset.image;
+                const slides = modalContent.querySelectorAll(".modal-swiper-collection .swiper-slide img");
+                
+                slides.forEach((img, i) => {
+                    const result = img.src.replace(/^https?:\/\//, "");
+                    const res1 = targetImage.replace(/^\/\//, "");
+                    if (result === res1) {
+                        modal.swiperInstance.slideToLoop(i); 
+                    }
+                });
+            });
+
+            
+            modalContent.querySelector(".modal-add-to-cart-form").addEventListener("submit", e => {
+                const hiddenIdInput = modalContent.querySelector("input[name='id']");
+                const hiddenOption1Input = modalContent.querySelector("input[name='option1']");
+                const hiddenOption2Input = modalContent.querySelector("input[name='option2']");
+                const hiddenQtyInput = modalContent.querySelector("input[name='quantity'][type='hidden']");
+                
+                const activeColorBtn = variantsContainer.querySelector(".ring-2");
+                const activeMaleBtn = modalContent.querySelector(".option1-size button.active");
+                const activeFemaleBtn = modalContent.querySelector(".option2-size button.active");
+                
+                const colorName = activeColorBtn ? activeColorBtn.dataset.color : "";
+                const maleSize = activeMaleBtn ? activeMaleBtn.textContent : "";
+                const femaleSize = activeFemaleBtn ? activeFemaleBtn.textContent : "";
+                
+                if (hiddenOption1Input) hiddenOption1Input.value = maleSize || colorName;
+                if (hiddenOption2Input) hiddenOption2Input.value = femaleSize;
+                
+                const matchedVariant = productData.variants.find(v => {
+                    const vColor = v.title.split("/")[0].trim();
+                    const vMale = v.option1 || "";
+                    const vFemale = v.option2 || "";
+                    return vColor === colorName && vMale === maleSize && vFemale === femaleSize;
+                });
+                
+                if (matchedVariant && hiddenIdInput) hiddenIdInput.value = matchedVariant.id;
+                
+                const qtyInput = modalContent.querySelector("input[name='quantity']:not([type='hidden'])");
+                if (qtyInput && hiddenQtyInput) hiddenQtyInput.value = parseInt(qtyInput.value) || 1;
+            });
+
+            if (visibleCount < 6) {
+                variantsContainer.appendChild(btn);
+                visibleCount++;
+            } else {
+                btn.style.display = "none"; 
+                hiddenButtons.push(btn);
+                variantsContainer.appendChild(btn);
+            }
+        });
+
+
+        
+        if (hiddenButtons.length > 0) {
+            const showMoreBtn = document.createElement("button");
+            showMoreBtn.type = "button";
+            showMoreBtn.className = "show-more-variants px-2 py-1 border rounded text-sm";
+            showMoreBtn.innerHTML = `{{ 'VectorModal1.svg' | asset_url | img_tag: "Show more" | class: "icon-modal-more"}}`;
+            showMoreBtn.addEventListener("click", () => {
+                hiddenButtons.forEach(b => (b.style.display = "flex"));
+                showMoreBtn.remove();
+            });
+            variantsContainer.appendChild(showMoreBtn);
+        }
+        
+        variantsContainer.querySelector("button")?.click();
+        const activeVariantBtn = variantsContainer.querySelector(".ring-2");
+        if (activeVariantBtn) {
+            currentVariantPrice = parseInt(activeVariantBtn.dataset.price) || 0;
+            modalPrice.textContent = formatMoney(currentVariantPrice);
+            modalComparePrice.textContent = activeVariantBtn.dataset.compareAtPrice > 0 
+            ? formatMoney(activeVariantBtn.dataset.compareAtPrice)
+            : "";
+        }
+
+            qtyInput.value = 1;
+            hiddenQtyInput.value = 1;
+            
+            modalContent.querySelector(".modal-product-price-text").textContent = formatMoney(currentVariantPrice);
+            setupQuantityControls(modal, qtyInput, hiddenQtyInput, modalPrice, currentVariantPrice);
+            
+            const reviewsCount = productData.reviewsCount || 0;
+            const avgRating = productData.avgRating || 0;
+            const roundedRating = Math.round(avgRating);
+            
+            const reviewsContainer = modal.querySelector(".modal-reviews");
+            const starsContainer = modal.querySelector(".modal-stars");
+            const ratingText = modal.querySelector(".modal-rating-text");
+            
+            if (reviewsCount > 0) {
+                starsContainer.innerHTML = '';
+                
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement('span');
+                    star.textContent = i <= roundedRating ? '★' : '☆';
+                    star.style.color = i <= roundedRating ? '#FBBF24' : '#D1D5DB';
+                    star.style.fontSize = '18px';
+                    starsContainer.appendChild(star);
+                }
+                
+                ratingText.textContent = `${avgRating.toFixed(2)}/5.00`;
+                reviewsContainer.style.display = 'flex';
+            } else {
+                reviewsContainer.style.display = 'none';
+            }
+            
+            document.body.style.overflow = 'hidden';
+            
+            function closeModal() {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+            
+            modal.querySelector(".close-modal")?.addEventListener("click", closeModal);
+            modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
+            modal.querySelector(".continue-shopping-recently-viewed")?.addEventListener("click", closeModal);
+            
+            const buyBtn = modal.querySelector(".modal-buy-button-cart");
+            
+            if (buyBtn) {
+                buyBtn.addEventListener("click", () => {
+                    setTimeout(() => {
+                        modal.remove();
+                        document.body.style.overflow = '';
+                    }, 1800);
+                });
+            }
+        }
+        
+        function initAddToCartModals() {
+            document.querySelectorAll(".add-to-cart-form").forEach(form => {
+                form.addEventListener("submit", e => {
+                    e.preventDefault();
+                    
+                    document.querySelectorAll(".container-modal-collection-main").forEach(m => m.remove());
+
+                    
+                    const productDataElem = form.querySelector(".product-data");
+                    if (!productDataElem) return;
+                    
+                    let variants = [];
+                    
+                    try {
+                        variants = JSON.parse(productDataElem.querySelector(".product-variants-json").textContent);
+                    } catch {
+                        console.error("Не вдалося розпарсити варіанти продукту"); return;
+                    }
+                    
+                    let images = [];
+                    
+                    try {
+                        images = JSON.parse(productDataElem.dataset.productImages);
+                    } catch {
+                        console.error("Не вдалося розпарсити зображення продукту");
+                    }
+                    
+                    const title = productDataElem.dataset.productTitle || "";
+                    const reviewsCount = parseInt(productDataElem.dataset.reviewsCount) || 0;
+                    const avgRating = parseFloat(productDataElem.dataset.avgRating) || 0;
+                    const template = document.querySelector("#addToCartModalTemplateRecently");
+                    
+                    if (!template) {
+                        console.error("Шаблон модалки не знайдено"); return;
+                    }
+                    
+                    const modalClone = template.content.cloneNode(true);
+                    const modal = modalClone.querySelector(".container-modal-collection-main");
+                    
+                    if (!modal) {
+                        console.error("Помилка в шаблоні модалки"); return;
+                    }
+                    
+                    document.body.appendChild(modal);
+                    const handle = productDataElem.dataset.productHandle;
+                    document.body.appendChild(modal);
+                    updateModal(modal, { title, images, variants, reviewsCount, avgRating, handle });
+                    modal.classList.remove("hidden");
+                });
+            });
+        }
+        
+        const targetNode = document.querySelector('recently-viewed-products');
+        if (targetNode) {
+            const observer = new MutationObserver(() => {
+                initCollectionSwiper();
+                initAddToCartModals();
+            });
+            
+            observer.observe(targetNode, { childList: true, subtree: true });
+            initCollectionSwiper();
+            initAddToCartModals();
+            initVariantThumbSwitcher();
+            
+        } else {
+            initCollectionSwiper();
+            initAddToCartModals();
+        }
+    });
+
+document.addEventListener('click', function(e) {
+    const thumbBtn = e.target.closest('.variant-thumb');
+    if (thumbBtn) {
+        const card = thumbBtn.closest('.product-card');
+        
+        if (!card) return;
+        
+        const mainImg = card.querySelector('.main-product-image');
+        if (mainImg) mainImg.src = thumbBtn.dataset.image;
+        
+        card.querySelectorAll('.variant-thumb').forEach(b => b.classList.remove('ring-2', 'ring-black'));
+        thumbBtn.classList.add('ring-2', 'ring-black');
+        
+        const variantInput = card.querySelector('.variant-input');
+        if (variantInput) variantInput.value = thumbBtn.dataset.variantId;
+    }
+    
+    const showMoreBtn = e.target.closest('.show-more-variants');
+    
+    if (showMoreBtn) {
+        const card = showMoreBtn.closest('.product-card');
+        if (!card) return;
+        
+        card.querySelectorAll('.hidden-variant').forEach(el => el.classList.remove('hidden-variant'));
+        showMoreBtn.remove();
+    }
+});
+
+
+const closeBtn = modal.querySelector(".modal-buy-button-cart");
+    closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Recently viewed",
+  "settings": [
+    {
+        "type": "richtext",
+        "id": "main_title",
+        "label": "Title"
+    },
+    {
+        "type": "range",
+        "id": "products_count",
+        "min": 2,
+        "max": 24,
+        "label": "t:global.product_list.products_to_show",
+        "default": 9
+    },
+  ],
+  "presets": [
+    {
+      "name": "Recently viewed"
+    }
+  ]
+}
+{% endschema %}

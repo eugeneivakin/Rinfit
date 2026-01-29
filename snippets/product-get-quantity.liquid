@@ -1,0 +1,24 @@
+{%- assign quantity_type = quantity_type | default: 1 -%}
+{%- case quantity_type -%}
+{%- when 1 %}
+<label{% unless quantity_show_title %} class="d-none"{% endunless %}>{{ 'products.product.quantity' | t }}</label>
+<div class="input-quantity input-quantity--type-01 d-flex js-product-quantity"{% if quantity_connect %} data-js-quantity-connect="{{ quantity_connect }}"{% endif %}>
+    <input type="number" class="mb-0 mr-10" name="quantity" value="1" min="1" max="5" readonly>
+    <div class="d-flex flex-center mr-10 border cursor-pointer" data-control="-"><i>{% include 'icon-theme-189' %}</i></div>
+    <div class="d-flex flex-center border cursor-pointer" data-control="+"><i>{% include 'icon-theme-188' %}</i></div>
+</div>
+{%- when 2 %}
+<label{% unless quantity_show_title %} class="d-none"{% endunless %}>{{ 'products.product.quantity' | t }}</label>
+<div class="input-quantity input-quantity--type-02 d-flex js-product-quantity"{% if quantity_connect %} data-js-quantity-connect="{{ quantity_connect }}"{% endif %}>
+    <div class="d-flex flex-center cursor-pointer" data-control="-"><i>{% include 'icon-theme-189' %}</i></div>
+    <input type="number" class="mb-0 text-center" name="quantity" value="1" min="1" max="5" readonly>
+    <div class="d-flex flex-center cursor-pointer" data-control="+"><i>{% include 'icon-theme-188' %}</i></div>
+</div>
+{%- when 3 %}
+<label{% unless quantity_show_title %} class="d-none"{% endunless %}>{{ 'products.product.quantity' | t }}</label>
+<div class="input-quantity input-quantity--type-03 d-flex js-product-quantity"{% if quantity_connect %} data-js-quantity-connect="{{ quantity_connect }}"{% endif %}>
+    <input type="number" class="mb-0 mr-10" name="quantity" value="1" min="1" max="5" readonly>
+</div>
+{%- endcase -%}
+{%- assign quantity_type = null -%}
+{%- assign quantity_connect = null -%}

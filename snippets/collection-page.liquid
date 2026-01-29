@@ -1,0 +1,45 @@
+<div class="collections js-collections pb-10">
+    <div data-js-collection-replace="breadcrumbs">
+        {% include 'breadcrumbs' %}
+    </div>
+    {%- if settings.collection_enable_fullwidth_head_section -%}
+        {% section 'collection-fullwidth-head' %}
+    {%- endif -%}
+    <div class="container mt-10 mt-lg-{{ settings.offset_collection_page_content_margin_top_d }}">
+        <div class="row mb-40 mb-lg-{{ settings.offset_collection_page_pagination_margin_bottom_d }}">
+            {%- if settings.collection_show_sidebar != 'hide' -%}
+                {%- if settings.collection_sidebar_position == 'dropdown' -%}
+                    <div class="collections__sidebar d-none">
+                        {% section 'collection-sidebar' %}
+                    </div>
+                {%- else -%}
+                    <div class="collections__sidebar collections__sidebar--width-md d-none col-auto d-lg-block{% if settings.collection_sidebar_position == 'right' %} order-2{% endif %}" data-sticky-sidebar-parent>
+                        {%- if settings.collection_enable_sticky -%}
+                            <div class="js-sticky-sidebar">
+                        {%- endif -%}
+                                <div data-js-position-desktop="sidebar" data-sticky-sidebar-inner>
+                                    {% section 'collection-sidebar' %}
+                                </div>
+                        {%- if settings.collection_enable_sticky -%}
+                            </div>
+                        {%- endif -%}
+                    </div>
+                    {% if settings.collection_enable_sticky %}
+                        <script>
+                            Loader.requireh({type: "script", name: "plugin_sticky_sidebar"});
+                            Loader.requireh({type: "script", name: "sticky_sidebar"});
+                        </script>
+                    {% endif %}
+                {%- endif -%}
+            {%- endif -%}
+            <div class="collections__body col pb-25" data-js-collections-body>
+                {% section 'collection-head' %}
+                {% section 'collection-body' %}
+            </div>
+        </div>
+        <script>
+            Loader.requireh({type: "script", name: "collections"});
+        </script>
+        {% section 'carousel-products' %}
+    </div>
+</div>

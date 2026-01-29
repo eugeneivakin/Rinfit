@@ -1,0 +1,115 @@
+.main-button-smart{
+    min-width: 129px;
+    min-height: 37px;
+    background: black;
+    font-family: "Kumbh Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-top: 31px;
+    border: 1px solid;
+    transition: all 0.3s ease; 
+}
+.main-button-smart:hover{
+    background: none !important;
+    color: #373A36 !important;
+    border-color:#C5C1C0 !important;
+}
+.section-smart-ring{
+    display: flex;
+    flex-direction: column;
+    max-width: 1098px;
+    margin: 0 auto;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+.main-title-smart em{
+    font-weight: 400;
+    font-family: "Playfair Display", serif;
+    font-size: 36px;
+    letter-spacing: -0.6px;
+}
+.main-block-smart{
+    min-height: 320px;
+    max-width: 522px;
+    left: 0;
+    position: relative;
+    border-radius: 10px;
+    padding: 17px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: unset;
+    justify-content: center;
+}
+.section-smart-ring img{
+    max-width: 522px;
+    width: 100%;
+    min-height: 319px;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.main-title-smart p,
+.main-title-smart{
+    line-height: 30px;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 300;
+}
+p.main-description-smart{
+    line-height: 20px;
+    padding-top: 20px;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+@media(min-width: 768px){
+    .main-button-smart{
+        margin-top: 40px;
+    }
+    .main-title-smart p,
+    .main-title-smart{
+        line-height: 40px;
+    }
+    .main-title-smart em{
+        letter-spacing: 0;
+        font-size: 47px;
+    }
+    p.main-description-smart{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .main-block-smart{
+        left: -34px;
+        padding: 0 23.5px;
+        max-width: auto;
+        height: 410px;
+    }
+    .section-smart-ring img{
+        width: 100%;
+        min-height: 500px;
+    }   
+    .section-smart-ring{
+        gap: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(min-width: 1024px){
+    .main-block-smart{
+        padding: 0 53.5px;
+    }
+}
+@media(min-width: 1250px){
+    .section-smart-ring img{
+        min-height: 500px;
+        min-width: 626px;
+    }
+}

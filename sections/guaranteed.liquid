@@ -1,0 +1,133 @@
+<style>
+.main-section-garanteed{
+    padding: 20px 0;
+    background-color: {{ section.settings.background_color }};
+}
+.main-container-garanteed{
+    display: grid;
+    grid-template-columns: repeat(4, 223px);
+    gap: 130.67px;
+    justify-content: center;
+}
+.main-container-garanteed .warranty-feature-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-container-garanteed .warranty-feature-title{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    padding: 5px 0 10px 0;
+}
+.main-container-garanteed .warranty-feature-description{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #373936B2;
+}
+@media (max-width: 1439px){
+    .main-container-garanteed{
+        grid-template-columns: repeat(4, 223px);
+        gap: 34px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media (max-width: 1024px){
+    .main-container-garanteed{
+        grid-template-columns: repeat(2, 223px);
+        gap: 34px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media (max-width: 768px){
+    .main-section-garanteed{
+        padding: 0;
+        background: none;
+    }
+    .main-container-garanteed{
+        grid-template-columns: repeat(2, 170px);
+        gap: 10px;
+    }
+    .main-container-garanteed .warranty-feature-description{
+        display: none;
+    }
+    .main-container-garanteed .warranty-feature-title{
+        font-family: "Kumbh Sans", sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 30px;
+        letter-spacing: 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
+</style>
+<section class="main-section-garanteed">
+    <div class="main-container-garanteed">
+        {%- for block in section.blocks -%}
+          <div class="warranty-feature-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon != blank -%}
+              <div class="warranty-feature-icon">
+                {{ block.settings.icon }}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h3 class="warranty-feature-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <div class="warranty-feature-description">{{ block.settings.description }}</div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+    </div>
+</section>
+{% schema %}
+{
+  "name": "Guaranteed",
+  "settings": [
+    {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "Guaranteed",
+      "name": "Guaranteed",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Icon SVG",
+          "info": "Paste your SVG icon code here"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guaranteed"
+    }
+  ]
+}
+{% endschema %}

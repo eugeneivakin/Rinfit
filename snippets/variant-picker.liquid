@@ -1,0 +1,1807 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  VARIANT PICKER
+  ----------------------------------------------------------------------------------------------------------------------
+
+  Render the variant picker option selectors.
+
+  ********************************************
+  Supported variables
+  ********************************************
+
+  * product: the product for which to render the selector (required)
+  * form_id: the ID of the form to which the variant picker belongs (required)
+  * context: the context of the variant picker. Can be "main_product", "featured_product" or "quick_buy" (required)
+  * hide_sold_out_variants: if set to true, the sold out or unavailable variants are hidden
+  * selector_style: the selector style to use for the main selectors
+  * swatch_selector_style: the selector style to use for the dedicated swatch selectors
+  * variant_image_options: a list of option names for which to use the variant image selector mode
+  * size_chart_page: the page to use for the size chart
+{%- endcomment -%}
+{{ 'size-calculator.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .section-modal-size .modal-content-size.modal-content{
+    max-width: 784px;
+  }
+  .variant-picker .two-sizes-product-option:nth-child(4) .main-table-size-guide {
+    display: none;
+  }
+  .main-container-color-products.main-container-color-products-one{
+    border: none;
+  }
+  .calculator{
+    border-top: none;
+    box-shadow: none;
+  }
+  .section-modal-size .result{
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  .main-calculator-container-top{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+  }
+  @media(max-width: 767px){
+    .main-calculator-container-top{
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  @media(max-width: 525px){
+    .main-calculator-container-top{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .main-calculator-subtitle{
+    text-align: center;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #373936;
+  }
+  .main-calculator-title{
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 30px;
+    color: #373a36;
+  }
+  .main-title-size-two{
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 34px;
+    display: block;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 6px 0 0px 0;
+  }
+  .main-calculator-title-top{
+      font-family: 'Kumbh Sans', sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 34px;
+      display: block;
+      margin-bottom: 0;
+      text-align: center;
+      padding: 6px 0 20px 0;
+    }
+    .main-calculator-title-top strong{
+      font-style: italic;
+      font-weight: 500;
+    }
+    .toggle-image-text {
+    cursor: pointer;
+  }
+</style>
+{%- liquid
+  assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
+  assign size_label_list = 'general.label.size' | t | replace: ', ', ',' | downcase | split: ','
+  assign variant_image_options = variant_image_options | replace: ', ', ',' | downcase | split: ','
+
+  if context == 'main_product'
+    assign is_main_product = true
+  endif
+-%}
+
+{%- unless product.has_only_default_variant -%}
+  <variant-picker
+    class="variant-picker v-stack "
+    section-id="{{ section.id }}"
+    form-id="{{ form_id }}"
+    context="{{ context }}"
+    handle="{{ product.handle }}"
+    {% if context == 'main_product' %}
+      update-url
+    {% endif %}
+  >
+    <script data-variant type="application/json">
+      {{- product.selected_or_first_available_variant | json -}}
+    </script>
+
+    
+      {% liquid
+        assign option_downcase = option.name | downcase
+        assign resolved_option_selector_style = selector_style
+
+        assign swatch_count = option.values | map: 'swatch' | compact | size
+
+        if swatch_count > 0 and swatch_selector_style != 'none'
+          assign resolved_option_selector_style = swatch_selector_style
+        endif
+
+
+        if swatch_count == 0 and color_label_list contains option_downcase and swatch_selector_style != 'none'
+          assign resolved_option_selector_style = swatch_selector_style
+        endif
+
+        if variant_image_options contains option_downcase
+          assign resolved_option_selector_style = 'variant_image'
+        endif
+      %}
+      {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
+
+      {%- assign has_color_option = false -%}
+      {%- assign has_size_option = false -%}
+      {%- assign has_mens_size_option = false -%}
+      {%- assign has_womens_size_option = false -%}
+
+      {%- for option in product.options_with_values -%}
+        {%- assign option_name_down = option.name | downcase -%}
+
+        {%- if color_label_list contains option_name_down -%}
+          {%- assign has_color_option = true -%}
+        {%- endif -%}
+
+        {%- if option.name == "Select Men's Size" -%}
+          {%- assign has_mens_size_option = true -%}
+          {%- assign has_size_option = true -%}
+        {%- endif -%}
+
+        {%- if option.name == "Select Women's Size" -%}
+          {%- assign has_womens_size_option = true -%}
+          {%- assign has_size_option = true -%}
+        {%- endif -%}
+
+        {%- if option_name_down == 'size' or option.name == "Select Size" -%}
+          {%- assign has_size_option = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {% if has_mens_size_option and has_womens_size_option %}
+
+        <div class="two-sizes-product-option main-container-size-products">
+          {%- for option in product.options_with_values -%}
+            {%- if option.name == "Select Men's Size" or option.name == "Select Women's Size" -%}
+              <div class="variant-picker__option v-stack gap-2">
+                <div class="variant-picker__option-info h-stack justify-between gap-2">
+                  <div class="h-stack gap-1 main-option-size-name">
+                    <div class="header-content-size">
+                      <span class="option-name">{{ option.name }}:<span class="main-option-size {% if option.name == "Select Men's Size" %}selected-select-men-s-size{% elsif option.name == "Select Women's Size" %}selected-select-women-s-size{% endif %}"></span></span>
+                      <span id="openModal" class="main-table-size-guide main-modal-size-guide">find my size guide</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="variant-picker__option-values h-stack gap-2.5 wrap">
+                  {%- for option_value in option.values -%}
+                    {%- if hide_sold_out_variants == false or option_value.available or option_value.selected -%}
+                      <button
+                        type="button"
+                        class="variant-btn two-size-btn"
+                        data-option-name="{{ option.name }}"
+                        data-option-value="{{ option_value }}"
+                        {% if option_value.available == false %}
+                          disabled
+                        {% endif %}
+                      >
+                        <span>{{ option_value }}</span>
+                        {%- if option_value.available == false -%}
+                          <span>
+                            {%- if option_value.variant == null -%}
+                              {{- 'product.general.unavailable_button' | t -}}
+                            {%- else -%}
+                              {{- 'product.general.sold_out_badge' | t -}}
+                            {%- endif -%}
+                          </span>
+                        {%- endif -%}
+                      </button>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- assign mens_option_position = 0 -%}
+        {%- assign womens_option_position = 0 -%}
+        {%- for option in product.options_with_values -%}
+          {%- if option.name == "Select Men's Size" -%}
+            {%- assign mens_option_position = option.position -%}
+          {%- endif -%}
+          {%- if option.name == "Select Women's Size" -%}
+            {%- assign womens_option_position = option.position -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const variantIdInputs = document.querySelectorAll('input[name="id"]');
+            const disabledButton = document.querySelector(".main-button-disabled");
+            const buyButton = document.querySelector(".buy-buttons");
+
+            window.productVariants = [
+              {% for variant in product.variants %}
+                {
+                  id: {{ variant.id }},
+                  {% if mens_option_position == 1 and womens_option_position == 2 %}
+                    mensSize: "{{ variant.option1 }}",
+                    womensSize: "{{ variant.option2 }}",
+                  {% elsif mens_option_position == 2 and womens_option_position == 1 %}
+                    mensSize: "{{ variant.option2 }}",
+                    womensSize: "{{ variant.option1 }}",
+                  {% elsif mens_option_position == 1 and womens_option_position == 3 %}
+                    mensSize: "{{ variant.option1 }}",
+                    womensSize: "{{ variant.option3 }}",
+                  {% elsif mens_option_position == 3 and womens_option_position == 1 %}
+                    mensSize: "{{ variant.option3 }}",
+                    womensSize: "{{ variant.option1 }}",
+                  {% elsif mens_option_position == 2 and womens_option_position == 3 %}
+                    mensSize: "{{ variant.option2 }}",
+                    womensSize: "{{ variant.option3 }}",
+                  {% elsif mens_option_position == 3 and womens_option_position == 2 %}
+                    mensSize: "{{ variant.option3 }}",
+                    womensSize: "{{ variant.option2 }}",
+                  {% else %}
+                    mensSize: "{{ variant.option1 }}",
+                    womensSize: "{{ variant.option2 }}",
+                  {% endif %}
+                  available: {{ variant.available | json }}
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ];
+
+            const mensSizeBtns = document.querySelectorAll('.variant-btn[data-option-name="Select Men\'s Size"]');
+            const womensSizeBtns = document.querySelectorAll('.variant-btn[data-option-name="Select Women\'s Size"]');
+            const mensSizeSpan = document.querySelector('.selected-select-men-s-size');
+            const womensSizeSpan = document.querySelector('.selected-select-women-s-size');
+
+            let selectedMensSize = null;
+            let selectedWomensSize = null;
+
+            function updateButtonVisibility() {
+              const bothSelected = selectedMensSize !== null && selectedWomensSize !== null;
+              
+              if (bothSelected) {
+                const variant = window.productVariants.find(v =>
+                  v.mensSize === selectedMensSize &&
+                  v.womensSize === selectedWomensSize &&
+                  v.available
+                );
+                
+                if (variant) {
+                  if (disabledButton) disabledButton.style.display = "none";
+                  if (buyButton) buyButton.style.display = "block";
+                } else {
+                  if (disabledButton) disabledButton.style.display = "block";
+                  if (buyButton) buyButton.style.display = "none";
+                }
+              } else {
+                if (disabledButton) disabledButton.style.display = "block";
+                if (buyButton) buyButton.style.display = "none";
+              }
+            }
+
+            function updateVariantId() {
+              if (selectedMensSize && selectedWomensSize) {
+                const variant = window.productVariants.find(v =>
+                  v.mensSize === selectedMensSize &&
+                  v.womensSize === selectedWomensSize &&
+                  v.available
+                );
+
+                if (variant) {
+                  variantIdInputs.forEach(input => input.value = variant.id);
+
+                  const newUrl = new URL(window.location.href);
+                  newUrl.searchParams.set("variant", variant.id);
+                  window.history.replaceState({}, "", newUrl.toString());
+
+                  updateButtonVisibility();
+                } else {
+                  variantIdInputs.forEach(input => input.value = "");
+                  updateButtonVisibility();
+                }
+              } else {
+                variantIdInputs.forEach(input => input.value = "");
+                updateButtonVisibility();
+              }
+            }
+
+            function setActive(buttons, value) {
+              buttons.forEach(btn => {
+                btn.classList.toggle("active", btn.dataset.optionValue === value);
+              });
+            }
+
+            mensSizeBtns.forEach(btn => {
+              btn.addEventListener("click", function() {
+                if (this.disabled) return;
+                selectedMensSize = this.dataset.optionValue;
+                setActive(mensSizeBtns, selectedMensSize);
+                if (mensSizeSpan) {
+                  mensSizeSpan.textContent = selectedMensSize;
+                }
+                updateVariantId();
+              });
+            });
+
+            womensSizeBtns.forEach(btn => {
+              btn.addEventListener("click", function() {
+                if (this.disabled) return;
+                selectedWomensSize = this.dataset.optionValue;
+                setActive(womensSizeBtns, selectedWomensSize);
+                if (womensSizeSpan) {
+                  womensSizeSpan.textContent = selectedWomensSize;
+                }
+                updateVariantId();
+              });
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlVariantId = urlParams.get("variant");
+
+            if (urlVariantId) {
+              const variant = window.productVariants.find(v => v.id === parseInt(urlVariantId));
+              if (variant && variant.available) {
+                selectedMensSize = variant.mensSize;
+                selectedWomensSize = variant.womensSize;
+                
+                setActive(mensSizeBtns, selectedMensSize);
+                setActive(womensSizeBtns, selectedWomensSize);
+                
+                if (mensSizeSpan) mensSizeSpan.textContent = selectedMensSize;
+                if (womensSizeSpan) womensSizeSpan.textContent = selectedWomensSize;
+                
+                updateVariantId();
+              } else {
+                updateButtonVisibility();
+              }
+            } else {
+              updateButtonVisibility();
+            }
+          });
+        </script>
+      {% elsif has_size_option %}
+        {%- if has_color_option -%}
+          {%- if resolved_option_selector_style == 'block' -%}
+            <div class="main-container-color-products">
+              <div>
+                <h2 class="main-title-color">Color: <span class="selected-color"> </span></h2>
+              </div>
+
+              {% assign used_colors = '' %}
+
+              <div class="product-variants main-product">
+                {% for variant in product.variants %}
+                  {% assign current_color = variant.option1 %}
+
+                  {% unless used_colors contains current_color %}
+                    <div
+                      class="variant-item "
+                      data-color="{{ current_color }}"
+                      {% if variant.featured_image %}
+                        data-src="{{ variant.featured_image | img_url: '100x100' }}"
+                      {% endif %}
+                    >
+                      {% if variant.featured_image %}
+                        <img
+                          src="{{ variant.featured_image | img_url: '200x200' }}"
+                          alt="{{ current_color }}"
+                        >
+                      {% else %}
+                        <span>{{ current_color }}</span>
+                      {% endif %}
+                    </div>
+                    {% assign used_colors = used_colors | append: current_color | append: ',' %}
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+            <div>
+              <div class="main-container-size-products">
+                <div class="header-content-size">
+                  <h2 class="main-title-ring">Ring Size: <span class="selected-size"></span></h2>
+                  <span id="openModal" class=" main-table-size-guide main-modal-size-guide ">Calculate my size</span>
+                </div>
+
+                <div class="product-sizes">
+                  {% for option in product.options_with_values %}
+                    {% if option.name == 'Size' or option.name == 'Select Size' %}
+                      {% for value in option.values %}
+                        <button
+                          type="button"
+                          class="size-btn "
+                          data-size="{{ value }}"
+                        >
+                          {% if value contains 'Select Size ' %}
+                            {{ value | remove: 'Select Size ' | strip }}
+                          {% elsif value contains 'Size' %}
+                            {{ value | remove: 'Size' | strip }}
+                          {% else %}
+                            {{ value }}
+                          {% endif %}
+                        </button>
+                      {% endfor %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+            <script>
+              window.productVariants = [
+                {% for variant in product.variants %}
+                  {
+                    id: {{ variant.id }},
+                    color: "{{ variant.option1 }}",
+                    size: "{{ variant.option2 }}",
+                    available: {{ variant.available | json }},
+                    featured_image: {
+                      src: "{{ variant.featured_image | img_url: '1024x1024' }}",
+                      alt: "{{ variant.featured_image.alt | escape }}"
+                    }
+                  }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+              ];
+            </script>
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                const colors = document.querySelectorAll(".variant-item");
+                const sizes = document.querySelectorAll(".size-btn");
+                const selectedColor = document.querySelector(".selected-color");
+                const selectedSize = document.querySelector(".selected-size");
+                const variantIdInputs = document.querySelectorAll('input[name="id"]');
+
+                const disabledButton = document.querySelector(".main-button-disabled");
+                const buyButton = document.querySelector(".buy-buttons");
+
+
+                function cleanSizeValue(size) {
+                  if (!size) return size;
+                  if (size.includes('Select Size ')) {
+                    return size.replace('Select Size ', '').trim();
+                  } else if (size.includes('Size')) {
+                    return size.replace('Size', '').trim();
+                  }
+                  return size;
+                }
+
+                if (disabledButton) disabledButton.style.display = "block";
+                if (buyButton) buyButton.style.display = "none";
+
+                function updateButtonVisibility() {
+                  let showBuy = false;
+                  if (colors.length > 0 && sizes.length > 0) {
+                    const colorSelected = selectedColor.textContent.trim() !== "";
+                    const sizeSelected = selectedSize.textContent.trim() !== "";
+                    showBuy = colorSelected && sizeSelected;
+                  } else {
+                    const selectedOptions = getSelectedOptions();
+                    const allSelected = selectedOptions.every(opt => opt !== null);
+                    const variant = window.productVariants.find(v =>
+                      v.available && v.options.every((opt, i) => opt === selectedOptions[i])
+                    );
+                    showBuy = allSelected && variant;
+                  }
+
+                  if (showBuy) {
+                    if (disabledButton) disabledButton.style.display = "none";
+                    if (buyButton) buyButton.style.display = "block";
+                  } else {
+                    if (disabledButton) disabledButton.style.display = "block";
+                    if (buyButton) buyButton.style.display = "none";
+                  }
+                }
+
+                function updateVariantId(updateUrl = true) {
+                  let variant = null;
+
+                  if (colors.length > 0 && sizes.length > 0) {
+                    const color = selectedColor.textContent.trim();
+                    const size = selectedSize.textContent.trim();
+
+                    variant = window.productVariants.find(v =>
+                      v.color === color && v.size === size && v.available
+                    );
+                  } else {
+                    const selectedOptions = getSelectedOptions();
+
+                    variant = window.productVariants.find(v =>
+                      v.available && v.options.every((opt, i) => opt === selectedOptions[i])
+                    );
+                  }
+
+                  if (variant) {
+                    variantIdInputs.forEach(input => input.value = variant.id);
+
+                    if (updateUrl) {
+                      const newUrl = new URL(window.location.href);
+                      newUrl.searchParams.set("variant", variant.id);
+                      window.history.replaceState({}, "", newUrl.toString());
+                    }
+                  } else {
+                    variantIdInputs.forEach(input => input.value = "");
+                  }
+                }
+
+                if (colors.length > 0 && sizes.length > 0) {
+                  window.productVariants = [
+                    {% for variant in product.variants %}
+                      {
+                        id: {{ variant.id }},
+                        color: "{{ variant.option1 }}",
+                        size: "{{ variant.option2 }}",
+                        available: {{ variant.available | json }}
+                      }{% unless forloop.last %},{% endunless %}
+                    {% endfor %}
+                  ];
+
+                  function setActive(elements, attr, value) {
+                    elements.forEach(el => el.classList.toggle("active", el.getAttribute(attr) === value));
+                  }
+
+                  function disableSizeButtons(color) {
+                    sizes.forEach(sizeBtn => {
+                      const size = sizeBtn.dataset.size;
+                      const isAvailable = window.productVariants.some(v =>
+                        v.color === color && v.size === size && v.available
+                      );
+                      sizeBtn.disabled = !isAvailable;
+                      sizeBtn.classList.toggle("disabled", !isAvailable);
+                      if (!isAvailable) sizeBtn.classList.remove("active");
+                    });
+                  }
+
+                  colors.forEach(colorEl => {
+                    colorEl.addEventListener("click", () => {
+                      const color = colorEl.dataset.color;
+                      const imageSrc = colorEl.dataset.src;
+
+                      selectedColor.textContent = color;
+                      setActive(colors, "data-color", color);
+                      disableSizeButtons(color);
+                      updateVariantId();
+                      updateButtonVisibility();
+
+                      if (imageSrc && typeof goToImageBySrc === 'function') {
+                        goToImageBySrc(imageSrc);
+                      }
+                    });
+                  });
+
+                  sizes.forEach(sizeBtn => {
+                    sizeBtn.addEventListener("click", () => {
+                      if (sizeBtn.disabled) return;
+                      const size = sizeBtn.dataset.size;
+                      selectedSize.textContent = cleanSizeValue(size);
+                      setActive(sizes, "data-size", size);
+                      updateVariantId();
+                      updateButtonVisibility();
+                    });
+                  });
+
+                  const urlParams = new URLSearchParams(location.search);
+                  const urlVariantId = urlParams.get("variant");
+
+                  if (urlVariantId) {
+                    const variant = window.productVariants.find(v => v.id === parseInt(urlVariantId));
+
+                    if (variant) {
+                      const colorEl = Array.from(colors).find(el => el.dataset.color === variant.color);
+                      if (colorEl) colorEl.click();
+
+                      setTimeout(() => {
+                        const sizeEl = Array.from(sizes).find(el => el.dataset.size === variant.size && !el.disabled);
+                        if (sizeEl) sizeEl.click();
+                      }, 50);
+                    }
+                  }else{
+                    const firstAvailableColor = window.productVariants.find(v => v.available)?.color;
+
+                    if (firstAvailableColor) {
+                      const colorEl = Array.from(colors).find(el => el.dataset.color === firstAvailableColor);
+                      if (colorEl) colorEl.click();
+                    }
+                  }
+                }
+              });
+            </script>
+          {%- endif -%}
+        {%- else -%}
+          <div class="two-sizes-product-option">
+
+            <div class="variant-picker__option v-stack gap-2">
+              <div class="variant-picker__option-info h-stack justify-between gap-2">
+                <div class="h-stack gap-1 main-option-size-name">
+                  <div class="header-content-size">
+                    <span class="option-name"> {{ option.name }}:<span class="main-option-size"></span> </span>
+                    <span id="openModal" class="main-table-size-guide main-modal-size-guide ">find my size guide</span>
+                  </div>
+                  {%- if resolved_option_selector_style == 'swatch'
+                    or resolved_option_selector_style == 'variant_image'
+                  -%}
+                    <span class="selected-value">{{ option.selected_value }}</span>
+                  {%- endif -%}
+                </div>
+
+                {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
+                  {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
+
+                  <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
+                    {{- 'product.general.size_chart' | t -}}
+                  </button>
+
+                  <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
+                    <span class="h5" slot="header">{{ size_chart_page.title }}</span>
+                    <div class="prose">
+                      {{- size_chart_page.content -}}
+                    </div>
+                  </x-modal>
+                {%- endif -%}
+              </div>
+
+              {%- assign list_classes = '' -%}
+
+              {%- case resolved_option_selector_style -%}
+                {%- when 'swatch', 'variant_image', 'block', 'block_swatch' -%}
+                  {%- assign list_classes = 'h-stack gap-2.5 wrap' -%}
+              {%- endcase -%}
+
+              <div class="variant-picker__option-values {{ list_classes }}">
+                {%- for option_value in option.values -%}
+                  {%- if hide_sold_out_variants == false or option_value.available or option_value.selected -%}
+                    <button
+                      type="button"
+                      class="variant-btn "
+                      data-option-position="{{ option.position }}"
+                      data-option-value="{{ option_value.id }}"
+                      {% if option_value.product_url != blank %}
+                        data-product-url="{{ option_value.product_url | escape }}"
+                      {% endif %}
+                      {% if option_value.available == false %}
+                        disabled
+                      {% endif %}
+                    >
+                      <span>{{ option_value }}</span>
+                      {%- if option_value.available == false -%}
+                        <span>
+                          {%- if option_value.variant == null -%}
+                            {{- 'product.general.unavailable_button' | t -}}
+                          {%- else -%}
+                            {{- 'product.general.sold_out_badge' | t -}}
+                          {%- endif -%}
+                        </span>
+                      {%- endif -%}
+                    </button>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const variantPickers = document.querySelectorAll(".variant-picker__option");
+              const variantIdInputs = document.querySelectorAll('input[name="id"]');
+              const disabledButton = document.querySelector(".main-button-disabled");
+              const buyButton = document.querySelector(".buy-buttons");
+
+              window.productVariants = [
+                {% for variant in product.variants %}
+                  {
+                    id: {{ variant.id }},
+                    options: [
+                      "{{ variant.option1 }}"{% if variant.option2 %}, "{{ variant.option2 }}"{% endif %}{% if variant.option3 %}, "{{ variant.option3 }}"{% endif %}
+                    ],
+                    available: {{ variant.available | json }}
+                  }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+              ];
+
+              function getSelectedOptions() {
+                return Array.from(variantPickers).map(picker => {
+                  const activeBtn = picker.querySelector(".variant-btn.active");
+                  return activeBtn ? activeBtn.querySelector("span").textContent.trim() : null;
+                });
+              }
+
+              function updateButtonVisibility(showBuy) {
+                if (showBuy) {
+                  if (buyButton) buyButton.style.display = "block";
+                  if (disabledButton) disabledButton.style.display = "none";
+                } else {
+                  if (buyButton) buyButton.style.display = "none";
+                  if (disabledButton) disabledButton.style.display = "block";
+                }
+              }
+
+              function updateVariantId(updateUrl = true) {
+                const selectedOptions = getSelectedOptions();
+                const variant = window.productVariants.find(v =>
+                  v.available && v.options.every((opt, i) => opt === selectedOptions[i])
+                );
+
+                if (variant) {
+                  variantIdInputs.forEach(input => input.value = variant.id);
+
+                  if (updateUrl) {
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.set("variant", variant.id);
+                    window.history.replaceState({}, "", newUrl.toString());
+                  }
+
+                  updateButtonVisibility(true);
+                } else {
+                  variantIdInputs.forEach(input => input.value = "");
+                  updateButtonVisibility(false);
+                }
+              }
+
+              variantPickers.forEach(picker => {
+                const buttons = picker.querySelectorAll(".variant-btn");
+                const selectedValueSpan = picker.querySelector(".selected-value");
+                const hStackSpan = picker.querySelector(".h-stack.gap-1 span.option-name span");
+
+                buttons.forEach(button => {
+                  button.addEventListener("click", function () {
+                    buttons.forEach(btn => btn.classList.remove("active"));
+                    this.classList.add("active");
+                    const value = this.querySelector("span").textContent.trim();
+
+                    if (selectedValueSpan) {
+                      selectedValueSpan.textContent = value;
+                    }
+                    if (hStackSpan) {
+                      hStackSpan.textContent = value;
+                    }
+                    updateVariantId();
+                  });
+                });
+              });
+
+              const urlParams = new URLSearchParams(window.location.search);
+              const urlVariantId = urlParams.get("variant");
+
+              if (urlVariantId) {
+                const variant = window.productVariants.find(v => v.id === parseInt(urlVariantId));
+
+                if (variant && variant.available) {
+                  variant.options.forEach((optValue, i) => {
+                    const picker = variantPickers[i];
+                    const button = Array.from(picker.querySelectorAll(".variant-btn")).find(btn =>
+                      btn.querySelector("span").textContent.trim() === optValue
+                    );
+                    if (button) {
+                      button.classList.add("active");
+                      const selectedValueSpan = picker.querySelector(".selected-value");
+                      const hStackSpan = picker.querySelector(".h-stack.gap-1 span.option-name span");
+
+                      if (selectedValueSpan) selectedValueSpan.textContent = button.querySelector("span").textContent.trim();
+                      if (hStackSpan) hStackSpan.textContent = button.querySelector("span").textContent.trim();
+                    }
+                  });
+
+                  updateButtonVisibility(true);
+                  updateVariantId(false);
+                } else {
+                  updateButtonVisibility(false);
+                }
+              } else {
+                updateVariantId(false);
+              }
+            });
+          </script>
+        {%- endif -%}
+      {%- else -%}
+        <div class="main-container-color-products main-container-color-products-one">
+          <div>
+            <h2 class="main-title-color">Color: <span class="selected-color"> </span></h2>
+          </div>
+
+          {% assign used_colors = '' %}
+
+          <div class="product-variants main-product">
+            {% for variant in product.variants %}
+              {% assign current_color = variant.option1 %}
+              {% unless used_colors contains current_color %}
+                <div
+                  class="variant-item "
+                  data-color="{{ current_color }}"
+                  {% if variant.featured_image %}
+                    data-src="{{ variant.featured_image | img_url: '100x100' }}"
+                  {% endif %}
+                  data-variant-id="{{ variant.id }}"
+                >
+                  {% if variant.featured_image %}
+                    <img
+                      src="{{ variant.featured_image | img_url: '200x200' }}"
+                      alt="{{ current_color }}"
+                    >
+                  {% else %}
+                    <span>{{ current_color }}</span>
+                  {% endif %}
+                </div>
+                {% assign used_colors = used_colors | append: current_color | append: ',' %}
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.main-container-color-products-one');
+            if (!container) return;
+
+            const variantItems = container.querySelectorAll('.variant-item');
+            const selectedColorEl = container.querySelector('.selected-color');
+            const slideImgs = document.querySelectorAll('.main-swiper .swiper-slide img');
+
+            // знайдемо hidden input для варіанту
+            const productForm = document.querySelector('.shopify-product-form');
+            const variantInput = productForm ? productForm.querySelector("input[name='id']") : null;
+
+            const cleanUrl = (url) => url.replace(/^https:/, '').replace(/_[^/]*$/, '');
+
+            // Swiper
+            const mainSwiperEl = document.querySelector('.main-swiper');
+            const mainSwiper = mainSwiperEl ? mainSwiperEl.swiper : null;
+            if (!mainSwiper) return;
+
+            if (variantItems.length && selectedColorEl) {
+              const setActive = (item) => {
+                variantItems.forEach((v) => v.classList.remove('active'));
+                item.classList.add('active');
+                selectedColorEl.textContent = item.getAttribute('data-color');
+
+                const variantId = item.getAttribute('data-variant-id');
+                if (variantId) {
+                  // оновлюємо hidden input форми
+                  if (variantInput) variantInput.value = variantId;
+
+                  // додаємо variant в URL
+                  const url = new URL(window.location.href);
+                  url.searchParams.set('variant', variantId);
+                  window.history.replaceState(null, '', url.toString());
+                }
+              };
+
+              // перевірка URL на variant
+              const urlParams = new URLSearchParams(window.location.search);
+              const variantParam = urlParams.get('variant');
+
+              let initialVariant = variantItems[0]; // за замовчуванням перший
+              if (variantParam) {
+                const foundVariant = Array.from(variantItems).find(
+                  (item) => item.getAttribute('data-variant-id') === variantParam
+                );
+                if (foundVariant) initialVariant = foundVariant;
+              }
+
+              setActive(initialVariant);
+
+              // показ слайда
+              const initialSrc = cleanUrl(initialVariant.getAttribute('data-src'));
+              slideImgs.forEach((img, i) => {
+                if (cleanUrl(img.src) === initialSrc) mainSwiper.slideTo(i);
+              });
+
+              // слухачі кліків
+              variantItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                  setActive(item);
+                  const variantSrc = cleanUrl(item.getAttribute('data-src'));
+                  slideImgs.forEach((img, i) => {
+                    if (cleanUrl(img.src) === variantSrc) mainSwiper.slideTo(i);
+                  });
+                });
+              });
+            }
+          });
+        </script>
+      {% endif %}
+
+    {%- unless request.design_mode -%}
+      <noscript>
+        {%- assign input_label = 'product.general.variant' | t -%}
+
+        {%- capture select_options -%}
+          {%- for variant in product.variants -%}
+            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} {% unless variant.available %}disabled="disabled"{% endunless %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+          {%- endfor -%}
+        {%- endcapture -%}
+
+        {%- render 'select', label: input_label, form: form_id, name: 'id', options: select_options -%}
+      </noscript>
+    {%- endunless -%}
+  </variant-picker>
+{%- endunless -%}
+{% if has_size_option %}
+  <button class="main-button-disabled">select your size</button>
+{% endif %}
+<div
+  id="modal"
+  class="main-modal-ring-size"
+  style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;"
+>
+  <div style="position:relative; margin:50px auto; width:90%; height:80%; background:#fff; padding-top: 35px; overflow:auto;">
+    <button id="closeModal" style="position:absolute; right:10px; top:10px;">
+      {{ 'iconCancel.svg' | asset_url | img_tag: 'Icon' }}
+    </button>
+    <div id="modalContent">{{ settings.main_text_loading }}</div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<div class="modal section-modal-size" id="sizeGuideModal">
+  <div class="modal-content modal-content-size">
+    {% if block.settings.main_title_calculator != blank %}
+      <div class="main-calculator-title-top">{{ block.settings.main_title_calculator }}</div>
+    {% endif %}
+    <div class="main-calculator-container-top">
+      <div>
+        {% if block.settings.main_image_1 != blank %}
+          {{ block.settings.main_image_1 | image_url: width: block.settings.main_image_1.width | image_tag }}
+        {% endif %}
+        {% if block.settings.main_title_1 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_1 }}
+          </div>
+        {% endif %}
+        {% if block.settings.main_subtitle_1 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_1 }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if block.settings.main_image_2 != blank %}
+          {{ block.settings.main_image_2 | image_url: width: block.settings.main_image_2.width | image_tag }}
+        {% endif %}
+
+        {% if block.settings.main_title_2 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_2 }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.main_subtitle_2 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_2 }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if block.settings.main_image_3 != blank %}
+          {{ block.settings.main_image_3 | image_url: width: block.settings.main_image_1.width | image_tag }}
+        {% endif %}
+
+        {% if block.settings.main_title_3 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_3 }}
+          </div>
+        {% endif %}
+        {% if block.settings.main_subtitle_3 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_3 }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if block.settings.main_image_4 != blank %}
+          {{ block.settings.main_image_4 | image_url: width: block.settings.main_image_4.width | image_tag }}
+        {% endif %}
+        {% if block.settings.main_title_4 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_4 }}
+          </div>
+        {% endif %}
+        {% if block.settings.main_subtitle_4 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_4 }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <button class="close-modal" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18" stroke="black" stroke-width="2"/>
+        <line x1="6" y1="6" x2="18" y2="18" stroke="black" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <div class="calculator calculator-size-one">
+      <div class="main-container-calculator">
+        <div class="main-container-select-label">
+          <div>
+            <div class="main-label-calculator">Units of measurement:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="unit">
+                <option value="mm">Millimeters (mm)</option>
+                <option value="inch">Inches (inch)</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="main-label-calculator">Measurement type:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="type">
+                <option value="diameter">Diameter</option>
+                <option value="circumference">Circumference</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-label-calculator">Enter the value:</div>
+        <input class="main-input-calculator" type="number" id="value" placeholder="For example: 18.1" step="any">
+        <button class="main-button-calculator" onclick="calculateSize()">Calculate</button>
+        <div class="result" id="result"></div>
+
+        {% comment %} <div class="toggle-image-text" onclick="toggleImageVisibility()"></div> {% endcomment %}
+        <div class="image-container" id="image-container">
+          <img
+            src="https://cdn.shopify.com/s/files/1/1471/8740/files/chart.png?v=1755874188"
+            alt="Chart Image"
+            loading="lazy"
+          >
+        </div>
+        <div class="image-container-mobile" id="image-container">
+          <img
+            src="https://cdn.shopify.com/s/files/1/1471/8740/files/rinfit_mobile.avif?v=1764618048"
+            alt="Chart Mobile Image"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="calculator calculator-size-two">
+      <div class="main-title-size-two">Men's Size</div>
+      <div class="main-container-calculator men-size">
+        <div class="main-container-select-label">
+          <div>
+            <div class="main-label-calculator">Units of measurement:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="unit">
+                <option value="mm">Millimeters (mm)</option>
+                <option value="inch">Inches (inch)</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="main-label-calculator">Measurement type:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="type">
+                <option value="diameter">Diameter</option>
+                <option value="circumference">Circumference</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-label-calculator">Enter the value:</div>
+        <input class="main-input-calculator" type="number" id="value" placeholder="For example: 18.1" step="any">
+        <button class="main-button-calculator" onclick="calculateSizeTwo(this)">Calculate</button>
+        <div class="result" id="result"></div>
+      </div>
+      <div class="main-title-size-two">Women's Size</div>
+      <div class="main-container-calculator women-size">
+        <div class="main-container-select-label">
+          <div>
+            <div class="main-label-calculator">Units of measurement:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="unit">
+                <option value="mm">Millimeters (mm)</option>
+                <option value="inch">Inches (inch)</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="main-label-calculator">Measurement type:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="type">
+                <option value="diameter">Diameter</option>
+                <option value="circumference">Circumference</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-label-calculator">Enter the value:</div>
+        <input class="main-input-calculator" type="number" id="value" placeholder="For example: 18.1" step="any">
+        <button class="main-button-calculator" onclick="calculateSizeTwo(this)">Calculate</button>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const colorProducts = document.querySelector('.main-container-color-products');
+    const otherBlockOne = document.querySelector('.calculator-size-one');
+    const otherBlockTwo = document.querySelector('.calculator-size-two');
+
+    if (colorProducts) {
+      if (otherBlockOne) otherBlockOne.style.display = 'block';
+      if (otherBlockTwo) otherBlockTwo.style.display = 'none';
+    } else {
+      if (otherBlockOne) otherBlockOne.style.display = 'none';
+      if (otherBlockTwo) otherBlockTwo.style.display = 'block';
+    }
+  });
+  function toggleImageVisibility() {
+    var imageContainer = document.getElementById('image-container');
+    if (imageContainer.style.display === 'none') {
+      imageContainer.style.display = 'block';
+    } else {
+      imageContainer.style.display = 'none';
+    }
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const selectBlocks = document.querySelectorAll('.main-container-calculator-top');
+
+    selectBlocks.forEach((block) => {
+      const select = block.querySelector('.main-select-calculator');
+      const icon = block.querySelector('.select-icon-calculator');
+
+      select.addEventListener('mousedown', () => {
+        icon.classList.toggle('open');
+      });
+
+      select.addEventListener('blur', () => {
+        icon.classList.remove('open');
+      });
+    });
+  });
+</script>
+<script>
+  const ringData = [
+      {% for item in shop.metaobjects.size_ring.values %}
+          {
+              size: {{ item.size }},
+              dia_mm: {{ item.diameter_mm }},
+              dia_in: {{ item.diameter_inches }},
+              cir_mm: {{ item.circumference_mm }},
+              cir_in: {{ item.circumference_inches }}
+          }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+  ];
+</script>
+<script>
+  function calculateSize() {
+    const unit = document.getElementById('unit').value;
+    const type = document.getElementById('type').value;
+    const value = parseFloat(document.getElementById('value').value);
+    const resultDiv = document.getElementById('result');
+
+    if (isNaN(value)) {
+      resultDiv.textContent = 'Please enter a number.';
+      return;
+    }
+
+    const key = type === 'diameter' ? (unit === 'mm' ? 'dia_mm' : 'dia_in') : unit === 'mm' ? 'cir_mm' : 'cir_in';
+
+    let closest = null;
+    let minDiff = Infinity;
+
+    ringData.forEach((r) => {
+      const diff = Math.abs(r[key] - value);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = r;
+      }
+    });
+
+    if (closest) {
+      resultDiv.innerHTML = `
+            <b>Ring size: ${closest.size}</b><br>
+            Diameter: ${closest.dia_mm} мм (${closest.dia_in} inches)<br>
+            Circumference: ${closest.cir_mm} мм (${closest.cir_in} inches)
+        `;
+    } else {
+      resultDiv.innerHTML = `
+            Size not found, please check the measurement table and try again.
+        `;
+    }
+  }
+</script>
+
+<script>
+  let menFound = false;
+  let womenFound = false;
+
+  function calculateSizeTwo(button) {
+    const calculatorWrapper = document.querySelector('.calculator-size-two');
+    if (!calculatorWrapper) return;
+
+    const activeCalculator = button.closest('.main-container-calculator');
+    if (!activeCalculator) return;
+
+    const isMen = activeCalculator.classList.contains('men-size');
+    const unit = activeCalculator.querySelector('#unit').value;
+    const type = activeCalculator.querySelector('#type').value;
+    const value = parseFloat(activeCalculator.querySelector('#value').value);
+    const resultDiv = activeCalculator.querySelector('#result');
+
+    if (isNaN(value)) {
+      resultDiv.textContent = 'Please enter a number.';
+      return;
+    }
+
+    const key = type === 'diameter' ? (unit === 'mm' ? 'dia_mm' : 'dia_in') : unit === 'mm' ? 'cir_mm' : 'cir_in';
+
+    const found = ringData.find((r) => r[key] === value);
+    let clickedSomething = false;
+
+    if (found) {
+      const options = document.querySelectorAll('.variant-picker__option');
+      options.forEach((option) => {
+        const optionName = option.querySelector('.option-name')?.textContent.trim();
+
+        if (isMen && optionName.includes("Select Men's Size")) {
+          if (clickSizeOption(option, found.size)) clickedSomething = true;
+        } else if (!isMen && optionName.includes("Select Women's Size")) {
+          if (clickSizeOption(option, found.size)) clickedSomething = true;
+        }
+      });
+
+      resultDiv.innerHTML = `
+      <b>Ring size: ${found.size}</b><br>
+      Diameter: ${found.dia_mm} мм (${found.dia_in} inches)<br>
+      Circumference: ${found.cir_mm} мм (${found.cir_in} inches)
+    `;
+
+      if (clickedSomething) {
+        if (isMen) menFound = true;
+        else womenFound = true;
+      }
+
+      if (menFound && womenFound) {
+        closeModal();
+      }
+    } else {
+      resultDiv.innerHTML = `
+      Size not found, please enter different values.
+    `;
+    }
+  }
+
+  function clickSizeOption(optionBlock, size) {
+    const valueButtons = optionBlock.querySelectorAll('.variant-picker__option-values button');
+    let clicked = false;
+
+    valueButtons.forEach((btn) => {
+      // Перевіряємо як за текстом в span, так і за data-option-value
+      const btnSize = btn.querySelector('span')?.textContent.trim();
+      const btnDataValue = btn.dataset.optionValue;
+      const sizeStr = size.toString();
+      
+      if (btnSize === sizeStr || btnDataValue === sizeStr) {
+        if (!btn.disabled) {
+          btn.click();
+          clicked = true;
+        }
+      }
+    });
+
+    return clicked;
+  }
+
+  function closeModal() {
+    const modal = document.querySelector('.modal.section-modal-size');
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.querySelector('.modal.section-modal-size');
+    if (modal) {
+      document.body.appendChild(modal);
+    }
+
+    const openBtns = document.querySelectorAll('.main-table-size-guide');
+    const closeBtn = modal.querySelector('.close-modal');
+
+    openBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (!e.target.closest('.modal-content')) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  });
+</script>
+
+<style>
+  .container-main-size-dimensions svg{
+    width: 30px;
+    cursor: pointer;
+  }
+  .container-main-size-dimensions{
+    display: flex;
+    align-items: center;
+  }
+  .main-table-size-guide{
+    font-family: "Kumbh Sans", sans-serif;
+    cursor: pointer;
+  }
+  .main-title-text-szie{
+    font-family: "Kumbh Sans", sans-serif;
+    padding-right: 21px;
+  }
+  .main-title-text-szie span{
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .section-modal-size.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    background: rgba(0,0,0,0.5);
+  }
+  .modal-content-size.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 90%;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  body.no-scroll header{
+    z-index: 2 !important;
+  }
+  body.no-scroll .promo-banner-wrapper{
+    z-index: 0 !important;
+  }
+  body.no-scroll{
+    width: 100%;
+    overflow: hidden;
+  }
+  @media(max-width: 600px){
+    .modal-content-size.modal-content{
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const openBtns = document.querySelectorAll('.openModal');
+    const closeBtn = document.getElementById('closeModal');
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const header = document.querySelector('header');
+    let savedHeaderZ = header ? header.style.zIndex || '' : '';
+    let savedScrollY = 0;
+
+    function lockScroll() {
+      savedScrollY = window.scrollY || document.documentElement.scrollTop;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${savedScrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    }
+
+    function unlockScroll() {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, savedScrollY);
+    }
+
+    function stopAllVideos() {
+      document.querySelectorAll('video').forEach((v) => {
+        v.pause();
+        v.currentTime = 0;
+        v.classList.remove('active');
+      });
+
+      document.querySelectorAll('.video-thumbnail').forEach((el) => el.classList.remove('hidden'));
+      document.querySelectorAll('.play-button').forEach((el) => el.classList.remove('hidden'));
+    }
+
+    function initSwiper(container) {
+      const swiperContainer = container.querySelector('.warranty-swiper');
+      const progressLines = container.querySelectorAll('.warranty-progress-line');
+
+      if (!swiperContainer || !window.Swiper) return;
+
+      const swiper = new Swiper(swiperContainer, {
+        slidesPerView: 1,
+        centeredSlides: true,
+        loop: false,
+        speed: 300,
+        navigation: {
+          nextEl: container.querySelector('.warranty-arrow-next'),
+          prevEl: container.querySelector('.warranty-arrow-prev'),
+        },
+        on: {
+          init: function () {
+            progressLines.forEach((line, index) => line.classList.toggle('active', index === 0));
+          },
+          slideChange: function () {
+            progressLines.forEach((line, index) => line.classList.toggle('active', index === this.activeIndex));
+          },
+        },
+      });
+
+      progressLines.forEach((line, index) => {
+        line.addEventListener('click', () => swiper.slideTo(index));
+      });
+    }
+
+    function initVideo(container) {
+      const videoContainers = container.querySelectorAll('.video-ring-guide__video-container');
+      videoContainers.forEach((videoContainer) => {
+        const videoUrl = videoContainer.dataset.videoUrl;
+        if (!videoUrl) return;
+
+        videoContainer.addEventListener(
+          'click',
+          function () {
+            stopAllVideos();
+
+            const videoIdMatch = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+            if (!videoIdMatch) return;
+
+            const videoId = videoIdMatch[1];
+            videoContainer.innerHTML = `
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+            frameborder="0" 
+            allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        `;
+          },
+          { once: true }
+        );
+      });
+    }
+
+    window.initRingSizingVideo = function (containerId) {
+      const videoContainer = document.getElementById(`video-container-${containerId}`);
+      const videoThumbnail = document.getElementById(`video-thumbnail-${containerId}`);
+      const videoPlayer = document.getElementById(`video-player-${containerId}`);
+      const playButton = document.getElementById(`play-button-${containerId}`);
+
+      if (!videoContainer || !videoPlayer || !playButton) return;
+
+      function playVideo() {
+        stopAllVideos();
+
+        if (videoThumbnail) videoThumbnail.classList.add('hidden');
+        playButton.classList.add('hidden');
+        videoPlayer.classList.add('active');
+
+        if (videoPlayer.tagName.toLowerCase() === 'video') {
+          videoPlayer.muted = false;
+          videoPlayer.play().catch(() => {
+            videoPlayer.muted = true;
+            videoPlayer.play();
+          });
+        }
+      }
+
+      playButton.addEventListener('click', playVideo);
+      if (videoThumbnail) videoThumbnail.addEventListener('click', playVideo);
+
+      if (videoPlayer.tagName.toLowerCase() === 'video') {
+        videoPlayer.addEventListener('ended', () => {
+          videoPlayer.classList.remove('active');
+          if (videoThumbnail) videoThumbnail.classList.remove('hidden');
+          playButton.classList.remove('hidden');
+        });
+      }
+    };
+
+    openBtns.forEach((openBtn) => {
+      openBtn.addEventListener('click', async () => {
+        modal.style.display = 'block';
+        if (header) {
+          savedHeaderZ = header.style.zIndex || window.getComputedStyle(header).zIndex || '';
+          header.style.zIndex = '2';
+        }
+        lockScroll();
+
+        try {
+          const res = await fetch('/pages/about-us?view=ring-size-guide');
+          const html = await res.text();
+          modalContent.innerHTML = html;
+
+          const videoContainers = modalContent.querySelectorAll('.video-ring-guide__video-container');
+          videoContainers.forEach((vc) => {
+            const url = vc.getAttribute('data-video-url');
+            if (url) vc.dataset.videoUrl = url;
+          });
+
+          setTimeout(() => {
+            initSwiper(modalContent);
+            initVideo(modalContent);
+
+            const allRingSizingContainers = modalContent.querySelectorAll('.ring-sizing-tool__video-container');
+            allRingSizingContainers.forEach((container) => {
+              const idMatch = container.id.match(/video-container-(.+)/);
+              if (idMatch && idMatch[1]) {
+                const sectionId = idMatch[1];
+                window.initRingSizingVideo(sectionId);
+              }
+            });
+          }, 0);
+        } catch (err) {
+          console.error('Modal load error:', err);
+          modalContent.innerHTML = '<p>Не вдалося завантажити контент.</p>';
+        }
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      if (header) header.style.zIndex = savedHeaderZ || '';
+      unlockScroll();
+      stopAllVideos();
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  })();
+</script>
+
+<style>
+  table:not(.table--bordered) :is(th,td):first-child, table:not(.table--bordered) :is(th,td):empty+td{
+    padding-inline-start: 10px;
+  }
+  .main-table-size{
+    margin-top: 40px;
+  }
+  .main-table-size td{
+    border: 1px solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-color: rgb(var(--border-color));
+  }
+  .main-table-size th{
+    border: 1px solid;
+    border-color: rgb(var(--border-color));
+    background-color: #f5f5f5;
+    color: black;
+    text-transform: capitalize;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    opacity: 1;
+    letter-spacing: 0;
+    padding: 10px 0;
+  }
+  .main-table-size td,
+  .main-table-size th{
+    font-family: "Kumbh Sans", sans-serif;
+    text-align: center;
+  }
+  #modal.main-modal-ring-size{
+    z-index: 3;
+  }
+  #modal.main-modal-ring-size footer,
+  #modal.main-modal-ring-size height-observer,
+  #modal.main-modal-ring-size .shopify-section-group-header-group.section{
+    display: none;
+  }
+  .header-content-size{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-content-size .main-table-size-guide{
+    width: fit-content;
+    {% comment %} margin-bottom: 10px; {% endcomment %}
+  }
+  .header-content-size .main-table-size-guide,
+  .header-content-size .main-modal-size-guide{
+    cursor: pointer;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    color: #373A3666;
+    border-bottom: 1px solid #373A3666;
+    padding-bottom: 4px;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-transform: capitalize;
+  }
+  .main-option-size-name .option-name .main-option-size{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #373936CC;
+    letter-spacing: 0;
+    padding-left: 6px;
+  }
+  .main-option-size-name{
+    width: 100%;
+    padding-top: 0;
+  }
+  .main-option-size-name .option-name{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #373A36;
+    text-transform: capitalize;
+  }
+  .variant-picker__option-values button{
+    width: 46px;
+    height: 46px;
+    border: 1px solid #373A361A;
+    border-radius: 50%;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+  }
+  .variant-btn.active{
+    background: #232222;
+    color: #FFFFFF;
+  }
+  .image-container-mobile {
+    display: none;
+  }
+  @media (max-width: 768px){
+    .product-info__block-item .variant-picker__option{
+      max-width: 340px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .image-container{
+    display: none;
+  }
+    .image-container-mobile {
+    display: block;
+  }
+  }
+
+  variant-picker.variant-picker{
+    padding: 15px 0;
+    gap: 21px;
+  }
+  .product-info__block-item buy-buttons button{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    min-height: 57px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .main-button-disabled,
+    .product-info__block-item buy-buttons,
+    .variant-picker__option {
+      margin: 0 auto;
+      max-width: 561px;
+      width: 100%;
+    }
+    .main-button-disabled,
+    .product-info__block-item buy-buttons{
+      margin-top: 29px;
+    }
+  }
+
+  @media(max-width: 768px){
+    .product-info__block-item buy-buttons button{
+      margin-top: 5px;
+    }
+    button.main-button-disabled{
+      max-width: 350px;
+      margin: 0 auto;
+      margin-top: 15px;
+    }
+  }
+  .main-button-disabled{
+    margin-top: 29px;
+    width: 100%;
+    background: #D3D3D3;
+    min-height: 57px;
+    border-radius: 4px;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: white;
+    border: 1px solid #D3D3D3;
+    transition: all 0.3s ease;
+    display: block;
+  }
+  .main-button-disabled:hover{
+    color: #807371;
+    background: none;
+    border-color: #807371;
+  }
+</style>

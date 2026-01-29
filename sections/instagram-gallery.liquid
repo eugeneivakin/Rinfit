@@ -1,0 +1,559 @@
+<section id="{{ section.id }}" class="instagram-gallery-wrapper {{ section.settings.custom_classes }}">
+  <div class="instagram-gallery-container">
+    {% if section.settings.title != blank or section.settings.instagram_handle != blank %}
+      <div class="instagram-gallery-header">
+        {% if section.settings.title != blank %}
+          <h2 class="instagram-gallery-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.instagram_handle != blank %}
+          <p class="instagram-gallery-handle">{{ section.settings.instagram_handle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="instagram-gallery-grid">
+        <div class="instagram-gallery-main">
+          {% for block in section.blocks limit: 1 %}
+            {% if block.type == 'instagram_post' %}
+              <div class="instagram-gallery-item instagram-gallery-main-item" {{ block.shopify_attributes }}>
+                {% if block.settings.image != blank %}
+                  {% if block.settings.link_url != blank %}
+                    <a href="{{ block.settings.link_url }}" class="instagram-gallery-link" target="_blank" rel="noopener">
+                  {% endif %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 600 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    class="instagram-gallery-image"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                  >
+                  {% if block.settings.link_url != blank %}
+                    </a>
+                  {% endif %}
+                {% else %}
+                  <div class="instagram-gallery-placeholder">
+                    <p>Add Instagram image</p>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="instagram-gallery-grid-items">
+          {% for block in section.blocks offset: 1 %}
+            {% if block.type == 'instagram_post' %}
+              <div class="instagram-gallery-item instagram-gallery-small-item" {{ block.shopify_attributes }}>
+                {% if block.settings.image != blank %}
+                  {% if block.settings.link_url != blank %}
+                    <a href="{{ block.settings.link_url }}" class="instagram-gallery-link" target="_blank" rel="noopener">
+                  {% endif %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 300 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    class="instagram-gallery-image"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                  >
+                  {% if block.settings.link_url != blank %}
+                    </a>
+                  {% endif %}
+                {% else %}
+                  <div class="instagram-gallery-placeholder">
+                    <p>Add image</p>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+      <div class="instagram-gallery-footer">
+        <a href="{{ section.settings.button_url }}" class="instagram-gallery-button" target="_blank" rel="noopener">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .instagram-gallery-wrapper {
+    --instagram-gallery-bg: {{ section.settings.background_color | default: 'transparent' }};
+    --instagram-gallery-max-width: {{ section.settings.max_width | default: '100%' }};
+    --instagram-gallery-padding-top-desktop: {{ section.settings.padding_top_desktop | default: 80 }}px;
+    --instagram-gallery-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop | default: 80 }}px;
+    --instagram-gallery-padding-left-desktop: {{ section.settings.padding_left_desktop | default: 40 }}px;
+    --instagram-gallery-padding-right-desktop: {{ section.settings.padding_right_desktop | default: 40 }}px;
+    --instagram-gallery-padding-top-mobile: {{ section.settings.padding_top_mobile | default: 50 }}px;
+    --instagram-gallery-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: 50 }}px;
+    --instagram-gallery-padding-left-mobile: {{ section.settings.padding_left_mobile | default: 20 }}px;
+    --instagram-gallery-padding-right-mobile: {{ section.settings.padding_right_mobile | default: 20 }}px;
+  }
+
+  .instagram-gallery-wrapper {
+    background-color: var(--instagram-gallery-bg);
+    width: 100%;
+    padding: var(--instagram-gallery-padding-top-mobile) var(--instagram-gallery-padding-right-mobile) var(--instagram-gallery-padding-bottom-mobile) var(--instagram-gallery-padding-left-mobile);
+  }
+
+  .instagram-gallery-container {
+    max-width: var(--instagram-gallery-max-width);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .instagram-gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .instagram-gallery-title {
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+
+  .instagram-gallery-handle {
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .instagram-gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .instagram-gallery-main {
+    display: flex;
+  }
+
+  .instagram-gallery-grid-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .instagram-gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1;
+  }
+
+  .instagram-gallery-main-item {
+    width: 100%;
+    height: 100%;
+  }
+
+  .instagram-gallery-small-item {
+    width: 100%;
+    height: 100%;
+  }
+
+  .instagram-gallery-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .instagram-gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .instagram-gallery-link:hover .instagram-gallery-image {
+    transform: scale(1.05);
+  }
+
+  .instagram-gallery-placeholder {
+    background: #f5f5f5;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+  }
+
+  .instagram-gallery-footer {
+    text-align: center;
+  }
+
+  .instagram-gallery-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 14px 28px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .instagram-gallery-button:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+  }
+
+  @media screen and (min-width: 768px) {
+    .instagram-gallery-wrapper {
+      padding: var(--instagram-gallery-padding-top-desktop) var(--instagram-gallery-padding-right-desktop) var(--instagram-gallery-padding-bottom-desktop) var(--instagram-gallery-padding-left-desktop);
+    }
+
+    .instagram-gallery-header {
+      margin-bottom: 60px;
+    }
+
+    .instagram-gallery-grid {
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .instagram-gallery-grid-items {
+      gap: 30px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .instagram-gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .instagram-gallery-grid-items {
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .instagram-gallery-grid-items {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<style>
+  #{{ section.id }} .instagram-gallery-title {
+    font-size: {{ section.settings.title_size_mobile | default: 32 }}px;
+    color: {{ section.settings.title_color | default: '#000000' }};
+    font-weight: {{ section.settings.title_weight | default: 400 }};
+    {% if section.settings.title_italic %}font-style: italic;{% endif %}
+  }
+
+  #{{ section.id }} .instagram-gallery-handle {
+    font-size: {{ section.settings.handle_size_mobile | default: 16 }}px;
+    color: {{ section.settings.handle_color | default: '#666666' }};
+  }
+
+  #{{ section.id }} .instagram-gallery-button {
+    background-color: {{ section.settings.button_bg_color | default: '#000000' }};
+    color: {{ section.settings.button_text_color | default: '#ffffff' }};
+    border: 2px solid {{ section.settings.button_border_color | default: '#000000' }};
+  }
+
+  @media screen and (min-width: 768px) {
+    #{{ section.id }} .instagram-gallery-title {
+      font-size: {{ section.settings.title_size_desktop | default: 48 }}px;
+    }
+
+    #{{ section.id }} .instagram-gallery-handle {
+      font-size: {{ section.settings.handle_size_desktop | default: 18 }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Instagram Gallery",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop Our Instagram"
+    },
+    {
+      "type": "text",
+      "id": "instagram_handle",
+      "label": "Instagram Handle",
+      "default": "@rinfitrings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Follow Us"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Section Max Width",
+      "default": "1400px",
+      "info": "Enter width in px, %, em, rem, or vw (e.g., 1400px, 100%, 80vw)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top Desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom Desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Padding Left Desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Padding Right Desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top Mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom Mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Padding Left Mobile",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Padding Right Mobile",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Title Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size Desktop",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size Mobile",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_weight",
+      "label": "Title Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "checkbox",
+      "id": "title_italic",
+      "label": "Title Italic",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Handle Typography"
+    },
+    {
+      "type": "range",
+      "id": "handle_size_desktop",
+      "label": "Handle Size Desktop",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "handle_size_mobile",
+      "label": "Handle Size Mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "handle_color",
+      "label": "Handle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Button Styling"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "custom_classes",
+      "label": "Custom CSS Classes",
+      "info": "Add custom CSS classes separated by spaces"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "instagram_post",
+      "name": "Instagram Post",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL",
+          "info": "Link to Instagram post (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Gallery",
+      "blocks": [
+        { "type": "instagram_post" },
+        { "type": "instagram_post" },
+        { "type": "instagram_post" },
+        { "type": "instagram_post" },
+        { "type": "instagram_post" },
+        { "type": "instagram_post" },
+        { "type": "instagram_post" }
+      ]
+    }
+  ]
+}
+{% endschema %}

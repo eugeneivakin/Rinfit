@@ -1,0 +1,327 @@
+{%- assign prm_type = prm_type | default: block.settings.type -%}
+{%- assign position_v = position_v | default: block.settings.position_v -%}
+{%- assign prm_responsive_height = responsive_height | default: block.settings.responsive_height -%}
+{%- assign min_height = min_height | default: block.settings.min_height -%}
+{%- assign prm_image = prm_image | default: block.settings.image -%}
+{%- assign prm_image_size = prm_image_size | default: block.settings.image_size -%}
+{%- assign prm_image_format_pjpg = prm_image_format_pjpg | default: block.settings.format_pjpg -%}
+{%- assign prm_image_border_radius = prm_image_border_radius | default: block.settings.image_border_radius -%}
+{%- assign video_mp4_url = video_mp4_url | default: block.settings.video_mp4_url -%}
+{%- assign video_external_url = video_external_url | default: block.settings.video_external_url -%}
+{%- assign video_controls = video_controls | default: block.settings.video_controls -%}
+{%- assign video_autoplay = video_autoplay | default: block.settings.video_autoplay -%}
+{%- assign prm_url = prm_url | default: block.settings.url -%}
+{%- assign text_line_1 = text_line_1 | default: block.settings.text_line_1 -%}
+{%- assign text_line_2 = text_line_2 | default: block.settings.text_line_2 -%}
+{%- assign text_line_3 = text_line_3 | default: block.settings.text_line_3 -%}
+{%- assign button_1 = button_1 | default: block.settings.button_1 -%}
+{%- assign custom_html = custom_html | default: block.settings.custom_html -%}
+{%- assign animation_from = animation_from | default: block.settings.animation_from | default: 'default' -%}
+{%- assign animation_to = animation_to | default: block.settings.animation_to | default: 'default' -%}
+{%- assign animation_from_opacity = animation_from_opacity | default: block.settings.animation_from_opacity -%}
+{%- assign animation_to_opacity = animation_to_opacity | default: block.settings.animation_to_opacity -%}
+{%- assign disable_lazyload = disable_lazyload | default: block.settings.disable_lazyload -%}
+{%- capture res_image_size -%}{{ prm_image_size | default: prm_image_size }}x{%- endcapture -%}
+{% capture link_begin_tag %}{% if prm_url %}a href="{{ prm_url }}"{% else %}div{% endif %}{% endcapture %}
+{% capture link_end_tag %}{% if prm_url %}a{% else %}div{% endif %}{% endcapture %}
+{%- if prm_image_format_pjpg -%}
+    {%- assign image_format = 'pjpg' -%}
+{%- else -%}
+    {%- assign image_format = null -%}
+{%- endif -%}
+{%- if block.settings.parallax_enable and prm_responsive_height == blank -%}
+    {%- assign prm_responsive_height = 1 | divided_by: prm_image.aspect_ratio | times: 60 | append: '%' -%}
+{%- endif -%}
+
+{% capture res_bg %}
+    {%- if video_mp4_url != blank -%}
+        {%- if prm_responsive_height -%}
+            {% include 'rvideo' with video: video_mp4_url poster: prm_image poster_size: res_image_size %}
+        {%- else -%}
+            <video muted playsinline preload="none" {% if video_controls %} controls{% endif %}{% if video_autoplay %} autoplay loop{% endif %}{% if prm_image != blank %} poster="{{ prm_image | img_url: image_size }}"{% endif %} preload="auto" class="{% if prm_responsive_height %}rimage__video{% endif %} w-100">
+                <source src="{{ video_mp4_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {%- endif -%}
+    {%- elsif video_external_url != blank -%}
+        <div class="embed-responsive embed-responsive-16by9">
+            {%- if video_external_url.type == 'youtube' -%}
+                <iframe src="https://www.youtube.com/embed/{{ video_external_url.id }}?rel=0&amp;controls=0&amp;showinfo=0{% if video_autoplay %}&amp;autoplay=1&amp;loop=1&amp;mute=1{% endif %}" frameborder="0" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen class="embed-responsive-item"></iframe>
+            {%- elsif video_external_url.type == 'vimeo' -%}
+                <iframe src="https://player.vimeo.com/video/{{ video_external_url.id }}?color=ffffff&amp;title=0&amp;byline=0{% if video_autoplay %}&amp;autoplay=1&amp;loop=1&amp;mute=1{% endif %}" frameborder="0" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen class="embed-responsive-item"></iframe>
+            {%- endif -%}
+        </div>
+    {%- else -%}
+        {%- assign promobox_bg_is = 'image' -%}
+        {%- if block.settings.parallax_enable and prm_responsive_height -%}
+            {% include 'rimage' with image: prm_image size: res_image_size format: image_format responsive_height: prm_responsive_height is_parallax: true %}
+        {%- else -%}
+            <div class="image-animation {% if animation_from != 'default' or animation_to != 'default' %}image-animation--from-{{ animation_from }} image-animation--to-{{ animation_to }}{% endif %}{% if animation_from_opacity %} image-animation--from-opacity{% endif %}{% if animation_to_opacity %} image-animation--to-opacity{% endif %}">
+                {%- if animation_from != 'default' or animation_to != 'default' -%}
+                    {%- assign scale_perspective = 1.1 -%}
+                {%- endif -%}
+                {% include 'rimage' with image: prm_image size: res_image_size format: image_format scale_perspective: scale_perspective responsive_height: prm_responsive_height %}
+            </div>
+        {%- endif -%}
+    {%- endif -%}
+{% endcapture %}
+
+{%- if block.settings.color_image_mask != blank and block.settings.color_image_mask != 'rgba(0,0,0,0)' -%}
+    {% capture res_bg %}
+        <div class="position-relative">
+            {{ res_bg }}
+            <div class="absolute-stretch pointer-events-none" style="background-color: {{ block.settings.color_image_mask }}; opacity: {{ block.settings.image_mask_opacity }};"></div>
+        </div>
+    {% endcapture %}
+{%- endif -%}
+
+{%- if prm_image_border_radius != blank -%}
+    {% capture res_bg %}
+        <div class="overflow-hidden" style="border-radius: {{ prm_image_border_radius }};">
+            {{ res_bg }}
+        </div>
+    {% endcapture %}
+{%- endif -%}
+
+{%- if promobox_bg_is == 'image' and block.settings.parallax_enable and prm_responsive_height -%}
+    {% capture res_bg %}
+        <div class="js-parallax parallax overflow-hidden" data-direction="{{ block.settings.parallax_direction }}">
+            {{ res_bg }}
+            {% comment %}
+            <div class="parallax__body">
+                {{ res_bg }}
+            </div>
+            <div class="parallax__image position-absolute top-0 bottom-0 left-0 right-0" style="transform: scale(1.3) translate3d(0, 0, 0);">
+                {% include 'rimage' with image: prm_image size: res_image_size format: image_format scale_perspective: 1.3 responsive_height: prm_responsive_height %}
+            </div>
+            {% endcomment %}
+        </div>
+        <script>
+            Loader.require({type: "script", name: "parallax"});
+        </script>
+    {% endcapture %}
+{%- endif -%}
+
+{%- case prm_type -%}
+{%- when 'clean' -%}
+    <div class="promobox{% if block.settings.enable_curtain %} promobox--curtain{% endif %} d-flex justify-content-center">
+        <{{ link_begin_tag }} class="{% if animation_from != 'default' or animation_to != 'default' %}image-animation-trigger {% endif %}position-relative w-100">
+            {{ res_bg }}
+            {%- if block.settings.enable_curtain -%}
+                <div class="promobox__curtain absolute-stretch d-flex align-items-center">
+                    <div class="promobox__curtain_bg absolute-stretch" style="{% if block.settings.color_curtain_bg != blank and block.settings.color_curtain_bg != 'rgba(0,0,0,0)'  %}background-color: {{ block.settings.color_curtain_bg }}; {% endif %}opacity: {{ block.settings.curtain_opacity }};"></div>
+                </div>
+            {%- endif -%}
+            {%- if block.settings.border_hover -%}
+                <div class="promobox__border absolute-stretch"></div>
+            {%- endif -%}
+        </{{ link_end_tag }}>
+    </div>
+{%- when 'text' -%}
+    {%- if custom_html == blank -%}
+        {%- capture custom_html -%}
+        <div class="custom-build w-100 d-flex justify-content-start">
+            <div class="position-relative h-100 px-15">
+                <div class="h-100 d-flex flex-column justify-content-center text-left">
+                    <!-- Text #1 --><p class="custom-build__text-1 h2 link-unstyled w-100 align-self-center mt-0 mb-15"><!-- start:text-1 -->Text line<!-- end:text-1 --></p><!-- END:Text #1 -->
+                    <!-- Text #2 --><p class="custom-build__text-2 h3 link-unstyled w-100 align-self-center mt-0 mb-15"><!-- start:text-2 -->Text line<!-- end:text-2 --></p><!-- END:Text #2 -->
+                    <!-- Text #3 --><p class="custom-build__text-3 paragraph fs-lg link-unstyled w-100 align-self-center mt-0 mb-15"><!-- start:text-3 -->Text line<!-- end:text-3 --></p><!-- END:Text #3 -->
+                    <!-- List #1 --><ul class="custom-build__list-1 list-lg w-100 align-self-start mt-0 mb-0 text-left"><!-- start:list-1 --><li>List line #1</li><li>List line #2</li><!-- end:list-1 --></ul><!-- END:List #1 -->
+                </div>
+            </div>
+        </div>
+        {%- endcapture -%}
+    {%- endif -%}
+    <div class="promobox h-100 h-100-inner{% if block.settings.padding_top > 0 %} pt-{{ block.settings.padding_top }}{% endif %}{% if block.settings.padding_bottom > 0 %} pb-{{ block.settings.padding_bottom }}{% endif %}"{% if block.settings.color_bg != blank and block.settings.color_bg != 'rgba(0,0,0,0)' %} style="background-color: {{ block.settings.color_bg }};"{% endif %}>
+        {% include 'content-load-template' content: custom_html %}
+    </div>
+{%- when '1' -%}
+    {%- if custom_html == blank -%}
+        {%- capture custom_html -%}
+        <div class="custom-build w-100 d-flex justify-content-center">
+            <div class="position-relative h-100 mx-auto py-10 px-10">
+                <div class="h-100 d-flex flex-column justify-content-center text-center">
+                    <!-- Text #1 --><p class="custom-build__text-1 h1 link-unstyled w-100 align-self-center mt-0 mb-0"><!-- start:text-1 -->Text line<!-- end:text-1 --></p><!-- END:Text #1 -->
+                    <!-- Text #2 --><p class="custom-build__text-2 h4 link-unstyled w-100 align-self-center mt-20 mb-0"><!-- start:text-2 -->Text line<!-- end:text-2 --></p><!-- END:Text #2 -->
+                    <!-- Button #1 --><div class="custom-build__btn-1 btn--default btn align-self-center mt-30 mb-0 justify-content-center"><!-- start:btn-1 -->BUTTON TEXT<!-- end:btn-1 --></div><!-- END:Button #1 -->
+                </div>
+            </div>
+        </div>
+        {%- endcapture -%}
+    {%- endif -%}
+    <div class="promobox{% if block.settings.enable_curtain %} promobox--curtain{% endif %}{% if is_slider %} promobox--is-slider{% endif %} position-relative d-flex flex-column align-items-center text-center overflow-hidden">
+        <div class="{% if animation_from != 'default' or animation_to != 'default' %}image-animation-trigger {% endif %}w-100">
+            <{{ link_begin_tag }} class="d-block w-100">
+                {{ res_bg }}
+            </{{ link_end_tag }}>
+            <div class="promobox__content{% if block.settings.enable_curtain %}{% if block.settings.enable_curtain_effect %} promobox__content--hover-scale{% endif %}{% endif %}{% if block.settings.animation_text and block.settings.animation_text != 'none' %} promobox__content--animation-{{ block.settings.animation_text }}{% endif %} absolute-stretch d-flex flex-column flex-center overflow-hidden pointer-events-none">
+                <div class="promobox__content_inner position-absolute d-flex align-items-{% if position_v == 'top' %}start{% elsif position_v == 'bottom' %}end{% else %}center{% endif %} w-100 h-100">
+                    {% include 'content-load-template' content: custom_html %}
+                </div>
+            </div>
+            {%- if block.settings.enable_curtain -%}
+                {%- if block.settings.curtain_custom_html != blank -%}
+                    {%- assign custom_html = block.settings.curtain_custom_html -%}
+                {%- endif -%}
+                <div class="promobox__curtain absolute-stretch d-flex align-items-center">
+                    {%- if block.settings.color_curtain_bg != blank and block.settings.color_curtain_bg != 'rgba(0,0,0,0)' -%}
+                        <div class="promobox__curtain_bg absolute-stretch" style="background-color: {{ block.settings.color_curtain_bg }}; opacity: {{ block.settings.curtain_opacity }};"></div>
+                    {%- endif -%}
+                    {% include 'content-load-template' content: custom_html, is_curtain: true %}
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+{%- when '2' -%}
+    {%- if custom_html == blank -%}
+        {%- capture custom_html -%}
+        <div class="custom-build w-100 d-flex justify-content-center">
+            <div class="position-relative h-100 mx-auto mt-15">
+                <div class="h-100 d-flex flex-column justify-content-center text-center">
+                    <!-- Text #1 --><p class="custom-build__text-1 h3 link-unstyled w-100 align-self-center mt-0 mb-0"><!-- start:text-1 -->Text line<!-- end:text-1 --></p><!-- END:Text #1 -->
+                    <!-- Text #2 --><p class="custom-build__text-2 paragraph fs link-unstyled w-100 align-self-center mt-5 mb-0"><!-- start:text-2 -->Text line<!-- end:text-2 --></p><!-- END:Text #2 -->
+                    <!-- Button #1 --><div class="custom-build__btn-1 btn--default btn align-self-center mt-15 mb-0 justify-content-center"><!-- start:btn-1 -->BUTTON TEXT<!-- end:btn-1 --></div><!-- END:Button #1 -->
+                </div>
+            </div>
+        </div>
+        {%- endcapture -%}
+    {%- endif -%}
+    <div class="promobox d-flex flex-column align-items-center text-center">
+        <{{ link_begin_tag }} class="w-100">
+            {{ res_bg }}
+        </{{ link_end_tag }}>
+        {% include 'content-load-template' content: custom_html %}
+    </div>
+{%- when '3' -%}
+    {%- if custom_html == blank -%}
+        {%- capture custom_html -%}
+        <div class="custom-build w-100 d-flex justify-content-center">
+            <div class="position-relative h-100 mx-auto">
+                <div class="h-100 d-flex flex-column justify-content-center text-center">
+                    <!-- Text #1 --><p class="custom-build__text-1 h5 link-unstyled w-100 align-self-center mt-0 mb-0"><!-- start:text-1 -->Text line<!-- end:text-1 --></p><!-- END:Text #1 -->
+                    <!-- Text #2 --><p class="custom-build__text-2 paragraph fs link-unstyled w-100 align-self-center mt-0 mb-0"><!-- start:text-2 -->Text line<!-- end:text-2 --></p><!-- END:Text #2 -->
+                </div>
+            </div>
+        </div>
+        {%- endcapture -%}
+    {%- endif -%}
+    <div class="promobox{% if block.settings.enable_curtain %} promobox--curtain{% endif %} position-relative d-flex flex-column align-items-center text-center">
+        <div class="w-100">
+            <{{ link_begin_tag }} class="d-block w-100">
+                {{ res_bg }}
+            </{{ link_end_tag }}>
+            <div class="promobox__plate position-absolute pointer-events-none">
+                <div class="promobox__content d-flex flex-column flex-center px-10 py-7">
+                    {% include 'content-load-template' content: custom_html %}
+                </div>
+                {%- if block.settings.enable_curtain -%}
+                    {%- if block.settings.curtain_custom_html != blank -%}
+                        {%- assign custom_html = block.settings.curtain_custom_html -%}
+                    {%- endif -%}
+                    <div class="promobox__curtain absolute-stretch flex-column flex-center px-10 py-7">
+                        <div class="promobox__curtain_bg absolute-stretch" style="{% if block.settings.color_curtain_bg != blank and block.settings.color_curtain_bg != 'rgba(0,0,0,0)'  %}background-color: {{ block.settings.color_curtain_bg }}; {% endif %}opacity: {{ block.settings.curtain_opacity }};"></div>
+                        {% include 'content-load-template' content: custom_html, is_curtain: true %}
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+{%- when '4' -%}
+    <div class="promobox promobox--type-05 image-animation-trigger position-relative d-flex flex-column align-items-center text-center">
+        <{{ link_begin_tag }} class="d-block w-100">
+            {{ res_bg }}
+        </{{ link_end_tag }}>
+        <div class="promobox__plate promobox__plate--hovered position-absolute d-flex flex-column flex-center px-10 py-7 pointer-events-none">
+            <div class="promobox__content absolute-stretch d-flex flex-column flex-center">
+                {%- if block.settings.text_line_1 != blank -%}
+                    <{{ link_begin_tag }} class="pointer-events-all">
+                        <p class="promobox__text-line-01 h5 position-relative m-0">{{ block.settings.text_line_1 }}</p>
+                    </{{ link_end_tag }}>
+                {%- endif -%}
+            </div>
+        </div>
+        <div class="promobox__content-scale position-absolute d-none d-lg-flex flex-column flex-center px-15 py-7 pointer-events-none">
+            {%- if custom_html != blank -%}
+                {% include 'content-load-template' content: custom_html %}
+            {%- else -%}
+                {%- if block.settings.text_line_1 != blank -%}
+                    <{{ link_begin_tag }} class="pointer-events-all">
+                        <p class="promobox__text-line-01 h5 position-relative m-0">{{ block.settings.text_line_1 }}</p>
+                    </{{ link_end_tag }}>
+                {%- endif -%}
+                {%- if linklists[block.settings.list_1].links.size > 0 -%}
+                    <ul class="promobox__list list-unstyled position-relative mt-5 overflow-hidden pointer-events-all">
+                        {%- for link in linklists[block.settings.list_1].links -%}
+                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {%- endfor -%}
+                    </ul>
+                {%- endif -%}
+            {%- endif -%}
+        </div>
+    </div>
+{%- when 'list_1' -%}
+    <div class="promobox d-flex flex-column align-items-center text-center">
+        <{{ link_begin_tag }} class="w-100">
+            {{ res_bg }}
+        </{{ link_end_tag }}>
+        {%- if text_line_1 != blank -%}
+            <{{ link_begin_tag }} class="mt-15"><p class="h5 mb-0 text-uppercase">{{ text_line_1 }}</p></{{ link_end_tag }}>
+        {%- endif -%}
+        {%- if text_line_2 != blank -%}
+            <{{ link_begin_tag }}><p class="mt-5 mb-0">{{ text_line_2 }}</p></{{ link_end_tag }}>
+        {%- endif -%}
+        {%- if text_line_3 != blank -%}
+            <{{ link_begin_tag }}><p class="mt-5 mb-0">{{ text_line_3 }}</p></{{ link_end_tag }}>
+        {%- endif -%}
+        {%- if button_1 != blank -%}
+            <{{ link_begin_tag }}><span class="btn mt-10">{{ button_1 }}</span></{{ link_end_tag }}>
+        {%- endif -%}
+    </div>
+{%- when 'list_2' -%}
+    <div class="promobox position-relative d-flex flex-column align-items-center text-center">
+        <div class="w-100">
+            <{{ link_begin_tag }} class="w-100">
+                {{ res_bg }}
+            </{{ link_end_tag }}>
+            <div class="promobox__plate position-absolute d-flex flex-column flex-center px-15 py-7 pointer-events-none">
+                {%- if text_line_1 != blank -%}
+                    <p class="h5 position-relative m-0 text-uppercase">{{ text_line_1 }}</p>
+                {%- endif -%}
+                {%- if text_line_2 != blank -%}
+                    <p class="position-relative m-0">{{ text_line_2 }}</p>
+                {%- endif -%}
+                {%- if text_line_3 != blank -%}
+                    <p class="position-relative m-0">{{ text_line_3 }}</p>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+{%- endcase -%}
+
+{%- assign prm_type = null -%}
+{%- assign prm_responsive_height = null -%}
+{%- assign min_height = null -%}
+{%- assign prm_image = null -%}
+{%- assign prm_image_size = null -%}
+{%- assign prm_image_format_pjpg = null -%}
+{%- assign prm_image_border_radius = null -%}
+{%- assign video_mp4_url = null -%}
+{%- assign video_external_url = null -%}
+{%- assign video_autoplay = null -%}
+{%- assign prm_url = null -%}
+{%- assign text_line_1 = null -%}
+{%- assign text_line_2 = null -%}
+{%- assign text_line_3 = null -%}
+{%- assign button_1 = null -%}
+{%- assign custom_html = null -%}
+{%- assign animation_from = null -%}
+{%- assign animation_to = null -%}
+{%- assign animation_from_opacity = null -%}
+{%- assign animation_to_opacity = null -%}
+{%- assign is_slider = null -%}
+{%- assign res_image_size = null -%}
+{%- assign link_begin_tag = null -%}
+{%- assign link_end_tag = null -%}
+{%- assign scale_perspective = null -%}
+{%- assign res_bg = null -%}
+{%- assign promobox_bg_is = null -%}

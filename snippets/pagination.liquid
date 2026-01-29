@@ -1,0 +1,56 @@
+{%- assign pagination_type = pagination_type | default: settings.layout_pagination_type -%}
+{%- assign pagination_classic_centered = pagination_classic_centered | default: settings.layout_pagination_classic_centered -%}
+{%- assign pagination_margin = pagination_margin | default: 'mt-35' -%}
+<div class="pagination">
+  {%- case pagination_type -%}
+  {%- when 'button_load_more' -%}
+    <div class="d-flex justify-content-center {{ pagination_margin }}">
+      {%- if paginate.next.is_link -%}
+        <a href="{{ paginate.next.url }}" class="btn btn--secondary">
+          <span>{{ 'layout.paginate.load_more' | t }}</span>
+        </a>
+      {%- else -%}
+        <div class="btn btn--secondary" disabled="disabled">
+          <span>{{ 'layout.paginate.no_more_products' | t }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- when 'infinite_scroll' -%}
+    <div class="d-flex justify-content-center {{ pagination_margin }} pointer-events-none">
+      {%- if paginate.next.is_link -%}
+        <a href="{{ paginate.next.url }}" class="btn btn--secondary">
+          <span>{{ 'layout.paginate.infinite_scroll' | t }}</span>
+        </a>
+      {%- else -%}
+        <div class="btn btn--secondary" disabled="disabled">
+          <span>{{ 'layout.paginate.no_more_products' | t }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- when 'classic' -%}
+    <div class="d-flex align-items-center{% if pagination_classic_centered %} justify-content-center{% endif %} {{ pagination_margin }}">
+      {%- if paginate.previous.is_link -%}
+        <span class="pagination__prev px-7">
+          <a href="{{ paginate.previous.url }}" class="btn btn--secondary">{{ 'layout.paginate.previous' | t }}</a>
+        </span>
+      {%- endif -%}
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}
+          <span class="pagination__page px-7">
+            <a href="{{ part.url }}">{{ part.title }}</a>
+          </span>
+        {%- else -%}
+          <span class="pagination__page current px-7">
+            {{ part.title }}
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if paginate.next.is_link -%}
+        <span class="pagination__next px-7">
+          <a href="{{ paginate.next.url }}" class="btn btn--secondary">{{ 'layout.paginate.next' | t }}</a>
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endcase -%}
+</div>
+{%- assign pagination_margin = null -%}

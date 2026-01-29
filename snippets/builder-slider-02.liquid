@@ -1,0 +1,33 @@
+{%- assign slider_responsive_height = block.settings.responsive_height -%}
+{%- assign slider_min_height = block.settings.min_height -%}
+{%- assign slider_name = block.settings.name -%}
+{%- assign slider_image_border_radius = block.settings.image_border_radius -%}
+<div class="slider position-relative">
+    {%- if block.settings.arrows -%}
+        <div class="slider__prev d-none d-lg-block position-absolute cursor-pointer" data-js-slider-prev><i>{% include 'icon-theme-006' %}</i></div>
+    {%- endif -%}
+    <div class="slider__slick"
+         data-js-slider-slick
+         data-arrows="{{ block.settings.arrows }}"
+         data-bullets="{{ block.settings.bullets }}"
+         data-speed="{{ block.settings.speed }}">
+        {%- for block in section.blocks -%}
+            {%- if block.type == 'slide_02' and block.settings.for_slider == slider_name -%}
+                <{% if block.settings.link != blank %}a href="{{ block.settings.link }}" data-target="_blank"{% else %}div{% endif %} class="slider__slide"
+                    {% if block.settings.delay > 0 %}data-delay="{{ block.settings.delay | times: 1000 }}"{% endif %}>
+                    {% include 'promobox' with prm_responsive_height: slider_responsive_height min_height: slider_min_height is_slider: true prm_image_border_radius: slider_image_border_radius %}
+                </{% if block.settings.link != blank %}a{% else %}div{% endif %}>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+    {%- if block.settings.arrows -%}
+        <div class="slider__next d-none d-lg-block position-absolute cursor-pointer" data-js-slider-next><i>{% include 'icon-theme-007' %}</i></div>
+    {%- endif -%}
+    {% comment %}
+    {% include 'layout-get-preloader' %}
+    {% endcomment %}
+</div>
+{%- assign slider_responsive_height = null -%}
+{%- assign slider_min_height = null -%}
+{%- assign slider_name = null -%}
+{%- assign slider_image_border_radius = null -%}

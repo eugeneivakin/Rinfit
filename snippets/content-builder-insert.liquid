@@ -1,0 +1,181 @@
+{%- assign content_result = content | strip_newlines -%}
+{%- if content != blank and block != blank -%}
+    {%- for i in (1..3) -%}
+        {%- assign prop_name = 'text_line_' | append: i | append: '_url' -%}
+        {%- if block.settings[prop_name] != blank -%}
+            {%- assign shortcode_start = '<!-- Text #' | append: i | append: ' --><p' -%}
+            {%- assign shortcode_end = '</p><!-- END:Text #' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {%- assign shortcode_start_replace = '<!-- Text #' | append: i | append: ' --><a href="' | append: block.settings[prop_name] | append: '"' -%}
+                {%- assign shortcode_end_replace = '</a><!-- END:Text #' | append: i | append: ' -->' -%}
+                {%- assign content_result = content_result | replace: shortcode_start, shortcode_start_replace | replace: shortcode_end, shortcode_end_replace -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- for i in (1..2) -%}
+        {%- assign prop_name = 'button_' | append: i | append: '_url' -%}
+        {%- if block.settings[prop_name] != blank -%}
+            {%- assign shortcode_start = '<!-- Button #' | append: i | append: ' --><div' -%}
+            {%- assign shortcode_end = '</div><!-- END:Button #' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {%- assign shortcode_start_replace = '<!-- Button #' | append: i | append: ' --><a href="' | append: block.settings[prop_name] | append: '"' -%}
+                {%- assign shortcode_end_replace = '</a><!-- END:Button #' | append: i | append: ' -->' -%}
+                {%- assign content_result = content_result | replace: shortcode_start, shortcode_start_replace | replace: shortcode_end, shortcode_end_replace -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- for i in (1..3) -%}
+        {%- if is_curtain -%}
+            {%- assign prop_name = 'color_curtain_text_line_' | append: i -%}
+        {%- else -%}
+            {%- assign prop_name = 'color_text_line_' | append: i -%}
+        {%- endif -%}
+        {%- if block.settings[prop_name] != blank and block.settings[prop_name] != 'rgba(0,0,0,0)' -%}
+            {%- assign shortcode_start = '<!-- start:text-' | append: i | append: ' -->' -%}
+            {%- assign shortcode_end = '<!-- end:text-' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {% capture style_replace_start %}<span style="color: {{ block.settings[prop_name] }};">{{ shortcode_start }}{% endcapture %}
+                {% capture style_replace_end %}{{ shortcode_end }}</span>{% endcapture %}
+                {%- assign content_result = content_result | replace: shortcode_start, style_replace_start | replace: shortcode_end, style_replace_end -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- for i in (1..3) -%}
+        {%- if is_curtain -%}
+            {%- break -%}
+        {%- else -%}
+            {%- assign prop_name = 'color_text_line_' | append: i | append: '_hover' -%}
+        {%- endif -%}
+        {%- if block.settings[prop_name] != blank and block.settings[prop_name] != 'rgba(0,0,0,0)' -%}
+            {%- assign shortcode_start = '<!-- start:text-' | append: i | append: ' -->' -%}
+            {%- assign shortcode_end = '<!-- end:text-' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {% capture style_replace_start %}<span onmouseover="this.style.color = '{{ block.settings[prop_name] }}';" onmouseout="this.style.color = '';">{{ shortcode_start }}{% endcapture %}
+                {% capture style_replace_end %}{{ shortcode_end }}</span>{% endcapture %}
+                {%- assign content_result = content_result | replace: shortcode_start, style_replace_start | replace: shortcode_end, style_replace_end -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- for i in (1..2) -%}
+        {%- if is_curtain -%}
+            {%- assign prop_name = 'color_curtain_button_type_' | append: i -%}
+        {%- else -%}
+            {%- assign prop_name = 'color_button_type_' | append: i -%}
+        {%- endif -%}
+        {%- if block.settings[prop_name] != blank and block.settings[prop_name] != 'inherit' -%}
+            {%- assign button_class = 'custom-build__btn-' | append: i -%}
+            {%- capture button_type_class -%}
+                {%- case block.settings[prop_name] -%}
+                    {%- when '1' -%}btn--default
+                    {%- when '2' %}btn--secondary
+                    {%- when '3' %}btn--invert
+                {%- endcase -%}
+            {%- endcapture -%}
+            {% capture button_class_replace_to %}{{ button_class }} {{ button_type_class }}{% endcapture %}
+            {% capture button_class_replace_from_type_1 %}{{ button_class }} btn--default{% endcapture %}
+            {% capture button_class_replace_from_type_2 %}{{ button_class }} btn--secondary{% endcapture %}
+            {% capture button_class_replace_from_type_3 %}{{ button_class }} btn--invert{% endcapture %}
+            {%- assign content_result = content_result | replace: button_class_replace_from_type_1, button_class_replace_to | replace: button_class_replace_from_type_2, button_class_replace_to | replace: button_class_replace_from_type_3, button_class_replace_to -%}
+        {%- endif -%}
+        {%- if is_curtain -%}
+            {%- assign prop_name = 'color_curtain_button_transparent_' | append: i -%}
+        {%- else -%}
+            {%- assign prop_name = 'color_button_transparent_' | append: i -%}
+        {%- endif -%}
+        {%- if block.settings[prop_name] -%}
+            {%- assign button_class = 'custom-build__btn-' | append: i -%}
+            {% capture button_class_replace_to %}{{ button_class }} btn--transparent{% endcapture %}
+            {%- assign content_result = content_result | replace: button_class, button_class_replace_to -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- if is_curtain -%}
+        {%- assign prop_name = 'color_curtain_text_bg' -%}
+    {%- else -%}
+        {%- assign prop_name = 'color_text_bg' -%}
+    {%- endif -%}
+    {%- if block.settings[prop_name] != blank and block.settings[prop_name] != 'rgba(0,0,0,0)' -%}
+        {%- assign shortcode_start = '/* start:bg */' -%}
+        {%- assign shortcode_end = '/* end:bg */' -%}
+        {%- if content contains shortcode_start -%}
+            {%- assign content_split = content_result | split: shortcode_start -%}
+            {%- assign content_left = content_split[0] -%}
+            {%- assign content_right = content_split[1] | split: shortcode_end -%}
+            {%- assign content_result = content_left | append: 'background-color: ' | append: block.settings[prop_name] | append: ';' | append: content_right[1] -%}
+        {%- endif -%}
+    {%- endif -%}
+    {%- for i in (1..3) -%}
+        {%- assign prop_name = 'text_line_' | append: i -%}
+        {%- assign prop_display_name = 'text_line_' | append: i | append: '_display' -%}
+        {%- if block.settings[prop_display_name] == false -%}
+            {%- assign shortcode_start = '<!-- Text #' | append: i | append: ' -->'-%}
+            {%- assign shortcode_end = '<!-- END:Text #' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {%- assign content_split = content_result | split: shortcode_start -%}
+                {%- assign content_left = content_split[0] -%}
+                {%- assign content_right = content_split[1] | split: shortcode_end -%}
+                {%- assign content_result = content_left | append: content_right[1] -%}
+            {%- endif -%}
+        {%- elsif block.settings[prop_display_name] == true and block.settings[prop_name] != blank -%}
+            {%- assign shortcode_start = '<!-- start:text-' | append: i | append: ' -->' -%}
+            {%- assign shortcode_end = '<!-- end:text-' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {%- assign content_split = content_result | split: shortcode_start -%}
+                {%- assign content_left = content_split[0] -%}
+                {%- assign content_right = content_split[1] | split: shortcode_end -%}
+                {%- assign content_result = content_left | append: block.settings[prop_name] | append: content_right[1] -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- for i in (1..2) -%}
+        {%- assign prop_name = 'button_' | append: i -%}
+        {%- assign prop_display_name = 'button_' | append: i | append: '_display' -%}
+        {%- if block.settings[prop_display_name] == false -%}
+            {%- assign shortcode_start = '<!-- Button #' | append: i | append: ' -->'-%}
+            {%- assign shortcode_end = '<!-- END:Button #' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {%- assign content_split = content_result | split: shortcode_start -%}
+                {%- assign content_left = content_split[0] -%}
+                {%- assign content_right = content_split[1] | split: shortcode_end -%}
+                {%- assign content_result = content_left | append: content_right[1] -%}
+            {%- endif -%}
+        {%- elsif block.settings[prop_display_name] == true and block.settings[prop_name] != blank -%}
+            {%- assign shortcode_start = '<!-- start:btn-' | append: i | append: ' -->' -%}
+            {%- assign shortcode_end = '<!-- end:btn-' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {%- assign content_split = content_result | split: shortcode_start -%}
+                {%- assign content_left = content_split[0] -%}
+                {%- assign content_right = content_split[1] | split: shortcode_end -%}
+                {%- assign content_result = content_left | append: block.settings[prop_name] | append: content_right[1] -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- for i in (1..2) -%}
+        {%- assign prop_name = 'list_' | append: i -%}
+        {%- assign prop_display_name = 'list_' | append: i | append: '_display' -%}
+        {%- if block.settings[prop_display_name] == false -%}
+            {%- assign shortcode_start = '<!-- List #' | append: i | append: ' -->'-%}
+            {%- assign shortcode_end = '<!-- END:List #' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {%- assign content_split = content_result | split: shortcode_start -%}
+                {%- assign content_left = content_split[0] -%}
+                {%- assign content_right = content_split[1] | split: shortcode_end -%}
+                {%- assign content_result = content_left | append: content_right[1] -%}
+            {%- endif -%}
+        {%- elsif block.settings[prop_display_name] == true and block.settings[prop_name] != blank -%}
+            {%- assign shortcode_start = '<!-- start:list-' | append: i | append: ' -->' -%}
+            {%- assign shortcode_end = '<!-- end:list-' | append: i | append: ' -->' -%}
+            {%- if content contains shortcode_start -%}
+                {% capture list_html %}
+                {%- for link in linklists[block.settings[prop_name]].links -%}
+                    <li>{% if link.url == '#' %}{{ link.title }}{% else %}<a href="{{ link.url }}">{{ link.title }}</a>{% endif %}</li>
+                {%- endfor -%}
+                {% endcapture %}
+                {%- assign content_split = content_result | split: shortcode_start -%}
+                {%- assign content_left = content_split[0] -%}
+                {%- assign content_right = content_split[1] | split: shortcode_end -%}
+                {%- assign content_result = content_left | append: list_html | append: content_right[1] -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
+{{ content_result }}

@@ -1,0 +1,255 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-2",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "title_contact_kx6i4f": {
+      "type": "title-contact",
+      "name": "Title contact",
+      "settings": {
+        "title": "<p><em>about Us</em></p>",
+        "background_color": "#f7f6f5",
+        "top_padding": 20,
+        "bottom_padding": 0
+      }
+    },
+    "banner_about_us_9tx9k4": {
+      "type": "banner-about-us",
+      "name": "Main banenr",
+      "settings": {
+        "main_img": "shopify://shop_images/image_31.png",
+        "main_img_mob": "shopify://shop_images/image_32.png",
+        "main_text": "<p>where style<br/><em>meets function</em></p>",
+        "main_title": "<p>Where Style <em>meets function</em></p>",
+        "main_subtitle": "<p>Rinfit was born out of one woman’s mission to find the perfect ring — one that looks like a jewel, but fits into her active lifestyle.</p>"
+      }
+    },
+    "section_about_us_YTqRgn": {
+      "type": "section-about-us",
+      "name": "Banenr about us",
+      "settings": {
+        "background_color": "",
+        "image": "shopify://shop_images/image_33.png",
+        "title": "<p>Our <em>story</em></p>",
+        "subtitle": "<p>In 2015, Rinfit was launched with one clear vision: to craft rings that fit your lifestyle without sacrificing style. Made from premium, skin-friendly silicone, our rings offer patented comfort-fit designs in over 30 colors — including luxe metallic finishes like gold, silver, and rose gold.<br/></p><p>What started with a single ring and countless compliments quickly grew into a movement. Today, Rinfit is trusted by thousands who want to live fully — without taking off what matters most.</p>",
+        "padding_top": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "position_banner": "right"
+      }
+    },
+    "section_about_us_tyi3tX": {
+      "type": "section-about-us",
+      "name": "Banenr about us",
+      "settings": {
+        "background_color": "#faf3f1",
+        "image": "shopify://shop_images/image_34.png",
+        "title": "<p>Our <em>mission</em></p>",
+        "subtitle": "<p>Since 2015, Rinfit rings are known as the pioneers of silicone rings innovation that brought high-end patent-protected designs with high durability into the comfort of a silicone ring! Affordable without compromising on quality.<br/><br/>We created Rinfit so men and women can live the lives they want without having to worry about damaging or losing their precious wedding ring.<br/><br/></p>",
+        "padding_top": 20,
+        "padding_left": 20,
+        "padding_right": 20,
+        "padding_bottom": 20,
+        "position_banner": "left"
+      }
+    },
+    "collection_xFa3pd": {
+      "type": "collection",
+      "name": "Collection products",
+      "settings": {
+        "title": "<p>Best <em>Sellers</em></p>",
+        "collection": "best-sellers",
+        "button_text": "SHOP ALL",
+        "button_text_cart": "ADD TO CART",
+        "button_link": "shopify://collections/best-sellers",
+        "top_padding": 40,
+        "bottom_padding": 40
+      }
+    },
+    "newsletter_FkNqdn": {
+      "type": "newsletter",
+      "name": "t:sections.newsletter.presets.newsletter.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image_size": "auto",
+        "subheading": "",
+        "title": "10% off your 1st order",
+        "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
+        "button_text": "",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    },
+    "footer_custom_w4e9pd": {
+      "type": "footer-custom",
+      "blocks": {
+        "social_KFLkwf": {
+          "type": "social",
+          "settings": {
+            "platform": "Instagram",
+            "url": "https://www.instagram.com/rinfitrings/",
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z\"></path></svg>"
+          }
+        },
+        "social_e4rkki": {
+          "type": "social",
+          "settings": {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@rinfitrings",
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z\"></path></svg>"
+          }
+        },
+        "social_ajBJjk": {
+          "type": "social",
+          "settings": {
+            "platform": "Pinterest",
+            "url": "https://www.pinterest.com/rinfitrings/",
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.624 0 11.99-5.367 11.99-11.989C24.007 5.367 18.641.001 12.017.001z\"></path></svg>"
+          }
+        },
+        "social_NEmVqD": {
+          "type": "social",
+          "settings": {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/@rinfitrings",
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z\"></path></svg>"
+          }
+        },
+        "social_WdXtkf": {
+          "type": "social",
+          "settings": {
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/SiliconeWeddingBand/",
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z\"></path></svg>"
+          }
+        },
+        "navigation_T9z4HY": {
+          "type": "navigation",
+          "settings": {
+            "title": "Collections",
+            "menu": "collections"
+          }
+        },
+        "navigation_cy9rW9": {
+          "type": "navigation",
+          "settings": {
+            "title": "Shop",
+            "menu": "shop"
+          }
+        },
+        "navigation_38Mj9a": {
+          "type": "navigation",
+          "settings": {
+            "title": "Need Help?",
+            "menu": "need-help"
+          }
+        },
+        "legal_nncLrw": {
+          "type": "legal",
+          "settings": {
+            "title": "Privacy Policy",
+            "url": "shopify://pages/privacy-policy"
+          }
+        },
+        "legal_Kjwc7B": {
+          "type": "legal",
+          "settings": {
+            "title": "Terms & Conditions",
+            "url": "shopify://pages/terms-of-service"
+          }
+        },
+        "legal_Fyf8zP": {
+          "type": "legal",
+          "settings": {
+            "title": "Cookies Policy",
+            "url": "shopify://policies/privacy-policy"
+          }
+        }
+      },
+      "block_order": [
+        "social_KFLkwf",
+        "social_e4rkki",
+        "social_ajBJjk",
+        "social_NEmVqD",
+        "social_WdXtkf",
+        "navigation_T9z4HY",
+        "navigation_cy9rW9",
+        "navigation_38Mj9a",
+        "legal_nncLrw",
+        "legal_Kjwc7B",
+        "legal_Fyf8zP"
+      ],
+      "name": "Footer",
+      "settings": {
+        "logo_image": "shopify://shop_images/Rinfit_Logo_1_65c0598c-a200-4520-8ae9-4fdcd2ef4ece.svg",
+        "logo_alt": "Logo",
+        "description": "<p>Rinfit rings combine comfort, durability, and safety with a unique, stylish, and fashionable high-end designs.</p>",
+        "country_text": "Cyprus (EUR)",
+        "copyright_text": "©2025 Rinfit - Silicone Rings.",
+        "rights_text": "All Rights Reserved",
+        "main_bg_color": "#e9e4e1",
+        "bottom_bg_color": "#4f4e4e",
+        "title_color": "#373a36",
+        "text_color": "#373a36",
+        "description_color": "#37393699",
+        "copyright_color": "#ffffff",
+        "legal_color": "#ffffff",
+        "title_size_desktop": 14,
+        "text_size_desktop": 14,
+        "description_size_desktop": 12,
+        "copyright_size_desktop": 12,
+        "legal_size_desktop": 12,
+        "title_size_mobile": 14,
+        "text_size_mobile": 14,
+        "description_size_mobile": 12,
+        "copyright_size_mobile": 12,
+        "legal_size_mobile": 12,
+        "padding_desktop_top": 40,
+        "padding_desktop_bottom": 40,
+        "padding_desktop_left": 80,
+        "padding_desktop_right": 80,
+        "padding_mobile_top": 30,
+        "padding_mobile_bottom": 30,
+        "padding_mobile_left": 20,
+        "padding_mobile_right": 20,
+        "bottom_padding_desktop_top": 7,
+        "bottom_padding_desktop_bottom": 10,
+        "bottom_padding_desktop_left": 80,
+        "bottom_padding_desktop_right": 80,
+        "bottom_padding_mobile_top": 7,
+        "bottom_padding_mobile_bottom": 15,
+        "bottom_padding_mobile_left": 20,
+        "bottom_padding_mobile_right": 20,
+        "section_max_width": "100%",
+        "custom_classes": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "title_contact_kx6i4f",
+    "banner_about_us_9tx9k4",
+    "section_about_us_YTqRgn",
+    "section_about_us_tyi3tX",
+    "collection_xFa3pd",
+    "newsletter_FkNqdn",
+    "footer_custom_w4e9pd"
+  ]
+}

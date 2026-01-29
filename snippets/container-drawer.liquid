@@ -1,0 +1,185 @@
+<div class="main-container-wrapper">
+  <div id="{{ product.id }}" class="product-wrapper-main-drawer">
+    
+    <!-- Кнопки кольорів -->
+    <div class="variant-thumbs-wrapper variant-thumbs-wrapper-drawer">
+      {% assign assigned_images = '' %}
+      {% assign variant_count = 0 %}
+
+      {% for option_value in product.options_with_values[0].values %}
+        {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+        {% assign variant = variants_for_color.first %}
+        {% assign options2 = variants_for_color | map: 'option2' | uniq %}
+
+        {% if variant.featured_image %}
+          {% unless assigned_images contains variant.featured_image.src %}
+            {% assign variant_count = variant_count | plus: 1 %}
+
+            <button 
+              type="button"
+              class="variant-button-collection-main variant-thumb w-8 h-8 rounded-full 
+                     {% if forloop.first %}ring-black active{% endif %}"
+              data-color="{{ option_value }}"
+              data-variant-id="{{ variant.id }}"
+            >
+              <img src="{{ variant.featured_image.src | img_url: '100x100' }}" alt="{{ option_value }}">
+            </button>
+
+            {% assign assigned_images = assigned_images | append: variant.featured_image.src | append: ',' %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <!-- Контейнер розмірів -->
+    <div class="product-sizes-main-drawer">
+      {% for option_value in product.options_with_values[0].values %}
+        {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+        {% assign sizes = variants_for_color | map: 'option2' | uniq %}
+
+        <div class="size-group" data-color="{{ option_value }}" style="{% unless forloop.first %}display:none{% endunless %}">
+          {% for size in sizes %}
+            {% assign variant = variants_for_color | where: 'option2', size | first %}
+            <button 
+              type="button" 
+              class="size-btn-drawer{% if forloop.first and forloop.parentloop.first %} active{% endif %}" 
+              data-size="{{ size }}" 
+              data-variant-id="{{ variant.id }}"
+            >
+              {% if size contains 'Select Size ' %}
+                {{ size | remove: 'Select Size ' | strip }}
+              {% elsif size contains 'Size' %}
+                {{ size | remove: 'Size' | strip }}
+              {% else %}
+                {{ size }}
+              {% endif %}
+            </button>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Кнопка купівлі -->
+  <div class="main-container-product">
+    <span class="main-price-product">{{ product.price | money }}</span>
+    <button type="button" class="quick-buy-button" data-variant-id="{{ product.variants.first.id }}">
+      Add to cart
+    </button>
+  </div>
+</div>
+
+
+
+<script>
+  window.allProducts = window.allProducts || {};
+  window.allProducts["{{ product.id }}"] = {{ product.variants | json }};
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.product-wrapper-main-drawer').forEach(productEl => {
+    const variantButtons = productEl.querySelectorAll('.variant-button-collection-main');
+    const sizeGroups = productEl.querySelectorAll('.size-group');
+    const productId = productEl.id;
+    const productVariants = window.allProducts[productId];
+    const mainWrapper = productEl.closest('.main-container-wrapper');
+    const quickBuyButton = mainWrapper.querySelector('.quick-buy-button');
+
+    // Знаходимо variantId по color + size
+    function findVariantId(color, size) {
+      const variant = productVariants.find(v => v.option1 === color && v.option2 === size);
+      return variant ? variant.id : null;
+    }
+
+    // Показує відповідну групу розмірів і активує потрібний розмір
+    function showSizesForColor(color, preferredSize = null) {
+      sizeGroups.forEach(group => {
+        const isMatch = group.dataset.color === color;
+        group.style.display = isMatch ? 'block' : 'none';
+
+        if (isMatch) {
+          const sizeButtons = group.querySelectorAll('.size-btn-drawer');
+
+          let matchedBtn = null;
+          sizeButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (preferredSize && btn.dataset.size === preferredSize) {
+              matchedBtn = btn;
+            }
+          });
+
+          const activeBtn = matchedBtn || sizeButtons[0];
+          if (activeBtn) {
+            activeBtn.classList.add('active');
+
+            // ⏳ Додаємо затримку перед оновленням variantId
+            setTimeout(() => {
+              const newVariantId = findVariantId(color, activeBtn.dataset.size);
+              if (newVariantId && quickBuyButton) {
+                quickBuyButton.setAttribute('data-variant-id', newVariantId);
+                console.log(`🎯 Активний розмір після затримки: ${activeBtn.dataset.size}, variantId = ${newVariantId}`);
+              }
+            }, 100); // затримка 100 мс
+          }
+        }
+      });
+    }
+
+    // Клік на колір
+    variantButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        variantButtons.forEach(btn => btn.classList.remove('ring-black', 'active'));
+        button.classList.add('ring-black', 'active');
+
+        const selectedColor = button.dataset.color;
+
+        const currentActiveSizeBtn = productEl.querySelector('.size-btn-drawer.active');
+        const currentSize = currentActiveSizeBtn ? currentActiveSizeBtn.dataset.size : null;
+
+        showSizesForColor(selectedColor, currentSize);
+      });
+    });
+
+    // Клік на розмір
+    sizeGroups.forEach(group => {
+      const sizeButtons = group.querySelectorAll('.size-btn-drawer');
+      sizeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const color = group.dataset.color;
+          const size = btn.dataset.size;
+          const variantId = findVariantId(color, size);
+
+          if (variantId && quickBuyButton) {
+            quickBuyButton.setAttribute('data-variant-id', variantId);
+            console.log(`🟢 Обраний розмір: ${size}, variantId = ${variantId}`);
+          }
+        });
+      });
+    });
+
+    // Клік на кнопку "Add to cart"
+    if (quickBuyButton) {
+      quickBuyButton.addEventListener('click', () => {
+        const variantId = quickBuyButton.getAttribute('data-variant-id');
+        console.log(`🛒 Додаємо в кошик variantId: ${variantId}`);
+        // Тут можна додати AJAX або Shopify API
+      });
+    }
+
+    // Ініціалізація: активуємо перший колір і перший розмір
+    const firstColorBtn = variantButtons[0];
+    if (firstColorBtn) {
+      variantButtons.forEach(btn => btn.classList.remove('ring-black', 'active'));
+      firstColorBtn.classList.add('ring-black', 'active');
+
+      const selectedColor = firstColorBtn.dataset.color;
+      showSizesForColor(selectedColor);
+    }
+  });
+});
+
+</script>
+

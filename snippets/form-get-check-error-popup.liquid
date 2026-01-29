@@ -1,0 +1,19 @@
+{%- if form.errors -%}
+    <div class="d-none js-subscription-confirmation-error">
+        <ul class="m-0">
+            {%- for field in form.errors -%}
+                {%- if forloop.first != true -%}
+                    {%- assign res-error-fields = res-error-fields | append: '|' -%}
+                {%- endif -%}
+                {%- assign res-error-fields = res-error-fields | append: field -%}
+                <li>
+                    {%- if field == 'form' -%}
+                        {{ form.errors.messages[field] }}
+                    {%- else -%}
+                        {{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}
+                    {%- endif -%}
+                </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+{%- endif -%}

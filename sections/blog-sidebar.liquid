@@ -1,0 +1,254 @@
+<div data-section-id="{{ section.id }}" data-section-type="blog-sidebar">
+    <aside class="blog-sidebar pb-50 js-position" data-js-position-name="sidebar"{% if template contains 'blog' and settings.blog_sidebar_position == 'dropdown' %} data-js-position-onload{% elsif template contains 'article' and settings.article_sidebar_position == 'dropdown' %} data-js-position-onload{% endif %}>
+        <div class="blog-sidebar__layer-navigation pt-lg-40">
+            {%- for block in section.blocks -%}
+                <h3 class="h5{% unless forloop.first %} pt-25{% endunless %} mb-15">{{ block.settings.title }}</h3>
+                {%- if block.type == 'categories' -%}
+                    {%- assign menu = linklists[block.settings.menu] -%}
+                    {%- if menu.links.size > 0 -%}
+                        <ul class="list-unstyled pb-25">
+                            {%- for link in menu.links -%}
+                                {%- if link.object.handle == blog.handle -%}
+                                    <li>{{ link.title }}</li>
+                                {%- else -%}
+                                    <li><a href="{{ link.url }}" class="h5 link-revert mb-0">{{ link.title }}</a></li>
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </ul>
+                    {%- endif -%}
+                {%- elsif block.type == 'tags' -%}
+                    <div class="blog-sidebar__tags d-flex flex-wrap pb-20">
+                        {%- assign tags_class = 'py-4 px-10 mr-10 mb-10 border' -%}
+                        {%- for tag in blog.all_tags -%}
+                            {%- if current_tags contains tag -%}
+                                <span class="{{ tags_class }}">{{ tag }}</span>
+                            {%- else -%}
+                                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="link-revert {{ tags_class }} border-hover">{{ tag }}</a>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </div>
+                {%- elsif block.type == 'recents' -%}
+                    <div class="blog-sidebar__recents pb-5">
+                        {%- assign menu = linklists[block.settings.menu] -%}
+                        {%- assign recent_index = 0 -%}
+                        {%- for link in menu.links -%}
+                            {%- for article in blogs[link.object.handle].articles limit: 1 -%}
+                                <div class="pb-20{% unless recent_index == 0 %} pt-20 border-top border--dashed{% endunless %}">
+                                    {% comment %}
+                                    {%- if article.tags.size > 0 -%}
+                                        <div class="mb-5">
+                                            {%- for tag in article.tags -%}
+                                                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="link-revert text-underline-hover font-italic">{{ tag | upcase }}</a>
+                                                {% unless forloop.last %}, {% endunless %}
+                                            {%- endfor -%}
+                                        </div>
+                                    {%- endif -%}
+                                    {% endcomment %}
+                                    <h5 class="mb-5"><a href="{{ article.url }}">{{ article.title }}</a></h5>
+                                    {% comment %}
+                                    {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+                                        <div class="rte mb-5">
+                                            {%- if article.excerpt.size > 0 -%}
+                                                {{ article.excerpt }}
+                                            {%- else -%}
+                                                <p class="mb-0">{{ article.content | strip_html | truncatewords: 20 }} <a href="{{ article.url }}" class="btn-link">More...</a></p>
+                                            {%- endif -%}
+                                        </div>
+                                    {%- endif -%}
+                                    {% endcomment %}
+                                    {% capture author %}{{ article.author | upcase }}{% endcapture %}
+                                    {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+                                    <p class="mb-0 font-italic">{{ 'blogs.article.author_on_date_html' | t: author: author, date: date }}</p>
+                                    {%- unless article.comments_count == 0 -%}
+                                        <a href="{{ article.url }}#comments" class="d-flex align-items-center mt-5">
+                                            <i>{% include 'icon-theme-196' %}</i>
+                                            <span class="ml-8">{{ 'blogs.comments.with_count' | t: count: article.comments_count }}</span>
+                                        </a>
+                                    {%- endunless -%}
+                                </div>
+                                {%- assign recent_index = recent_index | plus: 1 -%}
+                            {%- endfor -%}
+                        {%- endfor -%}
+                    </div>
+                {%- elsif block.type == 'html' -%}
+                    <div class="rte pb-25">
+                        {%- if block.settings.page_content != blank -%}
+                            {% include 'content-load-template' content: pages[block.settings.page_content].content %}
+                        {%- else -%}
+                            {% include 'content-load-template' content: block.settings.content %}
+                        {%- endif -%}
+                    </div>
+                {%- elsif block.type == 'subscription' -%}
+                    {%- if block.settings.paragraph != blank -%}
+                        <p>{{ block.settings.paragraph }}</p>
+                    {%- endif -%}
+                    {%- if settings.subscription_method == 'shopify' -%}
+                        {% form 'customer', id: null, novalidate: 'novalidate', class: 'd-flex flex-column flex-lg-row mb-15' %}
+                            {% include 'form-get-check-error-popup' %}
+                            <input type="hidden" name="contact[tags]" value="newsletter">
+                            <input type="email" name="contact[email]" class="mb-0 mr-lg-10 {% if form.errors %} input--error{% endif %}" placeholder="{{ block.settings.placeholder }}" required="required">
+                            <input type="submit" class="btn mt-10 mt-lg-0" name="commit" value="{{ block.settings.button_text }}">
+                        {% endform %}
+                    {%- elsif settings.subscription_method == 'mailchimp' -%}
+                        <form action="{{ settings.subscription_mailchimp_form_action }}" method="post" class="d-flex flex-column flex-lg-row mb-15" target="_blank">
+                            <input type="email" name="EMAIL" class="mb-0 mr-lg-10" placeholder="{{ block.settings.placeholder }}" required="required">
+                            <input type="submit" class="btn mt-10 mt-lg-0" value="{{ block.settings.button_text }}">
+                        </form>
+                    {%- endif -%}
+                {%- endif -%}
+                {%- if block.settings.show_border -%}
+                    <div class="border-top"></div>
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
+    </aside>
+</div>
+
+<script>
+    Loader.require({type: "script", name: "blog_sidebar"});
+</script>
+
+{% schema %}
+{
+    "name": "Sidebar",
+    "settings": [
+        {
+            "type": "paragraph",
+            "content": "Positioning and visibility settings are in the 'Blog page' and 'Article page' general sections"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "categories",
+            "name": "Categories",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "CATEGORIES"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "label": "Menu"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_border",
+                    "label": "Show border",
+                    "default": true
+                }
+            ]
+        },
+        {
+            "type": "tags",
+            "name": "Tags",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "TAGS"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_border",
+                    "label": "Show border",
+                    "default": true
+                }
+            ]
+        },
+        {
+            "type": "recents",
+            "name": "Recents",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "RECENT POSTS"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "label": "Menu"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_border",
+                    "label": "Show border",
+                    "default": true
+                }
+            ]
+        },
+        {
+            "type": "html",
+            "name": "HTML",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "ABOUT"
+                },
+                {
+                    "type": "page",
+                    "id": "page_content",
+                    "label": "Page content"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content",
+                    "label": "Content"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_border",
+                    "label": "Show border",
+                    "default": true
+                }
+            ]
+        },
+        {
+            "type": "subscription",
+            "name": "Subscription",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "NEWSLETTER SUBSCRIPTION"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_border",
+                    "label": "Show border",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "paragraph",
+                    "label": "Paragraph",
+                    "default": "Sign up for Shella updates to receive information about new arrivals, future events and specials."
+                },
+                {
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "Button text",
+                    "default": "SUBSCRIBE!"
+                },
+                {
+                    "type": "text",
+                    "id": "placeholder",
+                    "label": "Placeholder",
+                    "default": "Enter your email address"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

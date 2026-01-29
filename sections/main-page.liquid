@@ -1,0 +1,62 @@
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+
+<div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }}">
+  {% include 'breadcrumbs' %}
+<div class="container {% if settings.offset_pages_margin_top_d > 0 %} mt-lg-{{ settings.offset_pages_margin_top_d }}{% endif %} mb-60{% if settings.offset_pages_margin_bottom_d > 0 %} mb-lg-{{ settings.offset_pages_margin_bottom_d }}{% endif %}">
+  <h1 class="h3 mt-30 text-center">{{ page.title }}</h1>
+  <div class="rte">
+    {% include 'content-load-template' content: page.content %}
+  </div>
+</div>
+
+
+</div>
+{% schema %}
+{
+  "name": "t:sections.main_page.name",
+  "class": "shopify-section--main-page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "t:sections.main_page.show_title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "page_width",
+      "label": "t:sections.main_page.page_width",
+      "options": [
+        {
+          "value": "xs",
+          "label": "t:global.sizes.x_small"
+        },
+        {
+          "value": "sm",
+          "label": "t:global.sizes.small"
+        },
+        {
+          "value": "md",
+          "label": "t:global.sizes.medium"
+        },
+        {
+          "value": "lg",
+          "label": "t:global.sizes.large"
+        },
+        {
+          "value": "full",
+          "label": "t:global.sizes.full_width"
+        }
+      ],
+      "default": "xs"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{%- case type -%}
+    {%- when 'btn-text' -%}
+        <a href="{{ url }}" class="btn btn--text pt-2 px-lg-6 js-popup-button"
+            data-js-popup-button="quick-view"
+            {%- if settings.product_enable_tooltips %}
+                data-js-tooltip
+                data-tippy-content="{{ 'products.product.tooltip.quick_view' | t }}"
+                data-tippy-placement="top"
+                data-tippy-distance="-2"
+            {%- endif -%}
+        >
+            <i>{% include 'icon-theme-154' %}</i>
+        </a>
+    {%- else -%}
+        <a href="{{ url }}" class="button-quick-view d-flex flex-center rounded-circle js-popup-button"
+            data-js-popup-button="quick-view"
+            {%- if settings.product_enable_tooltips %}
+                data-js-tooltip
+                data-tippy-content="{{ 'products.product.tooltip.quick_view' | t }}"
+                data-tippy-placement="left"
+                data-tippy-distance="5"
+            {%- endif -%}
+        >
+            <i>{% include 'icon-theme-154' %}</i>
+        </a>
+{%- endcase -%}

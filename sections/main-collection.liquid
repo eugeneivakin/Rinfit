@@ -1,0 +1,2355 @@
+
+<style>
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.mySwiper.mySwiperCollection{
+  padding-left: 20px;
+}
+.swiper-slide.container-main-collection{
+  width: 185px !important;
+}
+.swiper-slide.container-main-collection .product-card img{
+  border-radius: 10px;
+  height: 180px;
+  width: 170px;
+} 
+.swiper-slide.container-main-collection .product-card{
+  gap: 10px;
+  height: 100%;
+  grid-template-rows: 1fr;
+}
+.main-title-collection-product{
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 23px;
+  overflow: hidden;
+}
+.main-description-collection-product{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #37393699;
+  line-height: 16px;
+}
+.swiper-slide.container-main-collection .product-card img{
+  display: none;
+}
+.swiper-slide.container-main-collection .product-card a:first-child{
+  max-width: 185px;
+  max-height: 185px;
+  margin: 0 auto;
+}
+.swiper-slide.container-main-collection .product-card img:first-child{
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+}
+.price-collection-main{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+}
+.compare_price-collection-main{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: line-through;
+  color: #37393633;
+}
+.variant-button-collection-main{
+  width: 24px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  margin: 0 auto;
+}
+.variant-button-collection-main img{
+  width: 24px;
+  height: 24px !important;
+}
+.ring-2.variant-button-collection-main{
+  border: 1px solid #373A3666;
+}
+.add-to-cart-form-buy-collectons{
+  width: 100%;
+}
+.submit-button-collection-buy.submit-button-collection{
+  margin-top: 8px;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 600;
+  width: 100%;
+  height: 37px;
+  border-radius: 4px;
+  font-size: 14px;
+  border: 1px solid #807371;
+  transition: all 0.3s ease; 
+}
+.submit-button-collection-buy.submit-button-collection:hover{
+  background: black !important;
+  color: white !important;
+  border-color: black !important;
+}
+@media(max-width: 767px){
+  .submit-button-collection-buy.submit-button-collection{
+    display: none;
+  }
+}
+.main-title-collection-products{
+  margin: 0 auto;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 300;
+  font-size: 34px;
+}
+.main-title-collection-products em{
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 40px;
+}
+.button-collection-products{
+  background: #232222;
+  color: white;
+  min-width: 129px;
+  height: 37px;
+  width: fit-content;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid;
+  transition: all 0.3s ease; 
+}
+.button-collection-products:hover{
+  background: none !important;
+  color: #373A36 !important;
+  border-color:#C5C1C0 !important;
+}
+div.swiper-button-prev-collection,
+div.swiper-button-next-collection{
+  display: none;
+}
+.conatiner-collection-main{
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 0px;
+}
+.mySwiperCollection{
+  padding-bottom: 33px;
+}
+.swiper-button-prev-collection{
+  position: absolute;
+  top: 210px;
+  left: -34px;
+  transform: rotate(180deg);
+  width: 24px;
+  height: 24px;
+  border: 1px solid #37393633;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swiper-button-next-collection{
+  position: absolute;
+  right: -34px;
+  top: 209px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #37393633;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-star img{
+  width: 15px !important;
+  height: 14px !important;
+}
+.container-star{
+  display: inline-flex;
+  gap: 2px;
+  padding-right: 1px;
+  position: relative;
+  bottom: 1px;
+}
+.conatainer-first-star{
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 26.4px;
+}
+@media (max-width: 1024px) and (min-width: 769px) {
+  .reviews_text{
+    padding-left: 2px !important;
+  }
+} 
+.reviews_text{
+  color: #373A36CC;
+  font-weight: 400;
+  padding-left: 10px;
+  font-size: 12px;
+  font-family: "Kumbh Sans", sans-serif;
+  display: inline-block;
+  position: relative;
+  bottom: 0px;
+}
+.number-reviews{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #37393666;
+  position: relative;
+  left: 2px;
+  bottom: 0px;
+}
+.swiper-pagination-collections.swiper-pagination-clickable{
+  margin: 0 auto;
+  position: absolute;
+  display: inline-flex;
+  justify-content: center;
+}
+.swiper-pagination-collections.swiper-pagination-clickable .swiper-pagination-bullet{
+  width: 62px;
+  border-radius: 2px;
+  background: #373A3699;
+  height: 3px;
+}
+
+.main-container-block{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.show-more-variants img{
+  height: 10px !important;
+  width: 10px !important;
+}
+.show-more-variants{
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  position: relative;
+  bottom: 8px;
+  left: 1.2px;
+}
+.logo_center_navigation_below.header .header__secondary-nav{
+  position: absolute;
+  min-width: 291px;
+  column-gap: 10px;
+  align-items: center;
+  top: -3px;
+  margin-right: 22px;
+}
+.container.main-container-search-header .header-search__form-control svg{
+  bottom: 3px;
+}
+.container.main-container-search-header .header-search__form-control{
+  padding-bottom: 4px;
+}
+.predictive-search__content{
+  position: absolute;
+  right: -70px;
+  top: 10px;
+  background: white;
+  width: 100vw; 
+}
+.logo_center_navigation_below.header .country-flag{
+  width: 32px;
+  height: 24px;
+}
+.logo_center_navigation_below.header{
+  padding-top: 9px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #37393633;
+  border-top: 1px solid #37393633;
+}
+.header__logo-image{
+  width: 167px;
+}
+.container.main-container-search-header .predictive-search__results{
+  position: absolute;
+  right: 0;
+  background: white;
+  width: 100vw; 
+  top: 0;
+}
+.mobile-cart-collection-main .container-main-collection .submit-button-collection{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+}
+.mobile-cart-collection-main .container-main-collection .price-collection-main{
+  font-family: "Kumbh Sans", sans-serif;
+  border: 1px solid hsla(0, 0%, 100%, .1);
+  border-radius: 4px;
+  background: #00000040;
+  padding: 4px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 12px;
+  line-height: 12px;
+  color: white;
+}
+.mobile-cart-collection-main .container-main-collection .main-title-collection-product{
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  height: 68px;
+  overflow: hidden;
+  padding: 8px 0 5px;
+}
+.mobile-cart-collection-main .container-main-collection .main-description-collection-product{
+  text-align: center;
+  padding-bottom: 15px;
+  height: auto;
+  overflow: hidden;
+  font-size: 12px;
+}
+.mobile-cart-collection-main .container-main-collection .product-card{
+  gap: 0;
+}
+.mobile-cart-collection-main .container-main-collection .add-to-cart-form{
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  right: 4px;
+  top: 4px;
+}
+.mobile-cart-collection-main .container-main-collection svg{
+  position: absolute;
+  width: 34px;
+  color: white;
+  height: 34px;
+  right: 4px;
+  top: 4px;
+  border: 1px solid hsla(0, 0%, 100%, .1);
+  border-radius: 4px;
+  background: #00000040;
+  padding: 4px;
+}
+.mobile-cart-collection-main .container-main-collection .main-product-image{
+  border-radius: 8px;
+}
+.mobile-cart-collection-main .container-main-collection{
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 11px;
+  box-shadow: 0 3px 4px #ffffff80;
+  padding: 4px;
+}
+.mobile-cart-collection-main{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 10px;
+}
+.main-container-flex-collection > *:empty{
+  display: none;
+}
+.main-container-flex-collection{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  max-width: 578px;
+  gap: 10px;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.no-scroll .swiper-wrapper{
+  justify-content: center;
+}
+.no-scroll .swiper-wrapper .swiper-slide:first-child{
+  margin-left: 10px;
+}
+.button-next-collection-{{section.id }}{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #37393633;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 999;
+  right: -34px;
+}
+.button-prev-collection-{{  section.id }} img{
+  transform: rotate(180deg);
+  position: relative;
+}
+.button-prev-collection-{{  section.id }}{
+  position: absolute;
+  left: -34px;
+  border: 1px solid #37393633;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+{% comment %} .swiper-slide.container-main-collection{
+  margin: 0 auto;
+} {% endcomment %}
+@media (min-width: 768px){
+  .conatiner-collection-main{
+    display: grid;
+  }
+  .mobile-cart-collection-main{
+    display: none;
+  }
+  .main-title-collection-products em{
+    font-size: 47px;
+  }
+  .mySwiper.mySwiperCollection{
+    padding-left: 0px;
+    padding-bottom: 0;
+  }
+  .main-title-collection-products{
+    margin: 0;
+    font-size: 40px;
+  }
+  .button-collection-products{
+    display: flex;
+  }
+
+  .main-container-flex-collection,
+  .mySwiper.mySwiperCollection,
+  .main-container-block{
+    max-width: 660px;
+    padding-bottom: 21px;
+    line-height: normal;
+    padding-bottom: 29px;
+  }
+    .main-container-flex-collection{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .conatiner-collection-main{
+    padding-bottom: 0;
+  }
+  .swiper-pagination-collections.swiper-pagination-clickable,
+  .swiper-pagination-collections{
+    display: none;
+  }
+  .swiper-slide.container-main-collection .product-card img{
+    display: inline-block;
+  }
+  .swiper-slide.container-main-collection .product-card img{
+    height: 230px;
+    width: 100%;
+  }
+  .variant-button-collection-main{
+    width: 30px;
+    height: 30px;
+  }
+  div.swiper-button-prev-collection,
+  div.swiper-button-next-collection{
+    display: inline-flex;
+  }
+  .conatiner-collection-main{
+    width: fit-content;
+  }
+  .swiper-wrapper.swiper-wrapper-main-collection{
+    padding-left: 0px;
+  }
+  .swiper-slide.container-main-collection{
+    width: 211px !important;
+  }
+  .main-collection-swiper-js,
+  .main-container-flex-collection,
+  .mySwiper.mySwiperCollection,
+  .main-container-block{
+    max-width: 655px !important;
+  }
+}
+@media (min-width: 1024px){
+  .main-collection-swiper-js,
+  .main-container-flex-collection,
+  .mySwiper.mySwiperCollection,
+  .main-container-block{
+    max-width: 900px !important;
+  }
+  .swiper-slide.container-main-collection{
+    width: 217px !important;
+  }
+}
+@media (min-width: 1440px){
+  .main-collection-swiper-js,
+  .main-container-flex-collection,
+  .mySwiper.mySwiperCollection,
+  .main-container-block{
+    max-width: 1280px !important;
+  }
+  .swiper-slide.container-main-collection{
+    width: 248px !important;
+  }
+  .main-container-flex-collection{
+    grid-template-columns: repeat(5, min-content);
+    margin: 0 auto;
+    justify-content: center;
+  }
+}
+.hidden-variant {
+  display: none;
+}
+.section-{{ section.id }}{
+  padding-top: {{ section.settings.top_padding }}px;
+  padding-bottom: {{ section.settings.bottom_padding }}px;
+}
+
+
+.modal-buy-button-cart .modal-product-price-text{
+  padding-left: 3px;
+}
+.modal-buy-button-cart{
+  border-radius: 4px;
+  margin-top: 30px;
+  background: #232222;
+  color: white;
+  width: 100%;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  transition: all 0.3s ease; 
+  border: 1px solid #232222;
+}
+.modal-buy-button-cart:hover{
+  background: white !important;
+  color: #232222 !important;
+  border-color: #232222 !important;
+}
+.modal-variants-container button,
+.modal-variants-container img{
+  border: none;
+  width: 54px;
+  margin: 0;
+  height: 54px !important;
+}
+.modal-variants-container .ring-2.variant-button-collection-main{
+  width: 64px;
+  height: 64px !important;
+}
+.modal-variants-container{
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  position: relative;
+  top: 0px;
+  margin-top: 15px;
+  left: 1px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.modal-product-price{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #373A36;
+  letter-spacing: 0;
+}
+.conatiner-quantity-mobile input{
+  width: 30px;
+  height: 100%;
+  border: none;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.container-main-button-modal{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+  align-items: center;
+  gap: 0;
+}
+.conatiner-quantity-mobile{
+  width: 89px;
+  height: 31px;
+  border-radius: 4px;
+  border: 1px solid #373A3633;
+  background: white;
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+}
+.conatiner-quantity-mobile button{
+  height: 100%;
+  border: none;
+}
+.main-text-modal-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+}
+.swiper-button-next.swiper-button-next-modal img{
+  top: 7px;
+  left: 7px;
+}
+.swiper-button-prev.swiper-button-prev-modal img{
+  transform: rotate(180deg);
+}
+.swiper-button-next.swiper-button-next-modal img,
+.swiper-button-prev.swiper-button-prev-modal img{
+  border: none;
+}
+.swiper-button-next.swiper-button-next-modal{
+  right: 0px;
+  top: 186px;
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 50%;
+}
+.swiper-button-prev.swiper-button-prev-modal{
+  left: -1px;
+  top: 186px;
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 50%;
+}
+.main-modal-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-modal-collection-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  width: 486px;
+  padding: 10px 20px;
+  max-width: 90%;
+  z-index: 10;
+  height: 95%;
+  overflow: auto;
+  max-height: fit-content;
+  border-radius: 10px;
+}
+.modalSwiper {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.modalSwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+.modalSwiper img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: #000; 
+}
+.modal-product-title{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-align: left;
+  max-width: 307px;
+  line-height: 20px;
+}
+.main-text-modal{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+.container-modal-collection-main{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 100%;
+}
+.modal-images-container img {
+  max-width: 100px;
+  border-radius: 8px;
+  min-width: fit-content;
+  height: 350px;
+  margin: 0 auto;
+  width: 350px;
+  cursor: pointer;
+  margin-top: 9px;
+}
+.modal-variants-container button, .modal-variants-container img{
+  display: flex;
+}
+@media(max-width: 768px){
+  .swiper-button-next.swiper-button-next-modal{
+    display: flex;
+    top: 160px;
+    right: -7px;
+  }
+  .modal-variants-container button, .modal-variants-container img{
+    width: 34px;
+    height: 34px !important;
+  }
+  .modal-variants-container .ring-2.variant-button-collection-main{
+    width: 40px;
+    height: 40px !important;
+  }
+  .modal-variants-container{
+    gap: 8px;
+  }
+  .swiper-button-prev.swiper-button-prev-modal{
+    top: 152px;
+  }
+  .main-text-modal{
+    font-size: 16px;
+  }
+  .modal-product-title{
+    max-width: 231px;
+        font-size: 14px;
+  }
+  .main-text-modal-container .container-star img{
+    width: 14px !important;
+    height: 14px !important; 
+  }
+  .modal-images-container img{
+    width: 100%;
+    height: fit-content;
+    max-height: 280px;
+    width: 280px;
+  }
+ .modal-content{
+    padding: 10px;
+    max-height: fit-content;
+    width: 100%;
+    max-width: 390px;
+  } 
+  .loox-rating .star:first-child {
+    display: inline-block;
+  }
+  .reviews_text{
+    padding-left: 2px;
+  }
+  .mobile-product-main-top .loox-rating .star {
+    display: inline-flex;
+  }
+  .loox-rating .star {
+    display: none;
+  }
+}
+
+.loox-rating .star {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.loox-rating .star.full {
+  color: #ffb600;
+}
+.conatainer-first-stars.modal-reviews .reviews_text{
+  padding-top: 5px;
+}
+.conatainer-first-stars.modal-reviews{
+  align-items: center;
+}
+.swiper-pagination.swiper-pagination-main-collection .swiper-pagination-bullet{
+  width: 62px;
+  border-radius: 2px;
+  background: #373A3699;
+  height: 3px;
+}
+
+@media (min-width: 1024px){
+  .main-container-flex-collection{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1440px){
+  .main-container-flex-collection{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+.variant-thumbs-wrapper{
+  min-height: 34.09px;
+}
+@media(max-width: 1000px){
+  .main-collection-products{
+    margin-top: 40px;
+  }
+}
+@media (max-width: 768px){
+  .main-collection-swiper-js .swiper-pagination-bullets{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 12px;
+    column-gap: 10px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 0 20px 0 0;
+    flex-wrap: nowrap;
+    overflow: auto;
+    padding-bottom: 13px;
+    margin-left: 0px;
+    overflow: auto;
+    width: 100%;
+  }
+  .main-collection-swiper-js .swiper-pagination-bullets.overflowed{
+    display: block;
+    white-space: nowrap;
+  }
+  .main-collection-swiper-js .swiper-pagination-bullet{
+    min-width: 62px;
+    width: 62px;
+    border-radius: 4px;
+    padding: 0;
+    border: none;
+    height: 3px;
+    background: #373A3699;
+  }
+  div.main-collection-swiper-js {
+    margin-left: 20px;
+  }
+}
+{% comment %} @media (max-width: 1439px){
+  .main-description-collection-product{
+    height: 32px;
+  }
+} {% endcomment %}
+
+.main_button-show img{
+    width: 10px;
+    height: 10px;
+}
+.main_button-show{
+  width: 54px;
+  height: 54px;
+  border: 1px solid #373A3666;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 768px){
+  .main_button-show{
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media(max-width: 767px){
+  .main-collection-products{
+    margin-top: 35px;
+  }
+}
+.main-size-modal-product{
+  cursor: auto;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  {% comment %} text-align: center; {% endcomment %}
+  text-transform: capitalize;
+}
+.main-title-modal-product{
+  color: #373936CC;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+}
+.modal-main-size-two .size-buttons-wrapper{
+  width: 100% !important;
+}
+.main-container-modal-product{
+  {% comment %} background: #F6F4F3; {% endcomment %}
+  margin-top: 3px;
+  border-radius: 10px;
+  min-height: auto;
+  padding: 15px 10px;
+  display: grid;
+  gap: 5px;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+.close-modal-collection-products{
+  cursor: pointer;
+}
+.size-buttons-wrapper button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #373A361A;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: capitalize;
+}
+.size-buttons-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  gap: 5.17px;
+  margin-top: 15px;
+}
+.active-size-main{
+  color: white;
+  background-color: black;
+}
+.modal-main-size-two{
+  display: flex;
+  margin-top: 10px;
+  border-bottom: 1px solid #373A361A;
+  padding-bottom: 5px;
+}
+.modal-main-size-two .modal-size-buttons{
+  width: 213px;
+}
+.modal-main-size-two .main-container-modal-product{
+  width: 213px;
+  min-height: auto;
+  margin: 0;
+}
+.modal-main-size-two .modal-size-buttons1{
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid #373A361A;
+}
+.modal-main-size-two  .size-buttons-wrapper{
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+@media (max-width: 768px){
+  .modal-main-size-two .modal-size-buttons,
+  .modal-main-size-two .main-container-modal-product{
+    width: 157px;
+  }
+  .modal-main-size-two .main-container-modal-product{
+    min-height: 40px;
+    padding: 10px;
+    padding-left: 0;
+    padding-bottom: 0;
+    min-height: auto;
+  }
+  .modal-main-size-two .size-buttons-wrapper{
+    gap: 8.25px;
+  }
+  .modal-content{
+    max-width: 360px
+  }
+}
+
+.links-details-collection-products-container a,
+.links-details-collection-products-container div{
+  border-bottom: 1px solid #373A3633;
+  padding-bottom: 3px;
+}
+.links-details-collection-products-container{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #373A3666;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.modal-chose-size-cart{
+  width: 100%;
+  min-height: 54px;
+  background: #D3D3D3;
+  margin-top: 30px;
+  color: white;
+  border-radius: 4px;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  border: 1px solid #D3D3D3;
+  transition: all 0.3s ease;
+}
+.modal-chose-size-cart:hover{
+  color: #807371;
+  background: none;
+  border-color: #807371;
+}
+.new-class{
+    background: red !important;
+    z-index: 9999;
+}
+</style>
+
+{%- liquid
+  assign active_values_count = 0
+
+  for filter in collection.filters
+    if filter.type == 'price_range'
+      if filter.max_value.value != blank or filter.min_value.value != blank
+        assign active_values_count = active_values_count | plus: 1
+      endif
+    else
+      assign active_values_count = active_values_count | plus: filter.active_values.size
+    endif
+  endfor
+
+  if section.settings.quick_links_menu.links.size > 0 or section.settings.show_filters and collection.filters.size > 0
+    assign show_filters = true
+  else
+    assign show_filters = false
+  endif
+
+  # First, we retrieve, based on the merchant settings, the user preferences and the available space the most appropriate size
+  assign products_mobile_grid_mode = cart.attributes.products_mobile_grid_mode
+
+  if request.design_mode
+    # In the theme editor we do not use the choice selected manually, to reduce confusion when changing the theme editor values
+    assign products_desktop_grid_mode = section.settings.products_size_desktop
+  elsif section.settings.show_grid_mode_selector
+    assign products_desktop_grid_mode = cart.attributes.products_desktop_grid_mode | default: section.settings.products_size_desktop
+  else
+    assign products_desktop_grid_mode = section.settings.products_size_desktop
+  endif
+
+  if products_mobile_grid_mode == blank or request.design_mode
+    if section.settings.products_per_row_mobile == '1'
+      assign products_mobile_grid_mode = 'large'
+    else
+      assign products_mobile_grid_mode = 'medium'
+    endif
+  endif
+-%}
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+CSS
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<style>
+  .collection.collections-products-main{
+    max-width: 1440px; 
+    margin: 0 auto;
+    width: 100%;
+  }
+  .main-btn-more-collectoins-color{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(221, 221, 221);
+  }
+  .main-btn-more-collectoins-color img{
+    width: 10px;
+    height: 10px;
+  }
+  .collection-toolbar-main{
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    display: flex;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  #shopify-section-{{ section.id }} {
+    --product-list-horizontal-spacing-factor: {{ section.settings.horizontal_spacing_factor }};
+    --product-list-vertical-spacing-factor: {{ section.settings.vertical_spacing_factor }};
+
+    {% comment %}On mobile, it's simple! No sidebar or whatever{% endcomment %}
+    --collection-items-per-row-medium: 2;
+    --collection-items-per-row-large: 1;
+  }
+
+  #shopify-section-{{ section.id }} .product-list {
+    --product-list-max-items-per-row-allowed: 99 !important; {% comment %}On collection page, we explicitly set a number of items so we don't want this{% endcomment %}
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} {
+      {% comment %}On tablet, we do not have any sidebar, so we can fix it{% endcomment %}
+      --collection-items-per-row-compact: 4;
+      --collection-items-per-row-medium: 3;
+      --collection-items-per-row-large: 2;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} {
+      {%- comment -%}Starting from 1000px it starts to get funky, as we can have or not the sidebar{%- endcomment -%}
+
+      {%- if section.settings.filter_layout == 'sidebar' and show_filters -%}
+        --collection-items-per-row-compact: 4;
+        --collection-items-per-row-medium: 3;
+        --collection-items-per-row-large: 2;
+      {%- else -%}
+        --collection-items-per-row-compact: 6;
+        --collection-items-per-row-medium: 4;
+        --collection-items-per-row-large: 3;
+      {%- endif -%}
+    }
+
+    #shopify-section-{{ section.id }} .collection {
+      {%- if section.settings.filter_layout == 'sidebar' and show_filters -%}
+        --collection-grid-template: var(--collection-sidebar-width, 0) minmax(0,1fr);
+      {%- endif -%}
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    #shopify-section-{{ section.id }} {
+      {%- comment -%}Starting from 1400px we can afford having more content even in sidebar mode{%- endcomment -%}
+
+      {%- if section.settings.filter_layout == 'sidebar' and show_filters -%}
+        --collection-items-per-row-compact: 6;
+        --collection-items-per-row-medium: 4;
+        --collection-items-per-row-large: 3;
+      {%- endif -%}
+    }
+  }
+</style>
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+LIQUID
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<div class="main-collection-products color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="container">
+    <div class="v-stack gap-6 sm:gap-12">
+      {%- if collection.all_products_count == 0 -%}
+        <div class="empty-state">
+          <div class="prose">
+            <h1 class="h4">{{ collection.title }}</h1>
+            <p>{{ 'collection.general.empty_collection' | t }}</p>
+
+            {%- assign button_content = 'collection.general.continue_shopping' | t -%}
+            {%- render 'button', href: routes.all_products_collection_url, size: 'xl', content: button_content -%}
+          </div>
+        </div>
+      {%- else -%}
+        {%- if show_filters or section.settings.show_sort_by or section.settings.show_grid_mode_selector or section.settings.show_results_count -%}
+          <height-observer variable="collection-toolbar" class="collection-toolbar full-bleed">
+            <div class="collection-toolbar-main">
+            <div class="collection-toolbar__button-list">
+              {%- if show_filters -%}
+                <div class="collection-toolbar__button-container {% if section.settings.filter_layout == 'sidebar' %}md:hidden{% endif %}">
+                  <button type="button" aria-controls="facets-drawer" class="collection-toolbar__button heading text-xxs w-full">
+                    {{- 'collection.faceting.filter_button' | t }} {% if active_values_count > 0 %}({{ active_values_count }}){% endif -%}
+                  </button>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.show_sort_by -%}
+                {%- assign selected_sort_by_value = collection.sort_by | default: collection.default_sort_by -%}
+
+                <div class="collection-toolbar__button-container">
+                  <button type="button" aria-controls="sort-by-popover" class="collection-toolbar__button heading text-xxs w-full">
+                    <span class="text-with-icon justify-center">
+                      {{- 'collection.faceting.sort_by' | t -}}
+                      {%- render 'icon' with 'chevron-down' -%}
+                    </span>
+                  </button>
+
+                  <facets-sort-popover id="sort-by-popover" section-id="{{ section.id }}" class="popover popover--bottom-end color-scheme color-scheme--dialog" close-on-listbox-select>
+                    <p class="h4" slot="header">{{ 'collection.faceting.sort_by' | t }}</p>
+
+                    <x-listbox class="popover__value-list">
+                      {%- for sort_option in collection.sort_options -%}
+                        {%- if sort_option.name != blank -%}
+                          <button type="button" class="popover__value-option group" role="option" value="{{ sort_option.value }}" {% if sort_option.value == selected_sort_by_value %}aria-selected="true"{% endif %}>
+                            <span class="reversed-link">{{ sort_option.name }}</span>
+                          </button>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </x-listbox>
+                  </facets-sort-popover>
+                </div>
+              {%- endif -%}
+            </div>
+
+            {%- if section.settings.show_results_count -%}
+              <p class="collection-toolbar__products-count h6 text-subdued md-max:hidden">
+                {{ 'collection.products_count' | t: count: collection.products_count }}
+              </p>
+            {%- endif -%}
+
+            {%- if section.settings.show_grid_mode_selector -%}
+              <collection-layout-switch device="mobile" class="collection-toolbar__layout-switch-list sm:hidden" aria-controls="product-list-{{ section.id }}">
+                <button type="button" value="large" class="collection-toolbar__button {% if products_mobile_grid_mode == 'large' %}is-active{% endif %}" aria-label="Switch to larger product images">{%- render 'icon' with 'collection-layout-1' -%}</button>
+                <button type="button" value="medium" class="collection-toolbar__button {% if products_mobile_grid_mode == 'medium' %}is-active{% endif %}" aria-label="Switch to smaller product images">{%- render 'icon' with 'collection-layout-2' -%}</button>
+              </collection-layout-switch>
+
+              <collection-layout-switch device="desktop" class="collection-toolbar__layout-switch-list sm-max:hidden" aria-controls="product-list-{{ section.id }}">
+                <button type="button" value="large" class="collection-toolbar__button {% if products_desktop_grid_mode == 'large' %}is-active{% endif %}" aria-label="Switch to larger product images">{%- render 'icon' with 'collection-layout-2' -%}</button>
+                <button type="button" value="medium" class="collection-toolbar__button {% if products_desktop_grid_mode == 'medium' %}is-active{% endif %}" aria-label="Switch to smaller product images">{%- render 'icon' with 'collection-layout-3' -%}</button>
+                <button type="button" value="compact" class="collection-toolbar__button {% if products_desktop_grid_mode == 'compact' %}is-active{% endif %}" aria-label="Switch to compact product images">{%- render 'icon' with 'collection-layout-4' -%}</button>
+              </collection-layout-switch>
+            {%- endif -%}
+            </div>
+          </height-observer>
+        {%- endif -%}
+
+        <div class="collection collections-products-main">
+          {%- paginate collection.products by section.settings.products_per_page -%}
+            {%- if show_filters -%}
+              <facets-drawer id="facets-drawer" class="facets-drawer drawer drawer--sm color-scheme color-scheme--dialog {% if section.settings.filter_layout == 'sidebar' %}md:hidden{% endif %}">
+                <p class="h4" slot="header">{{ 'collection.faceting.filters' | t }}</p>
+
+                {%- render 'facets', results: collection, show_filters: section.settings.show_filters, open_filters_by_default: section.settings.open_filters_by_default, update_on_change: false, quick_links_menu: section.settings.quick_links_menu, context: 'drawer' -%}
+
+                <div slot="footer">
+                  {%- assign button_content = 'collection.faceting.apply_filters' | t -%}
+
+                  <dialog-close-button class="contents">
+                    {%- render 'button', type: 'button', content: button_content, stretch: true -%}
+                  </dialog-close-button>
+                </div>
+              </facets-drawer>
+
+              {%- if section.settings.filter_layout == 'sidebar' -%}
+                <safe-sticky class="facets-sidebar md-max:hidden">
+                  {%- render 'facets', results: collection, show_filters: section.settings.show_filters, open_filters_by_default: section.settings.open_filters_by_default, update_on_change: true, quick_links_menu: section.settings.quick_links_menu, context: 'sidebar' -%}
+                </safe-sticky>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if collection.products_count == 0 -%}
+              <div class="empty-state">
+                <div class="v-stack gap-4">
+                  <p>{{ 'collection.faceting.no_results' | t }}</p>
+
+                  {%- assign button_content = 'collection.faceting.clear_filters' | t -%}
+
+                  <facet-link>
+                    {%- render 'button', href: collection.url, content: button_content -%}
+                  </facet-link>
+                </div>
+              </div>
+            {%- else -%}
+              <div class="collection__main">
+                {%- render 'active-facets', results: collection -%}
+
+                <product-list id="product-list-{{ section.id }}" class="product-list" collection-mobile-layout="{{ products_mobile_grid_mode }}" collection-desktop-layout="{{ products_desktop_grid_mode }}">
+                  {%- for product in collection.products -%}
+                    {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, position: forloop.index, hide_product_information: section.settings.hide_product_information, stacked: true -%}
+                  {%- endfor -%}
+                </product-list>
+
+                {%- render 'pagination', paginate: paginate, facet: true -%}
+              </div>
+            {%- endif -%}
+          {%- endpaginate -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  function updateSwatches() {
+    const wrappers = document.querySelectorAll("[collection-desktop-layout]");
+
+    wrappers.forEach(wrapper => {
+      const productCards = wrapper.querySelectorAll(".product-card");
+
+      productCards.forEach(card => {
+        const swatches = card.querySelectorAll(".thumbnail-swatch");
+        if (!swatches.length) return;
+
+        const oldBtn = card.querySelector(".main-btn-more-collectoins-color");
+        if (oldBtn) oldBtn.remove();
+
+        swatches.forEach(s => s.style.display = "");
+
+        const swatchContainer = card.querySelector(".swatch-wrapper") || card;
+        const containerWidth = swatchContainer.clientWidth;
+
+        const swatchWidth = 30;
+        const gap = 4;
+        
+        let visibleLimit = 0;
+        for (let i = 1; i <= swatches.length; i++) {
+          let totalWidth = i * swatchWidth + (i - 1) * gap;
+          
+          if (totalWidth <= containerWidth - 0.5) { 
+            visibleLimit = i;
+          } else {
+            break;
+          }
+        }
+
+        if (swatches.length > visibleLimit) {
+          for (let i = visibleLimit - 1; i < swatches.length; i++) {
+            swatches[i].style.display = "none";
+          }
+
+          const btn = document.createElement("button");
+          btn.className = "main-btn-more-collectoins-color";
+          const img = document.createElement("img");
+          img.src = "https://www.rinfit.com/cdn/shop/t/41/assets/Vector1.svg?v=171725181937109148151759389141";
+          img.alt = "More colors";
+          btn.appendChild(img);
+
+          swatches[visibleLimit - 2].after(btn);
+
+          btn.addEventListener("click", function () {
+            swatches.forEach(s => s.style.display = "");
+            btn.style.display = "none";
+          });
+        }
+      });
+    });
+  }
+
+  updateSwatches();
+  window.addEventListener("resize", updateSwatches);
+
+  const observer = new MutationObserver(updateSwatches);
+  document.querySelectorAll("[collection-desktop-layout]").forEach(wrapper => {
+    observer.observe(wrapper, {
+      attributes: true,
+      attributeFilter: ["collection-desktop-layout", "collection-mobile-layout"]
+    });
+  });
+
+});
+
+
+</script>
+
+<template id="addToCartModalTemplate-{{ section.id }}">
+  <div class="container-modal-collection-main fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-50"></div>
+    
+    <div class="modal-content relative bg-white p-6 rounded-lg shadow-lg text-center w-[486px] mx-auto my-auto">
+      <div class='main-modal-header'>
+        <p class="main-text-modal">quick add</p>
+        <button type="button" class="absolute top-2 right-2 text-gray-500 hover:text-black close-modal">
+          {{ "iconCancel.svg" | asset_url | img_tag: "Icon" }}
+        </button>
+      </div>
+      <div class="swiper modal-swiper-collection mb-4">
+        <div class="swiper-wrapper modal-images-container"></div>
+          <div class="swiper-button-prev swiper-button-prev-modal">      
+            {{ "VectorModal.svg" | asset_url | img_tag: "Prev" }}  
+          </div>
+          <div class="swiper-button-next swiper-button-next-modal">      
+            {{ "VectorModal.svg" | asset_url | img_tag: "Next" }}  
+          </div>
+        </div>
+        
+        <div class='main-text-modal-container'>
+          <a href='#' class="modal-product-title mb-2"></a>
+          <div class="conatainer-first-stars modal-reviews flex items-center gap-2 mt-2" style="display:none;">
+            <div class="modal-stars"></div>
+            <div class="modal-rating-text text-sm reviews_text"></div>
+          </div>
+        </div>
+        <div class="mb-4 flex justify-center items-center gap-4 container-main-button-modal">
+          <div class=" conatiner-quantity-mobile flex items-center gap-2">
+            <button type="button" class="qty-btn px-3 py-1 border rounded" data-action="decrease">
+              {{ "Modal.svg" | asset_url | img_tag: "Icon" }}
+            </button>
+            <input type="number" name="quantity" value="1" min="1" class="w-16 text-center border rounded" />
+            <button type="button" class="qty-btn px-3 py-1 border rounded" data-action="increase">
+              {{ "Modal1.svg" | asset_url | img_tag: "Icon" }}
+            </button>
+          </div>
+          <div>
+            <span class="modal-product-price text-lg font-bold"></span>
+            <span class="modal-product-compare-price line-through text-gray-500 ml-2"></span>
+          </div>
+        </div>
+        
+        <div class="modal-variants-container mb-4 flex flex-wrap gap-2 justify-center"></div>
+        
+        <div class='modal-main-size-two'>
+          <div class='modal-size-buttons1'>
+            <div class="modal-size-buttons mt-4 mb-2">
+              <div class='main-container-modal-product'>
+                <label class="main-size-modal-product block mb-1 font-medium">male rings size: <span class='main-modal-first-size'></span></label>
+              </div>
+              <div class="size-buttons-wrapper option1-size flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+          <div class='modal-size-buttons2'>
+            <div class="modal-size-buttons mt-4 mb-2">
+              <div class='main-container-modal-product'>
+                <label class="main-size-modal-product block mb-1 font-medium">female rings size: <span class='main-modal-second-size'></span></label>
+              </div>
+              <div class="size-buttons-wrapper option2-size flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-size-buttons mt-4 mb-2">
+          <div class='main-container-modal-product'>
+            <label class="main-size-modal-product block mb-1 font-medium">Size: <span class='main-modal-size'></span></label>
+          </div>
+          <div class="size-buttons-wrapper flex flex-wrap gap-2"></div>
+        </div>
+        
+        <form class="modal-add-to-cart-form" >
+          <input type="hidden" name="id" value="" />
+          <input type="hidden" name="quantity" value="1" />
+          <input type="hidden" name="option1" value="" />
+          <input type="hidden" name="option2" value="" />
+          <input type="hidden" name="image" value="" />
+          <div class="flex justify-center">
+            <button type="submit" class="modal-buy-button-cart bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+              add to cart -  <span class="modal-product-price-text"></span>
+            </button>
+          </div>
+        </form>
+        <button class='modal-chose-size-cart'>Choose size</button>
+        <div class='links-details-collection-products-container'>
+          <a class='modal-more-details' href='#'>more details</a> or <div class='close-modal-collection-products' >continue shopping</div>
+        </div>
+    </div>
+  </div>
+</template>
+
+
+<script>
+let clicked = false;
+
+document.addEventListener("click", (e) => {
+  const form = e.target.closest(".modal-add-to-cart-form");
+  if (!clicked && e.target.closest(".modal-buy-button-cart")) {
+    e.preventDefault();
+    
+    if (form) {
+      const formData = new FormData(form);
+
+      fetch("/cart/add.js", {
+        method: "POST",
+        body: formData,
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Помилка запиту");
+        return res.json();
+      })
+      .then(() => {
+        return fetch("/cart.js", {
+        headers: { "Accept": "application/json" }
+      });
+    })
+    .then(res => res.json())
+    .then(cart => {
+      document.querySelectorAll(".cart-count").forEach(el => {
+        el.textContent = cart.item_count;
+      });
+    
+      const event = new CustomEvent("cart:refresh", { detail: cart });
+      document.dispatchEvent(event);
+      
+      const cartDrawer = document.querySelector("cart-drawer-component");
+      if (cartDrawer?.hasAttribute("auto-open")) {
+        cartDrawer.open();
+      }
+    })
+    .then(data => {
+      const closeBtn = document.querySelector(".close-modal");
+      if (closeBtn) {
+        closeBtn.click(); 
+      }
+
+      const cartTrigger = document.querySelector('a[aria-controls="cart-drawer"]');      
+      if (cartTrigger) {
+        cartTrigger.click();
+      }
+    })
+    .catch(err => console.error("Помилка:", err));
+  }
+  clicked = true;
+}
+  clicked = false;
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  function debounce(func, wait = 100) {
+    let timeout;
+    return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  document.querySelectorAll(".conatiner-collection-main").forEach(container => {
+    const swiperEl = container.querySelector(".main-collection-swiper-js");
+    if (!swiperEl || swiperEl.classList.contains("swiper-initialized")) return;
+
+    const sectionClass = Array.from(container.classList).find(c => c.startsWith("section-"));
+    const sectionId = sectionClass ? sectionClass.replace("section-", "") : "";
+
+    const nextBtn = container.querySelector(`.button-next-collection-${sectionId}`);
+    const prevBtn = container.querySelector(`.button-prev-collection-${sectionId}`);
+    const paginationEl = swiperEl.querySelector(`.swiper-pagination-${sectionId}`);
+
+    const swiper = new Swiper(swiperEl, {
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+      watchOverflow: true,
+      pagination: {
+        el: paginationEl,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: nextBtn,
+        prevEl: prevBtn,
+      },
+      on: {
+        init: updateUI,
+        resize: updateUI
+      }
+    });
+
+    function updateUI() {
+      const wrapperWidth = swiperEl.querySelector('.swiper-wrapper').scrollWidth;
+      const containerWidth = swiperEl.clientWidth;
+      const windowWidth = window.innerWidth;
+
+      if (paginationEl) {
+        if (paginationEl.scrollWidth > paginationEl.clientWidth) {
+          paginationEl.classList.add("overflowed");
+        } else {
+          paginationEl.classList.remove("overflowed");
+        }
+      }
+
+      if (wrapperWidth <= containerWidth) {
+        swiperEl.classList.add('no-scroll'); 
+      } else {
+        swiperEl.classList.remove('no-scroll'); 
+      }
+
+      if (windowWidth < 768 || wrapperWidth <= containerWidth) {
+        nextBtn.style.display = 'none';
+        prevBtn.style.display = 'none';
+      } else {
+        nextBtn.style.display = 'flex';
+        prevBtn.style.display = 'flex';
+      }
+    }
+
+    window.addEventListener('resize', debounce(updateUI, 150));
+
+    updateUI();
+
+    swiperEl.classList.add("swiper-initialized");
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.product-card').forEach(card => {
+    const mainImg = card.querySelector('.main-product-image'); 
+    const variantInput = card.querySelector('.variant-input'); 
+    const variantThumbs = card.querySelectorAll('.variant-thumb');
+
+    variantThumbs.forEach(btn => btn.classList.add('no-swiping'));
+
+    variantThumbs.forEach((btn, index) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation(); 
+
+        const imgSrc = btn.dataset.image; 
+        if (mainImg) mainImg.src = imgSrc; 
+
+        const variantId = btn.dataset.variantId;
+        if (variantInput) variantInput.value = variantId;
+
+        variantThumbs.forEach(b => b.classList.remove('ring-2', 'ring-black'));
+        btn.classList.add('ring-2', 'ring-black');
+      });
+
+      if (index === 0 && variantInput) {
+        variantInput.value = btn.dataset.variantId;
+      }
+    });
+
+    const showMoreBtn = card.querySelector('.show-more-variants');
+    if (showMoreBtn) {
+      showMoreBtn.addEventListener('click', () => {
+        card.querySelectorAll('.hidden-variant').forEach(el => el.classList.remove('hidden-variant'));
+        showMoreBtn.remove();
+      });
+    }
+  });
+});
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const formatMoney = cents => "$" + (cents / 100).toFixed(2);
+
+  const getCoreFromVariant = src => {
+    const fileName = src.split("/").pop().split("?")[0];
+    return fileName.replace(/_100x100\.(jpg|png|webp)$/i, "");
+  };
+
+  const getCoreFromSlide = src => {
+    const fileName = src.split("/").pop().split("?")[0];
+    return fileName.replace(/_400x\.(jpg|png|webp)$/i, "");
+  };
+  
+  function setupQuantityControls(modal, qtyInput, hiddenQtyInput, modalPrice) {
+    const updatePrice = () => {
+      let val = parseInt(qtyInput.value) || 1;
+      let price = parseInt(qtyInput.dataset.currentPrice || 0);
+      modalPrice.textContent = formatMoney(price * val);
+      modal.querySelector(".modal-product-price-text").textContent = formatMoney(price * val);
+      hiddenQtyInput.value = val;
+    };
+    
+    modal.querySelectorAll(".qty-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        let val = parseInt(qtyInput.value) || 1;
+        if (btn.dataset.action === "increase") val++;
+        else if (btn.dataset.action === "decrease" && val > 1) val--;
+        qtyInput.value = val;
+        updatePrice();
+      });
+    });
+
+  qtyInput.addEventListener("input", updatePrice);
+}
+
+function updateModal(modal, productData) {
+  const detailsLink = modal.querySelector(".modal-more-details");
+  if (detailsLink) {
+    detailsLink.href = `/products/${productData.handle}`;
+  }
+  
+  const modalContent = modal.querySelector(".modal-content");
+  const addToCartBtn = modalContent.querySelector(".modal-buy-button-cart");
+  const chooseSizeBtn = modalContent.querySelector(".modal-chose-size-cart");
+  
+  if (addToCartBtn && chooseSizeBtn) {
+    addToCartBtn.style.display = "none";
+    chooseSizeBtn.style.display = "inline-block";
+  } 
+  
+  let imageInput = modalContent.querySelector("input[name='image']");
+  if (!imageInput) {
+    imageInput = document.createElement("input");
+    imageInput.type = "hidden";
+    imageInput.name = "image";
+    modalContent.querySelector("form").appendChild(imageInput);
+  }
+    
+  const modalTitle = modalContent.querySelector(".modal-product-title");
+  const imagesWrapper = modalContent.querySelector(".modal-images-container");
+  const variantsContainer = modalContent.querySelector(".modal-variants-container");
+  const modalPrice = modalContent.querySelector(".modal-product-price");
+  const modalComparePrice = modalContent.querySelector(".modal-product-compare-price");
+  const qtyInput = modalContent.querySelector("input[name='quantity']");
+  const hiddenQtyInput = modalContent.querySelector("input[name='quantity'][type='hidden']");
+  const hiddenInput = modalContent.querySelector("input[name='id']");
+  const option1Input = modalContent.querySelector("input[name='option1']");
+  const option2Input = modalContent.querySelector("input[name='option2']");
+
+
+
+  modalTitle.textContent = productData.title;
+  modalTitle.href = `/products/${productData.handle}`;
+
+
+  modal.querySelector(".close-modal-collection-products")?.addEventListener("click", closeModal);
+  const option1Block = modalContent.querySelector(".option1-size").closest(".modal-size-buttons");
+  const option2Block = modalContent.querySelector(".option2-size").closest(".modal-size-buttons");
+  const singleBlock = modalContent.querySelector(".modal-size-buttons:not(:has(.option1-size)):not(:has(.option2-size))");
+
+  const option1Wrapper = modalContent.querySelector(".option1-size");
+  const option2Wrapper = modalContent.querySelector(".option2-size");
+  const singleWrapper = singleBlock.querySelector(".size-buttons-wrapper");
+
+  option1Wrapper.innerHTML = "";
+  option2Wrapper.innerHTML = "";
+  singleWrapper.innerHTML = "";
+
+  const option1Values = [
+    ...new Set(productData.variants.map(v => !isNaN(Number(v.option1)) ? v.option1 : null).filter(Boolean))
+  ];
+  const option2Values = [
+    ...new Set(productData.variants.map(v => !isNaN(Number(v.option2)) ? v.option2 : null).filter(Boolean))
+  ];
+  
+  const hasNumericOption1 = option1Values.length > 0;
+  const hasNumericOption2 = option2Values.length > 0;
+  if(productData.optionsName == "Size" && hasNumericOption1 && !hasNumericOption2){
+    console.log("productData.optionsName")
+  }
+  if (hasNumericOption1 && hasNumericOption2) {
+      
+    option1Block.style.display = "block";
+    option2Block.style.display = "block";
+    singleBlock.style.display = "none";
+
+    option1Values.forEach(size => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "size-button px-3 py-1 border rounded text-sm hover:bg-gray-100";
+      btn.textContent = size;
+      btn.dataset.size = size;
+      btn.dataset.option = "option1";
+      option1Wrapper.appendChild(btn);
+    });
+
+    option2Values.forEach(size => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "size-button px-3 py-1 border rounded text-sm hover:bg-gray-100";
+      btn.textContent = size;
+      btn.dataset.size = size;
+      btn.dataset.option = "option2";
+      option2Wrapper.appendChild(btn);
+    });
+
+  } else if (hasNumericOption1 && !hasNumericOption2) {
+    option1Block.style.display = "none";
+    option2Block.style.display = "none";
+    singleBlock.style.display = "block";
+
+    option1Values.forEach(size => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "size-button px-3 py-1 border rounded text-sm hover:bg-gray-100";
+      btn.textContent = size;
+      btn.dataset.size = size;
+      btn.dataset.option = "option1";
+      singleWrapper.appendChild(btn);
+    });
+  
+  } else {
+      
+    option1Block.style.display = "none";
+    option2Block.style.display = "none";
+    singleBlock.style.display = "block";
+
+    const optionValues = [
+      ...new Set(productData.variants.map(v => v.option2).filter(Boolean))
+    ];
+
+    optionValues.forEach(size => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "size-button px-3 py-1 border rounded text-sm hover:bg-gray-100";
+      btn.textContent = size.replace(/\D/g, "");
+      btn.dataset.size = size;
+      btn.dataset.option = "option1";
+      singleWrapper.appendChild(btn);
+    });
+  }
+
+
+  const sizeButtons = modalContent.querySelectorAll(".size-button");
+  let currentVariantPrice = 0;
+
+    var mainOption1 = false;
+    var mainOption2 = false;
+
+    sizeButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const parentWrapper = btn.closest(".size-buttons-wrapper");
+        
+        parentWrapper.querySelectorAll(".size-button").forEach(b => b.classList.remove("active-size-main"));
+        btn.classList.add("active-size-main");
+        
+        const selectedSize = btn.dataset.size;   
+        const optionType = btn.dataset.option;  
+        
+        const productHasNumericOption1 = productData.variants.some(v => !isNaN(Number(v.option1)));
+
+
+        const variantMain = productData.variants;
+        let hasOption2 = true; 
+        
+        for (let i = 0; i < variantMain.length; i++) {
+          if (variantMain[i].option2 == null) { 
+            hasOption2 = false;
+            break;
+          }
+        }
+
+        if(productHasNumericOption1 && !hasOption2){
+          mainOption1 = true;
+          mainOption2 = true;
+          const sizeValue = document.querySelector(".main-modal-size")
+          sizeValue.textContent = btn.dataset.size.replace(/\D/g, "");
+      
+          option2Input.value = selectedSize;
+        
+        } else if (productHasNumericOption1) {
+          
+          if (optionType === "option1") {
+            const sizeValue1 = document.querySelector(".main-modal-first-size")
+            sizeValue1.textContent = btn.dataset.size;
+            mainOption1 = true;
+            option1Input.value = selectedSize;
+          } else if (optionType === "option2") {
+            const sizeValue2 = document.querySelector(".main-modal-second-size")
+            sizeValue2.textContent = btn.dataset.size;
+            mainOption2 = true;
+            option2Input.value = selectedSize;
+          }
+        } else {
+          mainOption1 = true;
+          mainOption2 = true;
+          const sizeValue = document.querySelector(".main-modal-size")
+          sizeValue.textContent = btn.dataset.size.replace(/\D/g, "");
+      
+          option2Input.value = selectedSize;
+        }
+        if(mainOption1 && mainOption2){
+          if (addToCartBtn && chooseSizeBtn) {
+            addToCartBtn.style.display = "inline-block";
+            chooseSizeBtn.style.display = "none";
+          }
+        }
+        
+        const normalize = val => (!isNaN(Number(val)) ? Number(val) : val);
+        
+        const selectedVariant = productData.variants.find(v =>
+          normalize(v.option1) === normalize(option1Input.value) &&
+          normalize(v.option2) === normalize(option2Input.value)
+        );
+        
+        if (selectedVariant) {
+          hiddenInput.value = selectedVariant.id;
+          currentVariantPrice = selectedVariant.price;
+          qtyInput.dataset.currentPrice = selectedVariant.price;
+          
+          modalPrice.textContent = formatMoney(currentVariantPrice * (parseInt(qtyInput.value) || 1));
+          hiddenQtyInput.value = qtyInput.value;
+          
+          if (selectedVariant.compare_at_price && selectedVariant.compare_at_price > selectedVariant.price) {
+            modalComparePrice.textContent = formatMoney(selectedVariant.compare_at_price * parseInt(qtyInput.value));
+            modalComparePrice.style.display = "inline";
+          } else {
+            modalComparePrice.style.display = "none";
+          }
+          
+          if (addToCartBtn && currentVariantPrice) {
+            const qty = parseInt(qtyInput.value) || 1;
+            addToCartBtn.querySelector(".modal-product-price-text").textContent = formatMoney(currentVariantPrice * qty);
+          }
+          
+          let optionsToSend = {
+            option1: !isNaN(Number(selectedVariant.option1)) 
+            ? Number(selectedVariant.option1) 
+            : (selectedVariant.option1 || ""),
+            option2: selectedVariant.option2 || "",
+            image: selectedVariant.featured_image?.src || ""
+          };
+          
+          if (!productHasNumericOption1) {
+            optionsToSend.option2 = selectedSize;
+            option2Input.value = selectedSize;
+          }
+          
+          imageInput.value = optionsToSend.image;
+        }
+      });
+      
+      function selectFirstVariant() {
+        let firstVariant = productData.variants[0];
+        if (!firstVariant) return;
+        
+        const hiddenInput = modal.querySelector("input[name='id']");
+        const option1Input = modal.querySelector("input[name='option1']");
+        const option2Input = modal.querySelector("input[name='option2']");
+        const imageInput = modal.querySelector("input[name='image']");
+        const modalPrice = modal.querySelector(".modal-product-price");
+        const hiddenQtyInput = modal.querySelector("input[name='quantity'][type='hidden']");
+        const qtyInput = modal.querySelector("input[name='quantity']");
+        
+        hiddenInput.value = firstVariant.id;
+        option1Input.value = firstVariant.option1 || "";
+        option2Input.value = firstVariant.option2 || "";
+        imageInput.value = firstVariant.featured_image?.src || "";
+        
+        const qty = parseInt(qtyInput.value) || 1;
+        modalPrice.textContent = "$" + (firstVariant.price * qty / 100).toFixed(2);
+        qtyInput.dataset.currentPrice = firstVariant.price;
+        
+        modal.querySelector(".modal-product-price-text").textContent = "$" + (firstVariant.price / 100).toFixed(2);
+        hiddenQtyInput.value = qty;
+        
+        const sizeButtons = modal.querySelectorAll(".size-button");
+        sizeButtons.forEach(btn => {
+          btn.classList.remove("active-size-main");
+          if (btn.dataset.size === firstVariant.option1 || btn.dataset.size === firstVariant.option2) {
+            btn.classList.add("active-size-main");
+          }
+        });
+        
+        const swiperInstance = modal.querySelector(".modal-swiper-collection").swiper;
+        const variantCore = firstVariant.featured_image?.src?.split("/").pop().replace(/_100x100\.(jpg|png|webp)$/i, "");
+        const slidesArray = Array.from(modal.querySelectorAll(".modal-swiper-collection .swiper-slide:not(.swiper-slide-duplicate) img"));
+        const slidesCore = slidesArray.map(img => img.src.split("/").pop().replace(/_400x\.(jpg|png|webp)$/i, ""));
+        const targetSlideIndex = slidesCore.findIndex(c => c === variantCore);
+        if (targetSlideIndex !== -1) swiperInstance.slideToLoop(targetSlideIndex, 0);
+      }
+      
+      selectFirstVariant();
+    });
+    
+    option1Wrapper.querySelectorAll(".size-button").forEach(btn => btn.classList.remove("active-size-main"));
+    option2Wrapper.querySelectorAll(".size-button").forEach(btn => btn.classList.remove("active-size-main"));
+    singleWrapper.querySelectorAll(".size-button").forEach(btn => btn.classList.remove("active-size-main"));
+
+    imagesWrapper.innerHTML = "";
+    const addedImages = new Set();
+    productData.images.forEach((imgSrc, i) => {
+      if (!addedImages.has(imgSrc)) {
+        addedImages.add(imgSrc);
+        const slide = document.createElement("div");
+        slide.className = "swiper-slide";
+        slide.dataset.image = imgSrc;
+        slide.innerHTML = `
+          <a href='/products/${productData.handle}'>
+            <img src="${imgSrc}" alt="${productData.title} ${i + 1}" class="w-full h-auto">
+          </a>
+        `;
+        imagesWrapper.appendChild(slide);
+      }
+    });
+
+    const swiperInstance = new Swiper(modalContent.querySelector(".modal-swiper-collection"), {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      loop: true,
+      navigation: {
+        nextEl: modalContent.querySelector(".swiper-button-next"),
+        prevEl: modalContent.querySelector(".swiper-button-prev"),
+      },
+      pagination: {
+        el: modalContent.querySelector(".swiper-pagination"),
+        clickable: true,
+      },
+    });
+
+    variantsContainer.innerHTML = "";
+    const addedVariantImages = new Set();
+    const allVariantButtons = [];
+
+    productData.variants.forEach((variant, index) => {
+      if (!variant.featured_image) return;
+      const imgSrc = variant.featured_image.src;
+      if (addedVariantImages.has(imgSrc)) return;
+      addedVariantImages.add(imgSrc);
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `variant-button-collection-main variant-thumb w-8 h-8 rounded-full overflow-hidden border ${index === 0 ? "ring-2 ring-black" : "border-gray-300 hover:border-black"}`;
+      btn.dataset.image = imgSrc;
+      btn.dataset.variantId = variant.id;
+      btn.dataset.price = variant.price;
+      btn.dataset.compareAtPrice = variant.compare_at_price || 0;
+      btn.innerHTML = `<img src="${imgSrc.replace('.jpg','_100x100.jpg')}" alt="${variant.title}" class="w-full h-full object-cover">`;
+      
+      btn.addEventListener("click", () => {
+        currentVariantPrice = variant.price;
+        modalPrice.textContent = formatMoney(currentVariantPrice * (parseInt(qtyInput.value) || 1));
+        hiddenQtyInput.value = qtyInput.value;
+        hiddenInput.value = variant.id;
+        
+        if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+          modalComparePrice.textContent = formatMoney(variant.compare_at_price * parseInt(qtyInput.value));
+          modalComparePrice.style.display = "inline";
+        } else {
+          modalComparePrice.style.display = "none";
+        }
+        
+        variantsContainer.querySelectorAll("button").forEach(b => b.classList.remove("ring-2", "ring-black"));
+        btn.classList.add("ring-2", "ring-black");
+        
+        option1Input.value = variant.option1 || "";
+        option2Input.value = variant.option2 || "";
+        imageInput.value = variant.featured_image?.src || "";
+        
+        const selectedOptionsDisplay = modalContent.querySelector(".modal-selected-options");
+        if (selectedOptionsDisplay) {
+          selectedOptionsDisplay.textContent = `${variant.option1 || ""} ${variant.option2 || ""}`.trim();
+        }
+        
+        const variantCore = getCoreFromVariant(btn.querySelector("img").src);
+        const slidesArray = Array.from(modalContent.querySelectorAll(".modal-swiper-collection .swiper-slide:not(.swiper-slide-duplicate) img"));
+        const slidesCore = slidesArray.map(img => getCoreFromSlide(img.src));
+        
+        const targetSlideIndex = slidesCore.findIndex(c => c === variantCore);
+        if (targetSlideIndex !== -1) {
+          swiperInstance.slideToLoop(targetSlideIndex, 300);
+        }
+        
+        const optionsToSend = {
+          option1: variant.option1 || "",
+          option2: variant.option2 || "",
+          image: variant.featured_image?.src || "",
+        };
+        
+        
+        option1Input.value = optionsToSend.option1;
+        option2Input.value = optionsToSend.option2;
+        imageInput.value = optionsToSend.image;
+        hiddenInput.value = variant.id; 
+      });
+
+      allVariantButtons.push(btn);
+    });
+
+    const maxVisibleVariants = 6;
+    allVariantButtons.forEach((btn, i) => {
+      if (i < maxVisibleVariants) {
+        variantsContainer.appendChild(btn);
+      } else {
+        btn.style.display = "none";
+        variantsContainer.appendChild(btn);
+      }
+    });
+
+    if (allVariantButtons.length > maxVisibleVariants) {
+      const showAllBtn = document.createElement("button");
+      showAllBtn.innerHTML = `
+        <div class='main_button-show'>
+          <img src="{{ 'VectorModal12.svg' | asset_url }}" alt="All" />
+        </div>
+      `;
+      showAllBtn.className = "show-all-variants-btn text-sm text-blue-600 hover:underline mt-2";
+      showAllBtn.type = "button";
+
+      showAllBtn.addEventListener("click", () => {
+        allVariantButtons.forEach(btn => {
+          btn.style.display = "flex";
+        });
+        showAllBtn.remove();
+      });
+
+      variantsContainer.appendChild(showAllBtn);
+    }
+
+    qtyInput.value = 1;
+    hiddenQtyInput.value = 1;
+
+
+
+    setupQuantityControls(modal, qtyInput, hiddenQtyInput, modalPrice);
+
+    const reviewsCount = productData.reviewsCount || 0;
+    const avgRating = productData.avgRating || 0;
+    const roundedRating = Math.round(avgRating);
+
+    const reviewsContainer = modal.querySelector(".modal-reviews");
+    const starsContainer = modal.querySelector(".modal-stars");
+    const ratingText = modal.querySelector(".modal-rating-text");
+
+    if (reviewsCount > 0) {
+      starsContainer.innerHTML = "";
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement("span");
+        star.textContent = i <= roundedRating ? "★" : "☆";
+        star.style.color = i <= roundedRating ? "#FBBF24" : "#D1D5DB";
+        star.style.fontSize = "18px";
+        starsContainer.appendChild(star);
+      }
+      ratingText.textContent = `${avgRating.toFixed(2)}/5.00`;
+      reviewsContainer.style.display = "flex";
+    } else {
+      reviewsContainer.style.display = "none";
+    }
+
+    document.body.style.overflow = "hidden";
+    function closeModal() {
+      modal.remove();
+      document.body.style.overflow = "";
+    }
+    modal.querySelector(".close-modal")?.addEventListener("click", closeModal);
+    modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
+  }
+  document.querySelectorAll(".add-to-cart-form").forEach(form => {
+    const triggerBtn = form.querySelector("button, input[type='submit']");
+    if (triggerBtn) {
+      triggerBtn.addEventListener("click", e => {
+        e.preventDefault();
+        document.querySelector(".container-modal-collection-main")?.remove();
+        const productDataElem = form.querySelector(".product-data");
+        const optionsName = productDataElem.dataset.productOptions;
+        const handle = productDataElem.dataset.productHandle;
+        const variants = JSON.parse(productDataElem.querySelector(".product-variants-json").textContent);
+        const images = JSON.parse(productDataElem.dataset.productImages);
+        const title = productDataElem.dataset.productTitle;
+        
+        const reviewsCount = parseInt(productDataElem.dataset.reviewsCount) || 0;
+        const avgRating = parseFloat(productDataElem.dataset.avgRating) || 0;
+        
+        const template = document.querySelector("#addToCartModalTemplate-{{ section.id }}");
+        const modalClone = template.content.cloneNode(true);
+        const modal = modalClone.querySelector(".container-modal-collection-main");
+        
+        document.body.appendChild(modal);
+        updateModal(modal, { optionsName, title, images, variants, reviewsCount, avgRating, handle });
+
+        
+        modal.classList.remove("hidden");
+      });
+    }
+  });
+});
+</script>
+
+
+
+{% schema %}
+{
+  "name": "t:sections.main_collection.name",
+  "class": "shopify-section--main-collection",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_product_information",
+      "label": "t:global.product_list.hide_product_information",
+      "info": "t:global.product_list.hide_product_information_collection_info"
+    },
+    {
+      "type": "header",
+      "content": "t:global.product_list.product_list_category"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "t:global.faceting.products_per_page",
+      "min": 8,
+      "max": 50,
+      "step": 1,
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "products_per_row_mobile",
+      "label": "t:global.product_list.products_per_row_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "products_size_desktop",
+      "label": "t:global.product_list.products_size_desktop",
+      "info": "t:global.product_list.products_size_desktop_info",
+      "options": [
+        {
+          "value": "compact",
+          "label": "t:global.product_list.products_size_desktop_options.compact"
+        },
+        {
+          "value": "medium",
+          "label": "t:global.product_list.products_size_desktop_options.medium"
+        },
+        {
+          "value": "large",
+          "label": "t:global.product_list.products_size_desktop_options.large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_grid_mode_selector",
+      "label": "t:global.product_list.show_grid_mode_selector",
+      "info": "t:global.product_list.show_grid_mode_selector_info",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:global.product_list.spacing_category",
+      "info": "t:global.product_list.spacing_category_info"
+    },
+    {
+      "type": "range",
+      "min": 0.2,
+      "max": 2,
+      "step": 0.1,
+      "id": "horizontal_spacing_factor",
+      "label": "t:global.product_list.horizontal_spacing_factor",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "min": 0.2,
+      "max": 2,
+      "step": 0.1,
+      "id": "vertical_spacing_factor",
+      "label": "t:global.product_list.vertical_spacing_factor",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "t:global.faceting.filters_and_sorting_category"
+    },
+    {
+      "type": "select",
+      "id": "filter_layout",
+      "label": "t:global.faceting.desktop_layout",
+      "options": [
+        {
+          "value": "sidebar",
+          "label": "t:global.faceting.desktop_layout_options.sidebar"
+        },
+        {
+          "value": "drawer",
+          "label": "t:global.faceting.desktop_layout_options.drawer"
+        }
+      ],
+      "default": "sidebar"
+    },
+    {
+      "type": "link_list",
+      "id": "quick_links_menu",
+      "label": "t:sections.main_collection.quick_links_menu",
+      "info": "t:sections.main_collection.quick_links_menu_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort_by",
+      "label": "t:global.faceting.show_sort_by",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "t:global.faceting.show_filters",
+      "info": "t:global.faceting.show_filters_info",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_results_count",
+      "label": "t:global.faceting.show_results_count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_group_name",
+      "label": "t:global.faceting.show_group_name",
+      "info": "t:global.faceting.show_group_name_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_values_count",
+      "label": "t:global.faceting.show_filter_values_count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "open_filters_by_default",
+      "label": "t:global.faceting.open_filters_by_default",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

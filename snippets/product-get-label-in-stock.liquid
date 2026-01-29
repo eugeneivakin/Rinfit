@@ -1,0 +1,4 @@
+<div class="label label--in-stock mb-3 mr-3 text-nowrap{% if available == false %} d-none-important{% endif %}" data-js-product-label-in-stock>{{ 'products.product.label.in_stock' | t }}</div>
+{%- if available -%}
+    {%- assign has_labels = true -%}
+{%- endif -%}

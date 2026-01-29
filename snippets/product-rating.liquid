@@ -1,0 +1,68 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT RATING BADGE
+----------------------------------------------------------------------------------------------------------------------
+
+This component generates a review badge from the product metafields information.
+
+********************************************
+Supported variables
+********************************************
+
+* product: the product from which ratings are extracted
+* show_empty: if set to true, the theme shows a 0.0 if there are no rating yet
+* show_placeholder: if set to true, show random value (useful for the product card placeholder)
+* show_single_star: if set to true, only one star is shown (otherwise, the number of scale)
+* display_mode: either "rating" (e.g.: 3.5) or "count" (e.g.: 4 reviews). Default to "rating" if none is passed
+{%- endcomment -%}
+
+{%- liquid
+  if product.metafields.reviews.rating.value != blank
+    assign rating_value = product.metafields.reviews.rating.value.rating | round: 1
+    assign rating_count = product.metafields.reviews.rating_count.value
+    assign rating_max = product.metafields.reviews.rating.value.scale_max
+  elsif show_empty
+    assign rating_value = 0.0
+    assign rating_count = 0
+    assign rating_max = 5
+  elsif show_placeholder
+    assign rating_value = 4.5
+    assign rating_count = 2
+    assign rating_max = 5
+  else
+    assign hide_rating = true
+  endif
+
+  assign rating_decimal = 0
+  assign decimal = rating_value | modulo: 1
+
+  if decimal >= 0.3 and decimal <= 0.7
+    assign rating_decimal = 0.5
+  elsif decimal > 0.7
+    assign rating_decimal = 1
+  endif
+-%}
+
+{%- unless hide_rating -%}
+  <div class="conatainer-first-star conatainer-first-star-collections">
+    {% assign reviews_count = product.metafields.loox.num_reviews | default: 0 %}
+    {% assign rating = product.metafields.loox.avg_rating | default: 0 %}
+    {% assign rounded_rating = rating | round %}
+
+    {% if reviews_count > 0 %}
+      <a href="#looxReviews">
+        <div class="loox-rating">
+          {% for i in (1..5) %}
+            {% if i <= rounded_rating %}
+              <span class="star full">★</span>
+            {% else %}
+              <span class="star empty">★</span>
+            {% endif %}
+          {% endfor %}
+          <span class="reviews_text">{{ rating }}/5.00</span>
+          <span class="number-reviews">({{ reviews_count }} reviews)</span>
+        </div>
+      </a>
+    {% endif %}
+  </div> 
+{%- endunless -%}

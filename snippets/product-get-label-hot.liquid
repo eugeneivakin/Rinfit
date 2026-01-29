@@ -1,0 +1,4 @@
+<div class="label label--hot mb-3 mr-3 text-nowrap{% if label_hot != 'true' %} d-none-important{% endif %}" data-js-product-label-hot>{{ 'products.product.label.hot' | t }}</div>
+{%- if label_hot == 'true' -%}
+    {%- assign has_labels = true -%}
+{%- endif -%}

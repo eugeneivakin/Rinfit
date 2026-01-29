@@ -1,0 +1,991 @@
+<style>
+.main-products-like-container{
+  border-top: 1px solid #373A3633;
+}
+.main-title-like{
+  padding: 10px 0 20px 0;
+  color: #373A36;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+.quick-buy-item{
+  display: flex;
+  gap: 10px;
+}
+.quick-buy-item .main-title-product{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  height: 17px;
+  overflow: hidden;
+  text-transform: capitalize;
+}
+.quick-buy-item img.main-img-product{
+  width: 139px;
+  height: 129px;
+  border-radius: 10px;
+}
+.quick-buy-products{
+  display: grid;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+.quick-buy-item .main-container-product{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+.quick-buy-item .quick-buy-button{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #373A3699;
+  line-height: 100%;
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+.quick-buy-item .main-container-product .main-price-product{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #373A36;
+  text-transform: capitalize;
+}
+.quick-buy-item .main-description-product h2,
+.quick-buy-item .main-description-product,
+.quick-buy-item .main-description-product strong,
+.quick-buy-item .main-description-product div,
+.quick-buy-item .main-description-product div h2{
+  text-transform: none;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0 !important;
+  line-height: 22px;
+  letter-spacing: 0;
+  height: 20px;
+  overflow: hidden;
+  color: #373A3699 !important;
+  margin-bottom: 5px;
+}
+.size-group-main{
+  padding-bottom: 16px;
+  gap: 7px;
+}
+.hidden-variant {
+  display: none;
+}
+.variant-thumbs-wrapper-drawer button{
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.variant-thumbs-wrapper-drawer button.hidden-variant{
+  display: none;
+}
+.variant-thumbs-wrapper-drawer button img{
+  width: 24px;
+  height: 24px;
+}
+.variant-thumbs-wrapper-drawer button.active{
+  border: 1px solid #373A3666;
+}
+.variant-thumbs-wrapper-drawer{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: left;
+  margin: 6px 0;
+  flex-wrap: wrap;
+}
+.variant-thumbs-wrapper-drawer .show-more-variants{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+}
+.variant-thumbs-wrapper-drawer .variant-button-collection-main img{
+  border-radius: 50%;
+}
+.line-item__media{
+  width: 129px;
+  height: 129px;
+  border-radius: 10px;
+}
+.text-center.empty-drawer-main-text{
+  padding-top: 40px;
+}
+.product-sizes-main-drawer{
+  max-width: 270px;
+  flex-wrap: wrap;
+  padding-bottom: 13px;
+}
+.product-sizes .size-btn{
+  position: relative;
+}
+.size-btn.disabled::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: #373A36;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.size-btn-drawer,
+.size-main-options,
+.product-sizes-main-drawer .size-btn-drawer{
+  width: 30px;
+  height: 30px;
+  border: 1px solid #373A361A;
+  border-radius: 50%;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+.size-one-options{
+  padding-bottom: 5px;
+  row-gap: 7px;
+  display: flex;
+  column-gap: 7px;
+  flex-wrap: wrap;
+}
+.size-main-options.active,
+.size-btn-drawer.active{
+  background: black;
+  color: white;
+}
+.product-wrapper-main-drawer{
+  padding-bottom: 20px;
+}
+.product-sizes-main-drawer .size-group{
+  gap: 6px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.loox-rating .star.full{
+  color: #ffb600;
+}
+.loox-rating .star{
+  font-size: 16px;
+}
+.reviews_text{
+  color: #373A36CC;
+  font-weight: 400;
+  padding-left: 10px;
+  font-size: 12px;
+  font-family: "Kumbh Sans", sans-serif;
+  display: inline-block;
+  position: relative;
+  bottom: 0px;
+}
+.number-reviews{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #37393666;
+  position: relative;
+  left: 2px;
+  bottom: 0px;
+}
+@media (max-width: 768px) {
+  .loox-rating .star:first-child {
+    display: inline-block;
+  }
+  .loox-rating .star {
+    display: none;
+  }
+  .reviews_text {
+    padding-left: 2px;
+  }
+}
+@media(max-width: 767px){
+  .product-sizes-main-drawer .size-group{
+    gap: 9px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+</style>
+
+<cart-drawer id="cart-drawer" class="cart-drawer drawer {% if cart.empty? %}drawer--center-body{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}" initial-focus="false" handle-editor-events>
+  <p class="h4" slot="header">{{ 'cart.general.title' | t }}</p>
+
+  {%- if cart.empty? -%}
+    <p class="h5 text-center empty-drawer-main-text">{{ 'cart.general.empty' | t }}</p>
+    <div class='main-products-like-container'>
+      <h2 class='main-title-like'>You may also like</h2>
+      <div class="quick-buy-products">
+        {% assign products = settings.quick_buy_product_1 | append: ',' | append: settings.quick_buy_product_2 | append: ',' | append: settings.quick_buy_product_3 | split: ',' %}
+
+        {% for handle in products %}
+          {% assign product = all_products[handle] %}
+          {% if product != blank %}
+            <div class="quick-buy-item">
+              {% if product.featured_image != blank  %}
+                {{ product.featured_image | image_url: width: product.featured_image.width | image_tag: class: "main-img-product", id: "main-product-image" }}
+              {% endif %}
+              <div>
+                <h4 class="main-title-product">{{ product.title }}</h4>
+                <div class="conatainer-first-star">
+                  {% assign reviews_count = product.metafields.loox.num_reviews | default: 0 %}
+                  {% assign rating = product.metafields.loox.avg_rating | default: 0 %}
+                  {% assign rounded_rating = rating | round %}
+                  
+                  {% if reviews_count > 0 %}
+                    {% comment %} <a href="#looxReviews"> {% endcomment %}
+                      <div class="loox-rating">
+                        {% for i in (1..5) %}
+                          {% if i <= rounded_rating %}
+                            <span class="star full">★</span>
+                          {% else %}
+                            <span class="star empty">★</span>
+                          {% endif %}
+                        {% endfor %}
+                        <span class="reviews_text">{{ product.metafields.loox.avg_rating }}/5.00</span>
+                        <span class="number-reviews">({{ reviews_count }} reviews)</span>
+                      </div>
+                    {% comment %} </a> {% endcomment %}
+                  {% endif %}
+                </div> 
+                <div class="main-description-product">{{ product.description }}</div>
+                <div class="main-container-wrapper">
+                  {% if product.options[0] == 'Color' %}
+                    <div id="{{ product.id }}" class="product-wrapper-main-drawer">
+                      <div class="variant-thumbs-wrapper variant-thumbs-wrapper-drawer">
+                        {% assign assigned_images = '' %}
+                        {% assign variant_count = 0 %}
+                      
+                        {% for option_value in product.options_with_values[0].values %}
+                          {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+                          {% assign variant = variants_for_color.first %}
+                          {% assign options2 = variants_for_color | map: 'option2' | uniq %}
+                        
+                          {% if variant.featured_image %}
+                            {% unless assigned_images contains variant.featured_image.src %}
+                              {% assign variant_count = variant_count | plus: 1 %}
+                            
+                              <button 
+                                type="button"
+                                class="variant-button-collection-main variant-thumb w-8 h-8 rounded-full 
+                                {% if forloop.first %}ring-black active{% endif %}"
+                                data-color="{{ option_value }}"
+                                data-variant-id="{{ variant.id }}"
+                              >
+                                <img src="{{ variant.featured_image.src | img_url: '100x100' }}" alt="{{ option_value }}">
+                              </button>
+                            
+                              {% assign assigned_images = assigned_images | append: variant.featured_image.src | append: ',' %}
+                            {% endunless %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    
+                      <div class="product-sizes-main-drawer">
+                        {% for option_value in product.options_with_values[0].values %}
+                          {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+                          {% assign sizes = variants_for_color | map: 'option2' | uniq %}
+                        
+                          <div class="size-group" data-color="{{ option_value }}" style="{% unless forloop.first %}display:none{% endunless %}">
+                            {% for size in sizes %}
+                              {% assign variant = variants_for_color | where: 'option2', size | first %}
+                            
+                              <button 
+                                type="button" 
+                                class="size-btn-drawer{% if forloop.first and forloop.parentloop.first %} active{% endif %}" 
+                                data-size="{{ size }}" 
+                                data-variant-id="{{ variant.id }}"
+                              >
+                                {{ size }}
+                              </button>
+                            {% endfor %}
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <div class="main-container-product">
+                        <span class="main-price-product">{{ product.price | money }}</span>
+                        <button type="button" class="quick-buy-button" data-variant-id="{{ product.variants.first.id }}">
+                          Add to cart
+                        </button>
+                      </div>
+                    </div>
+                  {% else %}
+                     <div class="size-one-options">
+                      {% assign option1_values = '' %}
+                      {% for variant in product.variants %}
+                        {% unless option1_values contains variant.option1 %}
+                          <button 
+                            type="button" 
+                            class="size-main-options{% if forloop.first %} active{% endif %}" 
+                            data-color="{{ variant.option1 }}"
+                          >
+                            {{ variant.option1 }}
+                          </button>
+                          {% assign option1_values = option1_values | append: variant.option1 | append: ',' %}
+                        {% endunless %}
+                      {% endfor %}
+                    </div>
+                    
+                    {% for option_value in product.options_with_values[0].values %}
+                      {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+                      {% assign sizes = variants_for_color | map: 'option2' | uniq %}
+                      
+                      <div 
+                        class="size-group-main" 
+                        data-sizes="{{ option_value }}" 
+                        style="{% unless forloop.first %}display:none{% endunless %}"
+                      >
+                        {% for size in sizes %}
+                          {% assign variant = variants_for_color | where: 'option2', size | first %}
+                          <button 
+                            type="button" 
+                            class="size-btn-drawer{% if forloop.first and forloop.parentloop.first %} active{% endif %}" 
+                            data-size="{{ size }}" 
+                            data-variant-id="{{ variant.id }}"
+                          >
+                            {{ size }}
+                          </button>
+                        {% endfor %}
+                      </div>
+                    {% endfor %}   
+                    <div class="main-container-product">
+                      <span class="main-price-product">{{ product.price | money }}</span>
+                      <button type="button" class="quick-buy-button" data-variant-id="{{ product.variants.first.id }}">
+                        Add to cart
+                      </button>
+                    </div>                 
+                  {% endif %}
+                </div>
+              </div> 
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {%- else -%}
+    {%- if settings.cart_show_free_shipping_bar -%}
+      {%- render 'free-shipping-bar' -%}
+    {%- endif -%}
+
+    <div class="cart-drawer__items">
+      {%- for line_item in cart.items -%}
+        {%- render 'line-item', line_item: line_item, show_quantity_selector: true -%}
+      {%- endfor -%}
+    </div>
+    <div class='main-products-like-container'>
+      <h2 class='main-title-like'>You may also like</h2>
+      <div class="quick-buy-products">
+        {% assign products = settings.quick_buy_product_1 | append: ',' | append: settings.quick_buy_product_2 | append: ',' | append: settings.quick_buy_product_3 | split: ',' %}
+        
+        {% for handle in products %}
+          {% assign product = all_products[handle] %}
+          {% if product %}
+            <div class="quick-buy-item">
+              {{ product.featured_image | image_url: width: product.featured_image.width | image_tag: class: "main-img-product", id: "main-product-image" }}
+              <div>
+                <h4 class="main-title-product">{{ product.title }}</h4>
+                <div class="conatainer-first-star">
+                  {% assign reviews_count = product.metafields.loox.num_reviews | default: 0 %}
+                  {% assign rating = product.metafields.loox.avg_rating | default: 0 %}
+                  {% assign rounded_rating = rating | round %}
+                  
+                  {% if reviews_count > 0 %}
+                    <a href="#looxReviews">
+                      <div class="loox-rating">
+                        {% for i in (1..5) %}
+                          {% if i <= rounded_rating %}
+                            <span class="star full">★</span>
+                          {% else %}
+                            <span class="star empty">★</span>
+                          {% endif %}
+                        {% endfor %}
+                        <span class="reviews_text">{{ product.metafields.loox.avg_rating }}/5.00</span>
+                        <span class="number-reviews">({{ reviews_count }} reviews)</span>
+                      </div>
+                    </a>
+                  {% endif %}
+                </div> 
+                <div class="main-description-product">{{ product.description }}</div>
+                
+                <div class="main-container-wrapper-size">
+                  {% if product.options[0] == 'Color' %}
+                    <div id="{{ product.id }}" class="product-wrapper-main-drawer">
+                      <div class="variant-thumbs-wrapper variant-thumbs-wrapper-drawer">
+                        {% assign assigned_images = '' %}
+                        {% assign variant_count = 0 %}
+                      
+                        {% for option_value in product.options_with_values[0].values %}
+                          {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+                          {% assign variant = variants_for_color.first %}
+                          {% assign options2 = variants_for_color | map: 'option2' | uniq %}
+                        
+                          {% if variant.featured_image %}
+                            {% unless assigned_images contains variant.featured_image.src %}
+                              {% assign variant_count = variant_count | plus: 1 %}
+                            
+                              <button 
+                                type="button"
+                                class="variant-button-collection-main variant-thumb w-8 h-8 rounded-full 
+                                {% if forloop.first %}ring-black active{% endif %}"
+                                data-color="{{ option_value }}"
+                                data-variant-id="{{ variant.id }}"
+                              >
+                                <img src="{{ variant.featured_image.src | img_url: '100x100' }}" alt="{{ option_value }}">
+                              </button>
+                            
+                              {% assign assigned_images = assigned_images | append: variant.featured_image.src | append: ',' %}
+                            {% endunless %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    
+                      <div class="product-sizes-main-drawer">
+                        {% for option_value in product.options_with_values[0].values %}
+                          {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+                          {% assign sizes = variants_for_color | map: 'option2' | uniq %}
+                        
+                          <div class="size-group" data-color="{{ option_value }}" style="{% unless forloop.first %}display:none{% endunless %}">
+                            {% for size in sizes %}
+                              {% assign variant = variants_for_color | where: 'option2', size | first %}
+                            
+                              <button 
+                                type="button" 
+                                class="size-btn-drawer{% if forloop.first and forloop.parentloop.first %} active{% endif %}" 
+                                data-size="{{ size }}" 
+                                data-variant-id="{{ variant.id }}"
+                              >
+                                {{ size }}
+                              </button>
+                            {% endfor %}
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <div class="main-container-product">
+                        <span class="main-price-product">{{ product.price | money }}</span>
+                        <button type="button" class="quick-buy-button" data-variant-id="{{ product.variants.first.id }}">
+                          Add to cart
+                        </button>
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="size-one-options">
+                      {% assign option1_values = '' %}
+                      {% for variant in product.variants %}
+                        {% unless option1_values contains variant.option1 %}
+                          <button 
+                            type="button" 
+                            class="size-main-options{% if forloop.first %} active{% endif %}" 
+                            data-color="{{ variant.option1 }}"
+                          >
+                            {{ variant.option1 }}
+                          </button>
+                          {% assign option1_values = option1_values | append: variant.option1 | append: ',' %}
+                        {% endunless %}
+                      {% endfor %}
+                    </div>
+                    
+                    {% for option_value in product.options_with_values[0].values %}
+                      {% assign variants_for_color = product.variants | where: 'option1', option_value %}
+                      {% assign sizes = variants_for_color | map: 'option2' | uniq %}
+                      
+                      <div 
+                        class="size-group-main" 
+                        data-sizes="{{ option_value }}" 
+                        style="{% unless forloop.first %}display:none{% endunless %}"
+                      >
+                        {% for size in sizes %}
+                          {% assign variant = variants_for_color | where: 'option2', size | first %}
+                          <button 
+                            type="button" 
+                            class="size-btn-drawer{% if forloop.first and forloop.parentloop.first %} active{% endif %}" 
+                            data-size="{{ size }}" 
+                            data-variant-id="{{ variant.id }}"
+                          >
+                            {{ size }}
+                          </button>
+                        {% endfor %}
+                      </div>
+                    {% endfor %} 
+                    <div class="main-container-product">
+                      <span class="main-price-product">{{ product.price | money }}</span>
+                      <button type="button" class="quick-buy-button" data-variant-id="{{ product.variants.first.id }}">
+                        Add to cart
+                      </button>
+                    </div>                   
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {%- liquid
+      assign cross_sell_products_count = 0
+
+      for product in section.settings.cross_sell_products
+        assign items_for_product = cart | line_items_for: product
+
+        if items_for_product.size == 0 and product.available
+          assign cross_sell_products_count = cross_sell_products_count | plus: 1
+        endif
+      endfor
+    -%}
+
+    {%- if cross_sell_products_count > 0 -%}
+      <div class="cart-drawer__complementary-products complementary-products">
+        {%- assign carousel_id = 'complementary-products-carousel-' | append: section.id -%}
+
+        {%- if section.settings.cross_sell_title != blank or section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
+          <div class="complementary-products__header complementary-products__header--align-start">
+            <p class="h6">{{ section.settings.cross_sell_title }}</p>
+
+            {%- if section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
+              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots page-dots--narrow">
+                {%- for i in (1..cross_sell_products_count) -%}
+                  <button class="relative" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                    <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+                  </button>
+                {%- endfor -%}
+              </carousel-navigation>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- liquid
+          capture complementary_products
+            for product in section.settings.cross_sell_products
+              assign products_in_cart = cart.items | where: 'product_id', product.id
+
+              if products_in_cart.size == 0 and product.available
+                render 'product-card-horizontal', product: product, show_quick_buy: true
+              endif
+            endfor
+          endcapture
+        -%}
+
+        {%- if section.settings.cross_sell_stack_products -%}
+          <div class="complementary-products__product-list">
+            {{- complementary_products -}}
+          </div>
+        {%- else -%}
+          <scroll-carousel id="{{ carousel_id }}" class="complementary-products__product-list complementary-products__product-list--carousel scroll-area bleed snap-x">
+            {{- complementary_products -}}
+          </scroll-carousel>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <form action="{{ routes.cart_url }}" method="POST" class="cart-drawer__footer" slot="footer">
+      <input type="hidden" name="attributes[products_mobile_grid_mode]" value="">
+      <input type="hidden" name="attributes[products_desktop_grid_mode]" value="">
+
+      {%- if section.settings.show_cart_note or section.settings.show_shipping_text -%}
+        <div class="v-stack gap-0.5 justify-items-start">
+          {%- if section.settings.show_cart_note -%}
+            {%- assign cart_note_dialog_id = 'cart-note-' | append: section.id -%}
+            <button class="link-faded-reverse" aria-controls="{{ cart_note_dialog_id }}">{{ 'cart.general.add_order_note' | t }}</button>
+
+            <cart-note-dialog id="{{ cart_note_dialog_id }}" class="cart-drawer__order-note">
+              <div class="form">
+                <cart-note class="form-control">
+                  {%- assign order_note = 'cart.general.order_note' | t -%}
+                  {%- assign placeholder = 'cart.general.note_placeholder' | t -%}
+                  {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note, placeholder: placeholder, show_label_as_block: true -%}
+                </cart-note>
+
+                <dialog-close-button class="contents">
+                  <button type="button" class="button">{{ 'cart.general.save_note' | t }}</button>
+                </dialog-close-button>
+              </div>
+            </cart-note-dialog>
+          {%- endif -%}
+
+          {%- if section.settings.show_shipping_text -%}
+            <p class="text-subdued">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {% for discount_application in cart.cart_level_discount_applications %}
+        <div class="h-stack justify-start gap-4">
+          <span class="discount-badge text-xs">{%- render 'icon' with 'discount', width: 12 -%} {{- discount_application.title -}}</span>
+          <span class="text-subdued">-{{ discount_application.total_allocated_amount | money }}</span>
+        </div>
+      {% endfor %}
+
+      <div class="button-group">
+        {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
+          {%- assign view_cart = 'cart.general.view_cart' | t -%}
+          {%- render 'button', href: routes.cart_url, content: view_cart, stretch: true -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_checkout_button -%}
+          {%- capture checkout_button -%}
+            {{- 'cart.general.checkout' | t -}}
+
+            {%- if section.settings.show_price_in_checkout_button -%}
+              <span class="cart-drawer__button-price">{{- cart.total_price | money -}}</span>
+            {%- endif -%}
+          {%- endcapture -%}
+
+          {%- render 'button', type: 'submit', content: checkout_button, name: 'checkout', stretch: true -%}
+        {%- endif -%}
+      </div>
+    </form>
+  {%- endif -%}
+</cart-drawer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  let selectedColor = null;
+  let selectedSize = null; 
+  const normalize = str => str?.trim().toLowerCase();
+
+  const updateVariantId = () => {
+    if (!selectedColor || !selectedSize) return;
+
+    const quickBuyBtn = document.querySelector('.quick-buy-button');
+    if (!quickBuyBtn) return;
+
+    const targetGroup = [...document.querySelectorAll('.size-group-main')]
+      .find(group => normalize(group.dataset.sizes) === normalize(selectedColor));
+    if (!targetGroup) return;
+
+    const sizeButton = [...targetGroup.querySelectorAll('.size-btn-drawer')]
+      .find(btn => normalize(btn.dataset.size) === normalize(selectedSize));
+
+    if (sizeButton) {
+      quickBuyBtn.dataset.variantId = sizeButton.dataset.variantId;
+      console.log('🔹 Updated Add to Cart variant-id:', quickBuyBtn.dataset.variantId);
+    }
+  };
+
+  const activateColor = (color) => {
+    selectedColor = color;
+
+    document.querySelectorAll('.size-main-options').forEach(b => b.classList.remove('active'));
+    const activeButton = [...document.querySelectorAll('.size-main-options')]
+      .find(b => normalize(b.dataset.color) === normalize(color));
+    if (activeButton) activeButton.classList.add('active');
+
+    document.querySelectorAll('.size-group-main').forEach(group => group.style.display = 'none');
+
+    const targetGroup = [...document.querySelectorAll('.size-group-main')]
+      .find(group => normalize(group.dataset.sizes) === normalize(color));
+    if (targetGroup) {
+      targetGroup.style.display = 'flex';
+      const sizeButtons = targetGroup.querySelectorAll('.size-btn-drawer');
+      if (sizeButtons.length > 0) {
+        sizeButtons.forEach(btn => btn.classList.remove('active'));
+
+        let btnToActivate = [...sizeButtons].find(btn => normalize(btn.dataset.size) === normalize(selectedSize));
+
+        if (!btnToActivate) {
+          btnToActivate = sizeButtons[0];
+          selectedSize = btnToActivate.dataset.size;
+        }
+
+        btnToActivate.classList.add('active');
+        updateVariantId();
+      }
+    }
+  };
+
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('size-main-options')) {
+      activateColor(e.target.dataset.color);
+    }
+
+    if (e.target.classList.contains('size-btn-drawer')) {
+      const clickedButton = e.target;
+      const parentGroup = clickedButton.closest('.size-group-main');
+
+      parentGroup.querySelectorAll('.size-btn-drawer').forEach(btn => btn.classList.remove('active'));
+      clickedButton.classList.add('active');
+
+      selectedSize = clickedButton.dataset.size;
+      updateVariantId(); 
+    }
+  });
+
+  const firstColorButton = document.querySelector('.size-main-options');
+  if (firstColorButton) {
+    activateColor(firstColorButton.dataset.color);
+  }
+
+  const container = document.querySelector('.main-container-wrapper-size');
+  if (container) {
+    const observer = new MutationObserver(() => {
+      updateVariantId(); 
+    });
+    observer.observe(container, { childList: true, subtree: true });
+  }
+});
+
+</script>
+
+
+
+<script>
+document.addEventListener('click', e => {
+  const colorBtn = e.target.closest('.variant-button-collection-main');
+  const sizeBtn = e.target.closest('.size-btn-drawer');
+
+  if (colorBtn) {
+    const wrapper = colorBtn.closest('.product-wrapper-main-drawer');
+    if (!wrapper) return;
+
+    wrapper.querySelectorAll('.variant-button-collection-main').forEach(btn => btn.classList.remove('ring-black', 'active'));
+    colorBtn.classList.add('ring-black', 'active');
+
+    const selectedColor = colorBtn.dataset.color;
+
+    wrapper.querySelectorAll('.size-group').forEach(group => {
+      group.style.display = group.dataset.color === selectedColor ? 'flex' : 'none';
+    });
+
+    const visibleGroup = wrapper.querySelector(`.size-group[data-color="${selectedColor}"]`);
+    if (!visibleGroup) return;
+
+    let activeSize = wrapper.dataset.activeSize;
+    let activeSizeBtn = Array.from(visibleGroup.querySelectorAll('.size-btn-drawer'))
+      .find(btn => btn.dataset.size === activeSize);
+
+    if (!activeSizeBtn) {
+      activeSizeBtn = visibleGroup.querySelector('.size-btn-drawer');
+      if (activeSizeBtn) activeSize = activeSizeBtn.dataset.size;
+    }
+
+    visibleGroup.querySelectorAll('.size-btn-drawer').forEach(btn => btn.classList.remove('active'));
+    if (activeSizeBtn) activeSizeBtn.classList.add('active');
+
+    wrapper.dataset.activeSize = activeSize;
+
+    const addBtn = wrapper.querySelector('.quick-buy-button');
+    if (addBtn && activeSizeBtn) {
+      addBtn.dataset.variantId = activeSizeBtn.dataset.variantId;
+    }
+
+    return;
+  }
+
+  if (sizeBtn) {
+    const wrapper = sizeBtn.closest('.product-wrapper-main-drawer');
+    if (!wrapper) return;
+
+    const group = sizeBtn.closest('.size-group');
+    group.querySelectorAll('.size-btn-drawer').forEach(btn => btn.classList.remove('active'));
+    sizeBtn.classList.add('active');
+
+    wrapper.dataset.activeSize = sizeBtn.dataset.size;
+
+    const addBtn = wrapper.querySelector('.quick-buy-button');
+    if (addBtn) {
+      addBtn.dataset.variantId = sizeBtn.dataset.variantId;
+    }
+  }
+});
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const cartModal = document.querySelector(".cart-modal");
+  const cartCloseBtn = cartModal?.querySelector(".cart-close");
+
+  function openCart() {
+    if (cartModal) cartModal.style.display = "flex";
+  }
+
+  if (cartCloseBtn) {
+    cartCloseBtn.addEventListener("click", () => {
+      cartModal.style.display = "none";
+    });
+  }
+
+  document.body.addEventListener("click", function (e) {
+    const product = e.target.closest(".quick-buy-item");
+    if (!product) return;
+
+    const wrapper = product.querySelector(".variant-thumbs-wrapper");
+    const mainImage = product.querySelector(".main-img-product");
+    const showMoreBtn = wrapper?.querySelector(".show-more-variants");
+    const addToCartButton = product.querySelector(".quick-buy-button");
+
+    if (e.target === showMoreBtn) {
+      wrapper.querySelectorAll(".variant-thumb.hidden-variant").forEach(btn => {
+        btn.classList.remove("hidden-variant");
+      });
+      showMoreBtn.style.display = "none";
+      return;
+    }
+
+    const variantButton = e.target.closest(".variant-thumb");
+    if (variantButton && wrapper?.contains(variantButton)) {
+      const variantButtons = wrapper.querySelectorAll(".variant-thumb");
+      variantButtons.forEach(btn => btn.classList.remove("active"));
+      variantButton.classList.add("active");
+
+      const newImageSrc = variantButton.getAttribute("data-image");
+      if (mainImage && newImageSrc) {
+        mainImage.src = newImageSrc;
+        if (mainImage.srcset !== undefined) {
+          mainImage.srcset = newImageSrc;
+        }
+      }
+
+      const variantId = variantButton.getAttribute("data-variant-id");
+      if (variantId && addToCartButton) {
+        addToCartButton.setAttribute("data-variant-id", variantId);
+      }
+      return;
+    }
+
+    if (e.target === addToCartButton) {
+      e.preventDefault();
+
+      const selectedVariantId = addToCartButton.getAttribute("data-variant-id");
+      if (!selectedVariantId) {
+        alert("Будь ласка, виберіть варіант товару.");
+        return;
+      }
+
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ id: selectedVariantId, quantity: 1 })
+      })
+        .then(res => {
+          if (!res.ok) throw new Error("Помилка запиту");
+          return res.json();
+        })
+        .then(() => {
+          return fetch("/cart.js", {
+            headers: { "Accept": "application/json" }
+          });
+        })
+        .then(res => res.json())
+        .then(cart => {
+          openCart();
+
+          document.querySelectorAll(".cart-count").forEach(el => {
+            el.textContent = cart.item_count;
+          });
+
+          const event = new CustomEvent("cart:refresh", { detail: cart });
+          document.dispatchEvent(event);
+
+          const cartDrawer = document.querySelector("cart-drawer-component");
+          if (cartDrawer?.hasAttribute("auto-open")) {
+            cartDrawer.open();
+          }
+        })
+        .catch(error => {
+          console.error("❌ Помилка:", error);
+          alert("Не вдалося додати товар до кошика.");
+        });
+    }
+  });
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "t:sections.cart_drawer.name",
+  "class": "shopify-section--cart-drawer",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.cart_drawer.page_info"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.cart_drawer.free_shipping_bar_info"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "label": "t:sections.cart_drawer.show_cart_note",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_text",
+      "label": "t:sections.cart_drawer.show_shipping_text",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_cart_button",
+      "label": "t:sections.cart_drawer.show_view_cart_button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_checkout_button",
+      "label": "t:sections.cart_drawer.show_checkout_button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price_in_checkout_button",
+      "label": "t:sections.cart_drawer.show_price_in_checkout_button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cart_drawer.cross_sell_category"
+    },
+    {
+      "type": "product_list",
+      "id": "cross_sell_products",
+      "label": "t:sections.cart_drawer.cross_sell_products",
+      "info": "t:sections.cart_drawer.cross_sell_products_info",
+      "limit": 5
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cross_sell_title",
+      "label": "t:sections.cart_drawer.cross_sell_heading",
+      "default": "Complete with"
+    },
+    {
+      "type": "checkbox",
+      "id": "cross_sell_stack_products",
+      "label": "t:sections.cart_drawer.cross_sell_stack_products",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

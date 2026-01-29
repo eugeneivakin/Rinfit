@@ -1,0 +1,131 @@
+{{ 'explore-our.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+.section-main-explore{
+    background-color: {{ section.settings.background_color }};
+    margin-top: {{ section.settings.top_padding }}px;
+    margin-bottom: {{ section.settings.bottom_padding }}px;
+}
+@media (max-width: 1024px){
+    .section-main-explore{
+        margin-top: {{ section.settings.top_padding_mob }}px;
+        margin-bottom: {{ section.settings.bottom_padding_mob }}px;
+    }
+}
+{%- endstyle -%}
+<section class="section-main-explore">
+    {% if section.settings.main_image_url != blank %}
+        <a class="main-url-explore" href="{{ section.settings.main_image_url }}">
+    {% endif %}
+
+    {% if section.settings.text_main_mob != blank and section.settings.text_main != blank %}
+        <div class="text-left-main-explore text-left-main-explore-mob">
+            {{ section.settings.text_main_mob }}
+        </div>
+        <div class="text-left-main-explore text-left-main-explore-desk ">
+            {{ section.settings.text_main }}
+        </div>
+    {% else %}
+        <div class="text-left-main-explore">
+            {{ section.settings.text_main }}
+        </div>
+    {% endif %}
+    {% if section.settings.main_image != blank and  section.settings.main_image_mobile != blank %}
+        {{ section.settings.main_image | image_url: width: section.settings.main_image.width | image_tag: class: "image-main-explore image-main-explore-desk"  }}
+        {{ section.settings.main_image_mobile | image_url: width: section.settings.main_image_mobile.width | image_tag: class: "image-main-explore image-main-explore-mobile"  }}
+    {% else %}
+        {{ section.settings.main_image | image_url: width: section.settings.main_image.width | image_tag: class: "image-main-explore"  }}
+    {% endif %}
+    {% if section.settings.text_main_two != blank %}
+        <div class="text-right-main-explore">    
+            {{ section.settings.text_main_two }}
+        </div>
+    {% endif %}
+    {% if section.settings.main_image_url != blank %}
+        </a>
+    {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Explore our",
+  "settings": [
+    {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background"
+    },
+    {
+        "type": "richtext",
+        "id": "text_main",
+        "label": "Text left"
+    },
+    {
+        "type": "richtext",
+        "id": "text_main_mob",
+        "label": "Text left mobile"
+    },
+    {
+        "type": "richtext",
+        "id": "text_main_two",
+        "label": "Text right"
+    },
+    {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "image desktop"
+    },
+    {
+        "type": "image_picker",
+        "id": "main_image_mobile",
+        "label": "image mobile"
+    },
+    {
+        "type": "url",
+        "id": "main_image_url",
+        "label": "url"
+    },
+    {
+        "type": "range",
+        "id": "top_padding",
+        "label": "Padding top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 40
+    },
+    {
+        "type": "range",
+        "id": "bottom_padding",
+        "label": "Padding bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 40
+    },
+    {
+        "type": "range",
+        "id": "top_padding_mob",
+        "label": "Mobile padding top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 40
+    },
+    {
+        "type": "range",
+        "id": "bottom_padding_mob",
+        "label": "Mobile padding bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Explore our"
+    }
+  ]
+}
+{% endschema %}

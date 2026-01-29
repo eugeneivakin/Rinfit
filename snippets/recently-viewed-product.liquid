@@ -1,0 +1,103 @@
+<div class="swiper-slide container-main-collection">
+  <div class="product-card bg-white shadow-md rounded-2xl p-4 flex flex-col items-center">
+    <a class="product-link" href="{{ product.url }}" data-base-url="{{ product.url }}">
+      <img src="{{ product.featured_image | img_url: '400x' }}" 
+           alt="{{ product.title }}" 
+           class="main-product-image mb-4 rounded-xl"/>
+    </a>
+
+    <div class="conatainer-first-star">
+      {% assign reviews_count = product.metafields.loox.num_reviews | default: 0 %}
+      {% assign rating = product.metafields.loox.avg_rating | default: 0 %}
+      {% assign rounded_rating = rating | round %}
+
+      {% if reviews_count > 0 %}
+        <a href="#looxReviews">
+          <div class="loox-rating">
+            {% for i in (1..5) %}
+              {% if i <= rounded_rating %}
+                <span class="star full">★</span>
+              {% else %}
+                <span class="star empty">★</span>
+              {% endif %}
+            {% endfor %}
+            <span class="reviews_text">{{ rating }}/5.00</span>
+            <span class="number-reviews">({{ reviews_count }} reviews)</span>
+          </div>
+        </a>
+      {% endif %}
+    </div> 
+
+    <h3 class="main-title-collection-product">{{ product.title }}</h3>
+
+    {% comment %} <p class="main-description-collection-product">
+      {{ product.description | strip_html | truncate: 40 }}
+    </p> {% endcomment %}
+
+    <div class="flex items-center gap-2 mb-3">
+      <span class="price-collection-main">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="compare_price-collection-main">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+
+    <div class="flex justify-center gap-2 mb-4 variant-thumbs-wrapper">
+      {% assign assigned_images = '' %}
+      {% assign first_variant_id = product.variants.first.id %}
+      {% assign variant_count = 0 %}
+
+      {% for option_value in product.options_with_values[0].values %}
+        {% assign variant = product.variants | where: 'option1', option_value | first %}
+
+        {% if variant.featured_image %}
+          {% unless assigned_images contains variant.featured_image.src %}
+            {% assign variant_count = variant_count | plus: 1 %}
+
+            <button type="button"
+              class="
+                variant-button-collection-main variant-thumb w-8 h-8 rounded-full 
+                overflow-hidden border-gray-300 hover:border-black 
+                {% if forloop.index == 1 %}ring-2 ring-black{% endif %} 
+                {% if variant_count > 5 %}hidden-variant{% endif %}"
+              data-image="{{ variant.featured_image.src | img_url: '400x' }}"
+              data-variant-id="{{ variant.id }}"
+            >
+              <img src="{{ variant.featured_image.src | img_url: '100x100' }}" alt="{{ option_value }}">
+            </button>
+
+            {% assign assigned_images = assigned_images | append: variant.featured_image.src | append: ',' %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+
+      {% if variant_count > 5 %}
+        <button type="button" class="show-more-variants text-sm px-2 py-1 border rounded">
+            {{ "Vector1.svg" | asset_url | img_tag: "Show more" }}
+        </button>
+      {% endif %}
+    </div>
+
+    <form method="post" action="/cart/add" class="add-to-cart-form">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}" class="variant-input">
+
+      <div class="product-data"
+        data-product-title="{{ product.title | escape }}"
+        data-product-image="{{ product.featured_image | img_url: '400x' }}"
+        data-product-images='[
+          {% for image in product.images %}
+            "{{ image | img_url: '400x' }}"{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]'
+        data-reviews-count="{{ reviews_count }}"
+        data-avg-rating="{{ rating }}"
+        data-product-handle="{{ product.handle }}"
+      >
+        <script type="application/json" class="product-variants-json">
+          {{ product.variants | json }}
+        </script>
+      </div>
+
+      <button type="submit" class="submit-button-collection">QUICK BUY</button>
+    </form>
+  </div>
+</div>

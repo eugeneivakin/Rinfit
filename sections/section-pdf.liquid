@@ -1,0 +1,63 @@
+<style>
+.btn_pdf_main{
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: {{ section.settings.padding_top }}px;
+    margin-bottom: {{ section.settings.padding_bottom }}px;
+}
+</style>
+<section>
+    {% if section.settings.main_img != blank  and section.settings.file_link != blank %}
+        <a href="{{ section.settings.file_link }}" 
+            target="_blank" 
+            rel="noopener" 
+            class="btn_pdf_main"
+        >
+            {{ section.settings.main_img | image_url: width: section.settings.main_img.width | image_tag }}
+        </a>
+    {% endif %}
+</section>
+{% schema %}
+{
+    "name": "Section pdf",
+    "settings": [
+        {
+            "type": "url",
+            "id": "file_link",
+            "label": "Url file",
+        },
+        {
+            "type": "image_picker",
+            "id": "main_img",
+            "label": "Image button"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom",
+            "default": 0
+        }
+    ],
+    "presets": [
+        {
+            "name": "Section pdf"
+        }
+    ]
+}
+{% endschema %}

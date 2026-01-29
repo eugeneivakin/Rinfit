@@ -1,0 +1,338 @@
+{% if product.metafields.custom.information != blank %}
+  <div
+    id="{{ section.id }}"
+    class="product-info-section {{ section.settings.custom_classes }}"
+    style="background: {{ section.settings.background_color }};"
+  >
+    <div class="product-info-container">
+      <div class="product-info-content">
+        <div class="product-info-text">
+          <div class="product-info-text-inner ">
+            {% if section.settings.title != blank %}
+              {% assign title_words = section.settings.title | split: ' ' %}
+              <h2 class="product-info-title">
+                {{ title_words[0] }}
+                <span class="title-highlight">
+                  {{ title_words | slice: 1, title_words.size | join: ' ' }}
+                </span>
+              </h2>
+            {% endif %}
+
+            {% if product.metafields.custom.information != blank %}
+              <div class="product-info-description">
+                {{ product.metafields.custom.information | metafield_tag }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="product-info-media">
+          <div class="product-info-media-inner">
+            {% if product.media.size > 0 %}
+              {% assign selected_media = product.media.first %}
+              {% for media in product.media %}
+                {% if media.id == section.settings.selected_media_id %}
+                  {% assign selected_media = media %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {% if selected_media.media_type == 'video' %}
+                <div class="product-info-video">
+                  {{
+                    selected_media
+                    | video_tag:
+                      controls: true,
+                      muted: true,
+                      loop: section.settings.video_loop,
+                      autoplay: section.settings.video_autoplay
+                  }}
+                </div>
+              {% else %}
+                <div class="product-info-image">
+                  {% assign image_width = section.settings.media_width | default: 600 %}
+                  {{
+                    selected_media
+                    | image_url: width: image_width
+                    | image_tag: loading: 'lazy', width: image_width, height: 'auto'
+                  }}
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+      :root {
+        --product-info-max-width: {{ section.settings.max_width }}px;
+        --product-info-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+        --product-info-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+        --product-info-title-color: {{ section.settings.title_color }};
+        --product-info-text-color: {{ section.settings.text_color }};
+        --product-info-title-size-desktop: {{ section.settings.title_size_desktop }}px;
+        --product-info-text-size-desktop: {{ section.settings.text_size_desktop }}px;
+        --product-info-gap: {{ section.settings.content_gap }}px;
+      }
+
+      #{{ section.id }}.product-info-section {
+        padding-top: var(--product-info-padding-top-desktop);
+        padding-bottom: var(--product-info-padding-bottom-desktop);
+        width: 100%;
+        font-family: 'Kumbh Sans', Arial, sans-serif;
+      }
+
+      #{{ section.id }} .product-info-container {
+        max-width: var(--product-info-max-width);
+        margin: 0 auto;
+        padding: 0 80px;
+      }
+
+      #{{ section.id }} .product-info-content {
+        display: flex;
+        align-items: center;
+        gap: var(--product-info-gap);
+        min-height: 400px;
+      }
+
+    #{{ section.id }} .product-info-text {
+      flex: 0 0 58.1%;
+      max-width: 58.1%;
+    }
+
+    #{{ section.id }} .product-info-media {
+      flex: 0 0 40.3%;
+      max-width: 40.3%;
+    }
+
+      #{{ section.id }} .product-info-text-inner {
+        max-width: 100%;
+      }
+
+      #{{ section.id }} .product-info-title {
+        font-size: var(--product-info-title-size-desktop);
+        color: var(--product-info-title-color);
+        margin-bottom: 40px;
+        font-weight: 300;
+        line-height: 30px;
+      }
+
+      #{{ section.id }} .product-info-title .title-highlight {
+        font-style: italic;
+        font-size: calc(var(--product-info-title-size-desktop) * 1.175 );
+        line-height: 30px;
+        font-weight: 400;
+        font-family: 'Playfair Display', serif;
+        letter-spacing: -0.02em;
+      }
+
+      #{{ section.id }} .product-info-description {
+        font-size: var(--product-info-text-size-desktop);
+        color: var(--product-info-text-color);
+        line-height: 1.6;
+      }
+
+      #{{ section.id }} .product-info-description p {
+        margin-bottom: 16px;
+      }
+
+      #{{ section.id }} .product-info-description ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      #{{ section.id }} .product-info-description li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 8px;
+      }
+
+      #{{ section.id }} .product-info-description li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+      }
+
+      #{{ section.id }} .product-info-media-inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #{{ section.id }} .product-info-image img,
+      #{{ section.id }} .product-info-video video {
+        width: 100%;
+        height: auto;
+        border-radius: {{ section.settings.media_border_radius }}px;
+        }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Information",
+  "class": "section-product-info",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Product Information"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Max Width (px)",
+      "default": "1200"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "custom_classes",
+      "label": "Custom CSS Classes"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Content Gap",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size Desktop",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "label": "Text Size Desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Media Settings"
+    },
+    {
+      "type": "text",
+      "id": "selected_media_id",
+      "label": "Selected Media ID (leave blank for first media)"
+    },
+    {
+      "type": "range",
+      "id": "media_width",
+      "label": "Media Width",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "default": 600,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "media_border_radius",
+      "label": "Media Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "default": 8,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Video Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay Video",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop Video",
+      "default": true
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Product Information"
+    }
+  ]
+}
+{% endschema %}

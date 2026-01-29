@@ -1,0 +1,98 @@
+<div class="collection-head{% if type_fullwidth %} collection-head--fullwidth{% endif %}">
+    {%- assign contents = null -%}
+    {%- assign desktop_title = section.settings.default_desktop_title -%}
+    {%- assign mobile_title = section.settings.default_mobile_title -%}
+    {%- for block in section.blocks -%}
+        {%- assign is_content = false -%}
+        {%- assign is_slider = false -%}
+        {%- if block.settings.for_collection == collection.handle and block.type == 'promobox' -%}
+            {%- assign is_content = true -%}
+        {%- elsif block.settings.for_collection == collection.handle and block.type == 'slider_02' -%}
+            {%- assign is_slider = true -%}
+        {%- endif -%}
+        {%- if is_content or is_slider -%}
+            {%- capture content -%}
+                {%- if block.settings.grid_responsive != blank -%}
+                    {%- assign grid_responsive = block.settings.grid_responsive | split: ',' -%}
+                    {% capture grid %}col col-{{ grid_responsive[4] }} col-sm-{{ grid_responsive[3] }} col-md-{{ grid_responsive[2] }} col-lg-{{ grid_responsive[1] }} col-xl-{{ grid_responsive[0] }}{% endcapture %}
+                {%- else -%}
+                    {% capture grid %}col-12 col-md-{{ block.settings.grid }}{% endcapture %}
+                {%- endif -%}
+                {% include 'section-res-margins' with root: block %}
+                <div class="{{ grid }}{{ section_margins }}">
+                    {%- if block.settings.type == 'description' and collection.description != blank -%}
+                        <div class="rte fs">
+                            {{ collection.description }}
+                        </div>
+                    {%- elsif is_content -%}
+                        {%- assign disable_lazyload = block.settings.disable_lazyload -%}
+                        {% include 'promobox' %}
+                    {%- elsif is_slider -%}
+                        {% include 'builder-slider-02' %}
+                    {%- endif -%}
+                </div>
+            {%- endcapture -%}
+            {%- assign contents = contents | append: content -%}
+        {%- elsif block.type == 'title' and block.settings.for_collection == collection.handle -%}
+            {%- assign desktop_title = block.settings.desktop_title -%}
+            {%- assign mobile_title = block.settings.mobile_title -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- if contents -%}
+        <div class="{% if type_fullwidth %}mt-15 {% endif %}mb-lg-20">
+            <div class="row">
+                {{ contents }}
+            </div>
+        </div>
+    {%- endif -%}
+    {%- if desktop_title == 'title' or desktop_title == 'title_with_description' -%}
+        {%- assign desktop_need_title = true -%}
+    {%- endif -%}
+    {%- if desktop_title == 'description' or desktop_title == 'title_with_description' -%}
+        {%- assign desktop_need_description = true -%}
+    {%- endif -%}
+    {%- if mobile_title == 'title' or mobile_title == 'title_with_description' -%}
+        {%- assign mobile_need_title = true -%}
+    {%- endif -%}
+    {%- if mobile_title == 'description' or mobile_title == 'title_with_description' -%}
+        {%- assign mobile_need_description = true -%}
+    {%- endif -%}
+    {%- capture head -%}
+        {%- if desktop_need_title or mobile_need_title -%}
+            {% capture title_class %}{% if mobile_need_title != true %} d-none{% endif %}{% if desktop_need_title %} d-lg-block{% else %} d-lg-none{% endif %}{% endcapture %}
+            <h1 class="{{ settings.tag_collection_page_title }} mb-10{{ title_class }} text-center text-lg-left">{{ collection.title }}</h1>
+            {%- assign has_head = true -%}
+        {%- endif -%}
+        {%- if desktop_need_description or mobile_need_description -%}
+            {% capture description_class %}{% if mobile_need_description != true %} d-none{% endif %}{% if desktop_need_description %} d-lg-block{% else %} d-lg-none{% endif %}{% endcapture %}
+            {%- if collection.description != blank -%}
+                <div class="rte fs{{ description_class }}">
+                    {{ collection.description }}
+                </div>
+                {%- assign has_head = true -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endcapture -%}
+    {%- if has_head -%}
+        <div class="{% if type_fullwidth %}container mt-15 {% endif %}mb-15">
+            {{ head }}
+        </div>
+    {%- endif -%}
+</div>
+
+<script>
+    {%- for block in section.blocks -%}
+        {%- if block.type == 'slider_02' -%}
+            {%- assign need_plugin_slick = true -%}
+        {%- endif -%}
+        {%- if block.type == 'promobox' or block.type == 'slider_02' -%}
+            {%- assign need_home_builder = true -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- if need_plugin_slick -%}
+        Loader.require({type: "style", name: "plugin_slick"});
+    {%- endif -%}
+    {%- if need_home_builder -%}
+        Loader.require({type: "script", name: "home_builder"});
+    {%- endif -%}
+</script>

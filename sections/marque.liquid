@@ -1,0 +1,279 @@
+<style>
+  .custom-marquee {
+    background-color: #F9F9F8;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    --mobile-speed: {{ section.settings.mobile_speed | default: 20 }}s;
+    --desktop-speed: {{ section.settings.desktop_speed | default: 30 }}s;
+  }
+
+  .marquee-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .marquee-viewport {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
+    background: #F9F9F8;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 27px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    will-change: transform;
+    animation: marquee-scroll var(--mobile-speed) linear infinite;
+    align-items: center;
+    height: 100%;
+    background: #F9F9F8;
+  }
+
+  .marquee-track.static {
+    animation: none;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    background: #F9F9F8;
+  }
+
+  .marquee-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+  }
+
+  .marquee-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  .marquee-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .marquee-text {
+    font-family: 'Kumbh Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #373A36;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation-duration: 60s !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .marquee-text {
+      font-size: 14px;
+    }
+    
+    .marquee-track:not(.static) {
+      animation-duration: var(--desktop-speed);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .marquee-track {
+      gap: 125px;
+    }
+  }
+</style>
+
+<section id="marquee-{{ section.id }}" class="custom-marquee" role="region" aria-label="Marquee content">
+  <div class="marquee-container">
+    <div class="marquee-viewport" aria-hidden="true">
+      <ul class="marquee-track" role="list">
+        {% for block in section.blocks %}
+          <li class="marquee-item" {{ block.shopify_attributes }}>
+            {% if block.settings.svg_icon != blank %}
+              <div class="marquee-icon">
+                {{ block.settings.svg_icon }}
+              </div>
+            {% endif %}
+            
+            {% if block.settings.text != blank %}
+              <span class="marquee-text">{{ block.settings.text }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+(function() {
+  const section = document.querySelector('#marquee-{{ section.id }}');
+  const track = section.querySelector('.marquee-track');
+
+  if (!track) return;
+
+  // Check if marquee should be static
+  const isStatic = {{ section.settings.static_on_desktop | json }};
+  
+  if (isStatic && window.innerWidth >= 768) {
+    track.classList.add('static');
+  } else {
+    // Duplicate items for seamless loop
+    const items = Array.from(track.children);
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      track.appendChild(clone);
+    });
+  }
+
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (isStatic) {
+      if (window.innerWidth >= 768) {
+        track.classList.add('static');
+      } else {
+        track.classList.remove('static');
+        // Re-add clones if needed for mobile
+        if (track.children.length === {{ section.blocks.size }}) {
+          const items = Array.from(track.children);
+          items.forEach(item => {
+            const clone = item.cloneNode(true);
+            track.appendChild(clone);
+          });
+        }
+      }
+    }
+  });
+
+  // Handle reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    track.style.animationDuration = '60s';
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Marquee",
+  "tag": "section",
+  "class": "custom-marquee-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "static_on_desktop",
+      "label": "Static (centered) on desktop",
+      "default": false,
+      "info": "When enabled, marquee will be centered and static on desktop, animated on mobile"
+    },
+    {
+      "type": "header",
+      "content": "Animation Speed"
+    },
+    {
+      "type": "range",
+      "id": "mobile_speed",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Mobile animation speed",
+      "default": 20,
+      "info": "Lower number = faster animation"
+    },
+    {
+      "type": "range",
+      "id": "desktop_speed",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "s",
+      "label": "Desktop animation speed",
+      "default": 30,
+      "info": "Lower number = faster animation. Only applies when not static"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Marquee Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "svg_icon",
+          "label": "SVG Icon Code",
+          "info": "Paste your SVG code here (optional)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Your text here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Marquee",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "Free shipping worldwide",
+            "svg_icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 7H21L19 15H5L3 7Z\" stroke=\"#373A36\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M5 7L4 3H2\" stroke=\"#373A36\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"9\" cy=\"19\" r=\"1\" stroke=\"#373A36\" stroke-width=\"2\"/><circle cx=\"15\" cy=\"19\" r=\"1\" stroke=\"#373A36\" stroke-width=\"2\"/></svg>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "30-day return policy",
+            "svg_icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M9 12L11 14L15 10\" stroke=\"#373A36\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z\" stroke=\"#373A36\" stroke-width=\"2\"/></svg>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Quality guaranteed",
+            "svg_icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z\" stroke=\"#373A36\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "24/7 customer support",
+            "svg_icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z\" stroke=\"#373A36\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

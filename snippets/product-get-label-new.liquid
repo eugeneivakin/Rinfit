@@ -1,0 +1,4 @@
+<div class="label label--new mb-3 mr-3 text-nowrap{% if label_new != 'true' %} d-none-important{% endif %}" data-js-product-label-new>{{ 'products.product.label.new' | t }}</div>
+{%- if label_new == 'true' -%}
+    {%- assign has_labels = true -%}
+{%- endif -%}

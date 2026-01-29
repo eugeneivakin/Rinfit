@@ -1,0 +1,44 @@
+{% capture cart_icon_name %}{{ settings.cart_icon | default: 'icon-theme-109' }}{% endcapture %}
+{% if product.variants.size > 1 %}
+{% assign product_option = product.options | escape %}
+<div class="btn product-button-add-to-cart" data-id="{{ current_variant_id }}" id="btn-product-cart-id-{{ current_variant_id }}" data-default-color="{{ default_color }}"
+{%- if settings.tooltips_enable and product_option_enable_tooltips %}
+data-js-tooltip
+data-tippy-content="To buy, select ring size."
+data-tippy-placement="top"
+data-tippy-distance="6"
+{%- endif -%}
+{% if product_option contains "Men" %}onmousemove="changeto(variant_option_sizes,this)"{% else %}onmousemove="changeto(variant_option_size,this)"{% endif %} onmouseout="changeto(variant_option_cart,this)"
+>
+<span class="d-sm-flex flex-center"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+</div>
+<button type="submit" id="product-btn-{{ current_variant_id }}"  class="btn d-none btn--status{% if settings.buttons_animation_icon_enable %} btn--animated{% endif %}{% if settings.product_ajax_cart and enable_select_options_button != true %} js-product-button-add-to-cart{% endif %}" name="add" data-js-product-button-add-to-cart{% unless product.available %} disabled="disabled" data-button-status="sold-out"{% else %}{% if enable_select_variant_button %} data-button-status="select"{% if button_select_disable %} data-button-select-disable{% endif %}{% endif %}{% endunless %}>
+        {%- if enable_select_options_button -%}
+            <span class="d-none d-sm-flex flex-center"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+            <span class="d-flex d-sm-none flex-center"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+        {%- else -%}
+            <span class="d-flex flex-center"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+            <span class="d-flex flex-center" data-button-content="added">{{ 'products.product.add_to_cart.added' | t }}</span>
+            {%- if enable_select_variant_button -%}
+                <span class="d-none d-sm-flex flex-center" data-button-content="select"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+                <span class="d-flex d-sm-none flex-center" data-button-content="select"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+            {%- endif -%}
+        {%- endif -%}
+        <span class="d-flex flex-center" data-button-content="sold-out">{{ 'products.product.add_to_cart.sold_out' | t }}</span>
+</button>
+{% else %}
+<button type="submit" id="product-btn-{{ current_variant_id }}"  class="btn btn--secondary btn--full btn--status{% if settings.buttons_animation_icon_enable %} btn--animated{% endif %}{% if settings.product_ajax_cart and enable_select_options_button != true %} js-product-button-add-to-cart{% endif %}" name="add" data-js-product-button-add-to-cart{% unless product.available %} disabled="disabled" data-button-status="sold-out"{% else %}{% if enable_select_variant_button %} data-button-status="select"{% if button_select_disable %} data-button-select-disable{% endif %}{% endif %}{% endunless %}>
+    {%- if enable_select_options_button -%}
+        <span class="d-none d-sm-flex flex-center"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+        <span class="d-flex d-sm-none flex-center"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+    {%- else -%}
+        <span class="d-flex flex-center"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+        <span class="d-flex flex-center" data-button-content="added">{{ 'products.product.add_to_cart.added' | t }}</span>
+        {%- if enable_select_variant_button -%}
+            <span class="d-none d-sm-flex flex-center" data-button-content="select"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+            <span class="d-flex d-sm-none flex-center" data-button-content="select"><span class="btn__text">{{ 'products.product.add_to_cart.title' | t }}</span></span>
+        {%- endif -%}
+    {%- endif -%}
+    <span class="d-flex flex-center" data-button-content="sold-out">{{ 'products.product.add_to_cart.sold_out' | t }}</span>
+</button>
+{% endif %}

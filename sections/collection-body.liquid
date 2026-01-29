@@ -1,0 +1,706 @@
+{%- assign split_template = template | split: '.' -%}
+{%- assign template_param = split_template[1] | remove: '-' | remove: 'ajax' -%}
+{%- assign default_view_length = section.settings.default_view_length | abs -%}
+{%- if template_param != blank -%}
+    {%- assign view_length = template_param | abs -%}
+{%- else -%}
+    {%- assign view_length = default_view_length -%}
+{%- endif -%}
+{%- assign sort_by_handles = 'manual|best-selling|price-ascending|price-descending|created-ascending|created-descending|title-ascending|title-descending' | split: '|' -%}
+{%- assign sort_by = collection.sort_by -%}
+{%- unless sort_by_handles contains sort_by -%}
+    {%- assign sort_by = collection.default_sort_by -%}
+{%- endunless -%}
+{%- if current_tags -%}
+    {%- if settings.collection_tag_filters_logic == 'or' or settings.collection_vendor_filters_logic == 'or' or settings.collection_type_filters_logic == 'or' -%}
+        {%- assign enable_logic_or = true -%}
+    {%- endif -%}
+{%- endif -%}
+<script data-js-collection-replace="js-settings" data-js-collection-replace-only-full>
+    window.page.default.view_length = {{ section.settings.default_view_length | json }};
+    window.page.default.sort_by = {{ collection.default_sort_by | json }};
+    window.page.default.only_available = {{ settings.collection_only_available | json }};
+    window.page.default.logic_or = {% if enable_logic_or %}true{% else %}false{% endif %};
+</script>
+{%- assign breakpoints = 'xs|sm|md|lg|xl' | split: '|' -%}
+{% capture grid_values %}{{ section.settings.default_view_grid_xs }}|{{ section.settings.default_view_grid_sm }}|{{ section.settings.default_view_grid_md }}|{{ section.settings.default_view_grid_lg }}|{{ section.settings.default_view_grid_xl }}{% endcapture %}
+{%- assign grid_values = grid_values | split: '|' -%}
+{%- for bp in breakpoints -%}
+    {%- assign value = grid_values[forloop.index0] -%}
+    {%- assign grid = 12 -%}
+    {%- if value == 'list' -%}
+        {%- if list_breakpoints != blank -%}
+            {%- assign list_breakpoints = list_breakpoints | append: '|' -%}
+        {%- endif -%}
+        {%- assign list_breakpoints = list_breakpoints | append: bp -%}
+    {%- else -%}
+        {%- assign grid = grid | divided_by: value -%}
+        {%- if value == '1' -%}
+            {%- if centered_breakpoints != blank -%}
+                {%- assign centered_breakpoints = centered_breakpoints | append: '|' -%}
+            {%- endif -%}
+            {%- assign centered_breakpoints = centered_breakpoints | append: bp -%}
+        {%- endif -%}
+    {%- endif -%}
+    {% capture class %}col{% if bp != 'xs' %}-{{ bp }}{% endif %}-{{ grid }}{% endcapture %}
+    {%- if forloop.first != true -%}
+        {%- assign grid_classes = grid_classes | append: ' ' -%}
+    {%- endif -%}
+    {%- assign grid_classes = grid_classes | append: class -%}
+{%- endfor -%}
+{%- assign centered_breakpoints = centered_breakpoints | split: '|' -%}
+{%- for bp in centered_breakpoints -%}
+    {% capture class %} products-view-centered-{{ bp }}{% endcapture %}
+    {%- assign centered_classes = centered_classes | append: class -%}
+{%- endfor -%}
+{%- assign list_breakpoints = list_breakpoints | split: '|' -%}
+{%- for bp in list_breakpoints -%}
+    {% capture class %} products-view-list-{{ bp }}{% endcapture %}
+    {%- assign list_classes = list_classes | append: class -%}
+{%- endfor -%}
+{%- assign custom_filters_id = 'custom-filter' -%}
+{%- assign custom_filters_names = 'tag=|vendor=|type=|title=|price=|only_available=|page=' | split: '|' -%}
+{%- assign only_available = null -%}
+{%- if collection.handle != 'vendors' and current_tags contains custom_filters_id or settings.collection_only_available or enable_logic_or -%}
+    {%- for tag in current_tags -%}
+        {%- unless tag contains 'page=' -%}
+            {% capture tags_url %}{{ tags_url }}{% if tags_url %}+{% endif %}{{ tag | handleize }}{% endcapture %}
+        {%- endunless -%}
+    {%- endfor -%}
+    {%- assign filters_current_page = 1 -%}
+    {%- assign custom_filters = current_tags | join: '|' | remove: custom_filters_id | split: '|' -%}
+    {%- for filter in custom_filters -%}
+        {%- for name in custom_filters_names -%}
+            {%- if filter contains name -%}
+                {%- assign value = filter | remove: name | handleize -%}
+                {% case name %}
+                {% when custom_filters_names[0] %}
+                    {% capture filter_by_tags %}{{ filter_by_tags }}{% if filter_by_tags != blank %}|{% endif %}{{ value }}{% endcapture %}
+                {% when custom_filters_names[1] %}
+                    {% capture filter_by_vendors %}{{ filter_by_vendors }}{% if filter_by_vendors != blank %}|{% endif %}{{ value }}{% endcapture %}
+                {% when custom_filters_names[2] %}
+                    {% capture filter_by_types %}{{ filter_by_types }}{% if filter_by_types != blank %}|{% endif %}{{ value }}{% endcapture %}
+                {% when custom_filters_names[3] %}
+                    {%- assign filter_by_title = value -%}
+                {% when custom_filters_names[4] %}
+                    {%- assign filter_by_price = value | split: '-' -%}
+                {%- when custom_filters_names[5] -%}
+                    {%- case value -%}
+                    {%- when 'true' -%}{%- assign only_available = true -%}
+                    {%- when 'false' -%}{%- assign only_available = false -%}
+                    {%- endcase -%}
+                {% when custom_filters_names[6] %}
+                    {%- assign filters_current_page = value | abs -%}
+                {% endcase %}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
+    {%- assign filter_by_tags = filter_by_tags | split: '|' -%}
+    {%- assign filter_by_vendors = filter_by_vendors | split: '|' -%}
+    {%- assign filter_by_types = filter_by_types | split: '|' -%}
+    {%- unless current_tags contains custom_filters_id -%}
+        {%- assign filter_by_tags = current_tags | join: '___' | handleize | split: '___' -%}
+    {%- endunless -%}
+    {%- if only_available == null -%}
+        {%- assign only_available = settings.collection_only_available -%}
+        {%- if only_available -%}
+            {% capture tags_url %}{{ tags_url }}{% unless tags_url %}custom-filter{% endunless %}+only_available=true{% endcapture %}
+        {%- endif -%}
+    {%- endif -%}
+    {%- paginate collections[collection.handle].products by 1000 -%}
+        {%- assign current_products = collections[collection.handle].products -%}
+        {%- case sort_by -%}
+        {%- when 'price-ascending' -%}
+            {%- assign current_products = current_products | sort: 'price' -%}
+        {%- when 'price-descending' -%}
+            {%- assign current_products = current_products | sort: 'price' | reverse -%}
+        {%- when 'title-ascending' -%}
+            {%- assign current_products = current_products | sort: 'title' -%}
+        {%- when 'title-descending' -%}
+            {%- assign current_products = current_products | sort: 'title' | reverse -%}
+        {%- when 'created-ascending' -%}
+            {%- assign current_products = current_products | sort: 'published_at' -%}
+        {%- when 'created-descending' -%}
+            {%- assign current_products = current_products | sort: 'published_at' | reverse -%}
+        {%- endcase -%}
+        {%- assign current_page = filters_current_page -%}
+        {%- assign facrot = current_page | minus: 1 -%}
+        {%- assign filter_products_from = view_length | times: facrot | plus: 1 -%}
+        {%- assign filter_products_to = view_length | times: current_page -%}
+        {%- capture products_html -%}
+            {%- assign filter_products_count = 0 -%}
+            {%- for product in current_products -%}
+                {%- assign passed_the_filters = true -%}
+                {%- if only_available and product.available != true -%}
+                    {%- assign passed_the_filters = false -%}
+                {%- endif -%}
+                {%- if filter_by_tags -%}
+                    {%- assign product_tags = product.tags | join: '___' | handleize | split: '___' -%}
+                    {%- for value in filter_by_tags -%}
+                        {%- if settings.collection_tag_filters_logic == 'or' -%}
+                            {%- if product_tags contains value -%}
+                                {%- break -%}
+                            {%- elsif forloop.last -%}
+                                {%- assign passed_the_filters = false -%}
+                            {%- endif -%}
+                        {%- else -%}
+                            {%- unless product_tags contains value -%}
+                                {%- assign passed_the_filters = false -%}
+                                {%- continue -%}
+                            {%- endunless -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endif -%}
+                {%- if filter_by_vendors -%}
+                    {%- assign product_vendor = product.vendor | handleize -%}
+                    {%- for value in filter_by_vendors -%}
+                        {%- if settings.collection_vendor_filters_logic == 'or' -%}
+                            {%- if product_vendor == value -%}
+                                {%- break -%}
+                            {%- elsif forloop.last -%}
+                                {%- assign passed_the_filters = false -%}
+                            {%- endif -%}
+                        {%- else -%}
+                            {%- unless product_vendor == value -%}
+                                {%- assign passed_the_filters = false -%}
+                                {%- continue -%}
+                            {%- endunless -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endif -%}
+                {%- if filter_by_types -%}
+                    {%- assign product_type = product.type | handleize -%}
+                    {%- for value in filter_by_types -%}
+                        {%- if settings.collection_type_filters_logic == 'or' -%}
+                            {%- if product_type == value -%}
+                                {%- break -%}
+                            {%- elsif forloop.last -%}
+                                {%- assign passed_the_filters = false -%}
+                            {%- endif -%}
+                        {%- else -%}
+                            {%- unless product_type == value -%}
+                                {%- assign passed_the_filters = false -%}
+                                {%- continue -%}
+                            {%- endunless -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endif -%}
+                {%- if filter_by_title -%}
+                    {%- assign product_title = product.title | handleize -%}
+                    {%- unless product_title contains filter_by_title -%}
+                        {%- assign passed_the_filters = false -%}
+                    {%- endunless -%}
+                {%- endif -%}
+                {%- if filter_by_price -%}
+                    {% assign filter_min = filter_by_price[0] | abs %}
+                    {% assign filter_max = filter_by_price[1] | abs %}
+                    {%- if product.price_min < filter_min or product.price_max > filter_max -%}
+                        {%- assign passed_the_filters = false -%}
+                    {%- endif -%}
+                {%- endif -%}
+                {%- if passed_the_filters == true -%}
+                    {%- assign filter_products_count = filter_products_count | plus: 1 -%}
+                    {%- if filter_products_count >= filter_products_from and filter_products_count <= filter_products_to -%}
+                        <div class="{{ grid_classes }}">
+                            {% include 'product-collection' %}
+                        </div>
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endfor -%}
+            {%- assign filter_pages = view_length -%}
+            {%- assign filter_pages = filter_pages | times: 1.0 -%}
+            {%- assign filter_pages = filter_products_count | divided_by: filter_pages | ceil -%}
+        {%- endcapture -%}
+        {%- capture pagination -%}
+            {% include 'collection-filters-pagination' %}
+        {%- endcapture -%}
+    {%- endpaginate -%}
+{%- else -%}
+    {%- paginate collection.products by view_length -%}
+        {%- assign current_page =  paginate.current_page -%}
+        {%- assign filter_pages = paginate.pages -%}
+        {%- assign filter_products_count = collection.products_count -%}
+        {%- capture products_html -%}
+            {%- for product in collection.products -%}
+                <div class="{{ grid_classes }}">
+                    {% include 'product-collection' product_margin_bottom: settings.offset_collection_page_product_margin_bottom_d %}
+                </div>
+            {%- endfor -%}
+        {%- endcapture -%}
+        {%- capture pagination -%}
+            {% include 'pagination' product_margin_bottom: settings.offset_collection_page_product_margin_bottom_d %}
+        {%- endcapture -%}
+    {%- endpaginate -%}
+{%- endif -%}
+<div data-section-id="{{ section.id }}" data-section-type="collection-body">
+    <div class="collection-body js-products-view">
+        {%- if section.settings.show_sort_by or section.settings.show_info or section.settings.show_view_length or section.settings.show_view_grid -%}
+            {%- if ajax != true -%}
+                {%- capture sort_by_html -%}
+                    {%- if section.settings.show_sort_by -%}
+                        <div class="collection-control__sort-by d-none d-lg-block mr-20" data-js-collection-sort-by>
+                            <div class="select position-relative js-dropdown js-select">
+                                <div class="d-flex align-items-center" data-js-dropdown-button>
+                                    <label for="SortBy" class="mb-0 mr-5">{{ 'collections.control.sort_label' | t }}:</label>
+                                    <select name="sort_by" class="p-0 pr-25 mb-0 border-0 cursor-pointer" id="SortBy">
+                                        {% capture sort_by_titles %}{{ 'collections.control.sort_by.manual' | t }}|{{ 'collections.control.sort_by.best-selling' | t }}|{{ 'collections.control.sort_by.price-ascending' | t }}|{{ 'collections.control.sort_by.price-descending' | t }}|{{ 'collections.control.sort_by.created-ascending' | t }}|{{ 'collections.control.sort_by.created-descending' | t }}|{{ 'collections.control.sort_by.title-ascending' | t }}|{{ 'collections.control.sort_by.title-descending' | t }}{% endcapture %}
+                                        {%- assign sort_by_titles = sort_by_titles | split: '|' -%}
+                                        {%- assign dropdown_options = null -%}
+                                        {%- for handle in sort_by_handles -%}
+                                            {%- if sort_by == handle -%}
+                                                {%- assign is_selected = true -%}
+                                            {%- else -%}
+                                                {%- assign is_selected = false -%}
+                                            {%- endif -%}
+                                            <option value="{{ handle }}"{% if is_selected %} selected{% endif %}>{{ sort_by_titles[forloop.index0] }}</option>
+                                            {%- capture option -%}
+                                                <span data-value="{{ handle }}"{% if is_selected %} class="selected"{% endif %}>{{ sort_by_titles[forloop.index0] }}</span>
+                                            {%- endcapture -%}
+                                            {%- assign dropdown_options = dropdown_options | append: option -%}
+                                        {%- endfor -%}
+                                    </select>
+                                    <i class="position-absolute right-0">{% include 'icon-theme-229' %}</i>
+                                </div>
+                                <div class="select__dropdown dropdown d-none position-lg-absolute top-lg-100 left-lg-0" data-js-dropdown data-js-select-dropdown>
+                                    <div class="px-15 pb-30 py-lg-15">
+                                        {{ dropdown_options }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%- endif -%}
+                {%- endcapture -%}
+            {%- endif -%}
+            <div class="collection-control mb-25 mb-lg-{{ settings.offset_collection_page_products_margin_top_d }}">
+                <div class="row">
+                    {%- if ajax != true -%}
+                        {%- if settings.collection_show_sidebar != 'hide' and settings.collection_sidebar_position == 'dropdown' -%}
+                            {%- assign desktop_need_button = true -%}
+                        {%- endif -%}
+                        {%- if settings.collection_show_sidebar == 'desktop_and_mobile' -%}
+                            {%- assign mobile_need_button = true -%}
+                        {%- endif -%}
+                        {% capture control_grid %}col{% if mobile_need_button %}-8{% else %}-0{% endif %} col-lg{% if desktop_need_button %}-4{% endif %}{% if mobile_need_button != true %} d-none{% else %} d-flex{% endif %}|col-lg{% if desktop_need_button %}-3{% endif %}|col{% if mobile_need_button %}-4{% else %}-12{% endif %} col-lg{% if desktop_need_button %}-5{% endif %}{% endcapture %}
+                        {%- assign control_grid = control_grid | split: '|' -%}
+                        <div class="{{ control_grid[0] }} d-lg-flex align-items-center">
+                            {%- if settings.collection_show_sidebar != 'hide' -%}
+                                <div class="{% if mobile_need_button == true %}d-flex{% else %}d-none{% endif %}{% if desktop_need_button == true %} d-lg-flex{% else %} d-lg-none{% endif %} mr-30">
+                                    <div class="collection-control__button-sidebar d-flex align-items-center cursor-pointer js-popup-button" data-js-popup-button="sidebar">
+                                        <i class="mr-5">{% include 'icon-theme-084' %}</i>
+                                        {{ 'collections.control.button_sidebar' | t }}
+                                    </div>
+                                </div>
+                            {%- endif -%}
+                            {%- if desktop_need_button != true -%}
+                                {{ sort_by_html }}
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+                    <div class="{{ control_grid[1] }} d-none d-lg-flex justify-content-lg-center align-items-lg-center" data-js-collection-replace="info">
+                        {%- if section.settings.show_info -%}
+                            <div class="collection-control__information">
+                                {%- if current_page > filter_pages or filter_products_count == 0 -%}
+                                    {{ 'collections.control.info.result_empty' | t }}
+                                {%- elsif filter_products_count > view_length -%}
+                                    {%- if settings.layout_pagination_type == 'button_load_more' or settings.layout_pagination_type == 'infinite_scroll' -%}
+                                        {%- assign from = 1 -%}
+                                    {%- else -%}
+                                        {%- assign times_limit = current_page | minus: 1 -%}
+                                        {%- assign from = view_length | times: times_limit | plus: 1 -%}
+                                    {%- endif -%}
+                                    {%- assign to = current_page | times: view_length -%}
+                                    {%- if to > filter_products_count -%}
+                                        {%- assign to = filter_products_count -%}
+                                    {%- endif -%}
+                                    {{ 'collections.control.info.more_limit' | t: from: from, to: to, count: filter_products_count }}
+                                {%- elsif filter_products_count == 1 -%}
+                                    {{ 'collections.control.info.result_single' | t }}
+                                {%- else -%}
+                                    {{ 'collections.control.info.less_limit' | t: count: filter_products_count }}
+                                {%- endif -%}
+                            </div>
+                        {%- endif -%}
+                    </div>
+                    {%- if ajax != true -%}
+                        <div class="{{ control_grid[2] }} d-flex justify-content-lg-end align-items-center">
+                            {%- if settings.collection_sidebar_position == 'dropdown' -%}
+                                {{ sort_by_html }}
+                            {%- endif -%}
+                            {%- if section.settings.show_view_length -%}
+                                <div class="collection-control__view-length d-none d-lg-block" data-js-collection-view-length>
+                                    <div class="select position-relative js-dropdown js-select">
+                                        <div class="d-flex align-items-center" data-js-dropdown-button>
+                                            <label for="ViewLength" class="mb-0 mr-5">{{ 'collections.control.view_length_label' | t }}:</label>
+                                            <select name="view_length" class="p-0 pr-25 mb-0 border-0 cursor-pointer" id="ViewLength">
+                                                {%- assign view_length_values = '6|12|18|24|48' | split: '|' -%}
+                                                {%- for view_length_value in view_length_values -%}
+                                                    {%- assign enable_view_length_prop = 'enable_view_length_' | append: view_length_value -%}
+                                                    {%- if section.settings[enable_view_length_prop] or view_length_value == section.settings.default_view_length -%}
+                                                        {%- if view_length_handles != blank -%}
+                                                            {%- assign view_length_handles = view_length_handles | append: '|' -%}
+                                                        {%- endif -%}
+                                                        {%- assign view_length_handles = view_length_handles | append: view_length_value -%}
+                                                    {%- endif -%}
+                                                {%- endfor -%}
+                                                {%- assign view_length_handles = view_length_handles | split: '|' -%}
+                                                {%- assign dropdown_options = null -%}
+                                                {%- for handle in view_length_handles -%}
+                                                    {%- assign handle_num = handle | abs -%}
+                                                    <option value="{{ handle }}"{% if handle_num == view_length %} selected{% endif %}>{{ handle }}</option>
+                                                    {%- capture option -%}
+                                                    <span data-value="{{ handle }}"{% if handle_num == view_length %} class="selected"{% endif %}>{{ handle }}</span>
+                                                    {%- endcapture -%}
+                                                    {% assign dropdown_options = dropdown_options | append: option %}
+                                                {%- endfor -%}
+                                            </select>
+                                            <i class="position-absolute right-0">{% include 'icon-theme-229' %}</i>
+                                        </div>
+                                        <div class="select__dropdown dropdown d-none position-lg-absolute top-lg-100 left-lg-0" data-js-dropdown data-js-select-dropdown>
+                                            <div class="px-15 pb-30 py-lg-15">
+                                                {{ dropdown_options }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {%- endif -%}
+                            {%- if section.settings.show_view_grid -%}
+                                {%- for bp in breakpoints -%}
+                                    {% capture attr %} data-value-{{ bp }}="{{ grid_values[forloop.index0] }}"{% endcapture %}
+                                    {%- assign grid_attrs = grid_attrs | append: attr -%}
+                                {%- endfor -%}
+                                <div class="collection-control__view-grid ml-auto ml-lg-15"
+                                    {% if section.settings.enable_grid_tooltip -%}
+                                        data-js-tooltip
+                                        data-tippy-content="{{ 'collections.tooltip.grid' | t }}"
+                                        data-tippy-placement="top"
+                                        data-tippy-distance="8"
+                                    {%- endif -%}
+                                >
+                                    <div class="products-grid-buttons d-flex" data-js-products-grid-buttons{{ grid_attrs }}>
+                                        {%- assign view_grid_handles = '1|2|3|4|list' | split: '|' -%}
+                                        {%- assign view_grid_visible_classes = ' d-md-none|| d-none d-sm-block| d-none d-md-block| d-none d-lg-block' | split: '|' -%}
+                                        {% capture view_grid_icons %}{% include 'icon-theme-304' %}|{% include 'icon-theme-185' %}|{% include 'icon-theme-186' %}|{% include 'icon-theme-305' %}|{% include 'icon-theme-187' %}{% endcapture %}
+                                        {%- assign view_grid_icons = view_grid_icons | split: '|' -%}
+                                        {%- for handle in view_grid_handles -%}
+                                            {%- assign active_attrs = null -%}
+                                            {%- for value in grid_values -%}
+                                                {%- if value == handle -%}
+                                                    {% capture attr %} data-active-{{ breakpoints[forloop.index0] }}{% endcapture %}
+                                                    {% assign active_attrs = active_attrs | append: attr %}
+                                                {%- endif -%}
+                                            {%- endfor -%}
+                                            <div class="mx-8 mx-lg-1 cursor-pointer{{ view_grid_visible_classes[forloop.index0] }}" data-value="{{ handle }}"{{ active_attrs }}>
+                                                <i>{{ view_grid_icons[forloop.index0] }}</i>
+                                            </div>
+                                        {%- endfor -%}
+                                    </div>
+                                </div>
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+            </div>
+        {%- endif -%}
+        <script>
+            Loader.require({type: "script", name: "products_view"});
+        </script>
+        <div class="collection-products{{ list_classes }}{{ centered_classes }}" data-js-products>
+            <div class="row" data-js-collection-replace="products"{% if settings.layout_pagination_type == 'button_load_more' or settings.layout_pagination_type == 'infinite_scroll' %} data-js-collection-replace-method="add"{% endif %}>
+                {%- if collection.products.size > 0 or filter_products_count > 0 -%}
+                    {{ products_html }}
+                {%- else -%}
+                    <div class="col">
+                        {%- if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 -%}
+                            {%- for i in (1..8) -%}
+                                <a href="#">
+                                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                                    {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+                                </a>
+                                <p><a href="#">{{ 'homepage.onboarding.product_title' | t }}</a></p>
+                                <p>{{ 1999 | money }}</p>
+                            {%- endfor -%}
+                        {%- else -%}
+                            <div class="d-flex flex-column align-items-center py-40 py-md-100 my-100">
+                                <h1 class="h3">{{ 'collections.general.empty_title' | t }}</h1>
+                                <p>{{ 'collections.general.empty_paragraph' | t }}</p>
+                                <a href="/collections/all" class="btn mt-20">{{ 'collections.general.empty_button' | t }}</a>
+                            </div>
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+    <div data-js-collection-pagination data-pagination-type="{{ settings.layout_pagination_type }}" data-js-collection-replace="pagination">
+        {{ pagination }}
+        <input type="hidden" name="page" value="{{ current_page }}">
+    </div>
+</div>
+
+<script>
+    Loader.require({type: "script", name: "collection_body"});
+</script>
+
+{% schema %}
+{
+    "name": "Content",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Sort by"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_sort_by",
+            "label": "Show",
+            "default": true
+        },
+        {
+            "type": "paragraph",
+            "content": "Default value get from collection setting"
+        },
+        {
+            "type": "header",
+            "content": "Information"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_info",
+            "label": "Show",
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "Length"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_view_length",
+            "label": "Show",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_view_length_6",
+            "label": "Enable value 6",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_view_length_12",
+            "label": "Enable value 12",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_view_length_18",
+            "label": "Enable value 18",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_view_length_24",
+            "label": "Enable value 24",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_view_length_48",
+            "label": "Enable value 48",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "default_view_length",
+            "label": "Default",
+            "default": "12",
+            "options": [
+                {
+                    "value": "6",
+                    "label": "6"
+                },
+                {
+                    "value": "12",
+                    "label": "12"
+                },
+                {
+                    "value": "18",
+                    "label": "18"
+                },
+                {
+                    "value": "24",
+                    "label": "24"
+                },
+                {
+                    "value": "48",
+                    "label": "48"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Grid"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_view_grid",
+            "label": "Show",
+            "default": true
+        },
+        {
+            "type": "select",
+            "id": "default_view_grid_xl",
+            "label": "Default products per row (Extra large)",
+            "default": "3",
+            "options": [
+                {
+                    "value": "2",
+                    "label": "2"
+                },
+                {
+                    "value": "3",
+                    "label": "3"
+                },
+                {
+                    "value": "4",
+                    "label": "4"
+                },
+                {
+                    "value": "5",
+                    "label": "5"
+                },
+                {
+                    "value": "6",
+                    "label": "6"
+                },
+                {
+                    "value": "list",
+                    "label": "List"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "default_view_grid_lg",
+            "label": "Default products per row (Large)",
+            "default": "3",
+            "options": [
+                {
+                    "value": "2",
+                    "label": "2"
+                },
+                {
+                    "value": "3",
+                    "label": "3"
+                },
+                {
+                    "value": "4",
+                    "label": "4"
+                },
+                {
+                    "value": "5",
+                    "label": "5"
+                },
+                {
+                    "value": "6",
+                    "label": "6"
+                },
+                {
+                    "value": "list",
+                    "label": "List"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "default_view_grid_md",
+            "label": "Default products per row (Medium)",
+            "default": "3",
+            "options": [
+                {
+                    "value": "2",
+                    "label": "2"
+                },
+                {
+                    "value": "3",
+                    "label": "3"
+                },
+                {
+                    "value": "4",
+                    "label": "4"
+                },
+                {
+                    "value": "5",
+                    "label": "5"
+                },
+                {
+                    "value": "6",
+                    "label": "6"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "default_view_grid_sm",
+            "label": "Default products per row (Small)",
+            "default": "2",
+            "options": [
+                {
+                    "value": "1",
+                    "label": "1 (centered)"
+                },
+                {
+                    "value": "2",
+                    "label": "2"
+                },
+                {
+                    "value": "3",
+                    "label": "3"
+                },
+                {
+                    "value": "4",
+                    "label": "4"
+                },
+                {
+                    "value": "5",
+                    "label": "5"
+                },
+                {
+                    "value": "6",
+                    "label": "6"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "default_view_grid_xs",
+            "label": "Default view grid (Extra small)",
+            "default": "2",
+            "options": [
+                {
+                    "value": "1",
+                    "label": "1 (centered)"
+                },
+                {
+                    "value": "2",
+                    "label": "2"
+                },
+                {
+                    "value": "3",
+                    "label": "3 (centered)"
+                },
+                {
+                    "value": "4",
+                    "label": "4"
+                }
+            ]
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_grid_tooltip",
+            "label": "Enable tooltip",
+            "default": true
+        }
+    ]
+}
+{% endschema %}

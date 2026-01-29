@@ -1,0 +1,262 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+LINE ITEM
+----------------------------------------------------------------------------------------------------------------------
+
+This component renders a single line item product information, and is used on order and cart page.
+
+********************************************
+Supported variables
+********************************************
+
+* line_item: the line item to render (required)
+* show_quantity_selector: if set to true, the quantity selector is displayed (useful for instance of mini-cart)
+{%- endcomment -%}
+<style>
+.main-content-cart-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-content-cart-top .h6{
+  height: 26px;
+  overflow: hidden;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+.line-item-info .gap-2{
+  gap: 9px; 
+}
+.main-content-cart-top .text-subdued{
+  height: auto;
+  white-space: nowrap;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #373A36;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+.variant-color.main-product{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #373A3699;
+  text-transform: capitalize;
+}
+.variant-color.main-product p{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  color: #373A3699;
+}
+.variant-size.main-product{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  font-family: "Kumbh Sans", sans-serif;
+  color: #373A3699;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+.quantity-selector.quantity-selector--sm a{
+  height: 30px;
+}
+.quantity-selector.quantity-selector--sm{
+    width: 88px;
+    height: 30px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    border-radius: 4px;
+    border: 1px solid #373A3633;
+}
+line-item-quantity{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.quantity-selector__button svg{
+  color: #373A36CC;
+}
+line-item-quantity a.link{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #373A3699;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  background: none;
+  border-bottom: 1px solid #373A3633;
+
+}
+quantity-input .quantity-selector__input{
+  color: #373A36CC;
+}
+.variant-size.main-product span{
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+</style>
+<line-item class="line-item">
+  {%- if line_item.image != blank -%}
+    {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70px, 120px', widths: '70,120,140,210,240,360', class: 'line-item__media' -}}
+  {%- endif -%}
+
+  <div class="line-item-info">
+    {%- assign text_class = '' -%}
+
+    {%- if settings.product_card_text_font == 'heading' -%}
+      {%- assign text_class = 'h6' -%}
+    {%- endif -%}
+
+    <div class="v-stack justify-items-start gap-2">
+      {%- if settings.show_vendor and line_item.vendor != blank -%}
+        {%- capture vendor_class -%}smallcaps {% if settings.product_card_text_font == 'heading' %}heading{% endif %}{% endcapture %}
+        {%- render 'vendor' with line_item.vendor, class: vendor_class -%}
+      {%- endif -%}
+
+      <div class="main-content-cart-top v-stack justify-items-start gap-1">
+        {%- if line_item.url != blank -%}
+          <a href="{{ line_item.url }}" class="{{ text_class }}">{{ line_item.product.title | default: line_item.title }}</a>
+        {%- else -%}
+          <p class="{{ text_class }}">{{ line_item.product.title | default: line_item.title }}</p>
+        {%- endif -%}
+
+        {%- render 'price-list', line_item: line_item, context: 'line_item' -%}
+      </div>
+
+      {%- capture secondary_information -%}
+        {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
+          <p class="smallcaps text-subdued">{{ line_item.variant.title }}</p>
+        {%- endunless -%}
+
+        {%- if line_item.selling_plan_allocation -%}
+          <p class="text-subdued">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- endif -%}
+
+        {%- unless line_item.properties == empty -%}
+          <ul class="text-subdued">
+            {%- for property in line_item.properties -%}
+              {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
+
+              {%- if property.last == blank or first_character_in_key == '_' -%}
+                {%- continue -%}
+              {%- endif -%}
+
+              <li>
+                {%- if property.last contains '/uploads/' -%}
+                  <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                {%- else -%}
+                  {{ property.first }}: {{ property.last }}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endunless -%}
+      {%- endcapture -%}
+      {%- if secondary_information != blank -%}
+        {%- assign parts = secondary_information | split: ' / ' -%}
+        {%- assign has_mens_size = false -%}
+        {%- assign has_womens_size = false -%}
+
+        {%- for option in line_item.product.options_with_values -%}
+          {%- if option.name == "Select Men's Size" -%}
+            {%- assign has_mens_size = true -%}
+            {%- assign mens_option_name = "Men's Size" -%}
+          {%- endif -%}
+          {%- if option.name == "Select Women's Size" -%}
+            {%- assign has_womens_size = true -%}
+            {%- assign womens_option_name = "Women's Size" -%}
+          {%- endif -%}
+        {%- endfor -%}
+        
+        {%- if has_mens_size and has_womens_size -%}
+          {%- assign mens_option_position = 0 -%}
+          {%- assign womens_option_position = 0 -%}
+          {%- for option in line_item.product.options_with_values -%}
+            {%- if option.name == "Select Men's Size" -%}
+              {%- assign mens_option_position = option.position -%}
+            {%- endif -%}
+            {%- if option.name == "Select Women's Size" -%}
+              {%- assign womens_option_position = option.position -%}
+            {%- endif -%}
+          {%- endfor -%}
+          
+          {%- if mens_option_position == 1 -%}
+            {%- assign mens_value = line_item.variant.option1 -%}
+          {%- elsif mens_option_position == 2 -%}
+            {%- assign mens_value = line_item.variant.option2 -%}
+          {%- elsif mens_option_position == 3 -%}
+            {%- assign mens_value = line_item.variant.option3 -%}
+          {%- endif -%}
+          
+          {%- if womens_option_position == 1 -%}
+            {%- assign womens_value = line_item.variant.option1 -%}
+          {%- elsif womens_option_position == 2 -%}
+            {%- assign womens_value = line_item.variant.option2 -%}
+          {%- elsif womens_option_position == 3 -%}
+            {%- assign womens_value = line_item.variant.option3 -%}
+          {%- endif -%}
+          
+          {%- if mens_value != blank -%}
+            <div class="variant-color main-product">{{ mens_option_name }}: <span>{{ mens_value }}</span></div>
+          {%- endif -%}
+          
+          {%- if womens_value != blank -%}
+            <div class="variant-size main-product">{{ womens_option_name }}: <span>{{ womens_value }}</span></div>
+          {%- endif -%}
+        {%- else -%}
+          {%- if parts.size > 0 -%}
+            <div class="variant-color main-product">Color: {{ parts[0] }}</div>
+          {%- endif -%}
+          
+          {%- if parts.size > 1 -%}
+            <div class="variant-size main-product">Size: <span>{{ parts[1] }}</span></div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+
+                                        
+      {%- if show_quantity_selector -%}
+        <line-item-quantity class="h-stack gap-4 {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
+          {%- render 'quantity-selector', line_item: line_item, size: 'sm' -%}
+          
+          <a href="{{ line_item.url_to_remove }}" class="link text-xs" aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}">
+            {{- 'cart.order.remove' | t -}}
+          </a>
+        </line-item-quantity>
+      {%- else -%}
+        <p class="text-subdued text-sm sm:hidden">{{ 'customer.order.quantity' | t }}: {{ line_item.quantity }}</p>
+      {%- endif -%}
+
+      {%- if line_item.line_level_discount_allocations != blank -%}
+        <ul class="v-stack justify-items-start gap-1 unstyled-list" role="list">
+          {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+            <li class="discount-badge text-xs">
+              {%- render 'icon' with 'discount', width: 12 -%} {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</line-item>

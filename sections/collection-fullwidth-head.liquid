@@ -1,0 +1,1053 @@
+<div data-section-id="{{ section.id }}" data-section-type="collection-fullwidth-head">
+    <div data-js-collection-replace="fullwidth-head" data-js-collection-replace-only-full>
+        {% include 'collection-head' with type_fullwidth: true %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Full width head",
+    "settings": [
+        {
+            "type": "select",
+            "id": "default_desktop_title",
+            "label": "Default desktop title",
+            "default": "disabled",
+            "options": [
+                {
+                    "value": "title",
+                    "label": "Only title"
+                },
+                {
+                    "value": "title_with_description",
+                    "label": "Title with description"
+                },
+                {
+                    "value": "description",
+                    "label": "Only description"
+                },
+                {
+                    "value": "disabled",
+                    "label": "Disabled"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "default_mobile_title",
+            "label": "Default mobile title",
+            "default": "disabled",
+            "options": [
+                {
+                    "value": "title",
+                    "label": "Only title"
+                },
+                {
+                    "value": "title_with_description",
+                    "label": "Title with description"
+                },
+                {
+                    "value": "description",
+                    "label": "Only description"
+                },
+                {
+                    "value": "disabled",
+                    "label": "Disabled"
+                }
+            ]
+        }
+    ],
+    "blocks": [
+        {
+            "type": "title",
+            "name": "Title",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "for_collection",
+                    "label": "For collection"
+                },
+                {
+                    "type": "select",
+                    "id": "desktop_title",
+                    "label": "Desktop title",
+                    "default": "title_with_description",
+                    "options": [
+                        {
+                            "value": "title",
+                            "label": "Only title"
+                        },
+                        {
+                            "value": "title_with_description",
+                            "label": "Title with description"
+                        },
+                        {
+                            "value": "description",
+                            "label": "Only description"
+                        },
+                        {
+                            "value": "disabled",
+                            "label": "Disabled"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "mobile_title",
+                    "label": "Mobile title",
+                    "default": "title",
+                    "options": [
+                        {
+                            "value": "title",
+                            "label": "Only title"
+                        },
+                        {
+                            "value": "title_with_description",
+                            "label": "Title with description"
+                        },
+                        {
+                            "value": "description",
+                            "label": "Only description"
+                        },
+                        {
+                            "value": "disabled",
+                            "label": "Disabled"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "promobox",
+            "name": "Promobox",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "for_collection",
+                    "label": "For collection"
+                },
+                {
+                    "type": "header",
+                    "content": "Grid"
+                },
+                {
+                    "type": "range",
+                    "id": "grid",
+                    "min": 1,
+                    "max": 12,
+                    "step": 1,
+                    "unit": "/12",
+                    "label": "Size",
+                    "default": 12
+                },
+                {
+                    "type": "text",
+                    "id": "grid_responsive",
+                    "label": "Responsive size",
+                    "info": "Example is '12,12,12,12,12', 1 < value < 12"
+                },
+                {
+                    "type": "text",
+                    "id": "responsive_height",
+                    "label": "Responsive height",
+                    "info": "Example is '550px,500px,400px,350px,120%', value can setting in % (percent) or px (pixels)"
+                },
+                {
+                    "type": "text",
+                    "id": "min_height",
+                    "label": "Min height",
+                    "info": "Must be an integer (pixels)"
+                },
+                {
+                    "type": "range",
+                    "id": "margin_top",
+                    "min": 0,
+                    "max": 100,
+                    "step": 5,
+                    "unit": "px",
+                    "label": "Margin top",
+                    "default": 0
+                },
+                {
+                    "type": "text",
+                    "id": "margin_top_responsive",
+                    "label": "Responsive margin top",
+                    "info": "Example is '10,10,15,15,15'"
+                },
+                {
+                    "type": "range",
+                    "id": "margin_bottom",
+                    "min": 0,
+                    "max": 100,
+                    "step": 5,
+                    "unit": "px",
+                    "label": "Margin bottom",
+                    "default": 15
+                },
+                {
+                    "type": "text",
+                    "id": "margin_bottom_responsive",
+                    "label": "Responsive margin bottom",
+                    "info": "Example is '10,10,15,15,15'"
+                },
+                {
+                    "type": "header",
+                    "content": "Settings"
+                },
+                {
+                    "type": "select",
+                    "id": "type",
+                    "label": "Type",
+                    "default": "clean",
+                    "options": [
+                        {
+                            "value": "clean",
+                            "label": "Clean (Without text)"
+                        },
+                        {
+                            "value": "1",
+                            "label": "Type #1 (Over the image)"
+                        },
+                        {
+                            "value": "2",
+                            "label": "Type #2 (Below the image)"
+                        },
+                        {
+                            "value": "3",
+                            "label": "Type #3 (Ribbon bottom the image)"
+                        },
+                        {
+                            "value": "4",
+                            "label": "Type #4 (Animation ribbon bottom the image)"
+                        }
+                    ]
+                },
+                {
+                    "type": "checkbox",
+                    "id": "border_hover",
+                    "label": "Border image on hover",
+                    "default": false
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Url for image"
+                },
+                {
+                    "type": "range",
+                    "id": "image_size",
+                    "min": 200,
+                    "max": 2000,
+                    "step": 100,
+                    "unit": "px",
+                    "label": "Image size",
+                    "default": 900
+                },
+                {
+                    "type": "checkbox",
+                    "id": "format_pjpg",
+                    "label": "Enable format 'pjpg'",
+                    "info": "Don't work with transparent images",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "disable_lazyload",
+                    "label": "Disable lazy load",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "text_line_1_display",
+                    "label": "Show text line 1",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "text_line_1",
+                    "label": "Text line 1",
+                    "default": "Text line #1"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "text_line_2_display",
+                    "label": "Show text line 2",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "text_line_2",
+                    "label": "Text line 2",
+                    "default": "Text line #2"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "text_line_3_display",
+                    "label": "Show text line 3",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "text_line_3",
+                    "label": "Text line 3",
+                    "default": "Text line #3"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_1_display",
+                    "label": "Show button #1",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "button_1",
+                    "label": "Button text #1",
+                    "default": "Button text"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_2_display",
+                    "label": "Show button #2",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "button_2",
+                    "label": "Button text",
+                    "default": "Button text #2"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "list_1_display",
+                    "label": "Show list",
+                    "default": true
+                },
+                {
+                    "type": "link_list",
+                    "id": "list_1",
+                    "label": "List"
+                },
+                {
+                    "type": "textarea",
+                    "id": "custom_html",
+                    "label": "Custom HTML or Template"
+                },
+                {
+                    "type": "url",
+                    "id": "text_line_1_url",
+                    "label": "Url for text line #1"
+                },
+                {
+                    "type": "url",
+                    "id": "text_line_2_url",
+                    "label": "Url for text line #2"
+                },
+                {
+                    "type": "url",
+                    "id": "text_line_3_url",
+                    "label": "Url for text line #3"
+                },
+                {
+                    "type": "url",
+                    "id": "button_1_url",
+                    "label": "Url for button #1"
+                },
+                {
+                    "type": "url",
+                    "id": "button_2_url",
+                    "label": "Url for button #2"
+                },
+                {
+                    "type": "text",
+                    "id": "video_mp4_url",
+                    "label": "Video Url",
+                    "info": "Video type is \"mp4\""
+                },
+                {
+                    "type": "video_url",
+                    "id": "video_external_url",
+                    "label": "Youtube or Vimeo video URL",
+                    "accept": ["youtube", "vimeo"]
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_autoplay",
+                    "label": "Autoplay",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_controls",
+                    "label": "Controls",
+                    "default": false
+                },
+                {
+                    "type": "header",
+                    "content": "Colors"
+                },
+                {
+                    "type": "color",
+                    "id": "color_text_line_1",
+                    "label": "Text line 1"
+                },
+                {
+                    "type": "color",
+                    "id": "color_text_line_2",
+                    "label": "Text line 2"
+                },
+                {
+                    "type": "color",
+                    "id": "color_text_line_3",
+                    "label": "Text line 3"
+                },
+                {
+                    "type": "select",
+                    "id": "color_button_type_1",
+                    "label": "Button style",
+                    "default": "inherit",
+                    "options": [
+                        {
+                            "value": "inherit",
+                            "label": "Inherit"
+                        },
+                        {
+                            "value": "1",
+                            "label": "Type #1 (default)"
+                        },
+                        {
+                            "value": "2",
+                            "label": "Type #2 (invert)"
+                        },
+                        {
+                            "value": "3",
+                            "label": "Type #3 (secondary)"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "color_button_type_2",
+                    "label": "Button style",
+                    "default": "inherit",
+                    "options": [
+                        {
+                            "value": "inherit",
+                            "label": "Inherit"
+                        },
+                        {
+                            "value": "1",
+                            "label": "Type #1 (default)"
+                        },
+                        {
+                            "value": "2",
+                            "label": "Type #2 (invert)"
+                        },
+                        {
+                            "value": "3",
+                            "label": "Type #3 (secondary)"
+                        }
+                    ]
+                },
+                {
+                    "type": "color",
+                    "id": "color_bg",
+                    "label": "Background"
+                },
+                {
+                    "type": "header",
+                    "content": "Animation"
+                },
+                {
+                    "type": "range",
+                    "id": "parallax",
+                    "min": 0,
+                    "max": 20,
+                    "step": 1,
+                    "label": "Parallax of image",
+                    "default": 0,
+                    "info": "Priority over animations"
+                },
+                {
+                    "type": "select",
+                    "id": "animation_from",
+                    "label": "From",
+                    "default": "default",
+                    "options": [
+                        {
+                            "value": "default",
+                            "label": "Default"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "top-left",
+                            "label": "Top left"
+                        },
+                        {
+                            "value": "top",
+                            "label": "Top"
+                        },
+                        {
+                            "value": "top-right",
+                            "label": "Top right"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        },
+                        {
+                            "value": "bottom-right",
+                            "label": "Bottom right"
+                        },
+                        {
+                            "value": "bottom",
+                            "label": "Bottom"
+                        },
+                        {
+                            "value": "bottom-left",
+                            "label": "Bottom left"
+                        },
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "animation_to",
+                    "label": "To",
+                    "default": "default",
+                    "options": [
+                        {
+                            "value": "default",
+                            "label": "Default"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "top-left",
+                            "label": "Top left"
+                        },
+                        {
+                            "value": "top",
+                            "label": "Top"
+                        },
+                        {
+                            "value": "top-right",
+                            "label": "Top right"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        },
+                        {
+                            "value": "bottom-right",
+                            "label": "Bottom right"
+                        },
+                        {
+                            "value": "bottom",
+                            "label": "Bottom"
+                        },
+                        {
+                            "value": "bottom-left",
+                            "label": "Bottom left"
+                        },
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        }
+                    ]
+                },
+                {
+                    "type": "checkbox",
+                    "id": "animation_from_opacity",
+                    "label": "From opacity",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "animation_to_opacity",
+                    "label": "To opacity",
+                    "default": false
+                },
+                {
+                    "type": "select",
+                    "id": "animation_text",
+                    "label": "Animation text (Only for type #1)",
+                    "default": "none",
+                    "options": [
+                        {
+                            "value": "none",
+                            "label": "None"
+                        },
+                        {
+                            "value": "scale-in",
+                            "label": "Scale In"
+                        },
+                        {
+                            "value": "scale-out",
+                            "label": "Scale Out"
+                        },
+                        {
+                            "value": "translate-top",
+                            "label": "Translate Top"
+                        },
+                        {
+                            "value": "translate-bottom",
+                            "label": "Translate Bottom"
+                        },
+                        {
+                            "value": "translate-left",
+                            "label": "Translate Left"
+                        },
+                        {
+                            "value": "translate-right",
+                            "label": "Translate Right"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "slider_02",
+            "name": "Slick Slider",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "for_collection",
+                    "label": "For collection"
+                },
+                {
+                "type": "text",
+                "id": "name",
+                "label": "Name",
+                "default": "Slider #1"
+                },
+                {
+                "type": "header",
+                "content": "Grid"
+                },
+                {
+                "type": "range",
+                "id": "grid",
+                "min": 1,
+                "max": 12,
+                "step": 1,
+                "unit": "/12",
+                "label": "Size",
+                "default": 12
+                },
+                {
+                "type": "text",
+                "id": "grid_responsive",
+                "label": "Responsive size",
+                "info": "Example is '12,12,12,12,12', 1 < value < 12"
+                },
+                {
+                "type": "range",
+                "id": "margin_top",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "px",
+                "label": "Margin top",
+                "default": 0
+                },
+                {
+                "type": "text",
+                "id": "margin_top_responsive",
+                "label": "Responsive margin top",
+                "info": "Example is '10,10,15,15,15'"
+                },
+                {
+                "type": "range",
+                "id": "margin_bottom",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "px",
+                "label": "Margin bottom",
+                "default": 0
+                },
+                {
+                "type": "text",
+                "id": "margin_bottom_responsive",
+                "label": "Responsive margin bottom",
+                "info": "Example is '10,10,15,15,15'"
+                },
+                {
+                "type": "header",
+                "content": "Settings"
+                },
+                {
+                "type": "text",
+                "id": "responsive_height",
+                "label": "Responsive height",
+                "info": "Example is '550px,500px,400px,350px,120%', value can setting in % (percent) or px (pixels)"
+                },
+                {
+                "type": "text",
+                "id": "min_height",
+                "label": "Min height",
+                "info": "Must be an integer (pixels)"
+                },
+                {
+                "type": "checkbox",
+                "id": "arrows",
+                "label": "Arrows",
+                "default": false
+                },
+                {
+                "type": "checkbox",
+                "id": "bullets",
+                "label": "Bullets",
+                "default": true
+                },
+                {
+                "type": "range",
+                "id": "speed",
+                "min": 2,
+                "max": 15,
+                "step": 1,
+                "label": "Speed (seconds)",
+                "default": 7
+                }
+            ]
+        },
+        {
+            "type": "slide_02",
+            "name": "Slide for Slick",
+            "settings": [
+                {
+                "type": "text",
+                "id": "for_slider",
+                "label": "For slider (name)",
+                "default": "Slider #1"
+                },
+                {
+                "type": "select",
+                "id": "type",
+                "label": "Type",
+                "default": "clean",
+                "options": [
+                {
+                "value": "clean",
+                "label": "Clean (Without text)"
+                },
+                {
+                "value": "1",
+                "label": "Type #1 (Over the image)"
+                }
+                ]
+                },
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                },
+                {
+                "type": "url",
+                "id": "url",
+                "label": "Url for image"
+                },
+                {
+                "type": "range",
+                "id": "image_size",
+                "min": 200,
+                "max": 2000,
+                "step": 100,
+                "unit": "px",
+                "label": "Image size",
+                "default": 900
+                },
+                {
+                "type": "checkbox",
+                "id": "format_pjpg",
+                "label": "Enable format 'pjpg'",
+                "info": "Don't work with transparent images",
+                "default": true
+                },
+                {
+                "type": "checkbox",
+                "id": "disable_lazyload",
+                "label": "Disable lazy load",
+                "default": false
+                },
+                {
+                "type": "checkbox",
+                "id": "text_line_1_display",
+                "label": "Show text line 1",
+                "default": true
+                },
+                {
+                "type": "paragraph",
+                "content": "'<br>' - is line break"
+                },
+                {
+                "type": "text",
+                "id": "text_line_1",
+                "label": "Text line 1",
+                "default": "Text line #1"
+                },
+                {
+                "type": "checkbox",
+                "id": "text_line_2_display",
+                "label": "Show text line 2",
+                "default": true
+                },
+                {
+                "type": "text",
+                "id": "text_line_2",
+                "label": "Text line 2",
+                "default": "Text line #2"
+                },
+                {
+                "type": "checkbox",
+                "id": "text_line_3_display",
+                "label": "Show text line 3",
+                "default": true
+                },
+                {
+                "type": "text",
+                "id": "text_line_3",
+                "label": "Text line 3",
+                "default": "Text line #3"
+                },
+                {
+                "type": "checkbox",
+                "id": "button_1_display",
+                "label": "Show button #1",
+                "default": true
+                },
+                {
+                "type": "text",
+                "id": "button_1",
+                "label": "Button text #1",
+                "default": "Button text"
+                },
+                {
+                "type": "checkbox",
+                "id": "button_2_display",
+                "label": "Show button #2",
+                "default": true
+                },
+                {
+                "type": "text",
+                "id": "button_2",
+                "label": "Button text",
+                "default": "Button text #2"
+                },
+                {
+                "type": "checkbox",
+                "id": "list_1_display",
+                "label": "Show list",
+                "default": true
+                },
+                {
+                "type": "link_list",
+                "id": "list_1",
+                "label": "List"
+                },
+                {
+                "type": "textarea",
+                "id": "custom_html",
+                "label": "Custom HTML or Template"
+                },
+                {
+                "type": "url",
+                "id": "text_line_1_url",
+                "label": "Url for text line #1"
+                },
+                {
+                "type": "url",
+                "id": "text_line_2_url",
+                "label": "Url for text line #2"
+                },
+                {
+                "type": "url",
+                "id": "text_line_3_url",
+                "label": "Url for text line #3"
+                },
+                {
+                "type": "url",
+                "id": "button_1_url",
+                "label": "Url for button #1"
+                },
+                {
+                "type": "url",
+                "id": "button_2_url",
+                "label": "Url for button #2"
+                },
+                {
+                "type": "text",
+                "id": "video_mp4_url",
+                "label": "Video Url",
+                "info": "Video type is \"mp4\""
+                },
+                {
+                "type": "video_url",
+                "id": "video_external_url",
+                "label": "Youtube or Vimeo video URL",
+                "accept": ["youtube", "vimeo"]
+                },
+                {
+                "type": "checkbox",
+                "id": "video_autoplay",
+                "label": "Video autoplay",
+                "default": true
+                },
+                {
+                "type": "checkbox",
+                "id": "video_controls",
+                "label": "Video controls",
+                "default": false
+                },
+                {
+                "type": "header",
+                "content": "Colors"
+                },
+                {
+                "type": "color",
+                "id": "color_text_line_1",
+                "label": "Text line 1"
+                },
+                {
+                "type": "color",
+                "id": "color_text_line_1_hover",
+                "label": "Hover text line 1"
+                },
+                {
+                "type": "color",
+                "id": "color_text_line_2",
+                "label": "Text line 2"
+                },
+                {
+                "type": "color",
+                "id": "color_text_line_2_hover",
+                "label": "Hover text line 2"
+                },
+                {
+                "type": "color",
+                "id": "color_text_line_3",
+                "label": "Text line 3"
+                },
+                {
+                "type": "select",
+                "id": "color_button_type_1",
+                "label": "Button style #1",
+                "default": "inherit",
+                "options": [
+                {
+                "value": "inherit",
+                "label": "Inherit"
+                },
+                {
+                "value": "1",
+                "label": "Type #1 (default)"
+                },
+                {
+                "value": "2",
+                "label": "Type #2 (invert)"
+                },
+                {
+                "value": "3",
+                "label": "Type #3 (secondary)"
+                }
+                ]
+                },
+                {
+                "type": "checkbox",
+                "id": "color_button_transparent_1",
+                "label": "Transparent background for button #1",
+                "default": false
+                },
+                {
+                "type": "select",
+                "id": "color_button_type_2",
+                "label": "Button style #2",
+                "default": "inherit",
+                "options": [
+                {
+                "value": "inherit",
+                "label": "Inherit"
+                },
+                {
+                "value": "1",
+                "label": "Type #1 (default)"
+                },
+                {
+                "value": "2",
+                "label": "Type #2 (invert)"
+                },
+                {
+                "value": "3",
+                "label": "Type #3 (secondary)"
+                }
+                ]
+                },
+                {
+                "type": "checkbox",
+                "id": "color_button_transparent_2",
+                "label": "Transparent background for button #2",
+                "default": false
+                },
+                {
+                "type": "color",
+                "id": "color_bg",
+                "label": "Background"
+                },
+                {
+                "type": "header",
+                "content": "Animation"
+                },
+                {
+                "type": "select",
+                "id": "animation_text",
+                "label": "Animation text (Only for type #1)",
+                "default": "none",
+                "options": [
+                {
+                "value": "none",
+                "label": "None"
+                },
+                {
+                "value": "scale-in",
+                "label": "Scale In"
+                },
+                {
+                "value": "scale-out",
+                "label": "Scale Out"
+                },
+                {
+                "value": "translate-top",
+                "label": "Translate Top"
+                },
+                {
+                "value": "translate-bottom",
+                "label": "Translate Bottom"
+                },
+                {
+                "value": "translate-left",
+                "label": "Translate Left"
+                },
+                {
+                "value": "translate-right",
+                "label": "Translate Right"
+                }
+                ]
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

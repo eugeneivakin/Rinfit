@@ -1,0 +1,355 @@
+<div
+  id="section-{{ section.id }}"
+  class="reviews-highlight-section {{ section.settings.custom_classes }}"
+  style="  --section-max-width: {{ section.settings.max_width }}px; "
+>
+  <div class="reviews-highlight-section__container">
+    {% if section.settings.headline != blank %}
+      <div class="reviews-highlight-section__headline">
+        {{ section.settings.headline }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.customer_image_1 != blank
+      or section.settings.customer_image_2 != blank
+      or section.settings.customer_image_3 != blank
+    %}
+      <div class="reviews-highlight-section__customer-images">
+        {% if section.settings.customer_image_1 != blank %}
+          <div class="reviews-highlight-section__customer-image">
+            <img
+              src="{{ section.settings.customer_image_1 | image_url: width: 80, height: 80 }}"
+              alt="Customer"
+              width="80"
+              height="80"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+        {% if section.settings.customer_image_2 != blank %}
+          <div class="reviews-highlight-section__customer-image">
+            <img
+              src="{{ section.settings.customer_image_2 | image_url: width: 80, height: 80 }}"
+              alt="Customer"
+              width="80"
+              height="80"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+        {% if section.settings.customer_image_3 != blank %}
+          <div class="reviews-highlight-section__customer-image">
+            <img
+              src="{{ section.settings.customer_image_3 | image_url: width: 80, height: 80 }}"
+              alt="Customer"
+              width="80"
+              height="80"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.review_text != blank %}
+      <div class="reviews-highlight-section__review">
+        <div class="reviews-highlight-section__review-row">
+          <div class="reviews-highlight-section__quote-icon">
+            <svg width="26" height="21" viewBox="0 0 26 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.09205 0.188286C3.69205 3.65633 0.692057 7.69306 0.0920572 12.2985C-0.842364 19.4676 5.56878 22.9766 8.81739 19.824C12.066 16.6715 10.119 12.6692 7.76679 11.5749C5.4146 10.4805 3.97604 10.8621 4.22703 9.39983C4.47803 7.9376 7.82416 3.88509 10.7644 1.99761C10.8684 1.90891 10.9348 1.78392 10.95 1.64804C10.9652 1.51217 10.928 1.37561 10.8462 1.26613L10.119 0.320238C9.80344 -0.0899608 9.50081 -0.0741842 9.09205 0.187569M23.3099 0.188286C17.9099 3.65633 14.9099 7.69306 14.3099 12.2985C13.3748 19.4676 19.7859 22.9766 23.0345 19.824C26.2831 16.6715 24.3361 12.6692 21.9832 11.5749C19.6303 10.4805 18.1924 10.8621 18.4434 9.39983C18.6944 7.9376 22.0413 3.88509 24.9815 1.99761C25.0854 1.90881 25.1517 1.78377 25.1667 1.6479C25.1818 1.51203 25.1445 1.37553 25.0625 1.26613L24.3361 0.320238C24.0206 -0.0899608 23.7179 -0.0741842 23.3099 0.187569" fill="#232222"/>
+            </svg>
+          </div>
+          <div class="reviews-highlight-section__review-text">
+            {{ section.settings.review_text }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+      <div class="reviews-highlight-section__button">
+        <a href="{{ section.settings.button_link }}" class="button hover:animate-icon-inline">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .reviews-highlight-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: white;
+    text-align: center;
+    font-family: 'Kumbh Sans', sans-serif;
+  }
+
+  .reviews-highlight-section__container {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .reviews-highlight-section__headline {
+    color: #373a36;
+    font-size: 34px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .reviews-highlight-section__headline em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 40px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: -2%;
+  }
+
+  .reviews-highlight-section__customer-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    opacity: 1;
+  }
+
+  .reviews-highlight-section__customer-image {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 2px solid #b2abaa;
+    position: relative;
+  }
+
+  .reviews-highlight-section__customer-image::before {
+    content: none; /* remove overlay effect */
+  }
+
+  .reviews-highlight-section__customer-image:not(:first-child) {
+    margin-left: -12px;
+  }
+
+  .reviews-highlight-section__customer-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .reviews-highlight-section__review {
+    margin-bottom: 30px;
+  }
+
+  .reviews-highlight-section__review-row {
+    display: flex;
+    justify-content: center;
+    gap: 11px;
+  }
+
+  .reviews-highlight-section__quote-icon {
+    color: #232222;
+    margin-left: 8px;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .reviews-highlight-section__review-text {
+    color: #373936;
+    font-size: 14px;
+    line-height: 1.21;
+    max-width: 286px;
+    margin: 0;
+    position: relative;
+    padding: 0;
+    text-align: center;
+  }
+
+  .reviews-highlight-section__review-text::before {
+    display: none; /* Remove the line above text in row layout */
+  }
+
+  .reviews-highlight-section__button {
+    opacity: 1;
+  }
+
+  .reviews-highlight-section__button .button {
+    min-width: 196px;
+    height: 37px;
+    padding: 0 11px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+  }
+
+  @media (min-width: 768px) {
+    .reviews-highlight-section {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .reviews-highlight-section__headline {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .reviews-highlight-section__customer-images {
+      margin-bottom: 20px;
+    }
+
+    .reviews-highlight-section__customer-image {
+      width: 44px;
+      height: 44px;
+    }
+
+    .reviews-highlight-section__customer-image:not(:first-child) {
+      margin-left: -15px;
+    }
+
+    .reviews-highlight-section__headline em {
+      font-size: 47px;
+    }
+
+    .reviews-highlight-section__review {
+      margin-bottom: 40px;
+    }
+
+    .reviews-highlight-section__review-text {
+      font-size: 16px;
+      max-width: 400px;
+    }
+    .reviews-highlight-section__review-row {
+      justify-content: center;
+
+      gap: 10px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Reviews Highlight",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<p>Over 1M Rings <em>Sold</em></p>"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline Size Mobile",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline Size Desktop",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Customer Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "customer_image_1",
+      "label": "Customer Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "customer_image_2",
+      "label": "Customer Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "customer_image_3",
+      "label": "Customer Image 3"
+    },
+    {
+      "type": "header",
+      "content": "Review"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Review Text",
+      "default": "Love this ring! It's really comfortable and customer service was outstanding with helping me exchange it for the correct size!"
+    },
+
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "READ ALL REVIEWS"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Max Width",
+      "default": "1200",
+      "info": "Maximum width in pixels"
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "custom_classes",
+      "label": "Custom CSS Classes"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Highlight"
+    }
+  ]
+}
+{% endschema %}

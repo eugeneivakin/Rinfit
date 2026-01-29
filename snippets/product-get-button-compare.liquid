@@ -1,0 +1,22 @@
+{%- if customer and customer.metafields.compare -%}
+    {%- for item in customer.metafields.compare -%}
+        {%- assign compare_id = item[0] | abs -%}
+        {%- assign compare_handle = item[1] -%}
+        {%- if current_variant_id == compare_id and product.handle == compare_handle -%}
+            {%- assign present_in_compare = true -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
+<a href="/account" class="btn btn--text btn--status px-lg-6 js-store-lists-add-compare"
+    {% if present_in_compare %} data-button-status="added"{% endif %}
+    {%- if settings.product_enable_tooltips %}
+        data-js-tooltip
+        data-tippy-content="{{ 'products.product.tooltip.compare' | t }}"
+        data-tippy-placement="top"
+        data-tippy-distance="-3"
+    {%- endif -%}
+>
+    <i class="mb-1 ml-1">{% include 'icon-theme-039' %}</i>
+    <i class="mb-1 ml-1" data-button-content="added">{% include 'icon-theme-235' %}</i>
+</a>
+{%- assign present_in_compare = false -%}

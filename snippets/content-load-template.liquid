@@ -1,0 +1,43 @@
+{%- if content != blank -%}
+    {%- assign icons = '' -%}
+    {%- for icon_i in (1..235) -%}
+        {%- assign icon_numb = icon_i -%}
+        {%- unless icon_i > 99 -%}
+            {%- assign icon_numb = icon_numb | prepend: 0 -%}
+        {%- endunless -%}
+        {%- unless icon_i > 9 -%}
+            {%- assign icon_numb = icon_numb | prepend: 0 -%}
+        {%- endunless -%}
+        {% capture icons %}{{ icons }}|theme-{{ icon_numb }}{% endcapture %}
+    {%- endfor -%}
+    {%- for icon_i in (301..305) -%}
+        {% capture icons %}{{ icons }}|theme-{{ icon_i }}{% endcapture %}
+    {%- endfor -%}
+    {%- for icon_i in (1..46) -%}
+        {%- assign icon_numb = icon_i -%}
+        {%- unless icon_i > 9 -%}
+            {%- assign icon_numb = icon_numb | prepend: 0 -%}
+        {%- endunless -%}
+        {% capture icons %}{{ icons }}|dry-{{ icon_numb }}{% endcapture %}
+    {%- endfor -%}
+    {%- assign icons = icons | split: '|' -%}
+    {% capture content_html %}
+        {%- if content contains '[template:' -%}
+            {%- assign content_template_name = content | remove: '[template:' | remove: ']' | prepend: 'content-template.' -%}
+            {% include content_template_name %}
+        {%- else -%}
+            {{ content }}
+        {%- endif -%}
+    {% endcapture %}
+    {%- if content_html contains '[icon:' -%}
+        {%- for icon in icons -%}
+            {% capture icon_find %}[icon:{{ icon }}]{% endcapture %}
+            {%- if content_html contains icon_find -%}
+                {% capture icon_snippet %}icon-{{ icon }}{% endcapture %}
+                {% capture icon_html %}{% include icon_snippet %}{% endcapture %}
+                {%- assign content_html = content_html | replace: icon_find, icon_html -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endif -%}
+    {% include 'content-builder-insert' content: content_html %}
+{%- endif -%}

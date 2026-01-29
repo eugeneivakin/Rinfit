@@ -1,0 +1,6 @@
+{%- capture default_title -%}{{ 'products.product.default_variant_title' | t }}{%- endcapture -%}
+<select name="id" class="{% if product.variants.size == 1 and product.variants.first.title contains 'Default Title' %}d-none {% endif %}m-0" data-js-product-variants{% unless show_custom_options %}="control"{% endunless %}>
+    {%- for variant in product.variants -%}
+        <option{% if variant == current_variant and variant.available %} selected="selected"{% endif %}{% unless variant.available %} disabled="disabled"{% endunless %} value="{{ variant.id }}" class="product-variants-color-select-{{ current_variant_id }}" data-variant="{{ variant.title | replace: 'Default Title', default_title }}">{{ variant.title | replace: 'Default Title', default_title }}</option>
+    {%- endfor -%}
+</select>

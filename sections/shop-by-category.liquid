@@ -1,0 +1,363 @@
+<style>
+  .shop-by-category-{{ section.id }} {
+    padding: 20px 0;
+    background: #fff;
+  }
+  .shop-by-category-{{ section.id }} .swiper-wrapper-category > .swiper-slide {
+    width: auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shop-by-category-{{ section.id }} .swiper-wrapper-category > .swiper-slide img {
+    width: 100%;
+    height: 360px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .shop-by-category-{{ section.id }} .main-swiper-category {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 20px;
+  }
+  .shop-by-category-{{ section.id }} .swiper-button-next,
+  .shop-by-category-{{ section.id }} .swiper-button-prev {
+    display: none;
+  }
+  .shop-by-category-{{ section.id }} .swiper-pagination {
+    display: block !important;
+  }
+  .shop-by-category-{{ section.id }} .main-swiper-category .swiper-pagination {
+    position: relative;
+    margin-top: 30px;
+    text-align: center;
+  }
+  .shop-by-category-{{ section.id }} .main-swiper-category .swiper-pagination-bullet {
+    width: 62px;
+    height: 3px;
+    border-radius: 10px;
+    background: #dcdcdc;
+    opacity: 1;
+    margin: 0 4px;
+    transition: background 0.3s;
+    display: inline-block;
+  }
+  .shop-by-category-{{ section.id }} .main-swiper-category .swiper-pagination-bullet-active {
+    background: #6b6b6b;
+  }
+  .shop-by-category-{{ section.id }} .main-block-categories {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .shop-by-category-{{ section.id }} .button-all-category {
+    display: none;
+  }
+  .shop-by-category-{{ section.id }} .main-block-categories p {
+    line-height: 30px;
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 300;
+    font-size: 34px;
+    text-align: center;
+  }
+  .shop-by-category-{{ section.id }} .main-block-categories p em {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    font-size: 40px;
+    line-height: 30px;
+  }
+  .shop-by-category-{{ section.id }} .category-rectangle {
+    width: 100%;
+    height: 360px;
+    border-radius: 10px;
+    background: #e0e0e0;
+    display: block;
+  }
+  .shop-by-category-{{ section.id }} .category-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+  .shop-by-category-{{ section.id }} .category-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none;
+    color: #fff;
+    padding: 0 0 20px 0;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 2;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  }
+  .shop-by-category-{{ section.id }} .category-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    text-transform: uppercase;
+  }
+  .shop-by-category-{{ section.id }} .category-link-text {
+    font-family: 'Kumbh Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  }
+  .shop-by-category-{{ section.id }} section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  @media (min-width: 768px) {
+    .shop-by-category-{{ section.id }} {
+      padding: 14px 0;
+    }
+    .shop-by-category-{{ section.id }} .swiper-button-next,
+    .shop-by-category-{{ section.id }} .swiper-button-prev {
+      display: block;
+      position: absolute;
+      top: auto;
+      bottom: 125px;
+      transform: none;
+      z-index: 2;
+    }
+    .shop-by-category-{{ section.id }} .swiper-button-next {
+      right: -37px;
+    }
+    .shop-by-category-{{ section.id }} .swiper-button-prev {
+      left: -37px;
+    }
+    .shop-by-category-{{ section.id }} .main-swiper-category {
+      padding: 0;
+      width: fit-content;
+    }
+    .shop-by-category-{{ section.id }} .swiper-pagination {
+      display: none !important;
+    }
+      .shop-by-category-{{ section.id }} .main-block-categories {
+      margin-bottom: 40px;
+    }
+    .shop-by-category-{{ section.id }} .main-block-categories p {
+      font-size: 40px;
+    }
+    .shop-by-category-{{ section.id }} .main-block-categories p em {
+      font-size: 47px;
+      line-height: 30px;
+    }
+
+  .shop-by-category-{{ section.id }} .category-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    text-transform: capitalize;
+  }
+     .shop-by-category-{{ section.id }} .category-link-text {
+        text-decoration: none;
+        text-transform: uppercase;
+  }
+    .shop-by-category-{{ section.id }} .main-block-categories {
+      padding-left: 0px;
+    }
+    .shop-by-category-{{ section.id }} .main-block-categories,
+    .shop-by-category-{{ section.id }} .mySwiper-category.swiper {
+      max-width: 660px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .shop-by-category-{{ section.id }} .main-block-categories,
+    .shop-by-category-{{ section.id }} .mySwiper-category.swiper {
+      max-width: 900px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .shop-by-category-{{ section.id }} .main-block-categories,
+    .shop-by-category-{{ section.id }} .mySwiper-category.swiper {
+      max-width: 1282px;
+    }
+  }
+  .swiper-slide.category-main-swiper a{
+    overflow: hidden;
+    border-radius: 8px;
+  }
+.swiper-slide.category-main-swiper img {
+ transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.swiper-slide.category-main-swiper:hover img {
+  transform: scale(1.05);
+}
+</style>
+
+<section class="shop-by-category-{{ section.id }}">
+  <div class="main-block-categories">
+    {% if section.settings.title != blank %}
+      {{ section.settings.title }}
+    {% endif %}
+  </div>
+  <div class="main-swiper-category">
+    <div class="swiper mySwiper-category">
+      <div class="swiper-wrapper swiper-wrapper-category">
+        {% for block in section.blocks %}
+          <div class="swiper-slide category-main-swiper">
+            <a href="{{ block.settings.link }}" class="category-link">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: '600x600' }}" alt="{{ block.settings.title }}">
+              {% else %}
+                <div class="category-rectangle"></div>
+              {% endif %}
+              <div class="category-overlay">
+                <p class="category-title">{{ block.settings.title }}</p>
+                <span class="category-link-text">
+                  {{ section.settings.category_link_text }}
+                </span>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper-button-next"><img src="{{ 'Vector.svg' | asset_url }}" alt="Next"></div>
+    <div class="swiper-button-prev"><img src="{{ 'Vector.svg' | asset_url }}" alt="Prev"></div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    import('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js').then(() => {
+      new Swiper('.mySwiper-category', {
+        slidesPerView: 1.32,
+        spaceBetween: 10,
+        loop: false,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        },
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Shop by Category</p>"
+    },
+    {
+      "type": "text",
+      "id": "category_link_text",
+      "label": "Category Link Text",
+      "default": "Shop Now"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Category Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Category",
+      "settings": {
+        "title": "<p><em>Shop by</em> Category</p>"
+      },
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Rings",
+            "image": "shopify:\/\/shop_images\/rings.jpg",
+            "link": "/collections/rings"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Necklaces",
+            "image": "shopify:\/\/shop_images\/necklaces.jpg",
+            "link": "/collections/necklaces"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Bracelets",
+            "image": "shopify:\/\/shop_images\/bracelets.jpg",
+            "link": "/collections/bracelets"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Earrings",
+            "image": "shopify:\/\/shop_images\/earrings.jpg",
+            "link": "/collections/earrings"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
