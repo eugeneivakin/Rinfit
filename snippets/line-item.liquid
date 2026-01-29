@@ -179,11 +179,11 @@ quantity-input .quantity-selector__input{
         {%- assign has_womens_size = false -%}
 
         {%- for option in line_item.product.options_with_values -%}
-          {%- if option.name == "Select Men's Size" -%}
+          {%- if option.name == "Select Men's Size:" -%}
             {%- assign has_mens_size = true -%}
             {%- assign mens_option_name = "Men's Size" -%}
           {%- endif -%}
-          {%- if option.name == "Select Women's Size" -%}
+          {%- if option.name == "Select Women's Size:" -%}
             {%- assign has_womens_size = true -%}
             {%- assign womens_option_name = "Women's Size" -%}
           {%- endif -%}
@@ -193,10 +193,10 @@ quantity-input .quantity-selector__input{
           {%- assign mens_option_position = 0 -%}
           {%- assign womens_option_position = 0 -%}
           {%- for option in line_item.product.options_with_values -%}
-            {%- if option.name == "Select Men's Size" -%}
+            {%- if option.name == "Select Men's Size:" -%}
               {%- assign mens_option_position = option.position -%}
             {%- endif -%}
-            {%- if option.name == "Select Women's Size" -%}
+            {%- if option.name == "Select Women's Size:" -%}
               {%- assign womens_option_position = option.position -%}
             {%- endif -%}
           {%- endfor -%}
@@ -226,11 +226,11 @@ quantity-input .quantity-selector__input{
           {%- endif -%}
         {%- else -%}
           {%- if parts.size > 0 -%}
-            <div class="variant-color main-product">Color: {{ parts[0] }}</div>
+            <div class="variant-color main-product">{{ line_item.options_with_values[0].name }}: {{ parts[0] }}</div>
           {%- endif -%}
           
           {%- if parts.size > 1 -%}
-            <div class="variant-size main-product">Size: <span>{{ parts[1] }}</span></div>
+            <div class="variant-size main-product">{{ line_item.options_with_values[1].name }}: <span>{{ parts[1] }}</span></div>
           {%- endif -%}
         {%- endif -%}
       {%- endif -%}

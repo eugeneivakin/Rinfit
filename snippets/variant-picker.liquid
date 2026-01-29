@@ -156,12 +156,12 @@
           {%- assign has_color_option = true -%}
         {%- endif -%}
 
-        {%- if option.name == "Select Men's Size" -%}
+        {%- if option.name == "Select Men's Size:" -%}
           {%- assign has_mens_size_option = true -%}
           {%- assign has_size_option = true -%}
         {%- endif -%}
 
-        {%- if option.name == "Select Women's Size" -%}
+        {%- if option.name == "Select Women's Size:" -%}
           {%- assign has_womens_size_option = true -%}
           {%- assign has_size_option = true -%}
         {%- endif -%}
@@ -175,12 +175,12 @@
 
         <div class="two-sizes-product-option main-container-size-products">
           {%- for option in product.options_with_values -%}
-            {%- if option.name == "Select Men's Size" or option.name == "Select Women's Size" -%}
+            {%- if option.name == "Select Men's Size:" or option.name == "Select Women's Size:" -%}
               <div class="variant-picker__option v-stack gap-2">
                 <div class="variant-picker__option-info h-stack justify-between gap-2">
                   <div class="h-stack gap-1 main-option-size-name">
                     <div class="header-content-size">
-                      <span class="option-name">{{ option.name }}:<span class="main-option-size {% if option.name == "Select Men's Size" %}selected-select-men-s-size{% elsif option.name == "Select Women's Size" %}selected-select-women-s-size{% endif %}"></span></span>
+                      <span class="option-name">{{ option.name }}<span class="main-option-size {% if option.name == "Select Men's Size:" %}selected-select-men-s-size{% elsif option.name == "Select Women's Size:" %}selected-select-women-s-size{% endif %}"></span></span>
                       <span id="openModal" class="main-table-size-guide main-modal-size-guide">find my size guide</span>
                     </div>
                   </div>
@@ -220,10 +220,10 @@
         {%- assign mens_option_position = 0 -%}
         {%- assign womens_option_position = 0 -%}
         {%- for option in product.options_with_values -%}
-          {%- if option.name == "Select Men's Size" -%}
+          {%- if option.name == "Select Men's Size:" -%}
             {%- assign mens_option_position = option.position -%}
           {%- endif -%}
-          {%- if option.name == "Select Women's Size" -%}
+          {%- if option.name == "Select Women's Size:" -%}
             {%- assign womens_option_position = option.position -%}
           {%- endif -%}
         {%- endfor -%}
@@ -265,8 +265,8 @@
               {% endfor %}
             ];
 
-            const mensSizeBtns = document.querySelectorAll('.variant-btn[data-option-name="Select Men\'s Size"]');
-            const womensSizeBtns = document.querySelectorAll('.variant-btn[data-option-name="Select Women\'s Size"]');
+            const mensSizeBtns = document.querySelectorAll('.variant-btn[data-option-name="Select Men\'s Size:"]');
+            const womensSizeBtns = document.querySelectorAll('.variant-btn[data-option-name="Select Women\'s Size:"]');
             const mensSizeSpan = document.querySelector('.selected-select-men-s-size');
             const womensSizeSpan = document.querySelector('.selected-select-women-s-size');
 
@@ -624,74 +624,75 @@
           {%- endif -%}
         {%- else -%}
           <div class="two-sizes-product-option">
-
-            <div class="variant-picker__option v-stack gap-2">
-              <div class="variant-picker__option-info h-stack justify-between gap-2">
-                <div class="h-stack gap-1 main-option-size-name">
-                  <div class="header-content-size">
-                    <span class="option-name"> {{ option.name }}:<span class="main-option-size"></span> </span>
-                    <span id="openModal" class="main-table-size-guide main-modal-size-guide ">find my size guide</span>
+            {%- for option in product.options_with_values -%}
+              <div class="variant-picker__option v-stack gap-2">
+                <div class="variant-picker__option-info h-stack justify-between gap-2">
+                  <div class="h-stack gap-1 main-option-size-name">
+                    <div class="header-content-size">
+                      <span class="option-name"> {{ option.name }}:<span class="main-option-size"></span> </span>
+                      <span id="openModal" class="main-table-size-guide main-modal-size-guide ">find my size guide</span>
+                    </div>
+                    {%- if resolved_option_selector_style == 'swatch'
+                      or resolved_option_selector_style == 'variant_image'
+                    -%}
+                      <span class="selected-value">{{ option.selected_value }}</span>
+                    {%- endif -%}
                   </div>
-                  {%- if resolved_option_selector_style == 'swatch'
-                    or resolved_option_selector_style == 'variant_image'
-                  -%}
-                    <span class="selected-value">{{ option.selected_value }}</span>
+  
+                  {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
+                    {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
+  
+                    <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
+                      {{- 'product.general.size_chart' | t -}}
+                    </button>
+  
+                    <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
+                      <span class="h5" slot="header">{{ size_chart_page.title }}</span>
+                      <div class="prose">
+                        {{- size_chart_page.content -}}
+                      </div>
+                    </x-modal>
                   {%- endif -%}
                 </div>
-
-                {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
-                  {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
-
-                  <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
-                    {{- 'product.general.size_chart' | t -}}
-                  </button>
-
-                  <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
-                    <span class="h5" slot="header">{{ size_chart_page.title }}</span>
-                    <div class="prose">
-                      {{- size_chart_page.content -}}
-                    </div>
-                  </x-modal>
-                {%- endif -%}
+  
+                {%- assign list_classes = '' -%}
+  
+                {%- case resolved_option_selector_style -%}
+                  {%- when 'swatch', 'variant_image', 'block', 'block_swatch' -%}
+                    {%- assign list_classes = 'h-stack gap-2.5 wrap' -%}
+                {%- endcase -%}
+  
+                <div class="variant-picker__option-values {{ list_classes }}">
+                  {%- for option_value in option.values -%}
+                    {%- if hide_sold_out_variants == false or option_value.available or option_value.selected -%}
+                      <button
+                        type="button"
+                        class="variant-btn "
+                        data-option-position="{{ option.position }}"
+                        data-option-value="{{ option_value.id }}"
+                        {% if option_value.product_url != blank %}
+                          data-product-url="{{ option_value.product_url | escape }}"
+                        {% endif %}
+                        {% if option_value.available == false %}
+                          disabled
+                        {% endif %}
+                      >
+                        <span>{{ option_value }}</span>
+                        {%- if option_value.available == false -%}
+                          <span>
+                            {%- if option_value.variant == null -%}
+                              {{- 'product.general.unavailable_button' | t -}}
+                            {%- else -%}
+                              {{- 'product.general.sold_out_badge' | t -}}
+                            {%- endif -%}
+                          </span>
+                        {%- endif -%}
+                      </button>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
               </div>
-
-              {%- assign list_classes = '' -%}
-
-              {%- case resolved_option_selector_style -%}
-                {%- when 'swatch', 'variant_image', 'block', 'block_swatch' -%}
-                  {%- assign list_classes = 'h-stack gap-2.5 wrap' -%}
-              {%- endcase -%}
-
-              <div class="variant-picker__option-values {{ list_classes }}">
-                {%- for option_value in option.values -%}
-                  {%- if hide_sold_out_variants == false or option_value.available or option_value.selected -%}
-                    <button
-                      type="button"
-                      class="variant-btn "
-                      data-option-position="{{ option.position }}"
-                      data-option-value="{{ option_value.id }}"
-                      {% if option_value.product_url != blank %}
-                        data-product-url="{{ option_value.product_url | escape }}"
-                      {% endif %}
-                      {% if option_value.available == false %}
-                        disabled
-                      {% endif %}
-                    >
-                      <span>{{ option_value }}</span>
-                      {%- if option_value.available == false -%}
-                        <span>
-                          {%- if option_value.variant == null -%}
-                            {{- 'product.general.unavailable_button' | t -}}
-                          {%- else -%}
-                            {{- 'product.general.sold_out_badge' | t -}}
-                          {%- endif -%}
-                        </span>
-                      {%- endif -%}
-                    </button>
-                  {%- endif -%}
-                {%- endfor -%}
-              </div>
-            </div>
+            {%- endfor -%}
           </div>
 
           <script>
