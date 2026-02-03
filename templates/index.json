@@ -20,7 +20,7 @@
             "main_text": "Built for Comfort. Made to Move.",
             "main_description": "<p>Silicone Rings that fit your Lifestyle</p>",
             "button_text": "SHOP OUR SPARK COLLECTION",
-            "button_url": "shopify://pages/ring-size-guide",
+            "button_url": "shopify://collections/silicone-rings",
             "content_alignment": "left",
             "color_text": "#807371",
             "color_text_btn": "#e9e9e9",
@@ -38,7 +38,7 @@
             "main_text": "Made to Sparkle. Built to Flex.",
             "main_description": "<p>The New Ring Collection Is Here</p>",
             "button_text": "SHOP THE DROP",
-            "button_url": "shopify://products/his-and-hers-silicone-wedding-ring-bundle-set-32",
+            "button_url": "shopify://collections/new-arrivals",
             "content_alignment": "center",
             "color_text": "#ffffff",
             "color_text_btn": "#373a36",
@@ -56,7 +56,7 @@
             "main_text": "Cosmic Vibes.  Everyday Wear.",
             "main_description": "<p>Meet the New Collection that Sparkles Daily.</p>",
             "button_text": "SHOP THE STARLIGHT STACK",
-            "button_url": "#",
+            "button_url": "shopify://collections/stars",
             "content_alignment": "left",
             "color_text": "#ffffff",
             "color_text_btn": "#373a36",
@@ -736,7 +736,7 @@
         "collection": "couture-collection",
         "button_text": "SHOP ALL",
         "button_text_cart": "QUICK BUY",
-        "button_link": "shopify://collections",
+        "button_link": "shopify://collections/couture-collection",
         "top_padding": 0,
         "bottom_padding": 20
       }
@@ -841,7 +841,7 @@
       "settings": {
         "title": "<p>Shop By Collections</p>",
         "button_text": "SHOP ALL",
-        "button_url": "shopify://collections/all"
+        "button_url": "shopify://collections"
       }
     },
     "section_tiktok_FaHpBj": {

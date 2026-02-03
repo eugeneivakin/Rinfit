@@ -17,7 +17,7 @@
       "settings": {
         "announcement_text": "<p>FREE STANDARD CYPRUS SHIPPING W/ $50.</p>",
         "button_text": "SHOP NOW",
-        "button_url": "#",
+        "button_url": "shopify://collections",
         "show_close_button": true,
         "text_size_desktop": 12,
         "text_size_mobile": 12,

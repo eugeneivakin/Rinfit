@@ -181,7 +181,9 @@
                   <div class="h-stack gap-1 main-option-size-name">
                     <div class="header-content-size">
                       <span class="option-name">{{ option.name }}<span class="main-option-size {% if option.name == "Select Men's Size:" %}selected-select-men-s-size{% elsif option.name == "Select Women's Size:" %}selected-select-women-s-size{% endif %}"></span></span>
-                      <span id="openModal" class="main-table-size-guide main-modal-size-guide">find my size guide</span>
+                      {% if forloop.first %}
+                        <span id="openModal" class="main-table-size-guide main-modal-size-guide">find my size guide</span>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
@@ -946,8 +948,8 @@
   </div>
 </div>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> {% endcomment %}
 
 <div class="modal section-modal-size" id="sizeGuideModal">
   <div class="modal-content modal-content-size">
