@@ -76,13 +76,48 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #373A3699;
+  background: #373a3699;
   width: 34px;
   height: 34px;
-  border-radius: 50%;
+  border-radius: 17px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding-right: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+}
+.main-link-video:hover {
+  background: #373a36cc;
+  width: 130px;
+  padding-left: 14px;
+}
+.main-link-video img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+}
+.main-link-video__text {
+  position: static;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  pointer-events: auto;
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+}
+.main-link-video:hover .main-link-video__text {
+  opacity: 1;
+  max-width: 90px;
 }
 @media (min-width: 768px){
   .main-link-video{
@@ -220,6 +255,17 @@
     gap: 10px;
     padding: 12px;
 }
+.continer-bottom-tiktok:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.tiktok-product__arrow {
+  align-self: center;
+  visibility: hidden;
+}
+
+.continer-bottom-tiktok:hover .tiktok-product__arrow {
+  visibility: visible;
+}
 .main-slide-tiktok{
     font-family: "Kumbh Sans", sans-serif;
     font-size: 13px;
@@ -258,8 +304,8 @@
     left: 0;
     border: 1px solid #37393633;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,8 +317,8 @@
     top: 50%;
     transform: translateY(-50%);
     border: 1px solid #37393633;
-    width: 24px;
-    height: 24px;
+    width: 44px;
+    height: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
