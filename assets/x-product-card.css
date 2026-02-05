@@ -1,0 +1,36 @@
+.x-product-card {
+  font: 14px/1.5715 "Kumbh Sans", sans-serif;
+  gap: 20px;
+}
+.x-product-card .product-card__media {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.x-product-card .product-card__info {
+  justify-items: stretch;
+  gap: 20px;
+  text-align: left;
+}
+.x-product-card .conatainer-first-star {
+  min-height: 0;
+}
+.x-product-card .product-card__info :is(.price-list, .rating-badge) {
+  justify-content: start;
+}
+.x-product-card .rating-badge {
+  font-size: 12px;
+  line-height: 1;
+}
+.x-product-card .rating-badge__stars {
+  color: #deae4a;
+}
+.x-product-card .rating-badge__stars svg {
+  display: none;
+  width: 14px;
+}
+.x-product-card .rating-badge__stars svg:first-child {
+  display: inline;
+}
+.x-product-card .rating-badge__stars svg path {
+  fill: currentColor;
+}

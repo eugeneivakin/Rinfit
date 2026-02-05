@@ -1,0 +1,60 @@
+@use "mixins/media" as *;
+
+body {
+  max-width: 390px;
+
+  @include xs {
+    max-width: none;
+  }
+}
+
+.section-x-featured-collections {
+  --heading-text-transform: capitalize;
+  --heading-letter-spacing: 0;
+
+  .section-heading {
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: nowrap;
+    // justify-content: space-between;
+    // align-content: flex-start;
+    // align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    gap: 1rem;
+
+    h2 {
+      font:
+        300 34px/1 "Kumbh Sans",
+        sans-serif;
+      margin: 0;
+      text-align: center;
+
+      > em,
+      > strong {
+        font-family: "Playfair Display", serif;
+        font-size: 40px;
+      }
+    }
+
+    .section-heading__view-all {
+      display: none;
+
+      @include md {
+        display: block;
+      }
+    }
+  }
+
+  product-list {
+    + .section-heading__view-all {
+      @include md {
+        display: none;
+      }
+    }
+  }
+}

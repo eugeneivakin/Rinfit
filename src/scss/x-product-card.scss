@@ -1,0 +1,49 @@
+@use "mixins/media" as *;
+
+.x-product-card {
+  font:
+    14px/1.5715 "Kumbh Sans",
+    sans-serif;
+  gap: 20px;
+
+  .product-card__media {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .product-card__info {
+    justify-items: stretch;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .conatainer-first-star {
+    min-height: 0;
+  }
+
+  .product-card__info :is(.price-list, .rating-badge) {
+    justify-content: start;
+  }
+
+  .rating-badge {
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .rating-badge__stars {
+    color: #deae4a;
+
+    svg {
+      display: none;
+      width: 14px;
+      
+      &:first-child {
+        display: inline;
+      }
+
+      path {
+        fill: currentColor;
+      }
+    }
+  }
+}
