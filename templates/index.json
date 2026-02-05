@@ -733,10 +733,10 @@
       "name": "Collection products",
       "settings": {
         "title": "<p>Save With Sets</p>",
-        "collection": "couture-collection",
+        "collection": "bundle-sets",
         "button_text": "SHOP ALL",
         "button_text_cart": "QUICK BUY",
-        "button_link": "shopify://collections/couture-collection",
+        "button_link": "shopify://collections/bundle-sets",
         "top_padding": 0,
         "bottom_padding": 20
       }
