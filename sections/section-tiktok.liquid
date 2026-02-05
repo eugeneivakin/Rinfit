@@ -16,6 +16,7 @@
                                 </div>
                                 {% if block.settings.main_url != blank %}
                                     <a class="main-link-video" href='{{ block.settings.main_url }}'>
+                                        <span class="main-link-video__text">{{ 'sections.shop_the_look.view_product' | t }}</span>
                                         <img src="{{ 'Vector112.svg' | asset_url }}" alt="Icon"/>
                                     </a>
                                 {% endif %}
@@ -50,6 +51,9 @@
                                             {{ block.settings.main_product.price | money }}
                                         </span>
                                     {% endif %}
+                                </div>
+                                <div class="tiktok-product__arrow">
+                                    {{ "VectorModal.svg" | asset_url | img_tag: "Next" }}
                                 </div>
                             </div>
                         </div>
@@ -90,14 +94,6 @@ function initSwiper(loopEnabled) {
             768: { slidesPerView: 3 },
             1024: { slidesPerView: 3 },
             1440: { slidesPerView: 5 }
-        },
-        on: {
-            init: function () {
-                setTimeout(() => playVideoInActive(this), 100);
-            },
-            slideChange: function () {
-                playVideoInActive(this);
-            }
         }
     });
 }
@@ -106,42 +102,6 @@ function destroySwiper() {
     if (swiper && !swiper.destroyed) {
         swiper.destroy(true, true);
         swiper = null;
-    }
-}
-
-function playVideoInActive(swiperInstance) {
-    const slides = swiperInstance.slides;
-
-    slides.forEach(slide => {
-        const video = slide.querySelector('video');
-        const playBtn = slide.querySelector('.playBtn');
-        const pauseBtn = slide.querySelector('.pauseBtn');
-
-        if (video) {
-            video.pause();
-            video.currentTime = 0;
-            video.muted = true;
-            if (playBtn) playBtn.style.display = 'inline-block';
-            if (pauseBtn) pauseBtn.style.display = 'none';
-        }
-    });
-
-    const activeSlide = slides[swiperInstance.activeIndex];
-    if (activeSlide) {
-        const activeVideo = activeSlide.querySelector('video');
-        const playBtn = activeSlide.querySelector('.playBtn');
-        const pauseBtn = activeSlide.querySelector('.pauseBtn');
-
-        if (activeVideo && isInViewport(activeSlide)) {
-            activeVideo.play().catch(err => console.log('Відео не запустилось автоматично', err));
-
-            const enableSound = () => {
-                activeVideo.muted = false;
-                activeVideo.play();
-            };
-            activeVideo.addEventListener('click', enableSound, { once: true });
-            if (playBtn) playBtn.addEventListener('click', enableSound, { once: true });
-        }
     }
 }
 

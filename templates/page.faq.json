@@ -83,104 +83,152 @@
           "type": "faq",
           "settings": {
             "category": "Product",
-            "question": "What are Rinfit Rings?",
-            "answer": "<p>Your answer text</p>"
+            "question": "How long does domestic shipping and processing take?",
+            "answer": "<p>It may take us up to business days (except for Saturday, Sunday, and Holidays) to process in-stock items.</p><p>For shipping, it may take up to 3-8 days (depending on the carrier).</p>"
           }
         },
         "faq_rhAJwf": {
           "type": "faq",
           "settings": {
             "category": "Product",
-            "question": "What kind of material is used to make Rinfit rings?",
-            "answer": "<p>Your answer text</p>"
+            "question": "How long does international shipping and processing take?",
+            "answer": "<p>Processing will take up to 3 business days (except for Saturday, Sunday,<br/> and Holidays) and shipping may take up to 7-30 days (depending on the <br/>carrier and the destination).</p>"
           }
         },
         "faq_3wiGDh": {
           "type": "faq",
           "settings": {
             "category": "Product",
-            "question": "Are Rinfit rings true to size?",
-            "answer": "<p>Your answer text</p>"
+            "question": "Where's my tracking number?",
+            "answer": "<p>Once the order has been shipped out, you’ll receive a shipping confirmation email with a tracking number linked to the carrier.</p>"
           }
         },
-        "faq_tytAAN": {
+        "faq_nHdJFp": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Where can I find my order history?",
+            "answer": "<p>When creating an account on our website, you can find all of your past <br/>and current orders e.g. If you create your account with the same email <br/>address you’ve used to place previous orders, all orders that you have <br/>placed prior to creating your account will also appear on your orders <br/>tab after creating your account.</p>"
+          }
+        },
+        "faq_Fj8zJp": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "What if I put the wrong shipping address?",
+            "answer": "<p>If changes are needed to your shipping address, it can be made in two ways.</p><p>If your order has not been shipped yet, you can contact us at our customer service email: <a href=\"mailto:support@rinfit.com\" target=\"_blank\">support@rinfit.com</a>. Just send us your order number and the correct shipping address to see if a change can be made.</p><p>If your order has already been shipped, you can contact the carrier, provide them with your tracking number, and ask them to redirect your package.</p>"
+          }
+        },
+        "faq_VpFJTh": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Where do you ship from?",
+            "answer": "<p>Shipments are made from our shipping facilities in Boston, MA.</p>"
+          }
+        },
+        "faq_f7TXf6": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "How much is shipping?",
+            "answer": "<p>Shipping rates may vary depending on the carrier, the destination, and <br/>package weight. The average cost for regular order with domestic <br/>shipments is about $4.</p>"
+          }
+        },
+        "faq_XK4LB6": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Are Rinfit rings true to size?",
+            "answer": "<p>Rinfit rings are true to size and have the same sizing as a traditional metal ring.</p>"
+          }
+        },
+        "faq_M46cyg": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Are my Rinfit rings protected with a Lifetime warranty?",
+            "answer": "<p>All Rinfit rings come with a lifetime warranty that covers cases of breakage and tears.</p><p>In a case of a justified and approved warranty claim, a new ring(s) that matches the one(s) you’ve purchased will be sent to you *free of charge as soon as possible. </p><p>Lifetime warranty only applies with an original receipt or other proof of purchase.</p><p>To get service for your Rinfit rings contact our support team at <a href=\"mailto:support@rinfit.com\" target=\"_blank\">support@rinfit.com</a>.</p><p>In your claim, please provide the following information:</p><ul><li>Your order number from where you purchased the rings.</li><li>Where you purchased the rings.</li><li>A photo of the ring in question.</li></ul><p>*Shipping cost not included.</p><p>**The lifetime warranty only covers the original ring and does not cover the replacement rings.</p>"
+          }
+        },
+        "faq_3cB737": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Can I sell Rinfit at my store/gym?",
+            "answer": "<p><br/>If you are interested in joining us as an official Rinfit seller, please contact us at <a href=\"mailto:support@rinfit.com\" target=\"_blank\">support@rinfit.com</a> with your name and contact details and we will get back to you.<br/><br/></p>"
+          }
+        },
+        "faq_qmABNk": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "What currency does Rinfit’s website list in?",
+            "answer": "<p><br/>Our prices are in USD.<br/><br/></p>"
+          }
+        },
+        "faq_zaw9Dy": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Can I return my ring?",
+            "answer": "<p>We accept returns on rings that are intact within 30 days from purchase.</p><p>Shipping costs are non-refundable</p>"
+          }
+        },
+        "faq_9ExkjA": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "What does Rinfit’s “Perfect Fit Guaranty” policy mean?",
+            "answer": "<p>We want your Rinfit rings to fit you PERFECTLY!</p><p>So if you happen to get the wrong size, just contact us at <a href=\"mailto:support@rinfit.com\" target=\"_blank\">support@rinfit.com</a> within 30 days from when you received the rings.</p><p>Send us your order number and which size you need and we’ll assist you with getting the perfect size for you*.</p><p><br/>*Shipping cost not included.</p>"
+          }
+        },
+        "faq_QMDHyz": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "My order hasn't arrived yet, can you help me find my order?",
+            "answer": "<p><br/>If your order did not arrive and the tracking number does not show any new information about it, just contact us at <a href=\"mailto:support@rinfit.com\" target=\"_blank\">support@rinfit.com</a> with your order number and we’ll assist you.<br/><br/></p>"
+          }
+        },
+        "faq_7XHXYf": {
           "type": "faq",
           "settings": {
             "category": "Product",
             "question": "What if I am a half-size?",
-            "answer": "<p>Your answer text</p>"
+            "answer": "<p>Silicone rings do not have half sizes because silicone, as a flexible material, may stretch up to a half-size.</p><p>So  if you're a half-size and you get a size down it may feel a bit tight at first but then it should stretch up to a half-size and should fit you better.</p><p>This may take a week or two if you wear them on a daily basis.</p><p>Never the less, we're always here for you and we do offer a free size exchange in the first 30 days from purchase.<br/><br/></p>"
           }
         },
-        "faq_tpFTgg": {
+        "faq_mmyCLJ": {
           "type": "faq",
           "settings": {
             "category": "Product",
             "question": "Is it safe if I'm allergic to silicone?",
-            "answer": "<p>Your answer text</p>"
+            "answer": "<p><br/>If you have a potential allergy to silicone, we recommend consulting a doctor before wearing silicone rings.<br/><br/></p>"
           }
         },
-        "faq_D8LR78": {
+        "faq_PHYTat": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "What are Rinfit Rings?",
+            "answer": "<p>Rinfit rings are made out of high-quality and lightweight silicone. <br/>Its durability can withstand force your hands deal with. It comes in <br/>various designs each with various colors.</p><p>Rinfit rings are also resistant to oils and solvents and are created to break during extreme force to keep your finger safe.</p>"
+          }
+        },
+        "faq_6TmaFE": {
           "type": "faq",
           "settings": {
             "category": "Product",
             "question": "How do I know what ring size I should buy?",
-            "answer": "<p>Your answer text</p>"
+            "answer": "<p>Your silicone ring size is pretty similar to your traditional ring size. To find out you can check out our <a href=\"https://www.rinfit.com/pages/ring-size-guide\">ring size guide</a> here.</p><p>Are the rings heat resistant? </p><p>Silicone rings are non-conductive and do not transfer heat or cold to your finger.</p>"
           }
         },
-        "faq_x7wAq3": {
+        "faq_aXiiMt": {
           "type": "faq",
           "settings": {
             "category": "Product",
-            "question": "Are the rings heat resistant?",
-            "answer": "<p>Your answer text</p>"
-          }
-        },
-        "faq_thGNgQ": {
-          "type": "faq",
-          "settings": {
-            "category": "Orders",
-            "question": "My order hasn't arrived yet, can you help me find my order?",
-            "answer": "<p>Your answer text</p>"
-          }
-        },
-        "faq_3rjtih": {
-          "type": "faq",
-          "settings": {
-            "category": "Orders",
-            "question": "Where can I find my order history?",
-            "answer": "<p>Your answer text</p>"
-          }
-        },
-        "faq_rA6Hxm": {
-          "type": "faq",
-          "settings": {
-            "category": "Orders",
-            "question": "Are my Rinfit rings protected with a Lifetime warranty?",
-            "answer": "<p>Your answer text</p>"
-          }
-        },
-        "faq_CCQCWx": {
-          "type": "faq",
-          "settings": {
-            "category": "shipping",
-            "question": "Your question",
-            "answer": "<p>Your answer text</p>"
-          }
-        },
-        "faq_JafQTe": {
-          "type": "faq",
-          "settings": {
-            "category": "payment",
-            "question": "Your question payment",
-            "answer": "<p>Your answer text</p>"
-          }
-        },
-        "faq_Ptf6BP": {
-          "type": "faq",
-          "settings": {
-            "category": "contact",
-            "question": "Your question payment contact",
-            "answer": "<p>Your answer text</p>"
+            "question": "Can I be a Rinfit ambassador?",
+            "answer": "<p><br/>Yes! Please tell us about yourself and your audience by emailing us at <a href=\"mailto:support@rinfit.com\" target=\"_blank\">support@rinfit.com</a></p>"
           }
         }
       },
@@ -188,16 +236,22 @@
         "faq_9Fgigq",
         "faq_rhAJwf",
         "faq_3wiGDh",
-        "faq_tytAAN",
-        "faq_tpFTgg",
-        "faq_D8LR78",
-        "faq_x7wAq3",
-        "faq_thGNgQ",
-        "faq_3rjtih",
-        "faq_rA6Hxm",
-        "faq_CCQCWx",
-        "faq_JafQTe",
-        "faq_Ptf6BP"
+        "faq_nHdJFp",
+        "faq_Fj8zJp",
+        "faq_VpFJTh",
+        "faq_f7TXf6",
+        "faq_XK4LB6",
+        "faq_M46cyg",
+        "faq_3cB737",
+        "faq_qmABNk",
+        "faq_zaw9Dy",
+        "faq_9ExkjA",
+        "faq_QMDHyz",
+        "faq_7XHXYf",
+        "faq_mmyCLJ",
+        "faq_PHYTat",
+        "faq_6TmaFE",
+        "faq_aXiiMt"
       ],
       "name": "FAQ Tabs",
       "settings": {
