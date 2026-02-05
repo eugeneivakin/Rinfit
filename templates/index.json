@@ -20,7 +20,7 @@
             "main_text": "Built for Comfort. Made to Move.",
             "main_description": "<p>Silicone Rings that fit your Lifestyle</p>",
             "button_text": "SHOP OUR SPARK COLLECTION",
-            "button_url": "shopify://collections/silicone-rings",
+            "button_url": "shopify://collections",
             "content_alignment": "left",
             "color_text": "#807371",
             "color_text_btn": "#e9e9e9",
