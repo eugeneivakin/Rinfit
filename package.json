@@ -1,0 +1,36 @@
+{
+  "name": "crocketcoffee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:theme": "playwright test playwright/theme-deploy.spec.ts",
+    "test:coffee": "playwright test playwright/e2e-buy-product.spec.ts",
+    "test:subscription": "playwright test playwright/e2e-subscribe-save.spec.ts",
+    "gulp": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.1",
+    "dotenv": "^17.2.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-terser": "^2.1.0",
+    "gulp-webp": "^4.0.1",
+    "playwright": "^1.54.1"
+  },
+  "dependencies": {
+    "@rechargeapps/storefront-client": "^1.49.0",
+    "caniuse-lite": "^1.0.30001669",
+    "gulp-rename": "^2.0.0",
+    "gulp-wait": "^0.0.2",
+    "sass": "^1.63.6"
+  }
+}
