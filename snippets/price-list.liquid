@@ -64,6 +64,9 @@ Supported variables
           {{- variant.compare_at_price | money -}}
         {%- endif -%}
       </compare-at-price>
+      {%- assign discount_amount = variant.compare_at_price | minus: variant.price -%}
+      {%- assign discount_percent = discount_amount | times: 100 | divided_by: variant.compare_at_price -%}
+      <span class="price-discount">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- elsif line_item != blank -%}
     {%- comment -%}
@@ -91,6 +94,9 @@ Supported variables
           {{- line_item.original_price | money -}}
         {%- endif -%}
       </compare-at-price>
+      {%- assign discount_amount = line_item.original_price | minus: line_item.final_price -%}
+      {%- assign discount_percent = discount_amount | times: 100 | divided_by: line_item.original_price -%}
+      <span class="price-discount">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- elsif product != blank -%}
     {%- comment -%}
@@ -144,6 +150,9 @@ Supported variables
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
         {{- variant_compare_at_price -}}
       </compare-at-price>
+      {%- assign discount_amount = variant.compare_at_price | minus: variant.price -%}
+      {%- assign discount_percent = discount_amount | times: 100 | divided_by: variant.compare_at_price -%}
+      <span class="price-discount">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- else -%}
     {%- comment -%}
