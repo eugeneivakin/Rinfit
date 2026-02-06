@@ -166,7 +166,8 @@
       "available_colors_count": {
         "one": "{{ count }} color available",
         "other": "{{ count }} colors available"
-      }
+      },
+      "quick_buy": "Quick buy"
     },
     "gallery": {
       "close": "Close gallery",

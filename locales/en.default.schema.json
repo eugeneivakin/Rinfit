@@ -986,55 +986,55 @@
       "show_accelerated_buttons_info": "Configure accelerated payment buttons in your [payment settings](https://www.shopify.com/admin/settings/payments).",
       "show_shipping_estimator": "Show shipping estimator"
     },
-      "collections": {
-    "general": {
-      "link_title": "Browse our {{ title }} collection",
-      "empty_title": "Empty Category",
-      "empty_paragraph": "There are no products matching the selection.",
-      "empty_button": "CONTINUE SHOPPING"
-    },
-    "control": {
-      "sort_label": "Sort",
-      "sort_by": {
-        "manual": "Featured",
-        "best-selling": "Best Selling",
-        "price-ascending": "Price Ascending",
-        "price-descending": "Price Descending",
-        "created-ascending": "Date Ascending",
-        "created-descending": "Date Descending",
-        "title-ascending": "Name Ascending",
-        "title-descending": "Name Descending"
+    "collections": {
+      "general": {
+        "link_title": "Browse our {{ title }} collection",
+        "empty_title": "Empty Category",
+        "empty_paragraph": "There are no products matching the selection.",
+        "empty_button": "CONTINUE SHOPPING"
       },
-      "info": {
-        "more_limit": "Showing {{ from }}–{{ to }} of {{ count }} results",
-        "less_limit": "Showing {{ count }} results",
-        "result_single": "Showing 1 result",
-        "result_empty": "Empty result"
+      "control": {
+        "sort_label": "Sort",
+        "sort_by": {
+          "manual": "Featured",
+          "best-selling": "Best Selling",
+          "price-ascending": "Price Ascending",
+          "price-descending": "Price Descending",
+          "created-ascending": "Date Ascending",
+          "created-descending": "Date Descending",
+          "title-ascending": "Name Ascending",
+          "title-descending": "Name Descending"
+        },
+        "info": {
+          "more_limit": "Showing {{ from }}–{{ to }} of {{ count }} results",
+          "less_limit": "Showing {{ count }} results",
+          "result_single": "Showing 1 result",
+          "result_empty": "Empty result"
+        },
+        "view_length_label": "Show",
+        "button_sidebar": "SHOW FILTER"
       },
-      "view_length_label": "Show",
-      "button_sidebar": "SHOW FILTER"
+      "sidebar": {
+        "clear_all_tags": "Clear All",
+        "only_available": "Show only available",
+        "no_current_tags": "There are no current tags",
+        "no_collections": "There are no collections",
+        "no_tags": "There are no tags",
+        "no_colors": "There are no colors",
+        "no_vendors": "There are no vendors",
+        "no_product_types": "There are no product types",
+        "no_content": "There are no content"
+      },
+      "tooltip": {
+        "grid": "View of item"
+      }
     },
-    "sidebar": {
-      "clear_all_tags": "Clear All",
-      "only_available": "Show only available",
-      "no_current_tags": "There are no current tags",
-      "no_collections": "There are no collections",
-      "no_tags": "There are no tags",
-      "no_colors": "There are no colors",
-      "no_vendors": "There are no vendors",
-      "no_product_types": "There are no product types",
-      "no_content": "There are no content"
+    "list_collections": {
+      "collection_info": {
+        "one": "{{ count }} Product",
+        "other": "{{ count }} Products"
+      }
     },
-    "tooltip": {
-      "grid": "View of item"
-    }
-  },
-  "list_collections": {
-    "collection_info": {
-      "one": "{{ count }} Product",
-      "other": "{{ count }} Products"
-    }
-  },
     "main_collection": {
       "name": "Collection page",
       "quick_links_menu": "Quick links menu",
@@ -1743,6 +1743,22 @@
       "presets": {
         "video": {
           "name": "Video"
+        }
+      }
+    },
+    "x-featured_collections": {
+      "name": "Featured collections",
+      "blocks": {
+        "collection": {
+          "name": "Collection",
+          "collection": "Collection",
+          "title_info": "Default to collection title",
+          "default_link_url": "Default to collection URL"
+        }
+      },
+      "presets": {
+        "x-featured_collections": {
+          "name": "Featured collections"
         }
       }
     }

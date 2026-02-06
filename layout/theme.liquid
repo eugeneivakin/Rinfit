@@ -31,13 +31,6 @@
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     {%- endcomment -%}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-      rel="stylesheet"
-    >
-
     <link rel="canonical" href="{{ canonical_url }}">
 
     {% comment %}
@@ -51,6 +44,7 @@
     {%- endif -%}
 
     {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
+    {%- comment -%}
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {%- unless settings.heading_font.system? -%}
@@ -60,6 +54,7 @@
     {%- unless settings.text_font.system? -%}
       <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
     {%- endunless -%}
+    {%- endcomment -%}
 
     {%- render 'social-meta-tags' -%}
     {%- render 'microdata-schema' -%}
@@ -142,6 +137,12 @@
     {%- comment -%}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     {%- endcomment -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    >
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
   </body>
