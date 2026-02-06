@@ -1,4 +1,5 @@
 {%- if section.blocks.size > 0 -%}
+  <script src="{{ 'x-product-card.js' | asset_url }}" defer="defer"></script>
   {{ 'x-product-card.css' | asset_url | stylesheet_tag }}
   {{ 'x-featured-collections.css' | asset_url | stylesheet_tag }}
 
@@ -8,6 +9,11 @@
       --product-list-horizontal-spacing-factor: {{ section.settings.horizontal_spacing_factor }};
       --product-list-vertical-spacing-factor: {{ section.settings.vertical_spacing_factor }};
     }
+
+    #shopify-section-{{ section.id }} .product-list--carousel {
+        --product-list-calculated-column-gap: 10px;
+        --product-list-calculated-row-gap: 10px;
+      }
 
     @media screen and (max-width: 699px) {
       #shopify-section-{{ section.id }} .product-list--carousel {

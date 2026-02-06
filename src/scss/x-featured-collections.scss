@@ -1,16 +1,20 @@
 @use "mixins/media" as *;
 
-body {
-  max-width: 390px;
+// body {
+//   max-width: 390px;
 
-  @include xs {
-    max-width: none;
-  }
-}
+//   @include xs {
+//     max-width: none;
+//   }
+// }
 
 .section-x-featured-collections {
   --heading-text-transform: capitalize;
   --heading-letter-spacing: 0;
+
+  .color-scheme {
+    --text-color: 55, 58, 54;
+  }
 
   .section-heading {
     // display: flex;
@@ -27,6 +31,15 @@ body {
     align-items: stretch;
     gap: 1rem;
 
+    @include md {
+      // display: flex;
+      flex-direction: row;
+      // flex-wrap: nowrap;
+      justify-content: space-between;
+      align-content: flex-start;
+      align-items: flex-start;
+    }
+
     h2 {
       font:
         300 34px/1 "Kumbh Sans",
@@ -34,10 +47,19 @@ body {
       margin: 0;
       text-align: center;
 
+      @include md {
+        font-size: 40px;
+        text-align: left;
+      }
+
       > em,
       > strong {
         font-family: "Playfair Display", serif;
         font-size: 40px;
+
+        @include md {
+          font-size: 46px;
+        }
       }
     }
 
@@ -56,5 +78,11 @@ body {
         display: none;
       }
     }
+  }
+
+  .button {
+    --button-border-radius: 4px;
+    min-height: 37px;
+    padding-block: 0.25rem;
   }
 }
