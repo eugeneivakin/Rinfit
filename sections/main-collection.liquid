@@ -113,7 +113,7 @@ CSS
     width: 100%;
     margin: 0 auto;
   }
-  #shopify-section-{{ section.id }} {
+  .shopify-section--main-collection {
     --product-list-horizontal-spacing-factor: {{ section.settings.horizontal_spacing_factor }};
     --product-list-vertical-spacing-factor: {{ section.settings.vertical_spacing_factor }};
 
@@ -122,12 +122,12 @@ CSS
     --collection-items-per-row-large: 1;
   }
 
-  #shopify-section-{{ section.id }} .product-list {
+  .shopify-section--main-collection .product-list {
     --product-list-max-items-per-row-allowed: 99 !important; {% comment %}On collection page, we explicitly set a number of items so we don't want this{% endcomment %}
   }
 
   @media screen and (min-width: 700px) {
-    #shopify-section-{{ section.id }} {
+    .shopify-section--main-collection {
       {% comment %}On tablet, we do not have any sidebar, so we can fix it{% endcomment %}
       --collection-items-per-row-compact: 4;
       --collection-items-per-row-medium: 3;
@@ -136,7 +136,7 @@ CSS
   }
 
   @media screen and (min-width: 1000px) {
-    #shopify-section-{{ section.id }} {
+    .shopify-section--main-collection {
       {%- comment -%}Starting from 1000px it starts to get funky, as we can have or not the sidebar{%- endcomment -%}
 
       {%- if section.settings.filter_layout == 'sidebar' and show_filters -%}
@@ -150,7 +150,7 @@ CSS
       {%- endif -%}
     }
 
-    #shopify-section-{{ section.id }} .collection {
+    .shopify-section--main-collection .collection {
       {%- if section.settings.filter_layout == 'sidebar' and show_filters -%}
         --collection-grid-template: var(--collection-sidebar-width, 0) minmax(0,1fr);
       {%- endif -%}
@@ -158,7 +158,7 @@ CSS
   }
 
   @media screen and (min-width: 1400px) {
-    #shopify-section-{{ section.id }} {
+    .shopify-section--main-collection {
       {%- comment -%}Starting from 1400px we can afford having more content even in sidebar mode{%- endcomment -%}
 
       {%- if section.settings.filter_layout == 'sidebar' and show_filters -%}
