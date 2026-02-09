@@ -2,6 +2,11 @@
   --heading-text-transform: capitalize;
   --heading-letter-spacing: 0;
 }
+.section-x-featured-collections .container {
+  margin: 0 auto;
+  max-width: 1360px;
+  padding: 0 40px;
+}
 .section-x-featured-collections .color-scheme {
   --text-color: 55, 58, 54;
 }
@@ -57,8 +62,38 @@
     display: none;
   }
 }
+.section-x-featured-collections product-list .floating-controls-container__control {
+  --floating-controls-inset-inline: -2.125rem;
+  opacity: 1;
+  transform: none;
+}
+.section-x-featured-collections product-list .circle-button {
+  --circle-button-size: 26px;
+  color: rgba(55, 57, 54, 0.6);
+  border: 1px solid rgba(55, 57, 54, 0.2);
+  box-shadow: none;
+  color: rgba(55, 57, 54, 0.6);
+}
+.section-x-featured-collections product-list .circle-button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  visibility: visible;
+}
+.section-x-featured-collections product-list .circle-button > svg {
+  fill: none;
+  stroke: currentColor;
+  width: auto;
+}
 .section-x-featured-collections .button {
   --button-border-radius: 4px;
+  --button-letter-spacing: 0;
+  --button-background: 35, 34, 34;
+  --button-font: 600 0.875rem/1 "Kumbh Sans", sans-serif;
   min-height: 37px;
   padding-block: 0.25rem;
+}
+.section-x-featured-collections .button--outline {
+  --button-background: 55, 58, 54;
+  --border-color: 197, 193, 192;
+  min-height: 39px;
 }

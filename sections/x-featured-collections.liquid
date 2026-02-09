@@ -103,7 +103,7 @@
                     disabled
                   >
                     <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-                    {%- render 'icon' with 'arrow-left', direction_aware: true -%}
+                    {%- render 'icons', icon: 'arrow-left' -%}
                   </button>
                 </carousel-prev-button>
 
@@ -125,7 +125,7 @@
                     class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline"
                   >
                     <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-                    {%- render 'icon' with 'arrow-right', direction_aware: true -%}
+                    {%- render 'icons', icon: 'arrow-right' -%}
                   </button>
                 </carousel-next-button>
               </product-list>
