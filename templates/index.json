@@ -20,7 +20,7 @@
             "main_text": "Built for Comfort. Made to Move.",
             "main_description": "<p>Silicone Rings that fit your Lifestyle</p>",
             "button_text": "SHOP OUR SPARK COLLECTION",
-            "button_url": "shopify://collections",
+            "button_url": "shopify://pages/ring-size-guide",
             "content_alignment": "left",
             "color_text": "#807371",
             "color_text_btn": "#e9e9e9",
@@ -38,7 +38,7 @@
             "main_text": "Made to Sparkle. Built to Flex.",
             "main_description": "<p>The New Ring Collection Is Here</p>",
             "button_text": "SHOP THE DROP",
-            "button_url": "shopify://collections/new-arrivals",
+            "button_url": "shopify://products/his-and-hers-silicone-wedding-ring-bundle-set-32",
             "content_alignment": "center",
             "color_text": "#ffffff",
             "color_text_btn": "#373a36",
@@ -56,7 +56,7 @@
             "main_text": "Cosmic Vibes.  Everyday Wear.",
             "main_description": "<p>Meet the New Collection that Sparkles Daily.</p>",
             "button_text": "SHOP THE STARLIGHT STACK",
-            "button_url": "shopify://collections/stars",
+            "button_url": "#",
             "content_alignment": "left",
             "color_text": "#ffffff",
             "color_text_btn": "#373a36",
@@ -67,18 +67,12 @@
           }
         }
       },
-      "block_order": [
-        "heading_kxizrm",
-        "heading_BfNtW8",
-        "heading_fhhAyx"
-      ],
-      "disabled": true,
+      "block_order": ["heading_kxizrm", "heading_BfNtW8", "heading_fhhAyx"],
       "name": "Herro banner",
       "settings": {}
     },
     "explore_our_GqFJXM": {
       "type": "explore-our",
-      "disabled": true,
       "name": "Explore our",
       "settings": {
         "background_color": "#f4e1de",
@@ -92,36 +86,6 @@
         "bottom_padding": 60,
         "top_padding_mob": 15,
         "bottom_padding_mob": 0
-      }
-    },
-    "x_featured_collections_7VC7PP": {
-      "type": "x-featured-collections",
-      "blocks": {
-        "collection_3LDg6P": {
-          "type": "collection",
-          "settings": {
-            "collection": "best-sellers",
-            "products_count": 8,
-            "title": "Best <em><strong>sellers</strong></em>",
-            "link_url": "",
-            "link_text": "shop all"
-          }
-        }
-      },
-      "block_order": [
-        "collection_3LDg6P"
-      ],
-      "name": "t:sections.x-featured_collections.presets.x-featured_collections.name",
-      "settings": {
-        "color_scheme": "scheme-2",
-        "separate_section_with_border": false,
-        "hide_product_information": false,
-        "stack_products": false,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
-        "subheading": ""
       }
     },
     "collection_9TxCaj": {
@@ -139,7 +103,6 @@
     },
     "collection_Uw6HWG": {
       "type": "collection",
-      "disabled": true,
       "name": "Collection products",
       "settings": {
         "title": "<p>New Arrivals</p>",
@@ -205,10 +168,7 @@
           }
         }
       },
-      "block_order": [
-        "slide-1",
-        "slide-2"
-      ],
+      "block_order": ["slide-1", "slide-2"],
       "disabled": true,
       "settings": {
         "allow_transparent_header": true,
@@ -236,9 +196,7 @@
           }
         }
       },
-      "block_order": [
-        "collection-1"
-      ],
+      "block_order": ["collection-1"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -286,11 +244,7 @@
           }
         }
       },
-      "block_order": [
-        "column-1",
-        "column-2",
-        "column-3"
-      ],
+      "block_order": ["column-1", "column-2", "column-3"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -406,14 +360,7 @@
           }
         }
       },
-      "block_order": [
-        "collection-1",
-        "collection-2",
-        "collection-3",
-        "collection-4",
-        "collection-5",
-        "collection-6"
-      ],
+      "block_order": ["collection-1", "collection-2", "collection-3", "collection-4", "collection-5", "collection-6"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -453,10 +400,7 @@
           }
         }
       },
-      "block_order": [
-        "before",
-        "after"
-      ],
+      "block_order": ["before", "after"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -486,10 +430,7 @@
           }
         }
       },
-      "block_order": [
-        "image-1",
-        "image-2"
-      ],
+      "block_order": ["image-1", "image-2"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -579,11 +520,7 @@
           }
         }
       },
-      "block_order": [
-        "left_text_t9EVie",
-        "center_image_w8CHFp",
-        "right_text_wxYBxw"
-      ],
+      "block_order": ["left_text_t9EVie", "center_image_w8CHFp", "right_text_wxYBxw"],
       "disabled": true,
       "name": "Text Image Text",
       "settings": {
@@ -602,7 +539,6 @@
     },
     "image_with_text_section_wNi7Jn": {
       "type": "image-with-text-section",
-      "disabled": true,
       "name": "Gemstone Promo",
       "settings": {
         "image": "shopify://shop_images/image.png",
@@ -642,7 +578,6 @@
     },
     "reviews_highlight_TkdegG": {
       "type": "reviews-highlight",
-      "disabled": true,
       "name": "Reviews Highlight",
       "settings": {
         "headline": "<p>Over 1M rings Sold</p>",
@@ -693,13 +628,7 @@
           }
         }
       },
-      "block_order": [
-        "item_tcDWEU",
-        "item_eqtR9G",
-        "item_wbTJmJ",
-        "item_b4gxaR"
-      ],
-      "disabled": true,
+      "block_order": ["item_tcDWEU", "item_eqtR9G", "item_wbTJmJ", "item_b4gxaR"],
       "name": "Custom Marquee",
       "settings": {
         "static_on_desktop": true,
@@ -751,14 +680,7 @@
           }
         }
       },
-      "block_order": [
-        "category_XqBz9Q",
-        "category_fkqnPY",
-        "category_mPAgzB",
-        "category_ECcWPF",
-        "category_kETMMp"
-      ],
-      "disabled": true,
+      "block_order": ["category_XqBz9Q", "category_fkqnPY", "category_mPAgzB", "category_ECcWPF", "category_kETMMp"],
       "name": "Shop by Category",
       "settings": {
         "title": "<p>Shop by Category</p>",
@@ -767,21 +689,19 @@
     },
     "collection_C3X8RM": {
       "type": "collection",
-      "disabled": true,
       "name": "Collection products",
       "settings": {
         "title": "<p>Save With Sets</p>",
-        "collection": "bundle-sets",
+        "collection": "couture-collection",
         "button_text": "SHOP ALL",
         "button_text_cart": "QUICK BUY",
-        "button_link": "shopify://collections/bundle-sets",
+        "button_link": "shopify://collections",
         "top_padding": 0,
         "bottom_padding": 20
       }
     },
     "smart_ring_e7a8hy": {
       "type": "smart-ring",
-      "disabled": true,
       "name": "Smart ring",
       "settings": {
         "background_color": "#f5e5e1",
@@ -876,12 +796,11 @@
         "collection_block_wBUbm6",
         "collection_block_riNxR4"
       ],
-      "disabled": true,
       "name": "Shop by collections",
       "settings": {
         "title": "<p>Shop By Collections</p>",
         "button_text": "SHOP ALL",
-        "button_url": "shopify://collections"
+        "button_url": "shopify://collections/all"
       }
     },
     "section_tiktok_FaHpBj": {
@@ -1025,7 +944,6 @@
         "video_f9Qf9x",
         "video_9RJY7U"
       ],
-      "disabled": true,
       "name": "Section tiktok",
       "settings": {
         "main_title": "<p>Rinfit Community</p>",
@@ -1092,16 +1010,7 @@
           }
         }
       },
-      "block_order": [
-        "image_dzAjgQ",
-        "image_9rKAnB",
-        "image_eV8F3T",
-        "image_98V7pR",
-        "image_89DMAD",
-        "image_NUtyLj",
-        "image_nypmaY"
-      ],
-      "disabled": true,
+      "block_order": ["image_dzAjgQ", "image_9rKAnB", "image_eV8F3T", "image_98V7pR", "image_89DMAD", "image_NUtyLj", "image_nypmaY"],
       "name": "Shop Our Instagram",
       "settings": {
         "text_color": "#373a36",
@@ -1115,10 +1024,7 @@
     },
     "newsletter": {
       "type": "newsletter",
-      "disabled": true,
-      "custom_css": [
-        ".section-spacing {padding-top: 14px;}"
-      ],
+      "custom_css": [".section-spacing {padding-top: 14px;}"],
       "settings": {
         "color_scheme": "scheme-2",
         "separate_section_with_border": true,
@@ -1279,7 +1185,6 @@
   "order": [
     "hero_banner_hwPG8G",
     "explore_our_GqFJXM",
-    "x_featured_collections_7VC7PP",
     "collection_9TxCaj",
     "collection_Uw6HWG",
     "slideshow",
