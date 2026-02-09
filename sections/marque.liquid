@@ -1,111 +1,9 @@
+{{- 'section-marque.css' | asset_url | stylesheet_tag -}}
+
 <style>
   .custom-marquee {
-    background-color: #F9F9F8;
-    height: 50px;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    align-items: center;
     --mobile-speed: {{ section.settings.mobile_speed | default: 20 }}s;
     --desktop-speed: {{ section.settings.desktop_speed | default: 30 }}s;
-  }
-
-  .marquee-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  .marquee-viewport {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
-    background: #F9F9F8;
-  }
-
-  .marquee-track {
-    display: flex;
-    gap: 27px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    will-change: transform;
-    animation: marquee-scroll var(--mobile-speed) linear infinite;
-    align-items: center;
-    height: 100%;
-    background: #F9F9F8;
-  }
-
-  .marquee-track.static {
-    animation: none;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap;
-    background: #F9F9F8;
-  }
-
-  .marquee-item {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    height: 30px;
-  }
-
-  .marquee-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-  }
-
-  .marquee-icon svg {
-    width: 24px;
-    height: 24px;
-    display: block;
-  }
-
-  .marquee-text {
-    font-family: 'Kumbh Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: #373A36;
-    white-space: nowrap;
-    line-height: 1.2;
-  }
-
-  @keyframes marquee-scroll {
-    from {
-      transform: translate3d(0, 0, 0);
-    }
-    to {
-      transform: translate3d(-100%, 0, 0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation-duration: 60s !important;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .marquee-text {
-      font-size: 14px;
-    }
-    
-    .marquee-track:not(.static) {
-      animation-duration: var(--desktop-speed);
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .marquee-track {
-      gap: 125px;
-    }
   }
 </style>
 
@@ -120,7 +18,7 @@
                 {{ block.settings.svg_icon }}
               </div>
             {% endif %}
-            
+
             {% if block.settings.text != blank %}
               <span class="marquee-text">{{ block.settings.text }}</span>
             {% endif %}
@@ -131,53 +29,51 @@
   </div>
 </section>
 
-
-
 <script>
-(function() {
-  const section = document.querySelector('#marquee-{{ section.id }}');
-  const track = section.querySelector('.marquee-track');
+  (function() {
+    const section = document.querySelector('#marquee-{{ section.id }}');
+    const track = section.querySelector('.marquee-track');
 
-  if (!track) return;
+    if (!track) return;
 
-  // Check if marquee should be static
-  const isStatic = {{ section.settings.static_on_desktop | json }};
-  
-  if (isStatic && window.innerWidth >= 768) {
-    track.classList.add('static');
-  } else {
-    // Duplicate items for seamless loop
-    const items = Array.from(track.children);
-    items.forEach(item => {
-      const clone = item.cloneNode(true);
-      track.appendChild(clone);
-    });
-  }
+    // Check if marquee should be static
+    const isStatic = {{ section.settings.static_on_desktop | json }};
 
-  // Handle window resize
-  window.addEventListener('resize', function() {
-    if (isStatic) {
-      if (window.innerWidth >= 768) {
-        track.classList.add('static');
-      } else {
-        track.classList.remove('static');
-        // Re-add clones if needed for mobile
-        if (track.children.length === {{ section.blocks.size }}) {
-          const items = Array.from(track.children);
-          items.forEach(item => {
-            const clone = item.cloneNode(true);
-            track.appendChild(clone);
-          });
+    if (isStatic && window.innerWidth >= 768) {
+      track.classList.add('static');
+    } else {
+      // Duplicate items for seamless loop
+      const items = Array.from(track.children);
+      items.forEach(item => {
+        const clone = item.cloneNode(true);
+        track.appendChild(clone);
+      });
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (isStatic) {
+        if (window.innerWidth >= 768) {
+          track.classList.add('static');
+        } else {
+          track.classList.remove('static');
+          // Re-add clones if needed for mobile
+          if (track.children.length === {{ section.blocks.size }}) {
+            const items = Array.from(track.children);
+            items.forEach(item => {
+              const clone = item.cloneNode(true);
+              track.appendChild(clone);
+            });
+          }
         }
       }
-    }
-  });
+    });
 
-  // Handle reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    track.style.animationDuration = '60s';
-  }
-})();
+    // Handle reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      track.style.animationDuration = '60s';
+    }
+  })();
 </script>
 
 {% schema %}

@@ -1,15 +1,15 @@
-
-  .main-title-accordion-product{
+.template-product {
+  .main-title-accordion-product {
     font-family: "Kumbh Sans", sans-serif;
     text-transform: capitalize;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0;
   }
-  .accordion-main-content-product strong{
+  .accordion-main-content-product strong {
     font-weight: 600;
   }
-  .accordion-main-content-product p{
+  .accordion-main-content-product p {
     padding-bottom: 20px;
   }
   .accordion-main-content-product {
@@ -29,7 +29,7 @@
     max-width: 476px;
     margin: 0 auto;
   }
-  .main-close-accordion{
+  .main-close-accordion {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -38,7 +38,7 @@
   .accordion-block.open .accordion-content {
     max-height: fit-content;
     border-radius: 0 0 4px 4px;
-    border-bottom: 1px solid #373A3633;
+    border-bottom: 1px solid #373a3633;
   }
   .accordion-header {
     cursor: pointer;
@@ -46,7 +46,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 0 0 4px 4px;
-    border-bottom: 1px solid #373A3633;
+    border-bottom: 1px solid #373a3633;
     padding-bottom: 11px;
     padding-left: 10px;
     padding-right: 10px;
@@ -54,15 +54,15 @@
     margin: 0 auto;
     margin-top: 19px;
   }
-  .product-info__block-item .accordion-block .accordion-content{
+  .product-info__block-item .accordion-block .accordion-content {
     padding: 0 20px;
   }
-  .product-info__block-item .accordion-main-content-product{
+  .product-info__block-item .accordion-main-content-product {
     padding: 20px 0;
   }
   .product-info__block-item .accordion-block .accordion-content,
   .product-info__block-item .accordion-main-content-product,
-  .product-info__block-item .accordion-header{
+  .product-info__block-item .accordion-header {
     width: 100%;
     max-width: 100%;
   }
@@ -82,10 +82,10 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-  .product-sizes .size-btn{
+  .product-sizes .size-btn {
     width: 46px;
     height: 46px;
-    border: 1px solid #373A361A;
+    border: 1px solid #373a361a;
     border-radius: 50%;
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 500;
@@ -93,67 +93,67 @@
     letter-spacing: 0;
     text-transform: capitalize;
   }
-  .product-sizes .size-btn.active{
+  .product-sizes .size-btn.active {
     border-color: #232222;
     background: #232222;
-    color: #FFFFFF;
+    color: #ffffff;
   }
-  .main-title-ring .selected-size{
+  .main-title-ring .selected-size {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
     letter-spacing: 0;
-    color: #373936CC;
+    color: #373936cc;
   }
-  .main-title-ring{
+  .main-title-ring {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0;
     text-transform: capitalize;
   }
-  .product-variants .variant-item.active{
+  .product-variants .variant-item.active {
     width: 50px;
     height: 50px;
-    border: 1px solid #373A3699;
+    border: 1px solid #373a3699;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .main-container-size-products{
+  .main-container-size-products {
     display: grid;
     gap: 16px;
     padding-top: 5px;
   }
-  .product-sizes{
+  .product-sizes {
     display: flex;
     gap: 12.75px;
     padding-bottom: 9px;
   }
-  .product-info__block-item buy-buttons{
+  .product-info__block-item buy-buttons {
     margin-top: 29px;
   }
-  .main-container-color-products{
+  .main-container-color-products {
     display: grid;
     gap: 16px;
-    border-bottom: 1px solid #373A3633;
+    border-bottom: 1px solid #373a3633;
     padding-bottom: 11px;
   }
-  .main-title-color .selected-color{
+  .main-title-color .selected-color {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: #373936CC;
+    color: #373936cc;
     letter-spacing: 0;
   }
-  .main-title-color{
+  .main-title-color {
     padding-top: 15px;
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0;
-    color: #373A36;
+    color: #373a36;
     text-transform: capitalize;
   }
   .product-variants.main-product img {
@@ -162,155 +162,155 @@
     width: 46px;
     height: 46px;
   }
-  .product-info__block-list{
+  .product-info__block-list {
     position: relative;
     bottom: 8px;
   }
-  .product-info__block-list price-list{
+  .product-info__block-list price-list {
     padding-top: 3px;
   }
   .product-info__block-list price-list,
   .product-info__block-list .product-title,
-  .container-review-product{
+  .container-review-product {
     padding-left: 9px;
   }
-  .container-review-product .star{
+  .container-review-product .star {
     font-size: 21px;
   }
-  .container-review-product .star.full{
-    color: #DEAE4A;
+  .container-review-product .star.full {
+    color: #deae4a;
   }
-  .product-info__block-item sale-price{
+  .product-info__block-item sale-price {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 500;
     font-size: 16px;
     letter-spacing: 0;
     text-transform: capitalize;
-    color: #373A36;
+    color: #373a36;
   }
-  .product-title{
-    color: #373A36;
+  .product-title {
+    color: #373a36;
     text-transform: capitalize;
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 600;
     font-size: 20px;
     letter-spacing: 0;
   }
-  .product-info__block-list>:not(:last-child),
-  .product-info__block-list>:not(:nth-child(1 of:not(:empty))){
+  .product-info__block-list > :not(:last-child),
+  .product-info__block-list > :not(:nth-child(1 of:not(:empty))) {
     padding-bottom: 0;
     margin: 0;
   }
-  .container-review-product .reviews_text{
-    color: #373A36CC;
+  .container-review-product .reviews_text {
+    color: #373a36cc;
     padding: 0 5px;
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0;
   }
-  .container-review-product .number-reviews{
+  .container-review-product .number-reviews {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
     letter-spacing: 0;
     color: #37393666;
   }
-  .main-product-main-size.container--lg{
+  .main-product-main-size.container--lg {
     max-width: 1280px;
     margin: 0 auto;
   }
-  .main-header-product-content{
+  .main-header-product-content {
     display: none;
   }
-  .accordion-block.accordion-block-mobile{
+  .accordion-block.accordion-block-mobile {
     display: none;
   }
-  @media (max-width: 1200px){
-    .main-container-product-slider{
+  @media (max-width: 1200px) {
+    .main-container-product-slider {
       grid-template-columns: 100% !important;
     }
-    .main-container-product-slider .main-swiper{
+    .main-container-product-slider .main-swiper {
       order: 1;
     }
-    .main-container-product-slider .thumb-swiper{
+    .main-container-product-slider .thumb-swiper {
       position: relative;
       width: 100% !important;
       height: auto !important;
     }
-    .main-swiper-container-product{
+    .main-swiper-container-product {
       order: 2;
       position: relative;
       height: auto !important;
       width: 100% !important;
     }
   }
-  @media (max-width: 1024px){
+  @media (max-width: 1024px) {
     .product-info__block-list price-list,
     .container-review-product,
-    .product-info__block-list .product-title{
+    .product-info__block-list .product-title {
       display: none;
     }
-    .main-title-product{
+    .main-title-product {
       margin-top: -14px;
     }
-    .main-header-product-content .container-review-product{
+    .main-header-product-content .container-review-product {
       display: flex;
     }
-    .main-header-product-content sale-price{
-      color: #373A36;
+    .main-header-product-content sale-price {
+      color: #373a36;
       font-family: "Kumbh Sans", sans-serif;
       font-weight: 500;
       font-size: 16px;
       letter-spacing: 0;
       text-transform: capitalize;
     }
-    .mobile-product-main-top{
+    .mobile-product-main-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .main-header-product-content{
+    .main-header-product-content {
       max-width: 448px;
       display: block;
     }
-    .main-container-product-slider{
+    .main-container-product-slider {
       margin-top: 30px;
     }
   }
-  @media (max-width: 1000px){
-    .main-title-product{
+  @media (max-width: 1000px) {
+    .main-title-product {
       margin-top: 14px;
     }
   }
-  @media (max-width: 999px){
-    .main-title-product{
+  @media (max-width: 999px) {
+    .main-title-product {
       margin-top: 60px;
     }
   }
-  @media (max-width: 768px){
-    .product-info__block-item .accordion-block{
+  @media (max-width: 768px) {
+    .product-info__block-item .accordion-block {
       max-width: 350px;
       margin: 0 auto;
     }
-    .accordion-block-mobile .accordion-main-content-product{
+    .accordion-block-mobile .accordion-main-content-product {
       padding-top: 20px;
     }
-    .guaranteed-section{
+    .guaranteed-section {
       min-width: 360px;
       max-width: 360px;
       gap: 15px !important;
     }
-    .guaranteed-item .main-title{
+    .guaranteed-item .main-title {
       font-size: 11px !important;
     }
-    .main-container-product-slider{
+    .main-container-product-slider {
       margin-top: 0px;
     }
-    .accordion-block.accordion-block-desktop{
+    .accordion-block.accordion-block-desktop {
       display: none;
     }
-    .main-title-product{
+    .main-title-product {
       margin-top: 57px;
       font-weight: 600;
       font-size: 18px;
@@ -318,66 +318,66 @@
       text-transform: capitalize;
       line-height: 20px;
     }
-    .main-title-color{
+    .main-title-color {
       padding-top: 4px;
     }
-    .main-header-product-content .container-review-product{
+    .main-header-product-content .container-review-product {
       padding: 0;
     }
-    .mobile-product-main-top{
+    .mobile-product-main-top {
       padding-top: 7px;
     }
-    .container-review-product .star{
+    .container-review-product .star {
       font-size: 16px;
     }
-    .main-header-product-content sale-price{
+    .main-header-product-content sale-price {
       font-size: 14px;
     }
-    .container-review-product .number-reviews{
+    .container-review-product .number-reviews {
       font-size: 12px;
       padding-left: 4px;
     }
-    .main-header-product-content{
+    .main-header-product-content {
       padding: 0 20px;
     }
-    .product-variants.main-product{
+    .product-variants.main-product {
       gap: 14px;
     }
-    .main-container-color-products{
+    .main-container-color-products {
       width: 350px;
       margin: 0 auto;
       gap: 13px;
     }
-    .main-container-size-products{
+    .main-container-size-products {
       width: 350px;
       margin: 0 auto;
       padding-top: 19px;
       gap: 9px;
     }
-    .product-sizes{
+    .product-sizes {
       gap: 8px;
       flex-wrap: wrap;
     }
     .product-sizes .size-btn {
-     width: 55px;
-     height: 55px;
+      width: 55px;
+      height: 55px;
     }
     .accordion-block.accordion-block-mobile,
-    .product-info__block-item buy-buttons{
+    .product-info__block-item buy-buttons {
       width: 350px;
       margin: 0 auto;
     }
-    .accordion-block.accordion-block-mobile{
+    .accordion-block.accordion-block-mobile {
       display: block;
     }
   }
-  .bundle-block{
+  .bundle-block {
     width: 100%;
-    background: #F7F1EF;
+    background: #f7f1ef;
     border-radius: 10px;
     gap: 10px;
   }
-  .main-bundle-title{
+  .main-bundle-title {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -385,7 +385,7 @@
     letter-spacing: 0;
     text-transform: capitalize;
   }
-  .main-bundle-title span{
+  .main-bundle-title span {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 600;
     font-size: 14px;
@@ -393,28 +393,28 @@
     letter-spacing: 0;
     text-transform: capitalize;
   }
-  .main-bundle-subtitle{
+  .main-bundle-subtitle {
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 0;
     text-transform: capitalize;
   }
-  .main-bundle-img{
+  .main-bundle-img {
     width: 75px;
     height: 75px;
   }
-  .bundle-block{
+  .bundle-block {
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 18px;
   }
-  .main-bundle-button{
-    background: #FFFFFF;
+  .main-bundle-button {
+    background: #ffffff;
     display: block;
-    border: 1px solid #C5C1C0;
+    border: 1px solid #c5c1c0;
     padding: 10px 12px;
     border-radius: 4px;
     font-family: "Kumbh Sans", sans-serif;
@@ -425,52 +425,52 @@
     text-transform: uppercase;
     transition: all 0.3s ease;
   }
-  .main-bundle-button:hover{
+  .main-bundle-button:hover {
     background: none;
   }
-  .bottom-bundle-block{
+  .bottom-bundle-block {
     display: flex;
     justify-content: space-between;
     width: 100%;
     gap: 10px;
     align-items: center;
   }
-  @media (max-width: 768px){
-    .bundle-block{
+  @media (max-width: 768px) {
+    .bundle-block {
       width: 350px;
       margin: 0 auto;
       padding: 10px 10px 15px 10px;
       margin-top: 17px;
       margin-bottom: 43.5px;
     }
-    .bottom-bundle-block{
+    .bottom-bundle-block {
       flex-direction: column-reverse;
       align-items: flex-start;
     }
-    .main-bundle-img{
+    .main-bundle-img {
       width: 85px;
       height: 85px;
     }
-    .main-bundle-button{
+    .main-bundle-button {
       min-width: 101px;
       padding: 3px 1px;
     }
-    .guaranteed-section{
+    .guaranteed-section {
       padding: 15px 40px;
       box-sizing: content-box;
     }
   }
-  .guaranteed-item{
+  .guaranteed-item {
     max-width: 190px;
     display: grid;
     gap: 10px;
     align-items: center;
     grid-template-rows: 1fr 1fr;
   }
-  .guaranteed-item .icon{
+  .guaranteed-item .icon {
     margin: 0 auto;
   }
-  .guaranteed-section{
+  .guaranteed-section {
     display: flex;
     margin: 15px 0;
     flex-wrap: nowrap;
@@ -479,8 +479,8 @@
     align-items: end;
     margin-bottom: 0;
   }
-  .guaranteed-item .description{
-    color: #373936B2;
+  .guaranteed-item .description {
+    color: #373936b2;
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -494,11 +494,11 @@
   .cbb-frequently-bought-total-price-was-price,
   .cbb-frequently-bought-total-price-text.translatable,
   .cbb-frequently-bought-discount-message.translatable,
-  .cbb-frequently-bought-title.translatable{
+  .cbb-frequently-bought-title.translatable {
     font-family: "Kumbh Sans", sans-serif;
   }
   .guaranteed-item .main-title em,
-  .guaranteed-item .main-title{
+  .guaranteed-item .main-title {
     font-style: normal;
     font-family: "Kumbh Sans", sans-serif;
     font-weight: 500;
@@ -513,28 +513,28 @@
     accent-color: black;
   }
   .cbb-frequently-bought-add-button:hover span,
-  .cbb-frequently-bought-add-button:hover{
+  .cbb-frequently-bought-add-button:hover {
     background: none !important;
-    color: #373A36 !important;
+    color: #373a36 !important;
   }
-  .cbb-frequently-bought-add-button:hover{
-    border-color:#C5C1C0 !important;
+  .cbb-frequently-bought-add-button:hover {
+    border-color: #c5c1c0 !important;
   }
-  .cbb-frequently-bought-add-button{
+  .cbb-frequently-bought-add-button {
     border: 1px solid !important;
     border-radius: 4px;
     background: black !important;
     transition: all 0.3s ease;
   }
-  .cbb-frequently-bought-add-button span{
+  .cbb-frequently-bought-add-button span {
     transition: all 0.3s ease;
     color: white !important;
   }
-  @media(max-width: 768px){
-    .guaranteed-item .main-title em{
+  @media (max-width: 768px) {
+    .guaranteed-item .main-title em {
       display: none;
     }
-    .guaranteed-item{
+    .guaranteed-item {
       max-width: 141px;
       display: grid;
       gap: 8px;
@@ -543,10 +543,11 @@
       height: 100%;
       margin: 0 auto;
     }
-    .guaranteed-section{
+    .guaranteed-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
       row-gap: 25px !important;
       box-sizing: border-box;
     }
   }
+}

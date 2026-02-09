@@ -8,4 +8,22 @@
     >
       <path d="M0 5.38462V4.61538H4.61538V0H5.38462V4.61538H10V5.38462H5.38462V10H4.61538V5.38462H0Z" />
     </svg>
+  {%- when 'arrow-left' -%}
+    <svg
+      width="7"
+      height="12"
+      viewBox="0 0 7 12"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M5.75 0.75L0.75 5.75L5.75 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  {%- when 'arrow-right' -%}
+    <svg
+      width="7"
+      height="12"
+      viewBox="0 0 7 12"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0.75 0.75L5.75 5.75L0.75 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
 {%- endcase -%}

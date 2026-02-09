@@ -1,0 +1,233 @@
+.shop-by-category {
+  padding: 20px 0;
+  background: #fff;
+}
+
+.shop-by-category .swiper-wrapper-category > .swiper-slide {
+  width: auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-by-category .swiper-wrapper-category > .swiper-slide img {
+  width: 100%;
+  height: 360px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.shop-by-category .main-swiper-category {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 20px;
+}
+
+.shop-by-category .swiper-button-next,
+.shop-by-category .swiper-button-prev {
+  display: none;
+}
+
+.shop-by-category .swiper-pagination {
+  display: block !important;
+}
+
+.shop-by-category .main-swiper-category .swiper-pagination {
+  position: relative;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.shop-by-category .main-swiper-category .swiper-pagination-bullet {
+  width: 62px;
+  height: 3px;
+  border-radius: 10px;
+  background: #dcdcdc;
+  opacity: 1;
+  margin: 0 4px;
+  transition: background 0.3s;
+  display: inline-block;
+}
+
+.shop-by-category .main-swiper-category .swiper-pagination-bullet-active {
+  background: #6b6b6b;
+}
+
+.shop-by-category .main-block-categories {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.shop-by-category .button-all-category {
+  display: none;
+}
+
+.shop-by-category .main-block-categories p {
+  line-height: 30px;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 300;
+  font-size: 34px;
+  text-align: center;
+}
+
+.shop-by-category .main-block-categories p em {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  font-size: 40px;
+  line-height: 30px;
+}
+
+.shop-by-category .category-rectangle {
+  width: 100%;
+  height: 360px;
+  border-radius: 10px;
+  background: #e0e0e0;
+  display: block;
+}
+
+.shop-by-category .category-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.shop-by-category .category-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none;
+  color: #fff;
+  padding: 0 0 20px 0;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 2;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.shop-by-category .category-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+}
+
+.shop-by-category .category-link-text {
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 0;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.shop-by-category section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .shop-by-category {
+    padding: 14px 0;
+  }
+  .shop-by-category .swiper-button-next,
+  .shop-by-category .swiper-button-prev {
+    display: block;
+    position: absolute;
+    top: auto;
+    bottom: 125px;
+    transform: none;
+    z-index: 2;
+  }
+  .shop-by-category .swiper-button-next {
+    right: -37px;
+  }
+  .shop-by-category .swiper-button-prev {
+    left: -37px;
+  }
+  .shop-by-category .main-swiper-category {
+    padding: 0;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .shop-by-category .swiper-pagination {
+    display: none !important;
+  }
+  .shop-by-category .main-block-categories {
+    margin-bottom: 40px;
+  }
+  .shop-by-category .main-block-categories p {
+    font-size: 40px;
+  }
+  .shop-by-category .main-block-categories p em {
+    font-size: 47px;
+    line-height: 30px;
+  }
+  .shop-by-category .category-title {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    text-transform: capitalize;
+  }
+  .shop-by-category .category-link-text {
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .shop-by-category .main-block-categories {
+    padding-left: 0px;
+  }
+  .shop-by-category .main-block-categories,
+  .shop-by-category .mySwiper-category.swiper {
+    max-width: 660px;
+  }
+}
+@media (min-width: 1024px) {
+  .shop-by-category .main-block-categories,
+  .shop-by-category .mySwiper-category.swiper {
+    max-width: 900px;
+  }
+}
+@media (min-width: 1440px) {
+  .shop-by-category .main-block-categories,
+  .shop-by-category .mySwiper-category.swiper {
+    max-width: 1282px;
+  }
+}
+.swiper-slide.category-main-swiper a {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.swiper-slide.category-main-swiper img {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.swiper-slide.category-main-swiper:hover img {
+  transform: scale(1.05);
+}

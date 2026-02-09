@@ -1,85 +1,85 @@
 {{ 'footer-custom.css' | asset_url | stylesheet_tag }}
 
 <style>
-  #shopify-section-{{ section.id }} .pp-footer-main {
+  .section-footer .pp-footer-main {
     background-color: {{ section.settings.main_bg_color | default: '#e9e4e1' }};
     padding: {{ section.settings.padding_desktop_top }}px {{ section.settings.padding_desktop_right }}px {{ section.settings.padding_desktop_bottom }}px {{ section.settings.padding_desktop_left }}px;
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-bottom {
+  .section-footer .pp-footer-bottom {
     background-color: {{ section.settings.bottom_bg_color | default: '#4f4e4e' }};
     padding: {{ section.settings.bottom_padding_desktop_top }}px {{ section.settings.bottom_padding_desktop_right }}px {{ section.settings.bottom_padding_desktop_bottom }}px {{ section.settings.bottom_padding_desktop_left }}px;
     height: 35px;
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-container {
+  .section-footer .pp-footer-container {
     max-width: {{ section.settings.section_max_width | default: '100%' }};
     margin: 0 auto;
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-description {
+  .section-footer .pp-footer-description {
     color: {{ section.settings.description_color | default: 'rgba(55, 57, 54, 0.6)' }};
     font-size: {{ section.settings.description_size_desktop }}px;
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-nav-title {
+  .section-footer .pp-footer-nav-title {
     color: {{ section.settings.title_color | default: '#373a36' }};
     font-size: {{ section.settings.title_size_desktop }}px;
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-nav-link {
+  .section-footer .pp-footer-nav-link {
     color: {{ section.settings.text_color | default: '#373a36' }};
     font-size: {{ section.settings.text_size_desktop }}px;
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-legal-link {
+  .section-footer .pp-footer-legal-link {
     color: {{ section.settings.text_color | default: '#373a36' }};
     font-size: {{ section.settings.legal_size_desktop | default: 12 }}px;
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-bottom .pp-footer-legal .pp-footer-legal-link {
+  .section-footer .pp-footer-bottom .pp-footer-legal .pp-footer-legal-link {
     color: {{ section.settings.legal_color | default: '#ffffff' }};
   }
 
-  #shopify-section-{{ section.id }} .pp-footer-copyright span {
+  .section-footer .pp-footer-copyright span {
     color: {{ section.settings.copyright_color | default: '#ffffff' }};
     font-size: {{ section.settings.copyright_size_desktop }}px;
   }
 
   @media (max-width: 768px) {
-    #shopify-section-{{ section.id }} .pp-footer-main {
+    .section-footer .pp-footer-main {
       padding: {{ section.settings.padding_mobile_top }}px {{ section.settings.padding_mobile_right }}px {{ section.settings.padding_mobile_bottom }}px {{ section.settings.padding_mobile_left }}px;
     }
 
-    #shopify-section-{{ section.id }} .pp-footer-bottom {
+    .section-footer .pp-footer-bottom {
       padding: {{ section.settings.bottom_padding_mobile_top }}px {{ section.settings.bottom_padding_mobile_right }}px {{ section.settings.bottom_padding_mobile_bottom }}px {{ section.settings.bottom_padding_mobile_left }}px;
     }
 
-    #shopify-section-{{ section.id }} .pp-footer-description {
+    .section-footer .pp-footer-description {
       font-size: {{ section.settings.description_size_mobile }}px;
     }
 
-    #shopify-section-{{ section.id }} .pp-footer-nav-title {
+    .section-footer .pp-footer-nav-title {
       font-size: {{ section.settings.title_size_mobile }}px;
     }
 
-    #shopify-section-{{ section.id }} .pp-footer-nav-link {
+    .section-footer .pp-footer-nav-link {
       font-size: {{ section.settings.text_size_mobile }}px;
     }
 
-    #shopify-section-{{ section.id }} .pp-footer-legal-link {
+    .section-footer .pp-footer-legal-link {
       font-size: {{ section.settings.legal_size_mobile | default: 12 }}px;
     }
 
-    #shopify-section-{{ section.id }} .pp-footer-copyright span {
+    .section-footer .pp-footer-copyright span {
       font-size: {{ section.settings.copyright_size_mobile }}px;
     }
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    #shopify-section-{{ section.id }} .pp-footer-main{
+    .section-footer .pp-footer-main{
       padding: 40px 33px 40px 33px;
-    } 
-    #shopify-section-{{ section.id }} .pp-footer-container{
+    }
+    .section-footer .pp-footer-container{
       gap: 60px;
     }
     .pp-footer-right{
@@ -88,14 +88,20 @@
   }
 </style>
 
-
 <footer id="shopify-section-{{ section.id }}" class="pp-footer {{ section.settings.custom_classes }}">
   <div class="pp-footer-main">
     <div class="pp-footer-container">
       <div class="pp-footer-left">
         {% if section.settings.logo_image %}
           <div class="pp-footer-logo">
-            <img src="{{ section.settings.logo_image | image_url: width: 200 }}" alt="{{ section.settings.logo_alt | default: shop.name }}" loading="lazy" decoding="async" width="109" height="42">
+            <img
+              src="{{ section.settings.logo_image | image_url: width: 200 }}"
+              alt="{{ section.settings.logo_alt | default: shop.name }}"
+              loading="lazy"
+              decoding="async"
+              width="109"
+              height="42"
+            >
           </div>
         {% endif %}
         {% if section.settings.description != blank %}
@@ -103,30 +109,46 @@
             {{ section.settings.description }}
           </div>
         {% endif %}
-        {% comment %} {% if section.settings.country_selector_enabled %}
-          <div class="pp-footer-localization">
-            <div class="localization-selectors">
-              <div class="relative">
-                {% render 'custom-localization',
-                  type: 'country',
-                  class: 'pp-footer-country-selector',
-                  button_class: 'localization-toggle heading text-xxs link-faded',
-                  popover_class: 'popover popover--top-start color-scheme color-scheme--dialog'
-                %}
+        {% comment %}
+          {% if section.settings.country_selector_enabled %}
+            <div class="pp-footer-localization">
+              <div class="localization-selectors">
+                <div class="relative">
+                  {% render 'custom-localization',
+                    type: 'country',
+                    class: 'pp-footer-country-selector',
+                    button_class: 'localization-toggle heading text-xxs link-faded',
+                    popover_class: 'popover popover--top-start color-scheme color-scheme--dialog'
+                  %}
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %} {% endcomment %}
+          {% endif %}
+        {% endcomment %}
         {% assign social_blocks = section.blocks | where: 'type', 'social' %}
         {% if social_blocks.size > 0 %}
           <div class="pp-footer-socials">
             {% for block in social_blocks %}
               {% if block.settings.url != blank %}
-                <a href="{{ block.settings.url }}" class="pp-footer-social-link" target="_blank" rel="noopener noreferrer" {{ block.shopify_attributes }}>
+                <a
+                  href="{{ block.settings.url }}"
+                  class="pp-footer-social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="{{ block.settings.platform }}"
+                  {{ block.shopify_attributes }}
+                >
                   {% if block.settings.icon_svg != blank %}
                     {{ block.settings.icon_svg }}
                   {% elsif block.settings.icon_image %}
-                    <img src="{{ block.settings.icon_image | image_url: width: 32 }}" alt="{{ block.settings.platform | default: 'Social' }}" loading="lazy" decoding="async" width="32" height="32">
+                    <img
+                      src="{{ block.settings.icon_image | image_url: width: 32 }}"
+                      alt="{{ block.settings.platform | default: 'Social' }}"
+                      loading="lazy"
+                      decoding="async"
+                      width="32"
+                      height="32"
+                    >
                   {% endif %}
                 </a>
               {% endif %}
@@ -154,29 +176,45 @@
     </div>
 
     <div class="pp-footer-mobile-stack --mobile-only">
-      {% comment %} {% if section.settings.country_selector_enabled %}
-        <div class="pp-footer-localization">
-          <div class="localization-selectors">
-            <div class="relative">
-              {% render 'custom-localization',
-                type: 'country',
-                class: 'pp-footer-country-selector',
-                button_class: 'localization-toggle heading text-xxs link-faded',
-                popover_class: 'popover popover--top-start color-scheme color-scheme--dialog'
-              %}
+      {% comment %}
+        {% if section.settings.country_selector_enabled %}
+          <div class="pp-footer-localization">
+            <div class="localization-selectors">
+              <div class="relative">
+                {% render 'custom-localization',
+                  type: 'country',
+                  class: 'pp-footer-country-selector',
+                  button_class: 'localization-toggle heading text-xxs link-faded',
+                  popover_class: 'popover popover--top-start color-scheme color-scheme--dialog'
+                %}
+              </div>
             </div>
           </div>
-        </div>
-      {% endif %} {% endcomment %}
+        {% endif %}
+      {% endcomment %}
       {% if social_blocks.size > 0 %}
         <div class="pp-footer-socials">
           {% for block in social_blocks %}
             {% if block.settings.url != blank %}
-              <a href="{{ block.settings.url }}" class="pp-footer-social-link" target="_blank" rel="noopener noreferrer" {{ block.shopify_attributes }}>
+              <a
+                href="{{ block.settings.url }}"
+                class="pp-footer-social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="{{ block.settings.platform }}"
+                {{ block.shopify_attributes }}
+              >
                 {% if block.settings.icon_svg != blank %}
                   {{ block.settings.icon_svg }}
                 {% elsif block.settings.icon_image %}
-                  <img src="{{ block.settings.icon_image | image_url: width: 32 }}" alt="{{ block.settings.platform | default: 'Social' }}" loading="lazy" decoding="async" width="32" height="32">
+                  <img
+                    src="{{ block.settings.icon_image | image_url: width: 32 }}"
+                    alt="{{ block.settings.platform | default: 'Social' }}"
+                    loading="lazy"
+                    decoding="async"
+                    width="32"
+                    height="32"
+                  >
                 {% endif %}
               </a>
             {% endif %}
@@ -220,12 +258,11 @@
   </div>
 </footer>
 
-
 {% schema %}
 {
   "name": "Footer",
   "tag": "footer",
-  "class": "section",
+  "class": "section section-footer",
   "templates": ["article", "blog", "cart", "collection", "index", "list-collections", "page", "product", "search"],
   "settings": [
     {

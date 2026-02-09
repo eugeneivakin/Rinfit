@@ -1,59 +1,59 @@
 {{ 'smart-ring.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-.main-title-smart p,
-.main-title-smart{
+  .main-title-smart p,
+  .main-title-smart{
     color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_size_mobile }}px;
-}
-.main-description-smart{
+  }
+  .main-description-smart{
     font-size: {{ section.settings.description_size_mobile }}px;
     color: {{ section.settings.description_color }};
-}
-.main-section-smart-ring{
+  }
+  .main-section-smart-ring{
     padding-top: {{ section.settings.padding_top_mobile }}px;
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     padding-left: {{ section.settings.padding_left_mobile }}px;
     padding-right: {{ section.settings.padding_right_mobile }}px;
-}
-@media(min-width: 768px){
+  }
+  @media(min-width: 768px){
     .main-section-smart-ring{
-        padding-top: {{ section.settings.padding_top_desktop }}px;
-        padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
-        padding-left: {{ section.settings.padding_left_desktop }}px;
-        padding-right: {{ section.settings.padding_right_desktop }}px;
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      padding-left: {{ section.settings.padding_left_desktop }}px;
+      padding-right: {{ section.settings.padding_right_desktop }}px;
     }
-}
-@media(min-width: 900px){
+  }
+  @media(min-width: 900px){
     .main-description-smart{
-        font-size: {{ section.settings.description_size_desktop }}px;
+      font-size: {{ section.settings.description_size_desktop }}px;
     }
     .main-title-smart p,
     .main-title-smart{
-        font-size: {{ section.settings.title_size_desktop }}px;
+      font-size: {{ section.settings.title_size_desktop }}px;
     }
-}
+  }
 {%- endstyle -%}
 
 <section class="main-section-smart-ring" style="background-color:{{ section.settings.background_color }}">
-    <div class="section-smart-ring">
-        {% if section.settings.main_image != blank  %}
-            {{ section.settings.main_image | image_url: width: section.settings.main_image.width | image_tag }}
-        {% endif %}
-        <div class="main-block-smart" style="background-color:{{ section.settings.background_color_block }}">
-            {% if section.settings.title != blank %}
-                <div class="main-title-smart"> {{ section.settings.title }}</div>
-            {% endif %}
-            {% if section.settings.description != blank %}
-                <p class="main-description-smart"> {{ section.settings.description }}</p>
-            {% endif %}
-            {% if section.settings.button_text != blank and section.settings.button_url != blank %}
-                <a href="{{ section.settings.button_url }}" class="main-button-smart">
-                    {{ section.settings.button_text }}
-                </a>
-            {% endif %}
-        </div>
+  <div class="section-smart-ring">
+    {% if section.settings.main_image != blank %}
+      {{ section.settings.main_image | image_url: width: section.settings.main_image.width | image_tag }}
+    {% endif %}
+    <div class="main-block-smart" style="background-color:{{ section.settings.background_color_block }}">
+      {% if section.settings.title != blank %}
+        <div class="main-title-smart">{{ section.settings.title }}</div>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <p class="main-description-smart">{{ section.settings.description }}</p>
+      {% endif %}
+      {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+        <a href="{{ section.settings.button_url }}" class="main-button-smart">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
     </div>
+  </div>
 </section>
 
 {% schema %}
@@ -61,197 +61,197 @@
   "name": "Smart ring",
   "settings": [
     {
-        "type": "color",
-        "id": "background_color",
-        "label": "Background",
+      "type": "color",
+      "id": "background_color",
+      "label": "Background"
     },
     {
-        "type": "image_picker",
-        "id": "main_image",
-        "label": "Image"
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Image"
     },
     {
-        "type": "richtext",
-        "id": "title",
-        "label": "Title",
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
     },
     {
-        "type": "text",
-        "id": "description",
-        "label": "Description",
+      "type": "text",
+      "id": "description",
+      "label": "Description"
     },
     {
-        "type": "text",
-        "id": "button_text",
-        "label": "Button Text",
-        "default": "SHOP ALL"
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP ALL"
     },
     {
-        "type": "url",
-        "id": "button_url",
-        "label": "Button URL"
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
     },
     {
-        "type": "header",
-        "content": "Block"
+      "type": "header",
+      "content": "Block"
     },
     {
-        "type": "color",
-        "id": "background_color_block",
-        "label": "Background",
+      "type": "color",
+      "id": "background_color_block",
+      "label": "Background"
     },
     {
-        "type": "header",
-        "content": "Desktop Spacing"
+      "type": "header",
+      "content": "Desktop Spacing"
     },
     {
-        "type": "range",
-        "id": "padding_top_desktop",
-        "label": "Padding Top Desktop",
-        "min": 0,
-        "max": 200,
-        "step": 4,
-        "unit": "px",
-        "default": 80
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top Desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
     },
     {
-        "type": "range",
-        "id": "padding_bottom_desktop",
-        "label": "Padding Bottom Desktop",
-        "min": 0,
-        "max": 200,
-        "step": 4,
-        "unit": "px",
-        "default": 80
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom Desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
     },
     {
-        "type": "range",
-        "id": "padding_left_desktop",
-        "label": "Padding Left Desktop",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "default": 40
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Padding Left Desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     },
     {
-        "type": "range",
-        "id": "padding_right_desktop",
-        "label": "Padding Right Desktop",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "default": 40
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Padding Right Desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     },
     {
-        "type": "header",
-        "content": "Mobile Spacing"
+      "type": "header",
+      "content": "Mobile Spacing"
     },
     {
-        "type": "range",
-        "id": "padding_top_mobile",
-        "label": "Padding Top Mobile",
-        "min": 0,
-        "max": 150,
-        "step": 5,
-        "unit": "px",
-        "default": 50
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top Mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 50
     },
     {
-        "type": "range",
-        "id": "padding_bottom_mobile",
-        "label": "Padding Bottom Mobile",
-        "min": 0,
-        "max": 150,
-        "step": 5,
-        "unit": "px",
-        "default": 50
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom Mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 50
     },
     {
-        "type": "range",
-        "id": "padding_left_mobile",
-        "label": "Padding Left Mobile",
-        "min": 0,
-        "max": 60,
-        "step": 5,
-        "unit": "px",
-        "default": 20
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Padding Left Mobile",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     },
     {
-        "type": "range",
-        "id": "padding_right_mobile",
-        "label": "Padding Right Mobile",
-        "min": 0,
-        "max": 60,
-        "step": 5,
-        "unit": "px",
-        "default": 20
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Padding Right Mobile",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     },
     {
-        "type": "header",
-        "content": "Title Typography"
+      "type": "header",
+      "content": "Title Typography"
     },
     {
-        "type": "range",
-        "id": "title_size_desktop",
-        "label": "Title Size Desktop",
-        "min": 24,
-        "max": 80,
-        "step": 2,
-        "unit": "px",
-        "default": 48
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size Desktop",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
     },
     {
-        "type": "range",
-        "id": "title_size_mobile",
-        "label": "Title Size Mobile",
-        "min": 20,
-        "max": 50,
-        "step": 2,
-        "unit": "px",
-        "default": 36
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size Mobile",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 36
     },
     {
-        "type": "color",
-        "id": "title_color",
-        "label": "Title Color",
-        "default": "#000000"
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
     },
     {
-        "type": "header",
-        "content": "Description Typography"
+      "type": "header",
+      "content": "Description Typography"
     },
     {
-        "type": "range",
-        "id": "description_size_desktop",
-        "label": "Description Size Desktop",
-        "min": 14,
-        "max": 24,
-        "step": 1,
-        "unit": "px",
-        "default": 18
+      "type": "range",
+      "id": "description_size_desktop",
+      "label": "Description Size Desktop",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
     },
     {
-        "type": "range",
-        "id": "description_size_mobile",
-        "label": "Description Size Mobile",
-        "min": 14,
-        "max": 20,
-        "step": 1,
-        "unit": "px",
-        "default": 16
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description Size Mobile",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
     },
     {
-        "type": "color",
-        "id": "description_color",
-        "label": "Description Color",
-        "default": "#666666"
-    },
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    }
   ],
   "presets": [
     {
-        "name": "Smart ring"
+      "name": "Smart ring"
     }
   ]
 }
