@@ -101,7 +101,7 @@ input[type=number] {
   font-family: "Kumbh Sans", sans-serif;
   font-weight: 600;
   width: 100%;
-  border: 1px solid #C5C1C0;
+  border: 1px solid #c5c1c0;
   height: 37px;
   border-radius: 4px;
   font-size: 14px;
@@ -148,8 +148,8 @@ input[type=number] {
 
 .button-collection-products:hover {
   background: none !important;
-  color: #373A36 !important;
-  border-color: #C5C1C0 !important;
+  color: #373a36 !important;
+  border-color: #c5c1c0 !important;
 }
 
 div.swiper-button-prev-collection,
@@ -593,7 +593,7 @@ div.swiper-button-next-collection {
   font-family: "Kumbh Sans", sans-serif;
   font-weight: 500;
   font-size: 14px;
-  color: #373A36;
+  color: #373a36;
   letter-spacing: 0;
 }
 
@@ -794,7 +794,8 @@ div.swiper-button-next-collection {
   margin-top: 9px;
 }
 
-.modal-variants-container button, .modal-variants-container img {
+.modal-variants-container button,
+.modal-variants-container img {
   display: flex;
 }
 
@@ -804,7 +805,8 @@ div.swiper-button-next-collection {
     top: 160px;
     right: -7px;
   }
-  .modal-variants-container button, .modal-variants-container img {
+  .modal-variants-container button,
+  .modal-variants-container img {
     width: 40px;
     height: 40px !important;
   }
@@ -1108,7 +1110,7 @@ div.swiper-button-next-collection {
 .modal-chose-size-cart {
   width: 100%;
   min-height: 54px;
-  background: #D3D3D3;
+  background: #d3d3d3;
   margin-top: 30px;
   color: white;
   border-radius: 4px;
@@ -1118,7 +1120,7 @@ div.swiper-button-next-collection {
   line-height: 100%;
   letter-spacing: 0;
   text-transform: uppercase;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   transition: all 0.3s ease;
 }
 
@@ -1165,4 +1167,24 @@ div.swiper-button-next-collection {
 .main-btn-more-collectoins-color img {
   width: 10px !important;
   height: 10px !important;
+}
+
+.swiper-slide.container-main-collection .product-card .product-card__media-wrapper {
+  display: block;
+  position: relative;
+}
+.swiper-slide.container-main-collection .product-card .product-card__media-wrapper:hover .product-card__image--secondary {
+  opacity: 1;
+}
+
+.swiper-slide.container-main-collection .product-card .product-card__image--secondary {
+  height: 100%;
+  left: 0;
+  mix-blend-mode: normal;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  top: 0;
+  transform: none;
+  width: 100%;
 }

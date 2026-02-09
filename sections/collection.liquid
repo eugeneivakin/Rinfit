@@ -62,12 +62,21 @@
           {% for product in collection.products %}
             <div class="swiper-slide container-main-collection">
               <div class="product-card bg-white shadow-md rounded-2xl p-4 flex flex-col items-center">
-                <a href="{{ product.url }}">
+                <a href="{{ product.url }}" class="product-card__media-wrapper">
                   <img
                     src="{{ product.featured_image | img_url: '250x' }}"
                     alt="{{ product.title }}"
                     class="main-product-image mb-4 rounded-xl"
                   >
+                  {%- liquid
+                    if settings.show_secondary_image and product.media.size > 1
+                      assign next_media = product.media[product.featured_media.position] | default: product.media[1]
+
+                      if next_media != blank
+                        echo next_media | image_url: width: next_media.width | image_tag: class: 'product-card__image product-card__image--secondary', loading: 'lazy', fetchpriority: 'low', sizes: sizes, widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800', draggable: 'false', aria-hidden: 'true'
+                      endif
+                    endif
+                  -%}
                 </a>
                 <div class="conatainer-first-star">
                   {% assign reviews_count = product.metafields.loox.num_reviews | default: 0 %}
@@ -202,13 +211,13 @@
                     class="product-data"
                     data-product-title="{{ product.title | escape }}"
                     data-product-image="{{ product.featured_image | img_url: '400x' }}"
-                    data-product-images="
+                    data-product-images='
                       [
                         {% for image in product.images %}
-                         "{{ image | img_url: '400x' }}"{% unless forloop.last %},{% endunless %}
+                         "{{ image | img_url: '400x' }}" {% unless forloop.last %},{% endunless %}
                         {% endfor %}
                       ]
-                    "
+                    '
                     data-reviews-count="{{ product.metafields.loox.num_reviews | default: 0 }}"
                     data-avg-rating="{{ product.metafields.loox.avg_rating | default: 0 }}"
                     data-product-handle="{{ product.handle }}"
