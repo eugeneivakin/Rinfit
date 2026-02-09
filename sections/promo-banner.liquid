@@ -1,4 +1,4 @@
-<section id="{{ section.id }}" class="promo-banner-wrapper section-{{ section.id }}">
+<div id="{{ section.id }}" class="promo-banner-wrapper section-{{ section.id }}">
   <div class="promo-banner-container">
     {% if section.settings.announcement_text != blank %}
       <div class="promo-banner-content">
@@ -18,7 +18,9 @@
       </button>
     {% endif %}
   </div>
-</section>
+</div>
+
+{{- 'section-promo-banner.css' | asset_url | stylesheet_tag -}}
 
 <style>
   .promo-banner-wrapper {
@@ -41,176 +43,19 @@
     --promo-padding-right-mobile: {{ section.settings.padding_right_mobile | default: 15 }}px;
     --promo-max-width: {{ section.settings.max_width | default: '100%' }};
   }
-
-  #{{ section.id }} .promo-banner-text p{
-    font-family: "Kumbh Sans", sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-  }
-  #{{ section.id }}.promo-banner-wrapper {
-    background-color: var(--promo-bg-color);
-    color: var(--promo-text-color);
-    width: 100%;
-    max-width: var(--promo-max-width);
-    margin: 0 auto;
-    font-family: inherit;
-    line-height: 1.4;
-    position: relative;
-    overflow: hidden;
-  }
-  #{{ section.id }} .promo-banner-container .promo-banner-close{
-    right: 80px;
-    top: 20px;
-  }
-  #{{ section.id }} .promo-banner-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--promo-padding-top-desktop) var(--promo-padding-right-desktop) var(--promo-padding-bottom-desktop) var(--promo-padding-left-desktop);
-    position: relative;
-    min-height: 40px;
-  }
-
-  #{{ section.id }} .promo-banner-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    text-align: center;
-    flex: 1;
-  }
-
-  #{{ section.id }} .promo-banner-text {
-    font-size: var(--promo-text-size-desktop);
-    font-weight: 500;
-    margin: 0;
-    color: var(--promo-text-color);
-  }
-
-  #{{ section.id }} .promo-banner-button {
-    font-size: var(--promo-button-size-desktop);
-    font-weight: bold;
-    color: var(--promo-button-text);
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    text-decoration: underline;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    font-family: "Kumbh Sans", sans-serif;
-    font-weight: 700;
-    text-decoration: none;
-    margin-right: 29px;
-    position: relative;
-  }
-
-  #{{ section.id }} .promo-banner-button:after {
-      content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 1px;
-  width: 100%;
-  background-color: #333;
-  }
-  #{{ section.id }} .promo-banner-button:hover {
-    opacity: 0.8;
-    transform: translateY(-1px);
-  }
-
-  #{{ section.id }} .promo-banner-close {
-    position: absolute;
-    right: var(--promo-padding-right-desktop);
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--promo-text-color);
-    cursor: pointer;
-    padding: 4px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-  }
-
-  #{{ section.id }} .promo-banner-close:hover {
-    opacity: 1;
-  }
-
-  #{{ section.id }} .promo-banner-close svg {
-    width: 12px;
-    height: 12px;
-  }
-
-  
-  @media screen and (max-width: 1000px) {
-     #{{ section.id }}.promo-banner-wrapper {
-      position: fixed;
-      width: 100%;
-      z-index: 11;
-    }
-  }
-  @media screen and (max-width: 767px) {
-    #{{ section.id }}.promo-banner-wrapper {
-      position: fixed;
-      width: 100%;
-      height: 35px;
-      z-index: 11;
-    }
-    #{{ section.id }} .promo-banner-container {
-      padding: var(--promo-padding-top-mobile) var(--promo-padding-right-mobile) var(--promo-padding-bottom-mobile) var(--promo-padding-left-mobile);
-    }
-
-    #{{ section.id }} .promo-banner-content {
-      gap: 10px;
-    }
-
-    #{{ section.id }} .promo-banner-text {
-      font-size: var(--promo-text-size-mobile);
-    }
-
-    #{{ section.id }} .promo-banner-button {
-      font-size: var(--promo-button-size-mobile);
-      margin-right: 0;
-      padding: 0;
-    }
-
-    #{{ section.id }} .promo-banner-close {
-      right: var(--promo-padding-right-mobile);
-    }
-    .promo-banner-close{
-      display: none !important;
-    }
-  }
-
-  @media screen and (max-width: 480px) {
-    #{{ section.id }} .promo-banner-content {
-      gap: 10px;
-    }
-
-    #{{ section.id }} .promo-banner-text {
-      text-align: center;
-    }
-  }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const promoBanner = document.getElementById('{{ section.id }}');
     const closeButton = promoBanner?.querySelector('.promo-banner-close');
-    
+
     if (closeButton && promoBanner) {
-      closeButton.addEventListener('click', function() {
+      closeButton.addEventListener('click', function () {
         promoBanner.style.transition = 'all 0.3s ease';
         promoBanner.style.height = promoBanner.offsetHeight + 'px';
         promoBanner.style.overflow = 'hidden';
-        
+
         setTimeout(() => {
           promoBanner.style.height = '0px';
           promoBanner.style.paddingTop = '0px';
@@ -218,15 +63,15 @@
           promoBanner.style.marginTop = '0px';
           promoBanner.style.marginBottom = '0px';
         }, 10);
-        
+
         setTimeout(() => {
           promoBanner.style.display = 'none';
         }, 300);
-        
+
         sessionStorage.setItem('promo-banner-{{ section.id }}-closed', 'true');
       });
     }
-    
+
     if (sessionStorage.getItem('promo-banner-{{ section.id }}-closed') === 'true') {
       if (promoBanner) {
         promoBanner.style.display = 'none';
@@ -239,7 +84,7 @@
 {
   "name": "Promo Banner",
   "tag": "section",
-  "class": "section",
+  "class": "section section-promo-banner",
   "settings": [
     {
       "type": "header",

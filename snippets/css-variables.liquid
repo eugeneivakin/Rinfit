@@ -3,9 +3,12 @@ This file defines all the CSS variables used throughout the theme. Feel free to 
 note that this may have impact on different places.
 {%- endcomment -%}
 
+
+
 {%- assign language_code = localization.language.iso_code | split: '-' | first -%}
 
 <style>
+  {%- comment -%}
   {%- assign heading_font_italic = settings.heading_font | font_modify: 'style', 'italic' -%}
   {%- assign text_font_italic = settings.text_font | font_modify: 'style', 'italic' -%}
   {%- assign text_font_bold = settings.text_font | font_modify: 'weight', 'bolder' -%}
@@ -32,6 +35,8 @@ note that this may have impact on different places.
   {%- if text_font_bold_italic -%}
     {{ text_font_bold_italic | font_face: font_display: 'fallback' }}
   {%- endif -%}
+  {%- endcomment -%}
+
 
   :root {
     /* Container */

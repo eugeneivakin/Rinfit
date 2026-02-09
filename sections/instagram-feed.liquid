@@ -1,30 +1,16 @@
 {{ 'instagram-feed.css' | asset_url | stylesheet_tag }}
-<style>
-#shopify-section-{{ section.id }} .instagram-grid-item img,
-#shopify-section-{{ section.id }} .instagram-main-image img{
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-}
-#shopify-section-{{ section.id }} .instagram-grid-item:hover img,
-#shopify-section-{{ section.id }} .instagram-main-image:hover img{
-  transform: scale(1.1);
-}
-#shopify-section-{{ section.id }} a.instagram-button {
-  transition: all 0.3s ease; 
-}
-#shopify-section-{{ section.id }} a.instagram-button:hover{
-  background: black;
-  color: white;
-}
-</style>
-<section id="shopify-section-{{ section.id }}" class="instagram-section"
+
+<section
+  id="shopify-section-{{ section.id }}"
+  class="instagram-section"
   style="
     --section-text-color: {{ section.settings.text_color }};
     --section-padding-top: {{ section.settings.padding_top }}px;
     --section-padding-bottom: {{ section.settings.padding_bottom }}px;
     --section-padding-left: {{ section.settings.padding_left }}px;
     --section-padding-right: {{ section.settings.padding_right }}px;
-  ">
+  "
+>
   <div class="instagram-container">
     <div class="instagram-title">
       <h2 class="instagram-heading">
@@ -32,121 +18,141 @@
         <span class="instagram-heading-italic"> instagram</span>
       </h2>
       {% if section.settings.instagram_handle != blank %}
-        {% comment %} <a href="https://instagram.com/{{ section.settings.instagram_handle | remove: '@' }}" 
-           class="instagram-button"
-           target="_blank" 
-           rel="noopener noreferrer"> {% endcomment %}
-          <div class="instagram-button">
-            @{{ section.settings.instagram_handle | remove: '@' }}
-          </div>
+        {% comment %}
+          <a href="https://instagram.com/{{ section.settings.instagram_handle | remove: '@' }}"
+          class="instagram-button"
+          target="_blank"
+          rel="noopener noreferrer">
+        {% endcomment %}
+        <div class="instagram-button">@{{ section.settings.instagram_handle | remove: '@' }}</div>
         {% comment %} </a> {% endcomment %}
       {% endif %}
     </div>
-    
+
     <div class="instagram-images">
       {% comment %} Desktop Layout {% endcomment %}
       {% if section.blocks.size > 0 %}
         {% assign main_image = section.blocks.first %}
         <div class="instagram-main-image">
           {% if main_image.settings.image %}
-            {% comment %} {% if main_image.settings.url != blank %}
-              <a href="{{ main_image.settings.url }}" 
-                 {% if main_image.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                <img src="{{ main_image.settings.image | image_url: width: 522 }}" 
-                     alt="{{ main_image.settings.alt_text | default: 'Instagram post' | escape }}" 
-                     loading="lazy">
-              </a>
-            {% else %} {% endcomment %}
-              <img src="{{ main_image.settings.image | image_url: width: 522 }}" 
-                   alt="{{ main_image.settings.alt_text | default: 'Instagram post' | escape }}" 
-                   loading="lazy">
+            {% comment %}
+              {% if main_image.settings.url != blank %}
+                <a href="{{ main_image.settings.url }}"
+                   {% if main_image.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                  <img src="{{ main_image.settings.image | image_url: width: 522 }}"
+                       alt="{{ main_image.settings.alt_text | default: 'Instagram post' | escape }}"
+                       loading="lazy">
+                </a>
+              {% else %}
+            {% endcomment %}
+            <img
+              src="{{ main_image.settings.image | image_url: width: 522 }}"
+              alt="{{ main_image.settings.alt_text | default: 'Instagram post' | escape }}"
+              loading="lazy"
+            >
             {% comment %} {% endif %} {% endcomment %}
           {% endif %}
         </div>
       {% endif %}
-      
+
       <div class="instagram-grid">
         <div class="instagram-grid-row">
           {% for block in section.blocks limit: 3 offset: 1 %}
             <div class="instagram-grid-item" {{ block.shopify_attributes }}>
               {% if block.settings.image %}
-                {% comment %} {% if block.settings.url != blank %}
-                  <a href="{{ block.settings.url }}" 
-                     {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                    <img src="{{ block.settings.image | image_url: width: 233 }}" 
-                         alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}" 
-                         loading="lazy">
-                  </a>
-                {% else %} {% endcomment %}
-                  <img src="{{ block.settings.image | image_url: width: 233 }}" 
-                       alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}" 
-                       loading="lazy">
+                {% comment %}
+                  {% if block.settings.url != blank %}
+                    <a href="{{ block.settings.url }}"
+                       {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <img src="{{ block.settings.image | image_url: width: 233 }}"
+                           alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}"
+                           loading="lazy">
+                    </a>
+                  {% else %}
+                {% endcomment %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 233 }}"
+                  alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}"
+                  loading="lazy"
+                >
                 {% comment %} {% endif %} {% endcomment %}
               {% endif %}
             </div>
           {% endfor %}
         </div>
-        
+
         <div class="instagram-grid-row">
           {% for block in section.blocks limit: 3 offset: 4 %}
             <div class="instagram-grid-item" {{ block.shopify_attributes }}>
               {% if block.settings.image %}
-                {% comment %} {% if block.settings.url != blank %}
-                  <a href="{{ block.settings.url }}" 
-                     {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                    <img src="{{ block.settings.image | image_url: width: 233 }}" 
-                         alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}" 
-                         loading="lazy">
-                  </a>
-                {% else %} {% endcomment %}
-                  <img src="{{ block.settings.image | image_url: width: 233 }}" 
-                       alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}" 
-                       loading="lazy">
+                {% comment %}
+                  {% if block.settings.url != blank %}
+                    <a href="{{ block.settings.url }}"
+                       {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <img src="{{ block.settings.image | image_url: width: 233 }}"
+                           alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}"
+                           loading="lazy">
+                    </a>
+                  {% else %}
+                {% endcomment %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 233 }}"
+                  alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}"
+                  loading="lazy"
+                >
                 {% comment %} {% endif %} {% endcomment %}
               {% endif %}
             </div>
           {% endfor %}
         </div>
       </div>
-      
+
       {% comment %} Mobile-only images for second row {% endcomment %}
       <div class="instagram-mobile-second-row">
         <div class="instagram-mobile-small-images">
           {% for block in section.blocks limit: 2 offset: 3 %}
             <div class="instagram-mobile-small-item" {{ block.shopify_attributes }}>
               {% if block.settings.image %}
-                {% comment %} {% if block.settings.url != blank %}
-                  <a href="{{ block.settings.url }}" 
-                     {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                    <img src="{{ block.settings.image | image_url: width: 112 }}" 
-                         alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}" 
-                         loading="lazy">
-                  </a>
-                {% else %} {% endcomment %}
-                  <img src="{{ block.settings.image | image_url: width: 112 }}" 
-                       alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}" 
-                       loading="lazy">
+                {% comment %}
+                  {% if block.settings.url != blank %}
+                    <a href="{{ block.settings.url }}"
+                       {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <img src="{{ block.settings.image | image_url: width: 112 }}"
+                           alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}"
+                           loading="lazy">
+                    </a>
+                  {% else %}
+                {% endcomment %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 112 }}"
+                  alt="{{ block.settings.alt_text | default: 'Instagram post' | escape }}"
+                  loading="lazy"
+                >
                 {% comment %} {% endif %} {% endcomment %}
               {% endif %}
             </div>
           {% endfor %}
         </div>
-        
+
         {% if section.blocks.size > 5 %}
           {% assign last_image = section.blocks[5] %}
           <div class="instagram-mobile-large-item">
             {% if last_image.settings.image %}
               {% comment %} {% if last_image.settings.url != blank %} {% endcomment %}
-                {% comment %} <a href="{{ last_image.settings.url }}" 
-                   {% if last_image.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                  <img src="{{ last_image.settings.image | image_url: width: 228 }}" 
-                       alt="{{ last_image.settings.alt_text | default: 'Instagram post' | escape }}" 
-                       loading="lazy">
-                </a>
-              {% else %} {% endcomment %}
-                <img src="{{ last_image.settings.image | image_url: width: 228 }}" 
-                     alt="{{ last_image.settings.alt_text | default: 'Instagram post' | escape }}" 
-                     loading="lazy">
+              {% comment %}
+                <a href="{{ last_image.settings.url }}"
+                     {% if last_image.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <img src="{{ last_image.settings.image | image_url: width: 228 }}"
+                         alt="{{ last_image.settings.alt_text | default: 'Instagram post' | escape }}"
+                         loading="lazy">
+                  </a>
+                {% else %}
+              {% endcomment %}
+              <img
+                src="{{ last_image.settings.image | image_url: width: 228 }}"
+                alt="{{ last_image.settings.alt_text | default: 'Instagram post' | escape }}"
+                loading="lazy"
+              >
               {% comment %} {% endif %} {% endcomment %}
             {% endif %}
           </div>
@@ -156,591 +162,11 @@
   </div>
 </section>
 
-<style>
-  .instagram-section{
-    padding: 0 !important;
-  }
-#shopify-section-{{ section.id }} {
-  color: var(--section-text-color, #373a36);
-  padding: var(--section-padding-top, 40px) var(--section-padding-right, 80px) var(--section-padding-bottom, 40px) var(--section-padding-left, 80px);
-  box-sizing: border-box;
-  width: 100%;
-}
-
-#shopify-section-{{ section.id }} .instagram-container {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-#shopify-section-{{ section.id }} .instagram-title {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  height: 87px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  flex-shrink: 0;
-}
-
-#shopify-section-{{ section.id }} .instagram-heading {
-  font-family: 'Kumbh Sans', sans-serif;
-  font-weight: 700;
-  color: #373a36;
-  margin: 0;
-  text-align: center;
-  text-transform: capitalize;
-  line-height: 30px;
-  width: min-content;
-  min-width: 100%;
-  flex-shrink: 0;
-}
-
-#shopify-section-{{ section.id }} .instagram-heading-light {
-  font-family: 'Kumbh Sans', sans-serif;
-  font-weight: 300;
-  font-size: 40px;
-}
-
-#shopify-section-{{ section.id }} .instagram-heading-italic {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 47px;
-  letter-spacing: -0.94px;
-}
-
-#shopify-section-{{ section.id }} .instagram-button {
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 30px;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #373a36;
-  font-family: 'Kumbh Sans', sans-serif;
-  font-weight: 600;
-  font-size: 19px;
-  text-transform: lowercase;
-  white-space: nowrap;
-  flex-shrink: 0;
-  width: 138px;
-  box-sizing: border-box;
-  transition: opacity 0.2s ease;
-  max-height: 37px;
-  margin-left: 15px;
-}
-
-#shopify-section-{{ section.id }} .instagram-button:hover {
-  opacity: 0.9;
-}
-
-/* Desktop Layout */
-#shopify-section-{{ section.id }} .instagram-images {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  height: 500px;
-  align-items: center;
-  justify-content: left;
-  width: 100%;
-  max-width: 1280px;
-  flex-shrink: 0;
-}
-
-#shopify-section-{{ section.id }} .instagram-main-image {
-  height: 100%;
-  border-radius: 10px;
-  flex-shrink: 0;
-  width: 522px;
-  overflow: hidden;
-}
-
-#shopify-section-{{ section.id }} .instagram-main-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-#shopify-section-{{ section.id }} .instagram-main-image a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  height: 100%;
-  width: 738px;
-  flex-shrink: 0;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-row {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  flex: 1;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  min-height: 0;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-item {
-  height: 100%;
-  border-radius: 10px;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(1) {
-  width: 233px;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(2) {
-  width: 232px;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(3) {
-  width: 233px;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(1) {
-  width: 232px;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(2) {
-  width: 233px;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(3) {
-  width: 233px;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-#shopify-section-{{ section.id }} .instagram-grid-item a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* Hide mobile elements on desktop */
-#shopify-section-{{ section.id }} .instagram-mobile-second-row {
-  display: none;
-}
-
-/* Проблемний діапазон 1200px - 1320px */
-@media (min-width: 1025px) and (max-width: 1320px) {
-  #shopify-section-{{ section.id }} {
-    padding: var(--section-padding-top, 40px) var(--section-padding-right, 60px) var(--section-padding-bottom, 40px) var(--section-padding-left, 60px);
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-container {
-    max-width: 1000px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-images {
-    height: 400px;
-    max-width: 1000px;
-    gap: 15px;
-    justify-content: center;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-main-image {
-    width: 37%;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid {
-    width: 565px;
-    gap: 15px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row {
-    gap: 15px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(1),
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(3) {
-    width: 183px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(2) {
-    width: 184px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(1) {
-    width: 184px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(2),
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(3) {
-    width: 183px;
-  }
-}
-
-{% comment %} @media (min-width: 768px) and (max-width: 1109px) {
-  #shopify-section-{{ section.id }} .instagram-images {
-    flex-direction: column;
-    height: auto;
-    gap: 15px;
-  }
-} {% endcomment %}
-
-/* Tablet Layout (768px - 1199px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  #shopify-section-{{ section.id }} {
-    padding: var(--section-padding-top, 40px) var(--section-padding-right, 40px) var(--section-padding-bottom, 40px) var(--section-padding-left, 40px);
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-container {
-    max-width: 100%;
-    gap: 30px;
-  }
-  
-   #shopify-section-{{ section.id }} .instagram-images {
-    flex-direction: column;
-    height: auto;
-    gap: 15px;
-  } 
-  
-  #shopify-section-{{ section.id }} .instagram-main-image {
-    width: 100%;
-    height: 300px;
-    max-width: 450px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid {
-    width: 100%;
-    height: auto;
-    max-width: 450px;
-    gap: 15px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row {
-    height: 140px;
-    gap: 15px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(1),
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(2),
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(3),
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(1),
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(2),
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(3) {
-    flex: 1;
-    width: auto;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-heading-light {
-    font-size: 36px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-heading-italic {
-    font-size: 42px;
-    letter-spacing: -0.84px;
-  }
-}
-
-/* Малі екрани менше 360px */
-@media (max-width: 359px) {
-  #shopify-section-{{ section.id }} {
-    padding: var(--section-padding-top, 15px) var(--section-padding-right, 15px) var(--section-padding-bottom, 15px) var(--section-padding-left, 15px);
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-container {
-    gap: 15px;
-    max-width: 280px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-heading-light {
-    font-size: 28px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-heading-italic {
-    font-size: 32px;
-    letter-spacing: -0.6px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-button {
-    width: auto;
-    min-width: 110px;
-    padding: 8px 20px;
-    font-size: 12px;
-  }
-  
-  /* Mobile: Компактна grid структура */
-  #shopify-section-{{ section.id }} .instagram-images {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: 180px 90px;
-    grid-template-rows: repeat(2, 95px) 8px repeat(2, 95px);
-    gap: 8px 8px;
-    width: 280px;
-    height: auto;
-    align-content: start;
-    justify-content: center;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-main-image {
-    grid-row: 1 / 3;
-    grid-column: 1;
-    width: 180px;
-    height: 198px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid {
-    grid-row: 1 / 3;
-    grid-column: 2;
-    width: 90px;
-    height: 198px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row {
-    height: 95px;
-    width: 90px;
-    gap: 0;
-    flex: none;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(1) {
-    width: 90px;
-    height: 95px;
-    display: block;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(1) {
-    width: 90px;
-    height: 95px;
-    display: block;
-  }
-  
-  /* Mobile second row */
-  #shopify-section-{{ section.id }} .instagram-mobile-second-row {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    width: 280px;
-    height: 198px;
-    grid-row: 4 / 6;
-    grid-column: 1 / 3;
-    align-items: center;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-small-images {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 90px;
-    height: 198px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-small-item {
-    width: 90px;
-    height: 95px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-large-item {
-    width: 180px;
-    height: 198px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-}
-
-/* Mobile Layout (360px - 767px) - оригінальна верстка */
-@media (min-width: 360px) and (max-width: 767px) {
-  #shopify-section-{{ section.id }} {
-    padding: var(--section-padding-top, 20px) var(--section-padding-right, 20px) var(--section-padding-bottom, 20px) var(--section-padding-left, 20px);
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-container {
-    gap: 20px;
-    align-items: center;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-heading-light {
-    font-size: 34px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-heading-italic {
-    font-size: 40px;
-    letter-spacing: -0.8px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-button {
-    font-size: 16px;
-    text-transform: lowercase;
-    margin-left: 0;
-  }
-  
-  .instagram-heading {
-    white-space: nowrap;
-  }
-  
-  /* Mobile: Restructure layout completely */
-  #shopify-section-{{ section.id }} .instagram-images {
-    margin-top: -5px;
-    display: grid;
-    grid-template-columns: 228px 112px;
-    grid-template-rows: repeat(2, 120px) 10px repeat(2, 120px);
-    gap: 10px 10px;
-    width: 350px;
-    height: auto;
-    align-content: start;
-    justify-content: center;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-main-image {
-    grid-row: 1 / 3;
-    grid-column: 1;
-    width: 228px;
-    height: 250px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid {
-    grid-row: 1 / 3;
-    grid-column: 2;
-    width: 112px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row {
-    height: 120px;
-    width: 112px;
-    gap: 0;
-    flex: none;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(1) {
-    width: 112px;
-    height: 120px;
-    display: block;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(2) {
-    display: none;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:first-child .instagram-grid-item:nth-child(3) {
-    display: none;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(1) {
-    width: 112px;
-    height: 120px;
-    display: block;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(2) {
-    display: none;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-grid-row:last-child .instagram-grid-item:nth-child(3) {
-    display: none;
-  }
-  
-  /* Mobile second row */
-  #shopify-section-{{ section.id }} .instagram-mobile-second-row {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    width: 350px;
-    height: 250px;
-    grid-row: 4 / 6;
-    grid-column: 1 / 3;
-    align-items: center;
-    margin-top: -20px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-small-images {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 112px;
-    height: 250px;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-small-item {
-    width: 112px;
-    height: 120px;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-small-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-small-item a {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-large-item {
-    width: 228px;
-    height: 250px;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-large-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  #shopify-section-{{ section.id }} .instagram-mobile-large-item a {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-}
-@media (min-width: 1320px) and (max-width: 1430px) {
-  #shopify-section-{{ section.id }} .instagram-main-image{
-    width: 37%;
-  }
-  #shopify-section-{{ section.id }} .instagram-images{
-    justify-content: center;
-  }
-}
-</style>
-
 {% schema %}
 {
   "name": "Shop Our Instagram",
   "tag": "section",
-  "class": "section",
+  "class": "section section-instagram-feed",
   "settings": [
     {
       "type": "color",
@@ -818,7 +244,7 @@
           "label": "Alt text",
           "default": "Instagram post"
         },
-       
+
         {
           "type": "checkbox",
           "id": "open_in_new_tab",

@@ -1,0 +1,156 @@
+.section-promo-banner .promo-banner-text p{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .section-promo-banner .promo-banner-wrapper {
+    background-color: var(--promo-bg-color);
+    color: var(--promo-text-color);
+    width: 100%;
+    max-width: var(--promo-max-width);
+    margin: 0 auto;
+    font-family: inherit;
+    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-promo-banner .promo-banner-container .promo-banner-close{
+    right: 80px;
+    top: 20px;
+  }
+  .section-promo-banner .promo-banner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--promo-padding-top-desktop) var(--promo-padding-right-desktop) var(--promo-padding-bottom-desktop) var(--promo-padding-left-desktop);
+    position: relative;
+    min-height: 40px;
+  }
+
+  .section-promo-banner .promo-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: center;
+    flex: 1;
+  }
+
+  .section-promo-banner .promo-banner-text {
+    font-size: var(--promo-text-size-desktop);
+    font-weight: 500;
+    margin: 0;
+    color: var(--promo-text-color);
+  }
+
+  .section-promo-banner .promo-banner-button {
+    font-size: var(--promo-button-size-desktop);
+    font-weight: bold;
+    color: var(--promo-button-text);
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 29px;
+    position: relative;
+  }
+
+  .section-promo-banner .promo-banner-button:after {
+      content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #333;
+  }
+  .section-promo-banner .promo-banner-button:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+  }
+
+  .section-promo-banner .promo-banner-close {
+    position: absolute;
+    right: var(--promo-padding-right-desktop);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--promo-text-color);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .section-promo-banner .promo-banner-close:hover {
+    opacity: 1;
+  }
+
+  .section-promo-banner .promo-banner-close svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  
+  @media screen and (max-width: 1000px) {
+     .section-promo-banner .promo-banner-wrapper {
+      position: fixed;
+      width: 100%;
+      z-index: 11;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .section-promo-banner .promo-banner-wrapper {
+      position: fixed;
+      width: 100%;
+      height: 35px;
+      z-index: 11;
+    }
+    .section-promo-banner .promo-banner-container {
+      padding: var(--promo-padding-top-mobile) var(--promo-padding-right-mobile) var(--promo-padding-bottom-mobile) var(--promo-padding-left-mobile);
+    }
+
+    .section-promo-banner .promo-banner-content {
+      gap: 10px;
+    }
+
+    .section-promo-banner .promo-banner-text {
+      font-size: var(--promo-text-size-mobile);
+    }
+
+    .section-promo-banner .promo-banner-button {
+      font-size: var(--promo-button-size-mobile);
+      margin-right: 0;
+      padding: 0;
+    }
+
+    .section-promo-banner .promo-banner-close {
+      right: var(--promo-padding-right-mobile);
+    }
+    .promo-banner-close{
+      display: none !important;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .section-promo-banner .promo-banner-content {
+      gap: 10px;
+    }
+
+    .section-promo-banner .promo-banner-text {
+      text-align: center;
+    }
+  }

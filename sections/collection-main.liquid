@@ -1,56 +1,43 @@
 {{ 'collection-main.css' | asset_url | stylesheet_tag }}
-<style>
-.swiper-slide.collection-main-swiper img{
-  transition: transform 0.4s ease-in-out;
-  will-change: transform;
-}
-.swiper-slide.collection-main-swiper:hover img{
-  transform: scale(1.1); 
-}
-.swiper-slide.collection-main-swiper a{
-  overflow: hidden;
-  border-radius: 8px;
-  display: block
-}
-</style>
+
 <section>
-    <div class="main-block-collections">
-        {% if section.settings.title != blank %}
-            {{ section.settings.title }}
-        {% endif %}
-        {% if section.settings.button_text != blank and section.settings.button_url != blank %}
-            <a class="button-all-collection" href='{{ section.settings.button_url }}'>{{section.settings.button_text}}</a>
-        {% endif %}
-    </div>
-    <div class="main-swiper-collection">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper swiper-wrapper-collection">
-                {% for block in section.blocks %}
-                  {% assign collection = collections[block.settings.collection] %}
-                    {% if collection.image %}
-                        <div class="swiper-slide collection-main-swiper">
-                            <a href="{{ collection.url }}">
-                                <img src="{{ collection.image | img_url: '400x400' }}" alt="{{ collection.title }}">
-                            </a>
-                            <a href="{{ collection.url }}">
-                             <p class="main-title-collection">{{ collection.title }}</p>
-                            </a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+  <div class="main-block-collections">
+    {% if section.settings.title != blank %}
+      {{ section.settings.title }}
+    {% endif %}
+    {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+      <a class="button-all-collection" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>
+    {% endif %}
+  </div>
+  <div class="main-swiper-collection">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper swiper-wrapper-collection">
+        {% for block in section.blocks %}
+          {% assign collection = collections[block.settings.collection] %}
+          {% if collection.image %}
+            <div class="swiper-slide collection-main-swiper">
+              <a href="{{ collection.url }}">
+                <img src="{{ collection.image | img_url: '400x400' }}" alt="{{ collection.title }}">
+              </a>
+              <a href="{{ collection.url }}">
+                <p class="main-title-collection">{{ collection.title }}</p>
+              </a>
             </div>
-            <div class="swiper-pagination"></div>
-          </div>
-          <div class="swiper-button-next">
-            {{ "Vector.svg" | asset_url | img_tag: "Icon next" }}
-          </div>
-          <div class="swiper-button-prev">
-            {{ "Vector.svg" | asset_url | img_tag: "Icon prev" }}
-          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
     </div>
+    <div class="swiper-button-next">
+      {{ 'Vector.svg' | asset_url | img_tag: 'Icon next' }}
+    </div>
+    <div class="swiper-button-prev">
+      {{ 'Vector.svg' | asset_url | img_tag: 'Icon prev' }}
+    </div>
+  </div>
 </section>
 
-{{ 'collection-main.js' | asset_url | script_tag }}
+<script src="{{ 'collection-main.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
@@ -72,7 +59,7 @@
       "type": "url",
       "id": "button_url",
       "label": "Button URL"
-    },
+    }
   ],
   "blocks": [
     {
