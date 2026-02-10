@@ -1,1 +1,663 @@
-{"sections":{"slideshow_7igmji":{"type":"slideshow","blocks":{"image_teLcUN":{"type":"image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/hero_6.png","mobile_image":"shopify:\/\/shop_images\/hero_1.png","subheading":"Built for Comfort. Made to Move.","title":"Silicone Rings that fit your Lifestyle","mobile_text_position":"place-self-end-start text-start","desktop_text_position":"sm:place-self-end-start sm:text-start","content_max_width":780,"button_1_text":"SHOP OUR SPARK COLLECTION","button_1_link":"shopify:\/\/pages\/ring-size-guide","button_1_style":"solid","button_1_background":"#807371","button_1_text_color":"#e9e9e9","button_2_text":"","button_2_link":"","button_2_style":"outline","button_2_background":"#ffffff","button_2_text_color":"#000000","background":"","background_opacity":100,"text_color":"#807371","border_color":"","gradient_overlay":""}},"image_FWAezX":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/hero_10.png","mobile_image":"shopify:\/\/shop_images\/hero_12.png","subheading":"Made to Sparkle. Built to Flex.","title":"The New Ring Collection Is Here","mobile_text_position":"place-self-center text-center","desktop_text_position":"sm:place-self-center sm:text-center","content_max_width":780,"button_1_text":"SHOP THE DROP","button_1_link":"shopify:\/\/products\/his-and-hers-silicone-wedding-ring-bundle-set-32","button_1_style":"solid","button_1_background":"#ffffff","button_1_text_color":"#807371","button_2_text":"","button_2_link":"","button_2_style":"outline","button_2_background":"#ffffff","button_2_text_color":"#000000","background":"","background_opacity":0,"text_color":"#ffffff","border_color":"","gradient_overlay":""}},"image_FKMhm7":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/hero_8.png","mobile_image":"shopify:\/\/shop_images\/hero_9.png","subheading":"Cosmic Vibes.  Everyday Wear.","title":"Meet the New Collection that Sparkles Daily.","mobile_text_position":"place-self-end-start text-start","desktop_text_position":"sm:place-self-end-start sm:text-start","content_max_width":780,"button_1_text":"SHOP THE STARLIGHT STACK","button_1_link":"","button_1_style":"solid","button_1_background":"#ffffff","button_1_text_color":"#373a36","button_2_text":"","button_2_link":"","button_2_style":"outline","button_2_background":"#ffffff","button_2_text_color":"#000000","background":"","background_opacity":0,"text_color":"#ffffff","border_color":"","gradient_overlay":""}}},"block_order":["image_teLcUN","image_FWAezX","image_FKMhm7"],"name":"t:sections.slideshow.presets.slideshow.name","settings":{"allow_transparent_header":false,"show_next_section_button":false,"media_size":"auto","show_initial_transition":true,"autoplay":true,"autoplay_pause_on_video":true,"cycle_speed":5,"background":"#e9e9e9","controls_color":"#807371"}},"featured_collections_86pKrm":{"type":"featured-collections","blocks":{"collection_MnwTrJ":{"type":"collection","settings":{"collection":"best-sellers","products_count":8,"title":"Best Sellers","link_url":"","link_text":"SHOP ALL"}}},"block_order":["collection_MnwTrJ"],"name":"t:sections.featured_collections.presets.featured_collections.name","settings":{"color_scheme":"scheme-2","separate_section_with_border":true,"hide_product_information":false,"stack_products":false,"products_per_row_mobile":"2","products_per_row_desktop":4,"horizontal_spacing_factor":1,"vertical_spacing_factor":1,"subheading":""}},"featured_collections_JqYYei":{"type":"featured-collections","blocks":{"collection_i64hkt":{"type":"collection","settings":{"collection":"new-arrivals","products_count":8,"title":"New Arrivals","link_url":"","link_text":"Shop all"}}},"block_order":["collection_i64hkt"],"name":"t:sections.featured_collections.presets.featured_collections.name","settings":{"color_scheme":"scheme-2","separate_section_with_border":true,"hide_product_information":false,"stack_products":false,"products_per_row_mobile":"2","products_per_row_desktop":4,"horizontal_spacing_factor":1,"vertical_spacing_factor":1,"subheading":""}},"image_with_text_cmE4EL":{"type":"image-with-text","blocks":{"subheading_NW38TG":{"type":"subheading","settings":{"text":"NEW DROP IS HERE"}},"heading_KPiTxq":{"type":"heading","settings":{"text":"Gemstone Collection","heading_tag":"h1"}},"richtext_wmfpUm":{"type":"richtext","settings":{"content":"<p>Designed to shine with every move, these rings bring a bold, jewel-like look with the comfort of silicone. Perfect for everyday elegance with zero compromise.<\/p>"}},"button_PqqaDc":{"type":"button","settings":{"style":"solid","text":"SHOP ALL","url":"shopify:\/\/collections\/gemstones","background":"","text_color":""}}},"block_order":["subheading_NW38TG","heading_KPiTxq","richtext_wmfpUm","button_PqqaDc"],"name":"t:sections.image_with_text.presets.image_with_text.name","settings":{"color_scheme":"","separate_section_with_border":true,"image":"shopify:\/\/shop_images\/image.png","reveal_on_scroll":true,"image_position":"start","content_width":"sm","remove_vertical_spacing":true}},"scrolling_content_BBxw3Q":{"type":"scrolling-content","blocks":{"text_dV9VdD":{"type":"text","settings":{"text":"SKIN-FRIENDLY COMFORT"}},"text_WTVJA8":{"type":"text","settings":{"text":"PATENTED DESIGNS"}},"text_w6wXNJ":{"type":"text","settings":{"text":"LIFETIME WARRANTY"}},"text_dRk3ne":{"type":"text","settings":{"text":"FAST SHIPPING"}}},"block_order":["text_dV9VdD","text_WTVJA8","text_w6wXNJ","text_dRk3ne"],"name":"t:sections.scrolling_content.presets.scrolling_content.name","settings":{"separate_section_with_border":true,"scrolling_speed":0.3,"scroll_direction":"left","pause_on_hover":false,"text_font":"heading","text_font_size_mobile":40,"text_font_size_desktop":96,"section_vertical_spacing_mobile":60,"section_vertical_spacing_desktop":80,"item_horizontal_spacing_mobile":80,"item_horizontal_spacing_desktop":120,"background":"","text_color":""}},"collection_list_9AgkVf":{"type":"collection-list","blocks":{"collection_zYCcCy":{"type":"collection","settings":{"color_scheme":"","collection":"women-rings","image":"shopify:\/\/shop_images\/category_11.png","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"Women’s Rings","button_text":"Shop now","button_link":"","button_style":"link","overlay_color":"#000000","overlay_opacity":0}},"collection_GbAy8c":{"type":"collection","settings":{"color_scheme":"","collection":"men-rings","image":"shopify:\/\/shop_images\/category_12.png","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"Men’s Rings","button_text":"shop now","button_link":"","button_style":"link","overlay_color":"#000000","overlay_opacity":0}},"collection_jkUWLJ":{"type":"collection","settings":{"color_scheme":"","collection":"couple-bundle","image":"shopify:\/\/shop_images\/category_13.png","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"Couple Bundles","button_text":"shop now","button_link":"","button_style":"link","overlay_color":"#000000","overlay_opacity":0}},"collection_zLE7mc":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"ring-bundles","image":"shopify:\/\/shop_images\/category_14.png","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"sets","button_text":"Shop now","button_link":"","button_style":"link","overlay_color":"#000000","overlay_opacity":0}},"collection_pzPtXe":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"ring-bundles","image":"shopify:\/\/shop_images\/category_11.png","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"sets","button_text":"shop now","button_link":"","button_style":"link","overlay_color":"#000000","overlay_opacity":0}}},"block_order":["collection_zYCcCy","collection_GbAy8c","collection_jkUWLJ","collection_zLE7mc","collection_pzPtXe"],"name":"t:sections.collection_list.presets.collection_list.name","settings":{"color_scheme":"","separate_section_with_border":true,"image_size":"auto","show_text_outside":false,"space_items":true,"stack_collections":true,"collections_per_row_desktop":3,"stack_collections_mobile":true,"collections_per_row_mobile":"1","subheading":"","title":"Shop by Category","content":""}},"featured_collections_g8fKJT":{"type":"featured-collections","blocks":{"collection_7fPixm":{"type":"collection","settings":{"collection":"couture-collection","products_count":8,"title":"Save With Sets","link_url":"","link_text":"SHOP ALL"}}},"block_order":["collection_7fPixm"],"name":"t:sections.featured_collections.presets.featured_collections.name","settings":{"color_scheme":"scheme-2","separate_section_with_border":true,"hide_product_information":false,"stack_products":false,"products_per_row_mobile":"2","products_per_row_desktop":4,"horizontal_spacing_factor":1,"vertical_spacing_factor":1,"subheading":""}},"image_with_text_GLtEhj":{"type":"image-with-text","blocks":{"heading_pgJLXw":{"type":"heading","settings":{"text":"Enhance Your Smart Ring With Silicone Comfort","heading_tag":"h1"}},"richtext_zLhw4F":{"type":"richtext","settings":{"content":"<p>Introducing the Smart Ring Enhancer, the perfect accessory for your smart ring. Designed with precision and innovation, our Smart Ring Enhancer provides exceptional protection and style.<\/p>"}},"button_zDXARH":{"type":"button","settings":{"style":"solid","text":"SHOP ALL","url":"shopify:\/\/collections","background":"","text_color":""}}},"block_order":["heading_pgJLXw","richtext_zLhw4F","button_zDXARH"],"name":"t:sections.image_with_text.presets.image_with_text.name","settings":{"color_scheme":"scheme-2","separate_section_with_border":true,"image":"shopify:\/\/shop_images\/image_9.png","reveal_on_scroll":true,"image_position":"start","content_width":"sm","remove_vertical_spacing":true}},"collection_list_r7KetV":{"type":"collection-list","blocks":{"collection_GjYgBK":{"type":"collection","settings":{"color_scheme":"","collection":"emerald-frame-2","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_4KLtKH":{"type":"collection","settings":{"color_scheme":"","collection":"stone","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_WT4dA9":{"type":"collection","settings":{"color_scheme":"","collection":"oval-frame","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_6EBNYP":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"metal-heart","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_ebji9p":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"infinity","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_XVxiFt":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"stars","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_nQJmtP":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"round","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_gKiN3j":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"pear-frame","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}},"collection_iLTrpV":{"type":"collection","settings":{"color_scheme":"scheme-4","collection":"gift-card","expand_collection":false,"content_position":"place-self-end-start text-start","subheading":"","title":"","button_text":"","button_link":"","button_style":"solid","overlay_color":"#000000","overlay_opacity":0}}},"block_order":["collection_GjYgBK","collection_4KLtKH","collection_WT4dA9","collection_6EBNYP","collection_ebji9p","collection_XVxiFt","collection_nQJmtP","collection_gKiN3j","collection_iLTrpV"],"name":"t:sections.collection_list.presets.collection_list.name","settings":{"color_scheme":"scheme-2","separate_section_with_border":true,"image_size":"auto","show_text_outside":false,"space_items":true,"stack_collections":true,"collections_per_row_desktop":3,"stack_collections_mobile":true,"collections_per_row_mobile":"1","subheading":"","title":"Shop By Collections","content":""}},"newsletter":{"type":"newsletter","settings":{"color_scheme":"scheme-3","separate_section_with_border":true,"image_size":"md","subheading":"","title":"10% off your 1st order","content":"<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.<\/p>","button_text":"Subscribe","overlay_color":"#000000","overlay_opacity":0}}},"order":["slideshow_7igmji","featured_collections_86pKrm","featured_collections_JqYYei","image_with_text_cmE4EL","scrolling_content_BBxw3Q","collection_list_9AgkVf","featured_collections_g8fKJT","image_with_text_GLtEhj","collection_list_r7KetV","newsletter"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_7igmji": {
+      "type": "slideshow",
+      "blocks": {
+        "image_teLcUN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hero_6.png",
+            "mobile_image": "shopify://shop_images/hero_1.png",
+            "subheading": "Built for Comfort. Made to Move.",
+            "title": "Silicone Rings <em><strong>that fit your Lifestyle</strong></em>",
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "content_max_width": 660,
+            "button_1_text": "SHOP OUR SPARK COLLECTION",
+            "button_1_link": "shopify://pages/ring-size-guide",
+            "button_1_style": "solid",
+            "button_1_background": "#807371",
+            "button_1_text_color": "#e9e9e9",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 100,
+            "text_color": "#807371",
+            "border_color": "",
+            "gradient_overlay": ""
+          }
+        },
+        "image_FWAezX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hero_10.png",
+            "mobile_image": "shopify://shop_images/hero_12.png",
+            "subheading": "Made to Sparkle. Built to Flex.",
+            "title": "The New Ring <em><strong>Collection Is Here</strong></em>",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "button_1_text": "SHOP THE DROP",
+            "button_1_link": "shopify://products/his-and-hers-silicone-wedding-ring-bundle-set-32",
+            "button_1_style": "solid",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#807371",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 0,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": ""
+          }
+        },
+        "image_FKMhm7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hero_8.png",
+            "mobile_image": "shopify://shop_images/hero_9.png",
+            "subheading": "Cosmic Vibes.  Everyday Wear.",
+            "title": "Meet the New Collection <em><strong>that Sparkles Daily</strong></em>.",
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "content_max_width": 780,
+            "button_1_text": "SHOP THE STARLIGHT STACK",
+            "button_1_link": "",
+            "button_1_style": "solid",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#373a36",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 0,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_teLcUN",
+        "image_FWAezX",
+        "image_FKMhm7"
+      ],
+      "name": "t:sections.slideshow.presets.slideshow.name",
+      "settings": {
+        "allow_transparent_header": false,
+        "show_next_section_button": false,
+        "media_size": "auto",
+        "show_initial_transition": true,
+        "autoplay": true,
+        "autoplay_pause_on_video": true,
+        "cycle_speed": 7,
+        "background": "#ffffff",
+        "controls_color": "#807371"
+      }
+    },
+    "featured_collections_86pKrm": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_MnwTrJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "products_count": 8,
+            "title": "Best Sellers",
+            "link_url": "",
+            "link_text": "SHOP ALL"
+          }
+        }
+      },
+      "block_order": [
+        "collection_MnwTrJ"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
+    },
+    "featured_collections_JqYYei": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_i64hkt": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-arrivals",
+            "products_count": 8,
+            "title": "New Arrivals",
+            "link_url": "",
+            "link_text": "Shop all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_i64hkt"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
+    },
+    "image_with_text_cmE4EL": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_NW38TG": {
+          "type": "subheading",
+          "settings": {
+            "text": "NEW DROP IS HERE"
+          }
+        },
+        "heading_KPiTxq": {
+          "type": "heading",
+          "settings": {
+            "text": "Gemstone Collection",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_wmfpUm": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Designed to shine with every move, these rings bring a bold, jewel-like look with the comfort of silicone. Perfect for everyday elegance with zero compromise.</p>"
+          }
+        },
+        "button_PqqaDc": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "SHOP ALL",
+            "url": "shopify://collections/gemstones",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "subheading_NW38TG",
+        "heading_KPiTxq",
+        "richtext_wmfpUm",
+        "button_PqqaDc"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/image.png",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "scrolling_content_BBxw3Q": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text_dV9VdD": {
+          "type": "text",
+          "settings": {
+            "text": "SKIN-FRIENDLY COMFORT"
+          }
+        },
+        "text_WTVJA8": {
+          "type": "text",
+          "settings": {
+            "text": "PATENTED DESIGNS"
+          }
+        },
+        "text_w6wXNJ": {
+          "type": "text",
+          "settings": {
+            "text": "LIFETIME WARRANTY"
+          }
+        },
+        "text_dRk3ne": {
+          "type": "text",
+          "settings": {
+            "text": "FAST SHIPPING"
+          }
+        }
+      },
+      "block_order": [
+        "text_dV9VdD",
+        "text_WTVJA8",
+        "text_w6wXNJ",
+        "text_dRk3ne"
+      ],
+      "name": "t:sections.scrolling_content.presets.scrolling_content.name",
+      "settings": {
+        "separate_section_with_border": true,
+        "scrolling_speed": 0.3,
+        "scroll_direction": "left",
+        "pause_on_hover": false,
+        "text_font": "heading",
+        "text_font_size_mobile": 40,
+        "text_font_size_desktop": 96,
+        "section_vertical_spacing_mobile": 60,
+        "section_vertical_spacing_desktop": 80,
+        "item_horizontal_spacing_mobile": 80,
+        "item_horizontal_spacing_desktop": 120,
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "collection_list_9AgkVf": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_zYCcCy": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "women-rings",
+            "image": "shopify://shop_images/category_11.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "Women’s Rings",
+            "button_text": "Shop now",
+            "button_link": "",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_GbAy8c": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "men-rings",
+            "image": "shopify://shop_images/category_12.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "Men’s Rings",
+            "button_text": "shop now",
+            "button_link": "",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_jkUWLJ": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "couple-bundle",
+            "image": "shopify://shop_images/category_13.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "Couple Bundles",
+            "button_text": "shop now",
+            "button_link": "",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_zLE7mc": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "ring-bundles",
+            "image": "shopify://shop_images/category_14.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "sets",
+            "button_text": "Shop now",
+            "button_link": "",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_pzPtXe": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "ring-bundles",
+            "image": "shopify://shop_images/category_11.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "sets",
+            "button_text": "shop now",
+            "button_link": "",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "collection_zYCcCy",
+        "collection_GbAy8c",
+        "collection_jkUWLJ",
+        "collection_zLE7mc",
+        "collection_pzPtXe"
+      ],
+      "name": "t:sections.collection_list.presets.collection_list.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": true,
+        "stack_collections": true,
+        "collections_per_row_desktop": 3,
+        "stack_collections_mobile": true,
+        "collections_per_row_mobile": "1",
+        "subheading": "",
+        "title": "Shop by Category",
+        "content": ""
+      }
+    },
+    "featured_collections_g8fKJT": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_7fPixm": {
+          "type": "collection",
+          "settings": {
+            "collection": "couture-collection",
+            "products_count": 8,
+            "title": "Save With Sets",
+            "link_url": "",
+            "link_text": "SHOP ALL"
+          }
+        }
+      },
+      "block_order": [
+        "collection_7fPixm"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
+    },
+    "image_with_text_GLtEhj": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_pgJLXw": {
+          "type": "heading",
+          "settings": {
+            "text": "Enhance Your Smart Ring With Silicone Comfort",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_zLhw4F": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Introducing the Smart Ring Enhancer, the perfect accessory for your smart ring. Designed with precision and innovation, our Smart Ring Enhancer provides exceptional protection and style.</p>"
+          }
+        },
+        "button_zDXARH": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "SHOP ALL",
+            "url": "shopify://collections",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_pgJLXw",
+        "richtext_zLhw4F",
+        "button_zDXARH"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/image_9.png",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "collection_list_r7KetV": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_GjYgBK": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "emerald-frame-2",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_4KLtKH": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "stone",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_WT4dA9": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "oval-frame",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_6EBNYP": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "metal-heart",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_ebji9p": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "infinity",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_XVxiFt": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "stars",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_nQJmtP": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "round",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_gKiN3j": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "pear-frame",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_iLTrpV": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "gift-card",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "collection_GjYgBK",
+        "collection_4KLtKH",
+        "collection_WT4dA9",
+        "collection_6EBNYP",
+        "collection_ebji9p",
+        "collection_XVxiFt",
+        "collection_nQJmtP",
+        "collection_gKiN3j",
+        "collection_iLTrpV"
+      ],
+      "name": "t:sections.collection_list.presets.collection_list.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": true,
+        "stack_collections": true,
+        "collections_per_row_desktop": 3,
+        "stack_collections_mobile": true,
+        "collections_per_row_mobile": "1",
+        "subheading": "",
+        "title": "Shop By Collections",
+        "content": ""
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": true,
+        "image_size": "md",
+        "subheading": "",
+        "title": "10% off your 1st order",
+        "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
+        "button_text": "Subscribe",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    }
+  },
+  "order": [
+    "slideshow_7igmji",
+    "featured_collections_86pKrm",
+    "featured_collections_JqYYei",
+    "image_with_text_cmE4EL",
+    "scrolling_content_BBxw3Q",
+    "collection_list_9AgkVf",
+    "featured_collections_g8fKJT",
+    "image_with_text_GLtEhj",
+    "collection_list_r7KetV",
+    "newsletter"
+  ]
+}

@@ -35,7 +35,7 @@ note that this may have impact on different places.
 
   :root {
     /* Container */
-    --container-max-width: 100%;
+    --container-max-width: 1440px;
     --container-xxs-max-width: 27.5rem; /* 440px */
     --container-xs-max-width: 42.5rem; /* 680px */
     --container-sm-max-width: 61.25rem; /* 980px */
@@ -74,7 +74,7 @@ note that this may have impact on different places.
      */
 
     /* Font properties */
-    --heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    --heading-font-family: "Kumbh Sans", {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
     --heading-font-weight: {{ settings.heading_font.weight }};
     --heading-font-style: {{ settings.heading_font.style }};
     --heading-text-transform: {{ settings.heading_text_transform }};
@@ -153,7 +153,7 @@ note that this may have impact on different places.
   @media screen and (min-width: 1000px) {
     :root {
       /* Spacing settings */
-      --container-gutter: 3rem;
+      --container-gutter: 5rem;
 
       --section-vertical-spacing: {% if settings.section_vertical_spacing == 'xs' %}3rem{%- elsif settings.section_vertical_spacing == 'sm' %}3.5rem{% elsif settings.section_vertical_spacing == 'md' %}4rem{% elsif settings.section_vertical_spacing == 'lg' %}5rem{% else %}7rem{% endif %};
       --section-vertical-spacing-tight: {% if settings.section_vertical_spacing == 'xs' %}3rem{%- elsif settings.section_vertical_spacing == 'sm' %}3.5rem{% else %}4rem{% endif %};

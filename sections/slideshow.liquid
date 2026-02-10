@@ -7,6 +7,9 @@ may have important consequence on the section itself.
 {%- endcomment -%}
 
 {%- if section.blocks.size > 0 -%}
+
+  {{- 'section-slideshow.css' | asset_url | stylesheet_tag -}}
+
   {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
   <slideshow-carousel id="{{ carousel_id }}" class="slideshow" allow-swipe {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %} cell-selector=".slideshow__slide" {% if section.settings.autoplay %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} {% if section.settings.autoplay and section.settings.autoplay_pause_on_video %}autoplay-pause-on-video{% endif %} role="region" style="{% render 'surface', background: section.settings.background %}">
