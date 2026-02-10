@@ -1,13 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-body {
-  max-width: 390px;
-}
-@media screen and (min-width: 576px) {
-  body {
-    max-width: none;
-  }
-}
-
 .button {
   line-height: 1;
   padding-block: 0.25rem;
