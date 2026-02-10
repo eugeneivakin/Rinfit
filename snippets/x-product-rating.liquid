@@ -1,0 +1,12 @@
+<div
+  class="loox-rating"
+  data-id="{{ product.id }}"
+  data-rating="{{ product.metafields.loox.avg_rating }}"
+  data-raters="{{ product.metafields.loox.num_reviews }}"
+  data-pattern="&nbsp;"
+>
+  <div>
+    {{ product.metafields.loox.avg_rating }}/5.00
+    <span class="loox-rating__counter">({{ product.metafields.loox.num_reviews }} reviews)</span>
+  </div>
+</div>

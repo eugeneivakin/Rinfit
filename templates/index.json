@@ -132,7 +132,7 @@
           "settings": {
             "collection": "best-sellers",
             "products_count": 8,
-            "title": "Best Sellers",
+            "title": "Best <em><strong>Sellers</strong></em>",
             "link_url": "",
             "link_text": "SHOP ALL"
           }
@@ -148,7 +148,7 @@
         "hide_product_information": false,
         "stack_products": false,
         "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
+        "products_per_row_desktop": 5,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
         "subheading": ""
@@ -162,7 +162,7 @@
           "settings": {
             "collection": "new-arrivals",
             "products_count": 8,
-            "title": "New Arrivals",
+            "title": "New <em><strong>Arrivals</strong></em>",
             "link_url": "",
             "link_text": "Shop all"
           }
@@ -174,11 +174,11 @@
       "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-1",
-        "separate_section_with_border": true,
+        "separate_section_with_border": false,
         "hide_product_information": false,
         "stack_products": false,
         "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
+        "products_per_row_desktop": 5,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
         "subheading": ""
@@ -405,7 +405,7 @@
           "settings": {
             "collection": "couture-collection",
             "products_count": 8,
-            "title": "Save With Sets",
+            "title": "Save With <em><strong>Sets</strong></em>",
             "link_url": "",
             "link_text": "SHOP ALL"
           }

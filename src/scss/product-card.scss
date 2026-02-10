@@ -1,0 +1,161 @@
+@use "mixins/media" as *;
+
+.x-product-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  font-size: 14px;
+  line-height: 1.5715;
+  gap: 9px;
+  height: 100%;
+
+  .product-card__media {
+    background: #e9e9e9;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      opacity: 0 !important;
+    }
+  }
+
+  .product-card__info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .conatainer-first-star {
+    min-height: 0;
+  }
+
+  .product-card__info :is(.price-list, .rating-badge) {
+    justify-content: start;
+  }
+
+  .loox-rating {
+    color: rgb(var(--text-color) / 0.8);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    font-size: 12px;
+    line-height: 1;
+
+    svg.loox-icon {
+      display: none;
+      height: auto;
+      width: 14px;
+
+      @include md {
+        display: inline;
+      }
+
+      &:first-child {
+        display: inline;
+      }
+    }
+  }
+
+  .loox-rating-content {
+    color: rgba(222, 174, 74, 1);
+    margin: 0 -2px 0 0;
+    order: -1;
+  }
+
+  .loox-rating__counter {
+    color: rgb(var(--text-color) / 0.4);
+    margin: 0 0 0 2px;
+  }
+
+  .product-title {
+    --heading-font-weight: 500;
+    font-family: inherit;
+
+    &.h6 {
+      font-size: 16px;
+    }
+  }
+
+  .price-list {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+
+    * {
+      font: inherit;
+    }
+  }
+
+  .product-card__swatches {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+    margin: 12px 0 4px;
+
+    @include md {
+      gap: 10px;
+    }
+
+    .color-swatch {
+      --swatch-size: 26px;
+      --swatch-offset: 0;
+      border-radius: 100%;
+      overflow: hidden;
+    }
+
+    :checked + .color-swatch {
+      border-color: rgb(var(--text-color) / 0.4);
+    }
+
+    .color-swatch--show-more {
+      border-color: rgb(var(--text-color) / 0.4);
+
+      &:hover {
+        background: #e9e9e9;
+      }
+
+      &.active {
+        display: none;
+
+        ~ .color-swatch {
+          display: block;
+        }
+      }
+
+      svg {
+        fill: rgb(var(--text-color) / 0.6);
+      }
+
+      ~ .color-swatch {
+        display: none;
+      }
+    }
+  }
+
+  .product-card__button-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: auto;
+  }
+}
