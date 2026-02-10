@@ -67,7 +67,11 @@
           }
         }
       },
-      "block_order": ["heading_kxizrm", "heading_BfNtW8", "heading_fhhAyx"],
+      "block_order": [
+        "heading_kxizrm",
+        "heading_BfNtW8",
+        "heading_fhhAyx"
+      ],
       "name": "Herro banner",
       "settings": {}
     },
@@ -86,6 +90,36 @@
         "bottom_padding": 60,
         "top_padding_mob": 15,
         "bottom_padding_mob": 0
+      }
+    },
+    "x_featured_collections_bQtpxj": {
+      "type": "x-featured-collections",
+      "blocks": {
+        "collection_DqPQTX": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "products_count": 8,
+            "title": "",
+            "link_url": "",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_DqPQTX"
+      ],
+      "name": "t:sections.x-featured_collections.presets.x-featured_collections.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "Featured collection"
       }
     },
     "collection_9TxCaj": {
@@ -168,7 +202,10 @@
           }
         }
       },
-      "block_order": ["slide-1", "slide-2"],
+      "block_order": [
+        "slide-1",
+        "slide-2"
+      ],
       "disabled": true,
       "settings": {
         "allow_transparent_header": true,
@@ -196,7 +233,9 @@
           }
         }
       },
-      "block_order": ["collection-1"],
+      "block_order": [
+        "collection-1"
+      ],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -244,7 +283,11 @@
           }
         }
       },
-      "block_order": ["column-1", "column-2", "column-3"],
+      "block_order": [
+        "column-1",
+        "column-2",
+        "column-3"
+      ],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -360,7 +403,14 @@
           }
         }
       },
-      "block_order": ["collection-1", "collection-2", "collection-3", "collection-4", "collection-5", "collection-6"],
+      "block_order": [
+        "collection-1",
+        "collection-2",
+        "collection-3",
+        "collection-4",
+        "collection-5",
+        "collection-6"
+      ],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -400,7 +450,10 @@
           }
         }
       },
-      "block_order": ["before", "after"],
+      "block_order": [
+        "before",
+        "after"
+      ],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -430,7 +483,10 @@
           }
         }
       },
-      "block_order": ["image-1", "image-2"],
+      "block_order": [
+        "image-1",
+        "image-2"
+      ],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -520,7 +576,11 @@
           }
         }
       },
-      "block_order": ["left_text_t9EVie", "center_image_w8CHFp", "right_text_wxYBxw"],
+      "block_order": [
+        "left_text_t9EVie",
+        "center_image_w8CHFp",
+        "right_text_wxYBxw"
+      ],
       "disabled": true,
       "name": "Text Image Text",
       "settings": {
@@ -628,7 +688,12 @@
           }
         }
       },
-      "block_order": ["item_tcDWEU", "item_eqtR9G", "item_wbTJmJ", "item_b4gxaR"],
+      "block_order": [
+        "item_tcDWEU",
+        "item_eqtR9G",
+        "item_wbTJmJ",
+        "item_b4gxaR"
+      ],
       "name": "Custom Marquee",
       "settings": {
         "static_on_desktop": true,
@@ -680,7 +745,13 @@
           }
         }
       },
-      "block_order": ["category_XqBz9Q", "category_fkqnPY", "category_mPAgzB", "category_ECcWPF", "category_kETMMp"],
+      "block_order": [
+        "category_XqBz9Q",
+        "category_fkqnPY",
+        "category_mPAgzB",
+        "category_ECcWPF",
+        "category_kETMMp"
+      ],
       "name": "Shop by Category",
       "settings": {
         "title": "<p>Shop by Category</p>",
@@ -1010,7 +1081,15 @@
           }
         }
       },
-      "block_order": ["image_dzAjgQ", "image_9rKAnB", "image_eV8F3T", "image_98V7pR", "image_89DMAD", "image_NUtyLj", "image_nypmaY"],
+      "block_order": [
+        "image_dzAjgQ",
+        "image_9rKAnB",
+        "image_eV8F3T",
+        "image_98V7pR",
+        "image_89DMAD",
+        "image_NUtyLj",
+        "image_nypmaY"
+      ],
       "name": "Shop Our Instagram",
       "settings": {
         "text_color": "#373a36",
@@ -1024,7 +1103,9 @@
     },
     "newsletter": {
       "type": "newsletter",
-      "custom_css": [".section-spacing {padding-top: 14px;}"],
+      "custom_css": [
+        ".section-spacing {padding-top: 14px;}"
+      ],
       "settings": {
         "color_scheme": "scheme-2",
         "separate_section_with_border": true,
@@ -1185,6 +1266,7 @@
   "order": [
     "hero_banner_hwPG8G",
     "explore_our_GqFJXM",
+    "x_featured_collections_bQtpxj",
     "collection_9TxCaj",
     "collection_Uw6HWG",
     "slideshow",
