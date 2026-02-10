@@ -13,6 +13,7 @@
   "sections": {
     "promo_banner_AQQhLF": {
       "type": "promo-banner",
+      "disabled": true,
       "name": "Promo Banner",
       "settings": {
         "announcement_text": "<p>FREE STANDARD CYPRUS SHIPPING W/ $50.</p>",
@@ -138,6 +139,7 @@
         "mega_menu_zxwndM",
         "mega_menu_i6cqEg"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "enable_sticky": true,

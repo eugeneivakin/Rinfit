@@ -13,6 +13,7 @@
   "sections": {
     "cart-drawer": {
       "type": "cart-drawer",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-2",
         "show_cart_note": true,
@@ -27,6 +28,7 @@
     },
     "newsletter-popup": {
       "type": "newsletter-popup",
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "apparition_delay": 5,
