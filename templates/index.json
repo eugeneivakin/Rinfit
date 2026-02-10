@@ -67,11 +67,7 @@
           }
         }
       },
-      "block_order": [
-        "heading_kxizrm",
-        "heading_BfNtW8",
-        "heading_fhhAyx"
-      ],
+      "block_order": ["heading_kxizrm", "heading_BfNtW8", "heading_fhhAyx"],
       "name": "Herro banner",
       "settings": {}
     },
@@ -172,10 +168,7 @@
           }
         }
       },
-      "block_order": [
-        "slide-1",
-        "slide-2"
-      ],
+      "block_order": ["slide-1", "slide-2"],
       "disabled": true,
       "settings": {
         "allow_transparent_header": true,
@@ -203,9 +196,7 @@
           }
         }
       },
-      "block_order": [
-        "collection-1"
-      ],
+      "block_order": ["collection-1"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -253,11 +244,7 @@
           }
         }
       },
-      "block_order": [
-        "column-1",
-        "column-2",
-        "column-3"
-      ],
+      "block_order": ["column-1", "column-2", "column-3"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -373,14 +360,7 @@
           }
         }
       },
-      "block_order": [
-        "collection-1",
-        "collection-2",
-        "collection-3",
-        "collection-4",
-        "collection-5",
-        "collection-6"
-      ],
+      "block_order": ["collection-1", "collection-2", "collection-3", "collection-4", "collection-5", "collection-6"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -420,10 +400,7 @@
           }
         }
       },
-      "block_order": [
-        "before",
-        "after"
-      ],
+      "block_order": ["before", "after"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -453,10 +430,7 @@
           }
         }
       },
-      "block_order": [
-        "image-1",
-        "image-2"
-      ],
+      "block_order": ["image-1", "image-2"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -546,11 +520,7 @@
           }
         }
       },
-      "block_order": [
-        "left_text_t9EVie",
-        "center_image_w8CHFp",
-        "right_text_wxYBxw"
-      ],
+      "block_order": ["left_text_t9EVie", "center_image_w8CHFp", "right_text_wxYBxw"],
       "disabled": true,
       "name": "Text Image Text",
       "settings": {
@@ -569,7 +539,6 @@
     },
     "image_with_text_section_wNi7Jn": {
       "type": "image-with-text-section",
-      "disabled": true,
       "name": "Gemstone Promo",
       "settings": {
         "image": "shopify://shop_images/image.png",
@@ -609,7 +578,6 @@
     },
     "reviews_highlight_TkdegG": {
       "type": "reviews-highlight",
-      "disabled": true,
       "name": "Reviews Highlight",
       "settings": {
         "headline": "<p>Over 1M rings Sold</p>",
@@ -660,13 +628,7 @@
           }
         }
       },
-      "block_order": [
-        "item_tcDWEU",
-        "item_eqtR9G",
-        "item_wbTJmJ",
-        "item_b4gxaR"
-      ],
-      "disabled": true,
+      "block_order": ["item_tcDWEU", "item_eqtR9G", "item_wbTJmJ", "item_b4gxaR"],
       "name": "Custom Marquee",
       "settings": {
         "static_on_desktop": true,
@@ -718,14 +680,7 @@
           }
         }
       },
-      "block_order": [
-        "category_XqBz9Q",
-        "category_fkqnPY",
-        "category_mPAgzB",
-        "category_ECcWPF",
-        "category_kETMMp"
-      ],
-      "disabled": true,
+      "block_order": ["category_XqBz9Q", "category_fkqnPY", "category_mPAgzB", "category_ECcWPF", "category_kETMMp"],
       "name": "Shop by Category",
       "settings": {
         "title": "<p>Shop by Category</p>",
@@ -734,7 +689,6 @@
     },
     "collection_C3X8RM": {
       "type": "collection",
-      "disabled": true,
       "name": "Collection products",
       "settings": {
         "title": "<p>Save With Sets</p>",
@@ -748,7 +702,6 @@
     },
     "smart_ring_e7a8hy": {
       "type": "smart-ring",
-      "disabled": true,
       "name": "Smart ring",
       "settings": {
         "background_color": "#f5e5e1",
@@ -843,7 +796,6 @@
         "collection_block_wBUbm6",
         "collection_block_riNxR4"
       ],
-      "disabled": true,
       "name": "Shop by collections",
       "settings": {
         "title": "<p>Shop By Collections</p>",
@@ -992,7 +944,6 @@
         "video_f9Qf9x",
         "video_9RJY7U"
       ],
-      "disabled": true,
       "name": "Section tiktok",
       "settings": {
         "main_title": "<p>Rinfit Community</p>",
@@ -1059,16 +1010,7 @@
           }
         }
       },
-      "block_order": [
-        "image_dzAjgQ",
-        "image_9rKAnB",
-        "image_eV8F3T",
-        "image_98V7pR",
-        "image_89DMAD",
-        "image_NUtyLj",
-        "image_nypmaY"
-      ],
-      "disabled": true,
+      "block_order": ["image_dzAjgQ", "image_9rKAnB", "image_eV8F3T", "image_98V7pR", "image_89DMAD", "image_NUtyLj", "image_nypmaY"],
       "name": "Shop Our Instagram",
       "settings": {
         "text_color": "#373a36",
@@ -1082,10 +1024,7 @@
     },
     "newsletter": {
       "type": "newsletter",
-      "disabled": true,
-      "custom_css": [
-        ".section-spacing {padding-top: 14px;}"
-      ],
+      "custom_css": [".section-spacing {padding-top: 14px;}"],
       "settings": {
         "color_scheme": "scheme-2",
         "separate_section_with_border": true,
@@ -1197,7 +1136,6 @@
         "legal_ByPeaQ",
         "legal_eiXLqH"
       ],
-      "disabled": true,
       "name": "Footer",
       "settings": {
         "logo_image": "shopify://shop_images/Rinfit_Logo_1.svg",
