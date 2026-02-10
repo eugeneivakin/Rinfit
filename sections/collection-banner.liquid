@@ -155,22 +155,24 @@
     },
     {
       "type": "checkbox",
+      "id": "show_image",
+      "label": "t:sections.collection_banner.show_image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
       "id": "reveal",
       "label": "t:sections.collection_banner.reveal",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.show_image }}"
     },
     {
       "type": "checkbox",
       "id": "enable_parallax",
       "label": "t:sections.collection_banner.enable_parallax",
       "info": "t:sections.collection_banner.enable_parallax_info",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_image",
-      "label": "t:sections.collection_banner.show_image",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.show_image }}"
     },
     {
       "type": "checkbox",

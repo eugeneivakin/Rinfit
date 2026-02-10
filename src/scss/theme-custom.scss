@@ -1,0 +1,33 @@
+@use "mixins/media" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+body {
+  max-width: 390px;
+
+  @include xs {
+    max-width: none;
+  }
+}
+
+.button {
+  line-height: 1;
+  padding-block: 0.25rem;
+  min-height: 2.3125rem;
+}
+
+.container {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: var(--container-gutter);
+  padding-inline-end: var(--container-gutter);
+}
+
+.heading, .h1, .h2, .h3, .h4, .h5, .h6, .prose :where(h1, h2, h3, h4, h5, h6) {
+  line-height: 1;
+
+  > em,
+  > strong {
+    font-family: "Playfair Display", serif;
+  }
+}

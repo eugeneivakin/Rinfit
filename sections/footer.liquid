@@ -164,7 +164,7 @@
           </div>
         {%- endif -%}
 
-        <p class="heading text-subdued text-xxs">© {{ 'now' | date: '%Y' }} - {{ shop.name }} {{ powered_by_link }}</p>
+      <p class="heading text-subdued text-xxs">© {{ 'now' | date: '%Y' }} - {{ shop.name }} {%- if section.settings.show_powered_by_shopify -%}{{ powered_by_link }}{%- endif -%}</p>
 
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
           <ul class="payment-methods unstyled-list">
@@ -211,6 +211,12 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "show_powered_by_shopify",
+      "label": "t:sections.footer.show_powered_by_shopify",
+      "default": true
+    },
+    {
       "type": "header",
       "content": "t:global.localization.country_region_selector_category",
       "info": "t:global.localization.country_region_selector_category_info"
@@ -225,13 +231,15 @@
       "type": "checkbox",
       "id": "show_country_name",
       "label": "t:global.localization.show_country_name",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.show_country_selector }}"
     },
     {
       "type": "checkbox",
       "id": "show_country_flag",
       "label": "t:global.localization.show_country_flag",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.show_country_selector }}"
     },
     {
       "type": "header",
@@ -322,7 +330,8 @@
           "type": "inline_richtext",
           "id": "menu_title",
           "label": "t:sections.footer.blocks.links.menu_title",
-          "info": "t:sections.footer.blocks.links.menu_title_info"
+          "info": "t:sections.footer.blocks.links.menu_title_info",
+          "visible_if": "{{ block.settings.show_menu_title }}"
         }
       ]
     },

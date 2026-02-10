@@ -20,56 +20,18 @@ Supported variables
 IMPLEMENTATION NOTE: while being a drawer, the sidebar has a completely different structure for the content. We are
 therefore using a different structure for the Shadow DOM template
 {%- endcomment -%}
-<style>
-.swiper-button-prev-slider.swiper-button-prev-produts{
-  background-color: white;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  z-index: 99;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.swiper-button-next-slider.swiper-button-next-produts img{
-  transform: rotate(180deg);
-}
-.swiper-button-next-slider.swiper-button-next-produts{
-  background-color: white;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 40px;
-  z-index: 99;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>
 <template id="header-sidebar-template">
   <div part="base">
     <div part="overlay"></div>
 
     <div part="content">
-      {% comment %} <header part="header">
+      <header part="header">
         <dialog-close-button class="contents">
           <button type="button" part="close-button tap-area" aria-label="{{ 'general.accessibility.close' | t | escape }}">
             {%- render 'icon' with 'close', width: 16 -%}
           </button>
         </dialog-close-button>
-      </header> {% endcomment %}
-
-
-
-
-
+      </header>
 
       <div part="panel-list">
         <slot name="main-panel"></slot>
@@ -87,32 +49,6 @@ therefore using a different structure for the Shadow DOM template
 
   {%- comment -%}Panel 1 is the first level{%- endcomment -%}
   <div class="header-sidebar__main-panel" slot="main-panel">
-      {% assign my_collection = collections %}
-
-{% if my_collection.products.size > 0 %}
-<div class="swiper products-swiper main-products-swiper-collections">
-  <div class="swiper-wrapper">
-    {% for product in my_collection.products %}
-      <div class="swiper-slide product-main-collections">
-        <a href="{{ product.url }}">
-          {% if product.featured_image %}
-            <img class="main-image-products" src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}">
-          {% endif %}
-<h3 class="main-title_product">{{ product.title | truncate: 11 }}</h3>
-
-        </a>
-      </div>
-    {% endfor %}
-  </div>
-
-  <div class=" swiper-button-prev-slider swiper-button-prev-produts"><img src="{{ 'VectorSlider.svg' | asset_url }}" alt="Prev" /></div>
-  <div class=" swiper-button-next-slider swiper-button-next-produts"><img src="{{ 'VectorSlider.svg' | asset_url }}" alt="Next" /></div>
-
-</div>
-{% endif %}
-
-
-
     <div class="header-sidebar__scroller">
       <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
         {%- for link in menu.links -%}
@@ -131,15 +67,6 @@ therefore using a different structure for the Shadow DOM template
         {%- endfor -%}
       </ul>
     </div>
-     <ul class="header-sidebar__linklist {% if show_dividers %}divide-y divide-y-main{% endif %} unstyled-list" role="list">
-        {%- for link in menu_mob_main.links -%}
-          <li>
-              <a href="{{ link.url }}" class="header-mobile-main {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
-                {{- link.title -}}
-              </a>
-          </li>
-        {%- endfor -%}
-      </ul>
 
     {%- liquid
       if section.settings.show_country_selector and localization.available_countries.size > 1
@@ -153,9 +80,8 @@ therefore using a different structure for the Shadow DOM template
 
     {%- if shop.customer_accounts_enabled or show_country_selector or show_locale_selector -%}
       <div class="header-sidebar__footer">
-        <div class="main-conatiner-mob">
         {%- if shop.customer_accounts_enabled -%}
-          <a class="track-order-btn-mob" href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="text-with-icon smallcaps sm:hidden">
+          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="text-with-icon smallcaps sm:hidden">
             {%- render 'icon' with 'account', width: 20 -%}
             
             {%- if customer -%}
@@ -165,13 +91,7 @@ therefore using a different structure for the Shadow DOM template
             {%- endif -%}
           </a>
         {%- endif -%}
-        <a href="#" class="track-order-btn-mob"> 
-          <img src="{{ 'Vector11.svg' | asset_url }}" alt="Icon" />
-          join for 15%off</a>
-        <a href="/account/orders" class="track-order-btn-mob">
-          <img src="{{ 'la_shipping-fast.svg' | asset_url }}" alt="Icon" />
-          Track My Order</a>
-        </div>
+
         {%- if show_country_selector or show_locale_selector -%}
           <div class="localization-selectors">
             {%- if show_country_selector -%}
@@ -194,18 +114,16 @@ therefore using a different structure for the Shadow DOM template
   {%- comment -%}Panel 2 holds all the second levels{%- endcomment -%}
   {%- if menu.levels > 0 -%}
     <header-sidebar-collapsible-panel class="header-sidebar__collapsible-panel" slot="collapsible-panel">
-      <div class="header-sidebar__scroller header-sidebar__scroller-mob-main">
+      <div class="header-sidebar__scroller">
         {%- for link in menu.links -%}
           {%- if link.links.size > 0 -%}
             <div id="header-panel-{{ forloop.index }}" class="header-sidebar__sub-panel" hidden>
-              <div class="main_container-button">
-              <button type="button" class="header-sidebar__back-button main_button_link-sidebar link-faded {% if show_dividers %}is-divided{% endif %} text-with-icon {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %} md:hidden" data-action="close-panel">
+              <button type="button" class="header-sidebar__back-button link-faded {% if show_dividers %}is-divided{% endif %} text-with-icon {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %} md:hidden" data-action="close-panel">
                 {%- render 'icon' with 'chevron-left', width: 12, direction_aware: true -%}
-                <span>{{- link.title -}}</span>
+                {{- link.title -}}
               </button>
-              <a class="shop-all_main" href='#'>shop all</a>
-            </div>
-              <ul class="header-sidebar__linklist {% if show_dividers %}divide-y divide-y-mobile{% endif %} unstyled-list" role="list">
+
+              <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
                 {%- for sub_link in link.links -%}
                   <li>
                     {%- if sub_link.links.size > 0 -%}
@@ -224,7 +142,7 @@ therefore using a different structure for the Shadow DOM template
                         </details>
                       </accordion-disclosure>
                     {%- else -%}
-                      <a href="{{ sub_link.url }}" class="header-sidebar__linklist-button header-mob-main-menu {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
+                      <a href="{{ sub_link.url }}" class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
                         {{- sub_link.title -}}
                       </a>
                     {%- endif -%}
@@ -248,9 +166,7 @@ therefore using a different structure for the Shadow DOM template
               -%}
 
               {%- capture mega_menu_content -%}
-                <div class="main-header-menu-mob">
                 {%- render 'mega-menu-images', context: 'sidebar', block: mega_menu_block -%}
-                </div>
               {%- endcapture -%}
 
               {%- if mega_menu_content != blank -%}
@@ -265,27 +181,3 @@ therefore using a different structure for the Shadow DOM template
     </header-sidebar-collapsible-panel>
   {%- endif -%}
 </header-sidebar>
-
-{% comment %} <!-- Swiper CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-/>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> {% endcomment %}
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.products-swiper', {
-      slidesPerView: 'auto', // auto для врахування width із CSS
-      spaceBetween: 10,
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next-produts',
-        prevEl: '.swiper-button-prev-produts',
-      },
-    });
-  });
-</script>

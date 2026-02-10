@@ -102,6 +102,9 @@ scroller_get = function() {
   return this.shadowRoot.querySelector('[part="scroller"]');
 };
 initialize_fn = function() {
+  if (this.children[0]?.childElementCount === 0) {
+    return;
+  }
   this.attachShadow({ mode: "open" }).appendChild(document.createRange().createContextualFragment(`
       <slot part="scroller"></slot>
     `));
@@ -483,6 +486,21 @@ var QrCode = class extends HTMLElement {
 };
 if (!window.customElements.get("qr-code")) {
   window.customElements.define("qr-code", QrCode);
+}
+
+// js/common/utilities/accessibility.js
+function announceText(holderId, message) {
+  const holder = document.getElementById(holderId);
+  holder.textContent = "";
+  setTimeout(() => {
+    holder.textContent = message;
+  }, 100);
+}
+function announceStatus(message) {
+  announceText("status-announcement", message);
+}
+function announceError(message) {
+  announceText("error-announcement", message);
 }
 
 // js/common/behavior/height-observer.js
@@ -1311,25 +1329,116 @@ if (!window.customElements.get("cart-count")) {
   window.customElements.define("cart-count", CartCount);
 }
 
-// js/common/cart/cart-dot.js
-var _abortController3, _CartDot_instances, updateFromServer_fn2;
-var CartDot = class extends HTMLElement {
+// js/common/cart/cart-discount.js
+var AbstractCartDiscount = class extends HTMLElement {
+  async getDiscountCodes() {
+    return (await fetchCart)["discount_codes"].filter((discount) => discount.applicable).map((discount) => discount.code.toLowerCase());
+  }
+  async toggleDiscount(event) {
+    let target = event.currentTarget;
+    target.setAttribute("aria-busy", "true");
+    let discountCodes = await this.getDiscountCodes();
+    if (target.hasAttribute("discount-code")) {
+      discountCodes = discountCodes.filter((discount2) => discount2 !== target.getAttribute("discount-code").toLowerCase());
+    }
+    let discount = (discountCodes.length > 0 ? discountCodes.join(",") + "," : "") + (event.target.value || "");
+    const response = await fetch(`${Shopify.routes.root}cart/update.js`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      keepalive: true,
+      body: JSON.stringify({ discount })
+    });
+    target.setAttribute("aria-busy", "false");
+    if (!response.ok) {
+      this.dispatchEvent(new CustomEvent("cart:discount:error", { bubbles: true }));
+      return;
+    }
+    const responseJson = await response.json();
+    if (responseJson.discount_codes.some((obj) => obj.applicable === false)) {
+      this.dispatchEvent(new CustomEvent("cart:discount:error", { bubbles: true }));
+      return;
+    } else {
+      this.dispatchEvent(new CustomEvent("cart:refresh", { bubbles: true }));
+    }
+    if (window.themeVariables.settings.pageType === "cart") {
+      window.location.reload();
+    }
+  }
+};
+var _abortController3, _CartDiscountBanner_instances, onCartDiscountError_fn;
+var CartDiscountBanner = class extends HTMLElement {
   constructor() {
     super(...arguments);
-    __privateAdd(this, _CartDot_instances);
+    __privateAdd(this, _CartDiscountBanner_instances);
     __privateAdd(this, _abortController3);
   }
   connectedCallback() {
     __privateSet(this, _abortController3, new AbortController());
-    document.addEventListener("cart:change", (event) => this.classList.toggle("is-visible", event.detail["cart"]["item_count"] > 0), { signal: __privateGet(this, _abortController3).signal });
-    document.addEventListener("cart:refresh", __privateMethod(this, _CartDot_instances, updateFromServer_fn2).bind(this), { signal: __privateGet(this, _abortController3).signal });
-    window.addEventListener("pageshow", __privateMethod(this, _CartDot_instances, updateFromServer_fn2).bind(this), { signal: __privateGet(this, _abortController3).signal });
+    document.addEventListener("cart:discount:error", __privateMethod(this, _CartDiscountBanner_instances, onCartDiscountError_fn).bind(this), { signal: __privateGet(this, _abortController3).signal });
   }
   disconnectedCallback() {
     __privateGet(this, _abortController3).abort();
   }
 };
 _abortController3 = new WeakMap();
+_CartDiscountBanner_instances = new WeakSet();
+onCartDiscountError_fn = function() {
+  this.hidden = false;
+};
+var _hiddenDiscountInputOriginalValue, _CartDiscountField_instances, hiddenDiscountInput_get, updateHiddenInput_fn;
+var CartDiscountField = class extends AbstractCartDiscount {
+  constructor() {
+    super();
+    __privateAdd(this, _CartDiscountField_instances);
+    __privateAdd(this, _hiddenDiscountInputOriginalValue);
+    __privateSet(this, _hiddenDiscountInputOriginalValue, __privateGet(this, _CartDiscountField_instances, hiddenDiscountInput_get).value);
+    this.addEventListener("change", this.toggleDiscount.bind(this));
+    this.addEventListener("input", __privateMethod(this, _CartDiscountField_instances, updateHiddenInput_fn));
+  }
+};
+_hiddenDiscountInputOriginalValue = new WeakMap();
+_CartDiscountField_instances = new WeakSet();
+hiddenDiscountInput_get = function() {
+  return this.querySelector('[name="discount"]');
+};
+updateHiddenInput_fn = function(event) {
+  __privateGet(this, _CartDiscountField_instances, hiddenDiscountInput_get).value = [__privateGet(this, _hiddenDiscountInputOriginalValue), event.target.value].filter((val) => val && val.trim() !== "").join(",");
+};
+var CartDiscountRemoveButton = class extends AbstractCartDiscount {
+  constructor() {
+    super();
+    this.addEventListener("click", this.toggleDiscount.bind(this));
+  }
+};
+if (!window.customElements.get("cart-discount-field")) {
+  window.customElements.define("cart-discount-field", CartDiscountField);
+}
+if (!window.customElements.get("cart-discount-remove-button")) {
+  window.customElements.define("cart-discount-remove-button", CartDiscountRemoveButton);
+}
+if (!window.customElements.get("cart-discount-banner")) {
+  window.customElements.define("cart-discount-banner", CartDiscountBanner);
+}
+
+// js/common/cart/cart-dot.js
+var _abortController4, _CartDot_instances, updateFromServer_fn2;
+var CartDot = class extends HTMLElement {
+  constructor() {
+    super(...arguments);
+    __privateAdd(this, _CartDot_instances);
+    __privateAdd(this, _abortController4);
+  }
+  connectedCallback() {
+    __privateSet(this, _abortController4, new AbortController());
+    document.addEventListener("cart:change", (event) => this.classList.toggle("is-visible", event.detail["cart"]["item_count"] > 0), { signal: __privateGet(this, _abortController4).signal });
+    document.addEventListener("cart:refresh", __privateMethod(this, _CartDot_instances, updateFromServer_fn2).bind(this), { signal: __privateGet(this, _abortController4).signal });
+    window.addEventListener("pageshow", __privateMethod(this, _CartDot_instances, updateFromServer_fn2).bind(this), { signal: __privateGet(this, _abortController4).signal });
+  }
+  disconnectedCallback() {
+    __privateGet(this, _abortController4).abort();
+  }
+};
+_abortController4 = new WeakMap();
 _CartDot_instances = new WeakSet();
 updateFromServer_fn2 = async function() {
   this.classList.toggle("is-visible", (await fetchCart)["item_count"] > 0);
@@ -1623,14 +1732,14 @@ if (!window.customElements.get("facets-form")) {
 // js/common/overlay/dialog-element.js
 import { animate as animate4, FocusTrap, Delegate as Delegate2 } from "vendor";
 var lockLayerCount = 0;
-var _isLocked, _delegate2, _abortController4, _focusTrap, _originalParentBeforeAppend, _DialogElement_instances, allowOutsideClick_fn, allowOutsideClickTouch_fn, allowOutsideClickMouse_fn, onToggleClicked_fn, updateSlotVisibility_fn;
+var _isLocked, _delegate2, _abortController5, _focusTrap, _originalParentBeforeAppend, _DialogElement_instances, allowOutsideClick_fn, allowOutsideClickTouch_fn, allowOutsideClickMouse_fn, onToggleClicked_fn, updateSlotVisibility_fn;
 var DialogElement = class extends HTMLElement {
   constructor() {
     super();
     __privateAdd(this, _DialogElement_instances);
     __privateAdd(this, _isLocked, false);
     __privateAdd(this, _delegate2, new Delegate2(document.body));
-    __privateAdd(this, _abortController4);
+    __privateAdd(this, _abortController5);
     __privateAdd(this, _focusTrap);
     __privateAdd(this, _originalParentBeforeAppend);
     if (this.shadowDomTemplate) {
@@ -1649,7 +1758,7 @@ var DialogElement = class extends HTMLElement {
     if (this.id) {
       __privateGet(this, _delegate2).off().on("click", `[aria-controls="${this.id}"]`, __privateMethod(this, _DialogElement_instances, onToggleClicked_fn).bind(this));
     }
-    __privateSet(this, _abortController4, new AbortController());
+    __privateSet(this, _abortController5, new AbortController());
     this.setAttribute("role", "dialog");
     if (this.shadowDomTemplate) {
       this.getShadowPartByName("overlay")?.addEventListener("click", this.hide.bind(this), { signal: this.abortController.signal });
@@ -1704,7 +1813,7 @@ var DialogElement = class extends HTMLElement {
    * that will be cleaned when the element is removed or re-rendered
    */
   get abortController() {
-    return __privateGet(this, _abortController4);
+    return __privateGet(this, _abortController5);
   }
   /**
    * Get all the elements controlling this dialog (typically, button). An element controls this dialog if it has an
@@ -1877,7 +1986,7 @@ var DialogElement = class extends HTMLElement {
 };
 _isLocked = new WeakMap();
 _delegate2 = new WeakMap();
-_abortController4 = new WeakMap();
+_abortController5 = new WeakMap();
 _focusTrap = new WeakMap();
 _originalParentBeforeAppend = new WeakMap();
 _DialogElement_instances = new WeakSet();
@@ -2305,27 +2414,27 @@ if (!window.customElements.get("price-range")) {
 }
 
 // js/common/form/quantity-selector.js
-var _abortController5, _decreaseButton, _increaseButton, _inputElement, _QuantitySelector_instances, onDecreaseQuantity_fn, onIncreaseQuantity_fn, updateUI_fn;
+var _abortController6, _decreaseButton, _increaseButton, _inputElement, _QuantitySelector_instances, onDecreaseQuantity_fn, onIncreaseQuantity_fn, updateUI_fn;
 var QuantitySelector = class extends HTMLElement {
   constructor() {
     super(...arguments);
     __privateAdd(this, _QuantitySelector_instances);
-    __privateAdd(this, _abortController5);
+    __privateAdd(this, _abortController6);
     __privateAdd(this, _decreaseButton);
     __privateAdd(this, _increaseButton);
     __privateAdd(this, _inputElement);
   }
   connectedCallback() {
-    __privateSet(this, _abortController5, new AbortController());
+    __privateSet(this, _abortController6, new AbortController());
     __privateSet(this, _decreaseButton, this.querySelector("button:first-of-type"));
     __privateSet(this, _increaseButton, this.querySelector("button:last-of-type"));
     __privateSet(this, _inputElement, this.querySelector("input"));
-    __privateGet(this, _decreaseButton)?.addEventListener("click", __privateMethod(this, _QuantitySelector_instances, onDecreaseQuantity_fn).bind(this), { signal: __privateGet(this, _abortController5).signal });
-    __privateGet(this, _increaseButton)?.addEventListener("click", __privateMethod(this, _QuantitySelector_instances, onIncreaseQuantity_fn).bind(this), { signal: __privateGet(this, _abortController5).signal });
-    __privateGet(this, _inputElement)?.addEventListener("input", () => __privateMethod(this, _QuantitySelector_instances, updateUI_fn).call(this), { signal: __privateGet(this, _abortController5).signal });
+    __privateGet(this, _decreaseButton)?.addEventListener("click", __privateMethod(this, _QuantitySelector_instances, onDecreaseQuantity_fn).bind(this), { signal: __privateGet(this, _abortController6).signal });
+    __privateGet(this, _increaseButton)?.addEventListener("click", __privateMethod(this, _QuantitySelector_instances, onIncreaseQuantity_fn).bind(this), { signal: __privateGet(this, _abortController6).signal });
+    __privateGet(this, _inputElement)?.addEventListener("input", () => __privateMethod(this, _QuantitySelector_instances, updateUI_fn).call(this), { signal: __privateGet(this, _abortController6).signal });
   }
   disconnectedCallback() {
-    __privateGet(this, _abortController5).abort();
+    __privateGet(this, _abortController6).abort();
   }
   get quantity() {
     return __privateGet(this, _inputElement).value;
@@ -2340,7 +2449,7 @@ var QuantitySelector = class extends HTMLElement {
     __privateMethod(this, _QuantitySelector_instances, updateUI_fn).call(this);
   }
 };
-_abortController5 = new WeakMap();
+_abortController6 = new WeakMap();
 _decreaseButton = new WeakMap();
 _increaseButton = new WeakMap();
 _inputElement = new WeakMap();
@@ -2351,11 +2460,13 @@ onDecreaseQuantity_fn = function() {
   } else {
     __privateGet(this, _inputElement).stepDown();
   }
+  announceStatus(__privateGet(this, _inputElement).value);
   __privateGet(this, _inputElement).dispatchEvent(new Event("change", { bubbles: true }));
   __privateMethod(this, _QuantitySelector_instances, updateUI_fn).call(this);
 };
 onIncreaseQuantity_fn = function() {
   __privateGet(this, _inputElement).stepUp();
+  announceStatus(__privateGet(this, _inputElement).value);
   __privateGet(this, _inputElement).dispatchEvent(new Event("change", { bubbles: true }));
   __privateMethod(this, _QuantitySelector_instances, updateUI_fn).call(this);
 };
@@ -2622,6 +2733,7 @@ onSwatchChanged_fn = async function(event, target) {
   if (secondaryMediaElement && target.hasAttribute("data-variant-secondary-media")) {
     let newSecondaryMedia = JSON.parse(target.getAttribute("data-variant-secondary-media"));
     newSecondaryMediaElement = __privateMethod(this, _ProductCard_instances, createMediaImg_fn).call(this, newSecondaryMedia, secondaryMediaElement.className, secondaryMediaElement.sizes);
+    newSecondaryMediaElement.ariaHidden = "true";
   }
   if (primaryMediaElement.src !== newPrimaryMediaElement.src) {
     if (secondaryMediaElement && newSecondaryMediaElement) {
@@ -2641,25 +2753,25 @@ if (!window.customElements.get("product-card")) {
 }
 
 // js/common/product/product-form.js
-var _abortController6, _ProductForm_instances, form_get2, onSubmit_fn;
+var _abortController7, _ProductForm_instances, form_get2, onSubmit_fn;
 var ProductForm = class extends HTMLElement {
   constructor() {
     super(...arguments);
     __privateAdd(this, _ProductForm_instances);
-    __privateAdd(this, _abortController6);
+    __privateAdd(this, _abortController7);
   }
   connectedCallback() {
-    __privateSet(this, _abortController6, new AbortController());
+    __privateSet(this, _abortController7, new AbortController());
     if (__privateGet(this, _ProductForm_instances, form_get2)) {
-      __privateGet(this, _ProductForm_instances, form_get2).addEventListener("submit", __privateMethod(this, _ProductForm_instances, onSubmit_fn).bind(this), { signal: __privateGet(this, _abortController6).signal });
+      __privateGet(this, _ProductForm_instances, form_get2).addEventListener("submit", __privateMethod(this, _ProductForm_instances, onSubmit_fn).bind(this), { signal: __privateGet(this, _abortController7).signal });
       __privateGet(this, _ProductForm_instances, form_get2).id.disabled = false;
     }
   }
   disconnectedCallback() {
-    __privateGet(this, _abortController6).abort();
+    __privateGet(this, _abortController7).abort();
   }
 };
-_abortController6 = new WeakMap();
+_abortController7 = new WeakMap();
 _ProductForm_instances = new WeakSet();
 form_get2 = function() {
   return this.querySelector('form[action*="/cart/add"]');
@@ -2733,40 +2845,47 @@ if (!window.customElements.get("product-form")) {
 }
 
 // js/common/product/product-form-listeners.js
-var _abortController7, _BuyButtons_instances, onVariantAdded_fn, onCartError_fn;
+var _abortController8, _BuyButtons_instances, onVariantAdded_fn, onCartError_fn;
 var BuyButtons = class extends HTMLElement {
   constructor() {
     super(...arguments);
     __privateAdd(this, _BuyButtons_instances);
-    __privateAdd(this, _abortController7);
+    __privateAdd(this, _abortController8);
   }
   connectedCallback() {
-    __privateSet(this, _abortController7, new AbortController());
-    document.forms[this.getAttribute("form")]?.addEventListener("cart:error", __privateMethod(this, _BuyButtons_instances, onCartError_fn).bind(this), { signal: __privateGet(this, _abortController7).signal });
-    if (window.themeVariables.settings.cartType === "message") {
-      document.forms[this.getAttribute("form")]?.addEventListener("variant:add", __privateMethod(this, _BuyButtons_instances, onVariantAdded_fn).bind(this), { signal: __privateGet(this, _abortController7).signal });
-    }
+    __privateSet(this, _abortController8, new AbortController());
+    document.forms[this.getAttribute("form")]?.addEventListener("cart:error", __privateMethod(this, _BuyButtons_instances, onCartError_fn).bind(this), { signal: __privateGet(this, _abortController8).signal });
+    document.forms[this.getAttribute("form")]?.addEventListener("variant:add", __privateMethod(this, _BuyButtons_instances, onVariantAdded_fn).bind(this), { signal: __privateGet(this, _abortController8).signal });
   }
   disconnectedCallback() {
-    __privateGet(this, _abortController7).abort();
+    __privateGet(this, _abortController8).abort();
   }
 };
-_abortController7 = new WeakMap();
+_abortController8 = new WeakMap();
 _BuyButtons_instances = new WeakSet();
 onVariantAdded_fn = function(event) {
-  const bannerElement = document.createRange().createContextualFragment(`
-      <div class="banner banner--success" role="alert">
-        ${window.themeVariables.strings.addedToCart}
-      </div>
-    `).firstElementChild;
-  this.prepend(bannerElement);
-  setTimeout(() => {
-    bannerElement.remove();
-  }, 2500);
+  if (window.themeVariables.settings.cartType === "message") {
+    const bannerElement = document.createRange().createContextualFragment(`
+        <div class="banner banner--success" role="status" aria-live="polite">
+          ${window.themeVariables.strings.addedToCart}
+        </div>
+      `).firstElementChild;
+    this.prepend(bannerElement);
+    setTimeout(() => {
+      bannerElement.remove();
+    }, 2500);
+  } else if (window.themeVariables.settings.cartType === "drawer") {
+    const items = event.detail.items;
+    let content = [];
+    items.forEach((item) => {
+      content.push(window.themeVariables.strings.addedToCartWithTitle.replace("{{ product_title }}", item?.title || ""));
+    });
+    announceStatus(content.join(", "));
+  }
 };
 onCartError_fn = function(event) {
   const bannerElement = document.createRange().createContextualFragment(`
-      <div class="banner banner--error" role="alert">
+      <div class="banner banner--error" role="alert" aria-live="polite">
         ${event.detail.error}
       </div>
     `).firstElementChild;
@@ -2781,36 +2900,36 @@ if (!window.customElements.get("buy-buttons")) {
 
 // js/common/product/product-gallery.js
 import { PhotoSwipeLightbox } from "vendor";
-var _abortController8, _photoSwipeInstance, _onGestureChangedListener, _settledMedia, _ProductGallery_instances, registerLightboxUi_fn, onSectionRerender_fn, onVariantChange_fn, onMediaChange_fn, onMediaSettle_fn, onCarouselClick_fn, onGestureStart_fn, onGestureChanged_fn;
+var _abortController9, _photoSwipeInstance, _onGestureChangedListener, _settledMedia, _ProductGallery_instances, registerLightboxUi_fn, onSectionRerender_fn, onVariantChange_fn, onMediaChange_fn, onMediaSettle_fn, onCarouselClick_fn, onGestureStart_fn, onGestureChanged_fn;
 var ProductGallery = class extends HTMLElement {
   /* Keep track of the currently settled media */
   constructor() {
     super();
     __privateAdd(this, _ProductGallery_instances);
-    __privateAdd(this, _abortController8);
+    __privateAdd(this, _abortController9);
     __privateAdd(this, _photoSwipeInstance);
     __privateAdd(this, _onGestureChangedListener, __privateMethod(this, _ProductGallery_instances, onGestureChanged_fn).bind(this));
     __privateAdd(this, _settledMedia);
     this.addEventListener("lightbox:open", (event) => this.openLightBox(event?.detail?.index));
   }
   connectedCallback() {
-    __privateSet(this, _abortController8, new AbortController());
+    __privateSet(this, _abortController9, new AbortController());
     if (!this.carousel) {
       return;
     }
     const form = document.forms[this.getAttribute("form")];
-    form.addEventListener("product:rerender", __privateMethod(this, _ProductGallery_instances, onSectionRerender_fn).bind(this), { signal: __privateGet(this, _abortController8).signal });
-    form.addEventListener("variant:change", __privateMethod(this, _ProductGallery_instances, onVariantChange_fn).bind(this), { signal: __privateGet(this, _abortController8).signal });
-    this.carousel.addEventListener("carousel:change", __privateMethod(this, _ProductGallery_instances, onMediaChange_fn).bind(this), { signal: __privateGet(this, _abortController8).signal });
-    this.carousel.addEventListener("carousel:settle", __privateMethod(this, _ProductGallery_instances, onMediaSettle_fn).bind(this), { signal: __privateGet(this, _abortController8).signal });
-    this.carousel.addEventListener("click", __privateMethod(this, _ProductGallery_instances, onCarouselClick_fn).bind(this), { signal: __privateGet(this, _abortController8).signal });
+    form.addEventListener("product:rerender", __privateMethod(this, _ProductGallery_instances, onSectionRerender_fn).bind(this), { signal: __privateGet(this, _abortController9).signal });
+    form.addEventListener("variant:change", __privateMethod(this, _ProductGallery_instances, onVariantChange_fn).bind(this), { signal: __privateGet(this, _abortController9).signal });
+    this.carousel.addEventListener("carousel:change", __privateMethod(this, _ProductGallery_instances, onMediaChange_fn).bind(this), { signal: __privateGet(this, _abortController9).signal });
+    this.carousel.addEventListener("carousel:settle", __privateMethod(this, _ProductGallery_instances, onMediaSettle_fn).bind(this), { signal: __privateGet(this, _abortController9).signal });
+    this.carousel.addEventListener("click", __privateMethod(this, _ProductGallery_instances, onCarouselClick_fn).bind(this), { signal: __privateGet(this, _abortController9).signal });
     if (this.hasAttribute("allow-zoom")) {
-      this.carousel.addEventListener("gesturestart", __privateMethod(this, _ProductGallery_instances, onGestureStart_fn).bind(this), { capture: false, signal: __privateGet(this, _abortController8).signal });
+      this.carousel.addEventListener("gesturestart", __privateMethod(this, _ProductGallery_instances, onGestureStart_fn).bind(this), { capture: false, signal: __privateGet(this, _abortController9).signal });
     }
     __privateMethod(this, _ProductGallery_instances, onMediaChange_fn).call(this);
   }
   disconnectedCallback() {
-    __privateGet(this, _abortController8).abort();
+    __privateGet(this, _abortController9).abort();
   }
   get viewInSpaceButton() {
     return this.querySelector("[data-shopify-xr]");
@@ -2869,7 +2988,7 @@ var ProductGallery = class extends HTMLElement {
     this.lightBox.loadAndOpen(index ?? imageCells.indexOf(this.carousel.selectedCell), dataSource);
   }
 };
-_abortController8 = new WeakMap();
+_abortController9 = new WeakMap();
 _photoSwipeInstance = new WeakMap();
 _onGestureChangedListener = new WeakMap();
 _settledMedia = new WeakMap();
@@ -3016,7 +3135,7 @@ onCarouselClick_fn = function(event) {
  */
 onGestureStart_fn = function(event) {
   event.preventDefault();
-  this.carousel.addEventListener("gesturechange", __privateGet(this, _onGestureChangedListener), { capture: false, signal: __privateGet(this, _abortController8).signal });
+  this.carousel.addEventListener("gesturechange", __privateGet(this, _onGestureChangedListener), { capture: false, signal: __privateGet(this, _abortController9).signal });
 };
 onGestureChanged_fn = function(event) {
   event.preventDefault();
@@ -3161,25 +3280,25 @@ var ProductLoader = class {
 };
 
 // js/common/product/product-rerender.js
-var _abortController9, _ProductRerender_instances, onRerender_fn;
+var _abortController10, _ProductRerender_instances, onRerender_fn;
 var ProductRerender = class extends HTMLElement {
   constructor() {
     super(...arguments);
     __privateAdd(this, _ProductRerender_instances);
-    __privateAdd(this, _abortController9);
+    __privateAdd(this, _abortController10);
   }
   connectedCallback() {
-    __privateSet(this, _abortController9, new AbortController());
+    __privateSet(this, _abortController10, new AbortController());
     if (!this.id || !this.hasAttribute("observe-form")) {
       console.warn('The <product-rerender> requires an ID to identify the element to re-render, and an "observe-form" attribute referencing to the form to monitor.');
     }
-    document.forms[this.getAttribute("observe-form")].addEventListener("product:rerender", __privateMethod(this, _ProductRerender_instances, onRerender_fn).bind(this), { signal: __privateGet(this, _abortController9).signal });
+    document.forms[this.getAttribute("observe-form")].addEventListener("product:rerender", __privateMethod(this, _ProductRerender_instances, onRerender_fn).bind(this), { signal: __privateGet(this, _abortController10).signal });
   }
   disconnectedCallback() {
-    __privateGet(this, _abortController9).abort();
+    __privateGet(this, _abortController10).abort();
   }
 };
-_abortController9 = new WeakMap();
+_abortController10 = new WeakMap();
 _ProductRerender_instances = new WeakSet();
 onRerender_fn = function(event) {
   const matchingElement = deepQuerySelector(event.detail.htmlFragment, `#${this.id}`);
@@ -3216,7 +3335,8 @@ onRerender_fn = function(event) {
   }
   if (focusedElement.id) {
     const element = document.getElementById(focusedElement.id);
-    if (this.contains(element)) {
+    const productRerenderScope = document.getElementById(this.id);
+    if (productRerenderScope.contains(element)) {
       element.focus();
     }
   }
@@ -3745,7 +3865,7 @@ if (!window.customElements.get("accordion-disclosure")) {
 }
 
 // js/common/navigation/menu-disclosure.js
-var _hoverTimer, _detectClickOutsideListener, _detectEscKeyboardListener, _detectFocusOutListener, _detectHoverOutsideListener, _detectHoverListener, _MenuDisclosure_instances, detectClickOutside_fn, detectHover_fn, detectHoverOutside_fn, detectEscKeyboard_fn, detectFocusOut_fn;
+var _hoverTimer, _detectClickOutsideListener, _detectEscKeyboardListener, _detectFocusOutListener, _detectHoverOutsideListener, _detectHoverListener, _MenuDisclosure_instances, handleKeyboard_fn, detectClickOutside_fn, detectHover_fn, detectHoverOutside_fn, detectEscKeyboard_fn, detectFocusOut_fn;
 var _MenuDisclosure = class _MenuDisclosure extends CustomDetails {
   constructor() {
     super();
@@ -3758,6 +3878,7 @@ var _MenuDisclosure = class _MenuDisclosure extends CustomDetails {
     __privateAdd(this, _detectHoverListener, __privateMethod(this, _MenuDisclosure_instances, detectHover_fn).bind(this));
     this.disclosureElement.addEventListener("mouseover", __privateGet(this, _detectHoverListener).bind(this));
     this.disclosureElement.addEventListener("mouseout", __privateGet(this, _detectHoverListener).bind(this));
+    this.disclosureElement.addEventListener("keydown", __privateMethod(this, _MenuDisclosure_instances, handleKeyboard_fn).bind(this));
   }
   /**
    * Get the trigger mode (can be "click" or "hover"). However, for touch devices, it is always forced to click
@@ -3799,6 +3920,17 @@ _detectFocusOutListener = new WeakMap();
 _detectHoverOutsideListener = new WeakMap();
 _detectHoverListener = new WeakMap();
 _MenuDisclosure_instances = new WeakSet();
+/**
+ * Handle the keyboard events to ensure we can close the menu with Esc
+ *
+ * @param {KeyboardEvent} event 
+ */
+handleKeyboard_fn = function(event) {
+  if (event.key === "Escape") {
+    this.close();
+    this.summaryElement.focus();
+  }
+};
 /**
  * When dropdown menu is configured to open on click, we add a listener to detect click outside and automatically
  * close the navigation.
@@ -3862,7 +3994,7 @@ var MenuDisclosure = _MenuDisclosure;
 
 // js/common/navigation/tabs.js
 import { Delegate as Delegate6, animate as animate10, timeline as timeline6 } from "vendor";
-var _componentID, _buttons, _panels, _delegate5, _Tabs_instances, setupComponent_fn, onButtonClicked_fn, onSlotChange_fn, handleKeyboard_fn;
+var _componentID, _buttons, _panels, _delegate5, _Tabs_instances, setupComponent_fn, onButtonClicked_fn, onSlotChange_fn, handleKeyboard_fn2;
 var Tabs = class extends HTMLElement {
   constructor() {
     super();
@@ -3879,7 +4011,7 @@ var Tabs = class extends HTMLElement {
     }
     __privateGet(this, _delegate5).on("click", 'button[role="tab"]', __privateMethod(this, _Tabs_instances, onButtonClicked_fn).bind(this));
     this.shadowRoot.addEventListener("slotchange", __privateMethod(this, _Tabs_instances, onSlotChange_fn).bind(this));
-    this.addEventListener("keydown", __privateMethod(this, _Tabs_instances, handleKeyboard_fn));
+    this.addEventListener("keydown", __privateMethod(this, _Tabs_instances, handleKeyboard_fn2));
   }
   static get observedAttributes() {
     return ["selected-index"];
@@ -3963,7 +4095,7 @@ onSlotChange_fn = function() {
  * As per https://www.w3.org/WAI/ARIA/apg/example-index/tabs/tabs-automatic.html, when a tab is currently focused,
  * left and right arrow should switch the tab
  */
-handleKeyboard_fn = function(event) {
+handleKeyboard_fn2 = function(event) {
   const index = __privateGet(this, _buttons).indexOf(document.activeElement);
   if (index === -1 || !["ArrowLeft", "ArrowRight"].includes(event.key)) {
     return;
@@ -4541,30 +4673,30 @@ if (!window.customElements.get("featured-collections-carousel")) {
 
 // js/sections/header.js
 import { animate as animate18, timeline as timeline9, stagger as stagger3, Delegate as Delegate8 } from "vendor";
-var _headerTrackerIntersectionObserver, _abortController10, _scrollYTrackingPosition, _isVisible2, _Header_instances, onHeaderTrackerIntersection_fn, detectMousePosition_fn, detectScrollDirection_fn, setVisibility_fn;
+var _headerTrackerIntersectionObserver, _abortController11, _scrollYTrackingPosition, _isVisible2, _Header_instances, onHeaderTrackerIntersection_fn, detectMousePosition_fn, detectScrollDirection_fn, setVisibility_fn;
 var Header = class extends HTMLElement {
   constructor() {
     super(...arguments);
     __privateAdd(this, _Header_instances);
     __privateAdd(this, _headerTrackerIntersectionObserver, new IntersectionObserver(__privateMethod(this, _Header_instances, onHeaderTrackerIntersection_fn).bind(this)));
-    __privateAdd(this, _abortController10);
+    __privateAdd(this, _abortController11);
     __privateAdd(this, _scrollYTrackingPosition, 0);
     __privateAdd(this, _isVisible2, true);
   }
   connectedCallback() {
-    __privateSet(this, _abortController10, new AbortController());
+    __privateSet(this, _abortController11, new AbortController());
     __privateGet(this, _headerTrackerIntersectionObserver).observe(document.getElementById("header-scroll-tracker"));
     if (this.hasAttribute("hide-on-scroll")) {
-      window.addEventListener("scroll", __privateMethod(this, _Header_instances, detectScrollDirection_fn).bind(this), { signal: __privateGet(this, _abortController10).signal });
-      window.addEventListener("pointermove", __privateMethod(this, _Header_instances, detectMousePosition_fn).bind(this), { signal: __privateGet(this, _abortController10).signal });
+      window.addEventListener("scroll", __privateMethod(this, _Header_instances, detectScrollDirection_fn).bind(this), { signal: __privateGet(this, _abortController11).signal });
+      window.addEventListener("pointermove", __privateMethod(this, _Header_instances, detectMousePosition_fn).bind(this), { signal: __privateGet(this, _abortController11).signal });
     }
   }
   disconnectedCallback() {
-    __privateGet(this, _abortController10).abort();
+    __privateGet(this, _abortController11).abort();
   }
 };
 _headerTrackerIntersectionObserver = new WeakMap();
-_abortController10 = new WeakMap();
+_abortController11 = new WeakMap();
 _scrollYTrackingPosition = new WeakMap();
 _isVisible2 = new WeakMap();
 _Header_instances = new WeakSet();
@@ -4593,7 +4725,7 @@ detectScrollDirection_fn = function() {
 };
 setVisibility_fn = function(isVisible) {
   if (isVisible !== __privateGet(this, _isVisible2)) {
-    if (!isVisible && this.querySelectorAll("[open]").length > 0) {
+    if (!isVisible && this.querySelectorAll(":where(.header__primary-nav, .header__secondary-nav) [open]").length > 0) {
       return;
     }
     __privateSet(this, _isVisible2, isVisible);
@@ -5218,31 +5350,31 @@ if (!window.customElements.get("product-recommendations")) {
 }
 
 // js/sections/quick-order-list.js
-var _abortController11, _QuickOrderList_instances, onQuantityChange_fn, onUpdate_fn, onQuantityUpdated_fn;
+var _abortController12, _QuickOrderList_instances, onQuantityChange_fn, onUpdate_fn, onQuantityUpdated_fn;
 var QuickOrderList = class extends HTMLElement {
   constructor() {
     super();
     __privateAdd(this, _QuickOrderList_instances);
-    __privateAdd(this, _abortController11);
+    __privateAdd(this, _abortController12);
     this.addEventListener("quick-order-list:update", __privateMethod(this, _QuickOrderList_instances, onUpdate_fn).bind(this));
     this.addEventListener("change", __privateMethod(this, _QuickOrderList_instances, onQuantityChange_fn).bind(this));
   }
 };
-_abortController11 = new WeakMap();
+_abortController12 = new WeakMap();
 _QuickOrderList_instances = new WeakSet();
 onQuantityChange_fn = async function() {
-  __privateGet(this, _abortController11)?.abort();
+  __privateGet(this, _abortController12)?.abort();
 };
 onUpdate_fn = async function(event) {
   let sectionsToBundle = [extractSectionId(this)];
   document.documentElement.dispatchEvent(new CustomEvent("cart:prepare-bundled-sections", { bubbles: true, detail: { sections: sectionsToBundle } }));
-  __privateSet(this, _abortController11, new AbortController());
+  __privateSet(this, _abortController12, new AbortController());
   const inputWrapper = event.target.closest(".quick-order-list__quantity-actions")?.querySelector(".quantity-selector__input-wrapper");
   inputWrapper?.setAttribute("aria-busy", "true");
   try {
     const response = await fetch(`${window.Shopify.routes.root}cart/update.js`, {
       method: "POST",
-      signal: __privateGet(this, _abortController11).signal,
+      signal: __privateGet(this, _abortController12).signal,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         updates: event.detail.updates,
@@ -5772,6 +5904,9 @@ export {
   CarouselNextButton,
   CarouselPrevButton,
   CartCount,
+  CartDiscountBanner,
+  CartDiscountField,
+  CartDiscountRemoveButton,
   CartDot,
   CartDrawer,
   CartNote,
@@ -5852,6 +5987,8 @@ export {
   TimelineCarousel,
   VariantPicker,
   VideoMedia,
+  announceError,
+  announceStatus,
   cachedFetch,
   createMediaImg,
   debounce,

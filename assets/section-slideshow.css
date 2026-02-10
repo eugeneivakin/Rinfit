@@ -1,0 +1,52 @@
+.shopify-section--slideshow .content-over-media {
+  --content-over-media-calculated-row-gap: 2.5rem;
+  --content-over-media-calculated-column-gap: 1.25rem;
+  border-radius: 10px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--slideshow .content-over-media {
+    --content-over-media-calculated-row-gap: 3.75rem;
+    --content-over-media-calculated-column-gap: 5rem;
+    border-radius: 30px;
+  }
+}
+.shopify-section--slideshow .h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--slideshow .h6 {
+    font-size: 20px;
+    font-weight: normal;
+  }
+}
+.shopify-section--slideshow .h1 {
+  font-size: 36px;
+  margin-block-start: 3px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--slideshow .h1 {
+    font-size: 59px;
+    line-height: 0.9661;
+  }
+}
+.shopify-section--slideshow .prose :is(.button, .button-group:has(.button)) {
+  margin-block-start: 30px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--slideshow .prose :is(.button, .button-group:has(.button)) {
+    margin-block-start: 18px;
+  }
+}
+.shopify-section--slideshow .button {
+  font-size: 1rem;
+  font-weight: 600;
+  min-height: 2.5rem;
+  width: 100%;
+}
+@media screen and (min-width: 750px) {
+  .shopify-section--slideshow .button {
+    width: auto;
+  }
+}

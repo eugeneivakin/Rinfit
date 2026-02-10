@@ -25,16 +25,6 @@ Supported variables
     assign max_quantity = ''
     assign variant = line_item.variant | default: variant
 
-    # When we don't have line_item (example: product page), we don't limit the quantity the buyer can choose
-    if variant.inventory_management != blank and variant.inventory_policy == 'deny'
-      if line_item != blank
-        assign current_quantity_for_variant = cart | item_count_for_variant: variant.id
-        assign max_quantity = variant.inventory_quantity | minus: current_quantity_for_variant | plus: line_item.quantity
-      elsif quick_order
-        assign max_quantity = variant.inventory_quantity
-      endif
-    endif
-
     if variant.quantity_rule.max != nil
       assign max_quantity = max_quantity | default: 999999 | at_most: variant.quantity_rule.max
     endif
@@ -52,7 +42,7 @@ Supported variables
 
   {%- if line_item == blank -%}
     {%- comment -%}For quick order, we want to always allow to press minus to go back to zero{%- endcomment -%}
-    <button type="button" class="quantity-selector__button" {% if quantity_value == 0 or quick_order != true and quantity_value <= variant.quantity_rule.min %}disabled{% endif %}>
+    <button type="button" tabindex="-1" class="quantity-selector__button" {% if quantity_value == 0 or quick_order != true and quantity_value <= variant.quantity_rule.min %}disabled{% endif %}>
       <span class="sr-only">{{ 'product.quantity.decrease_quantity' | t }}</span>
       {%- render 'icon' with 'minus', width: 10 -%}
     </button>
@@ -75,7 +65,7 @@ Supported variables
   </quantity-input>
 
   {%- if line_item == blank or max_quantity != blank and line_item.quantity >= max_quantity -%}
-    <button type="button" class="quantity-selector__button" {% if line_item != blank %}disabled data-tooltip="{{ 'product.quantity.cannot_add_more' | t | escape }}"{% endif %}>
+    <button type="button" tabindex="-1" class="quantity-selector__button" {% if line_item != blank %}disabled data-tooltip="{{ 'product.quantity.cannot_add_more' | t | escape }}"{% endif %}>
       <span class="sr-only">{{ 'product.quantity.increase_quantity' | t }}</span>
       {%- render 'icon' with 'plus', width: 10 -%}
     </button>

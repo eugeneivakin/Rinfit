@@ -150,6 +150,16 @@
                   </carousel-next-button>
                 {%- endif -%}
               </div>
+
+              {%- if section.blocks.size > 1 -%}
+                <carousel-navigation aria-controls="shop-the-look-carousel-{{ section.id }}-md" class="page-dots page-dots--shop-the-look-carousel-md">
+                  {%- for i in section.blocks -%}
+                    <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                      <span class="sr-only">{{- 'general.accessibility.go_to_item' | t: index: forloop.index -}}</span>
+                    </button>
+                  {%- endfor -%}
+                </carousel-navigation>
+              {%- endif -%}
             {%- endif -%}
           </div>
         {%- endfor -%}
@@ -342,6 +352,7 @@
     "presets": [
       {
         "name": "t:sections.shop_the_look.presets.shop_the_look.name",
+        "category": "t:global.categories.products",
         "blocks": [
           {
             "type": "look",

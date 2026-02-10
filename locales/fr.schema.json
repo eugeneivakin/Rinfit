@@ -1,14 +1,16 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "global": {
+    "categories": {
+      "banners": "Bannières",
+      "collections": "Collections",
+      "call_to_action": "Call to action",
+      "layout": "Mise en page",
+      "products": "Produits",
+      "media": "Médias",
+      "storytelling": "Storytelling",
+      "content": "Contenu",
+      "trust_social": "Confiance et preuve sociale"
+    },
     "colors": {
       "category": "Couleurs",
       "scheme": "Nuancier de couleurs",
@@ -584,6 +586,7 @@
       "page_info": "Le drawer panier n'apparaitra sur votre thème si vous avez specifié le mode Page pour le panier dans les réglages globaux.",
       "free_shipping_bar_info": "Le message de livraison grauite peut etre configuré dans les réglages globaux du panier.",
       "show_cart_note": "Afficher la note de panier",
+      "allow_discount_application": "Autoriser l'application de code promos",
       "show_shipping_text": "Afficher le texte de livraison/taxes",
       "show_view_cart_button": "Afficher le bouton pour accéder au panier",
       "show_checkout_button": "Afficher le bouton pour passer à la caisse",
@@ -612,6 +615,7 @@
       "show_text_outside": "Afficher le texte en dehors des images",
       "space_items": "Espacer les blocs",
       "stack_collections": "Empiler les collections",
+      "stack_collections_mobile": "Empiler les collections (mobile)",
       "collections_per_row_mobile": "Collections par ligne (mobile)",
       "collections_per_row_desktop": "Collections par ligne (desktop)",
       "blocks": {
@@ -620,7 +624,6 @@
           "collection": "Collection",
           "image_size_recommendation": "1500 x 1500px .jpg recommandé",
           "expand_to_fill_row": "Etendre les collections pour remplir la ligne",
-          "expand_to_fill_row_info": "Ignoré lorsque les collections ne sont pas empilées.",
           "button_link_info": "Utilise l'URL de la collection par défaut."
         }
       },
@@ -691,6 +694,9 @@
         }
       }
     },
+    "custom_section": {
+      "name": "Section personnalisée"
+    },
     "faq": {
       "name": "FAQ",
       "show_categories": "Afficher les catégories",
@@ -740,6 +746,7 @@
       "show_social_media": "Afficher les réseaux sociaux",
       "show_social_media_info": "Configurez vos liens sociaux dans vos [resources de marque] ou dans les réglages du thème.",
       "show_payment_icons": "Afficher les icônes de paiement",
+      "show_powered_by_shopify": "Afficher \"Propulsé par Shopify\"",
       "blocks": {
         "image": {
           "name": "Image",
@@ -980,6 +987,7 @@
     "main_cart": {
       "name": "Panier",
       "show_cart_note": "Afficher la note de panier",
+      "allow_discount_application": "Autoriser l'application de code promos",
       "show_order_weight": "Afficher le poids de la commande",
       "show_shipping_text": "Afficher le texte de livraison/taxes",
       "show_accelerated_buttons": "Afficher les boutons de paiement accélérés",
@@ -1211,15 +1219,12 @@
           "required": "Obligatoire",
           "required_info": "Si obligatoire, le client doit écrire un texte (pour l'attribut texte) ou cocher la case (pour l'attribut checkbox) afin d'ajouter le produit au panier.",
           "text_type_category": "Texte",
-          "text_type_category_info": "Uniquement si le type est Texte.",
           "text_type_allow_long_text": "Autoriser les textes longs",
           "text_type_max_length": "Nombre maximum de caractères",
           "checkbox_type_category": "Checkbox",
-          "checkbox_type_category_info": "Uniquement si le type est Checkbox.",
           "checkbox_value": "Valeur",
           "checkbox_value_info": "Apparait sur la commande lorsque la case est cochée.",
           "dropdown_type_category": "Menu déroulant",
-          "dropdown_type_category_info": "Uniquement si le type est Menu déroulant.",
           "dropdown_values": "Valeurs",
           "dropdown_values_info": "Séparez chaque valeurs par une virgule."
         },
@@ -1377,7 +1382,6 @@
         "after_text": "Après le texte"
       },
       "media_category": "Media",
-      "media_category_info": "Le décalage d'alignement ne s'applique que lorsque l'alignment de base est défini à haut ou bas.",
       "media_layout": "Disposition",
       "media_layout_options": {
         "overlap": "Chevauchement",
@@ -1675,7 +1679,7 @@
       "name": "Vidéo",
       "info": "Pour un résultat visuel optimal, utilisez une vidéo MP4.",
       "poster_image": "Image de couverture",
-      "poster_image_info": "3200 x 1600px .jpg recommandé. L'image est cachée lorsque la lecture automatique est activée.",
+      "poster_image_info": "3200 x 1600px .jpg recommandé.",
       "blocks": {
         "play_button": {
           "name": "Bouton de lecture",

@@ -37,7 +37,8 @@ Supported variables
       assign unit_price_classes = base_text_class | append: 'h6 text-subdued'
   endcase
 -%}
-<price-list class="price-list {% if classCollection %} {{classCollection}} {% endif %} {% if context == 'product' %}price-list--product{% endif %}">
+
+<price-list class="price-list {% if context == 'product' %}price-list--product{% endif %}">
   {%- if variant != blank -%}
     {%- comment -%}
     --------------------------------------------------------------------------------------------------------------------
@@ -64,9 +65,6 @@ Supported variables
           {{- variant.compare_at_price | money -}}
         {%- endif -%}
       </compare-at-price>
-      {%- assign discount_amount = variant.compare_at_price | minus: variant.price -%}
-      {%- assign discount_percent = discount_amount | times: 100 | divided_by: variant.compare_at_price -%}
-      <span class="price-discount">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- elsif line_item != blank -%}
     {%- comment -%}
@@ -94,9 +92,6 @@ Supported variables
           {{- line_item.original_price | money -}}
         {%- endif -%}
       </compare-at-price>
-      {%- assign discount_amount = line_item.original_price | minus: line_item.final_price -%}
-      {%- assign discount_percent = discount_amount | times: 100 | divided_by: line_item.original_price -%}
-      <span class="price-discount">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- elsif product != blank -%}
     {%- comment -%}
@@ -150,9 +145,6 @@ Supported variables
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
         {{- variant_compare_at_price -}}
       </compare-at-price>
-      {%- assign discount_amount = variant.compare_at_price | minus: variant.price -%}
-      {%- assign discount_percent = discount_amount | times: 100 | divided_by: variant.compare_at_price -%}
-      <span class="price-discount">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- else -%}
     {%- comment -%}
@@ -172,19 +164,13 @@ Supported variables
     </sale-price>
   {%- endif -%}
 
-  {%- unless hide_unit_price -%}
-    {%- assign unit_price_item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
+    {%- unless hide_unit_price -%}
+      {%- assign item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
 
-    {%- if unit_price_item.unit_price -%}
-      <unit-price class="{{ unit_price_classes }}">
-        {%- assign unit_price_measurement = unit_price_item.unit_price_measurement -%}
-
-        {%- if unit_price_measurement.reference_value != 1 -%}
-          {%- assign reference_value = unit_price_measurement.reference_value -%}
-        {%- endif -%}
-
-        ({{ unit_price_item.unit_price | money }}/{{ reference_value }}{{ unit_price_measurement.reference_unit }})
-      </unit-price>
-    {%- endif -%}
-  {%- endunless -%}
+      {%- if item.unit_price -%}
+        <unit-price class="{{ unit_price_classes }}">
+          ({{- item.unit_price | unit_price_with_measurement: item.unit_price_measurement -}})
+        </unit-price>
+      {%- endif -%}
+    {%- endunless -%}
 </price-list>

@@ -73,9 +73,9 @@ Output a list of social media icons based on the social URL settings.
     </li>
   {%- endif -%}
 
-  {%- if settings.social_linkedin != blank -%}
+  {%- if settings.social_linkedin != blank or shop.brand.metafields.social_links.linkedin != blank -%}
     <li class="social-media__item branding-colors--linkedin">
-      <a href="{{ settings.social_linkedin }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'LinkedIn' }}">
+      <a href="{{ settings.social_linkedin | default: shop.brand.metafields.social_links.linkedin }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'LinkedIn' }}">
         {%- render 'icon' with 'linkedin' -%}
       </a>
     </li>
@@ -89,9 +89,9 @@ Output a list of social media icons based on the social URL settings.
     </li>
   {%- endif -%}
 
-  {%- if settings.social_whatsapp != blank -%}
+  {%- if settings.social_whatsapp != blank or shop.brand.metafields.social_links.whatsapp != blank -%}
     <li class="social-media__item branding-colors--whatsapp">
-      <a href="{{ settings.social_whatsapp }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'WhatsApp' }}">
+      <a href="{{ settings.social_whatsapp | default: shop.brand.metafields.social_links.whatsapp }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'WhatsApp' }}">
         {%- render 'icon' with 'whatsapp' -%}
       </a>
     </li>
@@ -105,9 +105,9 @@ Output a list of social media icons based on the social URL settings.
     </li>
   {%- endif -%}
 
-  {%- if settings.social_wechat != blank -%}
+  {%- if settings.social_wechat != blank or shop.brand.metafields.social_links.wechat != blank -%}
     <li class="social-media__item branding-colors--wechat">
-      <a href="{{ settings.social_wechat }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'WeChat' }}">
+      <a href="{{ settings.social_wechat | default: shop.brand.metafields.social_links.wechat }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'WeChat' }}">
         {%- render 'icon' with 'wechat' -%}
       </a>
     </li>
@@ -121,17 +121,17 @@ Output a list of social media icons based on the social URL settings.
     </li>
   {%- endif -%}
 
-  {%- if settings.social_line != blank -%}
+  {%- if settings.social_line != blank or shop.brand.metafields.social_links.line != blank -%}
     <li class="social-media__item branding-colors--line">
-      <a href="{{ settings.social_line }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'LINE' }}">
+      <a href="{{ settings.social_line | default: shop.brand.metafields.social_links.line }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'LINE' }}">
         {%- render 'icon' with 'line' -%}
       </a>
     </li>
   {%- endif -%}
 
-  {%- if settings.social_spotify != blank -%}
+  {%- if settings.social_spotify != blank or shop.brand.metafields.social_links.spotify != blank -%}
     <li class="social-media__item branding-colors--spotify">
-      <a href="{{ settings.social_spotify }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Spotify' }}">
+      <a href="{{ settings.social_spotify | default: shop.brand.metafields.social_links.spotify }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Spotify' }}">
         {%- render 'icon' with 'spotify' -%}
       </a>
     </li>

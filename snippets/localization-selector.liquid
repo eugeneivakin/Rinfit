@@ -31,14 +31,14 @@ Supported variables
         {%- if show_country_flag -%}
           {{- localization.country | image_url: width: 60, format: 'jpg' | image_tag: class: 'country-flag' -}}
         {%- endif -%}
-{% comment %}}
+
         {%- if show_country_name -%}
           <span>{{ localization.country.name }} ({{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}){%- endif -%}</span>
         {%- else -%}
           <span>{{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%}</span>
         {%- endif -%}
 
-        {%- render 'icon' with 'chevron-down' -%} {% endcomment %}
+        {%- render 'icon' with 'chevron-down' -%}
       </button>
 
       <x-popover id="{{ localization_popover_id }}" initial-focus="[aria-selected='true']" class="popover popover--{{ placement | default: 'bottom-start' }} color-scheme color-scheme--dialog">

@@ -11,7 +11,7 @@
 }
 
 @mixin md {
-  @media screen and (min-width: 990px) {
+  @media screen and (min-width: 1000px) {
     @content;
   }
 }

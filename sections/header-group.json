@@ -11,52 +11,36 @@
   "type": "header",
   "name": "Header group",
   "sections": {
-    "promo_banner_AQQhLF": {
-      "type": "promo-banner",
-      "name": "Promo Banner",
+    "countdown-timer": {
+      "type": "countdown-condensed",
+      "disabled": true,
       "settings": {
-        "announcement_text": "<p>FREE STANDARD CYPRUS SHIPPING W/ $50.</p>",
-        "button_text": "SHOP NOW",
-        "button_url": "shopify://collections",
-        "show_close_button": true,
-        "text_size_desktop": 12,
-        "text_size_mobile": 12,
-        "button_text_size_desktop": 12,
-        "button_text_size_mobile": 12,
-        "background_color": "#e9e4e1",
-        "text_color": "#1c1c1c",
-        "button_background_color": "rgba(0,0,0,0)",
-        "button_text_color": "#1c1c1c",
-        "button_border_color": "#ffffff",
-        "max_width": "100%",
-        "padding_top_desktop": 8,
-        "padding_bottom_desktop": 12,
-        "padding_left_desktop": 20,
-        "padding_right_desktop": 20,
-        "padding_top_mobile": 8,
-        "padding_bottom_mobile": 10,
-        "padding_left_mobile": 15,
-        "padding_right_mobile": 15,
-        "custom_classes": ""
+        "color_scheme": "schema-3",
+        "content": "super Sale Up to 40% off",
+        "link_text": "shop now",
+        "link_url": "shopify://collections/all",
+        "expiration_date": "2025-11-25",
+        "expiration_behavior": "leave",
+        "desktop_justification": "space-between"
       }
     },
-    "announcement-bar": {
+    "announcement_bar_TNWK6g": {
       "type": "announcement-bar",
       "blocks": {
-        "message-1": {
+        "message_ydbVhX": {
           "type": "message",
           "settings": {
-            "text": "Announce something here"
+            "text": "FREE STANDARD CYPRUS SHIPPING W/ $50. <a href=\"/collections\" title=\"All collections\">SHOP NOW</a>"
           }
         }
       },
       "block_order": [
-        "message-1"
+        "message_ydbVhX"
       ],
-      "disabled": true,
+      "name": "t:sections.announcement_bar.name",
       "settings": {
-        "color_scheme": "",
-        "enable_sticky": true,
+        "color_scheme": "scheme-4",
+        "enable_sticky": false,
         "autoplay": true,
         "cycle_speed": 5,
         "desktop_font_size": 11,
@@ -65,109 +49,25 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "mega_menu_zxwndM": {
-          "type": "mega_menu",
-          "settings": {
-            "menu_item": "shop",
-            "images_position": "right",
-            "url_1_main": "shopify://collections",
-            "image_1": "shopify://shop_images/category_1.png",
-            "image_1_heading": "Category",
-            "image_1_text": "",
-            "image_1_link": "",
-            "image_1_menu": "header-shop-category",
-            "url_2_main": "shopify://collections/best-sellers",
-            "image_2": "shopify://shop_images/category_2.png",
-            "image_2_heading": "Best Sellers",
-            "image_2_text": "",
-            "image_2_link": "",
-            "image_2_menu": "",
-            "url_3_main": "shopify://collections",
-            "image_3": "shopify://shop_images/category_3.png",
-            "image_3_heading": "Collections",
-            "image_3_text": "",
-            "image_3_link": "",
-            "image_3_menu": "header-shop-ollections",
-            "url_4_main": "shopify://collections",
-            "image_4": "shopify://shop_images/category_4.png",
-            "image_4_heading": "Shop By",
-            "image_4_text": "",
-            "image_4_link": "",
-            "image_4_menu": "header-shop",
-            "url_5_main": "shopify://collections/new-arrivals",
-            "image_5": "shopify://shop_images/image_7_b0922512-c68d-496d-a3b3-b28b5435d998.png",
-            "image_5_heading": "New <em>Arrivals</em>",
-            "image_5_text": "",
-            "image_5_link": ""
-          }
-        },
-        "mega_menu_i6cqEg": {
-          "type": "mega_menu",
-          "settings": {
-            "menu_item": "Company",
-            "images_position": "right",
-            "url_1_main": "",
-            "image_1_heading": "",
-            "image_1_text": "",
-            "image_1_link": "",
-            "image_1_menu": "main-company-menu",
-            "url_2_main": "shopify://pages/faqs",
-            "image_2_heading": "",
-            "image_2_text": "",
-            "image_2_link": "",
-            "image_2_menu": "",
-            "url_3_main": "shopify://collections/gift-card",
-            "image_3_heading": "",
-            "image_3_text": "",
-            "image_3_link": "",
-            "image_3_menu": "",
-            "url_4_main": "",
-            "image_4_heading": "",
-            "image_4_text": "",
-            "image_4_link": "",
-            "image_4_menu": "",
-            "url_5_main": "",
-            "image_5_heading": "",
-            "image_5_text": "",
-            "image_5_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "mega_menu_zxwndM",
-        "mega_menu_i6cqEg"
-      ],
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "enable_sticky": true,
         "hide_on_scroll": false,
         "show_separation_border": true,
         "reduce_padding": false,
         "logo": "shopify://shop_images/logo-web_1.png",
         "logo_max_width": 165,
-        "logo_mobile_max_width": 85,
-        "collection_list": [
-          "stone",
-          "oval-frame",
-          "metal-heart",
-          "infinity",
-          "stars",
-          "round",
-          "pear-frame",
-          "gift-card"
-        ],
+        "logo_mobile_max_width": 80,
         "menu": "header-menu",
-        "sidebar_menu": "header-menu",
-        "sidebar_menu_mob": "second-menu",
+        "sidebar_menu": "",
         "menu_open_trigger": "hover",
         "menu_text_font": "heading",
         "enable_search": true,
-        "sidebar_color_scheme": "",
+        "sidebar_color_scheme": "schema-2",
         "sidebar_text_font": "heading",
-        "sidebar_show_dividers": true,
+        "sidebar_show_dividers": false,
         "sidebar_open_second_level_menus": false,
-        "layout": "logo_center_navigation_below",
+        "layout": "logo_center_navigation_inline",
         "show_icons": true,
         "show_country_selector": true,
         "show_country_name": false,
@@ -178,8 +78,8 @@
     }
   },
   "order": [
-    "promo_banner_AQQhLF",
-    "announcement-bar",
+    "countdown-timer",
+    "announcement_bar_TNWK6g",
     "header"
   ]
 }

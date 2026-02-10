@@ -110,34 +110,10 @@ Supported variables
         endif
       -%}
 
-      
-
       {%- capture block_content -%}
         {%- case block.type -%}
           {%- when '@app' -%}
             {%- render block -%}
-              {%- when 'Guaranteed' -%}
-                <div class="guaranteed-section">
-                  <div class="guaranteed-item">
-                    <div class="icon">{% if block.settings.icon_1 %}{{ block.settings.icon_1 | raw }}{% endif %}</div>
-                    <h4 class="main-title">{{ block.settings.title_1 }}</h4>
-                  </div>
-                  
-                  <div class="guaranteed-item">
-                    <div class="icon">{% if block.settings.icon_2 %}{{ block.settings.icon_2 | raw }}{% endif %}</div>
-                    <h4 class="main-title">{{ block.settings.title_2 }}</h4>
-                  </div>
-                  
-                  <div class="guaranteed-item">
-                    <div class="icon">{% if block.settings.icon_3 %}{{ block.settings.icon_3 | raw }}{% endif %}</div>
-                    <h4 class="main-title">{{ block.settings.title_3 }}</h4>
-                  </div>
-                  
-                  <div class="guaranteed-item">
-                    <div class="icon">{% if block.settings.icon_4 %}{{ block.settings.icon_4 | raw }}{% endif %}</div>
-                    <h4 class="main-title">{{ block.settings.title_4 }}</h4>
-                  </div>
-                </div>
 
           {%- when 'vendor' -%}
             {%- if product != blank -%}
@@ -164,29 +140,6 @@ Supported variables
               </h2>
             {%- endif -%}
 
-          {% when 'Dropdown' %}
-            {% if block.settings.show_dropdown %}
-              {% for dropdown in product.metafields.custom.dropdowns.value %}
-                {% if dropdown.title != blank and  dropdown.description != blank  %}
-                  <div class="accordion-block ">
-                    <div class="accordion-header">
-                      <h2 class='main-title-accordion-product'>{{ dropdown.title }}</h2>
-                      <span class="accordion-icon">
-                        <span class="icon-plus">
-                          {{ 'icon-plus.svg' | asset_url | img_tag: 'Icon Plus' }}
-                        </span>
-                        <span class="icon-minus" style="display: none;">
-                          {{ 'icon-minus.svg' | asset_url | img_tag: 'Icon Minus' }}
-                        </span>
-                      </span>
-                    </div>
-                    <div class="accordion-content">
-                      <div class="accordion-main-content-product">{{ dropdown.description }}</div>
-                    </div>
-                  </div> 
-                {% endif %}
-              {% endfor %}
-            {% endif %}
           {%- when 'sku' -%}
             {% if product.selected_or_first_available_variant.sku != blank %}
               <variant-sku class="variant-sku text-sm text-subdued">
@@ -263,7 +216,6 @@ Supported variables
           {%- when 'variant_picker' -%}
             {%- if product != blank -%}
               {%- render 'variant-picker',
-                  block: block,
                   product: product,
                   form_id: product_form_id,
                   context: context,
@@ -271,7 +223,6 @@ Supported variables
                   selector_style: block.settings.selector_style,
                   swatch_selector_style: block.settings.swatch_selector_style,
                   variant_image_options: block.settings.variant_image_options,
-                  show_measurement: block.settings.show_measurement,
                   size_chart_page: block.settings.size_chart_page -%}
             {%- endif -%}
 
@@ -585,33 +536,8 @@ Supported variables
                 {%- render 'icon' with 'chevron-right' -%}
               </a>
             {%- endif -%}
-            
-          {%- when 'Reviews' -%}
-            {% if block.settings.show_reviews %}
-              {% assign reviews_count = product.metafields.loox.num_reviews | default: 0 %}
-                  {% assign rating = product.metafields.loox.avg_rating | default: 0 %}
-                  {% assign rounded_rating = rating | round %}
-                  
-                  {% if reviews_count > 0 %}
-                    <div class="container-review-product">
-                      <a href="#looxReviews">
-                        <div class="loox-rating">
-                          {% for i in (1..5) %}
-                            {% if i <= rounded_rating %}
-                              <span class="star full">★</span>
-                            {% else %}
-                              <span class="star empty">★</span>
-                            {% endif %}
-                          {% endfor %}
-                          <span class="reviews_text">{{ product.metafields.loox.avg_rating }}/5.00</span>
-                          <span class="number-reviews">({{ reviews_count }} reviews)</span>
-                        </div>
-                      </a>
-                    </div>
-                  {% endif %}
-            {% endif %}
-          {%- endcase -%}
-        {%- endcapture -%}
+        {%- endcase -%}
+      {%- endcapture -%}
       
       {%- if allow_block_group and inside_block_group_context == false -%}
         {%- assign inside_block_group_context = true -%}
@@ -627,10 +553,8 @@ Supported variables
         </div>
       {%- endif -%}
     {%- endfor -%}
-
   </div>
 
-  
   {%- comment -%}
     IMPLEMENTATION NOTE: under rare circumstances, merchant may want to show selectors to allow variant selection, but hide
     the add to cart button. This is however problematic as product info is changed based on the form, so we create a default
@@ -644,127 +568,4 @@ Supported variables
       <input type="hidden" disabled name="id" value="{{ product.selected_or_first_available_variant.id }}">
     {%- endform -%}
   {%- endunless -%}
-
-  {% if product.metafields.custom.bundle != blank %}
-    {% assign bundle = product.metafields.custom.bundle.value %}
-    
-    <div class="bundle-block">
-      {{bundle.image.value | image_url: width: bundle.image.value.width | image_tag: class: "main-bundle-img" }}
-      <div class='bottom-bundle-block'>
-        <div>
-          <h3 class="main-bundle-title">{{ bundle.title }} 
-            <span>{{  bundle.discount_text }}</span>
-          </h3>
-          <p class='main-bundle-subtitle'>{{bundle.subtitle }}</p>
-        </div>
-
-        {% assign variants = variants  %}
-        
-        {% for product in bundle.products.value %}
-          {% assign first_variant_id = product.variants.first.id %}
-          {% if forloop.last %}
-            {% assign variants = variants | append: first_variant_id %}
-          {% else %}
-            {% assign variants = variants | append: first_variant_id | append: "," %}
-          {% endif %}
-        {% endfor %}
-
-      
-        <button 
-          type="button" 
-          class="main-bundle-button"
-           data-variants="{{ variants }}" 
-        >
-          Shop Now
-        </button>
-      </div>
-    </div>
-  {% endif %}
 </safe-sticky>
-<script>
-  const firstVariantId = {{ product.variants.first.id }};
-</script>
-
-<script>
-  console.log(firstVariantId)
-document.querySelectorAll('.main-bundle-button').forEach(button => {
-  button.addEventListener('click', function () {
-
-    let variants = this.dataset.variants.split(',');
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    let variantFromUrl = urlParams.get('variant');
-    
-    if (variantFromUrl) {
-      variants.push(variantFromUrl);
-    } else {
-      variants.push(firstVariantId);
-    }
-
-
-    let items = variants.map(id => ({
-      id: Number(String(id).trim()),
-      quantity: 1
-    }));
-
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({ items })
-    })
-    .then(res => {
-      if (!res.ok) throw new Error("Помилка запиту");
-      return res.json();
-    })
-    .then(() => {
-      return fetch("/cart.js", {
-        headers: { "Accept": "application/json" }
-      });
-    })
-    .then(res => res.json())
-    .then(cart => {
-      document.querySelectorAll(".cart-count").forEach(el => {
-        el.textContent = cart.item_count;
-      });
-    
-      const event = new CustomEvent("cart:refresh", { detail: cart });
-      document.dispatchEvent(event);
-      
-      const cartDrawer = document.querySelector("cart-drawer-component");
-      if (cartDrawer?.hasAttribute("auto-open")) {
-        cartDrawer.open();
-      }
-    })
-    .then(data => {
-
-      const cartTrigger = document.querySelector('a[aria-controls="cart-drawer"]');
-      
-      if (cartTrigger) {
-        cartTrigger.click();
-      }
-    })
-    .catch(err => console.error('❌ Помилка:', err));
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const blocks = document.querySelectorAll(".accordion-block");
-
-  blocks.forEach(block => {
-    const header = block.querySelector(".accordion-header");
-    const icon = block.querySelector(".accordion-icon img");
-
-    header.addEventListener("click", () => {
-      const isOpen = block.classList.toggle("open");
-
-      icon.src = isOpen
-        ? "{{ 'icon-minus.svg' | asset_url }}"
-        : "{{ 'icon-plus.svg' | asset_url }}";
-    });
-  });
-});
-</script>

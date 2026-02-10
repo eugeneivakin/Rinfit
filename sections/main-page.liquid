@@ -1,15 +1,21 @@
 {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 
 <div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }}">
-  {% include 'breadcrumbs' %}
-<div class="container {% if settings.offset_pages_margin_top_d > 0 %} mt-lg-{{ settings.offset_pages_margin_top_d }}{% endif %} mb-60{% if settings.offset_pages_margin_bottom_d > 0 %} mb-lg-{{ settings.offset_pages_margin_bottom_d }}{% endif %}">
-  <h1 class="h3 mt-30 text-center">{{ page.title }}</h1>
-  <div class="rte">
-    {% include 'content-load-template' content: page.content %}
+  <div class="container container--{{ section.settings.page_width }}">
+    <div class="section-stack">
+      {%- if section.settings.show_title -%}
+        <div class="section-header justify-self-center text-center">
+          <h1 class="h2">{{ page.title }}</h1>
+        </div>
+      {%- endif -%}
+
+      {%- if page.content != empty %}
+        <div class="prose">
+          {{- page.content -}}
+        </div>
+      {%- endif -%}
+    </div>
   </div>
-</div>
-
-
 </div>
 {% schema %}
 {

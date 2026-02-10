@@ -158,7 +158,8 @@
       "type": "image_picker",
       "id": "poster",
       "label": "t:sections.video.poster_image",
-      "info": "t:sections.video.poster_image_info"
+      "info": "t:sections.video.poster_image_info",
+      "visible_if": "{{ section.settings.autoplay == false }}"
     },
     {
       "type": "color",
@@ -257,6 +258,7 @@
   "presets": [
     {
       "name": "t:sections.video.presets.video.name",
+      "category": "t:global.categories.media",
       "blocks": [
         {
           "type": "play"

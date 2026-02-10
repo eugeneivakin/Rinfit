@@ -153,7 +153,8 @@
           "label": "2"
         }
       ],
-      "default": "2"
+      "default": "2",
+      "visible_if": "{{ section.settings.stack_products }}"
     },
     {
       "type": "range",
@@ -162,7 +163,8 @@
       "max": 6,
       "label": "t:global.product_list.products_per_row_desktop",
       "info": "t:global.product_list.products_per_row_desktop_info",
-      "default": 4
+      "default": 4,
+      "visible_if": "{{ section.settings.stack_products }}"
     },
     {
       "type": "header",
@@ -240,6 +242,7 @@
   "presets": [
     {
       "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "category": "t:global.categories.collections",
       "blocks": [
         {
           "type": "collection"

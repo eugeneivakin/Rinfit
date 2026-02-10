@@ -1,14 +1,16 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "global": {
+    "categories": {
+      "banners": "Banners",
+      "collections": "Collections",
+      "call_to_action": "Call to action",
+      "layout": "Layout",
+      "products": "Products",
+      "media": "Media",
+      "storytelling": "Storytelling",
+      "content": "Content",
+      "trust_social": "Trust & social proof"
+    },
     "colors": {
       "category": "Colors",
       "scheme": "Color scheme",
@@ -584,6 +586,7 @@
       "page_info": "Cart drawer won't appear to your customers if you have set the cart type to Page in the global theme settings.",
       "free_shipping_bar_info": "Free shipping bar can be configured in global cart settings.",
       "show_cart_note": "Show cart note",
+      "allow_discount_application": "Allow discount application",
       "show_shipping_text": "Show shipping text",
       "show_view_cart_button": "Show view cart button",
       "show_checkout_button": "Show checkout button",
@@ -612,6 +615,7 @@
       "show_text_outside": "Show text outside",
       "space_items": "Space items",
       "stack_collections": "Stack collections",
+      "stack_collections_mobile": "Stack collections (mobile)",
       "collections_per_row_mobile": "Collections per row (mobile)",
       "collections_per_row_desktop": "Collections per row (desktop)",
       "blocks": {
@@ -620,7 +624,6 @@
           "collection": "Collection",
           "image_size_recommendation": "1500 x 1500px .jpg recommended",
           "expand_to_fill_row": "Expand collection to fill row",
-          "expand_to_fill_row_info": "Ignored when collections do not stack.",
           "button_link_info": "Default to collection URL"
         }
       },
@@ -691,6 +694,9 @@
         }
       }
     },
+    "custom_section": {
+      "name": "Custom section"
+    },    
     "faq": {
       "name": "FAQ",
       "show_categories": "Show sidebar categories",
@@ -740,6 +746,7 @@
       "show_social_media": "Show social media",
       "show_social_media_info": "Configure your social links in your [brand settings](/admin/settings/branding) or your theme social media settings.",
       "show_payment_icons": "Show payment icons",
+      "show_powered_by_shopify": "Show \"Powered by Shopify\"",
       "blocks": {
         "image": {
           "name": "Image",
@@ -980,60 +987,12 @@
     "main_cart": {
       "name": "Cart",
       "show_cart_note": "Show cart note",
+      "allow_discount_application": "Allow discount application",
       "show_order_weight": "Show order weight",
       "show_shipping_text": "Show shipping/taxes text",
       "show_accelerated_buttons": "Show accelerated buttons",
       "show_accelerated_buttons_info": "Configure accelerated payment buttons in your [payment settings](https://www.shopify.com/admin/settings/payments).",
       "show_shipping_estimator": "Show shipping estimator"
-    },
-    "collections": {
-      "general": {
-        "link_title": "Browse our {{ title }} collection",
-        "empty_title": "Empty Category",
-        "empty_paragraph": "There are no products matching the selection.",
-        "empty_button": "CONTINUE SHOPPING"
-      },
-      "control": {
-        "sort_label": "Sort",
-        "sort_by": {
-          "manual": "Featured",
-          "best-selling": "Best Selling",
-          "price-ascending": "Price Ascending",
-          "price-descending": "Price Descending",
-          "created-ascending": "Date Ascending",
-          "created-descending": "Date Descending",
-          "title-ascending": "Name Ascending",
-          "title-descending": "Name Descending"
-        },
-        "info": {
-          "more_limit": "Showing {{ from }}–{{ to }} of {{ count }} results",
-          "less_limit": "Showing {{ count }} results",
-          "result_single": "Showing 1 result",
-          "result_empty": "Empty result"
-        },
-        "view_length_label": "Show",
-        "button_sidebar": "SHOW FILTER"
-      },
-      "sidebar": {
-        "clear_all_tags": "Clear All",
-        "only_available": "Show only available",
-        "no_current_tags": "There are no current tags",
-        "no_collections": "There are no collections",
-        "no_tags": "There are no tags",
-        "no_colors": "There are no colors",
-        "no_vendors": "There are no vendors",
-        "no_product_types": "There are no product types",
-        "no_content": "There are no content"
-      },
-      "tooltip": {
-        "grid": "View of item"
-      }
-    },
-    "list_collections": {
-      "collection_info": {
-        "one": "{{ count }} Product",
-        "other": "{{ count }} Products"
-      }
     },
     "main_collection": {
       "name": "Collection page",
@@ -1260,15 +1219,12 @@
           "required": "Required",
           "required_info": "If required, the customer must write a text (for text property) or tick the box (for checkbox property) to add to the cart.",
           "text_type_category": "Text",
-          "text_type_category_info": "Only applicable for line item property of type Text.",
           "text_type_allow_long_text": "Allow long text",
           "text_type_max_length": "Maximum number of characters",
           "checkbox_type_category": "Checkbox",
-          "checkbox_type_category_info": "Only applicable for line item property of type Checkbox.",
           "checkbox_value": "Value",
           "checkbox_value_info": "Appears on the order when checked.",
           "dropdown_type_category": "Dropdown",
-          "dropdown_type_category_info": "Only applicable for line item property of type Dropdown.",
           "dropdown_values": "Values",
           "dropdown_values_info": "Separate each values by a comma."
         },
@@ -1426,7 +1382,6 @@
         "after_text": "After text"
       },
       "media_category": "Media",
-      "media_category_info": "Alignment offset only applies when alignment is set to top or bottom.",
       "media_layout": "Layout",
       "media_layout_options": {
         "overlap": "Overlap",
@@ -1724,7 +1679,7 @@
       "name": "Video",
       "info": "For best visual results and avoid platform branding, use a MP4 file.",
       "poster_image": "Poster image",
-      "poster_image_info": "3200 x 1600px .jpg recommended. Poster is not visible when autoplay is enabled.",
+      "poster_image_info": "3200 x 1600px .jpg recommended.",
       "blocks": {
         "play_button": {
           "name": "Play button",
@@ -1743,22 +1698,6 @@
       "presets": {
         "video": {
           "name": "Video"
-        }
-      }
-    },
-    "x-featured_collections": {
-      "name": "Featured collections",
-      "blocks": {
-        "collection": {
-          "name": "Collection",
-          "collection": "Collection",
-          "title_info": "Default to collection title",
-          "default_link_url": "Default to collection URL"
-        }
-      },
-      "presets": {
-        "x-featured_collections": {
-          "name": "Featured collections"
         }
       }
     }
