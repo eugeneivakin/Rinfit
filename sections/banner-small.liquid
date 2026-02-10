@@ -1,0 +1,102 @@
+{{- 'section-banner-small.css' | asset_url | stylesheet_tag -}}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    margin-block-start: {{ section.settings.padding_top }}px;
+    margin-block-end: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div
+  class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} container"
+>
+  <div class="banner-grid">
+    <div class="banner-grid__item banner-grid__item--left">
+      {% unless section.settings.heading_left == blank %}
+        <p class="h1">{{ section.settings.heading_left }}</p>
+      {% endunless %}
+    </div>
+    <div class="banner-grid__item banner-grid__item--center">
+      {% if section.settings.heading_image != blank %}
+        {{ section.settings.heading_image | image_url: height: 200 | image_tag: loading: 'lazy' }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+    <div class="banner-grid__item banner-grid__item--right">
+      {% unless section.settings.heading_right == blank %}
+        <p class="h1">{{ section.settings.heading_right }}</p>
+      {% endunless %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Small banner",
+  "class": "shopify-section--banner-small",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_left",
+      "default": "Explore Our",
+      "label": "Left text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_right",
+      "default": "<b><i>Best Sellers</i></b>",
+      "label": "Inline rich text"
+    },
+    {
+      "type": "image_picker",
+      "id": "heading_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Small banner",
+      "category": "t:global.categories.banners"
+    }
+  ]
+}
+{% endschema %}

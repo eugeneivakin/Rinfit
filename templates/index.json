@@ -112,6 +112,18 @@
         "controls_color": "#807371"
       }
     },
+    "banner_small_JgYD4c": {
+      "type": "banner-small",
+      "name": "Small banner",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "heading_left": "<em>Explore </em>Our",
+        "heading_right": "<em><strong>Best Sellers</strong></em>",
+        "heading_image": "shopify://shop_images/Best_sellers_banner.jpg",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
     "featured_collections_86pKrm": {
       "type": "featured-collections",
       "blocks": {
@@ -650,6 +662,7 @@
   },
   "order": [
     "slideshow_7igmji",
+    "banner_small_JgYD4c",
     "featured_collections_86pKrm",
     "featured_collections_JqYYei",
     "image_with_text_cmE4EL",

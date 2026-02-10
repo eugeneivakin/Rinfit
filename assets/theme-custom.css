@@ -15,8 +15,9 @@ body {
 }
 
 .container {
-  margin-inline-start: 0;
-  margin-inline-end: 0;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  max-width: var(--container-max-width);
   padding-inline-start: var(--container-gutter);
   padding-inline-end: var(--container-gutter);
 }
