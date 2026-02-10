@@ -72,11 +72,13 @@
         "heading_BfNtW8",
         "heading_fhhAyx"
       ],
+      "disabled": true,
       "name": "Herro banner",
       "settings": {}
     },
     "explore_our_GqFJXM": {
       "type": "explore-our",
+      "disabled": true,
       "name": "Explore our",
       "settings": {
         "background_color": "#f4e1de",
@@ -119,7 +121,7 @@
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
-        "subheading": "Featured collection"
+        "subheading": ""
       }
     },
     "collection_9TxCaj": {
@@ -599,6 +601,7 @@
     },
     "image_with_text_section_wNi7Jn": {
       "type": "image-with-text-section",
+      "disabled": true,
       "name": "Gemstone Promo",
       "settings": {
         "image": "shopify://shop_images/image.png",
@@ -638,6 +641,7 @@
     },
     "reviews_highlight_TkdegG": {
       "type": "reviews-highlight",
+      "disabled": true,
       "name": "Reviews Highlight",
       "settings": {
         "headline": "<p>Over 1M rings Sold</p>",
@@ -694,6 +698,7 @@
         "item_wbTJmJ",
         "item_b4gxaR"
       ],
+      "disabled": true,
       "name": "Custom Marquee",
       "settings": {
         "static_on_desktop": true,
@@ -752,6 +757,7 @@
         "category_ECcWPF",
         "category_kETMMp"
       ],
+      "disabled": true,
       "name": "Shop by Category",
       "settings": {
         "title": "<p>Shop by Category</p>",
@@ -760,6 +766,7 @@
     },
     "collection_C3X8RM": {
       "type": "collection",
+      "disabled": true,
       "name": "Collection products",
       "settings": {
         "title": "<p>Save With Sets</p>",
@@ -773,6 +780,7 @@
     },
     "smart_ring_e7a8hy": {
       "type": "smart-ring",
+      "disabled": true,
       "name": "Smart ring",
       "settings": {
         "background_color": "#f5e5e1",
@@ -867,6 +875,7 @@
         "collection_block_wBUbm6",
         "collection_block_riNxR4"
       ],
+      "disabled": true,
       "name": "Shop by collections",
       "settings": {
         "title": "<p>Shop By Collections</p>",
@@ -1015,6 +1024,7 @@
         "video_f9Qf9x",
         "video_9RJY7U"
       ],
+      "disabled": true,
       "name": "Section tiktok",
       "settings": {
         "main_title": "<p>Rinfit Community</p>",
@@ -1090,6 +1100,7 @@
         "image_NUtyLj",
         "image_nypmaY"
       ],
+      "disabled": true,
       "name": "Shop Our Instagram",
       "settings": {
         "text_color": "#373a36",
@@ -1103,6 +1114,7 @@
     },
     "newsletter": {
       "type": "newsletter",
+      "disabled": true,
       "custom_css": [
         ".section-spacing {padding-top: 14px;}"
       ],
@@ -1217,6 +1229,7 @@
         "legal_ByPeaQ",
         "legal_eiXLqH"
       ],
+      "disabled": true,
       "name": "Footer",
       "settings": {
         "logo_image": "shopify://shop_images/Rinfit_Logo_1.svg",
