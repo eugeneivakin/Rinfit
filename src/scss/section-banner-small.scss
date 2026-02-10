@@ -1,0 +1,74 @@
+@use "mixins/media" as *;
+
+.shopify-section--banner-small {
+  .container {
+    border-radius: 10px;
+    overflow: hidden;
+
+    @include md {
+      border-radius: 30px;
+    }
+  }
+
+  .banner-grid {
+    display: grid;
+    grid-template-columns: repeat(2, min-content) 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    align-items: center;
+
+    @include sm {
+      grid-template-columns: 1fr min-content 1fr;
+    }
+  }
+
+  .banner-grid__item {
+    padding: 10px 0 11px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .banner-grid__item--left {
+    @include sm {
+      text-align: right;
+    }
+
+    .h1 {
+      em {
+        display: none;
+        font: inherit;
+
+        @include sm {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  .banner-grid__item--center {
+    padding: 0;
+    z-index: 1;
+
+    img {
+      height: 90px;
+      margin: 0 6px 0 -4px;
+      max-width: none;
+      width: auto;
+
+      @include sm {
+        height: 180px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .h1 {
+    font-size: 36px;
+    // line-height: 1;
+    overflow-wrap: normal;
+
+    @include md {
+      font-size: 59px;
+    }
+  }
+}

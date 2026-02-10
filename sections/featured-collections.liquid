@@ -1,9 +1,26 @@
 {%- if section.blocks.size > 0 -%}
+  <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+  {{ 'product-card.css' | asset_url | stylesheet_tag }}
+  {{ 'featured-collections.css' | asset_url | stylesheet_tag }}
+
   <style>
     #shopify-section-{{ section.id }} {
       --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
       --product-list-horizontal-spacing-factor: {{ section.settings.horizontal_spacing_factor }};
       --product-list-vertical-spacing-factor: {{ section.settings.vertical_spacing_factor }};
+    }
+
+    #shopify-section-{{ section.id }} .product-list--carousel {
+      --product-list-calculated-column-gap: 10px;
+      --product-list-calculated-row-gap: 10px;
+    }
+
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} .product-list--carousel {
+        --product-list-calculated-column-gap: 10px;
+        --product-list-calculated-row-gap: 10px;
+        --product-list-card-width: min(300px, calc((100% / {{ section.settings.products_per_row_mobile }}) - var(--product-list-calculated-column-gap) / 2));
+      }
     }
 
     @media screen and (min-width: 700px) {
@@ -13,87 +30,118 @@
     }
   </style>
 
-  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
+
+  {% assign block = section.blocks[0] %}
 
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
       {%- assign wrapper_carousel_id = 'featured-collections-carousel-' | append: section.id -%}
 
       <div class="section-stack">
-        <div class="v-stack justify-self-center gap-4 text-center sm:gap-5">
-          {%- if section.settings.subheading != blank -%}
-            <p class="h6 text-center">{{- section.settings.subheading -}}</p>
-          {%- endif -%}
+        <div class="section-heading">
+          <div>
+            {%- if section.settings.subheading != blank -%}
+              <p class="h6 text-center">{{- section.settings.subheading -}}</p>
+            {%- endif -%}
 
-          {%- if section.blocks.size > 1 -%}
-            <carousel-navigation align-selected class="featured-collections-navigation scroll-area bleed" aria-controls="{{ wrapper_carousel_id }}">
-              {%- for block in section.blocks -%}
-                <button class="h2" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                  {{- block.settings.title | default: block.settings.collection.title | default: 'Collection' -}}
-                </button>
-              {%- endfor -%}
-            </carousel-navigation>
-          {%- else -%}
-            <h2 class="h2">{{ section.blocks.first.settings.title | default: section.blocks.first.settings.collection.title | default: 'Collection' }}</h2>
+            <h2 class="h2">
+              {{
+                section.blocks.first.settings.title
+                | default: section.blocks.first.settings.collection.title
+                | default: 'Collection'
+              }}
+            </h2>
+          </div>
+
+          {%- if block.settings.link_text != blank -%}
+            {%- assign button_link = block.settings.link_url | default: block.settings.collection.url | default: '#' -%}
+
+            <div class="section-heading__view-all">
+              {%- render 'button', href: button_link, content: block.settings.link_text -%}
+            </div>
           {%- endif -%}
         </div>
 
         <featured-collections-carousel id="{{ wrapper_carousel_id }}" class="featured-collections-carousel">
-          {%- for block in section.blocks -%}
-            <div class="featured-collections-carousel__item {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
-              {%- capture product_list -%}
-                {%- assign should_reveal = false -%}
+          <div
+            class="featured-collections-carousel__item"
+            {{ block.shopify_attributes }}
+          >
+            {%- capture product_list -%}
+              {%- assign should_reveal = false -%}
 
-                {%- if settings.stagger_products_apparition and forloop.first -%}
-                  {%- assign should_reveal = true -%}
-                {%- endif -%}
+              {%- assign should_reveal = true -%}
 
-                {%- for product in block.settings.collection.products limit: block.settings.products_count -%}
-                  {%- render 'product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
-                {%- else -%}
-                  {%- for i in (1..block.settings.products_count) -%}
-                    {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
-                  {%- endfor -%}
-                {%- endfor -%}
-              {%- endcapture -%}
-
-              {%- if section.settings.stack_products -%}
-                <product-list class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} justify-center">
-                  {{- product_list -}}
-                </product-list>
+              {%- for product in block.settings.collection.products limit: block.settings.products_count -%}
+                {%- render 'x-product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
               {%- else -%}
-                {%- assign product_carousel_id = 'featured-collections-product-list-carousel-' | append: block.id -%}
+                {%- for i in (1..block.settings.products_count) -%}
+                  {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            {%- endcapture -%}
 
-                <product-list class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
-                  <carousel-prev-button class="floating-controls-container__control" aria-controls="{{ product_carousel_id }}">
-                    <button type="button" class="prev-next-button prev-next-button--prev circle-button hover:animate-icon-inline" disabled>
-                      <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-                      {%- render 'icon' with 'arrow-left', direction_aware: true -%}
-                    </button>
-                  </carousel-prev-button>
+            {%- if section.settings.stack_products -%}
+              <product-list class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} justify-center">
+                {{- product_list -}}
+              </product-list>
+            {%- else -%}
+              {%- assign product_carousel_id = 'featured-collections-product-list-carousel-' | append: block.id -%}
 
-                  <scroll-carousel id="{{ product_carousel_id }}" group-cells allow-drag class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed">
-                    {{- product_list -}}
-                  </scroll-carousel>
-                  
-                  <carousel-next-button class="floating-controls-container__control" aria-controls="{{ product_carousel_id }}">
-                    <button type="button" class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline">
-                      <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-                      {%- render 'icon' with 'arrow-right', direction_aware: true -%}
-                    </button>
-                  </carousel-next-button>
-                </product-list>
-              {%- endif -%}
+              <product-list class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
+                <carousel-prev-button
+                  class="floating-controls-container__control"
+                  aria-controls="{{ product_carousel_id }}"
+                >
+                  <button
+                    type="button"
+                    class="prev-next-button prev-next-button--prev circle-button hover:animate-icon-inline"
+                    disabled
+                  >
+                    <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+                    {%- render 'icons', icon: 'arrow-left' -%}
+                  </button>
+                </carousel-prev-button>
 
-              {%- if block.settings.link_text != blank -%}
-                {%- assign button_link = block.settings.link_url | default: block.settings.collection.url | default: '#' -%}
+                <scroll-carousel
+                  id="{{ product_carousel_id }}"
+                  group-cells
+                  allow-drag
+                  class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed"
+                >
+                  {{- product_list -}}
+                </scroll-carousel>
 
-                <div class="justify-self-center">
-                  {%- render 'button', href: button_link, content: block.settings.link_text -%}
-                </div>
-              {%- endif -%}
-            </div>
-          {%- endfor -%}
+                <carousel-next-button
+                  class="floating-controls-container__control"
+                  aria-controls="{{ product_carousel_id }}"
+                >
+                  <button
+                    type="button"
+                    class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline"
+                  >
+                    <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+                    {%- render 'icons', icon: 'arrow-right' -%}
+                  </button>
+                </carousel-next-button>
+              </product-list>
+            {%- endif -%}
+
+            {%- if block.settings.link_text != blank -%}
+              {%- assign button_link = block.settings.link_url
+                | default: block.settings.collection.url
+                | default: '#'
+              -%}
+
+              <div class="justify-self-center section-heading__view-all">
+                {%- render 'button', href: button_link, content: block.settings.link_text -%}
+              </div>
+            {%- endif -%}
+          </div>
         </featured-collections-carousel>
       </div>
     </div>

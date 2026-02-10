@@ -1,0 +1,91 @@
+.shopify-section--featured-collections {
+  --heading-text-transform: capitalize;
+  --heading-letter-spacing: 0;
+}
+.shopify-section--featured-collections .section-spacing {
+  --section-vertical-spacing: 12px;
+}
+.shopify-section--featured-collections .section-stack {
+  --section-stack-gap: 13px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--featured-collections .section-stack {
+    --section-stack-gap: 35px;
+  }
+}
+.shopify-section--featured-collections .section-heading {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  gap: 1rem;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--featured-collections .section-heading {
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+}
+.shopify-section--featured-collections .section-heading h2 {
+  font-size: 34px;
+  text-align: center;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--featured-collections .section-heading h2 {
+    font-size: 40px;
+    text-align: left;
+  }
+}
+.shopify-section--featured-collections .section-heading h2 > em,
+.shopify-section--featured-collections .section-heading h2 > strong {
+  font-size: 40px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--featured-collections .section-heading h2 > em,
+  .shopify-section--featured-collections .section-heading h2 > strong {
+    font-size: 46px;
+  }
+}
+.shopify-section--featured-collections .section-heading .section-heading__view-all {
+  display: none;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--featured-collections .section-heading .section-heading__view-all {
+    display: block;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--featured-collections product-list + .section-heading__view-all {
+    display: none;
+  }
+}
+.shopify-section--featured-collections product-list .floating-controls-container__control {
+  --floating-controls-inset-inline: -1.15rem;
+  transform: none;
+}
+@media screen and (min-width: 750px) {
+  .shopify-section--featured-collections product-list .floating-controls-container__control {
+    --floating-controls-inset-inline: -2.125rem;
+  }
+}
+.shopify-section--featured-collections product-list .circle-button {
+  --circle-button-size: 26px;
+  color: rgba(55, 57, 54, 0.6);
+  border: 1px solid rgba(55, 57, 54, 0.2);
+  box-shadow: none;
+  color: rgba(55, 57, 54, 0.6);
+}
+.shopify-section--featured-collections product-list .circle-button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  visibility: visible;
+}
+.shopify-section--featured-collections product-list .circle-button > svg {
+  fill: none;
+  stroke: currentColor;
+  width: auto;
+}
