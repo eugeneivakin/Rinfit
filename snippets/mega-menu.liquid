@@ -14,63 +14,7 @@ Supported variables
         also be empty (no links), which is the case if the merchant only want to show images, for instance.
 * block: the block containing all the information about the menu to render
 {%- endcomment -%}
-{%- assign menu_count = 0 -%}
-{%- for i in (1..5) -%}
-  {%- assign menu_setting = 'image_' | append: i | append: '_menu' -%}
-  {%- if block.settings[menu_setting] != blank -%}
-    {%- assign menu_count = menu_count | plus: 1 -%}
-  {%- endif -%}
-{%- endfor -%}
 
-{%- if menu_count == 1 and block.settings['image_1_menu'] != blank -%}
-<style>
-  @media(min-width: 1000px){
-    li.header__primary-nav-item[data-title="Company"] .promo-menu-main-header ul{
-      margin: 0;
-    }
-    li.header__primary-nav-item[data-title="Company"] {
-      position: relative;
-    }
-    li.header__primary-nav-item[data-title="Company"] .promo-menu-main-header{
-      max-width: fit-content;
-      min-width: fit-content;
-    }
-    .logo_center_navigation_below.header li.header__primary-nav-item[data-title="Company"] ul li:last-child a{
-      border: none !important;
-    }
-    li.header__primary-nav-item[data-title="Company"]  .mega-menu{
-      padding: 0;
-      width: 160px;
-      margin-top: 11px;
-      margin-left: -36px;
-      padding-top: 15px;
-      padding-bottom: 20px;
-    } 
-  }
-</style>
-
-<div class="mega-menu {% if block.settings.images_position == 'left' %}mega-menu--reverse{% endif %}" {{ block.shopify_attributes }}>
-    <div class="mega-menu__promo special-structure">
-      {%- if block.settings.image_1_heading != blank -%}
-        <h3 class="h6">{{ block.settings.image_1_heading }}</h3>
-      {%- endif -%}
-
-      <nav class="promo-menu promo-menu-main-header">
-        <ul>
-          {%- for link in linklists[block.settings.image_1_menu].links -%}
-            <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {%- endfor -%}
-        </ul>
-      </nav>
-
-      {%- if block.settings.image_1_text != blank -%}
-        <p class="smallcaps text-xs text-subdued">{{ block.settings.image_1_text }}</p>
-      {%- endif -%}
-    </div>
-  </div>
-{% else %}
 <div class="mega-menu {% if block.settings.images_position == 'left' %}mega-menu--reverse{% endif %}" {{ block.shopify_attributes }}>
   {%- if link.levels > 0 -%}
     <ul class="mega-menu__linklist unstyled-list">
@@ -102,4 +46,3 @@ Supported variables
     </div>
   {%- endif -%}
 </div>
-{% endif %}

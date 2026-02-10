@@ -31,8 +31,6 @@ Supported variables
         </button>
       </dialog-close-button>
 
-      {{ 'main-product-inline.css' | asset_url | stylesheet_tag }}
-
       <div class="quick-buy-modal__gallery-wrapper">
         {%- if product.media.size > 0 -%}
           {%- render 'product-gallery',

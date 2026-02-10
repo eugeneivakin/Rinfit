@@ -71,7 +71,8 @@
       "step": 10,
       "unit": "px",
       "label": "t:global.image.maximum_width",
-      "default": 300
+      "default": 300,
+      "visible_if": "{{ block.settings.width_mode == 'custom' }}"
     },
     {
       "type": "range",
@@ -81,7 +82,8 @@
       "step": 10,
       "unit": "px",
       "label": "t:global.image.mobile_maximum_width",
-      "default": 200
+      "default": 200,
+      "visible_if": "{{ block.settings.width_mode == 'custom' }}"
     }
   ],
   "presets": [

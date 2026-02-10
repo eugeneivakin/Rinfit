@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
     "page": "{{ page }}. lappuse",
@@ -99,6 +90,7 @@
       "choose_options": "Izvēlieties variantus",
       "view_details": "Skatīt informāciju",
       "added_to_cart": "Pievienots grozam!",
+      "added_to_cart_with_title": "{{ product_title }} pievienots grozam.",
       "sold_out_badge": "Izpārdots",
       "on_sale_badge": "Atlaide",
       "discount_badge_html": "{{ savings }} ietaupījums",
@@ -391,6 +383,10 @@
       "one_result": "Jūsu adresē ir pieejams viens piegādes tarifs:",
       "multiple_results": "Jūsu adresē ir pieejami vairāk piegādes tarifi:",
       "error": "Aprēķinot piegādes tarifus, radās viena vai vairākas kļūdas:"
+    },
+    "discount": {
+      "label": "Atlaides kods",
+      "error": "Ievadiet derīgu atlaides kodu"
     }
   },
   "404": {

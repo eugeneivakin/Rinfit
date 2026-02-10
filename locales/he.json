@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
     "page": "עמוד {{ page }}",
@@ -97,6 +88,7 @@
       "sold_out_button": "אזל מהמלאי",
       "unavailable_button": "לא זמין",
       "added_to_cart": "התווסף לעגלת הקניות שלך!",
+      "added_to_cart_with_title": "{{ product_title }} נוסף לעגלת הקניות.",
       "choose_options": "בחר אפשרויות",
       "view_details": "הצג פרטים",
       "sold_out_badge": "אזל מהמלאי",
@@ -391,6 +383,10 @@
       "one_result": "יש תעריף משלוח אחד עבור הכתובת שלך:",
       "multiple_results": "יש כמה תעריפי משלוח עבור הכתובת שלך:",
       "error": "אירעה שגיאה אחת או יותר בעת אחזור תעריפי המשלוח:"
+    },
+    "discount": {
+      "label": "קוד הנחה",
+      "error": "הזן קוד הנחה תקף"
     }
   },
   "404": {

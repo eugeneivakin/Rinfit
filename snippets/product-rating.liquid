@@ -44,25 +44,43 @@ Supported variables
 -%}
 
 {%- unless hide_rating -%}
-  <div class="conatainer-first-star conatainer-first-star-collections">
-    {% assign reviews_count = product.metafields.loox.num_reviews | default: 0 %}
-    {% assign rating = product.metafields.loox.avg_rating | default: 0 %}
-    {% assign rounded_rating = rating | round %}
+  <span class="rating-badge" title="{{ 'product.rating_count' | t: count: rating_count }}">
+    <div class="rating-badge__stars" role="img" aria-label="{{ 'general.rating.info' | t: rating_value: rating_value, rating_max: rating_max }}">
+      {%- liquid
+        if show_single_star
+          if rating_count == 0
+            render 'icon' with 'star-rating-empty'
+          else
+            render 'icon' with 'star-rating'
+          endif
+        else
+          for i in (1..rating_max)
+            if rating_count == 0
+              render 'icon' with 'star-rating-empty'
+            else
+              if i <= rating_value
+                render 'icon' with 'star-rating'
+              else
+                if rating_decimal == 0.5
+                  render 'icon' with 'star-rating-half'
+                elsif rating_decimal == 1
+                  render 'icon' with 'star-rating'
+                else
+                  render 'icon' with 'star-rating-empty'
+                endif
 
-    {% if reviews_count > 0 %}
-      <a href="#looxReviews">
-        <div class="loox-rating">
-          {% for i in (1..5) %}
-            {% if i <= rounded_rating %}
-              <span class="star full">★</span>
-            {% else %}
-              <span class="star empty">★</span>
-            {% endif %}
-          {% endfor %}
-          <span class="reviews_text">{{ rating }}/5.00</span>
-          <span class="number-reviews">({{ reviews_count }} reviews)</span>
-        </div>
-      </a>
-    {% endif %}
-  </div> 
+                assign rating_decimal = false
+              endif
+            endif
+          endfor
+        endif
+      -%}
+    </div>
+
+    {%- if display_mode == 'count' -%}
+      <span class="smallcaps text-xxs text-subdued">({{ rating_count }})</span>
+    {%- else -%}
+      <span class="smallcaps text-xxs text-subdued">({{ rating_value }})</span>
+    {%- endif -%}
+  </span>
 {%- endunless -%}

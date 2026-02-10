@@ -3,40 +3,15 @@
 <html lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
   <head>
     <meta charset="utf-8">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0">
 
-    <title>
-      {% if page_title == blank -%}
-        {{- shop.name -}}
-      {%- else -%}
-        {{- page_title -}}
-        {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
-      {%- endif %}
-    </title>
+    <title>{% if page_title == blank %}{{ shop.name }}{% else %}{{ page_title }}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% endif %}</title>
 
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
 
-    {%- comment -%}
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
-
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    {%- endcomment -%}
-
     <link rel="canonical" href="{{ canonical_url }}">
-
-    {% comment %}
-      {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-      {{ 'swiper-bundle.min.js'  | asset_url | script_tag }}
-    {% endcomment %}
 
     {%- if settings.favicon -%}
       <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 96 }}">
@@ -44,7 +19,6 @@
     {%- endif -%}
 
     {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
-    {%- comment -%}
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {%- unless settings.heading_font.system? -%}
@@ -54,7 +28,6 @@
     {%- unless settings.text_font.system? -%}
       <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
     {%- endunless -%}
-    {%- endcomment -%}
 
     {%- render 'social-meta-tags' -%}
     {%- render 'microdata-schema' -%}
@@ -86,28 +59,34 @@
 
   {% liquid
     assign features_class = ''
-
+  
     if settings.show_button_transition
       assign features_class = features_class | append: 'features--button-transition '
     endif
-
+  
     if settings.show_image_zoom_on_hover
       assign features_class = features_class | append: 'features--zoom-image '
     endif
   %}
 
-  <body class="{{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }} template-{{ template.name }}">
+  <body class="{{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }}">
     {%- render 'shadow-dom-templates' -%}
 
     <loading-bar class="loading-bar" aria-hidden="true"></loading-bar>
-    <a href="#main" allow-hash-change class="skip-to-content sr-only">
-      {{- 'general.accessibility.skip_to_content' | t -}}
-    </a>
+    <a href="#main" allow-hash-change class="skip-to-content sr-only">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
-    <span
-      id="header-scroll-tracker"
-      style="position: absolute; width: 1px; height: 1px; top: var(--header-scroll-tracker-offset, 10px); left: 0;"
-    >
+    {%- comment -%}
+    This placeholder will be filled to screen readers for any kind of announcements
+    {%- endcomment -%}
+    <div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+      <span id="status-announcement"></span>
+    </div>
+
+    <div class="sr-only" role="alert" aria-live="assertive" aria-atomic="true">
+      <span id="error-announcement"></span>
+    </div>
+
+    <span id="header-scroll-tracker" style="position: absolute; width: 1px; height: 1px; top: var(--header-scroll-tracker-offset, 10px); left: 0;">
       {%- comment -%}
         This allows our theme to track when the user has scrolled a given amount of pixels, without relying on a global scroll listener. This helps
         to improve performance and reduce reflows.
@@ -123,27 +102,13 @@
       {{ content_for_layout }}
 
       {%- comment -%}
-        IMPLEMENTATION NOTE: For best semantics, having the footer group outside the main would be slightly better, but
-          moving it inside the main allows to have all the sections (including sections inside the footer group) to be
-          consecutive, and hence having a cleaner margin collapsing management.
+      IMPLEMENTATION NOTE: For best semantics, having the footer group outside the main would be slightly better, but
+        moving it inside the main allows to have all the sections (including sections inside the footer group) to be
+        consecutive, and hence having a cleaner margin collapsing management.
       {%- endcomment -%}
       {%- if request.page_type != 'password' -%}
         {%- sections 'footer-group' -%}
       {%- endif -%}
     </main>
-
-    {%- render 'chatbot' -%}
-
-    {%- comment -%}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-    {%- endcomment -%}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-      rel="stylesheet"
-    >
-    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
-    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
   </body>
 </html>

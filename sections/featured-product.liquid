@@ -206,7 +206,8 @@
       "max": 4,
       "step": 0.5,
       "label": "t:sections.main_product.image_zoom_max_level",
-      "default": 3
+      "default": 3,
+      "visible_if": "{{ section.settings.enable_image_zoom }}"
     },
     {
       "type": "header",
@@ -525,42 +526,46 @@
         {
           "type": "header",
           "content": "t:sections.main_product.blocks.line_item_property.text_type_category",
-          "info": "t:sections.main_product.blocks.line_item_property.text_type_category_info"
+          "visible_if": "{{ block.settings.type == 'text' }}"
         },
         {
           "type": "checkbox",
           "id": "allow_long_text",
           "label": "t:sections.main_product.blocks.line_item_property.text_type_allow_long_text",
-          "default": false
+          "default": false,
+          "visible_if": "{{ block.settings.type == 'text' }}"
         },
         {
           "type": "number",
           "id": "max_length",
-          "label": "t:sections.main_product.blocks.line_item_property.text_type_max_length"
+          "label": "t:sections.main_product.blocks.line_item_property.text_type_max_length",
+          "visible_if": "{{ block.settings.type == 'text' }}"
         },
         {
           "type": "header",
           "content": "t:sections.main_product.blocks.line_item_property.checkbox_type_category",
-          "info": "t:sections.main_product.blocks.line_item_property.checkbox_type_category_info"
+          "visible_if": "{{ block.settings.type == 'checkbox' }}"
         },
         {
           "type": "text",
           "id": "checkbox_value",
           "label": "t:sections.main_product.blocks.line_item_property.checkbox_value",
           "info": "t:sections.main_product.blocks.line_item_property.checkbox_value_info",
-          "default": "Yes"
+          "default": "Yes",
+          "visible_if": "{{ block.settings.type == 'checkbox' }}"
         },
         {
           "type": "header",
           "content": "t:sections.main_product.blocks.line_item_property.dropdown_type_category",
-          "info": "t:sections.main_product.blocks.line_item_property.dropdown_type_category_info"
+          "visible_if": "{{ block.settings.type == 'dropdown' }}"
         },
         {
           "type": "text",
           "id": "select_values",
           "label": "t:sections.main_product.blocks.line_item_property.dropdown_values",
           "info": "t:sections.main_product.blocks.line_item_property.dropdown_values_info",
-          "default": "Value 1,Value 2,Value 3"
+          "default": "Value 1,Value 2,Value 3",
+          "visible_if": "{{ block.settings.type == 'dropdown' }}"
         }
       ]
     },
@@ -618,7 +623,8 @@
           "id": "progress_bar_max_value",
           "label": "t:sections.main_product.blocks.inventory.progress_bar_max_value",
           "info": "t:sections.main_product.blocks.inventory.progress_bar_max_value_info",
-          "default": 50
+          "default": 50,
+          "visible_if": "{{ block.settings.show_progress_bar }}"
         }
       ]
     },
@@ -1604,7 +1610,8 @@
           "step": 10,
           "unit": "px",
           "label": "t:global.image.maximum_width",
-          "default": 300
+          "default": 300,
+          "visible_if": "{{ block.settings.width_mode == 'custom' }}"
         },
         {
           "type": "range",
@@ -1614,7 +1621,8 @@
           "step": 10,
           "unit": "px",
           "label": "t:global.image.mobile_maximum_width",
-          "default": 200
+          "default": 200,
+          "visible_if": "{{ block.settings.width_mode == 'custom' }}"
         }
       ]
     },
@@ -1668,6 +1676,7 @@
   "presets": [
     {
       "name": "t:sections.featured_product.presets.featured_product.name",
+      "category": "t:global.categories.products",
       "blocks": [
         {
           "type": "vendor"

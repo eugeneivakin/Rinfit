@@ -3,19 +3,9 @@
     "name": "theme_info",
     "theme_name": "Prestige",
     "theme_author": "Maestrooo",
-    "theme_version": "10.7.0",
+    "theme_version": "10.11.1",
     "theme_documentation_url": "https://support.maestrooo.com/",
     "theme_support_url": "https://support.maestrooo.com/article/203-contact-us"
-  },
-  {
-    "name": "Text",
-    "settings": [
-      {
-        "type": "text",
-        "id": "main_text_loading",
-        "label": "Text loading"
-      },
-    ]
   },
   {
     "name": "t:theme_settings.appearance.name",
@@ -89,26 +79,6 @@
         "unit": "px",
         "label": "t:theme_settings.appearance.input_border_radius",
         "default": 0
-      }
-    ]
-  },
-  {
-    "name": "Products cart",
-    "settings": [
-      {
-        "type": "product",
-        "id": "quick_buy_product_1",
-        "label": "Product 1"
-      },
-      {
-        "type": "product",
-        "id": "quick_buy_product_2",
-        "label": "Product 2"
-      },
-      {
-        "type": "product",
-        "id": "quick_buy_product_3",
-        "label": "Product 3"
       }
     ]
   },

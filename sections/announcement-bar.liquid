@@ -71,6 +71,10 @@
 {
   "name": "t:sections.announcement_bar.name",
   "class": "shopify-section--announcement-bar",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["header"]
+  },
   "tag": "aside",
   "max_blocks": 5,
   "blocks": [
@@ -113,7 +117,8 @@
       "step": 1,
       "unit": "sec",
       "label": "t:sections.announcement_bar.cycle_speed",
-      "default": 5
+      "default": 5,
+      "visible_if": "{{ section.settings.autoplay }}"
     },
     {
       "type": "range",
@@ -132,6 +137,19 @@
       "unit": "px",
       "label": "t:sections.announcement_bar.mobile_text_size",
       "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement_bar.name",
+      "blocks": [
+        {
+          "type": "message",
+          "settings": {
+            "text": "Announce something here"
+          }
+        }  
+      ]
     }
   ]
 }

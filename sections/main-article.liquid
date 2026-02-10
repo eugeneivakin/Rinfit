@@ -244,7 +244,8 @@
       "type": "checkbox",
       "id": "enable_parallax",
       "label": "t:sections.main_article.enable_parallax",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.show_image }}"
     },
     {
       "type": "select",
@@ -268,7 +269,8 @@
           "value": "large"
         }
       ],
-      "default": "medium"
+      "default": "medium",
+      "visible_if": "{{ section.settings.show_image }}"
     },
     {
       "type": "header",

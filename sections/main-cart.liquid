@@ -89,6 +89,29 @@
               {%- endif -%}
 
               <div class="cart-recap">
+                {%- if section.settings.allow_discount_application -%}
+                  {%- render 'cart-discount' -%}
+                {%- endif -%}
+
+                {%- if cart.cart_level_discount_applications.size > 0 -%}
+                  <div class="h-stack gap-3">
+                    {%- for discount_application in cart.cart_level_discount_applications -%}
+                      <div class="h-stack justify-start gap-2">
+                        <span class="discount-badge text-xs">
+                          {%- render 'icon' with 'discount', width: 12 -%}
+                          {{- discount_application.title -}} (-{{ discount_application.total_allocated_amount | money }})
+
+                          {%- if section.settings.allow_discount_application and discount_application.type != '' -%}
+                            <cart-discount-remove-button discount-code="{{ discount_application.title | escape }}" class="h-stack align-center">
+                              <button type="button">{%- render 'icon' with 'close', width: 8 -%}</button>
+                            </cart-discount-remove-button>
+                          {%- endif -%}
+                        </span>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+
                 {%- comment -%}Give apps a special hook to add features on the recap (such as capturing delivery dates){%- endcomment -%}
                 {%- for block in section.blocks -%}
                   {%- if block.type == '@app' -%}
@@ -115,13 +138,6 @@
                     </span>
                   </div>
                 {%- endif -%}
-
-                {% for discount_application in cart.cart_level_discount_applications %}
-                  <div class="h-stack justify-start gap-2">
-                    <span class="discount-badge text-xs">{%- render 'icon' with 'discount', width: 12 -%} {{- discount_application.title -}}</span>
-                    <span class="text-subdued">-{{ discount_application.total_allocated_amount | money }}</span>
-                  </div>
-                {% endfor %}
 
                 <div class="h-stack justify-start gap-2">
                   <span class="text-lg">{{ 'cart.general.total' | t }}:</span>
@@ -192,6 +208,12 @@
     },
     {
       "type": "checkbox",
+      "id": "allow_discount_application",
+      "label": "t:sections.main_cart.allow_discount_application",
+      "default": false
+    },
+    {
+      "type": "checkbox",
       "id": "show_order_weight",
       "label": "t:sections.main_cart.show_order_weight",
       "default": false
@@ -216,10 +238,9 @@
       "default": true
     }
   ],
+
   "blocks": [
-    {
-      "type": "@app"
-    }
+    { "type": "@app" }
   ]
 }
 {% endschema %}

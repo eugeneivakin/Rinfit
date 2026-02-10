@@ -100,7 +100,8 @@
       "type": "image_picker",
       "id": "poster",
       "label": "t:sections.video.poster_image",
-      "info": "t:sections.video.poster_image_info"
+      "info": "t:sections.video.poster_image_info",
+      "visible_if": "{{ block.settings.autoplay == false }}"
     },
     {
       "type": "color",

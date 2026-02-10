@@ -153,9 +153,9 @@ Thumbnail specific parameters:
         {{- image | image_url: width: image.width | image_tag: sizes: '(max-width: 699px) 48px, 68px', widths: '48,68,96,136', class: 'object-contain' -}}
       </{{ option_value_tag }}>
     {%- else -%}
-      {% comment %} <{{ option_value_tag }} class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
+      <{{ option_value_tag }} class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
         {{ label | default: value }}
-      </{{ option_value_tag }}> {% endcomment %}
+      </{{ option_value_tag }}>
     {%- endif -%}
 
   {%- when 'block' -%}
