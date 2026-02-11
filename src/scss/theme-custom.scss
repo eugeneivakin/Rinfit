@@ -1,13 +1,16 @@
 @use "mixins/media" as *;
 
+@use "components/slideshow";
+
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 body {
-  max-width: 390px;
+  line-height: 1.4286;
+  // max-width: 390px;
 
-  @include xs {
-    max-width: none;
-  }
+  // @include xs {
+  //   max-width: none;
+  // }
 }
 
 .button {
@@ -32,3 +35,4 @@ body {
     font-family: "Playfair Display", serif;
   }
 }
+

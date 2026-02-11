@@ -1,8 +1,10 @@
 {%- if section.settings.image != blank or section.blocks.size > 0 -%}
+  {{- 'section-image-with-text.css' | asset_url | stylesheet_tag -}}
+
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  CSS
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   <style>
@@ -12,79 +14,114 @@
   </style>
 
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  LIQUID
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
-  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
 
   <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
-    <image-with-text class="image-with-text {% if section.settings.image_position == 'end' %}image-with-text--reverse{% endif %}">
-      {%- if section.settings.image != blank -%}
-        <picture>
-          {%- assign sizes = '(max-width: 699px) 100vw, 50vw' -%}
+    <div class="container">
+      <image-with-text class="image-with-text {% if section.settings.image_position == 'end' %}image-with-text--reverse{% endif %} {% if section.settings.image_overlap %}image-with-text--overlap{% endif %}">
+        {%- if section.settings.image != blank -%}
+          <div class="image-with-text__media-wrapper">
+            <picture>
+              {%- assign sizes = '(max-width: 699px) 100vw, 50vw' -%}
 
-          {%- if section.settings.mobile_image != blank -%}
-            <source
-                media="(max-width: 699px)"
-                srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w"
-                width="{{ section.settings.mobile_image.width }}"
-                height="{{ section.settings.mobile_image.height }}"
-            >
-          {%- endif -%}
-
-          {{- section.settings.image | image_url: width: section.settings.image.width | image_tag: sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', reveal-on-scroll: section.settings.reveal_on_scroll -}}
-        </picture>
-      {%- else -%}
-        {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
-      {%- endif -%}
-
-      <div class="prose text-center sm:text-start">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'subheading' -%}
-              {%- if block.settings.text != blank -%}
-                <p class="h6" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+              {%- if section.settings.mobile_image != blank -%}
+                <source
+                  media="(max-width: 699px)"
+                  srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w"
+                  width="{{ section.settings.mobile_image.width }}"
+                  height="{{ section.settings.mobile_image.height }}"
+                >
               {%- endif -%}
 
-            {%- when 'heading' -%}
-              {%- if block.settings.text != blank -%}
-                <p class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
-              {%- endif -%}
+              {{-
+                section.settings.image
+                | image_url: width: section.settings.image.width
+                | image_tag:
+                  sizes: sizes,
+                  widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200',
+                  reveal-on-scroll: section.settings.reveal_on_scroll
+              -}}
+            </picture>
+          </div>
+        {%- else -%}
+          {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
+        {%- endif -%}
 
-            {%- when 'richtext' -%}
-              {%- if block.settings.content != blank -%}
-                <div {{ block.shopify_attributes }}>
-                  {{- block.settings.content -}}
+        <div class="image-with-text__content prose text-center sm:text-start">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'subheading' -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="h6" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+                {%- endif -%}
+
+              {%- when 'heading' -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </p>
+                {%- endif -%}
+
+              {%- when 'richtext' -%}
+                {%- if block.settings.content != blank -%}
+                  <div class="image-with-text__richtext" {{ block.shopify_attributes }}>
+                    {{- block.settings.content -}}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'page' -%}
+                {%- if block.settings.page.content != blank -%}
+                  <div {{ block.shopify_attributes }}>
+                    {{- block.settings.page.content -}}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'liquid' -%}
+                {%- if block.settings.liquid != blank -%}
+                  <div {{ block.shopify_attributes }}>
+                    {{- block.settings.liquid -}}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'link' -%}
+                <div class="image-with-text__links">
+                  <a
+                    {% if block.settings.url %}
+                      href="{{ block.settings.url }}"
+                    {% endif %}
+                    class="link"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{- block.settings.text | escape -}}
+                  </a>
                 </div>
-              {%- endif -%}
 
-            {%- when 'page' -%}
-              {%- if block.settings.page.content != blank -%}
-                <div {{ block.shopify_attributes }}>
-                  {{- block.settings.page.content -}}
-                </div>
-              {%- endif -%}
-
-            {%- when 'liquid' -%}
-              {%- if block.settings.liquid != blank -%}
-                <div {{ block.shopify_attributes }}>
-                  {{- block.settings.liquid -}}
-                </div>
-              {%- endif -%}
-
-            {%- when 'link' -%}
-              <a {% if block.settings.url %}href="{{ block.settings.url }}"{% endif %} class="link" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</a>
-
-            {%- when 'button' -%}
-              {%- if block.settings.text != blank -%}
-                {% render 'button', content: block.settings.text, href: block.settings.url, style: block.settings.style, background: block.settings.background, text_color: block.settings.text_color, block: block %}
-              {%- endif -%}
-          {%- endcase -%}
-        {%- endfor -%}
-      </div>
-    </image-with-text>
+              {%- when 'button' -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="image-with-text__links">
+                    {% render 'button',
+                      content: block.settings.text,
+                      href: block.settings.url,
+                      style: block.settings.style,
+                      background: block.settings.background,
+                      text_color: block.settings.text_color,
+                      block: block
+                    %}
+                  </div>
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </image-with-text>
+    </div>
   </div>
 {%- endif -%}
 
@@ -142,6 +179,12 @@
           "label": "t:global.position.right"
         }
       ]
+    },
+    {
+      "type": "checkbox",
+      "id": "image_overlap",
+      "label": "Image overlap content",
+      "default": false
     },
     {
       "type": "select",

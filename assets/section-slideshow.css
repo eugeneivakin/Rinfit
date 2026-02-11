@@ -45,7 +45,7 @@
   min-height: 2.5rem;
   width: 100%;
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
   .shopify-section--slideshow .button {
     width: auto;
   }

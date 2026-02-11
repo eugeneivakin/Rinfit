@@ -67,7 +67,7 @@
   --floating-controls-inset-inline: -1.15rem;
   transform: none;
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
   .shopify-section--featured-collections product-list .floating-controls-container__control {
     --floating-controls-inset-inline: -2.125rem;
   }

@@ -1,0 +1,31 @@
+.slideshow {
+  .page-dots {
+    --slideshow-controls-spacing: var(--container-gutter);
+    --dot-size: 3px;
+
+    inset-inline-start: var(--slideshow-controls-spacing);
+    gap: 8px;
+    flex-wrap: nowrap;
+
+    > * {
+      border-radius: 4px;
+      width: auto;
+    }
+
+    .tap-area {
+      background: rgb(var(--background) / 0.5);
+      max-width: 62px;
+      flex-grow: 1;
+
+      &[aria-current="true"] {
+        background: rgb(var(--background) / 1);
+      }
+
+      svg,
+      &:after,
+      &:before {
+        display: none;
+      }
+    }
+  }
+}

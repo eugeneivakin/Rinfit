@@ -15,9 +15,6 @@
   border-radius: 10px;
   overflow: hidden;
 }
-.x-product-card .product-card__media img {
-  opacity: 0 !important;
-}
 .x-product-card .product-card__info {
   flex-grow: 1;
   display: flex;

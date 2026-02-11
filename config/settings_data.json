@@ -49,9 +49,9 @@
       },
       "scheme-2": {
         "settings": {
-          "background": "#f1e2df",
+          "background": "#f5e5e1",
           "background_gradient": "",
-          "text_color": "#b2918c",
+          "text_color": "#373a36",
           "primary_button_background": "#232222",
           "primary_button_text_color": "#ffffff",
           "circle_button_background": "#ffffff",
