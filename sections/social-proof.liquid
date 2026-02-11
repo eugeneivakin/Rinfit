@@ -1,0 +1,119 @@
+{{- 'section-reviews-highlight.css' | asset_url | stylesheet_tag -}}
+{{- 'section-social-proof.css' | asset_url | stylesheet_tag -}}
+
+<div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <div class="container">
+    {%- render 'section-header', heading: section.settings.heading, text_alignment: 'center' -%}
+
+    {% unless section.blocks.size == 0 %}
+      <div class="social-proof__customer-wrapper">
+        {% for block in section.blocks %}
+          <div>
+            {% if block.settings.image == blank %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% else %}
+              {{ block.settings.image | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endunless %}
+
+    {% unless section.settings.content == blank %}
+      <div class="social-proof__content-wrapper">
+        {% render 'icons', icon: 'quotes-open' %}
+        <div class="prose">
+          {{ section.settings.content }}
+        </div>
+      </div>
+    {% endunless %}
+
+    {% unless section.settings.button_link == blank %}
+      <div class="social-proof__buttons-wrapper">
+        {% render 'button', content: section.settings.button_label, href: section.settings.button_link %}
+      </div>
+    {% endunless %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Social proof",
+  "tag": "section",
+  "class": "shopify-section--social-proof",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "customer_image",
+      "name": "Customer image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer image"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "t:global.section.separate_section_with_border",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Headline",
+      "default": "Over 1M Rings <strong><em>Sold</em></strong>"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Review text",
+      "default": "<p>Love this ring! It's really comfortable and customer service was outstanding with helping me exchange it for the correct size!</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Read all reviews"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "t:global.spacing.remove_vertical_spacing",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social proof",
+      "category": "t:global.categories.trust_social",
+      "blocks": [
+        {
+          "type": "customer_image"
+        },
+        {
+          "type": "customer_image"
+        },
+        {
+          "type": "customer_image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
