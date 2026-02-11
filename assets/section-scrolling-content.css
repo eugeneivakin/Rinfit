@@ -1,3 +1,6 @@
+.shopify-section--scrolling-content .scrolling-content {
+  line-height: 1;
+}
 .shopify-section--scrolling-content .scrolling-content__text-wrapper {
   display: flex;
   flex-direction: row;
@@ -6,6 +9,11 @@
   align-content: center;
   align-items: center;
   gap: 6px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--scrolling-content .scrolling-content__text-wrapper {
+    gap: 3px;
+  }
 }
 .shopify-section--scrolling-content .scrolling-content__icon-wrapper {
   width: 24px;

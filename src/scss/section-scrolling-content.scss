@@ -1,6 +1,10 @@
 @use "mixins/media" as *;
 
 .shopify-section--scrolling-content {
+  .scrolling-content {
+    line-height: 1;
+  }
+  
   .scrolling-content__text-wrapper {
     display: flex;
     flex-direction: row;
@@ -9,6 +13,10 @@
     align-content: center;
     align-items: center;
     gap: 6px;
+
+    @include md {
+      gap: 3px;
+    }
   }
 
   .scrolling-content__icon-wrapper {
