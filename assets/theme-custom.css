@@ -24,6 +24,12 @@
 
 body {
   line-height: 1.4286;
+  max-width: 390px;
+}
+@media screen and (min-width: 576px) {
+  body {
+    max-width: none;
+  }
 }
 
 .button {

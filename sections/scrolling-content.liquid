@@ -1,32 +1,75 @@
 {%- if section.blocks.size > 0 -%}
+  {{- 'section-scrolling-content.css' | asset_url | stylesheet_tag -}}
+
   <style>
     #shopify-section-{{ section.id }} {
-      --section-vertical-spacing: clamp({{ section.settings.section_vertical_spacing_mobile }}px, calc({{ section.settings.section_vertical_spacing_mobile }}px + ({{ section.settings.section_vertical_spacing_desktop }} - {{ section.settings.section_vertical_spacing_mobile }}) * ((100vw - 375px) / (1400 - 375))), {{ section.settings.section_vertical_spacing_desktop }}px);
-      --scrolling-content-content-gap: clamp({{ section.settings.item_horizontal_spacing_mobile }}px, calc({{ section.settings.item_horizontal_spacing_mobile }}px + ({{ section.settings.item_horizontal_spacing_desktop }} - {{ section.settings.item_horizontal_spacing_mobile }}) * ((100vw - 375px) / (1400 - 375))), {{ section.settings.item_horizontal_spacing_desktop }}px);
+      --section-vertical-spacing: {{ section.settings.section_vertical_spacing_mobile }}px;
+      --scrolling-content-content-gap: {{ section.settings.item_horizontal_spacing_mobile }}px;
 
-      font-size: clamp({{ section.settings.text_font_size_mobile }}px, calc({{ section.settings.text_font_size_mobile }}px + ({{ section.settings.text_font_size_desktop }} - {{ section.settings.text_font_size_mobile }}) * ((100vw - 375px) / (1400 - 375))), {{ section.settings.text_font_size_desktop }}px);
+      font-size: {{ section.settings.text_font_size_mobile }}px;
+    }
+
+    @media screen and (min-width: 1000px) {
+      #shopify-section-{{ section.id }} {
+        --section-vertical-spacing: {{ section.settings.section_vertical_spacing_desktop }}px;
+        --scrolling-content-content-gap: {{ section.settings.item_horizontal_spacing_desktop }}px;
+
+        font-size: {{ section.settings.text_font_size_desktop }}px;
+      }
     }
   </style>
 
-  {%- assign color_scheme_hash = section.settings.background | default: settings.default_color_scheme.settings.background | md5 -%}
+  {%- assign color_scheme_hash = section.settings.background
+    | default: settings.default_color_scheme.settings.background
+    | md5
+  -%}
 
-  <div class="section-spacing color-scheme color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.background != blank and section.settings.background != 'rgba(0,0,0,0)' and section.settings.background != settings.default_color_scheme.settings.background %}section-spacing--padded{% endif %} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}" style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
-    <marquee-text speed="{{ section.settings.scrolling_speed }}" direction="{{ section.settings.scroll_direction }}" {% if section.settings.pause_on_hover %}pause-on-hover{% endif %} class="scrolling-content">
+  <div
+    class="section-spacing color-scheme color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.background != blank and section.settings.background != 'rgba(0,0,0,0)' and section.settings.background != settings.default_color_scheme.settings.background %}section-spacing--padded{% endif %} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
+    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}"
+  >
+    <marquee-text
+      speed="{{ section.settings.scrolling_speed }}"
+      direction="{{ section.settings.scroll_direction }}"
+      {% if section.settings.pause_on_hover %}
+        pause-on-hover
+      {% endif %}
+      class="scrolling-content"
+    >
       <div class="scrolling-content__item">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'image' -%}
               {%- if block.settings.image -%}
                 <div class="scrolling-content__image" {{ block.shopify_attributes }}>
-                  {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: '(max-width: 699px) 90px, 180px', widths: '90,180,270,360,540' -}}
+                  {{-
+                    block.settings.image
+                    | image_url: width: block.settings.image.width
+                    | image_tag: sizes: '(max-width: 699px) 90px, 180px', widths: '90,180,270,360,540'
+                  -}}
                 </div>
               {%- endif -%}
 
             {%- when 'text' -%}
               {%- if block.settings.text != blank -%}
-                <p class="scrolling-content__text {% if section.settings.text_font == 'heading' %}heading{% endif %}" {{ block.shopify_attributes }}>
-                  {{- block.settings.text -}}
-                </p>
+                <div class="scrolling-content__text-wrapper">
+                  {% if block.settings.image != blank %}
+                    <span class="scrolling-content__icon-wrapper">
+                      {{ block.settings.image | image_url: width: 48 | image_tag: loading: 'lazy' }}
+                    </span>
+                  {% elsif block.settings.html != blank %}
+                    <span class="scrolling-content__icon-wrapper">
+                      {{ block.settings.html }}
+                    </span>
+                  {% endif %}
+
+                  <p
+                    class="scrolling-content__text {% if section.settings.text_font == 'heading' %}heading{% endif %}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{- block.settings.text -}}
+                  </p>
+                </div>
               {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
@@ -188,6 +231,24 @@
       "type": "text",
       "name": "t:sections.scrolling_content.blocks.text.name",
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "icon_choice",
+          "label": "Use SVG icon",
+          "default": true
+        },
+        {
+          "type": "html",
+          "id": "html",
+          "label": "SVG icon",
+          "visible_if": "{{ block.settings.icon_choice }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "visible_if": "{{ block.settings.icon_choice == false }}"
+        },
         {
           "type": "inline_richtext",
           "id": "text",
