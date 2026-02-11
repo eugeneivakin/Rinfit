@@ -1,0 +1,22 @@
+@use "mixins/media" as *;
+
+.section-header {
+  h2 {
+    font-size: 34px;
+    text-align: center;
+
+    @include md {
+      font-size: 40px;
+      text-align: left;
+    }
+
+    > em,
+    > strong {
+      font-size: 40px;
+
+      @include md {
+        font-size: 46px;
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.shopify-section--collection-list .section-spacing {
+  --section-vertical-spacing: 10px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--collection-list .section-spacing {
+    --section-vertical-spacing: 8px;
+  }
+}
+.shopify-section--collection-list .section-stack {
+  --section-stack-gap: 13px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--collection-list .section-stack {
+    --section-stack-gap: 30px;
+  }
+}
+.shopify-section--collection-list .collection-list {
+  --collection-list-gap: 10px;
+}
+.shopify-section--collection-list .collection-card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.shopify-section--collection-list .content-over-media {
+  --content-over-media-gap: 21px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--collection-list .content-over-media {
+    --content-over-media-gap: 23px;
+  }
+}
+.shopify-section--collection-list .content-over-media:has(> .prose):not(:has(> .prose .button:last-child)) {
+  row-gap: 21px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--collection-list .content-over-media:has(> .prose):not(:has(> .prose .button:last-child)) {
+    row-gap: 23px;
+  }
+}
+.shopify-section--collection-list .content-over-media--x360 {
+  --content-over-media-height: 360px;
+}
+.shopify-section--collection-list .collection-card__content {
+  --text-color: 255 255 255;
+  --background: 255 255 255 / 0;
+}
+.shopify-section--collection-list .collection-card__content .h3 {
+  font: italic 30px/1 var(--heading-font-family-alternate);
+}
+.shopify-section--collection-list .collection-card__content .link {
+  background-size: 0 1px;
+  font-weight: 500;
+  margin-block-start: 4px;
+  text-transform: uppercase;
+}
+.shopify-section--collection-list .collection-card__content .link:hover {
+  background-size: 100% 1px;
+}
+.shopify-section--collection-list .floating-controls-container__control {
+  --floating-controls-inset-inline: -1.15rem;
+  transform: none;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--collection-list .floating-controls-container__control {
+    --floating-controls-inset-inline: -2.125rem;
+  }
+}
+.shopify-section--collection-list .circle-button {
+  --circle-button-size: 26px;
+  color: rgba(55, 57, 54, 0.6);
+  border: 1px solid rgba(55, 57, 54, 0.2);
+  box-shadow: none;
+  color: rgba(55, 57, 54, 0.6);
+}
+.shopify-section--collection-list .circle-button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  visibility: visible;
+}
+.shopify-section--collection-list .circle-button > svg {
+  fill: none;
+  stroke: currentColor;
+  width: auto;
+}
