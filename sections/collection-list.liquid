@@ -76,6 +76,19 @@
     | md5
   -%}
 
+  {%- capture button_shop_all -%}
+    {%- if section.settings.button_text != blank -%}
+      {%- assign button_link = section.settings.button_url
+        | default: section.settings.collection.url
+        | default: '#'
+      -%}
+
+      <div class="justify-self-center section-heading__view-all">
+        {%- render 'button', href: button_link, content: section.settings.button_text -%}
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
   <div class="{% unless remove_vertical_spacing %}section-spacing {% if reduce_vertical_spacing %}section-spacing--tight{% endif %}{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="{% if section.settings.space_items %}container{% endif %}">
       <div class="section-stack">
@@ -83,7 +96,8 @@
           subheading: section.settings.subheading,
           heading: section.settings.title,
           content: section.settings.content,
-          text_alignment: 'center'
+          text_alignment: 'stretch',
+          button_shop_all: button_shop_all
         -%}
 
         {% capture collection_list %}
@@ -192,6 +206,8 @@
             </carousel-next-button>
           </div>
         {% endif %}
+
+        {{ button_shop_all }}
       </div>
     </div>
   </div>
@@ -318,6 +334,18 @@
       "type": "richtext",
       "id": "content",
       "label": "t:global.text.content"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+      "default": "/collections"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button link",
+      "default": "Shop all"
     }
   ],
   "blocks": [

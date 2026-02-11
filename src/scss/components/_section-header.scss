@@ -1,6 +1,25 @@
 @use "mixins/media" as *;
 
 .section-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: flex-end;
+  align-items: flex-end;
+  gap: 1rem;
+  max-width: none;
+
+  &.justify-self-stretch {
+    align-self: stretch;
+  }
+
+  .prose {
+    &:only-child {
+      flex-grow: 1;
+    }
+  }
+
   h2 {
     font-size: 34px;
     text-align: center;
@@ -17,6 +36,20 @@
       @include md {
         font-size: 46px;
       }
+    }
+  }
+
+  .section-heading__view-all {
+    display: none;
+
+    @include md {
+      display: block;
+    }
+  }
+
+  ~ .section-heading__view-all {
+    @include md {
+      display: none;
     }
   }
 }

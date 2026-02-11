@@ -1,4 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+.section-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: flex-end;
+  align-items: flex-end;
+  gap: 1rem;
+  max-width: none;
+}
+.section-header.justify-self-stretch {
+  align-self: stretch;
+}
+.section-header .prose:only-child {
+  flex-grow: 1;
+}
 .section-header h2 {
   font-size: 34px;
   text-align: center;
@@ -17,6 +33,19 @@
   .section-header h2 > em,
   .section-header h2 > strong {
     font-size: 46px;
+  }
+}
+.section-header .section-heading__view-all {
+  display: none;
+}
+@media screen and (min-width: 1000px) {
+  .section-header .section-heading__view-all {
+    display: block;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .section-header ~ .section-heading__view-all {
+    display: none;
   }
 }
 
@@ -45,12 +74,6 @@
 
 body {
   line-height: 1.4286;
-  max-width: 390px;
-}
-@media screen and (min-width: 576px) {
-  body {
-    max-width: none;
-  }
 }
 
 .button {
