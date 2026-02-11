@@ -1,11 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-body {
-  max-width: 390px;
+.slideshow .page-dots {
+  --slideshow-controls-spacing: var(--container-gutter);
+  --dot-size: 3px;
+  inset-inline-start: var(--slideshow-controls-spacing);
+  gap: 8px;
+  flex-wrap: nowrap;
 }
-@media screen and (min-width: 576px) {
-  body {
-    max-width: none;
-  }
+.slideshow .page-dots > * {
+  border-radius: 4px;
+  width: auto;
+}
+.slideshow .page-dots .tap-area {
+  background: rgb(var(--background)/0.5);
+  max-width: 62px;
+  flex-grow: 1;
+}
+.slideshow .page-dots .tap-area[aria-current=true] {
+  background: rgb(var(--background)/1);
+}
+.slideshow .page-dots .tap-area svg, .slideshow .page-dots .tap-area:after, .slideshow .page-dots .tap-area:before {
+  display: none;
+}
+
+body {
+  line-height: 1.4286;
 }
 
 .button {

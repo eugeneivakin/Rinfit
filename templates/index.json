@@ -190,13 +190,13 @@
         "subheading_NW38TG": {
           "type": "subheading",
           "settings": {
-            "text": "NEW DROP IS HERE"
+            "text": "NEW DROP IS here"
           }
         },
         "heading_KPiTxq": {
           "type": "heading",
           "settings": {
-            "text": "Gemstone Collection",
+            "text": "Gemstone <em><strong>Collection</strong></em>",
             "heading_tag": "h1"
           }
         },
@@ -225,13 +225,14 @@
       ],
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "image": "shopify://shop_images/image.png",
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/gemstone_collection.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
+        "image_overlap": false,
         "content_width": "sm",
-        "remove_vertical_spacing": true
+        "remove_vertical_spacing": false
       }
     },
     "scrolling_content_BBxw3Q": {
@@ -433,7 +434,7 @@
         "heading_pgJLXw": {
           "type": "heading",
           "settings": {
-            "text": "Enhance Your Smart Ring With Silicone Comfort",
+            "text": "Enhance Your Smart Ring With <em><strong>Silicone Comfort</strong></em>",
             "heading_tag": "h1"
           }
         },
@@ -461,13 +462,14 @@
       ],
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": true,
-        "image": "shopify://shop_images/image_9.png",
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/Smart_ring_banner.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
+        "image_overlap": true,
         "content_width": "sm",
-        "remove_vertical_spacing": true
+        "remove_vertical_spacing": false
       }
     },
     "collection_list_r7KetV": {

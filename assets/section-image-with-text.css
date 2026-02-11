@@ -1,0 +1,134 @@
+.shopify-section--image-with-text .section-spacing {
+  --section-vertical-spacing: var(--container-gutter);
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .section-spacing {
+    --section-vertical-spacing: 40px;
+  }
+}
+.shopify-section--image-with-text .container {
+  --container-max-width: 1224px;
+}
+.shopify-section--image-with-text .image-with-text {
+  gap: 20px;
+  align-items: initial;
+}
+.shopify-section--image-with-text .image-with-text__media-wrapper,
+.shopify-section--image-with-text .image-with-text__content {
+  border-radius: 10px;
+}
+.shopify-section--image-with-text .image-with-text__media-wrapper {
+  aspect-ratio: 1.09375;
+  overflow: hidden;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text .image-with-text__media-wrapper {
+    aspect-ratio: initial;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .image-with-text__media-wrapper {
+    aspect-ratio: 1.16;
+  }
+}
+.shopify-section--image-with-text .image-with-text__media-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+  max-width: none;
+  width: 100%;
+}
+.shopify-section--image-with-text .image-with-text__content {
+  background: #fff;
+  margin: 0;
+  max-width: none;
+  padding: 42px var(--container-gutter) 44px;
+  position: relative;
+  z-index: 5;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text .image-with-text__content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    padding-inline: calc(var(--container-gutter) / 2);
+    text-align: center;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .image-with-text__content {
+    padding: 55px 57px;
+  }
+}
+.shopify-section--image-with-text .h6 {
+  --heading-text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2857;
+}
+.shopify-section--image-with-text .h1 {
+  font-size: 30px;
+  margin-block-start: -3px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .h1 {
+    font-size: 40px;
+    margin-block-start: -1px;
+  }
+}
+.shopify-section--image-with-text .h1 > em,
+.shopify-section--image-with-text .h1 > strong {
+  font-size: 1.2em;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .h1 > em,
+  .shopify-section--image-with-text .h1 > strong {
+    font-size: 1.15em;
+  }
+}
+.shopify-section--image-with-text .image-with-text__richtext {
+  color: rgb(var(--text-color)/0.6);
+  margin-block-start: 15px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .image-with-text__richtext {
+    margin-block-start: -1px;
+  }
+}
+.shopify-section--image-with-text .image-with-text__links {
+  margin-block-start: 30px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .image-with-text__links {
+    margin-block-start: 40px;
+  }
+}
+.shopify-section--image-with-text .image-with-text__links .button {
+  width: 100%;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text .image-with-text__links .button {
+    width: auto;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text .image-with-text--overlap {
+    align-items: center;
+    grid-template-columns: 1fr 44.4%;
+    gap: 0;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text .image-with-text--overlap .image-with-text__media-wrapper {
+    aspect-ratio: 1.252;
+    margin-right: -6%;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text .image-with-text--overlap .image-with-text__content {
+    text-align: left;
+  }
+}

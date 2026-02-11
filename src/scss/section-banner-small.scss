@@ -1,6 +1,11 @@
 @use "mixins/media" as *;
 
 .shopify-section--banner-small {
+  .color-scheme {
+    --text-color: 178 145 140;
+    --background: 241 226 223 / 1;
+  }
+
   .container {
     border-radius: 10px;
     overflow: hidden;

@@ -1,3 +1,7 @@
+.shopify-section--banner-small .color-scheme {
+  --text-color: 178 145 140;
+  --background: 241 226 223 / 1;
+}
 .shopify-section--banner-small .container {
   border-radius: 10px;
   overflow: hidden;
@@ -14,7 +18,7 @@
   grid-auto-flow: row;
   align-items: center;
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
   .shopify-section--banner-small .banner-grid {
     grid-template-columns: 1fr min-content 1fr;
   }
@@ -24,7 +28,7 @@
   position: relative;
   z-index: 5;
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
   .shopify-section--banner-small .banner-grid__item--left {
     text-align: right;
   }
@@ -33,7 +37,7 @@
   display: none;
   font: inherit;
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
   .shopify-section--banner-small .banner-grid__item--left .h1 em {
     display: inline;
   }
@@ -48,7 +52,7 @@
   max-width: none;
   width: auto;
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
   .shopify-section--banner-small .banner-grid__item--center img {
     height: 180px;
     margin-left: 0;
