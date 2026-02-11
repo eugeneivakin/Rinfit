@@ -1,18 +1,18 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-SECTION HEADER
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  SECTION HEADER
+  ----------------------------------------------------------------------------------------------------------------------
 
-This component renders a section header, which is a pattern in many sections of the theme.
+  This component renders a section header, which is a pattern in many sections of the theme.
 
-********************************************
-Supported variables
-********************************************
+  ********************************************
+  Supported variables
+  ********************************************
 
-* subheading: the subheading (if any)
-* heading: the heading to show
-* content: an optional content to show
-* text_alignment: alignment of header's text (supports "start", "center" or "end") - default to being centered
+  * subheading: the subheading (if any)
+  * heading: the heading to show
+  * content: an optional content to show
+  * text_alignment: alignment of header's text (supports "start", "center" or "end") - default to being centered
 {%- endcomment -%}
 
 {% if subheading != blank or heading != blank or content != blank %}
@@ -30,5 +30,10 @@ Supported variables
         {{- content -}}
       </div>
     {%- endif -%}
+    {% if button_shop_all != blank %}
+      <div class="section-heading__view-all">
+        {{ button_shop_all }}
+      </div>
+    {% endif %}
   </div>
 {%- endif -%}

@@ -1,8 +1,10 @@
 {%- if section.blocks.size > 0 -%}
+  {{- 'section-collection-list.css' | asset_url | stylesheet_tag -}}
+
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  CSS
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   {%- liquid
@@ -20,11 +22,11 @@
       {%- if stack_mobile or stack_mobile_and_desktop -%}
         --collection-list-items-per-row: {{ section.settings.collections_per_row_mobile | times: 1 }};
       {%- else -%}
-        --collection-list-item-size: 84vw;
+        --collection-list-item-size: 261px;
       {%- endif -%}
 
       {%- if section.settings.space_items -%}
-        --collection-list-gap: 1.5rem;
+        --collection-list-gap: 10px;
       {%- endif -%}
     }
 
@@ -33,7 +35,7 @@
         {%- if stack_mobile or stack_mobile_and_desktop -%}
           --collection-list-items-per-row: {{ 2 | at_most: section.settings.collections_per_row_desktop }};
         {%- else -%}
-          --collection-list-item-size: 62vw;
+          --collection-list-item-size: calc(100% / {{ section.settings.collections_per_row_desktop }} - var(--collection-list-gap) * 2 / 3);
         {%- endif -%}
       }
     }
@@ -51,14 +53,17 @@
   </style>
 
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  LIQUID
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   {%- assign remove_vertical_spacing = false -%}
 
-  {%- if section.settings.subheading == blank and section.settings.title == blank and section.settings.content == blank -%}
+  {%- if section.settings.subheading == blank
+    and section.settings.title == blank
+    and section.settings.content == blank
+  -%}
     {%- assign reduce_vertical_spacing = true -%}
 
     {%- unless section.settings.space_items -%}
@@ -66,12 +71,34 @@
     {%- endunless -%}
   {%- endif -%}
 
-  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
+
+  {%- capture button_shop_all -%}
+    {%- if section.settings.button_text != blank -%}
+      {%- assign button_link = section.settings.button_url
+        | default: section.settings.collection.url
+        | default: '#'
+      -%}
+
+      <div class="justify-self-center section-heading__view-all">
+        {%- render 'button', href: button_link, content: section.settings.button_text -%}
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
 
   <div class="{% unless remove_vertical_spacing %}section-spacing {% if reduce_vertical_spacing %}section-spacing--tight{% endif %}{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="{% if section.settings.space_items %}container{% endif %}">
       <div class="section-stack">
-        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: 'center' -%}
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          content: section.settings.content,
+          text_alignment: 'stretch',
+          button_shop_all: button_shop_all
+        -%}
 
         {% capture collection_list %}
           {%- for block in section.blocks -%}
@@ -95,7 +122,13 @@
             {%- endcapture -%}
 
             {%- capture collection_card_content -%}
-              <div class="content-over-media content-over-media--{{ section.settings.image_size }}" style="--content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }};">
+              <div
+                class="content-over-media content-over-media--{{ section.settings.image_size }}"
+                style="
+                  --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+                  --content-over-media-gradient-overlay: linear-gradient(180deg, rgb({{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}) -17.64%, rgb({{ block.settings.overlay_color.rgb }} / 0) 17.91%, rgb({{ block.settings.overlay_color.rgb }} / 0) 49.63%, rgb({{ block.settings.overlay_color.rgb }} / 0) 72.14%, rgb({{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}) 120.69%);
+                "
+              >
                 {%- assign image = block.settings.image | default: collection.featured_image -%}
                 {%- capture sizes -%}(max-width: 699px) 100vw, {% if block.settings.expand_collection %}100vw{% else %}(max-width: 1149px) {{ 100 | divided_by: section.settings.collections_per_row_desktop | at_least: 50 }}vw, {{ 100 | divided_by: section.settings.collections_per_row_desktop }}vw{% endif %}{%- endcapture -%}
 
@@ -143,24 +176,38 @@
             {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
             <carousel-prev-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
-              <button type="button" class="prev-next-button prev-next-button--prev circle-button circle-button--lg hover:animate-icon-inline" disabled>
+              <button
+                type="button"
+                class="prev-next-button prev-next-button--prev circle-button circle-button--lg hover:animate-icon-inline"
+                disabled
+              >
                 <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-                {%- render 'icon' with 'arrow-left', direction_aware: true -%}
+                {%- render 'icons', icon: 'arrow-left' -%}
               </button>
             </carousel-prev-button>
 
-            <scroll-carousel id="{{ carousel_id }}" group-cells allow-drag class="collection-list scroll-area {% if section.settings.show_text_outside %}collection-list--text-outside{% endif %} bleed lg:unbleed">
+            <scroll-carousel
+              id="{{ carousel_id }}"
+              group-cells
+              allow-drag
+              class="collection-list scroll-area {% if section.settings.show_text_outside %}collection-list--text-outside{% endif %} bleed lg:unbleed"
+            >
               {{ collection_list }}
             </scroll-carousel>
 
             <carousel-next-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
-              <button type="button" class="prev-next-button prev-next-button--next circle-button circle-button--lg hover:animate-icon-inline">
+              <button
+                type="button"
+                class="prev-next-button prev-next-button--next circle-button circle-button--lg hover:animate-icon-inline"
+              >
                 <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-                {%- render 'icon' with 'arrow-right', direction_aware: true -%}
+                {%- render 'icons', icon: 'arrow-right' -%}
               </button>
             </carousel-next-button>
           </div>
         {% endif %}
+
+        {{ button_shop_all }}
       </div>
     </div>
   </div>
@@ -213,6 +260,10 @@
         {
           "value": "lg",
           "label": "t:global.sizes.large"
+        },
+        {
+          "value": "x360",
+          "label": "Height 360px"
         }
       ],
       "default": "auto"
@@ -239,7 +290,7 @@
       "type": "range",
       "id": "collections_per_row_desktop",
       "min": 1,
-      "max": 5,
+      "max": 7,
       "label": "t:sections.collection_list.collections_per_row_desktop",
       "default": 3
     },
@@ -283,6 +334,18 @@
       "type": "richtext",
       "id": "content",
       "label": "t:global.text.content"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+      "default": "/collections"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button link",
+      "default": "Shop all"
     }
   ],
   "blocks": [
