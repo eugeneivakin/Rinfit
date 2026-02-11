@@ -11,19 +11,6 @@
   "type": "header",
   "name": "Header group",
   "sections": {
-    "countdown-timer": {
-      "type": "countdown-condensed",
-      "disabled": true,
-      "settings": {
-        "color_scheme": "schema-3",
-        "content": "super Sale Up to 40% off",
-        "link_text": "shop now",
-        "link_url": "shopify://collections/all",
-        "expiration_date": "2025-11-25",
-        "expiration_behavior": "leave",
-        "desktop_justification": "space-between"
-      }
-    },
     "announcement_bar_TNWK6g": {
       "type": "announcement-bar",
       "blocks": {
@@ -78,7 +65,6 @@
     }
   },
   "order": [
-    "countdown-timer",
     "announcement_bar_TNWK6g",
     "header"
   ]

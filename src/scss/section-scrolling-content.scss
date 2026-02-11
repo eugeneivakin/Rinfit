@@ -1,0 +1,35 @@
+@use "mixins/media" as *;
+
+.shopify-section--scrolling-content {
+  .scrolling-content {
+    line-height: 1;
+  }
+  
+  .scrolling-content__text-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    gap: 6px;
+
+    @include md {
+      gap: 3px;
+    }
+  }
+
+  .scrolling-content__icon-wrapper {
+    width: 24px;
+
+    > * {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  .scrolling-content__text {
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+}
