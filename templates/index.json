@@ -235,6 +235,44 @@
         "remove_vertical_spacing": false
       }
     },
+    "social_proof_QADQyE": {
+      "type": "social-proof",
+      "blocks": {
+        "customer_image_mCBgHr": {
+          "type": "customer_image",
+          "settings": {
+            "image": "shopify://shop_images/Customer_review_1.jpg"
+          }
+        },
+        "customer_image_afEFpE": {
+          "type": "customer_image",
+          "settings": {
+            "image": "shopify://shop_images/Customer_review_2.jpg"
+          }
+        },
+        "customer_image_hTejp9": {
+          "type": "customer_image",
+          "settings": {
+            "image": "shopify://shop_images/Customer_review_3.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "customer_image_mCBgHr",
+        "customer_image_afEFpE",
+        "customer_image_hTejp9"
+      ],
+      "name": "Social proof",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "heading": "Over 1M Rings <em><strong>Sold</strong></em>",
+        "content": "<p>Love this ring! It's really comfortable and customer service was outstanding with helping me exchange it for the correct size!</p>",
+        "button_label": "Read all reviews",
+        "button_link": "shopify://pages/reviews",
+        "remove_vertical_spacing": false
+      }
+    },
     "scrolling_content_BBxw3Q": {
       "type": "scrolling-content",
       "blocks": {
@@ -668,6 +706,7 @@
     "featured_collections_86pKrm",
     "featured_collections_JqYYei",
     "image_with_text_cmE4EL",
+    "social_proof_QADQyE",
     "scrolling_content_BBxw3Q",
     "collection_list_9AgkVf",
     "featured_collections_g8fKJT",

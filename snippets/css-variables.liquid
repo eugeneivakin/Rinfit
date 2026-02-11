@@ -1,6 +1,6 @@
 {%- comment -%}
-This file defines all the CSS variables used throughout the theme. Feel free to adjust them at your own need, but
-note that this may have impact on different places.
+  This file defines all the CSS variables used throughout the theme. Feel free to adjust them at your own need, but
+  note that this may have impact on different places.
 {%- endcomment -%}
 
 {%- assign language_code = localization.language.iso_code | split: '-' | first -%}
@@ -79,7 +79,7 @@ note that this may have impact on different places.
     --heading-font-style: {{ settings.heading_font.style }};
     --heading-text-transform: {{ settings.heading_text_transform }};
     --heading-letter-spacing: {% if language_code == 'ar' %}0{% else %}{{ settings.heading_letter_spacing | divided_by: 100.0 }}{% endif %}em;
-    --text-font-family: {{ settings.text_font.family }}, {{ settings.text_font.fallback_families }};
+    --text-font-family: "Kumbh Sans", {{ settings.text_font.family }}, {{ settings.text_font.fallback_families }};
     --text-font-weight: {{ settings.text_font.weight }};
     --text-font-style: {{ settings.text_font.style }};
     --text-letter-spacing: {% if language_code == 'ar' %}0{% else %}{{ settings.text_font_letter_spacing | divided_by: 100.0 }}{% endif %}em;
