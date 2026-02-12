@@ -1,8 +1,10 @@
 {%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-CSS
-------------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------------------
+  CSS
+  ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
+
+{{- 'section-newsletter.css' | asset_url | stylesheet_tag -}}
 
 <style>
   #shopify-section-{{ section.id }} {
@@ -17,12 +19,15 @@ CSS
 </style>
 
 {%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-LIQUID
-------------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------------------
+  LIQUID
+  ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
-{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
 
 <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.image != blank %}color-scheme--with-image-overlay{% else %}section-spacing {% if section.settings.separate_section_with_border %}bordered-section{% endif %}{% endif %}">
   <div class="newsletter content-over-media content-over-media--{{ section.settings.image_size }}">
@@ -30,19 +35,29 @@ LIQUID
       <picture>
         {%- if section.settings.mobile_image != blank -%}
           <source
-              media="(max-width: 699px)"
-              srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w"
-              width="{{ section.settings.mobile_image.width }}"
-              height="{{ section.settings.mobile_image.height }}"
+            media="(max-width: 699px)"
+            srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w"
+            width="{{ section.settings.mobile_image.width }}"
+            height="{{ section.settings.mobile_image.height }}"
           >
         {%- endif -%}
 
-        {{- section.settings.image | image_url: width: section.settings.image.width | image_tag: sizes: '100vw', widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
+        {{-
+          section.settings.image
+          | image_url: width: section.settings.image.width
+          | image_tag:
+            sizes: '100vw',
+            widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200'
+        -}}
       </picture>
     {%- endif -%}
 
-    <div class="content section-stack gap-8 text-center">
-      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content -%}
+    <div class="content section-stack text-center">
+      {%- render 'section-header',
+        subheading: section.settings.subheading,
+        heading: section.settings.title,
+        content: section.settings.content
+      -%}
 
       {%- assign newsletter_form_id = 'newsletter-form-' | append: section.id -%}
 
@@ -61,8 +76,16 @@ LIQUID
           <div class="form-row">
             {%- assign input_label = 'general.newsletter.email' | t -%}
 
-            {%- render 'input', name: 'contact[email]', label: input_label, label_hidden: true, type: 'email', required: true, autocomplete: 'email', enterkeyhint: 'send' -%}
-            {%- render 'button', type: 'submit', content: section.settings.button_text -%}
+            {%- render 'input',
+              name: 'contact[email]',
+              label: input_label,
+              label_hidden: true,
+              type: 'email',
+              required: true,
+              autocomplete: 'email',
+              enterkeyhint: 'send'
+            -%}
+            {%- render 'button', type: 'submit', icon: 'arrow-right' -%}
           </div>
         {%- endif -%}
       {%- endform -%}

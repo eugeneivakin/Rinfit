@@ -113,7 +113,7 @@ Supported variables
 {%- capture button_content -%}
   {% if icon != blank %}
     <div class="text-with-icon">
-      {%- render 'icon' with icon -%}
+      {%- render 'icons', icon: icon -%}
       {{- content -}}
     </div>
   {%- else -%}

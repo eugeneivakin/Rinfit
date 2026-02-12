@@ -1,5 +1,7 @@
 @use "mixins/media" as *;
 
+@use "components/buttons";
+@use "components/forms";
 @use "components/section-header";
 @use "components/slideshow";
 
@@ -7,20 +9,14 @@
 
 body {
   line-height: 1.4286;
-  // max-width: 390px;
+  max-width: 390px;
 
-  // @include xs {
-  //   max-width: none;
-  // }
+  @include xs {
+    max-width: none;
+  }
 }
 
-.button {
-  font-size: var(--text-base);
-  font-weight: 600;
-  line-height: 1;
-  padding-block: 0.25rem;
-  min-height: 2.3125rem;
-}
+
 
 .container {
   margin-inline-start: auto;

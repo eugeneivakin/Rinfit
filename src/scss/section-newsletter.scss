@@ -1,0 +1,82 @@
+@use "mixins/media" as *;
+
+.shopify-section--newsletter {
+  --content-over-media-content-max-width: none;
+
+  .section-spacing {
+    --section-vertical-spacing: 15px;
+    @include md {
+      --section-vertical-spacing: 12px;
+    }
+  }
+
+  .section-stack {
+    --section-stack-gap: 20px;
+
+    @include md {
+      --section-stack-gap: 39px;
+    }
+  }
+
+  .section-header {
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+
+    @include sm {
+      margin-inline-start: auto;
+      margin-inline-end: auto;
+      max-width: 420px;
+    }
+
+    h2 {
+      --heading-font-weight: 500;
+      font-size: 24px;
+
+      @include md {
+        --heading-font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+      }
+    }
+
+    .prose {
+      :where(:not(meta, span) + *) {
+        margin-block-start: 12px;
+        opacity: 0.6;
+
+        @include md {
+          margin-block-start: 4px;
+        }
+      }
+    }
+  }
+
+  .form {
+    width: 100%;
+
+    @include sm {
+      margin: 0 auto;
+      max-width: 385px;
+    }
+  }
+
+  .form-row {
+    position: relative;
+
+    .input {
+      padding-inline-end: 50px;
+    }
+
+    .button[type="submit"] {
+      --button-text-color: var(--text-color) / 0.6;
+      --button-background: transparent;
+      aspect-ratio: 1;
+      background: none;
+      height: 100%;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

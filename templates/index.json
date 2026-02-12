@@ -928,11 +928,11 @@
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "separate_section_with_border": true,
-        "image_size": "md",
+        "image_size": "auto",
         "subheading": "",
-        "title": "10% off your 1st order",
+        "title": "15% off your 1st order",
         "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
         "button_text": "Subscribe",
         "overlay_color": "#000000",
