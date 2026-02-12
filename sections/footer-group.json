@@ -14,47 +14,56 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "newsletter": {
-          "type": "newsletter",
+        "text": {
+          "type": "text",
           "settings": {
-            "title": "Newsletter",
-            "content": "<p>Sign up to our newsletter to receive exclusive offers.</p>",
-            "button_background": "",
-            "button_text_color": ""
+            "logo": "shopify://shop_images/Rinfit_Footer_Logo.svg",
+            "title": "",
+            "content": "<p>Rinfit rings combine comfort, durability, and safety with a unique, stylish, and fashionable high-end designs.</p>",
+            "enable_follow_on_shop": false
+          }
+        },
+        "links_fFLErh": {
+          "type": "links",
+          "settings": {
+            "menu": "collections",
+            "show_menu_title": true,
+            "menu_title": ""
           }
         },
         "links": {
           "type": "links",
           "settings": {
-            "menu": "footer",
+            "menu": "shop",
             "show_menu_title": true,
             "menu_title": ""
           }
         },
-        "text": {
-          "type": "text",
+        "links_L44Btp": {
+          "type": "links",
           "settings": {
-            "title": "About",
-            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>",
-            "enable_follow_on_shop": true
+            "menu": "need-help",
+            "show_menu_title": true,
+            "menu_title": ""
           }
         }
       },
       "block_order": [
-        "newsletter",
+        "text",
+        "links_fFLErh",
         "links",
-        "text"
+        "links_L44Btp"
       ],
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": false,
         "show_social_media": true,
-        "show_payment_icons": true,
-        "show_powered_by_shopify": true,
+        "show_payment_icons": false,
+        "show_powered_by_shopify": false,
         "show_country_selector": true,
         "show_country_name": true,
-        "show_country_flag": true,
-        "show_locale_selector": true
+        "show_country_flag": false,
+        "show_locale_selector": false
       }
     }
   },

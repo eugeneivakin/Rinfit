@@ -1,18 +1,51 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-SOCIAL MEDIA
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  SOCIAL MEDIA
+  ----------------------------------------------------------------------------------------------------------------------
 
-Output a list of social media icons based on the social URL settings.
+  Output a list of social media icons based on the social URL settings.
 
-* layout: either support "list" or "block" (default to list)
+  * layout: either support "list" or "block" (default to list)
 {%- endcomment -%}
 
 {%- capture social_media -%}
+  {%- if settings.social_instagram != blank or shop.brand.metafields.social_links.instagram != blank -%}
+    <li class="social-media__item branding-colors--instagram">
+      <a href="{{ settings.social_instagram | default: shop.brand.metafields.social_links.instagram }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Instagram' }}">
+        {%- render 'icons', icon: 'instagram' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_tiktok != blank or shop.brand.metafields.social_links.tiktok != blank -%}
+    <li class="social-media__item branding-colors--tiktok">
+      <a href="{{ settings.social_tiktok | default: shop.brand.metafields.social_links.tiktok }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'TikTok' }}">
+        {%- render 'icons', icon: 'tiktok' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+
+  {%- if settings.social_pinterest != blank or shop.brand.metafields.social_links.pinterest != blank -%}
+    <li class="social-media__item branding-colors--pinterest">
+      <a href="{{ settings.social_pinterest | default: shop.brand.metafields.social_links.pinterest }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Pinterest' }}">
+        {%- render 'icons', icon: 'pinterest' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_youtube != blank or shop.brand.metafields.social_links.youtube != blank -%}
+    <li class="social-media__item branding-colors--youtube">
+      <a href="{{ settings.social_youtube | default: shop.brand.metafields.social_links.youtube }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'YouTube' }}">
+        {%- render 'icons', icon: 'youtube' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
   {%- if settings.social_facebook != blank or shop.brand.metafields.social_links.facebook != blank -%}
     <li class="social-media__item branding-colors--facebook">
       <a href="{{ settings.social_facebook | default: shop.brand.metafields.social_links.facebook }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Facebook' }}">
-        {%- render 'icon' with 'facebook' -%}
+        {%- render 'icons', icon: 'facebook' -%}
       </a>
     </li>
   {%- endif -%}
@@ -25,13 +58,6 @@ Output a list of social media icons based on the social URL settings.
     </li>
   {%- endif -%}
 
-  {%- if settings.social_instagram != blank or shop.brand.metafields.social_links.instagram != blank -%}
-    <li class="social-media__item branding-colors--instagram">
-      <a href="{{ settings.social_instagram | default: shop.brand.metafields.social_links.instagram }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Instagram' }}">
-        {%- render 'icon' with 'instagram' -%}
-      </a>
-    </li>
-  {%- endif -%}
 
   {%- if settings.social_threads != blank or shop.brand.metafields.social_links.threads != blank -%}
     <li class="social-media__item branding-colors--instagram">
@@ -41,29 +67,9 @@ Output a list of social media icons based on the social URL settings.
     </li>
   {%- endif -%}
 
-  {%- if settings.social_pinterest != blank or shop.brand.metafields.social_links.pinterest != blank -%}
-    <li class="social-media__item branding-colors--pinterest">
-      <a href="{{ settings.social_pinterest | default: shop.brand.metafields.social_links.pinterest }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Pinterest' }}">
-        {%- render 'icon' with 'pinterest' -%}
-      </a>
-    </li>
-  {%- endif -%}
+  
 
-  {%- if settings.social_youtube != blank or shop.brand.metafields.social_links.youtube != blank -%}
-    <li class="social-media__item branding-colors--youtube">
-      <a href="{{ settings.social_youtube | default: shop.brand.metafields.social_links.youtube }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'YouTube' }}">
-        {%- render 'icon' with 'youtube' -%}
-      </a>
-    </li>
-  {%- endif -%}
-
-  {%- if settings.social_tiktok != blank or shop.brand.metafields.social_links.tiktok != blank -%}
-    <li class="social-media__item branding-colors--tiktok">
-      <a href="{{ settings.social_tiktok | default: shop.brand.metafields.social_links.tiktok }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'TikTok' }}">
-        {%- render 'icon' with 'tiktok' -%}
-      </a>
-    </li>
-  {%- endif -%}
+  
 
   {%- if settings.social_vimeo != blank or shop.brand.metafields.social_links.vimeo != blank -%}
     <li class="social-media__item branding-colors--vimeo">
