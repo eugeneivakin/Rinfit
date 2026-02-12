@@ -1,4 +1,6 @@
 {%- if section.blocks.size > 0 -%}
+  {{- 'section-announcement-bar.css' | asset_url | stylesheet_tag -}}
+
   <style>
     :root {
       --announcement-bar-is-sticky: {% if section.settings.enable_sticky %}1{% else %}0{% endif %};
