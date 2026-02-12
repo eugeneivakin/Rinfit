@@ -1,0 +1,18 @@
+@use "mixins/media" as *;
+
+.shopify-section--announcement-bar {
+  .announcement-bar {
+    @include md {
+      padding-block: 14px;
+    }
+  }
+
+  .heading {
+    --heading-font-weight: 500;
+
+    a {
+      font-weight: bold;
+      margin-inline-start: 8px;
+    }
+  }
+}

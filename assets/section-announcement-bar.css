@@ -1,0 +1,12 @@
+@media screen and (min-width: 1000px) {
+  .shopify-section--announcement-bar .announcement-bar {
+    padding-block: 14px;
+  }
+}
+.shopify-section--announcement-bar .heading {
+  --heading-font-weight: 500;
+}
+.shopify-section--announcement-bar .heading a {
+  font-weight: bold;
+  margin-inline-start: 8px;
+}
