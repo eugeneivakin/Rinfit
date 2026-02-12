@@ -1,0 +1,9 @@
+<ul class="policies policies--list unstyled-list">
+  {%- for policy in shop.policies -%}
+    {%- if policy != blank -%}
+      <li>
+        <a href="{{ policy.url }}">{{ policy.title | escape }}</a>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>

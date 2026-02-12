@@ -1,46 +1,47 @@
+{{- 'section-footer.css' | asset_url | stylesheet_tag -}}
+
 <style>
   #shopify-section-{{ section.id }} {
     --footer-content-justify-items: {% if section.settings.blocks.size <= 2 %}start{% else %}space-between{% endif %};
   }
 </style>
 
-{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
 
 <div class="footer color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
   <div class="container">
     <div class="footer__inner">
       {%- comment -%}
-      ------------------------------------------------------------------------------------------------------------------
-      FOOTER BLOCKS (MAIN CONTENT)
-      ------------------------------------------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------------------------------------------
+        FOOTER BLOCKS (MAIN CONTENT)
+        ------------------------------------------------------------------------------------------------------------------
       {%- endcomment -%}
 
       {%- if section.blocks.size > 0 -%}
-        <div class="footer__block-list">
+        <div class="footer__block-list-wrapper">
           {%- for block in section.blocks -%}
-            {%- capture block_content -%}
-              {%- case block.type -%}
-                {%- when '@app' -%}
-                  {%- render block -%}
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                {%- if block.settings.title != blank
+                  or block.settings.content != blank
+                  or shop.features.follow_on_shop?
+                  and block.settings.enable_follow_on_shop
+                -%}
+                  <div
+                    class="footer__block footer__block--{{ block.type | remove_first: '@' }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="v-stack gap-2 sm:gap-5">
+                      {%- if block.settings.logo != blank -%}
+                        <div class="footer__block--logo">
+                          {%- assign logo_alt = block.settings.logo.alt | default: shop.name -%}
+                          {{ block.settings.logo | image_url: width: 108 | image_tag: loading: 'lazy', alt: logo_alt }}
+                        </div>
+                      {%- endif -%}
 
-                {%- when 'image' -%}
-                  {%- if block.settings.image != blank -%}
-                    {%- capture sizes -%}{{ block.settings.image_width }}px{%- endcapture -%}
-                    {%- capture widths -%}{{ block.settings.image_width }}, {{ block.settings.image_width | times: 2 | at_most: block.settings.image.width }}{%- endcapture -%}
-                    {%- capture style -%}--image-max-width: {{ block.settings.image_width }}px{%- endcapture -%}
-
-                    {%- if block.settings.link != blank -%}
-                      <a href="{{ block.settings.link }}">
-                        {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: sizes, widths: widths, style: style, class: 'constrained-image' -}}
-                      </a>
-                    {%- else -%}
-                      {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: sizes, widths: widths, style: style, class: 'constrained-image' -}}
-                    {%- endif -%}
-                  {%- endif -%}
-
-                {%- when 'text' -%}
-                  {%- if block.settings.title != blank or block.settings.content != blank or shop.features.follow_on_shop? and block.settings.enable_follow_on_shop -%}
-                    <div class="v-stack gap-4 sm:gap-5">
                       {%- if block.settings.title != blank -%}
                         <p class="h6">{{ block.settings.title }}</p>
                       {%- endif -%}
@@ -57,114 +58,173 @@
                         </div>
                       {%- endif -%}
                     </div>
-                  {%- endif -%}
-
-                {%- when 'links' -%}
-                  {%- assign menu = block.settings.menu -%}
-
-                  {%- if menu != blank and menu.links.size > 0 -%}
-                    <div class="v-stack gap-4 sm:gap-5">
-                      {%- if block.settings.show_menu_title != blank -%}
-                        <p class="h6">{{ block.settings.menu_title | default: menu.title }}</p>
-                      {%- endif -%}
-
-                      <ul class="v-stack gap-2.5 unstyled-list" role="list">
-                        {%- for link in menu.links -%}
-                          <li>
-                            <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
-                  {%- endif -%}
-
-                {%- when 'newsletter' -%}
-                  <div class="v-stack gap-4 sm:gap-5">
-                    {%- if block.settings.title != blank -%}
-                      <p class="h6">{{ block.settings.title }}</p>
-                    {%- endif -%}
-
-                    {%- if block.settings.content != blank -%}
-                      <div class="prose text-subdued">
-                        {{- block.settings.content -}}
-                      </div>
-                    {%- endif -%}
-
-                    {%- assign newsletter_form_id = 'newsletter-form-' | append: section.id -%}
-
-                    {%- form 'customer', id: newsletter_form_id, class: 'form' -%}
-                      {%- if form.posted_successfully? -%}
-                        {%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
-                        {%- render 'banner', content: success_message, status: 'success' -%}
-                      {%- else -%}
-                        {%- if form.errors -%}
-                          {%- capture error_message -%}{{ form.errors.translated_fields['email'] }} {{ form.errors.messages['email'] }}{%- endcapture -%}
-                          {%- render 'banner', content: error_message, status: 'error' -%}
-                        {%- endif -%}
-
-                        <input type="hidden" name="contact[tags]" value="newsletter">
-
-                        {%- assign input_label = 'general.newsletter.email' | t -%}
-                        {%- render 'input', name: 'contact[email]', label: input_label, type: 'email', required: true, autocomplete: 'email', enterkeyhint: 'send' -%}
-
-                        <div class="align-self-start">
-                          {%- assign button_label = 'general.newsletter.subscribe' | t -%}
-                          {%- render 'button', type: 'submit', content: button_label, background: block.settings.button_background, text_color: block.settings.button_text_color -%}
-                        </div>
-                      {%- endif -%}
-                    {%- endform -%}
                   </div>
+                {%- endif -%}
+                {% break %}
+            {%- endcase -%}
+          {%- endfor -%}
 
-              {%- endcase -%}
-            {%- endcapture -%}
+          {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+            {%- assign show_country_selector = true -%}
+          {%- endif -%}
 
-            {%- if block_content != blank -%}
-              <div class="footer__block footer__block--{{ block.type | remove_first: '@' }}" {{ block.shopify_attributes }}>
-                {{- block_content -}}
+          {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+            {%- assign show_locale_selector = true -%}
+          {%- endif -%}
+
+          <div
+            class="
+              footer__block
+              {% if show_country_selector or show_locale_selector %}
+                footer__block--country-locale-selector
+              {% endif %}
+              {% if section.settings.show_social_media %}
+                footer__block--social
+              {% endif %}
+            "
+          >
+            {%- if show_country_selector or show_locale_selector -%}
+              <div class="localization-selectors">
+                {%- if show_country_selector -%}
+                  {%- render 'localization-selector',
+                    type: 'country',
+                    placement: 'top-start',
+                    show_country_name: section.settings.show_country_name,
+                    show_country_flag: section.settings.show_country_flag
+                  -%}
+                {%- endif -%}
+
+                {%- if show_locale_selector -%}
+                  {%- render 'localization-selector', type: 'locale', placement: 'top-start' -%}
+                {%- endif -%}
               </div>
             {%- endif -%}
-          {%- endfor -%}
+
+            {%- comment -%}
+              ------------------------------------------------------------------------------------------------------------------
+              FOOTER SOCIAL MEDIA
+              ------------------------------------------------------------------------------------------------------------------
+            {%- endcomment -%}
+
+            {%- if section.settings.show_social_media -%}
+              {%- render 'social-media', layout: 'list' -%}
+            {%- endif -%}
+            {%- if section.settings.show_policies_links -%}
+              {%- render 'policies-links' -%}
+            {%- endif -%}
+          </div>
+
+          <div class="footer__block-list">
+            {%- for block in section.blocks -%}
+              {%- capture block_content -%}
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    {%- render block -%}
+  
+                  {%- when 'image' -%}
+                    {%- if block.settings.image != blank -%}
+                      {%- capture sizes -%}{{ block.settings.image_width }}px{%- endcapture -%}
+                      {%- capture widths -%}{{ block.settings.image_width }}, {{ block.settings.image_width | times: 2 | at_most: block.settings.image.width }}{%- endcapture -%}
+                      {%- capture style -%}--image-max-width: {{ block.settings.image_width }}px{%- endcapture -%}
+  
+                      {%- if block.settings.link != blank -%}
+                        <a href="{{ block.settings.link }}">
+                          {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: sizes, widths: widths, style: style, class: 'constrained-image' -}}
+                        </a>
+                      {%- else -%}
+                        {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: sizes, widths: widths, style: style, class: 'constrained-image' -}}
+                      {%- endif -%}
+                    {%- endif -%}
+  
+                  {%- when 'links' -%}
+                    {%- assign menu = block.settings.menu -%}
+  
+                    {%- if menu != blank and menu.links.size > 0 -%}
+                      <div class="v-stack gap-5 sm:gap-5">
+                        {%- if block.settings.show_menu_title != blank -%}
+                          <p class="h6">{{ block.settings.menu_title | default: menu.title }}</p>
+                        {%- endif -%}
+  
+                        <ul class="v-stack gap-3 unstyled-list" role="list">
+                          {%- for link in menu.links -%}
+                            <li>
+                              <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {%- endif -%}
+  
+                  {%- when 'newsletter' -%}
+                    <div class="v-stack gap-4 sm:gap-5">
+                      {%- if block.settings.title != blank -%}
+                        <p class="h6">{{ block.settings.title }}</p>
+                      {%- endif -%}
+  
+                      {%- if block.settings.content != blank -%}
+                        <div class="prose text-subdued">
+                          {{- block.settings.content -}}
+                        </div>
+                      {%- endif -%}
+  
+                      {%- assign newsletter_form_id = 'newsletter-form-' | append: section.id -%}
+  
+                      {%- form 'customer', id: newsletter_form_id, class: 'form' -%}
+                        {%- if form.posted_successfully? -%}
+                          {%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
+                          {%- render 'banner', content: success_message, status: 'success' -%}
+                        {%- else -%}
+                          {%- if form.errors -%}
+                            {%- capture error_message -%}{{ form.errors.translated_fields['email'] }} {{ form.errors.messages['email'] }}{%- endcapture -%}
+                            {%- render 'banner', content: error_message, status: 'error' -%}
+                          {%- endif -%}
+  
+                          <input type="hidden" name="contact[tags]" value="newsletter">
+  
+                          {%- assign input_label = 'general.newsletter.email' | t -%}
+                          {%- render 'input', name: 'contact[email]', label: input_label, type: 'email', required: true, autocomplete: 'email', enterkeyhint: 'send' -%}
+  
+                          <div class="align-self-start">
+                            {%- assign button_label = 'general.newsletter.subscribe' | t -%}
+                            {%- render 'button', type: 'submit', content: button_label, background: block.settings.button_background, text_color: block.settings.button_text_color -%}
+                          </div>
+                        {%- endif -%}
+                      {%- endform -%}
+                    </div>
+  
+                {%- endcase -%}
+              {%- endcapture -%}
+
+              {%- if block_content != blank -%}
+                <div
+                  class="footer__block footer__block--{{ block.type | remove_first: '@' }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{- block_content -}}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
         </div>
       {%- endif -%}
 
       {%- comment -%}
-      ------------------------------------------------------------------------------------------------------------------
-      FOOTER SOCIAL MEDIA
-      ------------------------------------------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------------------------------------------
+        FOOTER ASIDE (COPYRIGHT + LOCALIZATION SELECTORS + PAYMENT METHODS)
+        ------------------------------------------------------------------------------------------------------------------
       {%- endcomment -%}
+    </div>
+  </div>
+  <div class="footer__aside">
+    <div class="container">
+      <div class="footer__aside-left">
+        <p class="heading">
+          &copy;{{ 'now' | date: '%Y' }}
+          {{ shop.name }}
+          {%- if section.settings.show_powered_by_shopify -%}{{ powered_by_link }}{%- endif -%}
+        </p>
 
-      {%- if section.settings.show_social_media -%}
-        {%- render 'social-media', layout: 'list' -%}
-      {%- endif -%}
-
-      {%- comment -%}
-      ------------------------------------------------------------------------------------------------------------------
-      FOOTER ASIDE (COPYRIGHT + LOCALIZATION SELECTORS + PAYMENT METHODS)
-      ------------------------------------------------------------------------------------------------------------------
-      {%- endcomment -%}
-
-      <div class="footer__aside">
-        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
-          {%- assign show_country_selector = true -%}
-        {%- endif -%}
-
-        {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
-          {%- assign show_locale_selector = true -%}
-        {%- endif -%}
-
-        {%- if show_country_selector or show_locale_selector -%}
-          <div class="localization-selectors">
-            {%- if show_country_selector -%}
-              {%- render 'localization-selector', type: 'country', placement: 'top-start', show_country_name: section.settings.show_country_name, show_country_flag: section.settings.show_country_flag -%}
-            {%- endif -%}
-
-            {%- if show_locale_selector -%}
-              {%- render 'localization-selector', type: 'locale', placement: 'top-start' -%}
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-
-      <p class="heading text-subdued text-xxs">© {{ 'now' | date: '%Y' }} - {{ shop.name }} {%- if section.settings.show_powered_by_shopify -%}{{ powered_by_link }}{%- endif -%}</p>
+        <p class="heading">all rights reserved</p>
 
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
           <ul class="payment-methods unstyled-list">
@@ -172,6 +232,11 @@
               <li>{{- type | payment_type_svg_tag -}}</li>
             {%- endfor -%}
           </ul>
+        {%- endif -%}
+      </div>
+      <div class="footer__aside-right">
+        {%- if section.settings.show_policies_links -%}
+          {%- render 'policies-links' -%}
         {%- endif -%}
       </div>
     </div>
@@ -214,6 +279,12 @@
       "type": "checkbox",
       "id": "show_powered_by_shopify",
       "label": "t:sections.footer.show_powered_by_shopify",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policies_links",
+      "label": "Shop policies links",
       "default": true
     },
     {
@@ -288,6 +359,11 @@
       "type": "text",
       "name": "t:sections.footer.blocks.text.name",
       "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Footer logo"
+        },
         {
           "type": "inline_richtext",
           "id": "title",

@@ -1,0 +1,237 @@
+@use "mixins/media" as *;
+
+.footer {
+  --section-vertical-spacing: 19px;
+  padding-block-end: 0;
+
+  @include md {
+    --section-vertical-spacing: 39px;
+  }
+
+  .prose {
+    font-size: 12px;
+
+    @include md {
+      line-height: 1.3333;
+    }
+  }
+
+  .text-subdued {
+    color: rgb(var(--text-color) / 0.6);
+  }
+}
+
+.footer__block-list-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 32px;
+  padding-block-end: var(--section-vertical-spacing);
+
+  @include md {
+    grid-template-columns: 197px 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 19px;
+    grid-template-areas:
+      ". links"
+      ". links"
+      ". links";
+    align-items: start;
+  }
+}
+
+.footer__block--logo {
+  img {
+    width: 86px;
+
+    @include md {
+      width: 110px;
+    }
+  }
+}
+
+.footer__block--country-locale-selector,
+.footer__block--social {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  gap: 20px;
+  order: 1;
+
+  .policies {
+    @include md {
+      display: none;
+    }
+  }
+}
+
+.footer__block-list {
+  --section-vertical-spacing: 32px;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: space-between;
+
+  @include md {
+    grid-area: links;
+    justify-content: flex-end;
+    column-gap: 6.5rem;
+  }
+
+  .h6 {
+    --heading-font-weight: 600;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+}
+
+.localization-selectors {
+  &:has(:only-child) {
+    justify-content: flex-start;
+  }
+  > div {
+    &:only-child {
+      width: 100%;
+    }
+  }
+}
+
+.localization-toggle {
+  background: rgb(var(--circle-button-background));
+  border: 1px solid rgb(var(--text-color) / 0.2);
+  border-radius: var(--button-border-radius);
+  justify-content: space-between;
+  color: rgb(var(--text-color));
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  min-height: 54px;
+  padding: 10px 14px 10px 10px;
+  text-align: left;
+  width: 100%;
+
+  svg {
+    stroke: currentColor;
+  }
+
+  .localization-toggle__title-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    gap: 3px;
+  }
+
+  .localization-toggle__pre-title {
+    font-size: 12px;
+    opacity: 0.4;
+  }
+}
+
+.social-media--list {
+  --social-media-icon-size: auto;
+  justify-content: space-between;
+  gap: 10px;
+
+  @include md {
+    gap: 9px;
+  }
+
+  .social-media__item {
+    opacity: 1;
+  }
+
+  .tap-area {
+    aspect-ratio: 1;
+    display: block;
+    padding: 3px;
+    width: 32px;
+  }
+
+  svg {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+  }
+}
+
+.policies--list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 11px 0 0;
+  text-transform: capitalize;
+}
+
+.footer__aside {
+  background: #4f4e4e;
+  color: #fff;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 100px;
+  padding-block: 12px;
+  text-align: left;
+
+  .container {
+    @include md {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-content: flex-start;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+
+  .heading {
+    color: inherit;
+    font: inherit;
+    text-transform: capitalize;
+  }
+}
+
+.footer__aside-left {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  align-items: flex-start;
+
+  @include md {
+    justify-content: flex-start;
+    gap: 36px;
+  }
+}
+
+.footer__aside-right {
+  display: none;
+
+  @include md {
+    display: block;
+  }
+
+  .policies--list {
+    @include md {
+      gap: 37px;
+      padding: 0;
+    }
+
+    @include lg {
+      gap: 73px;
+    }
+  }
+}
