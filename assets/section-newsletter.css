@@ -1,0 +1,76 @@
+.shopify-section--newsletter {
+  --content-over-media-content-max-width: none;
+}
+.shopify-section--newsletter .section-spacing {
+  --section-vertical-spacing: 15px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--newsletter .section-spacing {
+    --section-vertical-spacing: 12px;
+  }
+}
+.shopify-section--newsletter .section-stack {
+  --section-stack-gap: 20px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--newsletter .section-stack {
+    --section-stack-gap: 39px;
+  }
+}
+.shopify-section--newsletter .section-header {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--newsletter .section-header {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    max-width: 420px;
+  }
+}
+.shopify-section--newsletter .section-header h2 {
+  --heading-font-weight: 500;
+  font-size: 24px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--newsletter .section-header h2 {
+    --heading-font-weight: 400;
+    font-size: 40px;
+    text-align: center;
+  }
+}
+.shopify-section--newsletter .section-header .prose :where(:not(meta, span) + *) {
+  margin-block-start: 12px;
+  opacity: 0.6;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--newsletter .section-header .prose :where(:not(meta, span) + *) {
+    margin-block-start: 4px;
+  }
+}
+.shopify-section--newsletter .form {
+  width: 100%;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--newsletter .form {
+    margin: 0 auto;
+    max-width: 385px;
+  }
+}
+.shopify-section--newsletter .form-row {
+  position: relative;
+}
+.shopify-section--newsletter .form-row .input {
+  padding-inline-end: 50px;
+}
+.shopify-section--newsletter .form-row .button[type=submit] {
+  --button-text-color: var(--text-color) / 0.6;
+  --button-background: transparent;
+  aspect-ratio: 1;
+  background: none;
+  height: 100%;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

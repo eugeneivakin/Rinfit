@@ -1,4 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+.button {
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1;
+  padding-block: 0.25rem;
+  min-height: 2.3125rem;
+}
+.button svg {
+  fill: currentColor;
+}
+
+.input, .textarea, .select {
+  --border-color: 55 58 54 / 0.2;
+  --input-padding-block: 12px;
+  --input-padding-inline: 9px;
+}
+
+:is(.input, .textarea, .select)::-moz-placeholder {
+  color: rgb(var(--input-text-color, var(--text-color))/0.4);
+}
+
+:is(.input, .textarea, .select)::placeholder {
+  color: rgb(var(--input-text-color, var(--text-color))/0.4);
+}
+
 .section-header {
   display: flex;
   flex-direction: row;
@@ -75,14 +100,6 @@
 
 body {
   line-height: 1.4286;
-}
-
-.button {
-  font-size: var(--text-base);
-  font-weight: 600;
-  line-height: 1;
-  padding-block: 0.25rem;
-  min-height: 2.3125rem;
 }
 
 .container {

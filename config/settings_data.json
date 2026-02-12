@@ -11,6 +11,7 @@
   "current": {
     "section_vertical_spacing": "md",
     "button_border_radius": 4,
+    "input_border_radius": 4,
     "product_rating_color": "#1c1c1c",
     "product_on_sale_accent": "#e32c2b",
     "product_sold_out_badge_background": "#efefef",

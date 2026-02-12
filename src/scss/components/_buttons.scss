@@ -1,0 +1,13 @@
+@use "mixins/media" as *;
+
+.button {
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1;
+  padding-block: 0.25rem;
+  min-height: 2.3125rem;
+
+  svg {
+    fill: currentColor;
+  }
+}
