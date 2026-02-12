@@ -28,9 +28,8 @@
   }
 }
 
-
-@mixin md-max {
-  @media screen and (max-width: 990px) {
+@mixin sm-max {
+  @media screen and (max-width: 700px) {
     @content;
   }
 }
