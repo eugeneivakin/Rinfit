@@ -23,6 +23,7 @@
   h2 {
     font-size: 34px;
     text-align: center;
+    text-transform: capitalize;
 
     @include md {
       font-size: 40px;

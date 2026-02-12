@@ -18,6 +18,7 @@
 .section-header h2 {
   font-size: 34px;
   text-align: center;
+  text-transform: capitalize;
 }
 @media screen and (min-width: 1000px) {
   .section-header h2 {
@@ -92,17 +93,31 @@ body {
   padding-inline-end: var(--container-gutter);
 }
 
-.heading, .h1, .h2, .h3, .h4, .h5, .h6, .prose :where(h1, h2, h3, h4, h5, h6) {
+.heading,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.prose :where(h1, h2, h3, h4, h5, h6) {
   line-height: 1;
 }
 .heading > em,
-.heading > strong, .h1 > em,
-.h1 > strong, .h2 > em,
-.h2 > strong, .h3 > em,
-.h3 > strong, .h4 > em,
-.h4 > strong, .h5 > em,
-.h5 > strong, .h6 > em,
-.h6 > strong, .prose :where(h1, h2, h3, h4, h5, h6) > em,
+.heading > strong,
+.h1 > em,
+.h1 > strong,
+.h2 > em,
+.h2 > strong,
+.h3 > em,
+.h3 > strong,
+.h4 > em,
+.h4 > strong,
+.h5 > em,
+.h5 > strong,
+.h6 > em,
+.h6 > strong,
+.prose :where(h1, h2, h3, h4, h5, h6) > em,
 .prose :where(h1, h2, h3, h4, h5, h6) > strong {
   font-family: "Playfair Display", serif;
 }

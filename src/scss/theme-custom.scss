@@ -30,7 +30,14 @@ body {
   padding-inline-end: var(--container-gutter);
 }
 
-.heading, .h1, .h2, .h3, .h4, .h5, .h6, .prose :where(h1, h2, h3, h4, h5, h6) {
+.heading,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.prose :where(h1, h2, h3, h4, h5, h6) {
   line-height: 1;
 
   > em,
@@ -38,4 +45,3 @@ body {
     font-family: "Playfair Display", serif;
   }
 }
-

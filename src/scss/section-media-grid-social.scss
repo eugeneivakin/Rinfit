@@ -1,0 +1,54 @@
+@use "mixins/media" as *;
+
+.shopify-section--media-grid-social {
+  .section-spacing {
+    --section-vertical-spacing: 20px;
+  }
+
+  .section-stack {
+    --section-stack-gap: 13px;
+
+    @include md {
+      --section-stack-gap: 35px;
+    }
+  }
+
+  .media-grid {
+    --media-grid-column-count: 12;
+
+    @include sm {
+      --media-grid-column-count: 10;
+    }
+  }
+
+  .media-grid__item {
+    border-radius: 10px;
+    overflow: hidden;
+
+    @include sm-max {
+      grid-area: span min(2, var(--media-grid-item-row-span)) / span 4;
+    }
+
+    &:nth-child(5n) {
+      @include sm-max {
+        grid-column-start: 1;
+        grid-column-end: 5;
+      }
+    }
+
+    &:nth-child(5n + 1),
+    &:nth-child(6n + 1) {
+      @include sm-max {
+        // opacity: 0.5;
+        --media-grid-item-row-span: 2 !important;
+        grid-area: span min(2, var(--media-grid-item-row-span)) / span 8;
+      }
+
+      &:last-child {
+        @include sm-max {
+          grid-area: span min(2, var(--media-grid-item-row-span)) / span 12;
+        }
+      }
+    }
+  }
+}
