@@ -698,6 +698,81 @@
         "button_text": "shop all"
       }
     },
+    "tiktok_63qDmQ": {
+      "type": "tiktok",
+      "blocks": {
+        "video_priXEU": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1).mp4",
+            "product": "ring-protector-for-working-out-silicone-rubber-ring-cover-protector"
+          }
+        },
+        "video_8AeAUG": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1).mp4",
+            "product": "womens-couture-silicone-rings-7-stackable-ring-set-stylish-patented-design-for-active-lifestyle-copy"
+          }
+        },
+        "video_tAmwEt": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1).mp4",
+            "product": "silicone-wedding-rings-bundle-men-s-infinity-collection-women-s-space-collection-1"
+          }
+        },
+        "video_A6Jyic": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1).mp4",
+            "product": "couple-bundle-silicone-wedding-ring-bundle-set-80"
+          }
+        },
+        "video_rjHk63": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1).mp4",
+            "product": "silicone-wedding-rings-bundle-men-s-infinity-collection-women-s-space-collection-1"
+          }
+        },
+        "video_zqmqzG": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1).mp4",
+            "product": "copy-of-amazon-infinity-7-rings-set-1"
+          }
+        },
+        "video_NfjtLa": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1).mp4",
+            "product": "couple-bundle-silicone-wedding-ring-bundle-set-81"
+          }
+        }
+      },
+      "block_order": [
+        "video_priXEU",
+        "video_8AeAUG",
+        "video_tAmwEt",
+        "video_A6Jyic",
+        "video_rjHk63",
+        "video_zqmqzG",
+        "video_NfjtLa"
+      ],
+      "name": "Section tiktok",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "subheading": "",
+        "title": "Rinfit <em><strong>Community</strong></em>",
+        "content": "",
+        "button_url": "",
+        "button_text": "",
+        "main_title": "",
+        "products_count": 9
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "settings": {
@@ -725,6 +800,7 @@
     "featured_collections_g8fKJT",
     "image_with_text_GLtEhj",
     "collection_list_r7KetV",
+    "tiktok_63qDmQ",
     "newsletter"
   ]
 }

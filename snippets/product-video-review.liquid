@@ -1,0 +1,28 @@
+{% if product.available %}
+  <div class="product-video-review shrink-0">
+    <div class="product-video-review__media">
+      {{ video | video_tag: autoplay: false, loop: false, muted: false, controls: false, image_size: '312x' }}
+      <div class="product-video-review__play">
+        {% render 'icons', icon: 'play' %}
+      </div>
+      <div class="product-video-review__buy" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+        {% render 'icons', icon: 'bag' %}
+      </div>
+    </div>
+    <div class="product-video-review__content">
+      <div>
+        {{ product.featured_image | image_url: width: 140 | image_tag: loading: 'lazy' }}
+      </div>
+      <div>
+        <h2 class="h2 line-clamp">
+          <a href="{{ product.url }}">{{ product.title }}</a>
+        </h2>
+
+        {%- render 'price-list', product: product, context: 'card' -%}
+      </div>
+      <div>
+        {% render 'icons', icon: 'arrow-right' %}
+      </div>
+    </div>
+  </div>
+{% endif %}

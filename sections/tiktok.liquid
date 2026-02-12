@@ -1,0 +1,276 @@
+{%- if section.blocks.size > 0 -%}
+  {{- 'section-tiktok.css' | asset_url | stylesheet_tag -}}
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      --collection-list-item-size: 261px;
+      --collection-list-gap: 10px;
+    }
+
+     @media screen and (min-width: 1000px) {
+      #shopify-section-{{ section.id }} {
+        --collection-list-item-size: calc(100% / 4 - var(--collection-list-gap) * 3/4);
+      }
+    }
+  </style>
+
+  {%- assign remove_vertical_spacing = false -%}
+
+  {%- if section.settings.subheading == blank
+    and section.settings.title == blank
+    and section.settings.content == blank
+  -%}
+    {%- assign reduce_vertical_spacing = true -%}
+
+    {%- unless section.settings.space_items -%}
+      {%- assign remove_vertical_spacing = true -%}
+    {%- endunless -%}
+  {%- endif -%}
+
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
+
+  {%- capture button_shop_all -%}
+    {%- if section.settings.button_text != blank -%}
+      {%- assign button_link = section.settings.button_url
+        | default: section.settings.collection.url
+        | default: '#'
+      -%}
+
+      <div class="justify-self-center section-heading__view-all">
+        {%- render 'button', href: button_link, content: section.settings.button_text -%}
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <div class="{% unless remove_vertical_spacing %}section-spacing {% if reduce_vertical_spacing %}section-spacing--tight{% endif %}{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+    <div class="container">
+      <div class="section-stack">
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          content: section.settings.content,
+          text_alignment: 'stretch',
+          button_shop_all: button_shop_all
+        -%}
+
+        {% capture collection_list %}
+          {%- for block in section.blocks -%}
+            {% render 'product-video-review', video: block.settings.video, product: block.settings.product  %}
+          {%- endfor -%}
+        {% endcapture %}
+
+        <div class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
+          {%- assign carousel_id = 'carousel-' | append: section.id -%}
+
+          <carousel-prev-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
+            <button
+              type="button"
+              class="prev-next-button prev-next-button--prev circle-button circle-button--lg hover:animate-icon-inline"
+              disabled
+            >
+              <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+              {%- render 'icons', icon: 'arrow-left' -%}
+            </button>
+          </carousel-prev-button>
+
+          <scroll-carousel
+            id="{{ carousel_id }}"
+            group-cells
+            allow-drag
+            class="collection-list scroll-area {% if section.settings.show_text_outside %}collection-list--text-outside{% endif %} bleed lg:unbleed"
+          >
+            {{ collection_list }}
+          </scroll-carousel>
+
+          <carousel-next-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
+            <button
+              type="button"
+              class="prev-next-button prev-next-button--next circle-button circle-button--lg hover:animate-icon-inline"
+            >
+              <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+              {%- render 'icons', icon: 'arrow-right' -%}
+            </button>
+          </carousel-next-button>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Delegation: use one listener for all buttons
+    document.addEventListener('click', function(e) {
+      const playButton = e.target.closest('.product-video-review__play');
+      const buyButton = e.target.closest('.product-video-review__buy');
+      
+      if (playButton) {
+        const videoContainer = playButton.closest('.product-video-review');
+        if (videoContainer) {
+          const video = videoContainer.querySelector('video');
+          if (video) {
+            video.play();
+          }
+        }
+      }
+      
+      if (buyButton) {
+        e.preventDefault();
+        const variantId = buyButton.getAttribute('data-variant-id');
+        
+        if (variantId) {
+          document.documentElement.dispatchEvent(new CustomEvent('theme:loading:start', { bubbles: true }));
+          
+          const formData = new FormData();
+          formData.append('id', variantId);
+          formData.append('quantity', 1);
+          
+          // Prepare sections like the theme does
+          let sectionsToBundle = [];
+          document.documentElement.dispatchEvent(new CustomEvent('cart:prepare-bundled-sections', {
+            bubbles: true,
+            detail: { sections: sectionsToBundle }
+          }));
+          
+          formData.append('sections', sectionsToBundle.join(','));
+          
+          fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          })
+          .then(response => response.json())
+          .then(responseJson => {
+            // 1. Getting complete cart details
+            return fetch(window.Shopify.routes.root + 'cart.js')
+              .then(res => res.json())
+              .then(cartContent => {
+                // 2. Add sections from the answer /cart/add.js
+                cartContent['sections'] = responseJson['sections'] || {};
+                
+                document.documentElement.dispatchEvent(new CustomEvent('theme:loading:end', { bubbles: true }));
+                
+                // 3. Emit cart:change with full updated data
+                document.documentElement.dispatchEvent(new CustomEvent('cart:change', {
+                  bubbles: true,
+                  detail: {
+                    baseEvent: 'variant:add',
+                    cart: cartContent,
+                    items: Array.isArray(responseJson.items) ? responseJson.items : [responseJson]
+                  }
+                }));
+              });
+          })
+          .catch(error => {
+            document.documentElement.dispatchEvent(new CustomEvent('theme:loading:end', { bubbles: true }));
+            console.error('Error:', error);
+          });
+        }
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "TikTok",
+  "class": "shopify-section--tiktok",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "t:global.section.separate_section_with_border",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:global.section.header_category"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:global.text.subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+      "default": "/collections"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button link",
+      "default": "Shop all"
+    },
+    {
+      "type": "header",
+      "content": "OLD ↓↓↓↓↓↓↓↓↓↓↓↓"
+    },
+    {
+      "type": "richtext",
+      "id": "main_title",
+      "label": "Title"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "min": 2,
+      "step": 1,
+      "max": 24,
+      "label": "t:global.product_list.products_to_show",
+      "default": 9
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TikTok",
+      "category": "t:global.categories.media"
+    }
+  ]
+}
+{% endschema %}
