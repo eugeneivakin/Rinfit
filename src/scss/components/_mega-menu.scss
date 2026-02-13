@@ -1,0 +1,61 @@
+@use "mixins/media" as *;
+
+.mega-menu {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  padding-block: 40px;
+
+  .menu-item__featured-image {
+    aspect-ratio: 1;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img,
+    svg {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
+
+.mega-menu__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 504px;
+  grid-template-rows: 1fr;
+  max-width: var(--container-max-width);
+  padding-inline-start: var(--container-gutter);
+  padding-inline-end: var(--container-gutter);
+  gap: 20px;
+}
+
+.mega-menu__linklist {
+  --mega-menu-linklist-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  > li {
+    > .h6 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  ul {
+    padding: 11px 0 0;
+  }
+}
+
+.mega-menu__promo {
+  .mega-menu__promo-item {
+    &:only-child {
+      max-width: none;
+      // width: 100%;
+    }
+  }
+
+  .mega-menu__promo-item-media-wrapper {
+    aspect-ratio: 1.06553911205074;
+    border-radius: 10px;
+  }
+}

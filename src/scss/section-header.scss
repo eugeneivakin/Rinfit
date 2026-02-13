@@ -1,13 +1,14 @@
 @use "mixins/media" as *;
 
 @use "components/header-sidebar";
+@use "components/mega-menu";
 
 .header {
   --header-padding-block: 14px;
 
   @include md {
-    // --header-grid: ". logo ." ". primary-nav secondary-nav" / 300px 1fr 300px;
-    --header-grid: ". logo ." "primary-nav primary-nav secondary-nav" / 300px 1fr 300px;
+    --header-grid: ". logo ." ". primary-nav secondary-nav" / 300px 1fr 300px;
+    // --header-grid: ". logo ." "primary-nav primary-nav secondary-nav" / 300px 1fr 300px;
   }
 
   .header__button-icon {
@@ -98,11 +99,10 @@
   gap: 10px;
 
   @include md {
-    // justify-content: center;
+    justify-content: center;
   }
 
   .contents {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -110,10 +110,15 @@
     align-items: center;
     gap: 21px;
     font-size: 14px;
+
+    @include md {
+      display: flex;
+    }
   }
 
   .header__primary-nav-item {
-    .h6 {
+    summary.h6,
+    > .h6 {
       font: inherit;
     }
   }
@@ -121,10 +126,10 @@
   .header__menu-disclosure {
     &[open] {
       summary {
-.icon {
-  transform: rotate(180deg);
-}
-    }
+        .icon {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     summary {
@@ -152,5 +157,18 @@
 .header__secondary-nav {
   @include md {
     justify-self: initial;
+  }
+}
+
+.header__search-link--mobile {
+  @include md {
+    display: none;
+  }
+}
+.header__search-link--desktop {
+  display: none;
+
+  @include md {
+    display: block;
   }
 }

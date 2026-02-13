@@ -128,54 +128,8 @@
               <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
                 {%- for sub_link in link.links -%}
                   <li>
-                    {% case sub_link.type %}
-                      {% when 'article_link' %}
-                        {{ sub_link.type }}
-                      {% when 'blog_link' %}
-                        {{ sub_link.type }}
-                      {% when 'catalog_link' %}
-                        {{ sub_link.type }}
-                      {% when 'collection_link' %}
-                        {% assign handle = sub_link.url | remove: '/collections/' %}
-                        {% assign link_object = collections[handle] %}
-                        <div class="header-sidebar__featured-image">
-                          {% if link_object.featured_image == blank %}
-                            {{ 'collection-1' | placeholder_svg_tag }}
-                          {% else %}
-                            {{ link_object.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
-                          {% endif %}
-                        </div>
-                      {% when 'collections_link' %}
-                        <div class="header-sidebar__featured-image">
-                          {{ 'collection-1' | placeholder_svg_tag }}
-                        </div>
-                      {% when 'customer_account_page_link' %}
-                        {{ sub_link.type }}
-                      {% when 'frontpage_link' %}
-                        {{ sub_link.type }}
-                      {% when 'http_link' %}
-                        {{ sub_link.type }}
-                      {% when 'metaobject_link' %}
-                        {{ sub_link.type }}
-                      {% when 'page_link' %}
-                        {% assign handle = sub_link.url | remove: '/pages/' %}
-                        {% assign link_object = pages[handle] %}
-                        <div class="header-sidebar__featured-image">
-                          {% if link_object.metafields.custom.menu_featured_image == blank %}
-                            {{ 'detailed-apparel-1' | placeholder_svg_tag }}
-                          {% else %}
-                            {{ link_object.metafields.custom.menu_featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
-                          {% endif %}
-                        </div>
-                      {% when 'policy_link' %}
-                        {{ sub_link.type }}
-                      {% when 'product_link' %}
-                        {{ sub_link.type }}
-                      {% when 'search_link' %}
-                        {{ sub_link.type }}
-                      {% else %}
-                        {{ sub_link.type }}
-                    {% endcase %}
+                    {% render 'featured-image-for-menu-item', link: sub_link %}
+
                     {%- if sub_link.links.size > 0 -%}
                       <accordion-disclosure>
                         <details

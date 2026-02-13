@@ -1,10 +1,14 @@
 @use "mixins/media" as *;
 
 .header-sidebar {
-  --drawer-max-width: 390px;
+  // --drawer-max-width: 390px;
 
-  @include xs {
+  // @include xs {
     --drawer-max-width: 100%;
+  // }
+
+  @include md {
+    display: none !important;
   }
 
   &::part(base) {
@@ -88,12 +92,14 @@
     }
   }
 
-  .header-sidebar__featured-image {
+  .menu-item__featured-image {
     background: #e9e9e9;
     border-radius: 10px;
     height: 144px;
     overflow: hidden;
-    > * {
+
+    img,
+    svg {
       height: 100%;
       object-fit: cover;
       width: 100%;
