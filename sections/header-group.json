@@ -36,21 +36,55 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_menu_7NWKtk": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Company",
+            "images_position": "right",
+            "image_1": "shopify://shop_images/MAG_2146.jpg",
+            "image_1_heading": "",
+            "image_1_text": "",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_3CM8q8": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Shop",
+            "images_position": "right",
+            "image_1": "shopify://shop_images/daVinci155.jpg",
+            "image_1_heading": "",
+            "image_1_text": "",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_7NWKtk",
+        "mega_menu_3CM8q8"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "enable_sticky": true,
         "hide_on_scroll": false,
         "show_separation_border": true,
         "reduce_padding": false,
-        "logo": "shopify://shop_images/logo-web_1.png",
+        "logo": "shopify://shop_images/Rinfit_Main_Logo.svg",
         "logo_max_width": 165,
-        "logo_mobile_max_width": 80,
-        "menu": "header-menu",
+        "logo_mobile_max_width": 85,
+        "menu": "header-menu-miledev",
         "sidebar_menu": "",
         "menu_open_trigger": "hover",
         "menu_text_font": "heading",
         "enable_search": true,
-        "sidebar_color_scheme": "schema-2",
+        "sidebar_color_scheme": "scheme-1",
         "sidebar_text_font": "heading",
         "sidebar_show_dividers": false,
         "sidebar_open_second_level_menus": false,

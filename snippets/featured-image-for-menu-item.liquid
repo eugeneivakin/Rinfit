@@ -1,0 +1,72 @@
+{% case link.type %}
+  {% when 'article_link' %}
+
+  {% when 'blog_link' %}
+
+  {% when 'catalog_link' %}
+
+  {% when 'collection_link' %}
+    {% liquid
+      assign handle = link.url | remove: '/collections/'
+      assign link_object = collections[handle]
+    %}
+
+    <div class="menu-item__featured-image">
+      <a href="{{ link.url }}">
+        {% if link_object.metafields.custom.menu_featured_image != blank %}
+          {{ link_object.metafields.custom.menu_featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+        {% elsif link_object.featured_image != blank %}
+          {{ link_object.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+        {% else %}
+          {{ 'collection-1' | placeholder_svg_tag }}
+        {% endif %}
+      </a>
+    </div>
+  {% when 'collections_link' %}
+    <div class="menu-item__featured-image">
+      <a href="{{ link.url }}">
+        <img
+          src="{{ 'MAG_5624.jpg' | file_img_url: '400x' }}"
+          alt=""
+          srcset="
+            {{ 'MAG_5624.jpg' | file_img_url: '352x' }}.jpg 352w,
+            {{ 'MAG_5624.jpg' | file_img_url: '400x' }}.jpg 400w
+          "
+          width="400"
+          height="500"
+          loading="lazy"
+        >
+      </a>
+    </div>
+  {% when 'customer_account_page_link' %}
+
+  {% when 'frontpage_link' %}
+
+  {% when 'http_link' %}
+
+  {% when 'metaobject_link' %}
+
+  {% when 'page_link' %}
+    {% liquid
+      assign handle = link.url | remove: '/pages/'
+      assign link_object = pages[handle]
+    %}
+
+    <div class="menu-item__featured-image">
+      <a href="{{ link.url }}">
+        {% if link_object.metafields.custom.menu_featured_image != blank %}
+          {{ link_object.metafields.custom.menu_featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+        {% else %}
+          {{ 'detailed-apparel-1' | placeholder_svg_tag }}
+        {% endif %}
+      </a>
+    </div>
+  {% when 'policy_link' %}
+
+  {% when 'product_link' %}
+
+  {% when 'search_link' %}
+
+  {% else %}
+
+{% endcase %}

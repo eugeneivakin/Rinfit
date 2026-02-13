@@ -15,6 +15,9 @@
   border-radius: 10px;
   overflow: hidden;
 }
+.x-product-card .product-card__media .product-card__image--secondary {
+  mix-blend-mode: normal;
+}
 .x-product-card .product-card__info {
   flex-grow: 1;
   display: flex;
