@@ -99,6 +99,7 @@
         "image_FWAezX",
         "image_FKMhm7"
       ],
+      "disabled": true,
       "name": "t:sections.slideshow.presets.slideshow.name",
       "settings": {
         "allow_transparent_header": false,
@@ -114,6 +115,7 @@
     },
     "banner_small_JgYD4c": {
       "type": "banner-small",
+      "disabled": true,
       "name": "Small banner",
       "settings": {
         "color_scheme": "scheme-2",
@@ -141,6 +143,7 @@
       "block_order": [
         "collection_MnwTrJ"
       ],
+      "disabled": true,
       "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-1",
@@ -171,6 +174,7 @@
       "block_order": [
         "collection_i64hkt"
       ],
+      "disabled": true,
       "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-1",
@@ -223,6 +227,7 @@
         "richtext_wmfpUm",
         "button_PqqaDc"
       ],
+      "disabled": true,
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
         "color_scheme": "scheme-2",
@@ -262,6 +267,7 @@
         "customer_image_afEFpE",
         "customer_image_hTejp9"
       ],
+      "disabled": true,
       "name": "Social proof",
       "settings": {
         "color_scheme": "",
@@ -315,6 +321,7 @@
         "text_w6wXNJ",
         "text_dRk3ne"
       ],
+      "disabled": true,
       "name": "t:sections.scrolling_content.presets.scrolling_content.name",
       "settings": {
         "separate_section_with_border": false,
@@ -428,6 +435,7 @@
         "collection_zLE7mc",
         "collection_pzPtXe"
       ],
+      "disabled": true,
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
         "color_scheme": "",
@@ -463,6 +471,7 @@
       "block_order": [
         "collection_7fPixm"
       ],
+      "disabled": true,
       "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-1",
@@ -508,6 +517,7 @@
         "richtext_zLhw4F",
         "button_zDXARH"
       ],
+      "disabled": true,
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
         "color_scheme": "scheme-2",
@@ -680,6 +690,7 @@
         "collection_gKiN3j",
         "collection_iLTrpV"
       ],
+      "disabled": true,
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
         "color_scheme": "scheme-1",
@@ -760,6 +771,7 @@
         "video_zqmqzG",
         "video_NfjtLa"
       ],
+      "disabled": true,
       "name": "Section tiktok",
       "settings": {
         "color_scheme": "",
@@ -912,6 +924,7 @@
         "image_qEn3fx",
         "image_HVqwjm"
       ],
+      "disabled": true,
       "name": "Media grid (social)",
       "settings": {
         "color_scheme": "scheme-3",
@@ -927,6 +940,7 @@
     },
     "newsletter": {
       "type": "newsletter",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "separate_section_with_border": true,

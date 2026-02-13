@@ -1,0 +1,156 @@
+@use "mixins/media" as *;
+
+@use "components/header-sidebar";
+
+.header {
+  --header-padding-block: 14px;
+
+  @include md {
+    // --header-grid: ". logo ." ". primary-nav secondary-nav" / 300px 1fr 300px;
+    --header-grid: ". logo ." "primary-nav primary-nav secondary-nav" / 300px 1fr 300px;
+  }
+
+  .header__button-icon {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    width: 24px;
+
+    cart-count {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      align-content: center;
+      align-items: center;
+      height: 100%;
+      font-size: 12px;
+      line-height: 1;
+      left: 0;
+      padding: 4px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    // svg {
+    //   height: auto;
+    //   max-width: 100%;
+    // }
+  }
+
+  .header__nav-icon {
+    width: auto;
+  }
+
+  button {
+    &[aria-controls="sidebar-menu"] {
+      @include md {
+        display: none;
+      }
+
+      .icon--close {
+        display: none;
+      }
+
+      &[aria-expanded="true"] {
+        .icon--menu {
+          display: none;
+        }
+
+        .icon--close {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  // .icon {
+  //   fill: currentColor;
+  //   width: auto;
+  // }
+
+  .localization-toggle {
+    img {
+      height: auto;
+      width: 24px;
+    }
+
+    span,
+    .icon {
+      display: none;
+    }
+  }
+}
+
+.header__logo {
+  @include md {
+    justify-self: center;
+  }
+}
+
+.header__primary-nav {
+  gap: 10px;
+
+  @include md {
+    // justify-content: center;
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    gap: 21px;
+    font-size: 14px;
+  }
+
+  .header__primary-nav-item {
+    .h6 {
+      font: inherit;
+    }
+  }
+
+  .header__menu-disclosure {
+    &[open] {
+      summary {
+.icon {
+  transform: rotate(180deg);
+}
+    }
+    }
+
+    summary {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+}
+
+.header__icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__secondary-nav {
+  @include md {
+    justify-self: initial;
+  }
+}

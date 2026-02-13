@@ -18,6 +18,42 @@
 .footer .text-subdued {
   color: rgb(var(--text-color)/0.6);
 }
+.footer .localization-selectors:has(:only-child) {
+  justify-content: flex-start;
+}
+.footer .localization-selectors > div:only-child {
+  width: 100%;
+}
+.footer .localization-toggle {
+  background: rgb(var(--circle-button-background));
+  border: 1px solid rgb(var(--text-color)/0.2);
+  border-radius: var(--button-border-radius);
+  justify-content: space-between;
+  color: rgb(var(--text-color));
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  min-height: 54px;
+  padding: 10px 14px 10px 10px;
+  text-align: left;
+  width: 100%;
+}
+.footer .localization-toggle svg {
+  stroke: currentColor;
+}
+.footer .localization-toggle .localization-toggle__title-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  gap: 3px;
+}
+.footer .localization-toggle .localization-toggle__pre-title {
+  font-size: 12px;
+  opacity: 0.4;
+}
 
 .footer__block-list-wrapper {
   display: grid;
@@ -80,44 +116,6 @@
   --heading-font-weight: 600;
   font-size: 14px;
   text-transform: capitalize;
-}
-
-.localization-selectors:has(:only-child) {
-  justify-content: flex-start;
-}
-.localization-selectors > div:only-child {
-  width: 100%;
-}
-
-.localization-toggle {
-  background: rgb(var(--circle-button-background));
-  border: 1px solid rgb(var(--text-color)/0.2);
-  border-radius: var(--button-border-radius);
-  justify-content: space-between;
-  color: rgb(var(--text-color));
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1;
-  min-height: 54px;
-  padding: 10px 14px 10px 10px;
-  text-align: left;
-  width: 100%;
-}
-.localization-toggle svg {
-  stroke: currentColor;
-}
-.localization-toggle .localization-toggle__title-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: stretch;
-  gap: 3px;
-}
-.localization-toggle .localization-toggle__pre-title {
-  font-size: 12px;
-  opacity: 0.4;
 }
 
 .social-media--list {

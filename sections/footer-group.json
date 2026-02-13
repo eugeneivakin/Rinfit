@@ -60,6 +60,7 @@
         "show_social_media": true,
         "show_payment_icons": false,
         "show_powered_by_shopify": false,
+        "show_policies_links": true,
         "show_country_selector": true,
         "show_country_name": true,
         "show_country_flag": false,
