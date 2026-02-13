@@ -7,8 +7,12 @@
   --header-padding-block: 14px;
 
   @include md {
-    --header-grid: ". logo ." ". primary-nav secondary-nav" / 300px 1fr 300px;
-    // --header-grid: ". logo ." "primary-nav primary-nav secondary-nav" / 300px 1fr 300px;
+    // --header-grid: ". logo ." ". primary-nav secondary-nav" / 10px 1fr 500px;
+    --header-grid: ". logo ." "primary-nav primary-nav secondary-nav" / 300px 1fr 300px;
+  }
+
+  @include lg {
+    --header-grid: ". logo ." ". primary-nav secondary-nav" / 200px 1fr 200px;
   }
 
   .header__button-icon {
@@ -98,7 +102,7 @@
 .header__primary-nav {
   gap: 10px;
 
-  @include md {
+  @include lg {
     justify-content: center;
   }
 
@@ -157,18 +161,5 @@
 .header__secondary-nav {
   @include md {
     justify-self: initial;
-  }
-}
-
-.header__search-link--mobile {
-  @include md {
-    display: none;
-  }
-}
-.header__search-link--desktop {
-  display: none;
-
-  @include md {
-    display: block;
   }
 }

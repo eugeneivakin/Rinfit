@@ -282,29 +282,7 @@
         {%- endfor -%}
 
         {%- if section.settings.enable_search -%}
-          <li class="header__search-link header__search-link--mobile">
-            <a
-              href="{{ routes.search_url }}"
-              aria-controls="header-search-{{ section.id }}"
-              class="header__button-icon"
-            >
-              <span class="sr-only">{{ 'header.general.search' | t }}</span>
-
-              {%- if section.settings.show_icons -%}
-                {%- render 'icons', icon: 'search' -%}
-              {%- else -%}
-                <span class="md:hidden">{%- render 'icons', icon: 'search' -%}</span>
-                <span
-                  class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded md-max:hidden"
-                  aria-hidden="true"
-                >
-                  {{- 'header.general.search' | t -}}
-                </span>
-              {%- endif -%}
-            </a>
-          </li>
-
-          <li class="header__search-link header__search-link--desktop">
+          <li class="header__search-link">
             <a
               href="{{ routes.search_url }}"
               aria-controls="header-search-{{ section.id }}"
