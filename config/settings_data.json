@@ -39,6 +39,16 @@
         "type": "shopify://apps/loox-reviews/blocks/loox-inject/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
         "disabled": false,
         "settings": {}
+      },
+      "11724500921838622758": {
+        "type": "shopify://apps/frequently-bought/blocks/app-embed-block/b1a8cbea-c844-4842-9529-7c62dbab1b1f",
+        "disabled": false,
+        "settings": {}
+      },
+      "6864468922717759293": {
+        "type": "shopify://apps/privy-pop-ups-email-sms/blocks/privy-convert-production/1d8599fa-4edf-4071-bda6-4d5d6d82de9c",
+        "disabled": true,
+        "settings": {}
       }
     },
     "color_schemes": {

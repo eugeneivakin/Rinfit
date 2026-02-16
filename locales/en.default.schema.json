@@ -282,7 +282,12 @@
       "not_allowed": "Not allowed",
       "target": "Target",
       "timer": "Timer",
-      "success": "Success"
+      "success": "Success",
+      "custom_category": "Custom theme icons",
+      "infinity": "Infinity",
+      "extend": "Extend",
+      "heart": "Heart",
+      "truck": "Truck"
     }
   },
   "theme_settings": {

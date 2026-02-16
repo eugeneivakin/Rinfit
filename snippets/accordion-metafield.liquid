@@ -1,0 +1,19 @@
+{% for metaobject in metaobject_array %}
+  <accordion-disclosure class="accordion accordion-metafield" {{ block.shopify_attributes }}>
+    <details class="accordion__disclosure group">
+      <summary>
+        {%- comment -%}iOS 14 does not support flex on the summary itself, so we have to use this extra div{%- endcomment -%}
+        <span class="accordion__toggle h6">
+          <span class="text-with-icon gap-4">
+            {{ metaobject.title }}
+            <span class="animated-plus group-expanded:rotate" aria-hidden="true"></span>
+          </span>
+        </span>
+      </summary>
+
+      <div class="accordion__content {% if prose_content %}prose{% endif %}">
+        {{- metaobject.description -}}
+      </div>
+    </details>
+  </accordion-disclosure>
+{% endfor %}
