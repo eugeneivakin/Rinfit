@@ -40,6 +40,11 @@
 .section-header .prose:only-child {
   flex-grow: 1;
 }
+@media screen and (min-width: 1000px) {
+  .section-header .prose:only-child h2 {
+    text-align: center;
+  }
+}
 .section-header h2 {
   font-size: 34px;
   text-align: center;
@@ -96,6 +101,10 @@
 }
 .slideshow .page-dots .tap-area svg, .slideshow .page-dots .tap-area:after, .slideshow .page-dots .tap-area:before {
   display: none;
+}
+
+#looxReviews {
+  max-width: none !important;
 }
 
 body {

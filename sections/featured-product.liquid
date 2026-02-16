@@ -10,33 +10,46 @@
   }
 </style>
 
-{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
 {%- capture product_form_id -%}product-form-featured-product-{{ section.settings.product.id }}-{{ section.id }}{%- endcapture -%}
 
 <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
   <div class="container {% unless section.settings.container_size == 'full' %}container--{{ section.settings.container_size }}{% endunless %}">
     <div class="section-stack">
-      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: 'center' -%}
+      {%- render 'section-header',
+        subheading: section.settings.subheading,
+        heading: section.settings.title,
+        content: section.settings.content,
+        text_alignment: 'center'
+      -%}
 
-      <product-rerender id="featured-product-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
+      <product-rerender
+        id="featured-product-{{ section.id }}"
+        observe-form="{{ product_form_id }}"
+        allow-partial-rerender
+      >
         <div class="product">
           {%- if product.media.size > 0 or product == blank -%}
             {%- render 'product-gallery',
-                product: section.settings.product,
-                product_form_id: product_form_id,
-                desktop_layout: section.settings.desktop_media_layout,
-                mobile_controls: section.settings.mobile_controls,
-                enable_media_autoplay: section.settings.enable_media_autoplay,
-                enable_video_looping: section.settings.enable_video_looping,
-                enable_image_zoom: section.settings.enable_image_zoom,
-                max_image_zoom_level: section.settings.max_image_zoom_level -%}
+              product: section.settings.product,
+              product_form_id: product_form_id,
+              desktop_layout: section.settings.desktop_media_layout,
+              mobile_controls: section.settings.mobile_controls,
+              enable_media_autoplay: section.settings.enable_media_autoplay,
+              enable_video_looping: section.settings.enable_video_looping,
+              enable_image_zoom: section.settings.enable_image_zoom,
+              max_image_zoom_level: section.settings.max_image_zoom_level
+            -%}
           {%- endif -%}
 
-          {%- render 'product-info', 
-            product: section.settings.product, 
+          {%- render 'product-info',
+            product: section.settings.product,
             product_form_id: product_form_id,
-            center_basic_info: section.settings.center_basic_info, 
-            context: 'featured_product' 
+            center_basic_info: section.settings.center_basic_info,
+            context: 'featured_product'
           -%}
         </div>
       </product-rerender>

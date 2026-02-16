@@ -17,6 +17,12 @@
   .prose {
     &:only-child {
       flex-grow: 1;
+
+      h2 {
+        @include md {
+          text-align: center;
+        }
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Utility: заменить последний сегмент пути в URL на новое имя файла
+  // Utility: replace the last path segment in the URL with the new filename
   function replaceFilenameInUrl(rawUrl, newFileName) {
     if (!rawUrl) return rawUrl;
     const prefix = rawUrl.startsWith('//') ? window.location.protocol : '';
@@ -10,24 +10,24 @@ document.addEventListener('DOMContentLoaded', function () {
       u.pathname = parts.join('/');
       return u.toString();
     } catch (e) {
-      // fallback: простая строковая замена перед `?` или в конце
+      // fallback: simple string replacement before `?` or at the end
       return rawUrl.replace(/\/[^\/\?]+(?=(\?|$))/, '/' + newFileName);
     }
   }
 
-  // Обновить primary image внутри productCard, заменив имя файла
+  //Update primary image inside productCard by replacing filename
   function updatePrimaryImage(productCard, newFileName) {
     if (!productCard || !newFileName) return;
     const primaryImage = productCard.querySelector('.product-card__image--primary');
     if (!primaryImage) return;
 
-    // Обновляем src
+    // Update src
     if (primaryImage.src) {
       const replaced = replaceFilenameInUrl(primaryImage.src, newFileName);
       primaryImage.src = replaced;
     }
 
-    // Обновляем srcset (если есть) — аккуратно разбираем и заменяем отдельные URL'ы
+    // Update srcset (if any) -carefully parse and replace individual URLs
     if (primaryImage.srcset) {
       const parts = primaryImage.srcset.split(',').map(s => s.trim());
       const newParts = parts.map(part => {
@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Обработчик кликов и change для свотчей
+  // Click and change handler for swatches
   document.addEventListener('click', function (event) {
     const target = event.target;
 
-    // Клик по label.color-swatch
+    //Click on label.color-swatch
     const label = target.closest('label.color-swatch');
     if (label) {
       const img = label.querySelector('img[data-file-name]');
@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const productCard = label.closest('product-card, .product-card');
         updatePrimaryImage(productCard, fileName);
       }
-      return; // если клик был по label, ничего больше не делаем
+      return; //if the click was on the label, we do nothing else
     }
 
-    // Клик по кнопке показать ещё
+    //Click on the show more button
     const btn = target.closest('button.color-swatch--show-more');
     if (btn) {
       btn.classList.toggle('active');
@@ -63,11 +63,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }, false);
 
-  // Обработчик change на input (радио) — обновляет изображение при переключении
+  //Change handler on input (radio) -updates the image when switching
   document.addEventListener('change', function (event) {
     const el = event.target;
     if (el && el.matches && el.matches('input[type="radio"][data-option-position]')) {
-      // найти label для этого input
+      //find the label for this input
       const label = document.querySelector(`label[for="${el.id}"]`);
       if (label) {
         const img = label.querySelector('img[data-file-name]');
