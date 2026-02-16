@@ -1,24 +1,24 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-PRODUCT PRICE
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  PRODUCT PRICE
+  ----------------------------------------------------------------------------------------------------------------------
 
-Render a list of price for a product, variant or line item.
+  Render a list of price for a product, variant or line item.
 
-********************************************
-Supported variables
-********************************************
+  ********************************************
+  Supported variables
+  ********************************************
 
-* product: if provided, the prices are rendered for the whole product
-* variant: if provided, then only the price from this variant is rendered
-* line_item: if provided, then the price from this line item are rendered (used on cart or order)
-* hide_unit_price: if set to true unit prices are hidden (mostly useful for size constrained elements)
-* context: can be "product", "line_item" or "card". This controls how the prices are displayed (using the correct sizes)
+  * product: if provided, the prices are rendered for the whole product
+  * variant: if provided, then only the price from this variant is rendered
+  * line_item: if provided, then the price from this line item are rendered (used on cart or order)
+  * hide_unit_price: if set to true unit prices are hidden (mostly useful for size constrained elements)
+  * context: can be "product", "line_item" or "card". This controls how the prices are displayed (using the correct sizes)
 {%- endcomment -%}
 
 {%- liquid
   case context
-    when 'card' or 'line_item'
+    when 'card', 'line_item'
       assign base_text_class = ''
 
       if settings.product_card_text_font == 'heading'
@@ -31,9 +31,9 @@ Supported variables
       assign unit_price_classes = base_text_class | append: 'text-subdued'
 
     when 'product'
-      assign regular_price_classes = base_text_class | append: 'h4 text-subdued'
-      assign on_sale_price_classes = base_text_class | append: 'h4 text-on-sale'
-      assign compare_at_price_classes = base_text_class | append: 'h5 text-subdued line-through'
+      assign regular_price_classes = base_text_class | append: 'h4'
+      assign on_sale_price_classes = base_text_class | append: 'h4'
+      assign compare_at_price_classes = base_text_class | append: 'h4 line-through'
       assign unit_price_classes = base_text_class | append: 'h6 text-subdued'
   endcase
 -%}
@@ -41,9 +41,9 @@ Supported variables
 <price-list class="price-list {% if context == 'product' %}price-list--product{% endif %}">
   {%- if variant != blank -%}
     {%- comment -%}
-    --------------------------------------------------------------------------------------------------------------------
-    VARIANT CASE (used on product page, quick view...)
-    --------------------------------------------------------------------------------------------------------------------
+      --------------------------------------------------------------------------------------------------------------------
+      VARIANT CASE (used on product page, quick view...)
+      --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
     <sale-price class="{% if variant.compare_at_price > variant.price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
       <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
@@ -68,9 +68,9 @@ Supported variables
     {%- endif -%}
   {%- elsif line_item != blank -%}
     {%- comment -%}
-    --------------------------------------------------------------------------------------------------------------------
-    LINE ITEM CASE (used on cart, order page...)
-    --------------------------------------------------------------------------------------------------------------------
+      --------------------------------------------------------------------------------------------------------------------
+      LINE ITEM CASE (used on cart, order page...)
+      --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
     <sale-price class="{% if line_item.original_price > line_item.final_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
       <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
@@ -95,9 +95,9 @@ Supported variables
     {%- endif -%}
   {%- elsif product != blank -%}
     {%- comment -%}
-    --------------------------------------------------------------------------------------------------------------------
-    PRODUCT CASE (used on card)
-    --------------------------------------------------------------------------------------------------------------------
+      --------------------------------------------------------------------------------------------------------------------
+      PRODUCT CASE (used on card)
+      --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
     {%- liquid
       if product.price_varies and settings.product_price_strategy != 'from_price'
@@ -128,7 +128,7 @@ Supported variables
           {{- 'product.price.from_price_html' | t: price_min: variant_price -}}
         </sale-price>
       {%- else -%}
-        <sale-price class="{{ on_sale_price_classes }}">  
+        <sale-price class="{{ on_sale_price_classes }}">
           <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
           {{- variant_price -}}
         </sale-price>
@@ -148,9 +148,9 @@ Supported variables
     {%- endif -%}
   {%- else -%}
     {%- comment -%}
-    --------------------------------------------------------------------------------------------------------------------
-    PLACEHOLDER CASE (used on featured product section for instance)
-    --------------------------------------------------------------------------------------------------------------------
+      --------------------------------------------------------------------------------------------------------------------
+      PLACEHOLDER CASE (used on featured product section for instance)
+      --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
 
     <sale-price class="{{ regular_price_classes }}">
@@ -164,13 +164,15 @@ Supported variables
     </sale-price>
   {%- endif -%}
 
-    {%- unless hide_unit_price -%}
-      {%- assign item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
+  {%- unless hide_unit_price -%}
+    {%- assign item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
 
-      {%- if item.unit_price -%}
-        <unit-price class="{{ unit_price_classes }}">
-          ({{- item.unit_price | unit_price_with_measurement: item.unit_price_measurement -}})
-        </unit-price>
-      {%- endif -%}
-    {%- endunless -%}
+    {%- if item.unit_price -%}
+      <unit-price class="{{ unit_price_classes }}">
+        (
+        {{- item.unit_price | unit_price_with_measurement: item.unit_price_measurement -}}
+        )
+      </unit-price>
+    {%- endif -%}
+  {%- endunless -%}
 </price-list>

@@ -39,31 +39,39 @@
   }
 </style>
 
-{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
 {%- capture product_form_id -%}product-form-main-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 
 <div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }}">
   <div class="container {% unless section.settings.container_size == 'full' %}container--{{ section.settings.container_size }}{% endunless %}">
-    <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
+    <product-rerender
+      id="product-info-{{ product.id }}-{{ section.id }}"
+      observe-form="{{ product_form_id }}"
+      allow-partial-rerender
+    >
       <div class="product">
         {%- if product.media.size > 0 -%}
           {%- render 'product-gallery',
-              product: product,
-              product_form_id: product_form_id,
-              desktop_layout: section.settings.desktop_media_layout,
-              mobile_controls: section.settings.mobile_controls,
-              enable_media_autoplay: section.settings.enable_media_autoplay,
-              enable_video_looping: section.settings.enable_video_looping,
-              enable_image_zoom: section.settings.enable_image_zoom,
-              max_image_zoom_level: section.settings.max_image_zoom_level -%}
+            product: product,
+            product_form_id: product_form_id,
+            desktop_layout: section.settings.desktop_media_layout,
+            mobile_controls: section.settings.mobile_controls,
+            enable_media_autoplay: section.settings.enable_media_autoplay,
+            enable_video_looping: section.settings.enable_video_looping,
+            enable_image_zoom: section.settings.enable_image_zoom,
+            max_image_zoom_level: section.settings.max_image_zoom_level
+          -%}
         {%- endif -%}
 
-        {%- render 'product-info', 
-          product: product, 
+        {%- render 'product-info',
+          product: product,
           product_form_id: product_form_id,
-          center_basic_info: section.settings.center_basic_info, 
-          has_content_below_gallery: has_content_below_gallery, 
-          context: 'main_product' 
+          center_basic_info: section.settings.center_basic_info,
+          has_content_below_gallery: has_content_below_gallery,
+          context: 'main_product'
         -%}
 
         {%- comment -%}On Prestige, some content may be on the left part below the product gallery{%- endcomment -%}
@@ -79,7 +87,13 @@
                   {%- if product.description != blank -%}
                     {%- if block.settings.collapse_content -%}
                       {%- assign accordion_title = 'product.general.description' | t -%}
-                      {%- render 'accordion', title: accordion_title, content: product.description, prose_content: true, size: 'lg', block: block -%}
+                      {%- render 'accordion',
+                        title: accordion_title,
+                        content: product.description,
+                        prose_content: true,
+                        size: 'lg',
+                        block: block
+                      -%}
                     {%- else -%}
                       <div class="product-content-below-gallery__description prose">
                         {{- product.description -}}
@@ -89,7 +103,7 @@
 
                 {%- when 'accordion' -%}
                   {%- liquid
-                    assign accordion_title = block.settings.page.title | default: block.settings.title 
+                    assign accordion_title = block.settings.page.title | default: block.settings.title
                     assign accordion_content = block.settings.page.content | default: block.settings.liquid | default: block.settings.content
 
                     if accordion_title != blank and accordion_content != blank
@@ -114,15 +128,25 @@
       <div class="product-sticky-bar__info sm-max:hidden">
         <div class="h-stack gap-6">
           {%- if product.media.size > 0 -%}
-            {%- assign default_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
-            {{- default_media | image_url: width: default_media.width | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120,180' -}}
+            {%- assign default_media = product.selected_or_first_available_variant.featured_media
+              | default: product.featured_media
+            -%}
+            {{-
+              default_media
+              | image_url: width: default_media.width
+              | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120,180'
+            -}}
           {%- endif -%}
 
           <div class="v-stack">
             <span class="h6">{{ product.title }}</span>
 
-            {%- if product.selected_or_first_available_variant != nil -%}
-              {%- render 'price-list', variant: product.selected_or_first_available_variant, hide_unit_price: true, context: 'card' -%}
+            {%- if product.selected_or_first_available_variant != null -%}
+              {%- render 'price-list',
+                variant: product.selected_or_first_available_variant,
+                hide_unit_price: true,
+                context: 'card'
+              -%}
             {%- endif -%}
           </div>
         </div>
@@ -133,7 +157,7 @@
           assign button_disabled = false
           assign button_style = 'solid'
 
-          if product.selected_or_first_available_variant == nil
+          if product.selected_or_first_available_variant == null
             assign button_disabled = true
             assign button_style = 'outline'
             assign button_content = 'product.general.unavailable_button' | t
@@ -150,17 +174,23 @@
           endif
         -%}
 
-        {%- render 'button', content: button_content, style: button_style, type: 'submit', form: product_form_id, disabled: button_disabled -%}
+        {%- render 'button',
+          content: button_content,
+          style: button_style,
+          type: 'submit',
+          form: product_form_id,
+          disabled: button_disabled
+        -%}
       </buy-buttons>
     </product-sticky-bar>
   </product-rerender>
 {%- endif -%}
 
 {%- comment -%}
-IMPLEMENTATION NOTE: Shopify does not currently allows to render a given section within the context of a given product. However,
-when rendering the quick buy drawers/popovers, we want to be able to re-use the merchant's choices (such as the selector type). This
-is however only possible by rendering the whole product page, and extracting the relevant part. Here, we therefore render the
-quick buy information in a template, that will be extracted in JS, which ensures it is not visible in the main product page
+  IMPLEMENTATION NOTE: Shopify does not currently allows to render a given section within the context of a given product. However,
+  when rendering the quick buy drawers/popovers, we want to be able to re-use the merchant's choices (such as the selector type). This
+  is however only possible by rendering the whole product page, and extracting the relevant part. Here, we therefore render the
+  quick buy information in a template, that will be extracted in JS, which ensures it is not visible in the main product page
 {%- endcomment -%}
 {%- render 'product-quick-buy', product: product -%}
 
@@ -181,10 +211,10 @@ quick buy information in a template, that will be extracted in JS, which ensures
 {% schema %}
 {
   "name": "t:sections.main_product.name",
-  "class": "shopify-section--main-product",
+  "class": "shopify-section--main-product roduct-page-main",
   "tag": "section",
   "settings": [
-   {
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:global.colors.scheme",
@@ -930,6 +960,26 @@ quick buy information in a template, that will be extracted in JS, which ensures
             {
               "value": "none",
               "label": "t:global.icons.none"
+            },
+            {
+              "value": "infinity",
+              "label": "t:global.icons.infinity",
+              "group": "t:global.icons.custom_category"
+            },
+            {
+              "value": "extend",
+              "label": "t:global.icons.extend",
+              "group": "t:global.icons.custom_category"
+            },
+            {
+              "value": "heart",
+              "label": "t:global.icons.heart",
+              "group": "t:global.icons.custom_category"
+            },
+            {
+              "value": "truck",
+              "label": "t:global.icons.truck",
+              "group": "t:global.icons.custom_category"
             },
             {
               "value": "picto-award-gift",
@@ -1807,6 +1857,19 @@ quick buy information in a template, that will be extracted in JS, which ensures
           "id": "text",
           "label": "t:sections.main_product.blocks.more_information.text",
           "default": "More information"
+        }
+      ]
+    },
+    {
+      "type": "accordion_metafield",
+      "name": "Accordion for metafield",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Metafield handle",
+          "default": "dropdowns"
         }
       ]
     }

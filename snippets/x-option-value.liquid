@@ -232,7 +232,7 @@
       {% for variant in product.variants %}
         {% if variant.option1 == label %}
           {% assign file_name = variant.featured_image.src | remove: 'files/' %}
-          {{ variant.featured_image | image_url: width: '30' | image_tag: data-file-name: file_name }}
+          {{ variant.featured_image | image_url: width: '60' | image_tag: data-file-name: file_name }}
           {% break %}
         {% endif %}
       {% endfor %}

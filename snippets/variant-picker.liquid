@@ -62,9 +62,9 @@ Supported variables
         endif
       %}
 
-      <fieldset class="variant-picker__option v-stack gap-2">
+      <fieldset class="variant-picker__option v-stack gap-4">
         <div class="variant-picker__option-info h-stack justify-between gap-2">
-          <div class="h-stack gap-1">
+          <div class="h-stack gap-3">
             <legend>{{ option.name }}:</legend>
 
             {%- if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'variant_image' -%}
@@ -163,7 +163,7 @@ Supported variables
                   when 'variant_image'
                     render 'option-value', type: 'thumbnail', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
                   when 'swatch'
-                    render 'option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                    render 'x-option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
                   when 'block'
                     render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
                   when 'block_swatch'

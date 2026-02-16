@@ -103,6 +103,59 @@
     allow-zoom="{{ max_image_zoom_level }}"
   {% endif %}
 >
+  <div class="product-info__mobile">
+    {%- if product != blank -%}
+      {%- assign product_title = product.title -%}
+    {%- else -%}
+      {%- assign product_title = 'general.on_boarding.product_title' | t -%}
+    {%- endif -%}
+
+    {%- if request.page_type == 'product' and context == 'main_product' -%}
+      <h1 class="product-title h1 {{ block.settings.heading_tag }}">
+        {{- product_title -}}
+      </h1>
+    {%- else -%}
+      <h2 class="product-title h2 {{ block.settings.heading_tag }}">
+        <a href="{{ product.url }}">{{ product_title }}</a>
+      </h2>
+    {%- endif -%}
+
+    {%- if product != blank -%}
+      {%- render 'x-product-rating',
+        product: product,
+        show_empty: block.settings.show_empty,
+        display_mode: block.settings.rating_mode,
+        show_placeholder: false
+      -%}
+    {%- else -%}
+      {%- render 'product-rating', show_placeholder: true -%}
+    {%- endif -%}
+
+    {%- if product.selected_or_first_available_variant != null -%}
+      <div class="v-stack">
+        {%- render 'price-list',
+          product: product,
+          variant: product.selected_or_first_available_variant,
+          context: 'product'
+        -%}
+
+        {%- if block.settings.show_taxes_notice -%}
+          <p class="text-sm text-subdued">
+            {%- if cart.taxes_included -%}
+              {{ 'product.general.taxes_included' | t }}
+            {%- else -%}
+              {{ 'product.general.taxes_excluded' | t }}
+            {%- endif -%}
+
+            {%- if shop.shipping_policy.body != blank -%}
+              {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+            {%- endif -%}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+  
   {%- if enable_image_zoom -%}
     <open-lightbox-button class="contents">
       <button class="product-gallery__zoom-button circle-button circle-button--sm md:hidden">

@@ -12,8 +12,36 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "frequently_bought_app_block_zHKLQt": {
+          "type": "shopify://apps/frequently-bought/blocks/app-block/b1a8cbea-c844-4842-9529-7c62dbab1b1f",
+          "settings": {}
+        },
+        "loox_reviews_loox_rating_jfrDMB": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "rating_ViaFMF": {
+          "type": "rating",
+          "settings": {
+            "show_empty": true,
+            "rating_mode": "rating"
+          }
+        },
         "vendor": {
           "type": "vendor",
+          "disabled": true,
           "settings": {}
         },
         "title": {
@@ -28,21 +56,6 @@
             "show_taxes_notice": false
           }
         },
-        "payment_terms": {
-          "type": "payment_terms",
-          "settings": {}
-        },
-        "separator": {
-          "type": "separator",
-          "settings": {}
-        },
-        "description": {
-          "type": "description",
-          "settings": {
-            "collapse_content": false,
-            "show_below_gallery": false
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -50,18 +63,37 @@
             "selector_style": "block",
             "swatch_selector_style": "swatch",
             "variant_image_options": "",
-            "size_chart_page": ""
+            "size_chart_page": "ring-size-guide"
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "disabled": true,
+          "settings": {}
+        },
+        "separator": {
+          "type": "separator",
+          "disabled": true,
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
           }
         },
         "quantity_selector": {
           "type": "quantity_selector",
+          "disabled": true,
           "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true,
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
             "atc_button_background": "",
             "atc_button_text_color": "",
             "payment_button_background": "",
@@ -77,19 +109,81 @@
             "stack_products": false,
             "show_quick_buy": true
           }
+        },
+        "feature_with_icon_D89QPW": {
+          "type": "feature_with_icon",
+          "settings": {
+            "text": "lifetime Warranty",
+            "link": "",
+            "icon": "infinity",
+            "icon_width": 16,
+            "background": "#ffffff",
+            "text_color": "rgba(0,0,0,0)",
+            "border_color": ""
+          }
+        },
+        "feature_with_icon_Mf69f6": {
+          "type": "feature_with_icon",
+          "settings": {
+            "text": "PERFECT FIT GUARANTEE",
+            "link": "",
+            "icon": "extend",
+            "icon_width": 16,
+            "background": "#ffffff",
+            "text_color": "rgba(0,0,0,0)",
+            "border_color": ""
+          }
+        },
+        "feature_with_icon_F4Xhgi": {
+          "type": "feature_with_icon",
+          "settings": {
+            "text": "100%  SATISFACTION",
+            "link": "",
+            "icon": "heart",
+            "icon_width": 16,
+            "background": "#ffffff",
+            "text_color": "rgba(0,0,0,0)",
+            "border_color": ""
+          }
+        },
+        "feature_with_icon_jF9kGK": {
+          "type": "feature_with_icon",
+          "settings": {
+            "text": "FAST SHIPPING",
+            "link": "",
+            "icon": "truck",
+            "icon_width": 16,
+            "background": "#ffffff",
+            "text_color": "rgba(0,0,0,0)",
+            "border_color": ""
+          }
+        },
+        "accordion_metafield_xQ8Vwh": {
+          "type": "accordion_metafield",
+          "settings": {
+            "handle": "dropdowns"
+          }
         }
       },
       "block_order": [
+        "frequently_bought_app_block_zHKLQt",
+        "loox_reviews_loox_rating_jfrDMB",
+        "rating_ViaFMF",
         "vendor",
         "title",
         "price",
+        "variant_picker",
         "payment_terms",
         "separator",
         "description",
-        "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "complementary_products"
+        "complementary_products",
+        "feature_with_icon_D89QPW",
+        "feature_with_icon_Mf69f6",
+        "feature_with_icon_F4Xhgi",
+        "feature_with_icon_jF9kGK",
+        "accordion_metafield_xQ8Vwh"
       ],
       "settings": {
         "color_scheme": "",
@@ -104,24 +198,6 @@
         "enable_video_looping": true,
         "enable_image_zoom": false,
         "max_image_zoom_level": 3
-      }
-    },
-    "related-products": {
-      "type": "related-products",
-      "disabled": true,
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "hide_product_information": false,
-        "stack_products": false,
-        "recommendations_count": 10,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
-        "subheading": "",
-        "title": "Related products",
-        "content": ""
       }
     },
     "featured_collections_qCkzh3": {
@@ -153,11 +229,73 @@
         "vertical_spacing_factor": 1,
         "subheading": ""
       }
+    },
+    "1771243654d36364aa": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_V8hkmW": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_V8hkmW"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "recently <em><strong>viewed</strong></em>",
+        "content": ""
+      }
+    },
+    "newsletter_AWhAf9": {
+      "type": "newsletter",
+      "disabled": true,
+      "name": "t:sections.newsletter.presets.newsletter.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "image_size": "auto",
+        "subheading": "",
+        "title": "15% off your 1st order",
+        "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
+        "button_text": "",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
     }
   },
   "order": [
     "main",
+    "featured_collections_qCkzh3",
+    "1771243654d36364aa",
     "related-products",
-    "featured_collections_qCkzh3"
+    "newsletter_AWhAf9"
   ]
 }
