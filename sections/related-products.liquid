@@ -1,3 +1,7 @@
+<script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+{{ 'featured-collections.css' | asset_url | stylesheet_tag }}
+
 <product-recommendations class="block" product="{{ product.id }}" limit="{{ section.settings.recommendations_count }}" intent="related">
   {%- if recommendations.performed and recommendations.products_count > 0 -%}
     <style>
@@ -23,7 +27,7 @@
 
           {%- capture product_list -%}
             {%- for product in recommendations.products -%}
-              {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, position: forloop.index, hide_product_information: section.settings.hide_product_information -%}
+              {%- render 'x-product-card', product: product, reveal: settings.stagger_products_apparition, position: forloop.index, hide_product_information: section.settings.hide_product_information -%}
             {%- endfor -%}
           {%- endcapture -%}
 
