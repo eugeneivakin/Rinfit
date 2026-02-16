@@ -208,7 +208,7 @@
           "settings": {
             "collection": "best-sellers",
             "products_count": 8,
-            "title": "",
+            "title": "Best <em><strong>Sellers</strong></em>",
             "link_url": "",
             "link_text": "shop all"
           }
@@ -248,7 +248,6 @@
       "block_order": [
         "loox_reviews_loox_dynamic_section_V8hkmW"
       ],
-      "disabled": true,
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": false,
@@ -258,7 +257,6 @@
     },
     "related-products": {
       "type": "related-products",
-      "disabled": true,
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": false,
@@ -276,7 +274,6 @@
     },
     "newsletter_AWhAf9": {
       "type": "newsletter",
-      "disabled": true,
       "name": "t:sections.newsletter.presets.newsletter.name",
       "settings": {
         "color_scheme": "scheme-1",
