@@ -1,8 +1,22 @@
 {%- if section.blocks.size > 0 -%}
-  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
 
   <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
-    <div {% unless section.settings.remove_horizontal_spacing %}class="container"{% endunless %}>
+    <div
+      {% unless section.settings.remove_horizontal_spacing %}
+        class="container"
+      {% endunless %}
+    >
+      {%- render 'section-header',
+        subheading: section.settings.subheading,
+        heading: section.settings.title,
+        content: section.settings.content,
+        text_alignment: 'stretch',
+        button_shop_all: button_shop_all
+      -%}
       {%- for block in section.blocks -%}
         {%- render block -%}
       {%- endfor -%}
@@ -42,6 +56,25 @@
       "id": "remove_horizontal_spacing",
       "label": "t:global.spacing.remove_horizontal_spacing",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:global.section.header_category"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:global.text.subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content"
     }
   ],
   "blocks": [
