@@ -3,6 +3,10 @@
   {{ 'product-card.css' | asset_url | stylesheet_tag }}
   {{ 'featured-collections.css' | asset_url | stylesheet_tag }}
 
+  {% if settings.show_quick_buy %}
+    {{ 'popup-quick-buy-modal.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
   <style>
     #shopify-section-{{ section.id }} {
       --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
@@ -300,3 +304,9 @@
   ]
 }
 {% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.product-card__button-wrapper > button').click();
+  });
+</script>
