@@ -82,10 +82,12 @@
         {%- render 'product-info', product: product, product_form_id: product_form_id, context: 'quick_buy' -%}
       </div>
 
-      <div class="quick-buy-modal__footer-wrapper prose">
-        <a href="{{ product.url }}">more details</a>
+      <div class="quick-buy-modal__footer-wrapper">
+        <a href="{{ product.url }}" class="link">more details</a>
         <span>or</span>
-        <a href="#">continue shopping</a>
+        <dialog-close-button>
+          <span class="link">continue shopping</span>
+        </dialog-close-button>
       </div>
     </product-rerender>
   </div>
