@@ -208,28 +208,12 @@
         "q_size": 18,
         "a_size": 16
       }
-    },
-    "newsletter_dLjwic": {
-      "type": "newsletter",
-      "name": "t:sections.newsletter.presets.newsletter.name",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "image_size": "auto",
-        "subheading": "",
-        "title": "15% off your 1st order",
-        "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
-        "button_text": "",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
-      }
     }
   },
   "order": [
     "faq",
     "title_contact_CfcTF8",
     "hero_ring_guide_PFmNLB",
-    "faq_tabs_tENH96",
-    "newsletter_dLjwic"
+    "faq_tabs_tENH96"
   ]
 }

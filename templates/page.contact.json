@@ -37,27 +37,11 @@
         "title": "",
         "content": "<p>We’re happy to answer any questions you have or provide any assistance. Just send us a message in the form below or use our email <a href=\"mailto:support@rinfit.com\" title=\"mailto:support@rinfit.com\">support@rinfit.com</a> and we’ll get back to you as soon as possible!</p>"
       }
-    },
-    "newsletter_CXpj9n": {
-      "type": "newsletter",
-      "name": "t:sections.newsletter.presets.newsletter.name",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "image_size": "auto",
-        "subheading": "",
-        "title": "15% off your 1st order",
-        "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
-        "button_text": "",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
-      }
     }
   },
   "order": [
     "title_contact_TKHeAK",
     "main",
-    "contact-form",
-    "newsletter_CXpj9n"
+    "contact-form"
   ]
 }
