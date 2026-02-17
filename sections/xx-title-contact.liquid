@@ -1,0 +1,80 @@
+<style>
+.main-title-contact{
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 59px;
+    line-height: 50px;
+    letter-spacing: 0;
+    text-align: center;
+    font-style: Italic;
+    text-transform: capitalize;
+    color: #807371;
+}
+.main-header-contact-section{
+    background-color: {{ section.settings.background_color }};
+    width: 100%;
+    height: 130px;
+    display: flex;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: {{ section.settings.top_padding }}px;
+    margin-bottom: {{ section.settings.bottom_padding }}px;
+}
+@media (max-width: 1000px){
+    .main-header-contact-section{
+        margin-top: 60px;
+    }
+}
+@media (max-width: 768px){
+    .main-title-contact{
+        font-size: 46px;
+    }
+}
+</style>
+<section class="main-header-contact-section">
+    {% if section.settings.title != blank %}
+        <div class="main-title-contact">{{ section.settings.title }}</div>
+    {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Title contact",
+  "settings": [
+    {
+        "type": "richtext",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background"
+    },
+    {
+        "type": "range",
+        "id": "top_padding",
+        "label": "Padding top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 40
+    },
+    {
+        "type": "range",
+        "id": "bottom_padding",
+        "label": "Padding bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 40
+    },
+  ],
+  "presets": [
+    {
+      "name": "Title contact"
+    }
+  ]
+}
+{% endschema %}
