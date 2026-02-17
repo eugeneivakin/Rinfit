@@ -1,0 +1,30 @@
+    
+<!--this is your button -->
+<!--FMRS-BUTTON:BEGIN-->
+<link   href='//static.findmyringsize.com/shared/buttons/fmrs-buttons.css' rel='stylesheet' type='text/css' />
+<a id='ringsizer' class='fmrs-bsize-ss fmrs-bdes-ss3  fmrs-button-host'  alt='Find Your Ring Size' href='//Vadim.findmyringsize.com' target='_self' >Find Your Ring Size</a> 
+<!--FMRS-BUTTON:END-->
+
+
+
+
+<script>
+    var ringsizer = new FMRS();
+    ringsizer.initialize({
+        'client': 'Vadim',
+        'mode': 'overlay',
+        'overlaySettings': { boxTheme: 'facebook', shadowOverlay: true }
+    });
+    ringsizer.bind();
+</script>
+{% schema %}
+{
+    "name": "Ring size",
+    "settings": [],
+    "presets": [
+        {
+            "name": "Ring size"
+        }
+    ]
+}
+{% endschema %}

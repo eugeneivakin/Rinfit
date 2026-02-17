@@ -1,0 +1,450 @@
+{% comment %}
+  Ring Size Guide Section
+  Pixel-perfect section for ring size measurement guide
+{% endcomment %}
+
+<style>
+  .ring-size-guide {
+    background-color: #f9f9f8;
+    font-family: 'Kumbh Sans', sans-serif;
+  }
+  @media (min-width: 768px) and (max-width: 1240px) {
+    img.ring-size-guide__step-image {
+      height: auto;
+    }
+    div.ring-size-guide__title{
+      max-height: fit-content;
+    }
+  }
+  /* Desktop styles for 1440px */
+  @media (min-width: 768px) {
+    .ring-size-guide {
+      padding: 20px 80px;
+    }
+    
+    .ring-size-guide__title {
+      text-align: center;
+      color: #373a36;
+      margin-bottom: 40px;
+      text-transform: capitalize;
+      max-height: 40px;
+    }
+    
+    .ring-size-guide__title-regular,
+    .ring-size-guide__title-italic {
+      display: inline;
+    }
+    
+    .ring-size-guide__title-regular {
+      font-size: 46px;
+      line-height: 44px;
+      font-weight: 300;
+      margin-right: 10px;
+    }
+    
+    .ring-size-guide__title-italic {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: normal;
+      font-size: 46px;
+      line-height: 44px;
+    }
+    
+    .ring-size-guide__steps {
+      display: flex;
+      gap: 19px;
+      margin-bottom: 40px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    
+    .ring-size-guide__step {
+      flex: 1;
+      max-width: 307px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .ring-size-guide__step-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      order: 1;
+    }
+    
+    .ring-size-guide__step-content {
+      text-align: center;
+      order: 2;
+    }
+    
+    .ring-size-guide__step-number {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 30px;
+      color: #373a36;
+    }
+    
+    .ring-size-guide__step-description {
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+      color: #373936;
+    }
+    
+    .ring-size-guide__chart--desktop {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+    
+    .ring-size-guide__chart--mobile {
+      display: none;
+    }
+  }
+  
+  /* Mobile styles - pixel perfect from Figma */
+  @media (max-width: 767px) {
+    .ring-size-guide {
+      background-color: #f9f9f8;
+      padding: 10px 20px 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    
+    .ring-size-guide__content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    
+    .ring-size-guide__title {
+      width: 100%;
+      text-align: center;
+      color: #373a36;
+      text-transform: capitalize;
+      margin-bottom: 20px;
+    }
+    
+    .ring-size-guide__title-regular {
+      font-family: 'Kumbh Sans', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 34px;
+      display: block;
+      margin-bottom: 0;
+    }
+    
+    .ring-size-guide__title-italic {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: normal;
+      font-size: 46px;
+      line-height: 46px;
+      display: block;
+    }
+    
+    .ring-size-guide__steps {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .ring-size-guide__step {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-sizing: border-box;
+    }
+    
+    .ring-size-guide__step:nth-child(1) {
+      height: 129px;
+      width: 304px;
+    }
+    
+    .ring-size-guide__step:nth-child(2) {
+      height: 107px;
+      width: 305px;
+    }
+    
+    .ring-size-guide__step:nth-child(3) {
+      height: 122px;
+      width: 306px;
+    }
+    
+    .ring-size-guide__step:nth-child(4) {
+      width: 307px;
+      min-height: 107px;
+    }
+    
+    .ring-size-guide__step-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      font-size: 14px;
+    }
+    
+    .ring-size-guide__step:nth-child(1) .ring-size-guide__step-content {
+      width: 150px;
+    }
+    
+    .ring-size-guide__step:nth-child(2) .ring-size-guide__step-content,
+    .ring-size-guide__step:nth-child(3) .ring-size-guide__step-content {
+      width: 150px;
+    }
+    
+    .ring-size-guide__step:nth-child(4) .ring-size-guide__step-content {
+      width: 158px;
+    }
+    
+    .ring-size-guide__step-number {
+      font-family: 'Kumbh Sans', sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 30px;
+      color: #373a36;
+      margin-bottom: 0;
+    }
+    
+    .ring-size-guide__step-description {
+      font-family: 'Kumbh Sans', sans-serif;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: #373936;
+    }
+    
+    .ring-size-guide__step:nth-child(1) .ring-size-guide__step-description {
+      height: 58px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .ring-size-guide__step-image {
+      flex-shrink: 0;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    
+    .ring-size-guide__step:nth-child(1) .ring-size-guide__step-image {
+      width: 142px;
+      height: 136.8px;
+      transform: rotate(270deg);
+    }
+    
+    .ring-size-guide__step:nth-child(2) .ring-size-guide__step-image {
+      width: 136px;
+      height: 136px;
+    }
+    
+    .ring-size-guide__step:nth-child(3) .ring-size-guide__step-image {
+      width: 139px;
+      height: 136px;
+    }
+    
+    .ring-size-guide__step:nth-child(4) .ring-size-guide__step-image {
+      width: 134px;
+      height: 136px;
+    }
+    
+    .ring-size-guide__chart--desktop {
+      display: none;
+    }
+    
+    .ring-size-guide__chart--mobile {
+      width: 349px;
+      height: 262px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<section class="ring-size-guide">
+  <div class="ring-size-guide__content">
+    <div class="ring-size-guide__title">
+      {% if section.settings.title_regular != blank %}
+        <div class="ring-size-guide__title-regular">{{ section.settings.title_regular }}</div>
+      {% endif %}
+      {% if section.settings.title_italic != blank %}
+        <div class="ring-size-guide__title-italic">{{ section.settings.title_italic }}</div>
+      {% endif %}
+    </div>
+    
+    <div class="ring-size-guide__steps">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'step' %}
+            <div class="ring-size-guide__step" {{ block.shopify_attributes }}>
+              <div class="ring-size-guide__step-content">
+                {% if block.settings.step_title != blank %}
+                  <div class="ring-size-guide__step-number">
+                    {{ block.settings.step_title }}
+                  </div>
+                {% endif %}
+                
+                {% if block.settings.step_description != blank %}
+                  <div class="ring-size-guide__step-description">
+                    {{ block.settings.step_description }}
+                  </div>
+                {% endif %}
+              </div>
+              
+              {% if block.settings.step_image != blank %}
+                <img 
+                  src="{{ block.settings.step_image | image_url: width: 400 }}"
+                  alt="{{ block.settings.step_title | escape }}"
+                  class="ring-size-guide__step-image"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.chart_image != blank %}
+      <img 
+        src="{{ section.settings.chart_image | image_url: width: 1200 }}"
+        alt="{{ section.settings.chart_alt | default: 'Ring Size Chart' | escape }}"
+        class="ring-size-guide__chart ring-size-guide__chart--desktop"
+        loading="lazy"
+      >
+    {% endif %}
+    
+    {% if section.settings.chart_image_mobile != blank %}
+      <img 
+        src="{{ section.settings.chart_image_mobile | image_url: width: 400 }}"
+        alt="{{ section.settings.chart_alt | default: 'Ring Size Chart' | escape }}"
+        class="ring-size-guide__chart ring-size-guide__chart--mobile"
+        loading="lazy"
+      >
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ring Size Guide",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "title_regular",
+      "label": "Regular title text",
+      "default": "How To Manually Measure"
+    },
+    {
+      "type": "text",
+      "id": "title_italic",
+      "label": "Italic title text",
+      "default": "Your Ring Size"
+    },
+    {
+      "type": "header",
+      "content": "Size Chart"
+    },
+    {
+      "type": "image_picker",
+      "id": "chart_image",
+      "label": "Desktop size chart image"
+    },
+    {
+      "type": "image_picker",
+      "id": "chart_image_mobile",
+      "label": "Mobile size chart image"
+    },
+    {
+      "type": "text",
+      "id": "chart_alt",
+      "label": "Chart alt text",
+      "default": "Ring Size Chart"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Instruction Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "step_image",
+          "label": "Step image"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step title",
+          "default": "Step One"
+        },
+        {
+          "type": "textarea",
+          "id": "step_description",
+          "label": "Step description",
+          "default": "Collect a strip of paper, a pen/pencil and a ruler."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ring Size Guide",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Step One",
+            "step_description": "Collect a strip of paper, a pen/pencil and a ruler."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Step Two", 
+            "step_description": "Wrap the paper strip around your finger so you make a \"ring\"."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Step Three",
+            "step_description": "Once you have the paper fitted, use the pen/pencil to mark where the edges overlap."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Step Four",
+            "step_description": "Now, measure the length of the ring using the ruler and compare it to the chart."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,530 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background: #fff;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    --primary-color: #373A36;
+    --muted-color: {{ section.settings.text_muted }};
+    --border-color: rgba(128, 115, 113, 0.2);
+    --question-size: {{ section.settings.q_size }}px;
+    --answer-size: {{ section.settings.a_size }}px;
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: "Kumbh Sans", var(--font-body, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+  }
+
+  .faq-wrap-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .faq-tabs-{{ section.id }} {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .faq-tab-{{ section.id }} {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(128, 115, 113, 0.2);
+    background: #fff;
+    color: var(--primary-color);
+    font: 400 14px/1 "Kumbh Sans", sans-serif;
+    font-variation-settings: 'YOPQ' 300;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.3s var(--transition-timing);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .faq-tab-{{ section.id }}[aria-selected="true"] {
+    border: 1px solid rgba(128, 115, 113, 0.6);
+  }
+
+  .faq-panels-{{ section.id }} {
+    position: relative;
+  }
+
+  .faq-panel-{{ section.id }} {
+    display: none;
+  }
+
+  .faq-panel-{{ section.id }}.is-active {
+    display: block;
+    animation: fadeInUp 0.4s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .faq-list-{{ section.id }} {
+    background: #fff;
+  }
+
+  .faq-item-{{ section.id }} {
+    border-bottom: 1px solid rgba(55, 58, 54, 0.3);
+    transition: background-color 0.2s var(--transition-timing);
+    margin-bottom: 20px;
+    min-height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .faq-item-{{ section.id }}:last-child {
+    border-bottom: 1px solid rgba(55, 58, 54, 0.3);
+    margin-bottom: 0;
+  }
+
+  .faq-q-{{ section.id }} {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 0;
+    text-align: left;
+    color: var(--primary-color);
+    font: 600 var(--question-size)/44px "Kumbh Sans", sans-serif;
+    font-variation-settings: 'YOPQ' 300;
+    cursor: pointer;
+    transition: all 0.2s var(--transition-timing);
+    min-height: 24px;
+  }
+
+  .faq-q-{{ section.id }}:focus {
+    outline: none;
+  }
+
+  .faq-icon-{{ section.id }} {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--transition-timing);
+  }
+
+
+
+  .faq-a-{{ section.id }} {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all 0.4s var(--transition-timing);
+  }
+
+  .faq-a-{{ section.id }}.is-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .faq-a-{{ section.id }} .inner {
+    padding: 10px 0;
+    color: var(--muted-color);
+    font: 400 var(--answer-size)/20px "Kumbh Sans", sans-serif;
+    font-variation-settings: 'YOPQ' 300;
+  }
+
+  .faq-root-{{ section.id }}[data-ready="false"] .faq-a-{{ section.id }} {
+    display: none;
+  }
+
+
+  @media (max-width: 768px) {
+    .faq-wrap-{{ section.id }} {
+      max-width: 390px;
+      padding: 0 20px;
+    }
+
+    .faq-tabs-{{ section.id }} {
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding: 0 20px 0 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .faq-tabs-{{ section.id }}::-webkit-scrollbar {
+      display: none;
+    }
+
+    .faq-tab-{{ section.id }} {
+      padding: 10px 15px;
+    }
+
+    .faq-q-{{ section.id }} {
+      font: 600 14px/20px "Kumbh Sans", sans-serif;
+      gap: 10px;
+      padding: 11px 0;
+    }
+
+    .faq-a-{{ section.id }} .inner {
+      padding: 10px 0;
+    }
+
+    .faq-item-{{ section.id }} {
+      margin-bottom: 10px;
+      min-height: 60px;
+    }
+
+    .faq-item-{{ section.id }}:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .faq-wrap-{{ section.id }} {
+      max-width: 390px;
+      padding: 0 20px;
+    }
+  }
+
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+{% endstyle %}
+
+{%- assign categories_raw = '' -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'faq' and block.settings.category != blank -%}
+    {%- assign cat = block.settings.category | strip -%}
+    {%- unless categories_raw contains cat -%}
+      {%- assign categories_raw = categories_raw | append: cat | append: '||' -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign tabs = categories_raw | split: '||' | uniq | compact -%}
+{%- if tabs.size == 0 -%}{%- assign tabs = tabs | push: 'FAQ' -%}{%- endif -%}
+
+<section class="faq-root-{{ section.id }} faq-wrap-{{ section.id }}" data-ready="false">
+  <div class="faq-tabs-{{ section.id }}" role="tablist">
+    {%- for t in tabs -%}
+      {%- assign t_handle = t | handleize -%}
+      <button class="faq-tab-{{ section.id }}" role="tab" data-tab="{{ t_handle }}" aria-selected="{{ forloop.first }}">
+        {{ t }}
+      </button>
+    {%- endfor -%}
+  </div>
+
+  <div class="faq-panels-{{ section.id }}">
+    {%- for t in tabs -%}
+      {%- assign t_handle = t | handleize -%}
+      <div
+        class="faq-panel-{{ section.id }}{% if forloop.first %} is-active{% endif %}"
+        data-panel="{{ t_handle }}"
+        role="tabpanel"
+      >
+        <div class="faq-list-{{ section.id }}">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq' -%}
+              {%- assign bcat = block.settings.category | default: 'FAQ' | handleize -%}
+              {%- if bcat == t_handle -%}
+                <div class="faq-item-{{ section.id }}" {{ block.shopify_attributes }}>
+                  <button class="faq-q-{{ section.id }}" aria-expanded="false">
+                    <span>{{ block.settings.question }}</span>
+                    <span class="faq-icon-{{ section.id }}" aria-hidden="true">
+                      <svg
+                        class="plus-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path d="M4 12.6154V11.3846H11.3846V4H12.6154V11.3846H20V12.6154H12.6154V20H11.3846V12.6154H4Z" fill="#373A36"/>
+                      </svg>
+                      <svg
+                        class="minus-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        style="display: none;"
+                      >
+                        <path d="M5.5 11V12H11.5H12.5H18.5V11H12.5H11.5H5.5Z" fill="#373A36"/>
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="faq-a-{{ section.id }}">
+                    <div class="inner">{{ block.settings.answer }}</div>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  (() => {
+    const root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+
+    const scope = root.querySelector('.faq-root-{{ section.id }}');
+    if (!scope) return;
+
+    const tabs = scope.querySelectorAll('.faq-tab-{{ section.id }}');
+    const panels = scope.querySelectorAll('.faq-panel-{{ section.id }}');
+    const items = scope.querySelectorAll('.faq-item-{{ section.id }}');
+
+    const debounce = (func, wait) => {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    };
+
+    const switchToPanel = (targetKey) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.tab === targetKey;
+        tab.setAttribute('aria-selected', isActive);
+        tab.setAttribute('tabindex', isActive ? '0' : '-1');
+      });
+
+      panels.forEach((panel) => {
+        const isTarget = panel.dataset.panel === targetKey;
+
+        if (isTarget) {
+          panel.classList.add('is-active');
+
+          const accordions = panel.querySelectorAll('.faq-a-{{ section.id }}');
+          accordions.forEach((accordion) => {
+            accordion.classList.remove('is-open');
+            accordion.style.height = '0px';
+          });
+
+          const questions = panel.querySelectorAll('.faq-q-{{ section.id }}');
+          questions.forEach((question) => {
+            question.setAttribute('aria-expanded', 'false');
+            const plusIcon = question.querySelector('.plus-icon');
+            const minusIcon = question.querySelector('.minus-icon');
+            if (plusIcon) plusIcon.style.display = 'block';
+            if (minusIcon) minusIcon.style.display = 'none';
+          });
+        } else {
+          panel.classList.remove('is-active');
+        }
+      });
+    };
+
+    if (tabs.length > 0) {
+      switchToPanel(tabs[0].dataset.tab);
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchToPanel(tab.dataset.tab);
+          tab.focus();
+        });
+
+        tab.addEventListener('keydown', (e) => {
+          let newIndex = index;
+
+          switch (e.key) {
+            case 'ArrowLeft':
+            case 'ArrowUp':
+              e.preventDefault();
+              newIndex = index > 0 ? index - 1 : tabs.length - 1;
+              break;
+            case 'ArrowRight':
+            case 'ArrowDown':
+              e.preventDefault();
+              newIndex = index < tabs.length - 1 ? index + 1 : 0;
+              break;
+            case 'Home':
+              e.preventDefault();
+              newIndex = 0;
+              break;
+            case 'End':
+              e.preventDefault();
+              newIndex = tabs.length - 1;
+              break;
+            default:
+              return;
+          }
+
+          const targetTab = tabs[newIndex];
+          switchToPanel(targetTab.dataset.tab);
+          targetTab.focus();
+        });
+      });
+    }
+
+    const initializeAccordion = (item) => {
+      const button = item.querySelector('.faq-q-{{ section.id }}');
+      const answer = item.querySelector('.faq-a-{{ section.id }}');
+      const inner = answer?.querySelector('.inner');
+
+      if (!button || !answer || !inner) return;
+
+      answer.style.height = '0px';
+      button.setAttribute('aria-expanded', 'false');
+      answer.setAttribute('aria-hidden', 'true');
+
+      const toggleAccordion = () => {
+        const panel = item.closest('.faq-panel-{{ section.id }}');
+        const isCurrentlyOpen = button.getAttribute('aria-expanded') === 'true';
+
+        const otherItems = panel.querySelectorAll('.faq-item-{{ section.id }}');
+        otherItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            const otherButton = otherItem.querySelector('.faq-q-{{ section.id }}');
+            const otherAnswer = otherItem.querySelector('.faq-a-{{ section.id }}');
+
+            otherButton.setAttribute('aria-expanded', 'false');
+            otherAnswer.setAttribute('aria-hidden', 'true');
+            otherAnswer.classList.remove('is-open');
+            otherAnswer.style.height = '0px';
+
+            const otherPlusIcon = otherButton.querySelector('.plus-icon');
+            const otherMinusIcon = otherButton.querySelector('.minus-icon');
+            if (otherPlusIcon) otherPlusIcon.style.display = 'block';
+            if (otherMinusIcon) otherMinusIcon.style.display = 'none';
+          }
+        });
+
+        if (!isCurrentlyOpen) {
+          button.setAttribute('aria-expanded', 'true');
+          answer.setAttribute('aria-hidden', 'false');
+          answer.classList.add('is-open');
+          answer.style.height = inner.scrollHeight + 'px';
+
+          const plusIcon = button.querySelector('.plus-icon');
+          const minusIcon = button.querySelector('.minus-icon');
+          if (plusIcon) plusIcon.style.display = 'none';
+          if (minusIcon) minusIcon.style.display = 'block';
+        } else {
+          button.setAttribute('aria-expanded', 'false');
+          answer.setAttribute('aria-hidden', 'true');
+          answer.classList.remove('is-open');
+          answer.style.height = '0px';
+
+          const plusIcon = button.querySelector('.plus-icon');
+          const minusIcon = button.querySelector('.minus-icon');
+          if (plusIcon) plusIcon.style.display = 'block';
+          if (minusIcon) minusIcon.style.display = 'none';
+        }
+      };
+
+      button.addEventListener('click', toggleAccordion);
+
+      button.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleAccordion();
+        }
+      });
+
+      const updateHeight = debounce(() => {
+        if (button.getAttribute('aria-expanded') === 'true') {
+          answer.style.height = inner.scrollHeight + 'px';
+        }
+      }, 100);
+
+      if ('ResizeObserver' in window) {
+        const resizeObserver = new ResizeObserver(updateHeight);
+        resizeObserver.observe(inner);
+
+        const cleanup = () => resizeObserver.disconnect();
+        if (typeof window.faqCleanupCallbacks === 'undefined') {
+          window.faqCleanupCallbacks = [];
+        }
+        window.faqCleanupCallbacks.push(cleanup);
+      } else {
+        window.addEventListener('resize', updateHeight);
+      }
+    };
+
+    items.forEach(initializeAccordion);
+
+    scope.setAttribute('data-ready', 'true');
+
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = 'FAQ section loaded';
+    scope.appendChild(announcement);
+
+    setTimeout(() => {
+      announcement.remove();
+    }, 1000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ (Tabs, white bg)",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    },
+    { "type": "number", "id": "max_width", "label": "Max width (px)", "default": 920 },
+    { "type": "color", "id": "text_muted", "label": "Answer text color", "default": "#5C5F5B" },
+    { "type": "range", "id": "q_size", "label": "Question font size", "min": 14, "max": 28, "step": 1, "default": 16 },
+    { "type": "range", "id": "a_size", "label": "Answer font size", "min": 12, "max": 22, "step": 1, "default": 16 }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "category", "label": "Category (tab label)", "default": "Product" },
+        { "type": "text", "id": "question", "label": "Question", "default": "Your question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Your answer text</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 60,
+  "presets": [{ "name": "FAQ Tabs" }]
+}
+{% endschema %}

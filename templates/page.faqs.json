@@ -1,0 +1,219 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "category": {
+          "type": "category",
+          "settings": {
+            "title": "Order",
+            "icon": "none",
+            "icon_width": 16
+          }
+        },
+        "question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship overseas?",
+            "answer": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.</p>"
+          }
+        },
+        "question-2": {
+          "type": "question",
+          "settings": {
+            "question": "How long will it take to get my orders?",
+            "answer": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.</p>"
+          }
+        },
+        "question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Any question?",
+            "answer": "<p>You can contact us through our contact page! We will be happy to assist you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category",
+        "question-1",
+        "question-2",
+        "question-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "show_categories": false,
+        "subheading": "Need help?",
+        "title": "Frequently Asked Questions",
+        "content": ""
+      }
+    },
+    "title_contact_CfcTF8": {
+      "type": "xx-title-contact",
+      "name": "Title contact",
+      "settings": {
+        "title": "<p><em>FAQ</em></p>",
+        "background_color": "#f1efed",
+        "top_padding": 20,
+        "bottom_padding": 0
+      }
+    },
+    "hero_ring_guide_PFmNLB": {
+      "type": "xx-hero-ring-guide",
+      "disabled": true,
+      "name": "Hero Ring Size Guide",
+      "settings": {
+        "title": "FAQ"
+      }
+    },
+    "faq_tabs_tENH96": {
+      "type": "xx-faq-tabs",
+      "blocks": {
+        "faq_9Fgigq": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "What are Rinfit Rings?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_rhAJwf": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "What kind of material is used to make Rinfit rings?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_3wiGDh": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Are Rinfit rings true to size?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_tytAAN": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "What if I am a half-size?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_tpFTgg": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Is it safe if I'm allergic to silicone?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_D8LR78": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "How do I know what ring size I should buy?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_x7wAq3": {
+          "type": "faq",
+          "settings": {
+            "category": "Product",
+            "question": "Are the rings heat resistant?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_thGNgQ": {
+          "type": "faq",
+          "settings": {
+            "category": "Orders",
+            "question": "My order hasn't arrived yet, can you help me find my order?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_3rjtih": {
+          "type": "faq",
+          "settings": {
+            "category": "Orders",
+            "question": "Where can I find my order history?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_rA6Hxm": {
+          "type": "faq",
+          "settings": {
+            "category": "Orders",
+            "question": "Are my Rinfit rings protected with a Lifetime warranty?",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_CCQCWx": {
+          "type": "faq",
+          "settings": {
+            "category": "shipping",
+            "question": "Your question",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_JafQTe": {
+          "type": "faq",
+          "settings": {
+            "category": "payment",
+            "question": "Your question payment",
+            "answer": "<p>Your answer text</p>"
+          }
+        },
+        "faq_Ptf6BP": {
+          "type": "faq",
+          "settings": {
+            "category": "contact",
+            "question": "Your question payment contact",
+            "answer": "<p>Your answer text</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_9Fgigq",
+        "faq_rhAJwf",
+        "faq_3wiGDh",
+        "faq_tytAAN",
+        "faq_tpFTgg",
+        "faq_D8LR78",
+        "faq_x7wAq3",
+        "faq_thGNgQ",
+        "faq_3rjtih",
+        "faq_rA6Hxm",
+        "faq_CCQCWx",
+        "faq_JafQTe",
+        "faq_Ptf6BP"
+      ],
+      "name": "FAQ Tabs",
+      "settings": {
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "max_width": 920,
+        "text_muted": "#5c5f5b",
+        "q_size": 18,
+        "a_size": 16
+      }
+    }
+  },
+  "order": [
+    "faq",
+    "title_contact_CfcTF8",
+    "hero_ring_guide_PFmNLB",
+    "faq_tabs_tENH96"
+  ]
+}

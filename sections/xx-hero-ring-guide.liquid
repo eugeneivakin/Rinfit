@@ -1,0 +1,140 @@
+<style>
+  .hero-ring-guide {
+    background-color: #e9e9e9;
+    border-radius: 30px;
+    font-family: 'Playfair Display', serif;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 35px 80px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .hero-ring-guide__container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .hero-ring-guide__title {
+    text-transform: capitalize;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: normal;
+    line-height: 0;
+    position: relative;
+    flex-shrink: 0;
+    color: #807371;
+    font-size: 59px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .hero-ring-guide__title p {
+    display: block;
+    line-height: 50px;
+    margin: 0;
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 767px) {
+    .hero-ring-guide {
+      padding: 20px;
+      padding-top: 12px;
+      border-radius: 20px;
+    }
+    
+    .hero-ring-guide__title {
+      font-size: 46px;
+    }
+    
+    .hero-ring-guide__title p {
+      line-height: 50px;
+    }
+  }
+  
+  [id^="shopify-section-"][id*="hero_ring_guide"] {
+  background-color: #fff;
+}
+@media(max-width: 1000px){
+  .hero-ring-guide.banner-hidden{
+    margin-top: 40px;
+  }
+}
+@media(max-width: 768px){
+  .hero-ring-guide.banner-hidden{
+    margin-top: 35px;
+  }
+}
+</style>
+
+<section class="hero-ring-guide">
+  <div class="hero-ring-guide__container">
+    {% if section.settings.title != blank %}
+      <h1 class="hero-ring-guide__title">
+        <p>{{ section.settings.title }}</p>
+      </h1>
+    {% endif %}
+  </div>
+</section>
+<script>
+    // Функція для перевірки висоти і додавання/видалення класу
+function checkPromoBanner() {
+  const promoBanner = document.querySelector('.promo-banner-wrapper');
+  const headerSection = document.querySelector('.hero-ring-guide');
+
+  if (!promoBanner || !headerSection) return; // якщо елементи не знайдено
+
+  if (promoBanner.offsetHeight === 0) {
+    // Додаємо клас, якщо висота 0
+    headerSection.classList.remove('banner-hidden');
+  } else {
+    // Видаляємо клас, якщо висота > 0
+    headerSection.classList.add('banner-hidden');
+  }
+}
+
+// Викликаємо функцію при завантаженні сторінки
+window.addEventListener('load', checkPromoBanner);
+
+// Або можна перевіряти при зміні розміру вікна
+window.addEventListener('resize', checkPromoBanner);
+
+</script>
+{% schema %}
+{
+  "name": "Hero Ring Size Guide",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero title",
+      "default": "Ring Size Guide"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Ring Size Guide"
+    }
+  ]
+}
+{% endschema %}

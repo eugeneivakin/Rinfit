@@ -924,20 +924,6 @@
         "title": "shop our <em><strong>instagram</strong></em>",
         "content": ""
       }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": true,
-        "image_size": "auto",
-        "subheading": "",
-        "title": "15% off your 1st order",
-        "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
-        "button_text": "Subscribe",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
-      }
     }
   },
   "order": [
@@ -953,7 +939,6 @@
     "image_with_text_GLtEhj",
     "collection_list_r7KetV",
     "tiktok_63qDmQ",
-    "media_grid_social_TNqyKQ",
-    "newsletter"
+    "media_grid_social_TNqyKQ"
   ]
 }

@@ -236,6 +236,8 @@
         "loox_reviews_loox_dynamic_section_V8hkmW": {
           "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
           "settings": {
+            "reviews_to_display": "",
+            "default_tab": "automatic",
             "only_photos": false,
             "aggregated": false,
             "limit": 20,
@@ -274,28 +276,12 @@
         "title": "recently <em><strong>viewed</strong></em>",
         "content": ""
       }
-    },
-    "newsletter_AWhAf9": {
-      "type": "newsletter",
-      "name": "t:sections.newsletter.presets.newsletter.name",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "image_size": "auto",
-        "subheading": "",
-        "title": "15% off your 1st order",
-        "content": "<p>First time shopping with us? Just add your favorite ring to cart and the discount is yours.</p>",
-        "button_text": "",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
-      }
     }
   },
   "order": [
     "main",
     "featured_collections_qCkzh3",
     "1771243654d36364aa",
-    "related-products",
-    "newsletter_AWhAf9"
+    "related-products"
   ]
 }

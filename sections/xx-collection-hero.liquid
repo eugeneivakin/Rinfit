@@ -1,0 +1,582 @@
+{% liquid
+  assign show_on_mobile = section.settings.show_on_mobile | default: true
+  assign show_on_desktop = section.settings.show_on_desktop | default: true
+  
+  if show_on_mobile and show_on_desktop
+    assign visibility_class = 'collection-hero--all-devices'
+  elsif show_on_mobile
+    assign visibility_class = 'collection-hero--mobile-only'
+  elsif show_on_desktop
+    assign visibility_class = 'collection-hero--desktop-only'
+  else
+    assign visibility_class = 'collection-hero--hidden'
+  endif
+%}
+
+<style>
+/* Collection Hero Section Styles */
+.collection-hero {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.collection-hero__container {
+  width: 100%;
+  position: relative;
+}
+
+/* Visibility Controls */
+.collection-hero--mobile-only {
+  display: block;
+}
+
+.collection-hero--desktop-only {
+  display: none;
+}
+
+.collection-hero--all-devices {
+  display: block;
+}
+
+.collection-hero--hidden {
+  display: none;
+}
+
+/* ========== MOBILE STYLES ========== */
+/* Mobile: Image with title inside + content below */
+.collection-hero__mobile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.collection-hero__mobile-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 580px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px 20px;
+  position: relative;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.collection-hero__mobile-image--no-bg {
+  background-color: #f5f5f5;
+}
+
+.collection-hero__mobile-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 94px;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.collection-hero__mobile-title-wrapper {
+  flex-basis: 0;
+  font-weight: 700;
+  flex-grow: 1;
+  line-height: 0;
+  min-height: 1px;
+  min-width: 1px;
+  position: relative;
+  flex-shrink: 0;
+  color: #373a36;
+  font-size: 0;
+  text-align: center;
+  width: 100%;
+  text-transform: capitalize;
+  font-variation-settings: 'YOPQ' 300;
+}
+
+.collection-hero__mobile-title {
+  line-height: 46px;
+  font-size: 46px;
+  margin: 0;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+.collection-hero__mobile-title-main {
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 300;
+  font-variation-settings: 'YOPQ' 300;
+  color: #373a36;
+  font-size: 45px;
+}
+
+.collection-hero__mobile-title-sub {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.92px;
+  color: #373a36;
+  font-size: 46px;
+}
+
+.collection-hero__mobile-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.collection-hero__mobile-description {
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 400;
+  font-variation-settings: 'YOPQ' 300;
+  color: rgba(55, 57, 54, 0.7);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+  margin: 0;
+}
+
+.collection-hero__mobile-button {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.collection-hero__mobile-btn:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+/* ========== DESKTOP STYLES ========== */
+/* Desktop: Side-by-side layout */
+.collection-hero__desktop {
+  display: none;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  flex-direction: row;
+  gap: 40px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 80px;
+  position: relative;
+  border-radius: 30px 30px 20px 30px;
+  width: 100%;
+  height: 100%;
+  min-height: 594px;
+}
+
+.collection-hero__desktop--no-bg {
+  background-color: #f5f5f5;
+}
+
+.collection-hero__desktop-content {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  height: 451px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  flex-shrink: 0;
+  width: 611px;
+}
+
+.collection-hero__desktop-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.collection-hero__desktop-title-wrapper {
+  text-transform: capitalize;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #373a36;
+  font-size: 0;
+  width: 100%;
+  font-variation-settings: 'YOPQ' 300;
+}
+
+.collection-hero__desktop-title {
+  line-height: 30px;
+  margin: 0;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+.collection-hero__desktop-title-main {
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 300;
+  font-variation-settings: 'YOPQ' 300;
+  font-size: 46px;
+  color: #373a36;
+}
+
+.collection-hero__desktop-title-sub {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 53px;
+  letter-spacing: -1.06px;
+  color: #373a36;
+  margin-left: 1%;
+}
+
+.collection-hero__desktop-description {
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 400;
+  font-variation-settings: 'YOPQ' 300;
+  position: relative;
+  flex-shrink: 0;
+  color: #373936;
+  font-size: 14px;
+  line-height: 20px;
+  width: 100%;
+  margin: 0;
+}
+
+.collection-hero__desktop-button {
+  background-color: #232222;
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+  border: 1px solid;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  position: relative;
+  border-radius: 4px;
+  flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.collection-hero__desktop-btn-text{
+  transition: all 0.3s ease;
+}
+.collection-hero__desktop-button:hover .collection-hero__desktop-btn-text{
+  color: #232222;
+}
+.collection-hero__desktop-button:hover{
+  background: none;
+  border-color:#C5C1C0;
+}
+.collection-hero__desktop-btn-text {
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 600;
+  font-variation-settings: 'YOPQ' 300;
+  line-height: 0;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffffff;
+  font-size: 14px;
+  text-transform: uppercase;
+  white-space: pre;
+}
+
+.collection-hero__desktop-btn-text p {
+  line-height: normal;
+  margin: 0;
+}
+
+
+
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+@media (min-width: 1024px) {
+  .collection-hero--mobile-only {
+    display: none;
+  }
+  
+  .collection-hero--desktop-only {
+    display: block;
+  }
+  
+  .collection-hero--all-devices {
+    display: block;
+  }
+  
+  .collection-hero__mobile {
+    display: none;
+  }
+  
+  .collection-hero__desktop {
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .collection-hero__mobile-image {
+    height: 500px;
+    padding: 20px 30px;
+    border-radius: 20px;
+  }
+  
+  .collection-hero__mobile-content {
+    padding: 30px;
+  }
+  
+  .collection-hero__mobile-title {
+    font-size: 42px;
+    line-height: 44px;
+  }
+}
+@media (max-width: 768px){
+  .collection-hero__mobile-content{
+    padding-top: 126px !important;
+  }
+  .collection-hero__mobile-title-container{
+    position: relative;
+    top: 122px;
+  }
+}
+@media (max-width: 480px) {
+  .collection-hero__mobile-image {
+    height: 500px;
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  .collection-hero__mobile-content {
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .collection-hero__mobile-title {
+    font-size: 38px;
+    line-height: 42px;
+  }
+  
+  .collection-hero__mobile-description {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  
+  .collection-hero__mobile-btn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Animation on load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.collection-hero__mobile,
+.collection-hero__desktop-content {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+</style>
+
+<section class="collection-hero {{ visibility_class }}" id="collection-hero-{{ section.id }}">
+  <div class="collection-hero__container">
+    
+    <!-- MOBILE VERSION -->
+    <div class="collection-hero__mobile">
+      <!-- Mobile: Image with title inside -->
+      {% if section.settings.mobile_background_image != blank %}
+        <div 
+          class="collection-hero__mobile-image" 
+          style="background-image: url('{{ section.settings.mobile_background_image | image_url: width: 800 }}');"
+        >
+      {% elsif section.settings.background_image != blank %}
+        <div 
+          class="collection-hero__mobile-image" 
+          style="background-image: url('{{ section.settings.background_image | image_url: width: 800 }}');"
+        >
+      {% else %}
+        <div class="collection-hero__mobile-image collection-hero__mobile-image--no-bg">
+      {% endif %}
+        {% if section.settings.title != blank or section.settings.subtitle != blank %}
+          <div class="collection-hero__mobile-title-container">
+            <div class="collection-hero__mobile-title-wrapper">
+              <p class="collection-hero__mobile-title">
+                {% if section.settings.title != blank %}
+                  <span class="collection-hero__mobile-title-main">{{ section.settings.title }}</span>
+                {% endif %}
+                {% if section.settings.subtitle != blank %}
+                  <span class="collection-hero__mobile-title-sub"> {{ section.settings.subtitle }}</span>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Mobile: Content below image -->
+      <div class="collection-hero__mobile-content">
+        {% if section.settings.description != blank %}
+          <p class="collection-hero__mobile-description">{{ section.settings.description }}</p>
+        {% endif %}
+        
+        {% if section.settings.button_text != blank %}
+          <div class="collection-hero__mobile-button">
+            <a 
+              href="{{ section.settings.button_url | default: '#' }}" 
+              class="collection-hero__mobile-btn gemstone-collection__button"
+              {% if section.settings.button_url == blank %}aria-disabled="true"{% endif %}
+            >
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- DESKTOP VERSION -->
+    {% if section.settings.background_image != blank %}
+      <div 
+        class="collection-hero__desktop" 
+        style="background-image: url('{{ section.settings.background_image | image_url: width: 1200 }}');"
+      >
+    {% else %}
+      <div class="collection-hero__desktop collection-hero__desktop--no-bg">
+    {% endif %}
+      <div class="collection-hero__desktop-content">
+        <div class="collection-hero__desktop-text">
+          {% if section.settings.title != blank or section.settings.subtitle != blank %}
+            <div class="collection-hero__desktop-title-wrapper">
+              <p class="collection-hero__desktop-title">
+                {% if section.settings.title != blank %}
+                  <span class="collection-hero__desktop-title-main">{{ section.settings.title }}</span>
+                {% endif %}
+                {% if section.settings.subtitle != blank %}
+                  <span class="collection-hero__desktop-title-sub"> {{ section.settings.subtitle }}</span>
+                {% endif %}
+              </p>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.description != blank %}
+            <p class="collection-hero__desktop-description">{{ section.settings.description }}</p>
+          {% endif %}
+        </div>
+        
+        {% if section.settings.button_text != blank %}
+          <a 
+            href="{{ section.settings.button_url | default: '#' }}" 
+            class="collection-hero__desktop-button"
+            {% if section.settings.button_url == blank %}aria-disabled="true"{% endif %}
+          >
+            <div class="collection-hero__desktop-btn-text">
+              <p>{{ section.settings.button_text }}</p>
+            </div>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Hero Perfect",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Display Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_desktop",
+      "label": "Show on desktop",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Background Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Desktop background image",
+      "info": "Recommended size: 1200x600px or larger"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background_image",
+      "label": "Mobile background image (optional)",
+      "info": "Recommended size: 800x580px. If not set, desktop image will be used."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main title",
+      "default": "Emerald Frame"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Bold, elegant, and built to last — the Emerald Frame Ring brings vibrant color and sleek design together in one standout piece. Featuring a rich emerald-toned frame wrapped in soft, skin-friendly silicone, it's the perfect blend of style and comfort."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+      "info": "Link to collection or product page"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Hero Perfect",
+      "settings": {
+        "title": "Emerald Frame",
+        "subtitle": "Collection",
+        "description": "Bold, elegant, and built to last — the Emerald Frame Ring brings vibrant color and sleek design together in one standout piece. Featuring a rich emerald-toned frame wrapped in soft, skin-friendly silicone, it's the perfect blend of style and comfort.",
+        "button_text": "Shop the collection"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,728 @@
+<style>
+  .ring-sizing-tool {
+    {% comment %} background-color: #f9f9f8; {% endcomment %}
+    font-family: 'Kumbh Sans', sans-serif;
+  }
+  
+  .ring-sizing-tool--hide-desktop {
+    display: none !important;
+  }
+  
+  .ring-sizing-tool--hide-mobile {
+    display: flex !important;
+  }
+  
+  @media (min-width: 768px) {
+    .ring-sizing-tool--hide-desktop {
+      display: none !important;
+    }
+    
+    .ring-sizing-tool--hide-mobile {
+      display: flex !important;
+    }
+    
+    .ring-sizing-tool {
+      padding: 40px 80px;
+      box-sizing: border-box;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    
+    .ring-sizing-tool__video {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      border-radius: 10px;
+      position: relative;
+    }
+    
+    .ring-sizing-tool__video--right {
+      order: 2;
+    }
+    
+    .ring-sizing-tool__video--left {
+      order: 1;
+    }
+    
+    .ring-sizing-tool__video-container {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .ring-sizing-tool__video-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 100%), 
+                  linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 100%);
+      transition: opacity 0.3s ease;
+    }
+    
+    .ring-sizing-tool__video-bg.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .ring-sizing-tool__video-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .ring-sizing-tool__video-player.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .ring-sizing-tool__play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      cursor: pointer;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+    }
+    
+    .ring-sizing-tool__play-button.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .ring-sizing-tool__play-icon {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .ring-sizing-tool__text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 1px;
+      min-width: 1px;
+    }
+    
+    .ring-sizing-tool__text--left {
+      order: 1;
+    }
+    
+    .ring-sizing-tool__text--right {
+      order: 2;
+    }
+    
+    .ring-sizing-tool__header {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+    }
+    
+    .ring-sizing-tool__title {
+      text-transform: capitalize;
+      font-weight: 300;
+      line-height: 44px;
+      color: #373a36;
+      font-size: 46px;
+      width: 100%;
+    }
+    
+    .ring-sizing-tool__title-italic {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: normal;
+      display: block; /* Forces line break */
+    }
+    
+    .ring-sizing-tool__instructions {
+      font-weight: normal;
+      color: #373936;
+      font-size: 14px;
+      width: 100%;
+    }
+    
+    .ring-sizing-tool__instructions ol {
+      list-style-type: decimal;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .ring-sizing-tool__instructions li {
+      margin-bottom: 5px;
+      margin-left: 21px;
+      line-height: 20px;
+    }
+    
+    .ring-sizing-tool__instructions li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .ring-sizing-tool__button {
+      background-color: #232222;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 15px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid;
+      transition: all 0.3s ease; 
+    }
+    .ring-sizing-tool__button span{
+      transition: all 0.3s ease; 
+    }
+    .ring-sizing-tool__button:hover span{
+      color: #232222;
+    }
+    .ring-sizing-tool__button:hover{
+      background: none;
+      border-color:#C5C1C0;
+    }
+    .ring-sizing-tool__button-text {
+      font-family: 'Kumbh Sans', sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 14px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .ring-sizing-tool--hide-mobile {
+      display: none !important;
+    }
+    
+    .ring-sizing-tool--hide-desktop {
+      display: flex !important;
+    }
+    
+    .ring-sizing-tool {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    
+    .ring-sizing-tool__video,
+    .ring-sizing-tool__text {
+      order: unset !important;
+    }
+    
+    .ring-sizing-tool__video {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      border-radius: 10px;
+      position: relative;
+    }
+    
+    .ring-sizing-tool__video-container {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .ring-sizing-tool__video-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+    
+    .ring-sizing-tool__video-bg.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .ring-sizing-tool__video-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .ring-sizing-tool__video-player.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .ring-sizing-tool__play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+    }
+    
+    .ring-sizing-tool__play-button.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .ring-sizing-tool__play-icon {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .ring-sizing-tool__text {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    
+    .ring-sizing-tool__header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+    }
+    
+    .ring-sizing-tool__title {
+      text-transform: capitalize;
+      font-weight: 300;
+      line-height: 32px;
+      color: #373a36;
+      font-size: 28px;
+      width: 100%;
+    }
+    
+    .ring-sizing-tool__title-italic {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: normal;
+      display: block; /* Forces line break */
+    }
+    
+    .ring-sizing-tool__instructions {
+      font-weight: normal;
+      color: #373936;
+      font-size: 14px;
+      width: 100%;
+    }
+    
+    .ring-sizing-tool__instructions ol {
+      list-style-type: decimal;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .ring-sizing-tool__instructions li {
+      margin-bottom: 5px;
+      margin-left: 21px;
+      line-height: 18px;
+    }
+    
+    .ring-sizing-tool__instructions li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .ring-sizing-tool__button {
+      background-color: #232222;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+    }
+    
+    .ring-sizing-tool__button-text {
+      font-family: 'Kumbh Sans', sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 14px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+  }
+  
+  .ring-sizing-tool__button--hidden {
+    display: none !important;
+  }
+
+  @media (min-width: 768px) and (max-width: 1240px) {
+    .ring-sizing-tool{
+      padding: 0 30px !important;
+      max-width: 100% !important;
+      margin: 0px auto !important;
+      margin-top: 40px !important;
+    }
+  }
+</style>
+
+{% unless section.settings.show_on_desktop %}
+  {% assign visibility_class = visibility_class | append: ' ring-sizing-tool--hide-desktop' %}
+{% endunless %}
+{% unless section.settings.show_on_mobile %}
+  {% assign visibility_class = visibility_class | append: ' ring-sizing-tool--hide-mobile' %}
+{% endunless %}
+
+<section class="ring-sizing-tool{{ visibility_class }}">
+  {% assign image_position = section.settings.image_position | default: 'left' %}
+  
+  {% if section.settings.video_image != blank %}
+    <div class="ring-sizing-tool__video ring-sizing-tool__video--{{ image_position }}">
+      <div class="ring-sizing-tool__video-container" id="video-container-{{ section.id }}">
+        <!-- Thumbnail Image -->
+        <img 
+          src="{{ section.settings.video_image | image_url: width: 800 }}"
+          alt="{{ section.settings.video_alt | default: 'Ring Sizing Tool Video' | escape }}"
+          class="ring-sizing-tool__video-bg"
+          id="video-thumbnail-{{ section.id }}"
+          loading="lazy"
+        >
+        
+        <!-- Video Player -->
+        {% if section.settings.shopify_video != blank %}
+          <video 
+            class="ring-sizing-tool__video-player"
+            id="video-player-{{ section.id }}"
+            controls
+            preload="metadata"
+            playsinline
+            muted
+          >
+            {% for source in section.settings.shopify_video.sources %}
+              <source src="{{ source.url }}" type="{{ source.mime_type }}">
+            {% endfor %}
+            Your browser does not support the video tag.
+          </video>
+        {% elsif section.settings.video_url != blank %}
+          {% assign video_id = '' %}
+          {% if section.settings.video_url contains 'youtube.com' or section.settings.video_url contains 'youtu.be' %}
+            {% if section.settings.video_url contains 'youtu.be' %}
+              {% assign video_id = section.settings.video_url | split: 'youtu.be/' | last | split: '?' | first %}
+            {% else %}
+              {% assign video_id = section.settings.video_url | split: 'v=' | last | split: '&' | first %}
+            {% endif %}
+            <iframe
+              class="ring-sizing-tool__video-player"
+              id="video-player-{{ section.id }}"
+              src="https://www.youtube.com/embed/{{ video_id }}"
+              frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          {% elsif section.settings.video_url contains 'vimeo.com' %}
+            {% assign video_id = section.settings.video_url | split: 'vimeo.com/' | last | split: '?' | first %}
+            <iframe
+              class="ring-sizing-tool__video-player"
+              id="video-player-{{ section.id }}"
+              src="https://player.vimeo.com/video/{{ video_id }}"
+              frameborder="0"
+              allow="fullscreen; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          {% endif %}
+        {% endif %}
+        
+        <!-- Play Button -->
+        {% if section.settings.play_icon != blank %}
+          <div class="ring-sizing-tool__play-button" id="play-button-{{ section.id }}">
+            <img 
+              src="{{ section.settings.play_icon | image_url }}"
+              alt="Play video"
+              class="ring-sizing-tool__play-icon"
+            >
+          </div>
+        {% else %}
+          <div class="ring-sizing-tool__play-button" id="play-button-{{ section.id }}">
+            <svg class="ring-sizing-tool__play-icon" viewBox="0 0 54 54" fill="none">
+              <circle cx="27" cy="27" r="27" fill="white" fill-opacity="0.9"/>
+              <path d="M22 18L35 27L22 36V18Z" fill="#373a36"/>
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+  
+  {% assign text_position = 'right' %}
+  {% if image_position == 'right' %}
+    {% assign text_position = 'left' %}
+  {% endif %}
+  
+  <div class="ring-sizing-tool__text ring-sizing-tool__text--{{ text_position }}">
+    <div class="ring-sizing-tool__header">
+      <h2 class="ring-sizing-tool__title">
+        {% if section.settings.title_regular != blank %}
+          {{ section.settings.title_regular }}
+        {% endif %}
+        {% if section.settings.title_italic != blank %}
+          <span class="ring-sizing-tool__title-italic">{{ section.settings.title_italic }}</span>
+        {% endif %}
+      </h2>
+      
+      {% if section.settings.instructions != blank %}
+        <div class="ring-sizing-tool__instructions">
+          {{ section.settings.instructions }}
+        </div>
+      {% endif %}
+    </div>
+    
+    {% if section.settings.show_button and section.settings.button_text != blank %}
+      {% if section.settings.button_url != blank %}
+        <a href="{{ section.settings.button_url }}" class="ring-sizing-tool__button">
+          <span class="ring-sizing-tool__button-text">{{ section.settings.button_text }}</span>
+        </a>
+      {% else %}
+        <button class="ring-sizing-tool__button" onclick="downloadTool{{ section.id }}()">
+          <span class="ring-sizing-tool__button-text">{{ section.settings.button_text }}</span>
+        </button>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+<script>
+function initRingSizingVideo(containerId) {
+  const videoContainer = document.getElementById(`video-container-${containerId}`);
+  const videoThumbnail = document.getElementById(`video-thumbnail-${containerId}`);
+  const videoPlayer = document.getElementById(`video-player-${containerId}`);
+  const playButton = document.getElementById(`play-button-${containerId}`);
+
+  if (!videoContainer || !videoPlayer || !playButton) return;
+
+  function playVideo() {
+    if (videoThumbnail) videoThumbnail.classList.add('hidden');
+    playButton.classList.add('hidden');
+    videoPlayer.classList.add('active');
+
+    if (videoPlayer.tagName.toLowerCase() === 'video') {
+      videoPlayer.muted = false;
+      videoPlayer.play().catch(() => {
+        videoPlayer.muted = true;
+        videoPlayer.play();
+      });
+    }
+  }
+
+  playButton.addEventListener('click', playVideo);
+  if (videoThumbnail) videoThumbnail.addEventListener('click', playVideo);
+
+  if (videoPlayer.tagName.toLowerCase() === 'video') {
+    videoPlayer.addEventListener('ended', () => {
+      videoPlayer.classList.remove('active');
+      if (videoThumbnail) videoThumbnail.classList.remove('hidden');
+      playButton.classList.remove('hidden');
+    });
+  }
+}
+
+{% if section.settings.download_file != blank %}
+function downloadTool{{ section.id }}() {
+  const downloadUrl = '{{ section.settings.download_file }}';
+  if (downloadUrl) {
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+{% endif %}
+
+// --- Виклик для сторінки ---
+document.addEventListener('DOMContentLoaded', function() {
+  initRingSizingVideo('{{ section.id }}');
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Ring Sizing Tool",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Visibility Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_desktop",
+      "label": "Show on desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout Options"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right", 
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "id": "title_regular",
+      "label": "Regular title text",
+      "default": "Use Ring Sizing Tool"
+    },
+    {
+      "type": "text",
+      "id": "title_italic",
+      "label": "Italic title text",
+      "default": "To Measure Your Ring Size"
+    },
+    {
+      "type": "richtext",
+      "id": "instructions",
+      "label": "Instructions",
+      "default": "<ol><li>Print out the sizing chart. When you do so, make sure you're printing at *100% size. Any larger or smaller and your measurement will turn out inaccurate.</li><li>Use a pair of scissors to cut out the sizer.</li><li>Gently slice through the line between the black 'READ SIZE HERE' arrow and the letter 'A'.</li><li>Insert the tapered end of the sizer through the slit to create a ring.</li><li>Place the ring on your finger and pull the tapered end of the sizer until the ring fits comfortably on your finger. Make sure it is not too tight/loose.</li></ol>"
+    },
+    {
+      "type": "header",
+      "content": "Video Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_image",
+      "label": "Video thumbnail image"
+    },
+    {
+      "type": "video",
+      "id": "shopify_video",
+      "label": "Shopify CDN Video",
+      "info": "Upload video directly to Shopify (recommended for best performance)"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "External Video URL (optional)",
+      "info": "YouTube or Vimeo URL (used only if Shopify video is not provided)"
+    },
+    {
+      "type": "image_picker",
+      "id": "play_icon",
+      "label": "Custom play icon (optional)",
+      "info": "Leave empty to use default play button"
+    },
+    {
+      "type": "text",
+      "id": "video_alt",
+      "label": "Video alt text",
+      "default": "Ring Sizing Tool Video"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show download button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Download Our Size Tool"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL (optional)",
+      "info": "Leave empty to use download file below"
+    },
+    {
+      "type": "url",
+      "id": "download_file",
+      "label": "Download file URL",
+      "info": "Direct link to downloadable file"
+    },
+    {
+      "type": "header",
+      "content": "Video Priority"
+    },
+    {
+      "type": "paragraph",
+      "content": "If both Shopify video and external URL are provided, Shopify video will be used for better performance and user experience."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ring Sizing Tool"
+    }
+  ]
+}
+{% endschema %}

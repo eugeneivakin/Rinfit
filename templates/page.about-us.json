@@ -1,0 +1,126 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-2",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "title_contact_kx6i4f": {
+      "type": "xx-title-contact",
+      "name": "Title contact",
+      "settings": {
+        "title": "<p><em>about Us</em></p>",
+        "background_color": "#f7f6f5",
+        "top_padding": 20,
+        "bottom_padding": 0
+      }
+    },
+    "banner_about_us_9tx9k4": {
+      "type": "xx-banner-about-us",
+      "name": "Main banenr",
+      "settings": {
+        "main_img": "shopify://shop_images/image_31.png",
+        "main_img_mob": "shopify://shop_images/image_32.png",
+        "main_text": "<p>where style<br/><em>meets function</em></p>",
+        "main_title": "<p>Where Style <em>meets function</em></p>",
+        "main_subtitle": "<p>Rinfit was born out of one woman’s mission to find the perfect ring — one that looks like a jewel, but fits into her active lifestyle.</p>"
+      }
+    },
+    "section_about_us_YTqRgn": {
+      "type": "xx-section-about-us",
+      "name": "Banenr about us",
+      "settings": {
+        "background_color": "",
+        "image": "shopify://shop_images/image_33.png",
+        "title": "<p>Our <em>story</em></p>",
+        "subtitle": "<p>In 2015, Rinfit was launched with one clear vision: to craft rings that fit your lifestyle without sacrificing style. Made from premium, skin-friendly silicone, our rings offer patented comfort-fit designs in over 30 colors — including luxe metallic finishes like gold, silver, and rose gold.<br/></p><p>What started with a single ring and countless compliments quickly grew into a movement. Today, Rinfit is trusted by thousands who want to live fully — without taking off what matters most.</p>",
+        "padding_top": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "position_banner": "right"
+      }
+    },
+    "section_about_us_tyi3tX": {
+      "type": "xx-section-about-us",
+      "name": "Banenr about us",
+      "settings": {
+        "background_color": "#faf3f1",
+        "image": "shopify://shop_images/image_34.png",
+        "title": "<p>Our <em>mission</em></p>",
+        "subtitle": "<p>Since 2015, Rinfit rings are known as the pioneers of silicone rings innovation that brought high-end patent-protected designs with high durability into the comfort of a silicone ring! Affordable without compromising on quality.<br/><br/>We created Rinfit so men and women can live the lives they want without having to worry about damaging or losing their precious wedding ring.<br/><br/></p>",
+        "padding_top": 20,
+        "padding_left": 20,
+        "padding_right": 20,
+        "padding_bottom": 20,
+        "position_banner": "left"
+      }
+    },
+    "featured_collections_ajxHNb": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_yJ7wfb": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "products_count": 8,
+            "title": "Best <em><strong>Sellers</strong></em>",
+            "link_url": "",
+            "link_text": "shop all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_yJ7wfb"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
+    },
+    "collection_xFa3pd": {
+      "type": "xx-collection",
+      "disabled": true,
+      "name": "Collection products",
+      "settings": {
+        "title": "<p>Best <em>Sellers</em></p>",
+        "collection": "best-sellers",
+        "button_text": "SHOP ALL",
+        "button_text_cart": "ADD TO CART",
+        "button_link": "shopify://collections/best-sellers",
+        "top_padding": 40,
+        "bottom_padding": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "title_contact_kx6i4f",
+    "banner_about_us_9tx9k4",
+    "section_about_us_YTqRgn",
+    "section_about_us_tyi3tX",
+    "featured_collections_ajxHNb",
+    "collection_xFa3pd"
+  ]
+}
