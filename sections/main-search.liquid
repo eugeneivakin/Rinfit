@@ -1,3 +1,7 @@
+<script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+{{- 'main-collection.css' | asset_url | stylesheet_tag -}}
+
 {%- if search.performed -%}
   {%- liquid
     assign active_values_count = 0
@@ -86,15 +90,25 @@
                 {%- if product_results.size > 0 or active_values_count > 0 -%}
                   <button type="button" class="h6" role="tab" slot="title">{{ 'search.general.products' | t }}</button>
 
-                  <div class="main-search__resource-item" role="tabpanel" slot="content" {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}>
+                  <div
+                    class="main-search__resource-item"
+                    role="tabpanel"
+                    slot="content"
+                    {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}
+                  >
                     <div class="v-stack gap-6 sm:gap-12">
                       {%- if show_filters or section.settings.show_sort_by -%}
                         <height-observer variable="collection-toolbar" class="collection-toolbar full-bleed">
                           <div class="collection-toolbar__button-list">
                             {%- if show_filters -%}
                               <div class="collection-toolbar__button-container md:hidden">
-                                <button type="button" aria-controls="facets-drawer" class="collection-toolbar__button heading text-xxs w-full">
-                                  {{- 'collection.faceting.filter_button' | t }} {% if active_values_count > 0 %}({{ active_values_count }}){% endif -%}
+                                <button
+                                  type="button"
+                                  aria-controls="facets-drawer"
+                                  class="collection-toolbar__button collection-toolbar__button-filter heading w-full"
+                                >
+                                  {{- 'collection.faceting.filter_button' | t }}
+                                  {% if active_values_count > 0 %}({{ active_values_count }}){% endif -%}
                                 </button>
                               </div>
                             {%- endif -%}
@@ -103,20 +117,37 @@
                               {%- assign selected_sort_by_value = search.sort_by | default: search.default_sort_by -%}
 
                               <div class="collection-toolbar__button-container">
-                                <button type="button" aria-controls="sort-by-popover" class="collection-toolbar__button heading text-xxs w-full">
+                                <button
+                                  type="button"
+                                  aria-controls="sort-by-popover"
+                                  class="collection-toolbar__button collection-toolbar__button-sort heading w-full"
+                                >
                                   <span class="text-with-icon justify-center">
                                     {{- 'collection.faceting.sort_by' | t -}}
                                     {%- render 'icon' with 'chevron-down' -%}
                                   </span>
                                 </button>
 
-                                <facets-sort-popover id="sort-by-popover" section-id="{{ section.id }}" class="popover popover--bottom-end color-scheme color-scheme--dialog" close-on-listbox-select>
+                                <facets-sort-popover
+                                  id="sort-by-popover"
+                                  section-id="{{ section.id }}"
+                                  class="popover popover--bottom-end color-scheme color-scheme--dialog"
+                                  close-on-listbox-select
+                                >
                                   <p class="h4" slot="header">{{ 'collection.faceting.sort_by' | t }}</p>
 
                                   <x-listbox class="popover__value-list">
                                     {%- for sort_option in search.sort_options -%}
                                       {%- if sort_option.name != blank -%}
-                                        <button type="button" class="popover__value-option group" role="option" value="{{ sort_option.value }}" {% if sort_option.value == selected_sort_by_value %}aria-selected="true"{% endif %}>
+                                        <button
+                                          type="button"
+                                          class="popover__value-option group"
+                                          role="option"
+                                          value="{{ sort_option.value }}"
+                                          {% if sort_option.value == selected_sort_by_value %}
+                                            aria-selected="true"
+                                          {% endif %}
+                                        >
                                           <span class="reversed-link">{{ sort_option.name }}</span>
                                         </button>
                                       {%- endif -%}
@@ -131,10 +162,19 @@
 
                       <div class="collection">
                         {%- if show_filters -%}
-                          <facets-drawer id="facets-drawer" class="facets-drawer drawer drawer--sm color-scheme color-scheme--dialog md:hidden">
+                          <facets-drawer
+                            id="facets-drawer"
+                            class="facets-drawer drawer drawer--sm color-scheme color-scheme--dialog md:hidden"
+                          >
                             <p class="h4" slot="header">{{ 'collection.faceting.filters' | t }}</p>
 
-                            {%- render 'facets', results: search, show_filters: section.settings.show_filters, open_filters_by_default: section.settings.open_filters_by_default, update_on_change: false, context: 'drawer' -%}
+                            {%- render 'facets',
+                              results: search,
+                              show_filters: section.settings.show_filters,
+                              open_filters_by_default: section.settings.open_filters_by_default,
+                              update_on_change: false,
+                              context: 'drawer'
+                            -%}
 
                             <div slot="footer">
                               {%- assign button_content = 'collection.faceting.apply_filters' | t -%}
@@ -146,7 +186,13 @@
                           </facets-drawer>
 
                           <safe-sticky class="facets-sidebar md-max:hidden">
-                            {%- render 'facets', results: search, show_filters: section.settings.show_filters, open_filters_by_default: section.settings.open_filters_by_default, update_on_change: true, context: 'sidebar' -%}
+                            {%- render 'facets',
+                              results: search,
+                              show_filters: section.settings.show_filters,
+                              open_filters_by_default: section.settings.open_filters_by_default,
+                              update_on_change: true,
+                              context: 'sidebar'
+                            -%}
                           </safe-sticky>
                         {%- endif -%}
 
@@ -169,7 +215,12 @@
 
                             <product-list id="product-list-{{ section.id }}" class="product-list">
                               {%- for product in product_results -%}
-                                {%- render 'product-card', product: product, stacked: true, reveal: settings.stagger_products_apparition, position: forloop.index -%}
+                                {%- render 'x-product-card',
+                                  product: product,
+                                  stacked: true,
+                                  reveal: settings.stagger_products_apparition,
+                                  position: forloop.index
+                                -%}
                               {%- endfor -%}
                             </product-list>
 
@@ -184,12 +235,29 @@
                 {%- if article_results.size > 0 -%}
                   <button type="button" class="h6" role="tab" slot="title">{{ 'search.general.posts' | t }}</button>
 
-                  <div class="main-search__resource-item" role="tabpanel" slot="content" {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}>
-                    <blog-posts class="blog-post-list justify-center" {% if settings.stagger_blog_posts_apparition %}reveal-on-scroll="true"{% endif %}>
+                  <div
+                    class="main-search__resource-item"
+                    role="tabpanel"
+                    slot="content"
+                    {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}
+                  >
+                    <blog-posts
+                      class="blog-post-list justify-center"
+                      {% if settings.stagger_blog_posts_apparition %}
+                        reveal-on-scroll="true"
+                      {% endif %}
+                    >
                       {%- capture sizes -%}(max-width: 699px) 95vw, (max-width: 1149px) calc(100vw / 2), calc((80rem - (5rem * (3 - 1) / 3){%- endcapture -%}
 
                       {%- for article in article_results -%}
-                        {%- render 'blog-post-card', article: article, show_category: section.settings.show_category, show_excerpt: section.settings.show_excerpt, show_read_more: section.settings.show_read_more, sizes: sizes, position: forloop.index -%}
+                        {%- render 'blog-post-card',
+                          article: article,
+                          show_category: section.settings.show_category,
+                          show_excerpt: section.settings.show_excerpt,
+                          show_read_more: section.settings.show_read_more,
+                          sizes: sizes,
+                          position: forloop.index
+                        -%}
                       {%- endfor -%}
                     </blog-posts>
                   </div>
@@ -198,7 +266,12 @@
                 {%- if page_results.size > 0 -%}
                   <button type="button" class="h6" role="tab" slot="title">{{ 'search.general.pages' | t }}</button>
 
-                  <div class="main-search__resource-item" role="tabpanel" slot="content" {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}>
+                  <div
+                    class="main-search__resource-item"
+                    role="tabpanel"
+                    slot="content"
+                    {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}
+                  >
                     <ul class="main-search__linklist v-stack gap-3 unstyled-list" role="list">
                       {%- for page in page_results -%}
                         <li>
@@ -228,7 +301,13 @@
               {%- assign placeholder = 'search.general.search_placeholder' | t -%}
 
               <div class="relative">
-                {%- render 'input', type: 'text', name: 'q', label: placeholder, autocomplete: 'off', autocorrect: 'off' -%}
+                {%- render 'input',
+                  type: 'text',
+                  name: 'q',
+                  label: placeholder,
+                  autocomplete: 'off',
+                  autocorrect: 'off'
+                -%}
                 <button type="submit" class="input-suffix link-faded">{% render 'icon' with 'search' %}</button>
               </div>
             </form>
@@ -250,7 +329,13 @@
             {%- assign placeholder = 'search.general.search_placeholder' | t -%}
 
             <div class="relative">
-              {%- render 'input', type: 'text', name: 'q', label: placeholder, autocomplete: 'off', autocorrect: 'off' -%}
+              {%- render 'input',
+                type: 'text',
+                name: 'q',
+                label: placeholder,
+                autocomplete: 'off',
+                autocorrect: 'off'
+              -%}
               <button type="submit" class="input-suffix link-faded">{% render 'icon' with 'search' %}</button>
             </div>
           </form>
