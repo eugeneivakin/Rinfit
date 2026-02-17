@@ -1,22 +1,22 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-VARIANT PICKER
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  VARIANT PICKER
+  ----------------------------------------------------------------------------------------------------------------------
 
-Render the variant picker option selectors.
+  Render the variant picker option selectors.
 
-********************************************
-Supported variables
-********************************************
+  ********************************************
+  Supported variables
+  ********************************************
 
-* product: the product for which to render the selector (required)
-* form_id: the ID of the form to which the variant picker belongs (required)
-* context: the context of the variant picker. Can be "main_product", "featured_product" or "quick_buy" (required)
-* hide_sold_out_variants: if set to true, the sold out or unavailable variants are hidden
-* selector_style: the selector style to use for the main selectors
-* swatch_selector_style: the selector style to use for the dedicated swatch selectors
-* variant_image_options: a list of option names for which to use the variant image selector mode
-* size_chart_page: the page to use for the size chart
+  * product: the product for which to render the selector (required)
+  * form_id: the ID of the form to which the variant picker belongs (required)
+  * context: the context of the variant picker. Can be "main_product", "featured_product" or "quick_buy" (required)
+  * hide_sold_out_variants: if set to true, the sold out or unavailable variants are hidden
+  * selector_style: the selector style to use for the main selectors
+  * swatch_selector_style: the selector style to use for the dedicated swatch selectors
+  * variant_image_options: a list of option names for which to use the variant image selector mode
+  * size_chart_page: the page to use for the size chart
 {%- endcomment -%}
 
 {%- liquid
@@ -30,9 +30,18 @@ Supported variables
 -%}
 
 {%- unless product.has_only_default_variant -%}
-  <variant-picker class="variant-picker v-stack gap-4" section-id="{{ section.id }}" form-id="{{ form_id }}" context="{{ context }}" handle="{{ product.handle }}" {% if context == 'main_product' %}update-url{% endif %}>
+  <variant-picker
+    class="variant-picker v-stack gap-4"
+    section-id="{{ section.id }}"
+    form-id="{{ form_id }}"
+    context="{{ context }}"
+    handle="{{ product.handle }}"
+    {% if context == 'main_product' %}
+      update-url
+    {% endif %}
+  >
     {%- comment -%}
-    The variant data is outputted as a JSON, which allows the theme to emit an event with the data when the variant changes. This must not be removed.
+      The variant data is outputted as a JSON, which allows the theme to emit an event with the data when the variant changes. This must not be removed.
     {%- endcomment -%}
     <script data-variant type="application/json">
       {{- product.selected_or_first_available_variant | json -}}
@@ -60,9 +69,16 @@ Supported variables
         if variant_image_options contains option_downcase
           assign resolved_option_selector_style = 'variant_image'
         endif
+
+        assign option_name_downcase = option.name | downcase
+        if option_name_downcase contains 'size'
+          assign data_option_type = 'size'
+        elsif option_name_downcase contains 'color'
+          assign data_option_type = 'color'
+        endif
       %}
 
-      <fieldset class="variant-picker__option v-stack gap-4">
+      <fieldset class="variant-picker__option v-stack gap-4" data-option-type="{{ data_option_type }}">
         <div class="variant-picker__option-info h-stack justify-between gap-2">
           <div class="h-stack gap-3">
             <legend>{{ option.name }}:</legend>
@@ -100,7 +116,11 @@ Supported variables
               {%- render 'icon' with 'dropdown-chevron' -%}
             </button>
 
-            <x-popover id="{{ popover_id }}" class="popover popover--bottom-start color-scheme color-scheme--dialog" close-on-listbox-change>
+            <x-popover
+              id="{{ popover_id }}"
+              class="popover popover--bottom-start color-scheme color-scheme--dialog"
+              close-on-listbox-change
+            >
               <p class="h5" slot="header">{{ option.name }}</p>
 
               <div class="popover__value-list">
@@ -125,16 +145,45 @@ Supported variables
                     {%- if is_main_product and option_value.product_url != blank -%}
                       <div class="popover__value-option">
                         {%- if option_value.selected -%}
-                          <input class="sr-only" type="radio" id="{{ param_name }}-{{ option_value.id }}" form="{{ form_id }}" name="{{ param_name }}" data-option-position="{{ option.position }}" value="{{ option_value.id }}" checked>
+                          <input
+                            class="sr-only"
+                            type="radio"
+                            id="{{ param_name }}-{{ option_value.id }}"
+                            form="{{ form_id }}"
+                            name="{{ param_name }}"
+                            data-option-position="{{ option.position }}"
+                            value="{{ option_value.id }}"
+                            checked
+                          >
                         {%- endif -%}
 
-                        <a href="{{ option_value.variant.url | default: option_value.product_url }}" class="h-stack justify-between gap-2">
+                        <a
+                          href="{{ option_value.variant.url | default: option_value.product_url }}"
+                          class="h-stack justify-between gap-2"
+                        >
                           {{- option_markup -}}
                         </a>
                       </div>
                     {%- else -%}
-                      <label class="popover__value-option h-stack justify-between gap-2" for="{{ param_name }}-{{ option_value.id }}">
-                        <input class="sr-only" form="{{ form_id }}" type="radio" id="{{ param_name }}-{{ option_value.id }}" name="{{ param_name }}" {% if option_value.product_url != blank %}data-product-url="{{ option_value.product_url | escape }}"{% endif %} data-option-position="{{ option.position }}" value="{{ option_value.id }}" {% if option_value.selected %}checked{% endif %}>
+                      <label
+                        class="popover__value-option h-stack justify-between gap-2"
+                        for="{{ param_name }}-{{ option_value.id }}"
+                      >
+                        <input
+                          class="sr-only"
+                          form="{{ form_id }}"
+                          type="radio"
+                          id="{{ param_name }}-{{ option_value.id }}"
+                          name="{{ param_name }}"
+                          {% if option_value.product_url != blank %}
+                            data-product-url="{{ option_value.product_url | escape }}"
+                          {% endif %}
+                          data-option-position="{{ option.position }}"
+                          value="{{ option_value.id }}"
+                          {% if option_value.selected %}
+                            checked
+                          {% endif %}
+                        >
                         {{- option_markup -}}
                       </label>
                     {%- endif -%}
@@ -146,7 +195,7 @@ Supported variables
         {%- else -%}
           {%- liquid
             case resolved_option_selector_style
-              when 'swatch' or 'variant_image' or 'block' or 'block_swatch'
+              when 'swatch', 'variant_image', 'block', 'block_swatch'
                 assign list_classes = 'h-stack gap-2.5 wrap'
 
               else

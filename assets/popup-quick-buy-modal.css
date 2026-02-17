@@ -43,7 +43,12 @@
 }
 
 .quick-buy-modal {
-  --modal-body-max-width: 486px;
+  --modal-body-max-width: 390px;
+}
+@media screen and (min-width: 700px) {
+  .quick-buy-modal {
+    --modal-body-max-width: 486px;
+  }
 }
 
 .quick-buy-modal__title {
@@ -116,12 +121,7 @@
 }
 .quick-buy-modal__content .product-gallery__carousel {
   --product-gallery-carousel-gap: 5px;
-  --product-gallery-carousel-grid: auto / auto-flow 65%;
-}
-@media screen and (min-width: 1000px) {
-  .quick-buy-modal__content .product-gallery__carousel {
-    --product-gallery-carousel-grid: auto / auto-flow 69.5%;
-  }
+  --product-gallery-carousel-grid: auto / auto-flow 100%;
 }
 @media screen and (max-width: 999px) {
   .quick-buy-modal__content .product-gallery__carousel-with-arrows .product-gallery__media {
@@ -214,16 +214,11 @@
 .quick-buy-modal__info-wrapper [data-block-id*=frequently_bought_app_block] {
   display: none;
 }
-.quick-buy-modal__info-wrapper .variant-picker__option-info {
+.quick-buy-modal__info-wrapper .variant-picker__option[data-option-type=color] .variant-picker__option-info {
   display: none;
 }
 .quick-buy-modal__info-wrapper .variant-picker__option-values {
-  gap: 3px;
-}
-@media screen and (min-width: 1000px) {
-  .quick-buy-modal__info-wrapper .variant-picker__option-values {
-    gap: 0;
-  }
+  gap: 5px;
 }
 .quick-buy-modal__info-wrapper .variant-picker__option-values .color-swatch {
   --swatch-offset: 5px;
@@ -251,7 +246,7 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  width: 46px;
+  width: 30px;
 }
 .quick-buy-modal__info-wrapper .variant-picker__option-values :checked + .color-swatch,
 .quick-buy-modal__info-wrapper .variant-picker__option-values .color-swatch.is-selected {
@@ -281,10 +276,7 @@
   line-height: 1;
   margin-block-start: 13px;
 }
-.quick-buy-modal__footer-wrapper.prose :where(:not(meta, span) + *) {
-  margin-block-start: 0;
-}
-.quick-buy-modal__footer-wrapper a,
-.quick-buy-modal__footer-wrapper button {
+.quick-buy-modal__footer-wrapper .link {
+  cursor: pointer;
   text-transform: capitalize;
 }
