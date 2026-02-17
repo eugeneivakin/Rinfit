@@ -1,0 +1,29 @@
+@use "mixins/media" as *;
+
+.shopify-section--main-collection {
+}
+
+.collection-toolbar__button {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.collection-toolbar__products-count {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.collection-toolbar__button-sort,
+.collection-toolbar__button-filter {
+  color: rgb(var(--text-color));
+  height: 100%;
+  opacity: 1;
+}
+
+.facets-sidebar {
+  --text-h6: 14px;
+
+  .accordion__toggle {
+    font-weight: normal;
+  }
+}

@@ -12,6 +12,7 @@
     "section_vertical_spacing": "md",
     "button_border_radius": 4,
     "input_border_radius": 4,
+    "modal_color_scheme": "scheme-1",
     "product_rating_color": "#1c1c1c",
     "product_on_sale_accent": "#e32c2b",
     "product_sold_out_badge_background": "#efefef",
@@ -92,6 +93,17 @@
           "text_color": "#373a36",
           "primary_button_background": "#373a36",
           "primary_button_text_color": "#ffffff",
+          "circle_button_background": "#ffffff",
+          "circle_button_icon": "#373a36"
+        }
+      },
+      "scheme-d8d7d47a-da50-4b0f-83d4-a145589629bb": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text_color": "#ffffff",
+          "primary_button_background": "#ffffff",
+          "primary_button_text_color": "#373a36",
           "circle_button_background": "#ffffff",
           "circle_button_icon": "#373a36"
         }
