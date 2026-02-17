@@ -2,6 +2,10 @@
 {{ 'product-card.css' | asset_url | stylesheet_tag }}
 {{- 'main-collection.css' | asset_url | stylesheet_tag -}}
 
+{% if settings.show_quick_buy %}
+  {{ 'popup-quick-buy-modal.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
 {%- liquid
   assign active_values_count = 0
 

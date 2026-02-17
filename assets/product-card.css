@@ -86,6 +86,12 @@
 .x-product-card .price-list * {
   font: inherit;
 }
+.x-product-card .price-list sale-price {
+  color: rgb(var(--text-color)/1);
+}
+.x-product-card .price-list compare-at-price {
+  color: rgb(var(--text-color)/0.2);
+}
 .x-product-card .product-card__swatches {
   display: flex;
   flex-direction: row;

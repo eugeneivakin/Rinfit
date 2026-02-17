@@ -44,8 +44,10 @@
           -%}
         {%- endif -%}
 
-        <div class="quick-buy-modal__mobile-info v-stack gap-1 sm:hidden">
-          <a href="{{ product.url }}" class="product-title h6">{{ product.title }}</a>
+        <div class="quick-buy-modal__mobile-info v-stack gap-1">
+          <h3 class="product-title h6">
+            <a href="{{ product.url }}">{{ product.title }}</a>
+          </h3>
 
           {%- if product.selected_or_first_available_variant != null -%}
             {% render 'price-list',
@@ -78,12 +80,9 @@
 
       <div class="quick-buy-modal__info-wrapper">
         {%- render 'product-info', product: product, product_form_id: product_form_id, context: 'quick_buy' -%}
-        <a href="{{ product.url }}" class="quick-buy-modal__view-more link sm-max:hidden">
-          {{- 'product.general.view_details' | t -}}
-        </a>
       </div>
 
-      <div class="quick-buy-modal__footer-wrapper">
+      <div class="quick-buy-modal__footer-wrapper prose">
         <a href="{{ product.url }}">more details</a>
         <span>or</span>
         <a href="#">continue shopping</a>
