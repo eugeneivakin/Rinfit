@@ -391,10 +391,12 @@
     {%- endif -%}
 
     {%- assign sidebar_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
+    {%- assign sidebar_menu_second = section.settings.sidebar_menu_second -%}
 
     {%- if sidebar_menu.links.size > 0 -%}
       {%- render 'header-sidebar',
         menu: sidebar_menu,
+        menu_second: sidebar_menu_second,
         color_scheme: section.settings.sidebar_color_scheme,
         show_dividers: section.settings.sidebar_show_dividers,
         open_second_level_menus: section.settings.sidebar_open_second_level_menus
@@ -487,9 +489,20 @@
       "default": "main-menu"
     },
     {
+      "type": "collection_list",
+      "id": "sidebar_menu_collection_list",
+      "label": "Mobile menu collections slider",
+      "limit": 8
+    },
+    {
       "type": "link_list",
       "id": "sidebar_menu",
       "label": "t:sections.header.mobile_menu"
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_menu_second",
+      "label": "Second mobile menu"
     },
     {
       "type": "select",

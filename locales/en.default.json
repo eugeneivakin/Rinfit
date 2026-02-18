@@ -86,7 +86,10 @@
       "cart": "Cart",
       "primary_navigation": "Primary navigation",
       "secondary_navigation": "Secondary navigation",
-      "menu": "Navigation menu"
+      "menu": "Navigation menu",
+      "sign_in": "Sign in",
+      "register_promo": "Join for 15%off",
+      "track_order": "Track my order"
     }
   },
   "product": {
