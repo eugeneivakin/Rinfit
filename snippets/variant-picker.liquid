@@ -91,16 +91,19 @@
           {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
             {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
 
-            <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
+            <button
+              data-size-chart-popup-opener
+              type="button"
+              class="link"
+              aria-controls="{{ id | escape }}"
+              aria-expanded="false"
+            >
               {{- 'product.general.size_chart' | t -}}
             </button>
 
             <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
               <span class="h5" slot="header">{{ size_chart_page.title }}</span>
-
-              <div class="prose">
-                {{- size_chart_page.content -}}
-              </div>
+              <div class="prose" data-size-chart-page-content></div>
             </x-modal>
           {%- endif -%}
         </div>
@@ -240,3 +243,44 @@
     {%- endunless -%}
   </variant-picker>
 {%- endunless -%}
+
+{%- if size_chart_page != blank and size_label_list contains option_downcase -%}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('click', function (e) {
+        const opener = e.target.closest('[data-size-chart-popup-opener]');
+        if (!opener) return;
+
+        const modal = document.getElementById(opener.getAttribute('aria-controls'));
+        if (!modal) return;
+
+        const contentBlock = modal.querySelector('[data-size-chart-page-content]');
+        if (!contentBlock) return;
+
+        // Получаем handle страницы
+        const handle = '{{ size_chart_page }}';
+        if (!handle) {
+          contentBlock.innerHTML = '<div>Page handle not found</div>';
+          return;
+        }
+        const url = `/pages/${handle}`;
+
+        fetch(url)
+          .then((response) => response.text())
+          .then((html) => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const section = tempDiv.querySelector('section[id*="ring_size_guide"]');
+            if (section) {
+              contentBlock.innerHTML = section.outerHTML;
+            } else {
+              contentBlock.innerHTML = '<div>Size chart not found</div>';
+            }
+          })
+          .catch(() => {
+            contentBlock.innerHTML = '<div>Error loading size chart</div>';
+          });
+      });
+    });
+  </script>
+{%- endif -%}

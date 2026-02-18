@@ -343,9 +343,11 @@
        column-gap: 10px;
   row-gap: 6px;
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1200px) {
   .product-info__block-group.feature-badge-list {
     grid-template-columns: repeat(4, 1fr);
+    -moz-column-gap: 20px;
+         column-gap: 20px;
   }
 }
 .product-info__block-group.feature-badge-list .feature-badge {

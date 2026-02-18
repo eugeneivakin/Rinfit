@@ -378,8 +378,9 @@
     column-gap: 10px;
     row-gap: 6px;
 
-    @include md {
+    @include lg {
       grid-template-columns: repeat(4, 1fr);
+      column-gap: 20px;
     }
 
     .feature-badge {
