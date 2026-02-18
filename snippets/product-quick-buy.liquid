@@ -83,10 +83,10 @@
       </div>
 
       <div class="quick-buy-modal__footer-wrapper">
-        <a href="{{ product.url }}" class="link">more details</a>
-        <span>or</span>
+        <a href="{{ product.url }}" class="link">{{ 'product.quick_add.view_details' | t }}</a>
+        <span>{{ 'product.quick_add.footer_union' | t }}</span>
         <dialog-close-button>
-          <span class="link">continue shopping</span>
+          <span class="link">{{ 'cart.general.continue_shopping' | t }}</span>
         </dialog-close-button>
       </div>
     </product-rerender>

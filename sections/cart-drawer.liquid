@@ -1,4 +1,12 @@
-<cart-drawer id="cart-drawer" aria-label="{{ 'cart.general.title' | t | escape_once }}" class="cart-drawer drawer {% if cart.empty? %}drawer--center-body{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}" initial-focus="false" handle-editor-events>
+
+
+<cart-drawer
+  id="cart-drawer"
+  aria-label="{{ 'cart.general.title' | t | escape_once }}"
+  class="cart-drawer drawer {% if cart.empty? %}drawer--center-body{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+  initial-focus="false"
+  handle-editor-events
+>
   <p class="h4" slot="header">{{ 'cart.general.title' | t }}</p>
 
   {%- if cart.empty? -%}
@@ -27,10 +35,14 @@
     -%}
 
     {%- if cross_sell_products_count > 0 -%}
+      {{ 'product-card-horizontal.css' | asset_url | stylesheet_tag }}
       <div class="cart-drawer__complementary-products complementary-products">
         {%- assign carousel_id = 'complementary-products-carousel-' | append: section.id -%}
 
-        {%- if section.settings.cross_sell_title != blank or section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
+        {%- if section.settings.cross_sell_title != blank
+          or section.settings.cross_sell_stack_products == false
+          and cross_sell_products_count > 1
+        -%}
           <div class="complementary-products__header complementary-products__header--align-start">
             <p class="h6">{{ section.settings.cross_sell_title }}</p>
 
@@ -63,7 +75,65 @@
             {{- complementary_products -}}
           </div>
         {%- else -%}
-          <scroll-carousel id="{{ carousel_id }}" class="complementary-products__product-list complementary-products__product-list--carousel scroll-area bleed snap-x">
+          <scroll-carousel
+            id="{{ carousel_id }}"
+            class="complementary-products__product-list complementary-products__product-list--carousel scroll-area bleed snap-x"
+          >
+            {{- complementary_products -}}
+          </scroll-carousel>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- liquid
+      assign cross_sell_products_count = section.settings.cross_sell_collection.products_count | default: 0
+    -%}
+
+    {%- if cross_sell_products_count > 0 -%}
+      {{ 'product-card-horizontal.css' | asset_url | stylesheet_tag }}
+      <div class="cart-drawer__complementary-products complementary-products">
+        {%- assign carousel_id = 'complementary-products-carousel-' | append: section.id -%}
+
+        {%- if section.settings.cross_sell_title != blank
+          or section.settings.cross_sell_stack_products == false
+          and cross_sell_products_count > 1
+        -%}
+          <div class="complementary-products__header complementary-products__header--align-start">
+            <p class="h6">{{ section.settings.cross_sell_title }}</p>
+
+            {%- if section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
+              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots page-dots--narrow">
+                {%- for i in (1..section.settings.products_to_show) -%}
+                  <button class="relative" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                    <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+                  </button>
+                {%- endfor -%}
+              </carousel-navigation>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- liquid
+          capture complementary_products
+            for product in section.settings.cross_sell_collection.products limit: section.settings.products_to_show
+              assign products_in_cart = cart.items | where: 'product_id', product.id
+
+              if products_in_cart.size == 0 and product.available
+                render 'x-product-card-horizontal', product: product, show_quick_buy: true
+              endif
+            endfor
+          endcapture
+        -%}
+
+        {%- if section.settings.cross_sell_stack_products -%}
+          <div class="complementary-products__product-list">
+            {{- complementary_products -}}
+          </div>
+        {%- else -%}
+          <scroll-carousel
+            id="{{ carousel_id }}"
+            class="complementary-products__product-list complementary-products__product-list--carousel scroll-area bleed snap-x"
+          >
             {{- complementary_products -}}
           </scroll-carousel>
         {%- endif -%}
@@ -79,14 +149,23 @@
           <div class="v-stack gap-0.5 justify-items-start">
             {%- if section.settings.show_cart_note -%}
               {%- assign cart_note_dialog_id = 'cart-note-' | append: section.id -%}
-              <button class="link-faded-reverse" aria-controls="{{ cart_note_dialog_id }}">{{ 'cart.general.add_order_note' | t }}</button>
+              <button class="link-faded-reverse" aria-controls="{{ cart_note_dialog_id }}">
+                {{ 'cart.general.add_order_note' | t }}
+              </button>
 
               <cart-note-dialog id="{{ cart_note_dialog_id }}" class="cart-drawer__order-note">
                 <div class="form">
                   <cart-note class="form-control">
                     {%- assign order_note = 'cart.general.order_note' | t -%}
                     {%- assign placeholder = 'cart.general.note_placeholder' | t -%}
-                    {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note, placeholder: placeholder, show_label_as_block: true -%}
+                    {%- render 'input',
+                      name: 'note',
+                      multiline: 3,
+                      label: order_note,
+                      value: cart.note,
+                      placeholder: placeholder,
+                      show_label_as_block: true
+                    -%}
                   </cart-note>
 
                   <dialog-close-button class="contents">
@@ -115,7 +194,10 @@
                   {{ discount_application.title }} (-{{ discount_application.total_allocated_amount | money }})
 
                   {%- if section.settings.allow_discount_application and discount_application.type != '' -%}
-                    <cart-discount-remove-button discount-code="{{ discount_application.title | escape }}" class="h-stack align-center">
+                    <cart-discount-remove-button
+                      discount-code="{{ discount_application.title | escape }}"
+                      class="h-stack align-center"
+                    >
                       <button type="button">{%- render 'icon' with 'close', width: 8 -%}</button>
                     </cart-discount-remove-button>
                   {%- endif -%}
@@ -214,6 +296,20 @@
       "label": "t:sections.cart_drawer.cross_sell_products",
       "info": "t:sections.cart_drawer.cross_sell_products_info",
       "limit": 5
+    },
+    {
+      "type": "collection",
+      "id": "cross_sell_collection",
+      "label": "t:sections.cart_drawer.cross_sell_collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "label": "Products to show",
+      "default": 5
     },
     {
       "type": "inline_richtext",

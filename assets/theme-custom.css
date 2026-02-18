@@ -10,6 +10,10 @@
   fill: currentColor;
 }
 
+.button[disabled] {
+  --button-background: 211 211 211;
+}
+
 .input, .textarea, .select {
   --border-color: 55 58 54 / 0.2;
   --input-padding-block: 12px;
@@ -152,4 +156,8 @@ body {
 .isolate {
   position: relative;
   z-index: 0;
+}
+
+.floating-controls-container--on-hover > .floating-controls-container__control {
+  opacity: 1;
 }

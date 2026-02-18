@@ -288,7 +288,7 @@
       color: rgb(var(--text-color) / 1);
       min-width: 0;
       user-select: none;
-      width: 30px;
+      width: 40px;
     }
 
     :checked + .color-swatch,
@@ -327,6 +327,7 @@
 
   .link {
     cursor: pointer;
+    display: inline-block;
     text-transform: capitalize;
   }
 }

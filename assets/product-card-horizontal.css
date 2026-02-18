@@ -1,0 +1,22 @@
+.horizontal-product-card .product-title {
+  --heading-font-weight: 500;
+  font-family: inherit;
+}
+.horizontal-product-card .product-title.h6 {
+  --text-h6: 16px;
+  padding-block-end: 2px;
+}
+.horizontal-product-card .price-list {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+.horizontal-product-card .price-list * {
+  font: inherit;
+}
+.horizontal-product-card .price-list sale-price {
+  color: rgb(var(--text-color)/1);
+}
+.horizontal-product-card .price-list compare-at-price {
+  color: rgb(var(--text-color)/0.2);
+}

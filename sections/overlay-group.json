@@ -22,8 +22,10 @@
         "show_checkout_button": true,
         "show_price_in_checkout_button": true,
         "cross_sell_products": [],
+        "cross_sell_collection": "best-sellers",
+        "products_to_show": 4,
         "cross_sell_title": "Complete with",
-        "cross_sell_stack_products": false
+        "cross_sell_stack_products": true
       }
     },
     "newsletter-popup": {

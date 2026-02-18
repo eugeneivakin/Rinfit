@@ -246,7 +246,7 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  width: 30px;
+  width: 40px;
 }
 .quick-buy-modal__info-wrapper .variant-picker__option-values :checked + .color-swatch,
 .quick-buy-modal__info-wrapper .variant-picker__option-values .color-swatch.is-selected {
@@ -278,5 +278,6 @@
 }
 .quick-buy-modal__footer-wrapper .link {
   cursor: pointer;
+  display: inline-block;
   text-transform: capitalize;
 }

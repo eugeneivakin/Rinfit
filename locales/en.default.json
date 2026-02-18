@@ -99,6 +99,7 @@
       "unavailable_button": "Unavailable",
       "choose_options": "Choose options",
       "added_to_cart": "Added to your cart!",
+      "added_to_cart_disabled": "Select your size",
       "added_to_cart_with_title": "{{ product_title }} added to cart.",
       "sold_out_badge": "Sold out",
       "on_sale_badge": "On sale",
@@ -170,7 +171,9 @@
     },
     "quick_add": {
       "heading": "Quick add",
-      "buy_button": "Quick buy"
+      "buy_button": "Quick buy",
+      "view_details": "More details",
+      "footer_union": "or"
     }
   },
   "collection": {

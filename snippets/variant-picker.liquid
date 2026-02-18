@@ -78,14 +78,14 @@
         endif
       %}
 
-      <fieldset class="variant-picker__option v-stack gap-4" data-option-type="{{ data_option_type }}">
+      <fieldset
+        class="variant-picker__option v-stack gap-4"
+        data-option-type="{{ data_option_type }}"
+      >
         <div class="variant-picker__option-info h-stack justify-between gap-2">
           <div class="h-stack gap-3">
             <legend>{{ option.name }}:</legend>
-
-            {%- if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'variant_image' -%}
-              <span>{{ option.selected_value }}</span>
-            {%- endif -%}
+            <span class="variant-picker__selected-variant">{{ option.selected_value }}</span>
           </div>
 
           {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
@@ -215,9 +215,9 @@
                   when 'variant_image'
                     render 'option-value', type: 'thumbnail', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
                   when 'swatch'
-                    render 'x-option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                    render 'x-option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, data_option_type: data_option_type
                   when 'block'
-                    render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                    render 'x-option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, data_option_type: data_option_type
                   when 'block_swatch'
                     render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
                 endcase
