@@ -121,6 +121,7 @@
 }
 
 .mega-menu {
+  border-block-end-width: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
   padding-block: 40px;
@@ -156,6 +157,10 @@
 .mega-menu__linklist > li > .h6 {
   font-size: 16px;
   font-weight: 600;
+}
+.mega-menu__linklist .link,
+.mega-menu__linklist .link-faded {
+  color: rgb(var(--text-color)/0.7);
 }
 .mega-menu__linklist ul {
   padding: 11px 0 0;

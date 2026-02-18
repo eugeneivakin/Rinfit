@@ -1,14 +1,6 @@
 .shopify-section--newsletter {
   --content-over-media-content-max-width: none;
 }
-.shopify-section--newsletter .section-spacing {
-  --section-vertical-spacing: 15px;
-}
-@media screen and (min-width: 1000px) {
-  .shopify-section--newsletter .section-spacing {
-    --section-vertical-spacing: 12px;
-  }
-}
 .shopify-section--newsletter .section-stack {
   --section-stack-gap: 20px;
 }

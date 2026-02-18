@@ -18,6 +18,9 @@
 .footer .text-subdued {
   color: rgb(var(--text-color)/0.6);
 }
+.footer .link-faded {
+  color: rgb(var(--text-color)/1);
+}
 .footer .localization-selectors:has(:only-child) {
   justify-content: flex-start;
 }

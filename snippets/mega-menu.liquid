@@ -32,7 +32,18 @@
               <ul class="v-stack gap-2 unstyled-list">
                 {%- for sub_sub_link in sub_link.links -%}
                   <li>
-                    <a href="{{ sub_sub_link.url }}" class="link-faded">{{ sub_sub_link.title }}</a>
+                    <a
+                      href="{{ sub_sub_link.url }}"
+                      class="
+                        {%- if forloop.last -%}
+                          link
+                        {%- else -%}
+                          link-faded
+                        {%- endif -%}
+                      "
+                    >
+                      {{- sub_sub_link.title -}}
+                    </a>
                   </li>
                 {%- endfor -%}
               </ul>

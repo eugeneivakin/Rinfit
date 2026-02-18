@@ -9,6 +9,7 @@
   .container {
     border-radius: 10px;
     overflow: hidden;
+    max-width: none;
 
     @include md {
       border-radius: 30px;

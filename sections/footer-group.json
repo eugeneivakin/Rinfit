@@ -76,7 +76,7 @@
         "show_payment_icons": false,
         "show_powered_by_shopify": false,
         "show_policies_links": true,
-        "show_country_selector": true,
+        "show_country_selector": false,
         "show_country_name": true,
         "show_country_flag": false,
         "show_locale_selector": false

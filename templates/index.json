@@ -470,7 +470,7 @@
         "hide_product_information": false,
         "stack_products": false,
         "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
+        "products_per_row_desktop": 5,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
         "subheading": ""
@@ -740,7 +740,7 @@
           "type": "video",
           "settings": {
             "video": "shopify://files/videos/Download (1).mp4",
-            "product": "copy-of-amazon-infinity-7-rings-set-1"
+            "product": "womens-couture-silicone-rings-7-stackable-ring-set-stylish-patented-design-for-active-lifestyle-copy"
           }
         },
         "video_NfjtLa": {
@@ -748,6 +748,13 @@
           "settings": {
             "video": "shopify://files/videos/Download (1).mp4",
             "product": "couple-bundle-silicone-wedding-ring-bundle-set-81"
+          }
+        },
+        "video_qwT7eb": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Download (1)_683b4bb8-3da6-487e-bde8-f60b8608cdb1.mp4",
+            "product": "womens-couture-silicone-rings-7-stackable-ring-set-stylish-patented-design-for-active-lifestyle-copy"
           }
         }
       },
@@ -758,7 +765,8 @@
         "video_A6Jyic",
         "video_rjHk63",
         "video_zqmqzG",
-        "video_NfjtLa"
+        "video_NfjtLa",
+        "video_qwT7eb"
       ],
       "name": "Section tiktok",
       "settings": {
@@ -768,9 +776,7 @@
         "title": "Rinfit <em><strong>Community</strong></em>",
         "content": "",
         "button_url": "",
-        "button_text": "",
-        "main_title": "",
-        "products_count": 9
+        "button_text": ""
       }
     },
     "media_grid_social_TNqyKQ": {
@@ -914,7 +920,7 @@
       ],
       "name": "Media grid (social)",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "separate_section_with_border": false,
         "desktop_row_height": 240,
         "mobile_row_height": 120,

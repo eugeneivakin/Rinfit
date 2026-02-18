@@ -169,7 +169,8 @@
       "pick_up_unavailable_at": "Pickup currently unavailable at {{ location_name }}"
     },
     "quick_add": {
-      "heading": "Quick add"
+      "heading": "Quick add",
+      "buy_button": "Quick buy"
     }
   },
   "collection": {

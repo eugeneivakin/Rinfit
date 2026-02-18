@@ -5,6 +5,7 @@
 .shopify-section--banner-small .container {
   border-radius: 10px;
   overflow: hidden;
+  max-width: none;
 }
 @media screen and (min-width: 1000px) {
   .shopify-section--banner-small .container {

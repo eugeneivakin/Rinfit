@@ -4,14 +4,24 @@
       {{ video | video_tag: autoplay: false, loop: false, muted: false, controls: false, image_size: '312x' }}
       <div class="product-video-review__play">
         {% render 'icons', icon: 'play' %}
+        {% render 'icons', icon: 'pause' %}
       </div>
-      <div class="product-video-review__buy" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+      <a href="{{ product.url }}" class="product-video-review__product-view">
         {% render 'icons', icon: 'bag' %}
-      </div>
+        <span class="tooltip">{{ 'sections.shop_the_look.view_product' | t }}</span>
+      </a>
     </div>
     <div class="product-video-review__content">
       <div>
-        {{ product.featured_image | image_url: width: 140 | image_tag: loading: 'lazy' }}
+        {% if product.metafields.custom.transparent_featured_image.value != blank %}
+          {{
+            product.metafields.custom.transparent_featured_image
+            | image_url: width: 140
+            | image_tag: loading: 'lazy'
+          }}
+        {% else %}
+          {{ product.featured_image | image_url: width: 140 | image_tag: loading: 'lazy' }}
+        {% endif %}
       </div>
       <div>
         <h2 class="h2 line-clamp">
