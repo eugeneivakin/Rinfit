@@ -3,12 +3,12 @@
 .shopify-section--newsletter {
   --content-over-media-content-max-width: none;
 
-  .section-spacing {
-    --section-vertical-spacing: 15px;
-    @include md {
-      --section-vertical-spacing: 12px;
-    }
-  }
+  // .section-spacing {
+  //   --section-vertical-spacing: 15px;
+  //   @include md {
+  //     --section-vertical-spacing: 12px;
+  //   }
+  // }
 
   .section-stack {
     --section-stack-gap: 20px;

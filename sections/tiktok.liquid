@@ -1,4 +1,6 @@
 {%- if section.blocks.size > 0 -%}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
   {{- 'section-tiktok.css' | asset_url | stylesheet_tag -}}
 
   <style>
@@ -13,6 +15,26 @@
       }
     }
   </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      var swiper = new Swiper('#shopify-section-{{ section.id }} .section-slider', {
+        slidesPerView: 'auto',
+        loop: true,
+        centeredSlides: true,
+        spaceBetween: 0,
+        breakpoints: {
+          700: {
+            slidesPerView: 3,
+          },
+          1000: {
+            slidesPerView: 5,
+            // loop: false,
+          },
+        },
+      });
+    });
+  </script>
 
   {%- assign remove_vertical_spacing = false -%}
 
@@ -45,6 +67,14 @@
     {%- endif -%}
   {%- endcapture -%}
 
+  {% capture collection_list_swiper %}
+    {%- for block in section.blocks -%}
+      <div class="swiper-slide">
+        {% render 'product-video-review', video: block.settings.video, product: block.settings.product  %}
+      </div>
+    {%- endfor -%}
+  {% endcapture %}
+
   <div class="{% unless remove_vertical_spacing %}section-spacing {% if reduce_vertical_spacing %}section-spacing--tight{% endif %}{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
       <div class="section-stack">
@@ -56,44 +86,12 @@
           button_shop_all: button_shop_all
         -%}
 
-        {% capture collection_list %}
-          {%- for block in section.blocks -%}
-            {% render 'product-video-review', video: block.settings.video, product: block.settings.product  %}
-          {%- endfor -%}
-        {% endcapture %}
-
-        <div class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
-          {%- assign carousel_id = 'carousel-' | append: section.id -%}
-
-          <carousel-prev-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
-            <button
-              type="button"
-              class="prev-next-button prev-next-button--prev circle-button circle-button--lg hover:animate-icon-inline"
-              disabled
-            >
-              <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-              {%- render 'icons', icon: 'chevron-left' -%}
-            </button>
-          </carousel-prev-button>
-
-          <scroll-carousel
-            id="{{ carousel_id }}"
-            group-cells
-            allow-drag
-            class="collection-list scroll-area {% if section.settings.show_text_outside %}collection-list--text-outside{% endif %} bleed lg:unbleed"
-          >
-            {{ collection_list }}
-          </scroll-carousel>
-
-          <carousel-next-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
-            <button
-              type="button"
-              class="prev-next-button prev-next-button--next circle-button circle-button--lg hover:animate-icon-inline"
-            >
-              <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-              {%- render 'icons', icon: 'chevron-right' -%}
-            </button>
-          </carousel-next-button>
+        <div class="bleed">
+          <div class="swiper section-slider">
+            <div class="swiper-wrapper">
+              {{ collection_list_swiper }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -101,75 +99,24 @@
 {%- endif -%}
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     // Delegation: use one listener for all buttons
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       const playButton = e.target.closest('.product-video-review__play');
-      const buyButton = e.target.closest('.product-video-review__buy');
-      
+
       if (playButton) {
         const videoContainer = playButton.closest('.product-video-review');
         if (videoContainer) {
           const video = videoContainer.querySelector('video');
           if (video) {
-            video.play();
-          }
-        }
-      }
-      
-      if (buyButton) {
-        e.preventDefault();
-        const variantId = buyButton.getAttribute('data-variant-id');
-        
-        if (variantId) {
-          document.documentElement.dispatchEvent(new CustomEvent('theme:loading:start', { bubbles: true }));
-          
-          const formData = new FormData();
-          formData.append('id', variantId);
-          formData.append('quantity', 1);
-          
-          // Prepare sections like the theme does
-          let sectionsToBundle = [];
-          document.documentElement.dispatchEvent(new CustomEvent('cart:prepare-bundled-sections', {
-            bubbles: true,
-            detail: { sections: sectionsToBundle }
-          }));
-          
-          formData.append('sections', sectionsToBundle.join(','));
-          
-          fetch(window.Shopify.routes.root + 'cart/add.js', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest'
+            if (video.paused) {
+              video.play();
+              videoContainer.classList.add('active');
+            } else {
+              video.pause();
+              videoContainer.classList.remove('active');
             }
-          })
-          .then(response => response.json())
-          .then(responseJson => {
-            // 1. Getting complete cart details
-            return fetch(window.Shopify.routes.root + 'cart.js')
-              .then(res => res.json())
-              .then(cartContent => {
-                // 2. Add sections from the answer /cart/add.js
-                cartContent['sections'] = responseJson['sections'] || {};
-                
-                document.documentElement.dispatchEvent(new CustomEvent('theme:loading:end', { bubbles: true }));
-                
-                // 3. Emit cart:change with full updated data
-                document.documentElement.dispatchEvent(new CustomEvent('cart:change', {
-                  bubbles: true,
-                  detail: {
-                    baseEvent: 'variant:add',
-                    cart: cartContent,
-                    items: Array.isArray(responseJson.items) ? responseJson.items : [responseJson]
-                  }
-                }));
-              });
-          })
-          .catch(error => {
-            document.documentElement.dispatchEvent(new CustomEvent('theme:loading:end', { bubbles: true }));
-            console.error('Error:', error);
-          });
+          }
         }
       }
     });
@@ -228,24 +175,6 @@
       "id": "button_text",
       "label": "Button link",
       "default": "Shop all"
-    },
-    {
-      "type": "header",
-      "content": "OLD ↓↓↓↓↓↓↓↓↓↓↓↓"
-    },
-    {
-      "type": "richtext",
-      "id": "main_title",
-      "label": "Title"
-    },
-    {
-      "type": "range",
-      "id": "products_count",
-      "min": 2,
-      "step": 1,
-      "max": 24,
-      "label": "t:global.product_list.products_to_show",
-      "default": 9
     }
   ],
   "blocks": [

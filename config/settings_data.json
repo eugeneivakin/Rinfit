@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "section_vertical_spacing": "md",
+    "section_vertical_spacing": "xs",
     "button_border_radius": 4,
     "input_border_radius": 4,
     "modal_color_scheme": "scheme-1",
