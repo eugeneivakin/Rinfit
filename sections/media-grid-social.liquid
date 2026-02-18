@@ -28,12 +28,21 @@
     }
   </style>
 
-  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
 
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container {% unless section.settings.section_width == 'full' %}container--{{ section.settings.section_width }}{% endunless %}">
       <div class="section-stack">
-        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content -%}
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          content: section.settings.content,
+          button_account_label: section.settings.button_account_label,
+          button_account_link: section.settings.button_account_link
+        -%}
 
         <media-grid class="media-grid">
           {%- for block in section.blocks -%}
@@ -86,11 +95,20 @@
             {%- endcapture -%}
 
             {%- if block.settings.link_url -%}
-              <a href="{{ block.settings.link_url }}" class="media-grid__item" style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}" {{ block.shopify_attributes }}>
+              <a
+                href="{{ block.settings.link_url }}"
+                class="media-grid__item"
+                style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}"
+                {{ block.shopify_attributes }}
+              >
                 {{- block_content -}}
               </a>
             {%- else -%}
-              <div class="media-grid__item" style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}" {{ block.shopify_attributes }}>
+              <div
+                class="media-grid__item"
+                style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}"
+                {{ block.shopify_attributes }}
+              >
                 {{- block_content -}}
               </div>
             {%- endif -%}
@@ -217,6 +235,17 @@
       "type": "richtext",
       "id": "content",
       "label": "t:global.text.content"
+    },
+    {
+      "type": "url",
+      "id": "button_account_link",
+      "label": "Media button URL"
+    },
+    {
+      "type": "text",
+      "id": "button_account_label",
+      "label": "Media button text",
+      "default": "@rinfitrings"
     }
   ],
   "blocks": [

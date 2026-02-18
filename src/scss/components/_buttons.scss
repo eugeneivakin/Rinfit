@@ -11,3 +11,7 @@
     fill: currentColor;
   }
 }
+
+.button[disabled] {
+  --button-background: 211 211 211;
+}

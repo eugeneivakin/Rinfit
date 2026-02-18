@@ -27,6 +27,10 @@
           <h2 class="h2">{{- heading -}}</h2>
         {%- endif -%}
 
+        {% if button_account_label != blank and button_account_link != blank %}
+          {%- render 'button', href: button_account_link, content: button_account_label -%}
+        {% endif %}
+
         {{- content -}}
       </div>
     {%- endif -%}

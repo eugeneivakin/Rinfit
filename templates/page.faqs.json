@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
     "faq": {
       "type": "faq",
       "blocks": {
@@ -211,6 +215,7 @@
     }
   },
   "order": [
+    "main",
     "faq",
     "title_contact_CfcTF8",
     "hero_ring_guide_PFmNLB",

@@ -609,7 +609,8 @@
       "cross_sell_products": "Products",
       "cross_sell_products_info": "Products already in the cart or that are sold out are hidden.",
       "cross_sell_heading": "Heading",
-      "cross_sell_stack_products": "Stack products"
+      "cross_sell_stack_products": "Stack products",
+      "cross_sell_collection": "Collection"
     },
     "collection_banner": {
       "name": "Collection banner",

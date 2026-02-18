@@ -39,7 +39,6 @@
 
   * image: a specific image to use for the thumbnail. Most of the time this must not be set explicitly, as the theme will use the variant image as a default.
 {%- endcomment -%}
-
 {%- liquid
   if option_value
     assign label = label | default: option_value.name
