@@ -278,5 +278,6 @@
 }
 .quick-buy-modal__footer-wrapper .link {
   cursor: pointer;
+  display: inline-block;
   text-transform: capitalize;
 }

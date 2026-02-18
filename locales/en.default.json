@@ -170,7 +170,9 @@
     },
     "quick_add": {
       "heading": "Quick add",
-      "buy_button": "Quick buy"
+      "buy_button": "Quick buy",
+      "view_details": "More details",
+      "footer_union": "or"
     }
   },
   "collection": {
