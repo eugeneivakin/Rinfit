@@ -29,7 +29,7 @@
   {%- endif -%}
 
   <div class="horizontal-product-card__info">
-    <div class="v-stack gap-1 justify-items-start">
+    <div class="h-stack gap-1 justify-between align-end">
       <a
         href="{{ product.url }}"
         class="product-title {% if settings.product_card_text_font == 'heading' %}h6{% endif %}"
@@ -70,7 +70,7 @@
           LOADING
         </quick-buy-modal>
 
-        <button aria-controls="{{ modal_id }}" class="@narrow:horizontal-product-card__button link">
+        <button aria-controls="{{ modal_id }}" class="@narrow:horizontal-product-card__button product-card__button link">
           {{ 'product.quick_add.buy_button' | t }}
         </button>
         <button

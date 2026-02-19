@@ -1,7 +1,13 @@
 @use "mixins/media" as *;
 
 .horizontal-product-card {
+  .horizontal-product-card__figure {
+    width: 130px;
+  }
+
   .product-title {
+    --text-h6: 16px;
+    --heading-font-weight: 500;
     font-family: inherit;
   }
 
@@ -9,6 +15,7 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1;
+    white-space: nowrap;
 
     * {
       font: inherit;
@@ -21,5 +28,10 @@
     compare-at-price {
       color: rgb(var(--text-color) / 0.2);
     }
+  }
+
+  .product-card__button {
+    color: rgb(var(--text-color) / 0.6);
+    text-transform: capitalize;
   }
 }
