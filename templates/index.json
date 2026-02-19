@@ -23,7 +23,7 @@
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
             "content_max_width": 660,
             "button_1_text": "SHOP OUR SPARK COLLECTION",
-            "button_1_link": "shopify://collections",
+            "button_1_link": "shopify://collections/silicone-rings",
             "button_1_style": "solid",
             "button_1_background": "#807371",
             "button_1_text_color": "#e9e9e9",
@@ -466,7 +466,7 @@
       "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-1",
-        "separate_section_with_border": true,
+        "separate_section_with_border": false,
         "hide_product_information": false,
         "stack_products": false,
         "products_per_row_mobile": "2",

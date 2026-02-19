@@ -1,11 +1,3 @@
-.shopify-section--collection-list .section-spacing {
-  --section-vertical-spacing: 10px;
-}
-@media screen and (min-width: 1000px) {
-  .shopify-section--collection-list .section-spacing {
-    --section-vertical-spacing: 8px;
-  }
-}
 .shopify-section--collection-list .section-stack {
   --section-stack-gap: 13px;
 }

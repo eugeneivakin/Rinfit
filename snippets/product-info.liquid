@@ -216,6 +216,7 @@
           {%- when 'variant_picker' -%}
             {%- if product != blank -%}
               {%- render 'variant-picker',
+                  block: block,
                   product: product,
                   form_id: product_form_id,
                   context: context,
@@ -223,6 +224,7 @@
                   selector_style: block.settings.selector_style,
                   swatch_selector_style: block.settings.swatch_selector_style,
                   variant_image_options: block.settings.variant_image_options,
+                  show_measurement: block.settings.show_measurement,
                   size_chart_page: block.settings.size_chart_page -%}
             {%- endif -%}
 

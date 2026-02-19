@@ -1,0 +1,957 @@
+{{ 'xx-size-calculator.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .section-modal-size .modal-content-size.modal-content {
+    max-width: 784px;
+  }
+  .variant-picker .two-sizes-product-option:nth-child(4) .main-table-size-guide {
+    display: none;
+  }
+  .main-container-color-products.main-container-color-products-one {
+    border: none;
+  }
+  .calculator {
+    border-top: none;
+    box-shadow: none;
+  }
+  .section-modal-size .result {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  .main-calculator-container-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+  }
+  @media (max-width: 767px) {
+    .main-calculator-container-top {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  @media (max-width: 525px) {
+    .main-calculator-container-top {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .main-calculator-subtitle {
+    text-align: center;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #373936;
+  }
+  .main-calculator-title {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 30px;
+    color: #373a36;
+  }
+  .main-title-size-two {
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 34px;
+    display: block;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 6px 0 0px 0;
+  }
+  .main-calculator-title-top {
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 34px;
+    display: block;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 6px 0 20px 0;
+  }
+  .main-calculator-title-top strong {
+    font-style: italic;
+    font-weight: 500;
+  }
+  .toggle-image-text {
+    cursor: pointer;
+  }
+</style>
+
+<div
+  id="modal"
+  class="main-modal-ring-size"
+  style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;"
+>
+  <div style="position:relative; margin:50px auto; width:90%; height:80%; background:#fff; padding-top: 35px; overflow:auto;">
+    <button id="closeModal" style="position:absolute; right:10px; top:10px;">
+      {{ 'xx-iconCancel.svg' | asset_url | img_tag: 'Icon' }}
+    </button>
+    <div id="modalContent">{{ settings.main_text_loading }}</div>
+  </div>
+</div>
+
+{% comment %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% endcomment %}
+
+<div class="modal section-modal-size" id="sizeGuideModal">
+  <div class="modal-content modal-content-size">
+    {% if block.settings.main_title_calculator != blank %}
+      <div class="main-calculator-title-top">{{ block.settings.main_title_calculator }}</div>
+    {% endif %}
+    <div class="main-calculator-container-top">
+      <div>
+        {% if block.settings.main_image_1 != blank %}
+          {{ block.settings.main_image_1 | image_url: width: block.settings.main_image_1.width | image_tag }}
+        {% endif %}
+        {% if block.settings.main_title_1 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_1 }}
+          </div>
+        {% endif %}
+        {% if block.settings.main_subtitle_1 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_1 }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if block.settings.main_image_2 != blank %}
+          {{ block.settings.main_image_2 | image_url: width: block.settings.main_image_2.width | image_tag }}
+        {% endif %}
+
+        {% if block.settings.main_title_2 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_2 }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.main_subtitle_2 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_2 }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if block.settings.main_image_3 != blank %}
+          {{ block.settings.main_image_3 | image_url: width: block.settings.main_image_1.width | image_tag }}
+        {% endif %}
+
+        {% if block.settings.main_title_3 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_3 }}
+          </div>
+        {% endif %}
+        {% if block.settings.main_subtitle_3 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_3 }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if block.settings.main_image_4 != blank %}
+          {{ block.settings.main_image_4 | image_url: width: block.settings.main_image_4.width | image_tag }}
+        {% endif %}
+        {% if block.settings.main_title_4 != blank %}
+          <div class="main-calculator-title">
+            {{ block.settings.main_title_4 }}
+          </div>
+        {% endif %}
+        {% if block.settings.main_subtitle_4 != blank %}
+          <div class="main-calculator-subtitle">
+            {{ block.settings.main_subtitle_4 }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <button class="close-modal" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18" stroke="black" stroke-width="2"/>
+        <line x1="6" y1="6" x2="18" y2="18" stroke="black" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <div class="calculator calculator-size-one">
+      <div class="main-container-calculator">
+        <div class="main-container-select-label">
+          <div>
+            <div class="main-label-calculator">Units of measurement:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="unit">
+                <option value="mm">Millimeters (mm)</option>
+                <option value="inch">Inches (inch)</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'xx-ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="main-label-calculator">Measurement type:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="type">
+                <option value="diameter">Diameter</option>
+                <option value="circumference">Circumference</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'xx-ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-label-calculator">Enter the value:</div>
+        <input class="main-input-calculator" type="number" id="value" placeholder="For example: 18.1" step="any">
+        <button class="main-button-calculator" onclick="calculateSize()">Calculate</button>
+        <div class="result" id="result"></div>
+
+        {% comment %} <div class="toggle-image-text" onclick="toggleImageVisibility()"></div> {% endcomment %}
+        <div class="image-container" id="image-container">
+          <img
+            src="https://cdn.shopify.com/s/files/1/1471/8740/files/chart.png?v=1755874188"
+            alt="Chart Image"
+            loading="lazy"
+          >
+        </div>
+        <div class="image-container-mobile" id="image-container">
+          <img
+            src="https://cdn.shopify.com/s/files/1/1471/8740/files/rinfit_mobile.avif?v=1764618048"
+            alt="Chart Mobile Image"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="calculator calculator-size-two">
+      <div class="main-title-size-two">Men's Size</div>
+      <div class="main-container-calculator men-size">
+        <div class="main-container-select-label">
+          <div>
+            <div class="main-label-calculator">Units of measurement:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="unit">
+                <option value="mm">Millimeters (mm)</option>
+                <option value="inch">Inches (inch)</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'xx-ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="main-label-calculator">Measurement type:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="type">
+                <option value="diameter">Diameter</option>
+                <option value="circumference">Circumference</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'xx-ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-label-calculator">Enter the value:</div>
+        <input class="main-input-calculator" type="number" id="value" placeholder="For example: 18.1" step="any">
+        <button class="main-button-calculator" onclick="calculateSizeTwo(this)">Calculate</button>
+        <div class="result" id="result"></div>
+      </div>
+      <div class="main-title-size-two">Women's Size</div>
+      <div class="main-container-calculator women-size">
+        <div class="main-container-select-label">
+          <div>
+            <div class="main-label-calculator">Units of measurement:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="unit">
+                <option value="mm">Millimeters (mm)</option>
+                <option value="inch">Inches (inch)</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'xx-ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="main-label-calculator">Measurement type:</div>
+            <div class="main-container-calculator-top">
+              <select class="main-select-calculator" id="type">
+                <option value="diameter">Diameter</option>
+                <option value="circumference">Circumference</option>
+              </select>
+              <span class="select-icon-calculator">
+                {{ 'xx-ChevronDownIcon.svg' | asset_url | img_tag }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-label-calculator">Enter the value:</div>
+        <input class="main-input-calculator" type="number" id="value" placeholder="For example: 18.1" step="any">
+        <button class="main-button-calculator" onclick="calculateSizeTwo(this)">Calculate</button>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const colorProducts = document.querySelector('.variant-picker__option[data-option-type="color"]');
+    const otherBlockOne = document.querySelector('.calculator-size-one');
+    const otherBlockTwo = document.querySelector('.calculator-size-two');
+
+    if (colorProducts) {
+      if (otherBlockOne) otherBlockOne.style.display = 'block';
+      if (otherBlockTwo) otherBlockTwo.style.display = 'none';
+    } else {
+      if (otherBlockOne) otherBlockOne.style.display = 'none';
+      if (otherBlockTwo) otherBlockTwo.style.display = 'block';
+    }
+  });
+  function toggleImageVisibility() {
+    var imageContainer = document.getElementById('image-container');
+    if (imageContainer.style.display === 'none') {
+      imageContainer.style.display = 'block';
+    } else {
+      imageContainer.style.display = 'none';
+    }
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const selectBlocks = document.querySelectorAll('.main-container-calculator-top');
+
+    selectBlocks.forEach((block) => {
+      const select = block.querySelector('.main-select-calculator');
+      const icon = block.querySelector('.select-icon-calculator');
+
+      select.addEventListener('mousedown', () => {
+        icon.classList.toggle('open');
+      });
+
+      select.addEventListener('blur', () => {
+        icon.classList.remove('open');
+      });
+    });
+  });
+</script>
+<script>
+  const ringData = [
+      {% for item in shop.metaobjects.size_ring.values %}
+          {
+              size: {{ item.size }},
+              dia_mm: {{ item.diameter_mm }},
+              dia_in: {{ item.diameter_inches }},
+              cir_mm: {{ item.circumference_mm }},
+              cir_in: {{ item.circumference_inches }}
+          }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+  ];
+</script>
+<script>
+  function calculateSize() {
+    const unit = document.getElementById('unit').value;
+    const type = document.getElementById('type').value;
+    const value = parseFloat(document.getElementById('value').value);
+    const resultDiv = document.getElementById('result');
+
+    if (isNaN(value)) {
+      resultDiv.textContent = 'Please enter a number.';
+      return;
+    }
+
+    const key = type === 'diameter' ? (unit === 'mm' ? 'dia_mm' : 'dia_in') : unit === 'mm' ? 'cir_mm' : 'cir_in';
+
+    let closest = null;
+    let minDiff = Infinity;
+
+    ringData.forEach((r) => {
+      const diff = Math.abs(r[key] - value);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = r;
+      }
+    });
+
+    if (closest) {
+      resultDiv.innerHTML = `
+            <b>Ring size: ${closest.size}</b><br>
+            Diameter: ${closest.dia_mm} мм (${closest.dia_in} inches)<br>
+            Circumference: ${closest.cir_mm} мм (${closest.cir_in} inches)
+        `;
+    } else {
+      resultDiv.innerHTML = `
+            Size not found, please check the measurement table and try again.
+        `;
+    }
+  }
+</script>
+
+<script>
+  let menFound = false;
+  let womenFound = false;
+
+  function calculateSizeTwo(button) {
+    const calculatorWrapper = document.querySelector('.calculator-size-two');
+    if (!calculatorWrapper) return;
+
+    const activeCalculator = button.closest('.main-container-calculator');
+    if (!activeCalculator) return;
+
+    const isMen = activeCalculator.classList.contains('men-size');
+    const unit = activeCalculator.querySelector('#unit').value;
+    const type = activeCalculator.querySelector('#type').value;
+    const value = parseFloat(activeCalculator.querySelector('#value').value);
+    const resultDiv = activeCalculator.querySelector('#result');
+
+    if (isNaN(value)) {
+      resultDiv.textContent = 'Please enter a number.';
+      return;
+    }
+
+    const key = type === 'diameter' ? (unit === 'mm' ? 'dia_mm' : 'dia_in') : unit === 'mm' ? 'cir_mm' : 'cir_in';
+
+    const found = ringData.find((r) => r[key] === value);
+    let clickedSomething = false;
+
+    if (found) {
+      const options = document.querySelectorAll('.variant-picker__option');
+      options.forEach((option) => {
+        const optionName = option.querySelector('.option-name')?.textContent.trim();
+
+        if (isMen && optionName.includes("Select Men's Size")) {
+          if (clickSizeOption(option, found.size)) clickedSomething = true;
+        } else if (!isMen && optionName.includes("Select Women's Size")) {
+          if (clickSizeOption(option, found.size)) clickedSomething = true;
+        }
+      });
+
+      resultDiv.innerHTML = `
+      <b>Ring size: ${found.size}</b><br>
+      Diameter: ${found.dia_mm} мм (${found.dia_in} inches)<br>
+      Circumference: ${found.cir_mm} мм (${found.cir_in} inches)
+    `;
+
+      if (clickedSomething) {
+        if (isMen) menFound = true;
+        else womenFound = true;
+      }
+
+      if (menFound && womenFound) {
+        closeModal();
+      }
+    } else {
+      resultDiv.innerHTML = `
+      Size not found, please enter different values.
+    `;
+    }
+  }
+
+  function clickSizeOption(optionBlock, size) {
+    const valueButtons = optionBlock.querySelectorAll('.variant-picker__option-values button');
+    let clicked = false;
+
+    valueButtons.forEach((btn) => {
+      // Перевіряємо як за текстом в span, так і за data-option-value
+      const btnSize = btn.querySelector('span')?.textContent.trim();
+      const btnDataValue = btn.dataset.optionValue;
+      const sizeStr = size.toString();
+
+      if (btnSize === sizeStr || btnDataValue === sizeStr) {
+        if (!btn.disabled) {
+          btn.click();
+          clicked = true;
+        }
+      }
+    });
+
+    return clicked;
+  }
+
+  function closeModal() {
+    const modal = document.querySelector('.modal.section-modal-size');
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.querySelector('.modal.section-modal-size');
+    if (modal) {
+      document.body.appendChild(modal);
+    }
+
+    const openBtns = document.querySelectorAll('.main-table-size-guide');
+    const closeBtn = modal.querySelector('.close-modal');
+
+    openBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (!e.target.closest('.modal-content')) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  });
+</script>
+
+<style>
+  .container-main-size-dimensions svg {
+    width: 30px;
+    cursor: pointer;
+  }
+  .container-main-size-dimensions {
+    display: flex;
+    align-items: center;
+  }
+  .main-table-size-guide {
+    font-family: 'Kumbh Sans', sans-serif;
+    cursor: pointer;
+  }
+  .main-title-text-szie {
+    font-family: 'Kumbh Sans', sans-serif;
+    padding-right: 21px;
+  }
+  .main-title-text-szie span {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .section-modal-size.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .modal-content-size.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    /* height: 90%; */
+    max-height: 90%;
+    overflow: auto;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  body.no-scroll header {
+    z-index: 2 !important;
+  }
+  body.no-scroll .promo-banner-wrapper {
+    z-index: 0 !important;
+  }
+  body.no-scroll {
+    width: 100%;
+    overflow: hidden;
+  }
+  @media (max-width: 600px) {
+    .modal-content-size.modal-content {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const openBtns = document.querySelectorAll('.openModal');
+    const closeBtn = document.getElementById('closeModal');
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const header = document.querySelector('header');
+    let savedHeaderZ = header ? header.style.zIndex || '' : '';
+    let savedScrollY = 0;
+
+    function lockScroll() {
+      savedScrollY = window.scrollY || document.documentElement.scrollTop;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${savedScrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    }
+
+    function unlockScroll() {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, savedScrollY);
+    }
+
+    function stopAllVideos() {
+      document.querySelectorAll('video').forEach((v) => {
+        v.pause();
+        v.currentTime = 0;
+        v.classList.remove('active');
+      });
+
+      document.querySelectorAll('.video-thumbnail').forEach((el) => el.classList.remove('hidden'));
+      document.querySelectorAll('.play-button').forEach((el) => el.classList.remove('hidden'));
+    }
+
+    function initSwiper(container) {
+      const swiperContainer = container.querySelector('.warranty-swiper');
+      const progressLines = container.querySelectorAll('.warranty-progress-line');
+
+      if (!swiperContainer || !window.Swiper) return;
+
+      const swiper = new Swiper(swiperContainer, {
+        slidesPerView: 1,
+        centeredSlides: true,
+        loop: false,
+        speed: 300,
+        navigation: {
+          nextEl: container.querySelector('.warranty-arrow-next'),
+          prevEl: container.querySelector('.warranty-arrow-prev'),
+        },
+        on: {
+          init: function () {
+            progressLines.forEach((line, index) => line.classList.toggle('active', index === 0));
+          },
+          slideChange: function () {
+            progressLines.forEach((line, index) => line.classList.toggle('active', index === this.activeIndex));
+          },
+        },
+      });
+
+      progressLines.forEach((line, index) => {
+        line.addEventListener('click', () => swiper.slideTo(index));
+      });
+    }
+
+    function initVideo(container) {
+      const videoContainers = container.querySelectorAll('.video-ring-guide__video-container');
+      videoContainers.forEach((videoContainer) => {
+        const videoUrl = videoContainer.dataset.videoUrl;
+        if (!videoUrl) return;
+
+        videoContainer.addEventListener(
+          'click',
+          function () {
+            stopAllVideos();
+
+            const videoIdMatch = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+            if (!videoIdMatch) return;
+
+            const videoId = videoIdMatch[1];
+            videoContainer.innerHTML = `
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+            frameborder="0" 
+            allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        `;
+          },
+          { once: true }
+        );
+      });
+    }
+
+    window.initRingSizingVideo = function (containerId) {
+      const videoContainer = document.getElementById(`video-container-${containerId}`);
+      const videoThumbnail = document.getElementById(`video-thumbnail-${containerId}`);
+      const videoPlayer = document.getElementById(`video-player-${containerId}`);
+      const playButton = document.getElementById(`play-button-${containerId}`);
+
+      if (!videoContainer || !videoPlayer || !playButton) return;
+
+      function playVideo() {
+        stopAllVideos();
+
+        if (videoThumbnail) videoThumbnail.classList.add('hidden');
+        playButton.classList.add('hidden');
+        videoPlayer.classList.add('active');
+
+        if (videoPlayer.tagName.toLowerCase() === 'video') {
+          videoPlayer.muted = false;
+          videoPlayer.play().catch(() => {
+            videoPlayer.muted = true;
+            videoPlayer.play();
+          });
+        }
+      }
+
+      playButton.addEventListener('click', playVideo);
+      if (videoThumbnail) videoThumbnail.addEventListener('click', playVideo);
+
+      if (videoPlayer.tagName.toLowerCase() === 'video') {
+        videoPlayer.addEventListener('ended', () => {
+          videoPlayer.classList.remove('active');
+          if (videoThumbnail) videoThumbnail.classList.remove('hidden');
+          playButton.classList.remove('hidden');
+        });
+      }
+    };
+
+    openBtns.forEach((openBtn) => {
+      openBtn.addEventListener('click', async () => {
+        modal.style.display = 'block';
+        if (header) {
+          savedHeaderZ = header.style.zIndex || window.getComputedStyle(header).zIndex || '';
+          header.style.zIndex = '2';
+        }
+        lockScroll();
+
+        try {
+          const res = await fetch('/pages/about-us?view=ring-size-guide');
+          const html = await res.text();
+          modalContent.innerHTML = html;
+
+          const videoContainers = modalContent.querySelectorAll('.video-ring-guide__video-container');
+          videoContainers.forEach((vc) => {
+            const url = vc.getAttribute('data-video-url');
+            if (url) vc.dataset.videoUrl = url;
+          });
+
+          setTimeout(() => {
+            initSwiper(modalContent);
+            initVideo(modalContent);
+
+            const allRingSizingContainers = modalContent.querySelectorAll('.ring-sizing-tool__video-container');
+            allRingSizingContainers.forEach((container) => {
+              const idMatch = container.id.match(/video-container-(.+)/);
+              if (idMatch && idMatch[1]) {
+                const sectionId = idMatch[1];
+                window.initRingSizingVideo(sectionId);
+              }
+            });
+          }, 0);
+        } catch (err) {
+          console.error('Modal load error:', err);
+          modalContent.innerHTML = '<p>Не вдалося завантажити контент.</p>';
+        }
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      if (header) header.style.zIndex = savedHeaderZ || '';
+      unlockScroll();
+      stopAllVideos();
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  })();
+</script>
+
+<style>
+  table:not(.table--bordered) :is(th,td):first-child, table:not(.table--bordered) :is(th,td):empty+td{
+    padding-inline-start: 10px;
+  }
+  .main-table-size{
+    margin-top: 40px;
+  }
+  .main-table-size td{
+    border: 1px solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-color: rgb(var(--border-color));
+  }
+  .main-table-size th{
+    border: 1px solid;
+    border-color: rgb(var(--border-color));
+    background-color: #f5f5f5;
+    color: black;
+    text-transform: capitalize;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    opacity: 1;
+    letter-spacing: 0;
+    padding: 10px 0;
+  }
+  .main-table-size td,
+  .main-table-size th{
+    font-family: "Kumbh Sans", sans-serif;
+    text-align: center;
+  }
+  #modal.main-modal-ring-size{
+    z-index: 3;
+  }
+  #modal.main-modal-ring-size footer,
+  #modal.main-modal-ring-size height-observer,
+  #modal.main-modal-ring-size .shopify-section-group-header-group.section{
+    display: none;
+  }
+  .header-content-size{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-content-size .main-table-size-guide{
+    width: fit-content;
+    {% comment %} margin-bottom: 10px; {% endcomment %}
+  }
+  .header-content-size .main-table-size-guide,
+  .header-content-size .main-modal-size-guide{
+    cursor: pointer;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    color: #373A3666;
+    border-bottom: 1px solid #373A3666;
+    padding-bottom: 4px;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-transform: capitalize;
+  }
+  .main-option-size-name .option-name .main-option-size{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #373936CC;
+    letter-spacing: 0;
+    padding-left: 6px;
+  }
+  .main-option-size-name{
+    width: 100%;
+    padding-top: 0;
+  }
+  .main-option-size-name .option-name{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #373A36;
+    text-transform: capitalize;
+  }
+  .variant-picker__option-values button{
+    width: 46px;
+    height: 46px;
+    border: 1px solid #373A361A;
+    border-radius: 50%;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+  }
+  .variant-btn.active{
+    background: #232222;
+    color: #FFFFFF;
+  }
+  .image-container-mobile {
+    display: none;
+  }
+  @media (max-width: 768px){
+    .product-info__block-item .variant-picker__option{
+      max-width: 340px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .image-container{
+    display: none;
+  }
+    .image-container-mobile {
+    display: block;
+  }
+  }
+
+  variant-picker.variant-picker{
+    padding: 15px 0;
+    gap: 21px;
+  }
+  .product-info__block-item buy-buttons button{
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    min-height: 57px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .main-button-disabled,
+    .product-info__block-item buy-buttons,
+    .variant-picker__option {
+      margin: 0 auto;
+      max-width: 561px;
+      width: 100%;
+    }
+    .main-button-disabled,
+    .product-info__block-item buy-buttons{
+      margin-top: 29px;
+    }
+  }
+
+  @media(max-width: 768px){
+    .product-info__block-item buy-buttons button{
+      margin-top: 5px;
+    }
+    button.main-button-disabled{
+      max-width: 350px;
+      margin: 0 auto;
+      margin-top: 15px;
+    }
+  }
+  .main-button-disabled{
+    margin-top: 29px;
+    width: 100%;
+    background: #D3D3D3;
+    min-height: 57px;
+    border-radius: 4px;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: white;
+    border: 1px solid #D3D3D3;
+    transition: all 0.3s ease;
+    display: block;
+  }
+  .main-button-disabled:hover{
+    color: #807371;
+    background: none;
+    border-color: #807371;
+  }
+</style>

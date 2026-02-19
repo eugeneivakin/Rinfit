@@ -1,14 +1,6 @@
 @use "mixins/media" as *;
 
 .shopify-section--collection-list {
-  .section-spacing {
-    --section-vertical-spacing: 10px;
-
-    @include md {
-      --section-vertical-spacing: 8px;
-    }
-  }
-
   .section-stack {
     --section-stack-gap: 13px;
 
