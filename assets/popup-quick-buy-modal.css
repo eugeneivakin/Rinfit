@@ -128,43 +128,34 @@
     width: auto;
   }
 }
-
-.quick-buy-modal__mobile-info {
-  grid-template-columns: 1fr 140px;
-  grid-template-rows: repeat(2, auto);
-  grid-template-areas: "title rating" "quantity price";
-  align-items: center;
-  row-gap: 14px;
-  margin-block-start: 15px;
-}
-.quick-buy-modal__mobile-info .product-title {
+.quick-buy-modal__content .product-title {
   --text-h6: 14px;
   --heading-font-weight: 600;
   grid-area: title;
   line-height: 1.2143;
 }
 @media screen and (min-width: 1000px) {
-  .quick-buy-modal__mobile-info .product-title {
+  .quick-buy-modal__content .product-title {
     --text-h6: 16px;
     line-height: 1.25;
   }
 }
-.quick-buy-modal__mobile-info .price-list {
+.quick-buy-modal__content .price-list {
   --heading-font-weight: 600;
   --text-h6: 14px;
   justify-content: end;
   grid-area: price;
 }
-.quick-buy-modal__mobile-info .price-list .h6 {
+.quick-buy-modal__content .price-list .h6 {
   font-size: var(--text-h6);
 }
-.quick-buy-modal__mobile-info .price-list sale-price {
+.quick-buy-modal__content .price-list sale-price {
   color: rgb(var(--text-color)/1);
 }
-.quick-buy-modal__mobile-info .price-list compare-at-price {
+.quick-buy-modal__content .price-list compare-at-price {
   color: rgb(var(--text-color)/0.2);
 }
-.quick-buy-modal__mobile-info .loox-rating {
+.quick-buy-modal__content .loox-rating {
   grid-area: rating;
   color: rgb(var(--text-color)/0.8);
   display: flex;
@@ -177,21 +168,21 @@
   font-size: 12px;
   line-height: 1;
 }
-.quick-buy-modal__mobile-info .loox-rating .loox-rating__counter {
+.quick-buy-modal__content .loox-rating .loox-rating__counter {
   display: none;
 }
-.quick-buy-modal__mobile-info .loox-rating .loox-rating-content {
+.quick-buy-modal__content .loox-rating .loox-rating-content {
   gap: 3px;
   order: -1;
 }
-.quick-buy-modal__mobile-info .loox-rating .loox-rating-content .loox-rating-label {
+.quick-buy-modal__content .loox-rating .loox-rating-content .loox-rating-label {
   display: none;
 }
-.quick-buy-modal__mobile-info .loox-rating svg.loox-icon {
+.quick-buy-modal__content .loox-rating svg.loox-icon {
   height: auto;
   width: 14px;
 }
-.quick-buy-modal__mobile-info .quantity-selector {
+.quick-buy-modal__content .quantity-selector {
   --quantity-selector-height: 30px;
   --quantity-selector-input-width: 17px;
   border-radius: var(--input-border-radius);
@@ -200,10 +191,43 @@
   padding-inline: 5px;
 }
 
+.quick-buy-modal__product-info {
+  grid-template-columns: 1fr 140px;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas: "title rating" "quantity price";
+  align-items: center;
+  row-gap: 14px;
+  margin-block-start: 15px;
+}
+
+@media screen and (min-width: 700px) {
+  .quick-buy-modal__product-info--mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .quick-buy-modal__product-info--desktop {
+    display: none;
+  }
+}
+
 .quick-buy-modal__info-wrapper {
   --modal-body-padding-inline: 0;
   border-block-start-width: 0;
   margin-block-start: 14px;
+}
+@media screen and (min-width: 700px) {
+  .quick-buy-modal__info-wrapper {
+    margin-block-start: 0px;
+  }
+}
+.quick-buy-modal__info-wrapper .loox-rating {
+  justify-content: flex-start;
+}
+.quick-buy-modal__info-wrapper .price-list {
+  grid-area: initial;
+  justify-content: start;
 }
 .quick-buy-modal__info-wrapper .product-info__block-list {
   --product-info-gap: 0;

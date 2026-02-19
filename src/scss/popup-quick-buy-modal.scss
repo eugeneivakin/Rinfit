@@ -138,18 +138,6 @@
       width: auto;
     }
   }
-}
-
-.quick-buy-modal__mobile-info {
-  grid-template-columns: 1fr 140px;
-  grid-template-rows: repeat(2, auto);
-  grid-template-areas:
-    "title rating"
-    "quantity price";
-  align-items: center;
-  row-gap: 14px;
-  margin-block-start: 15px;
-
   .product-title {
     --text-h6: 14px;
     --heading-font-weight: 600;
@@ -223,10 +211,46 @@
   }
 }
 
+.quick-buy-modal__product-info {
+  grid-template-columns: 1fr 140px;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+    "title rating"
+    "quantity price";
+  align-items: center;
+  row-gap: 14px;
+  margin-block-start: 15px;
+}
+
+.quick-buy-modal__product-info--mobile {
+  @include sm {
+    display: none;
+  }
+}
+
+.quick-buy-modal__product-info--desktop {
+  @include sm-max {
+    display: none;
+  }
+}
+
 .quick-buy-modal__info-wrapper {
   --modal-body-padding-inline: 0;
   border-block-start-width: 0;
   margin-block-start: 14px;
+
+  @include sm {
+    margin-block-start: 0px;
+  }
+
+  .loox-rating {
+    justify-content: flex-start;
+  }
+
+  .price-list {
+    grid-area: initial;
+    justify-content: start;
+  }
 
   .product-info__block-list {
     --product-info-gap: 0;
