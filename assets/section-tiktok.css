@@ -168,33 +168,27 @@
   font-size: inherit;
   font-weight: 500;
 }
-.shopify-section--tiktok {
-  /*.floating-controls-container__control {
-    --floating-controls-inset-inline: -1.15rem;
-    transform: none;
-
-    @include sm {
-      --floating-controls-inset-inline: -2.125rem;
-    }
-  }
-
-  .circle-button {
-    --circle-button-size: 26px;
-    color: rgba(55, 57, 54, 0.6);
-    border: 1px solid rgba(55, 57, 54, 0.2);
-    box-shadow: none;
-    color: rgba(55, 57, 54, 0.6);
-
-    &[disabled] {
-      opacity: 0.5;
-      pointer-events: none;
-      visibility: visible;
-    }
-
-    > svg {
-      fill: none;
-      stroke: currentColor;
-      width: auto;
-    }
-  }*/
+.shopify-section--tiktok .floating-controls-container__control {
+  --floating-controls-inset-inline: 0;
+  transform: none;
+}
+.shopify-section--tiktok .floating-controls-container__control ~ .floating-controls-container__control {
+  right: 0;
+}
+.shopify-section--tiktok .circle-button {
+  --circle-button-size: 26px;
+  color: rgba(55, 57, 54, 0.6);
+  border: 1px solid rgba(55, 57, 54, 0.2);
+  box-shadow: none;
+  color: rgba(55, 57, 54, 0.6);
+}
+.shopify-section--tiktok .circle-button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  visibility: visible;
+}
+.shopify-section--tiktok .circle-button > svg {
+  fill: none;
+  stroke: currentColor;
+  width: auto;
 }

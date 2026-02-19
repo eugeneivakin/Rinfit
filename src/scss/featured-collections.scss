@@ -1,5 +1,6 @@
 @use "mixins/media" as *;
 
+.shopify-section--related-products,
 .shopify-section--featured-collections {
   --heading-text-transform: capitalize;
   --heading-letter-spacing: 0;

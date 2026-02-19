@@ -16,26 +16,6 @@
     }
   </style>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      var swiper = new Swiper('#shopify-section-{{ section.id }} .section-slider', {
-        slidesPerView: 'auto',
-        loop: true,
-        centeredSlides: true,
-        spaceBetween: 0,
-        breakpoints: {
-          700: {
-            slidesPerView: 3,
-          },
-          1000: {
-            slidesPerView: 5,
-            // loop: false,
-          },
-        },
-      });
-    });
-  </script>
-
   {%- assign remove_vertical_spacing = false -%}
 
   {%- if section.settings.subheading == blank
@@ -91,6 +71,18 @@
             <div class="swiper-wrapper">
               {{ collection_list_swiper }}
             </div>
+            <div class="floating-controls-container__control">
+              <div class="prev-next-button prev-next-button--prev circle-button circle-button--lg hover:animate-icon-inline">
+                <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+                {%- render 'icons', icon: 'chevron-left' -%}
+              </div>
+            </div>
+            <div class="floating-controls-container__control">
+              <div class="prev-next-button prev-next-button--next circle-button circle-button--lg hover:animate-icon-inline">
+                <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+                {%- render 'icons', icon: 'chevron-right' -%}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,6 +111,26 @@
           }
         }
       }
+    });
+
+    var swiper = new Swiper('#shopify-section-{{ section.id }} .section-slider', {
+      slidesPerView: 'auto',
+      loop: true,
+      centeredSlides: true,
+      spaceBetween: 0,
+      // Navigation arrows
+      navigation: {
+        prevEl: '.prev-next-button--prev',
+        nextEl: '.prev-next-button--next',
+      },
+      breakpoints: {
+        700: {
+          slidesPerView: 3,
+        },
+        1000: {
+          slidesPerView: 5,
+        },
+      },
     });
   });
 </script>

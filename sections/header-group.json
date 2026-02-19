@@ -74,7 +74,7 @@
         "color_scheme": "scheme-1",
         "enable_sticky": true,
         "hide_on_scroll": false,
-        "show_separation_border": false,
+        "show_separation_border": true,
         "reduce_padding": false,
         "logo": "shopify://shop_images/Rinfit_Main_Logo.svg",
         "logo_max_width": 165,

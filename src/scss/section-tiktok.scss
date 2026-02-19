@@ -102,7 +102,6 @@
   }
 
   .product-video-review__product-view {
-    // aspect-ratio: 1;
     background: rgb(var(--text-color) / 0.6);
     border-radius: 17px;
     color: rgb(var(--button-text-color));
@@ -209,12 +208,12 @@
     }
   }
 
-  /*.floating-controls-container__control {
-    --floating-controls-inset-inline: -1.15rem;
+  .floating-controls-container__control {
+    --floating-controls-inset-inline: 0;
     transform: none;
 
-    @include sm {
-      --floating-controls-inset-inline: -2.125rem;
+    ~ .floating-controls-container__control {
+      right: 0;
     }
   }
 
@@ -236,5 +235,5 @@
       stroke: currentColor;
       width: auto;
     }
-  }*/
+  }
 }

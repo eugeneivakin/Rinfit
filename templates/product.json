@@ -63,7 +63,20 @@
             "selector_style": "block",
             "swatch_selector_style": "swatch",
             "variant_image_options": "",
-            "size_chart_page": "ring-size-guide"
+            "size_chart_page": "",
+            "main_title_calculator": "<p>How To Manually Measure <strong>Your Ring Size</strong></p>",
+            "main_image_1": "shopify://shop_images/Rectangle_1_e10b4de9-bb8e-4156-9e5c-9ee674fd30f7.png",
+            "main_title_1": "<p>Step One</p>",
+            "main_subtitle_1": "<p>Collect a strip of paper, a pen/pencil and a ruler.</p>",
+            "main_image_2": "shopify://shop_images/Rectangle_2_43b30379-270b-4c61-b78a-ad1dfa82295e.png",
+            "main_title_2": "<p>Step Two</p>",
+            "main_subtitle_2": "<p>Wrap the paper strip around your finger so you make a \"ring\".</p>",
+            "main_image_3": "shopify://shop_images/Rectangle_3_dec73c7a-7368-4958-af80-7a2707d4598a.png",
+            "main_title_3": "<p>Step Three</p>",
+            "main_subtitle_3": "<p>Once you have the paper fitted, use the pen/pencil to mark where the edges overlap.</p>",
+            "main_image_4": "shopify://shop_images/Rectangle_4_0da3eaa2-a0be-4cd7-ad92-67e44643773f.png",
+            "main_title_4": "<p>Step Four</p>",
+            "main_subtitle_4": "<p>Now, measure the length of the ring using the ruler and compare it to the chart.</p>"
           }
         },
         "payment_terms": {
@@ -163,6 +176,24 @@
           "settings": {
             "handle": "dropdowns"
           }
+        },
+        "size_calculator_pNdTGU": {
+          "type": "size_calculator",
+          "settings": {
+            "main_title_calculator": "<p>How To Manually Measure <strong>Your Ring Size</strong></p>",
+            "main_image_1": "shopify://shop_images/Rectangle_1_e10b4de9-bb8e-4156-9e5c-9ee674fd30f7.png",
+            "main_title_1": "<p><strong>Step One</strong></p>",
+            "main_subtitle_1": "<p>Collect a strip of paper, a pen/pencil and a ruler.</p>",
+            "main_image_2": "shopify://shop_images/Rectangle_2_43b30379-270b-4c61-b78a-ad1dfa82295e.png",
+            "main_title_2": "<p>Step Two</p>",
+            "main_subtitle_2": "<p>Wrap the paper strip around your finger so you make a \"ring\".</p>",
+            "main_image_3": "shopify://shop_images/Rectangle_3_dec73c7a-7368-4958-af80-7a2707d4598a.png",
+            "main_title_3": "<p>Step Three</p>",
+            "main_subtitle_3": "<p>Once you have the paper fitted, use the pen/pencil to mark where the edges overlap.</p>",
+            "main_image_4": "shopify://shop_images/Rectangle_4_0da3eaa2-a0be-4cd7-ad92-67e44643773f.png",
+            "main_title_4": "<p>Step Four</p>",
+            "main_subtitle_4": "<p>Now, measure the length of the ring using the ruler and compare it to the chart.</p>"
+          }
         }
       },
       "block_order": [
@@ -183,7 +214,8 @@
         "feature_with_icon_Mf69f6",
         "feature_with_icon_F4Xhgi",
         "feature_with_icon_jF9kGK",
-        "accordion_metafield_xQ8Vwh"
+        "accordion_metafield_xQ8Vwh",
+        "size_calculator_pNdTGU"
       ],
       "settings": {
         "color_scheme": "",
