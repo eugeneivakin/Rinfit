@@ -24,7 +24,7 @@
       assign current_block_group_name = ''
 
       if context == 'quick_buy'
-        assign allow_blocks = 'vendor quantity_selector payment_terms separator variant_picker product_variations line_item_property buy_buttons' | split: ' '
+        assign allow_blocks = 'vendor title price rating quantity_selector payment_terms separator variant_picker product_variations line_item_property buy_buttons' | split: ' '
       endif
 
       if allow_blocks != blank
