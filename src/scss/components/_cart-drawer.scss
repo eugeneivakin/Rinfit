@@ -1,0 +1,60 @@
+@use "mixins/media" as *;
+
+.cart-drawer::part(header) {
+  --text-h4: 16px;
+  text-transform: uppercase;
+}
+
+.cart-drawer__items {
+  --text-h6: 16px;
+  --heading-font-weight: 500;
+
+  .text-subdued {
+    color: rgb(var(--text-color) / 0.6);
+    text-transform: capitalize;
+  }
+
+  .line-item {
+    --line-item-media-width: 130px;
+    // column-gap: 10px;
+  }
+
+  .line-item-info__heading-wrapper {
+    grid-template-columns: 1fr max-content;
+    align-items: end;
+  }
+
+  .price-list {
+    sale-price {
+      color: rgb(var(--text-color));
+    }
+  }
+
+  line-item-quantity {
+    .quantity-selector {
+      border-radius: var(--input-border-radius);
+    }
+
+    .link {
+      color: rgb(var(--text-color) / 0.6);
+    }
+  }
+}
+
+.cart-drawer__complementary-products {
+  gap: 20px;
+  padding-block-start: 16px;
+  padding-block-end: 25px;
+}
+
+.complementary-products__header {
+  --text-h6: 16px;
+  --heading-font-weight: 500;
+  --heading-text-transform: capitalize;
+}
+
+.cart-drawer__footer {
+  button[name="checkout"] {
+    min-height: 57px;
+  }
+}

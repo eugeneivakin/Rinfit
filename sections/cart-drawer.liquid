@@ -146,7 +146,7 @@
         <input type="hidden" name="attributes[products_desktop_grid_mode]" value="">
 
         {%- if section.settings.show_cart_note or section.settings.show_shipping_text -%}
-          <div class="v-stack gap-0.5 justify-items-start">
+          <div class="v-stack gap-2 justify-items-start">
             {%- if section.settings.show_cart_note -%}
               {%- assign cart_note_dialog_id = 'cart-note-' | append: section.id -%}
               <button class="link-faded-reverse" aria-controls="{{ cart_note_dialog_id }}">
@@ -316,14 +316,14 @@
       "id": "cross_sell_title",
       "label": "t:sections.cart_drawer.cross_sell_heading",
       "default": "Complete with",
-      "visible_if": "{{ section.settings.cross_sell_products != blank }}"
+      "visible_if": "{{ section.settings.cross_sell_products != blank or section.settings.cross_sell_collection != blank }}"
     },
     {
       "type": "checkbox",
       "id": "cross_sell_stack_products",
       "label": "t:sections.cart_drawer.cross_sell_stack_products",
       "default": false,
-      "visible_if": "{{ section.settings.cross_sell_products != blank }}"
+      "visible_if": "{{ section.settings.cross_sell_products != blank or section.settings.cross_sell_collection != blank }}"
     }
   ]
 }

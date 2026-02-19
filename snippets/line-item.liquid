@@ -1,21 +1,25 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-LINE ITEM
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  LINE ITEM
+  ----------------------------------------------------------------------------------------------------------------------
 
-This component renders a single line item product information, and is used on order and cart page.
+  This component renders a single line item product information, and is used on order and cart page.
 
-********************************************
-Supported variables
-********************************************
+  ********************************************
+  Supported variables
+  ********************************************
 
-* line_item: the line item to render (required)
-* show_quantity_selector: if set to true, the quantity selector is displayed (useful for instance of mini-cart)
+  * line_item: the line item to render (required)
+  * show_quantity_selector: if set to true, the quantity selector is displayed (useful for instance of mini-cart)
 {%- endcomment -%}
 
 <line-item class="line-item">
   {%- if line_item.image != blank -%}
-    {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70px, 120px', widths: '70,120,140,210,240,360', class: 'line-item__media' -}}
+    {{-
+      line_item.image
+      | image_url: width: line_item.image.width
+      | image_tag: loading: 'lazy', sizes: '130px', widths: '120,140,210', class: 'line-item__media'
+    -}}
   {%- endif -%}
 
   <div class="line-item-info">
@@ -25,15 +29,17 @@ Supported variables
       {%- assign text_class = 'h6' -%}
     {%- endif -%}
 
-    <div class="v-stack justify-items-start gap-2">
+    <div class="v-stack gap-2">
       {%- if settings.show_vendor and line_item.vendor != blank -%}
         {%- capture vendor_class -%}smallcaps {% if settings.product_card_text_font == 'heading' %}heading{% endif %}{% endcapture %}
         {%- render 'vendor' with line_item.vendor, class: vendor_class -%}
       {%- endif -%}
 
-      <div class="v-stack justify-items-start gap-1">
+      <div class="line-item-info__heading-wrapper v-stack justify-items-start gap-1">
         {%- if line_item.url != blank -%}
-          <a href="{{ line_item.url }}" class="{{ text_class }}">{{ line_item.product.title | default: line_item.title }}</a>
+          <a href="{{ line_item.url }}" class="{{ text_class }}">
+            {{- line_item.product.title | default: line_item.title -}}
+          </a>
         {%- else -%}
           <p class="{{ text_class }}">{{ line_item.product.title | default: line_item.title }}</p>
         {%- endif -%}
@@ -43,7 +49,13 @@ Supported variables
 
       {%- capture secondary_information -%}
         {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
-          <p class="smallcaps text-subdued">{{ line_item.variant.title }}</p>
+          {% comment %} <p class="smallcaps text-subdued">{{ line_item.variant.title }}</p> {% endcomment %}
+          {% for line_item_option in line_item.options_with_values %}
+            <div class="h-stack justify-between gap-1">
+              <p class="text-subdued">{{ line_item_option.name }}:</p>
+              <p class="text-subdued">{{ line_item_option.value }}</p>
+            </div>
+          {% endfor %}
         {%- endunless -%}
 
         {%- if line_item.selling_plan_allocation -%}
@@ -72,16 +84,20 @@ Supported variables
       {%- endcapture -%}
 
       {%- if secondary_information != blank -%}
-        <div class="v-stack justify-items-start gap-1">
+        <div class="v-stack gap-2">
           {{- secondary_information -}}
         </div>
       {%- endif -%}
 
       {%- if show_quantity_selector -%}
-        <line-item-quantity class="h-stack gap-4 {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
+        <line-item-quantity class="h-stack gap-4 justify-between {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
           {%- render 'quantity-selector', line_item: line_item, size: 'sm' -%}
-          
-          <a href="{{ line_item.url_to_remove }}" class="link text-xs" aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}">
+
+          <a
+            href="{{ line_item.url_to_remove }}"
+            class="link"
+            aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}"
+          >
             {{- 'cart.order.remove' | t -}}
           </a>
         </line-item-quantity>
@@ -96,8 +112,13 @@ Supported variables
               {%- render 'icon' with 'discount', width: 12 -%}
               {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
 
-              {%- if section.settings.allow_discount_application and discount_allocation.discount_application.type != '' -%}
-                <cart-discount-remove-button discount-code="{{ discount_allocation.discount_application.title }}" class="h-stack align-center">
+              {%- if section.settings.allow_discount_application
+                and discount_allocation.discount_application.type != ''
+              -%}
+                <cart-discount-remove-button
+                  discount-code="{{ discount_allocation.discount_application.title }}"
+                  class="h-stack align-center"
+                >
                   <button type="button">{%- render 'icon' with 'close', width: 8 -%}</button>
                 </cart-discount-remove-button>
               {%- endif -%}

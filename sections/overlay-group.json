@@ -24,7 +24,7 @@
         "cross_sell_products": [],
         "cross_sell_collection": "best-sellers",
         "products_to_show": 4,
-        "cross_sell_title": "Complete with",
+        "cross_sell_title": "You may also like",
         "cross_sell_stack_products": true
       }
     },
