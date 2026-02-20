@@ -18,6 +18,15 @@
         "page_width": "xs"
       }
     },
+    "main_page_heading_3qQGGB": {
+      "type": "main-page-heading",
+      "name": "Page Heading",
+      "settings": {
+        "color_background": "#e9e9e9",
+        "color_text": "#807371",
+        "heading": "{{ page.title }}"
+      }
+    },
     "hero_ring_guide_8GrpAz": {
       "type": "xx-hero-ring-guide",
       "name": "Hero Ring Size Guide",
@@ -258,6 +267,7 @@
   },
   "order": [
     "main",
+    "main_page_heading_3qQGGB",
     "hero_ring_guide_8GrpAz",
     "video_guide_KHyX6m",
     "size_calculator_9q6xMT",
