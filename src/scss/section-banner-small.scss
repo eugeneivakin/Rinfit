@@ -18,14 +18,15 @@
 
   .banner-grid {
     display: grid;
-    grid-template-columns: repeat(2, min-content) 1fr;
+    // grid-template-columns: repeat(2, min-content) 1fr;
+    grid-template-columns: 1fr min-content 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     align-items: center;
 
-    @include sm {
-      grid-template-columns: 1fr min-content 1fr;
-    }
+    // @include sm {
+    //   grid-template-columns: 1fr min-content 1fr;
+    // }
   }
 
   .banner-grid__item {
@@ -35,9 +36,9 @@
   }
 
   .banner-grid__item--left {
-    @include sm {
-      text-align: right;
-    }
+    text-align: right;
+    // @include sm {
+    // }
 
     .h1 {
       em {
@@ -64,6 +65,15 @@
       @include sm {
         height: 180px;
         margin-left: 0;
+      }
+    }
+  }
+  .banner-grid__item--right {
+    .h1 {
+      text-align: center;
+
+      @include sm {
+        text-align: left;
       }
     }
   }
