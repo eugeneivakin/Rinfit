@@ -711,7 +711,7 @@
     },
     "custom_section": {
       "name": "Custom section"
-    },    
+    },
     "faq": {
       "name": "FAQ",
       "show_categories": "Show sidebar categories",
@@ -1371,6 +1371,27 @@
       "stack_on_mobile": "Stack columns on mobile",
       "columns_per_row": "Columns per row (desktop)",
       "overlap_image": "Overlap image with heading",
+      "blocks": {
+        "image_with_text": {
+          "name": "Image with text",
+          "image_size_recommendation": "1400 x 1400px .jpg recommended"
+        },
+        "video_with_text": {
+          "name": "Video with text",
+          "play_button_background": "Play button background"
+        }
+      },
+      "presets": {
+        "multi_column": {
+          "name": "Multi-column"
+        }
+      }
+    },
+    "guide": {
+      "name": "Multi-column",
+      "stack_on_mobile": "Stack columns on mobile",
+      "columns_per_row": "Columns per row (desktop)",
+      // "overlap_image": "Overlap image with heading",
       "blocks": {
         "image_with_text": {
           "name": "Image with text",

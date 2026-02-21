@@ -33,8 +33,6 @@
           {{ section.settings.content }}
         </div>
       {% endif %}
-
-      {% render 'video-section' %}
     </div>
   </div>
 </div>
@@ -89,88 +87,6 @@
       "type": "richtext",
       "id": "content",
       "label": "Content"
-    },
-    {
-      "type": "header",
-      "content": "Video"
-    },
-    {
-      "type": "paragraph",
-      "content": "t:sections.video.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "t:global.video.autoplay",
-      "info": "t:global.video.autoplay_info",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_controls",
-      "label": "t:global.video.show_controls",
-      "default": true
-    },
-    {
-      "type": "select",
-      "id": "video_size",
-      "label": "t:global.video.video_size",
-      "info": "t:global.video.ratio_avoid_cropping_info",
-      "options": [
-        {
-          "value": "auto",
-          "label": "t:global.sizes.original_video_ratio"
-        },
-        {
-          "value": "sm",
-          "label": "t:global.sizes.small"
-        },
-        {
-          "value": "md",
-          "label": "t:global.sizes.medium"
-        },
-        {
-          "value": "lg",
-          "label": "t:global.sizes.large"
-        },
-        {
-          "value": "fill",
-          "label": "t:global.sizes.fit_screen"
-        }
-      ],
-      "default": "md"
-    },
-    {
-      "type": "video",
-      "id": "video",
-      "label": "t:global.video.video",
-      "info": "t:global.video.video_info"
-    },
-    {
-      "type": "video",
-      "id": "mobile_video",
-      "label": "t:global.video.mobile_video",
-      "info": "t:global.video.video_info"
-    },
-    {
-      "type": "video_url",
-      "id": "external_video_url",
-      "accept": ["vimeo", "youtube"],
-      "label": "t:global.video.video_url",
-      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
-    },
-    {
-      "type": "image_picker",
-      "id": "poster",
-      "label": "t:sections.video.poster_image",
-      "info": "t:sections.video.poster_image_info",
-      "visible_if": "{{ section.settings.autoplay == false }}"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "t:global.colors.text",
-      "default": "#ffffff"
     }
   ],
   "presets": [

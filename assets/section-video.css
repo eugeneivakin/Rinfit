@@ -1,0 +1,30 @@
+.shopify-section--video .content-over-media {
+  --content-over-media-height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.shopify-section--video .content-over-media::before {
+  --content-over-media-gradient-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 43.32%, rgba(0, 0, 0, 0.236431) 73%, rgba(0, 0, 0, 0.8) 108.31%);
+}
+.shopify-section--video .content-over-media video-media {
+  --default-aspect-ratio: 0.9211;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--video .content-over-media video-media {
+    --content-over-media-height: 2.13333;
+  }
+}
+.shopify-section--video .play-button {
+  --button-background: 35 34 34 / 0.6;
+  --button-border-radius: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  padding: 0;
+  width: 54px;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--video .play-button svg {
+    height: auto;
+    width: auto;
+  }
+}

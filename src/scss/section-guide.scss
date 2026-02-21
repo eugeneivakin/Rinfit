@@ -1,0 +1,64 @@
+@use "mixins/media" as *;
+
+.shopify-section--guide {
+  .section-header {
+    .h2 {
+      --text-h2: 20px;
+      --heading-font-weight: 300;
+      font-size: var(--text-h2);
+      // text-align: center;
+
+      > * {
+        --heading-font-weight: 400;
+        display: block;
+        font-size: 2.3em;
+        margin-block-start: 1px;
+      }
+      // > * {
+      //   display: block;
+      // }
+    }
+  }
+
+  .multi-column {
+    gap: 0;
+    padding-inline: 22px;
+  }
+
+  .multi-column__item {
+    grid-template-columns: 1fr 44%;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .media-wrapper {
+    align-self: stretch;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .prose {
+    --text-h2: 14px;
+    --heading-font-weight: 700;
+    --heading-text-transform: uppercase;
+    font-size: 14px;
+    line-height: 1.1429;
+    padding-block: 0.5rem;
+    order: -1;
+
+    @include sm-max {
+      text-align: left;
+    }
+
+    :where(:not(meta, span) + *) {
+      margin-block-start: 13px;
+    }
+  }
+
+  .h2 {
+  }
+}

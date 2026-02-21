@@ -1,0 +1,38 @@
+@use "mixins/media" as *;
+
+.shopify-section--video {
+  .content-over-media {
+    --content-over-media-height: auto;
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    &::before {
+      --content-over-media-gradient-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 43.32%, rgba(0, 0, 0, 0.236431) 73%, rgba(0, 0, 0, 0.8) 108.31%);
+    }
+
+    video-media {
+      --default-aspect-ratio: 0.9211;
+
+      @include md {
+        --content-over-media-height: 2.13333;
+      }
+    }
+  }
+
+  .play-button {
+    --button-background: 35 34 34 / 0.6;
+    --button-border-radius: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    padding: 0;
+    width: 54px;
+
+    svg {
+      @include sm {
+        height: auto;
+        width: auto;
+      }
+    }
+  }
+}

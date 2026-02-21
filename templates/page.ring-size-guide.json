@@ -20,15 +20,116 @@
     },
     "main_page_heading_3qQGGB": {
       "type": "main-page-heading",
+      "disabled": true,
       "name": "Page Heading",
       "settings": {
         "color_background": "#e9e9e9",
         "color_text": "#807371",
-        "heading": "{{ page.title }}"
+        "color_scheme": "",
+        "heading": "<em>{{ page.title }}</em>",
+        "subheading": "Easy Ways to Measure <em>Your ring Size</em>",
+        "content": "<p>Not sure where to start? Watch our quick video guide to learn how to measure your finger at home using simple tools. It’s the easiest way to find your perfect fit before you order!</p>"
+      }
+    },
+    "video_UDgb8K": {
+      "type": "video",
+      "blocks": {
+        "play_LfaprE": {
+          "type": "play",
+          "settings": {
+            "icon_color": "#373a36"
+          }
+        }
+      },
+      "block_order": [
+        "play_LfaprE"
+      ],
+      "disabled": true,
+      "name": "t:sections.video.presets.video.name",
+      "settings": {
+        "content_width": "container",
+        "remove_vertical_spacing": true,
+        "autoplay": false,
+        "show_controls": true,
+        "video_size": "md",
+        "external_video_url": "https://youtu.be/zFJwilvRG4w?si=5Jd_TKTpLwzCUJOJ",
+        "poster": "shopify://shop_images/Ring_Size_video_guide_cover.png",
+        "text_color": "#ffffff"
+      }
+    },
+    "guide_AHnHXx": {
+      "type": "guide",
+      "blocks": {
+        "image_with_text_t7Uafc": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/Sizer_Mesa_de_trabajo_1.jpg",
+            "title": "step one",
+            "heading_tag": "h2",
+            "content": "<p>Collect a strip of paper, a pen/pencil and a ruler.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_VLiFdg": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/Sizer_Mesa_de_trabajo_1_copia.jpg",
+            "title": "step two",
+            "heading_tag": "h2",
+            "content": "<p>Wrap the paper strip around your finger so you make a “ring”.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_tgekFj": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/Sizer_Mesa_de_trabajo_1_copia_2.jpg",
+            "title": "step three",
+            "heading_tag": "h2",
+            "content": "<p>Once you have the paper fitted, use the pen/pencil to mark where the edges overlap.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_LGBcMY": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/Sizer_Mesa_de_trabajo_1_copia_3.jpg",
+            "title": "step four",
+            "heading_tag": "h2",
+            "content": "<p>Now, measure the length of the ring using the ruler and compare it to the chart.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_t7Uafc",
+        "image_with_text_VLiFdg",
+        "image_with_text_tgekFj",
+        "image_with_text_LGBcMY"
+      ],
+      "name": "Guide",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "columns_per_row": 4,
+        "stack_on_mobile": true,
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "spacing": "md",
+        "subheading": "",
+        "title": "how to manually measure <em><strong>your ring size</strong></em>",
+        "content": "",
+        "size_table_desktop": "shopify://shop_images/Chart_desktop.png",
+        "size_table_mobile": "shopify://shop_images/Chart_mobile.png"
       }
     },
     "hero_ring_guide_8GrpAz": {
       "type": "xx-hero-ring-guide",
+      "disabled": true,
       "name": "Hero Ring Size Guide",
       "settings": {
         "title": "Ring Size Guide"
@@ -36,6 +137,7 @@
     },
     "video_guide_KHyX6m": {
       "type": "xx-video-guide",
+      "disabled": true,
       "name": "Video Ring Size Guide",
       "settings": {
         "title_regular": "Easy Ways",
@@ -268,6 +370,8 @@
   "order": [
     "main",
     "main_page_heading_3qQGGB",
+    "video_UDgb8K",
+    "guide_AHnHXx",
     "hero_ring_guide_8GrpAz",
     "video_guide_KHyX6m",
     "size_calculator_9q6xMT",
