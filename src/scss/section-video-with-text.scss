@@ -13,47 +13,70 @@
     --container-max-width: 1224px;
   }
 
-  .video-with-text {
+  .image-with-text {
     gap: 20px;
     align-items: initial;
   }
 
-  .video-with-text__media-wrapper,
-  .video-with-text__content {
+  .image-with-text--reverse > .image-with-text__media-wrapper {
+    order: 9999;
+  }
+
+  .image-with-text__media-wrapper,
+  .image-with-text__content {
     border-radius: 10px;
   }
 
-  .video-with-text__media-wrapper {
+  .image-with-text__media-wrapper {
+    aspect-ratio: 1.347826086956522;
+    overflow: hidden;
+
     .content-over-media {
       --content-over-media-height: 100%;
     }
-  }
 
-  .video-with-text__media-wrapper {
-    aspect-ratio: 1.09375;
-    overflow: hidden;
+    .play-button {
+      --button-border-radius: 100%;
+      --button-background: 255 2552 255 / 0.9;
+      --button-text-color: 112 96 93;
+      aspect-ratio: 1;
+      display: flex;
+      padding: 0;
+      width: 54px;
 
-    @include sm {
-      aspect-ratio: initial;
-    }
-
-    @include md {
-      aspect-ratio: 1.16;
-    }
-
-    img {
-      object-fit: cover;
-      height: 100%;
-      max-width: none;
-      width: 100%;
+      svg {
+        @include sm {
+          height: auto;
+          width: auto;
+        }
+      }
     }
   }
 
-  .video-with-text__content {
+  // .image-with-text__media-wrapper {
+  //   aspect-ratio: 1.09375;
+
+  //   @include sm {
+  //     aspect-ratio: initial;
+  //   }
+
+  //   @include md {
+  //     aspect-ratio: 1.16;
+  //   }
+
+  //   img {
+  //     object-fit: cover;
+  //     height: 100%;
+  //     max-width: none;
+  //     width: 100%;
+  //   }
+  // }
+
+  .image-with-text__content {
     background: #fff;
     margin: 0;
     max-width: none;
-    padding: 42px var(--container-gutter) 44px;
+    padding: 0 var(--container-gutter);
     position: relative;
     z-index: 5;
 
@@ -117,7 +140,7 @@
     // }
   }
 
-  .video-with-text__richtext {
+  .image-with-text__richtext {
     color: rgb(var(--text-color) / 0.6);
     margin-block-start: 15px;
 
@@ -126,7 +149,7 @@
     }
   }
 
-  .video-with-text__links {
+  .image-with-text__links {
     margin-block-start: 30px;
 
     @include md {
@@ -142,21 +165,21 @@
     }
   }
 
-  .video-with-text--overlap {
+  .image-with-text--overlap {
     @include sm {
       align-items: center;
       grid-template-columns: 1fr 44.4%;
       gap: 0;
     }
 
-    .video-with-text__media-wrapper {
+    .image-with-text__media-wrapper {
       @include md {
         aspect-ratio: 1.252;
         margin-right: -6%;
       }
     }
 
-    .video-with-text__content {
+    .image-with-text__content {
       @include sm {
         text-align: left;
       }

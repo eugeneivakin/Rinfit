@@ -18,6 +18,10 @@
     align-items: initial;
   }
 
+  .image-with-text--reverse > .image-with-text__media-wrapper {
+    order: 9999;
+  }
+
   .image-with-text__media-wrapper,
   .image-with-text__content {
     border-radius: 10px;

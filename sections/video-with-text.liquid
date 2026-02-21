@@ -25,16 +25,16 @@
 
   <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
-      <video-with-text class="video-with-text {% if section.settings.video_position == 'end' %}video-with-text--reverse{% endif %} {% if section.settings.image_overlap %}video-with-text--overlap{% endif %}">
+      <image-with-text class="image-with-text {% if section.settings.video_position == 'end' %}image-with-text--reverse{% endif %} {% if section.settings.image_overlap %}image-with-text--overlap{% endif %}">
         {%- if section.settings.video != blank or section.settings.external_video_url != blank -%}
-          <div class="video-with-text__media-wrapper">
+          <div class="image-with-text__media-wrapper">
             {% render 'video-with-text', section: section %}
           </div>
         {%- else -%}
           {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
         {%- endif -%}
 
-        <div class="video-with-text__content prose text-center sm:text-start">
+        <div class="image-with-text__content prose text-center sm:text-start">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'subheading' -%}
@@ -51,7 +51,7 @@
 
               {%- when 'richtext' -%}
                 {%- if block.settings.content != blank -%}
-                  <div class="video-with-text__richtext" {{ block.shopify_attributes }}>
+                  <div class="image-with-text__richtext" {{ block.shopify_attributes }}>
                     {{- block.settings.content -}}
                   </div>
                 {%- endif -%}
@@ -71,7 +71,7 @@
                 {%- endif -%}
 
               {%- when 'link' -%}
-                <div class="video-with-text__links">
+                <div class="image-with-text__links">
                   <a
                     {% if block.settings.url %}
                       href="{{ block.settings.url }}"
@@ -85,7 +85,7 @@
 
               {%- when 'button' -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="video-with-text__links">
+                  <div class="image-with-text__links">
                     {% render 'button',
                       content: block.settings.text,
                       href: block.settings.url,
@@ -99,7 +99,7 @@
             {%- endcase -%}
           {%- endfor -%}
         </div>
-      </video-with-text>
+      </image-with-text>
     </div>
   </div>
 

@@ -13,6 +13,9 @@
   gap: 20px;
   align-items: initial;
 }
+.shopify-section--image-with-text .image-with-text--reverse > .image-with-text__media-wrapper {
+  order: 9999;
+}
 .shopify-section--image-with-text .image-with-text__media-wrapper,
 .shopify-section--image-with-text .image-with-text__content {
   border-radius: 10px;
