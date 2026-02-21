@@ -155,6 +155,7 @@
     },
     "animation": {
       "reveal_image_on_scroll": "Reveal image on scroll",
+      "reveal_video_on_scroll": "Reveal video on scroll",
       "reveal_on_scroll": "Reveal on scroll"
     },
     "faceting": {
@@ -874,6 +875,40 @@
       "presets": {
         "image_with_text": {
           "name": "Image with text"
+        }
+      }
+    },
+    "video_with_text": {
+      "name": "Video with text",
+      "image_size_recommendation": "2000 x 1400px .jpg recommended.",
+      "mobile_image_size_recommendation": "1000 x 1000px .jpg recommended. Default to desktop image.",
+      "video_position": "Video position",
+      "blocks": {
+        "subheading": {
+          "name": "Subheading"
+        },
+        "heading": {
+          "name": "Heading"
+        },
+        "paragraph": {
+          "name": "Paragraph"
+        },
+        "page": {
+          "name": "Page"
+        },
+        "liquid": {
+          "name": "Liquid"
+        },
+        "link": {
+          "name": "Link"
+        },
+        "button": {
+          "name": "Button"
+        }
+      },
+      "presets": {
+        "image_with_text": {
+          "name": "Video with text"
         }
       }
     },
