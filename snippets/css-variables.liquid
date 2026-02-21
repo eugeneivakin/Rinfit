@@ -243,9 +243,9 @@
     {%- endcomment -%}
     {%- assign color_scheme_hash = color_scheme.settings.background_gradient | default: color_scheme.settings.background | md5 -%}
 
-    .shopify-section:has(.section-spacing.color-scheme--bg-{{ color_scheme_hash }}) + .shopify-section:has(.section-spacing.color-scheme--bg-{{ color_scheme_hash }}:not(.bordered-section)) .section-spacing {
-      /* padding-block-start: 0; */
-    }
+    /* .shopify-section:has(.section-spacing.color-scheme--bg-{{ color_scheme_hash }}) + .shopify-section:has(.section-spacing.color-scheme--bg-{{ color_scheme_hash }}:not(.bordered-section)) .section-spacing {
+      padding-block-start: 0;
+    } */
 
     .template-page .shopify-section:first-child .section-spacing {
       padding-block-start: 0;

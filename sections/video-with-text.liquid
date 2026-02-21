@@ -1,108 +1,107 @@
-  {{- 'section-video-with-text.css' | asset_url | stylesheet_tag -}}
+{{- 'section-video-with-text.css' | asset_url | stylesheet_tag -}}
 
-  {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
-    CSS
-    ------------------------------------------------------------------------------------------------------------------------
-  {%- endcomment -%}
+{%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+  CSS
+  ------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
 
-  <style>
-    #shopify-section-{{ section.id }} {
-      --video-with-text-content-max-width: {% if section.settings.content_width == 'sm' %}430px{% elsif section.settings.content_width == 'md' %}780px{% else %}100%{% endif %};
-    }
-  </style>
+<style>
+  #shopify-section-{{ section.id }} {
+    --video-with-text-content-max-width: {% if section.settings.content_width == 'sm' %}430px{% elsif section.settings.content_width == 'md' %}780px{% else %}100%{% endif %};
+  }
+</style>
 
-  {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
-    LIQUID
-    ------------------------------------------------------------------------------------------------------------------------
-  {%- endcomment -%}
+{%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+  LIQUID
+  ------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
 
-  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
-    | default: section.settings.color_scheme.settings.background
-    | md5
-  -%}
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
 
-  <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
-    <div class="container">
-      <image-with-text class="image-with-text {% if section.settings.video_position == 'end' %}image-with-text--reverse{% endif %} {% if section.settings.image_overlap %}image-with-text--overlap{% endif %}">
-        {%- if section.settings.video != blank or section.settings.external_video_url != blank -%}
-          <div class="image-with-text__media-wrapper">
-            {% render 'video-with-text', section: section %}
-          </div>
-        {%- else -%}
-          {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
-        {%- endif -%}
-
-        <div class="image-with-text__content prose text-center sm:text-start">
-          {%- for block in section.blocks -%}
-            {%- case block.type -%}
-              {%- when 'subheading' -%}
-                {%- if block.settings.text != blank -%}
-                  <p class="h6" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
-                {%- endif -%}
-
-              {%- when 'heading' -%}
-                {%- if block.settings.text != blank -%}
-                  <p class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>
-                    {{ block.settings.text }}
-                  </p>
-                {%- endif -%}
-
-              {%- when 'richtext' -%}
-                {%- if block.settings.content != blank -%}
-                  <div class="image-with-text__richtext" {{ block.shopify_attributes }}>
-                    {{- block.settings.content -}}
-                  </div>
-                {%- endif -%}
-
-              {%- when 'page' -%}
-                {%- if block.settings.page.content != blank -%}
-                  <div {{ block.shopify_attributes }}>
-                    {{- block.settings.page.content -}}
-                  </div>
-                {%- endif -%}
-
-              {%- when 'liquid' -%}
-                {%- if block.settings.liquid != blank -%}
-                  <div {{ block.shopify_attributes }}>
-                    {{- block.settings.liquid -}}
-                  </div>
-                {%- endif -%}
-
-              {%- when 'link' -%}
-                <div class="image-with-text__links">
-                  <a
-                    {% if block.settings.url %}
-                      href="{{ block.settings.url }}"
-                    {% endif %}
-                    class="link"
-                    {{ block.shopify_attributes }}
-                  >
-                    {{- block.settings.text | escape -}}
-                  </a>
-                </div>
-
-              {%- when 'button' -%}
-                {%- if block.settings.text != blank -%}
-                  <div class="image-with-text__links">
-                    {% render 'button',
-                      content: block.settings.text,
-                      href: block.settings.url,
-                      style: block.settings.style,
-                      background: block.settings.background,
-                      text_color: block.settings.text_color,
-                      block: block
-                    %}
-                  </div>
-                {%- endif -%}
-            {%- endcase -%}
-          {%- endfor -%}
+<div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <div class="container">
+    <image-with-text class="image-with-text {% if section.settings.video_position == 'end' %}image-with-text--reverse{% endif %} {% if section.settings.image_overlap %}image-with-text--overlap{% endif %}">
+      {%- if section.settings.video != blank or section.settings.external_video_url != blank -%}
+        <div class="image-with-text__media-wrapper">
+          {% render 'video-with-text', section: section %}
         </div>
-      </image-with-text>
-    </div>
-  </div>
+      {%- else -%}
+        {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
+      {%- endif -%}
 
+      <div class="image-with-text__content prose text-center sm:text-start">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'subheading' -%}
+              {%- if block.settings.text != blank -%}
+                <p class="h6" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+              {%- endif -%}
+
+            {%- when 'heading' -%}
+              {%- if block.settings.text != blank -%}
+                <p class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>
+                  {{ block.settings.text }}
+                </p>
+              {%- endif -%}
+
+            {%- when 'richtext' -%}
+              {%- if block.settings.content != blank -%}
+                <div class="image-with-text__richtext" {{ block.shopify_attributes }}>
+                  {{- block.settings.content -}}
+                </div>
+              {%- endif -%}
+
+            {%- when 'page' -%}
+              {%- if block.settings.page.content != blank -%}
+                <div {{ block.shopify_attributes }}>
+                  {{- block.settings.page.content -}}
+                </div>
+              {%- endif -%}
+
+            {%- when 'liquid' -%}
+              {%- if block.settings.liquid != blank -%}
+                <div {{ block.shopify_attributes }}>
+                  {{- block.settings.liquid -}}
+                </div>
+              {%- endif -%}
+
+            {%- when 'link' -%}
+              <div class="image-with-text__links">
+                <a
+                  {% if block.settings.url %}
+                    href="{{ block.settings.url }}"
+                  {% endif %}
+                  class="link"
+                  {{ block.shopify_attributes }}
+                >
+                  {{- block.settings.text | escape -}}
+                </a>
+              </div>
+
+            {%- when 'button' -%}
+              {%- if block.settings.text != blank -%}
+                <div class="image-with-text__links">
+                  {% render 'button',
+                    content: block.settings.text,
+                    href: block.settings.url,
+                    style: block.settings.style,
+                    background: block.settings.background,
+                    text_color: block.settings.text_color,
+                    block: block
+                  %}
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </image-with-text>
+  </div>
+</div>
 
 {% schema %}
 {
@@ -126,24 +125,6 @@
       "label": "t:global.section.separate_section_with_border",
       "default": true
     },
-    // {
-    //   "type": "image_picker",
-    //   "id": "image",
-    //   "label": "t:global.video.video",
-    //   "info": "t:sections.video_with_text.image_size_recommendation"
-    // },
-    // {
-    //   "type": "image_picker",
-    //   "id": "mobile_image",
-    //   "label": "t:global.image.mobile_image",
-    //   "info": "t:sections.video_with_text.mobile_image_size_recommendation"
-    // },
-    // {
-    //   "type": "checkbox",
-    //   "id": "reveal_on_scroll",
-    //   "label": "t:global.animation.reveal_video_on_scroll",
-    //   "default": true
-    // },
     {
       "type": "select",
       "id": "video_position",
@@ -159,12 +140,6 @@
         }
       ]
     },
-    // {
-    //   "type": "checkbox",
-    //   "id": "image_overlap",
-    //   "label": "Image overlap content",
-    //   "default": false
-    // },
     {
       "type": "select",
       "id": "content_width",

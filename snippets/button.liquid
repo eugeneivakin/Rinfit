@@ -100,7 +100,7 @@
       echo ' href="' | append: href | append: '"'
     endif
 
-    if external and href != blank or href contains '.pdf'
+    if external and href != blank
       echo ' target="_blank"'
     endif
 
