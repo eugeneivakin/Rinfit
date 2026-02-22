@@ -104,6 +104,10 @@
       echo ' target="_blank"'
     endif
 
+    if href contains '.pdf'
+      echo ' target="_blank"'
+    endif
+
     if focusable == false
       echo ' tabindex="-1"'
     endif

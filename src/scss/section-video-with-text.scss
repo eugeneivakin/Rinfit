@@ -1,6 +1,6 @@
 @use "mixins/media" as *;
 
-.shopify-section--image-with-text {
+.shopify-section--video-with-text {
   .section-spacing {
     --section-vertical-spacing: var(--container-gutter);
 
@@ -28,22 +28,28 @@
   }
 
   .image-with-text__media-wrapper {
-    aspect-ratio: 1.09375;
+    aspect-ratio: 1.347826086956522;
     overflow: hidden;
 
-    @include sm {
-      aspect-ratio: initial;
+    .content-over-media {
+      --content-over-media-height: 100%;
     }
 
-    @include md {
-      aspect-ratio: 1.16;
-    }
+    .play-button {
+      --button-border-radius: 100%;
+      --button-background: 255 2552 255 / 0.9;
+      --button-text-color: 112 96 93;
+      aspect-ratio: 1;
+      display: flex;
+      padding: 0;
+      width: 54px;
 
-    img {
-      object-fit: cover;
-      height: 100%;
-      max-width: none;
-      width: 100%;
+      svg {
+        @include sm {
+          height: auto;
+          width: auto;
+        }
+      }
     }
   }
 
@@ -51,7 +57,7 @@
     background: #fff;
     margin: 0;
     max-width: none;
-    padding: 42px var(--container-gutter) 44px;
+    padding: 0 var(--container-gutter);
     position: relative;
     z-index: 5;
 
@@ -79,21 +85,16 @@
   }
 
   .h1 {
-    font-size: 30px;
-    margin-block-start: -3px;
+    --text-h1: 20px;
+    --heading-font-weight: 300;
+    --heading-text-transform: capitalize;
+    font-size: var(--text-h2);
 
-    @include md {
-      font-size: 40px;
-      margin-block-start: -1px;
-    }
-
-    > em,
-    > strong {
-      font-size: 1.2em;
-
-      @include md {
-        font-size: 1.15em;
-      }
+    > * {
+      --heading-font-weight: 400;
+      display: block;
+      font-size: 2.3em;
+      margin-block-start: 1px;
     }
   }
 

@@ -1,0 +1,52 @@
+.shopify-section--main-page-heading {
+  --text-h1: 46px;
+  --heading-font-weight: 400;
+  --heading-text-transform: capitalize;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--main-page-heading {
+    --text-h1: 59px;
+  }
+}
+.shopify-section--main-page-heading .color-scheme {
+  border-radius: 15px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--main-page-heading .color-scheme {
+    border-radius: 30px;
+  }
+}
+.shopify-section--main-page-heading .page-heading {
+  align-content: center;
+  min-height: 82px;
+  padding-block: 0.5rem;
+  text-align: center;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--main-page-heading .page-heading {
+    min-height: 120px;
+  }
+}
+.shopify-section--main-page-heading .page-heading .h1 * {
+  vertical-align: text-top;
+}
+.shopify-section--main-page-heading .section-content {
+  margin-block-start: 25px;
+}
+.shopify-section--main-page-heading .section-content .h2 {
+  --text-h2: 20px;
+  --heading-font-weight: 300;
+  text-align: center;
+}
+.shopify-section--main-page-heading .section-content .h2 > * {
+  --heading-font-weight: 400;
+  display: block;
+  font-size: 2.3em;
+  margin-block-start: 1px;
+}
+.shopify-section--main-page-heading .section-content .prose {
+  margin-block-start: 21px;
+}
+.shopify-section--main-page-heading .section-content .content-over-media {
+  margin-block-start: 15px;
+}

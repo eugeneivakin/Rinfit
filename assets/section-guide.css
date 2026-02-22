@@ -1,0 +1,46 @@
+.shopify-section--guide .section-header .h2 {
+  --text-h2: 20px;
+  --heading-font-weight: 300;
+  font-size: var(--text-h2);
+}
+.shopify-section--guide .section-header .h2 > * {
+  --heading-font-weight: 400;
+  display: block;
+  font-size: 2.3em;
+  margin-block-start: 1px;
+}
+.shopify-section--guide .multi-column {
+  gap: 0;
+  padding-inline: 22px;
+}
+.shopify-section--guide .multi-column__item {
+  grid-template-columns: 1fr 44%;
+  gap: 1rem;
+  align-items: center;
+}
+.shopify-section--guide .media-wrapper {
+  align-self: stretch;
+}
+.shopify-section--guide .media-wrapper img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.shopify-section--guide .prose {
+  --text-h2: 14px;
+  --heading-font-weight: 700;
+  --heading-text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.1429;
+  padding-block: 0.5rem;
+  order: -1;
+}
+@media screen and (max-width: 700px) {
+  .shopify-section--guide .prose {
+    text-align: left;
+  }
+}
+.shopify-section--guide .prose :where(:not(meta, span) + *) {
+  margin-block-start: 13px;
+}

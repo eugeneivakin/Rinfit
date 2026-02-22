@@ -1,0 +1,61 @@
+@use "mixins/media" as *;
+
+.shopify-section--main-page-heading {
+  --text-h1: 46px;
+  --heading-font-weight: 400;
+  --heading-text-transform: capitalize;
+
+  @include md {
+    --text-h1: 59px;
+  }
+
+  .color-scheme {
+    border-radius: 15px;
+
+    @include md {
+      border-radius: 30px;
+    }
+  }
+
+  .page-heading {
+    align-content: center;
+    min-height: 82px;
+    padding-block: 0.5rem;
+    text-align: center;
+
+    @include md {
+      min-height: 120px;
+    }
+
+    .h1 {
+      * {
+        vertical-align: text-top;
+      }
+    }
+  }
+
+  .section-content {
+    margin-block-start: 25px;
+
+    .h2 {
+      --text-h2: 20px;
+      --heading-font-weight: 300;
+      text-align: center;
+
+      > * {
+        --heading-font-weight: 400;
+        display: block;
+        font-size: 2.3em;
+        margin-block-start: 1px;
+      }
+    }
+
+    .prose {
+      margin-block-start: 21px;
+    }
+
+    .content-over-media {
+      margin-block-start: 15px;
+    }
+  }
+}

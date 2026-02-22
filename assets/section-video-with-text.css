@@ -1,0 +1,130 @@
+.shopify-section--video-with-text .section-spacing {
+  --section-vertical-spacing: var(--container-gutter);
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--video-with-text .section-spacing {
+    --section-vertical-spacing: 40px;
+  }
+}
+.shopify-section--video-with-text .container {
+  --container-max-width: 1224px;
+}
+.shopify-section--video-with-text .image-with-text {
+  gap: 20px;
+  align-items: initial;
+}
+.shopify-section--video-with-text .image-with-text--reverse > .image-with-text__media-wrapper {
+  order: 9999;
+}
+.shopify-section--video-with-text .image-with-text__media-wrapper,
+.shopify-section--video-with-text .image-with-text__content {
+  border-radius: 10px;
+}
+.shopify-section--video-with-text .image-with-text__media-wrapper {
+  aspect-ratio: 1.347826087;
+  overflow: hidden;
+}
+.shopify-section--video-with-text .image-with-text__media-wrapper .content-over-media {
+  --content-over-media-height: 100%;
+}
+.shopify-section--video-with-text .image-with-text__media-wrapper .play-button {
+  --button-border-radius: 100%;
+  --button-background: 255 2552 255 / 0.9;
+  --button-text-color: 112 96 93;
+  aspect-ratio: 1;
+  display: flex;
+  padding: 0;
+  width: 54px;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--video-with-text .image-with-text__media-wrapper .play-button svg {
+    height: auto;
+    width: auto;
+  }
+}
+.shopify-section--video-with-text .image-with-text__content {
+  background: #fff;
+  margin: 0;
+  max-width: none;
+  padding: 0 var(--container-gutter);
+  position: relative;
+  z-index: 5;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--video-with-text .image-with-text__content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    padding-inline: calc(var(--container-gutter) / 2);
+    text-align: center;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--video-with-text .image-with-text__content {
+    padding: 55px 57px;
+  }
+}
+.shopify-section--video-with-text .h6 {
+  --heading-text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2857;
+}
+.shopify-section--video-with-text .h1 {
+  --text-h1: 20px;
+  --heading-font-weight: 300;
+  --heading-text-transform: capitalize;
+  font-size: var(--text-h2);
+}
+.shopify-section--video-with-text .h1 > * {
+  --heading-font-weight: 400;
+  display: block;
+  font-size: 2.3em;
+  margin-block-start: 1px;
+}
+.shopify-section--video-with-text .image-with-text__richtext {
+  color: rgb(var(--text-color)/0.6);
+  margin-block-start: 15px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--video-with-text .image-with-text__richtext {
+    margin-block-start: -1px;
+  }
+}
+.shopify-section--video-with-text .image-with-text__links {
+  margin-block-start: 30px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--video-with-text .image-with-text__links {
+    margin-block-start: 40px;
+  }
+}
+.shopify-section--video-with-text .image-with-text__links .button {
+  width: 100%;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--video-with-text .image-with-text__links .button {
+    width: auto;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--video-with-text .image-with-text--overlap {
+    align-items: center;
+    grid-template-columns: 1fr 44.4%;
+    gap: 0;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--video-with-text .image-with-text--overlap .image-with-text__media-wrapper {
+    aspect-ratio: 1.252;
+    margin-right: -6%;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--video-with-text .image-with-text--overlap .image-with-text__content {
+    text-align: left;
+  }
+}

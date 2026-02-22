@@ -1,0 +1,99 @@
+{% style %}
+  #shopify-section-{{ section.id }} .color-scheme--custom {
+    --text-color: {{ section.settings.color_text.rgb }};
+    --background: {{ section.settings.color_background.rgb }} / 1.0;
+  }
+{% endstyle %}
+
+{{- 'main-page-heading.css' | asset_url | stylesheet_tag -}}
+
+<div class="section-spacing">
+  <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+    {% if section.settings.heading != blank %}
+      <div class="color-scheme color-scheme--custom">
+        <div class="container">
+          <div class="page-heading v-stack py-2">
+            <h1 class="h1">
+              {{ section.settings.heading | downcase }}
+            </h1>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="container section-content">
+      {% if section.settings.subheading != blank %}
+        <h2 class="h2">
+          {{ section.settings.subheading | downcase }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.content != blank %}
+        <div class="prose">
+          {{ section.settings.content }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Heading",
+  "class": "shopify-section--main-page-heading",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page heading colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background color",
+      "default": "#E9E9E9"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text color",
+      "default": "#807371"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "{{ page.title }}"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Heading",
+      "category": "t:global.categories.banners"
+    }
+  ]
+}
+{% endschema %}
