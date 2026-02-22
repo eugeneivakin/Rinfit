@@ -1,0 +1,33 @@
+.shopify-section--text-with-icons .color-scheme .prose {
+  color: rgb(var(--text-color)/0.7);
+}
+.shopify-section--text-with-icons .text-with-icons__item {
+  --text-h6: 14px;
+  --heading-font-weight: 700;
+  --heading-text-transform: uppercase;
+}
+.shopify-section--text-with-icons .text-with-icons__icon-wrapper {
+  color: var(--icon-color);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  width: 32px;
+}
+.shopify-section--text-with-icons .page-dots {
+  --dot-size: 3px;
+  gap: 8px;
+}
+.shopify-section--text-with-icons .page-dots > * {
+  border-radius: 4px;
+  max-width: 64px;
+  width: 20%;
+}
+.shopify-section--text-with-icons .page-dots > [aria-current=false]::after {
+  opacity: 0.2;
+}
+.shopify-section--text-with-icons .floating-controls-container__control {
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+}
+.shopify-section--text-with-icons carousel-next-button {
+  inset-inline-end: 0;
+}
