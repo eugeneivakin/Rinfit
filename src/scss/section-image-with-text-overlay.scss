@@ -1,0 +1,44 @@
+@use "mixins/media" as *;
+
+.shopify-section--image-with-text-overlay {
+  .content-over-media {
+    --content-over-media-calculated-row-gap: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+
+    @include md {
+      border-radius: 30px;
+    }
+
+    .content {
+      --text-h1: 46px;
+      --heading-font-weight: 300;
+      --heading-text-transform: capitalize;
+    }
+
+    + .content {
+      @include sm-max {
+        color: rgb(var(--text-color) / 0.7);
+        line-height: 1.5714;
+        padding-block-start: 20px;
+        padding-block-end: 20px;
+      }
+
+      .prose {
+        > div {
+          @include sm-max {
+            text-align: left;
+          }
+        }
+
+        :is(.button, .button-group:has(.button)) {
+          margin-block-start: 20px;
+        }
+      }
+    }
+  }
+
+  .content-over-media--design {
+    --content-over-media-height: clamp(36.25rem, 65vw, 25rem);
+  }
+}

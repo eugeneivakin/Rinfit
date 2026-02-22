@@ -318,6 +318,55 @@
         "text_alignment": "center"
       }
     },
+    "image_with_text_overlay_8Gqpfw": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_AKhQWT": {
+          "type": "heading",
+          "settings": {
+            "text": "Emerald Frame <em><strong>collection</strong></em>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_e9YKYB": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Bold, elegant, and built to last — the Emerald Frame Ring brings vibrant color and sleek design together in one standout piece. Featuring a rich emerald-toned frame wrapped in soft, skin-friendly silicone, it’s the perfect blend of style and comfort.</p>"
+          }
+        },
+        "button_ggwCUf": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "shop the collection",
+            "url": "shopify://collections/emerald-frame",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_AKhQWT",
+        "richtext_e9YKYB",
+        "button_ggwCUf"
+      ],
+      "name": "t:sections.image_with_text_overlay.presets.image_with_text_overlay.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_size": "design",
+        "image": "shopify://shop_images/Emerald_frame_copia.jpg",
+        "mobile_image": "shopify://shop_images/Emerald_frame_Mobile_copia.jpg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": true,
+        "content_width": "md",
+        "mobile_text_position": "place-self-end-center text-center",
+        "content_outside_mobile": true,
+        "desktop_text_position": "sm:place-self-end-start sm:text-start",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    },
     "image_with_text_6axGGM": {
       "type": "image-with-text",
       "blocks": {
@@ -567,6 +616,7 @@
     },
     "collection_hero_xUR9Ki": {
       "type": "xx-collection-hero",
+      "disabled": true,
       "name": "Collection Hero Perfect",
       "settings": {
         "show_on_mobile": true,
@@ -582,6 +632,7 @@
     },
     "collection_hero_2_aYjyyA": {
       "type": "xx-collection-hero-2",
+      "disabled": true,
       "name": "Gemstone Collection",
       "settings": {
         "image": "shopify://shop_images/2259fb4291792bb63e64b6fa1620e46d0580b91f_bdcbf73c-be55-4a5d-b0cb-a7bbcd6a93b9.jpg",
@@ -617,6 +668,7 @@
     "video_with_text_jGCbt3",
     "video_with_text_TarERG",
     "text_with_icons_aYqgqK",
+    "image_with_text_overlay_8Gqpfw",
     "image_with_text_6axGGM",
     "hero_ring_guide_8GrpAz",
     "video_guide_KHyX6m",

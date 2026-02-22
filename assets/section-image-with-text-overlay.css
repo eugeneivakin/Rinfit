@@ -1,0 +1,34 @@
+.shopify-section--image-with-text-overlay .content-over-media {
+  --content-over-media-calculated-row-gap: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--image-with-text-overlay .content-over-media {
+    border-radius: 30px;
+  }
+}
+.shopify-section--image-with-text-overlay .content-over-media .content {
+  --text-h1: 46px;
+  --heading-font-weight: 300;
+  --heading-text-transform: capitalize;
+}
+@media screen and (max-width: 700px) {
+  .shopify-section--image-with-text-overlay .content-over-media + .content {
+    color: rgb(var(--text-color)/0.7);
+    line-height: 1.5714;
+    padding-block-start: 20px;
+    padding-block-end: 20px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .shopify-section--image-with-text-overlay .content-over-media + .content .prose > div {
+    text-align: left;
+  }
+}
+.shopify-section--image-with-text-overlay .content-over-media + .content .prose :is(.button, .button-group:has(.button)) {
+  margin-block-start: 20px;
+}
+.shopify-section--image-with-text-overlay .content-over-media--design {
+  --content-over-media-height: clamp(36.25rem, 65vw, 25rem);
+}
