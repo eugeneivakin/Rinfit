@@ -318,6 +318,51 @@
         "text_alignment": "center"
       }
     },
+    "image_with_text_6axGGM": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_9f3VT7": {
+          "type": "heading",
+          "settings": {
+            "text": "meet gemstone <em><strong>collection</strong></em>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_NWEmid": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_dgf7bH": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "shop the collection",
+            "url": "shopify://collections/meet-gemstone",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_9f3VT7",
+        "richtext_NWEmid",
+        "button_dgf7bH"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/2259fb4291792bb63e64b6fa1620e46d0580b91f_bdcbf73c-be55-4a5d-b0cb-a7bbcd6a93b9.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "text_alignment": "start",
+        "image_overlap": false,
+        "content_width": "sm",
+        "remove_vertical_spacing": false
+      }
+    },
     "hero_ring_guide_8GrpAz": {
       "type": "xx-hero-ring-guide",
       "disabled": true,
@@ -572,6 +617,7 @@
     "video_with_text_jGCbt3",
     "video_with_text_TarERG",
     "text_with_icons_aYqgqK",
+    "image_with_text_6axGGM",
     "hero_ring_guide_8GrpAz",
     "video_guide_KHyX6m",
     "size_calculator_9q6xMT",

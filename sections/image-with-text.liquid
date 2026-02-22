@@ -55,7 +55,7 @@
           {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
         {%- endif -%}
 
-        <div class="image-with-text__content prose text-center sm:text-start">
+        <div class="image-with-text__content prose text-{{ section.settings.text_alignment }}">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'subheading' -%}
@@ -179,6 +179,26 @@
           "label": "t:global.position.right"
         }
       ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "t:global.text.alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "t:global.position.left"
+        },
+        {
+          "value": "center",
+          "label": "t:global.position.center"
+        },
+        {
+          "value": "end",
+          "label": "t:global.position.right"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "checkbox",

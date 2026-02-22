@@ -63,7 +63,6 @@
       align-content: stretch;
       align-items: stretch;
       padding-inline: calc(var(--container-gutter) / 2);
-      text-align: center;
     }
 
     @include md {
@@ -79,6 +78,7 @@
   }
 
   .h1 {
+    --heading-text-transform: capitalize;
     font-size: 30px;
     margin-block-start: -3px;
 
