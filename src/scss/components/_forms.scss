@@ -10,3 +10,12 @@
 :is(.input, .textarea, .select)::placeholder {
   color: rgb(var(--input-text-color, var(--text-color)) / .4);
 }
+
+.form-control > label {
+  font-weight: bold;
+}
+
+.select ~ svg, .select > svg {
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+}

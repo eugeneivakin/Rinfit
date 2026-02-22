@@ -1798,6 +1798,14 @@
         "padding_top": "Top",
         "padding_bottom": "Bottom"
       }
+    },
+    "size_calculator": {
+      "name": "Size calculator",
+      "presets": {
+        "size_calculator": {
+          "name": "Size calculator"
+        }
+      }
     }
   }
 }

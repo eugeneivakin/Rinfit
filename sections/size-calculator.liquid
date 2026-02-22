@@ -1,0 +1,156 @@
+{%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{{- 'section-size-calculator.css' | asset_url | stylesheet_tag -}}
+
+{%- assign remove_vertical_spacing = false -%}
+
+{%- if section.settings.subheading == blank
+  and section.settings.title == blank
+  and section.settings.content == blank
+-%}
+  {%- assign reduce_vertical_spacing = true -%}
+
+  {%- unless section.settings.space_items -%}
+    {%- assign remove_vertical_spacing = true -%}
+  {%- endunless -%}
+{%- endif -%}
+
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
+
+{%- comment -%}
+  ------------------------------------------------------------------------------------------------------------------------
+  LIQUID
+  ------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
+
+<div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <div class="container">
+    <div class="section-stack">
+      {%- render 'section-header',
+        subheading: section.settings.subheading,
+        heading: section.settings.title,
+        content: section.settings.content,
+        text_alignment: 'stretch'
+      -%}
+
+      <size-calculator>
+        <div class="fieldset">
+          <div class="fieldset-row">
+            {% assign label = 'size_calculator.measurement_units' | t %}
+            {% assign option_1 = 'size_calculator.measurement_unit__option_1' | t %}
+            {% assign option_2 = 'size_calculator.measurement_unit__option_2' | t %}
+            {%- assign values = option_1 | append: ',' | append: option_2 | split: ',' -%}
+            {%- render 'select',
+              option_values: values,
+              required: true,
+              label: label,
+              show_label_as_block: true,
+              data_attr: 'unit'
+            -%}
+          </div>
+
+          <div class="fieldset-row">
+            {% assign label = 'size_calculator.measurement_type' | t %}
+            {% assign option_1 = 'size_calculator.measurement_type__option_1' | t %}
+            {% assign option_2 = 'size_calculator.measurement_type__option_2' | t %}
+            {%- assign values = option_1 | append: ',' | append: option_2 | split: ',' -%}
+            {%- render 'select',
+              option_values: values,
+              required: true,
+              label: label,
+              show_label_as_block: true,
+              data_attr: 'type'
+            -%}
+          </div>
+
+          <div class="fieldset-row">
+            {%- assign label = 'size_calculator.form_label' | t -%}
+            {%- assign placeholder = 'size_calculator.form_placeholder' | t -%}
+            {%- render 'input',
+              type: 'number',
+              label: label,
+              value: placeholder,
+              required: true,
+              show_label_as_block: true,
+              data_attr: 'value'
+            -%}
+          </div>
+          <div class="fieldset-row">
+            {%- assign button_content = 'size_calculator.button_submit' | t -%}
+            {%- render 'button', content: button_content, type: 'button' -%}
+          </div>
+          <div class="fieldset-row" data-result>{{ 'size_calculator.form_message' | t }}</div>
+        </div>
+      </size-calculator>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.size_calculator.name",
+  "class": "shopify-section--size-calculator",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "t:global.section.separate_section_with_border",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:global.section.header_category"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:global.text.subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.heading",
+      "default": "Ring size <strong><em>calculator</em></strong>"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "t:global.spacing.remove_vertical_spacing",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.size_calculator.presets.size_calculator.name",
+      "category": "t:global.categories.content"
+    }
+  ]
+}
+{% endschema %}

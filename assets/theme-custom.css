@@ -28,6 +28,15 @@
   color: rgb(var(--input-text-color, var(--text-color))/0.4);
 }
 
+.form-control > label {
+  font-weight: bold;
+}
+
+.select ~ svg, .select > svg {
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+}
+
 .section-header {
   display: flex;
   flex-direction: row;

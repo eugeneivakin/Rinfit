@@ -520,5 +520,18 @@
       },
       "product_subtotal": "Product subtotal"
     }
+  },
+  "size_calculator": {
+    "measurement_units": "Units of measurement",
+    "measurement_unit__option_1": "Millimeters (mm)",
+    "measurement_unit__option_2": "Inches (inch)",
+    "measurement_type": "Measurement type",
+    "measurement_type__option_1": "Diameter",
+    "measurement_type__option_2": "Circumference",
+    "form_label": "Enter the value",
+    "form_placeholder": "For example: 18.1",
+    "button_submit": "Calculate",
+    "form_message": "The result will appear here.",
+    "message_heading": "Ring size"
   }
 }

@@ -20,25 +20,74 @@ function clearSizeSelectionAndDisableBuyBtn() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // attach a handler to all existing quick-buy-modals
-  clearSizeSelectionAndDisableBuyBtn();
-  document.querySelectorAll("quick-buy-modal").forEach(function (modal) {
-    modal.addEventListener("dialog:after-show", function (e) {
-      clearSizeSelectionAndDisableBuyBtn();
+class SizeCalculator extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    // We are waiting for the button and elements to appear inside the component
+    const waitForElements = () => {
+      const button = this.querySelector("button.button");
+      const unitElem = this.querySelector("[data-unit]");
+      const typeElem = this.querySelector("[data-type]");
+      const valueElem = this.querySelector("[data-value]");
+      const resultDiv = this.querySelector("[data-result]");
+      if (button && unitElem && typeElem && valueElem && resultDiv) {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.calculateSize();
+        });
+      } else {
+        setTimeout(waitForElements, 100);
+      }
+    };
+    waitForElements();
+  }
+
+  calculateSize() {
+    const unitElem = this.querySelector("[data-unit]");
+    const typeElem = this.querySelector("[data-type]");
+    const valueElem = this.querySelector("[data-value]");
+    const resultDiv = this.querySelector("[data-result]");
+
+    if (!unitElem || !typeElem || !valueElem || !resultDiv) return;
+
+    const unit = unitElem.value;
+    const type = typeElem.value;
+    const value = parseFloat(valueElem.value);
+
+    if (isNaN(value)) {
+      resultDiv.textContent = "Please enter a number.";
+      return;
+    }
+
+    const key = type === "diameter" ? (unit === "mm" ? "dia_mm" : "dia_in") : unit === "mm" ? "cir_mm" : "cir_in";
+
+    let closest = null;
+    let minDiff = Infinity;
+    (window.ringData || []).forEach((r) => {
+      const diff = Math.abs(r[key] - value);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = r;
+      }
     });
-  });
-  // track the emergence of new quick-buy-modals via MutationObserver
-  const observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      mutation.addedNodes.forEach(function (node) {
-        if (node.nodeType === 1 && node.matches && node.matches("quick-buy-modal")) {
-          node.addEventListener("dialog:after-show", function (e) {
-            clearSizeSelectionAndDisableBuyBtn();
-          });
-        }
-      });
-    });
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-});
+
+    if (closest) {
+      resultDiv.innerHTML = `
+        <h3>${window.themeStrings.sizeCalculatorHeading}: ${closest.size}</h3>
+        <p>${window.themeStrings.sizeCalculatorMeasurementType1}: ${closest.dia_mm} mm (${closest.dia_in} inches)</p>
+        <p>${window.themeStrings.sizeCalculatorMeasurementType2}: ${closest.cir_mm} mm (${closest.cir_in} inches)</p>
+      `;
+    } else {
+      resultDiv.innerHTML = `
+        <p>Size not found, please check the size chart and try again.</p>
+      `;
+    }
+  }
+}
+
+if (!window.customElements.get("size-calculator")) {
+  customElements.define("size-calculator", SizeCalculator);
+}

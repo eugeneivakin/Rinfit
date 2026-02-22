@@ -49,6 +49,7 @@ Supported variables
   {% if disabled %}disabled{% endif %}
   {% if autocorrect %}autocorrect="{{ autocorrect }}"{% endif %}
   {% if pattern %}pattern="{{ pattern }}"{% endif %}
+  {% if data_attr %}data-{{ data_attr }}{% endif %}
 {%- endcapture -%}
 
 {%- if type == 'hidden' -%}
@@ -62,7 +63,7 @@ Supported variables
     {%- if multiline != blank -%}
       <textarea id="{{ id }}" class="textarea" {% unless show_label_as_block %}placeholder="{{ label | escape }}"{% endunless %} rows="{{ multiline }}" {{ optional_attributes }}>{{- value -}}</textarea>
     {%- else -%}
-      <input id="{{ id }}" class="input" type="{{ type | default: 'text' }}" {% if type == 'email' or type == 'tel' %}dir="ltr"{% endif %} {% unless show_label_as_block %}placeholder="{{ label | escape }}"{% endunless %} {{ optional_attributes }}>
+      <input id="{{ id }}" class="input" type="{{ type | default: 'text' }}" {% if type == 'email' or type == 'tel' %}dir="ltr"{% endif %} {% unless show_label_as_block %}placeholder="{{ label | escape }}"{% else %}placeholder="{{ value | escape }}"{% endunless %} {{ optional_attributes }}>
     {%- endif -%}
 
     {%- if show_max_characters_count and maxlength > 0 -%}
