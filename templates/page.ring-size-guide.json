@@ -266,6 +266,58 @@
         "text_color": "#ffffff"
       }
     },
+    "text_with_icons_aYqgqK": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_ryyNzt": {
+          "type": "item",
+          "settings": {
+            "icon": "infinity",
+            "icon_color": "#ff69b4",
+            "icon_width": 30,
+            "mobile_icon_width": 30,
+            "title": "Lifetime warranty",
+            "content": "<p>If, at any time, your Rinfit rings fail to perform just contact us for a free replacement.</p>"
+          }
+        },
+        "item_tA4zJM": {
+          "type": "item",
+          "settings": {
+            "icon": "protect",
+            "icon_color": "#ff69b4",
+            "icon_width": 28,
+            "mobile_icon_width": 28,
+            "title": "patented designs",
+            "content": "<p>Our rings are protected by exclusive design patents. Stand out with unique details.</p>"
+          }
+        },
+        "item_jXMnKF": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "icon_color": "#ff69b4",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Secure payment",
+            "content": "<p>Your payment information is processed securely.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_ryyNzt",
+        "item_tA4zJM",
+        "item_jXMnKF"
+      ],
+      "name": "t:sections.text_with_icons.presets.text_with_icons.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
     "hero_ring_guide_8GrpAz": {
       "type": "xx-hero-ring-guide",
       "disabled": true,
@@ -450,6 +502,7 @@
         "feature_9gfEAW",
         "feature_HTWxKd"
       ],
+      "disabled": true,
       "name": "Warranty Features1",
       "settings": {
         "background_color": "#ffffff",
@@ -518,6 +571,7 @@
     "video_with_text_hNBYeC",
     "video_with_text_jGCbt3",
     "video_with_text_TarERG",
+    "text_with_icons_aYqgqK",
     "hero_ring_guide_8GrpAz",
     "video_guide_KHyX6m",
     "size_calculator_9q6xMT",

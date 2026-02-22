@@ -1,13 +1,22 @@
 {%- if section.blocks.size > 0 -%}
-  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+  {{- 'section-text-with-icons.css' | asset_url | stylesheet_tag -}}
+
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
 
   <div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
-      <div class="v-stack gap-8">
+      <div class="v-stack gap-7 relative">
         {%- capture section_content -%}
           {%- for block in section.blocks -%}
-            <div class="text-with-icons__item {% if forloop.first %}is-selected{% endif %} {% unless section.settings.stack_on_mobile %}snap-center{% endunless %}" role="group" aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}" {{ block.shopify_attributes }}>
-              <div class="v-stack gap-6 justify-items-center sm:justify-items-{{ section.settings.text_alignment }}">
+            <div
+              class="text-with-icons__item {% if forloop.first %}is-selected{% endif %} {% unless section.settings.stack_on_mobile %}snap-center{% endunless %}" role="group" aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}"
+              style="--icon-color: {{ block.settings.icon_color }};"
+              {{ block.shopify_attributes }}
+            >
+              <div class="v-stack gap-3 justify-items-center sm:justify-items-{{ section.settings.text_alignment }}">
                 {%- liquid
                   assign loading_strategy = nil
 
@@ -16,20 +25,22 @@
                   endif
                 -%}
 
-                {%- if block.settings.custom_icon != blank -%}
-                  {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
-                  {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
-                  {%- capture style -%}--image-mobile-max-width: {{ block.settings.mobile_icon_width }}px; --image-max-width: {{ block.settings.icon_width }}px{%- endcapture -%}
-                  {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: loading_strategy, sizes: sizes, widths: widths, class: 'constrained-image', style: style -}}
-                {%- else -%}
-                  <div style="{% render 'surface', text_color: section.settings.icon_color %}">
-                    {%- render 'icon' with block.settings.icon, width: block.settings.mobile_icon_width, class: 'sm:hidden' -%}
-                    {%- render 'icon' with block.settings.icon, width: block.settings.icon_width, class: 'hidden sm:block' -%}
-                  </div>
-                {%- endif -%}
+                <div
+                  class="text-with-icons__icon-wrapper h-stack"
+                  style="{% render 'surface', text_color: section.settings.icon_color %}"
+                >
+                  {%- if block.settings.custom_icon != blank -%}
+                    {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
+                    {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
+                    {%- capture style -%}--image-mobile-max-width: {{ block.settings.mobile_icon_width }}px; --image-max-width: {{ block.settings.icon_width }}px{%- endcapture -%}
+                    {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: loading_strategy, sizes: sizes, widths: widths, class: 'constrained-image', style: style -}}
+                  {%- else -%}
+                    {%- render 'icon' with block.settings.icon -%}
+                  {%- endif -%}
+                </div>
 
                 {%- if block.settings.title != blank or block.settings.content != blank -%}
-                  <div class="v-stack gap-2 text-center sm:text-{{ section.settings.text_alignment }}">
+                  <div class="v-stack gap-5 text-center sm:text-{{ section.settings.text_alignment }}">
                     {%- if block.settings.title != blank -%}
                       <p class="h6">{{ block.settings.title }}</p>
                     {%- endif -%}
@@ -47,15 +58,52 @@
         {%- endcapture -%}
 
         {%- if section.settings.stack_on_mobile -%}
-          <div class="text-with-icons text-with-icons--stacked" role="region" style="{% render 'surface', text_color: section.settings.text_color %}">
+          <div
+            class="text-with-icons text-with-icons--stacked"
+            role="region"
+            style="{% render 'surface', text_color: section.settings.text_color %}"
+          >
             {{- section_content -}}
           </div>
         {%- else -%}
           {%- assign carousel_id = 'text-with-icons-' | append: section.id -%}
+          <carousel-prev-button
+            class="floating-controls-container__control"
+            aria-controls="{{ carousel_id }}"
+          >
+            <button
+              type="button"
+              class="prev-next-button prev-next-button--prev circle-button hover:animate-icon-inline"
+              disabled
+            >
+              <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+              {%- render 'icons', icon: 'chevron-left' -%}
+            </button>
+          </carousel-prev-button>
 
-          <text-with-icons-carousel disabled-on="sm" allow-swipe id="{{ carousel_id }}" class="text-with-icons full-bleed sm:unbleed" role="region" style="{% render 'surface', text_color: section.settings.text_color %}">
+          <text-with-icons-carousel
+            disabled-on="sm"
+            allow-swipe
+            id="{{ carousel_id }}"
+            class="text-with-icons full-bleed sm:unbleed"
+            role="region"
+            style="{% render 'surface', text_color: section.settings.text_color %}"
+          >
             {{- section_content -}}
           </text-with-icons-carousel>
+
+          <carousel-next-button
+            class="floating-controls-container__control"
+            aria-controls="{{ carousel_id }}"
+          >
+            <button
+              type="button"
+              class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline"
+            >
+              <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+              {%- render 'icons', icon: 'chevron-right' -%}
+            </button>
+          </carousel-next-button>
 
           {%- if section.blocks.size > 1 -%}
             <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots sm:hidden">
@@ -141,6 +189,16 @@
           "id": "icon",
           "label": "t:global.icons.icon",
           "options": [
+            {
+              "value": "infinity",
+              "label": "t:global.icons.infinity",
+              "group": "t:global.icons.custom_category"
+            },
+            {
+              "value": "protect",
+              "label": "t:global.icons.protect",
+              "group": "t:global.icons.custom_category"
+            },
             {
               "value": "picto-award-gift",
               "label": "t:global.icons.award_gift",
@@ -424,6 +482,12 @@
           ]
         },
         {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon color",
+          "default": "#FF69B4"
+        },
+        {
           "type": "image_picker",
           "id": "custom_icon",
           "label": "t:global.icons.custom_icon",
@@ -434,7 +498,7 @@
           "id": "icon_width",
           "min": 16,
           "max": 64,
-          "step": 4,
+          "step": 1,
           "unit": "px",
           "label": "t:global.icons.icon_width",
           "default": 24
@@ -444,7 +508,7 @@
           "id": "mobile_icon_width",
           "min": 16,
           "max": 64,
-          "step": 4,
+          "step": 1,
           "unit": "px",
           "label": "t:global.icons.mobile_icon_width",
           "default": 24
