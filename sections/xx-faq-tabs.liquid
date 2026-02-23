@@ -244,7 +244,7 @@
               {%- if bcat == t_handle -%}
                 <div class="faq-item-{{ section.id }}" {{ block.shopify_attributes }}>
                   <button class="faq-q-{{ section.id }}" aria-expanded="false">
-                    <span>{{ block.settings.question }}</span>
+                    <span>{{ block.settings.heading }}</span>
                     <span class="faq-icon-{{ section.id }}" aria-hidden="true">
                       <svg
                         class="plus-icon"
@@ -519,7 +519,7 @@
       "name": "FAQ item",
       "settings": [
         { "type": "text", "id": "category", "label": "Category (tab label)", "default": "Product" },
-        { "type": "text", "id": "question", "label": "Question", "default": "Your question" },
+        { "type": "text", "id": "heading", "label": "Question", "default": "Your question" },
         { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Your answer text</p>" }
       ]
     }
