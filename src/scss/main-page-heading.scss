@@ -61,12 +61,12 @@
 
     .prose {
       margin-block-start: 21px;
+      margin-inline: auto;
+      max-width: 650px;
+      text-align: center;
 
       @include md {
         margin-block-start: 16px;
-        margin-inline: auto;
-        max-width: 650px;
-        text-align: center;
       }
     }
 

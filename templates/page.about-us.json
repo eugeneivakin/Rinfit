@@ -18,73 +18,121 @@
         "page_width": "xs"
       }
     },
-    "title_contact_kx6i4f": {
-      "type": "xx-title-contact",
-      "name": "Title contact",
+    "main_page_heading_yRXheF": {
+      "type": "main-page-heading",
+      "name": "Page Heading",
       "settings": {
-        "title": "<p><em>about Us</em></p>",
-        "background_color": "#f7f6f5",
-        "top_padding": 20,
-        "bottom_padding": 0
+        "color_background": "#e9e9e9",
+        "color_text": "#807371",
+        "color_scheme": "",
+        "heading": "<em>{{ page.title }}</em>",
+        "subheading": "Where Style <em><strong>meets function</strong></em>",
+        "content": "<p>Rinfit was born out of one woman’s mission to find the perfect ring — one that looks like a jewel, but fits into her active lifestyle.</p>"
       }
     },
-    "banner_about_us_9tx9k4": {
-      "type": "xx-banner-about-us",
-      "name": "Main banenr",
+    "image_with_text_overlay_RpipY9": {
+      "type": "image-with-text-overlay",
+      "name": "t:sections.image_with_text_overlay.presets.image_with_text_overlay.name",
       "settings": {
-        "main_img": "shopify://shop_images/image_31.png",
-        "main_img_mob": "shopify://shop_images/image_32.png",
-        "main_text": "<p>where style<br/><em>meets function</em></p>",
-        "main_title": "<p>Where Style <em>meets function</em></p>",
-        "main_subtitle": "<p>Rinfit was born out of one woman’s mission to find the perfect ring — one that looks like a jewel, but fits into her active lifestyle.</p>"
+        "color_scheme": "scheme-1",
+        "section_width": "container",
+        "image_size": "sm",
+        "image": "shopify://shop_images/DSC_7307.jpg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": true,
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "content_outside_mobile": true,
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
       }
     },
-    "section_about_us_YTqRgn": {
-      "type": "xx-section-about-us",
-      "name": "Banenr about us",
+    "image_with_text_8VYtfH": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_3yghmF": {
+          "type": "heading",
+          "settings": {
+            "text": "Our <em><strong>story</strong></em>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_Ankqwa": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>In 2015, Rinfit was launched with one clear vision: to craft rings that fit your lifestyle without sacrificing style. Made from premium, skin-friendly silicone, our rings offer patented comfort-fit designs in over 30 colors — including luxe metallic finishes like gold, silver, and rose gold.</p><p>What started with a single ring and countless compliments quickly grew into a movement. Today, Rinfit is trusted by thousands who want to live fully — without taking off what matters most.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3yghmF",
+        "richtext_Ankqwa"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
-        "background_color": "",
-        "image": "shopify://shop_images/image_33.png",
-        "title": "<p>Our <em>story</em></p>",
-        "subtitle": "<p>In 2015, Rinfit was launched with one clear vision: to craft rings that fit your lifestyle without sacrificing style. Made from premium, skin-friendly silicone, our rings offer patented comfort-fit designs in over 30 colors — including luxe metallic finishes like gold, silver, and rose gold.<br/></p><p>What started with a single ring and countless compliments quickly grew into a movement. Today, Rinfit is trusted by thousands who want to live fully — without taking off what matters most.</p>",
-        "padding_top": 0,
-        "padding_left": 0,
-        "padding_right": 0,
-        "padding_bottom": 0,
-        "position_banner": "right"
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/RFR3_322.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "text_alignment": "center",
+        "image_overlap": false,
+        "content_width": "sm",
+        "remove_vertical_spacing": false
       }
     },
-    "section_about_us_tyi3tX": {
-      "type": "xx-section-about-us",
-      "name": "Banenr about us",
+    "image_with_text_QP4rM6": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_UnNEXg": {
+          "type": "heading",
+          "settings": {
+            "text": "Our <em><strong>mission</strong></em>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_fhXV6a": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Since 2015, Rinfit rings are known as the pioneers of silicone rings innovation that brought high-end patent-protected designs with high durability into the comfort of a silicone ring! Affordable without compromising on quality.</p><p>We created Rinfit so men and women can live the lives they want without having to worry about damaging or losing their precious wedding ring.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UnNEXg",
+        "richtext_fhXV6a"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
-        "background_color": "#faf3f1",
-        "image": "shopify://shop_images/image_34.png",
-        "title": "<p>Our <em>mission</em></p>",
-        "subtitle": "<p>Since 2015, Rinfit rings are known as the pioneers of silicone rings innovation that brought high-end patent-protected designs with high durability into the comfort of a silicone ring! Affordable without compromising on quality.<br/><br/>We created Rinfit so men and women can live the lives they want without having to worry about damaging or losing their precious wedding ring.<br/><br/></p>",
-        "padding_top": 20,
-        "padding_left": 20,
-        "padding_right": 20,
-        "padding_bottom": 20,
-        "position_banner": "left"
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/daVinci071.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "text_alignment": "center",
+        "image_overlap": false,
+        "content_width": "sm",
+        "remove_vertical_spacing": false
       }
     },
-    "featured_collections_ajxHNb": {
+    "featured_collections_kHjhk4": {
       "type": "featured-collections",
       "blocks": {
-        "collection_yJ7wfb": {
+        "collection_NJyMqB": {
           "type": "collection",
           "settings": {
             "collection": "best-sellers",
             "products_count": 8,
-            "title": "Best <em><strong>Sellers</strong></em>",
+            "title": "best <em><strong>sellers</strong></em>",
             "link_url": "",
             "link_text": "shop all"
           }
         }
       },
       "block_order": [
-        "collection_yJ7wfb"
+        "collection_NJyMqB"
       ],
       "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
@@ -98,29 +146,14 @@
         "vertical_spacing_factor": 1,
         "subheading": ""
       }
-    },
-    "collection_xFa3pd": {
-      "type": "xx-collection",
-      "disabled": true,
-      "name": "Collection products",
-      "settings": {
-        "title": "<p>Best <em>Sellers</em></p>",
-        "collection": "best-sellers",
-        "button_text": "SHOP ALL",
-        "button_text_cart": "ADD TO CART",
-        "button_link": "shopify://collections/best-sellers",
-        "top_padding": 40,
-        "bottom_padding": 40
-      }
     }
   },
   "order": [
     "main",
-    "title_contact_kx6i4f",
-    "banner_about_us_9tx9k4",
-    "section_about_us_YTqRgn",
-    "section_about_us_tyi3tX",
-    "featured_collections_ajxHNb",
-    "collection_xFa3pd"
+    "main_page_heading_yRXheF",
+    "image_with_text_overlay_RpipY9",
+    "image_with_text_8VYtfH",
+    "image_with_text_QP4rM6",
+    "featured_collections_kHjhk4"
   ]
 }

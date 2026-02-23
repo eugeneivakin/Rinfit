@@ -57,13 +57,13 @@
 }
 .shopify-section--main-page-heading .section-content .prose {
   margin-block-start: 21px;
+  margin-inline: auto;
+  max-width: 650px;
+  text-align: center;
 }
 @media screen and (min-width: 1000px) {
   .shopify-section--main-page-heading .section-content .prose {
     margin-block-start: 16px;
-    margin-inline: auto;
-    max-width: 650px;
-    text-align: center;
   }
 }
 .shopify-section--main-page-heading .section-content .content-over-media {
