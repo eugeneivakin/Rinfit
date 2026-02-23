@@ -79,33 +79,35 @@
 
                 {%- when 'richtext' -%}
                   {%- if block.settings.content != blank -%}
-                    <div {{ block.shopify_attributes }}>
+                    <div {{ block.shopify_attributes }} class="sm-max:hidden">
                       {{- block.settings.content -}}
                     </div>
                   {%- endif -%}
 
                 {%- when 'liquid' -%}
                   {%- if block.settings.liquid != blank -%}
-                    <div {{ block.shopify_attributes }}>
+                    <div {{ block.shopify_attributes }} class="sm-max:hidden">
                       {{- block.settings.liquid -}}
                     </div>
                   {%- endif -%}
 
                 {%- when 'button' -%}
                   {%- if block.settings.text != blank -%}
-                    {%- render 'button',
-                      content: block.settings.text,
-                      href: block.settings.url,
-                      style: block.settings.style,
-                      background: block.settings.background,
-                      text_color: block.settings.text_color,
-                      block: block
-                    -%}
+                    <div {{ block.shopify_attributes }} class="sm-max:hidden button-group">
+                      {%- render 'button',
+                        content: block.settings.text,
+                        href: block.settings.url,
+                        style: block.settings.style,
+                        background: block.settings.background,
+                        text_color: block.settings.text_color,
+                        block: block
+                      -%}
+                    </div>
                   {%- endif -%}
 
                 {%- when 'link' -%}
                   {%- if block.settings.text != blank -%}
-                    <div {{ block.shopify_attributes }}>
+                    <div {{ block.shopify_attributes }} class="sm-max:hidden button-group">
                       <a href="{{ block.settings.url }}">{{ block.settings.text }}</a>
                     </div>
                   {%- endif -%}

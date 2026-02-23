@@ -7,6 +7,17 @@
     }
   }
 
+  .text-with-icons {
+    
+    @include sm {
+      justify-content: space-around;
+    }
+
+    > * {
+      flex-basis: min(18.75rem, 222px);
+    }
+  }
+
   .text-with-icons__item {
     --text-h6: 14px;
     --heading-font-weight: 700;
@@ -38,6 +49,10 @@
   .floating-controls-container__control {
     inset-block-start: 50%;
     transform: translateY(-50%);
+
+    @include sm {
+      display: none;
+    }
   }
 
   carousel-next-button {

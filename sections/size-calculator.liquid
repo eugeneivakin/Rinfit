@@ -59,9 +59,7 @@
               show_label_as_block: true,
               data_attr: 'unit'
             -%}
-          </div>
 
-          <div class="fieldset-row">
             {% assign label = 'size_calculator.measurement_type' | t %}
             {% assign option_1 = 'size_calculator.measurement_type__option_1' | t %}
             {% assign option_2 = 'size_calculator.measurement_type__option_2' | t %}
@@ -73,9 +71,7 @@
               show_label_as_block: true,
               data_attr: 'type'
             -%}
-          </div>
 
-          <div class="fieldset-row">
             {%- assign label = 'size_calculator.form_label' | t -%}
             {%- assign placeholder = 'size_calculator.form_placeholder' | t -%}
             {%- render 'input',

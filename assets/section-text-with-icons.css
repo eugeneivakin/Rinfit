@@ -1,6 +1,14 @@
 .shopify-section--text-with-icons .color-scheme .prose {
   color: rgb(var(--text-color)/0.7);
 }
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons .text-with-icons {
+    justify-content: space-around;
+  }
+}
+.shopify-section--text-with-icons .text-with-icons > * {
+  flex-basis: min(18.75rem, 222px);
+}
 .shopify-section--text-with-icons .text-with-icons__item {
   --text-h6: 14px;
   --heading-font-weight: 700;
@@ -27,6 +35,11 @@
 .shopify-section--text-with-icons .floating-controls-container__control {
   inset-block-start: 50%;
   transform: translateY(-50%);
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons .floating-controls-container__control {
+    display: none;
+  }
 }
 .shopify-section--text-with-icons carousel-next-button {
   inset-inline-end: 0;

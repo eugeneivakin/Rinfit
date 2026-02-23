@@ -6,6 +6,11 @@
     border-radius: 10px;
     overflow: hidden;
 
+    @include sm {
+      --content-over-media-calculated-row-gap: 71px;
+      --content-over-media-gap: var(--container-gutter);
+    }
+
     @include md {
       border-radius: 30px;
     }
@@ -14,6 +19,22 @@
       --text-h1: 46px;
       --heading-font-weight: 300;
       --heading-text-transform: capitalize;
+
+      .prose {
+        max-width: 611px;
+
+        &:not(.prose--tight) :where(:not(meta, span) + *) {
+          @include sm {
+            margin-block-start: 14px;
+          }
+        }
+
+        &:not(.prose--tight) :is(.button, .button-group:has(.button)) {
+          @include sm {
+            margin-block-start: 45px;
+          }
+        }
+      }
     }
 
     + .content {

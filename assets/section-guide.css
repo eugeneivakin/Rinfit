@@ -3,20 +3,60 @@
   --heading-font-weight: 300;
   font-size: var(--text-h2);
 }
+@media screen and (min-width: 1000px) {
+  .shopify-section--guide .section-header .h2 {
+    --text-h2: 46px;
+  }
+}
 .shopify-section--guide .section-header .h2 > * {
   --heading-font-weight: 400;
   display: block;
   font-size: 2.3em;
   margin-block-start: 1px;
 }
+@media screen and (min-width: 1000px) {
+  .shopify-section--guide .section-header .h2 > * {
+    display: inline;
+    font-size: inherit;
+  }
+}
 .shopify-section--guide .multi-column {
   gap: 0;
   padding-inline: 22px;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--guide .multi-column {
+    --multi-column-content-alignment: space-between;
+    gap: 20px;
+    padding-inline: 0;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--guide .multi-column {
+    --multi-column-content-alignment: start;
+    --multi-column-grid: auto / repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--guide .multi-column + picture {
+    display: block;
+    margin-block-start: 25px;
+  }
 }
 .shopify-section--guide .multi-column__item {
   grid-template-columns: 1fr 44%;
   gap: 1rem;
   align-items: center;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--guide .multi-column__item {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--guide .multi-column__item {
+    gap: 20px;
+  }
 }
 .shopify-section--guide .media-wrapper {
   align-self: stretch;
@@ -41,6 +81,22 @@
     text-align: left;
   }
 }
+@media screen and (min-width: 700px) {
+  .shopify-section--guide .prose {
+    order: initial;
+    padding-block: 0;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--guide .prose {
+    line-height: 1.25;
+  }
+}
 .shopify-section--guide .prose :where(:not(meta, span) + *) {
   margin-block-start: 13px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--guide .prose :where(:not(meta, span) + *) {
+    margin-block-start: 10px;
+  }
 }
