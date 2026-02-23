@@ -3,6 +3,12 @@
   border-radius: 10px;
   overflow: hidden;
 }
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text-overlay .content-over-media {
+    --content-over-media-calculated-row-gap: 71px;
+    --content-over-media-gap: var(--container-gutter);
+  }
+}
 @media screen and (min-width: 1000px) {
   .shopify-section--image-with-text-overlay .content-over-media {
     border-radius: 30px;
@@ -12,6 +18,19 @@
   --text-h1: 46px;
   --heading-font-weight: 300;
   --heading-text-transform: capitalize;
+}
+.shopify-section--image-with-text-overlay .content-over-media .content .prose {
+  max-width: 611px;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text-overlay .content-over-media .content .prose:not(.prose--tight) :where(:not(meta, span) + *) {
+    margin-block-start: 14px;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--image-with-text-overlay .content-over-media .content .prose:not(.prose--tight) :is(.button, .button-group:has(.button)) {
+    margin-block-start: 45px;
+  }
 }
 @media screen and (max-width: 700px) {
   .shopify-section--image-with-text-overlay .content-over-media + .content {

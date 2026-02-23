@@ -7,11 +7,20 @@
       --heading-font-weight: 300;
       font-size: var(--text-h2);
 
+      @include md {
+        --text-h2: 46px;
+      }
+
       > * {
         --heading-font-weight: 400;
         display: block;
         font-size: 2.3em;
         margin-block-start: 1px;
+
+        @include md {
+          display: inline;
+          font-size: inherit;
+        }
       }
     }
   }
@@ -19,12 +28,38 @@
   .multi-column {
     gap: 0;
     padding-inline: 22px;
+
+    @include sm {
+      --multi-column-content-alignment: space-between;
+      gap: 20px;
+      padding-inline: 0;
+    }
+
+    @include md {
+      --multi-column-content-alignment: start;
+      --multi-column-grid: auto / repeat(4, 1fr);
+    }
+
+    + picture {
+      @include md {
+        display: block;
+        margin-block-start: 25px;
+      }
+    }
   }
 
   .multi-column__item {
     grid-template-columns: 1fr 44%;
     gap: 1rem;
     align-items: center;
+
+    @include sm {
+      grid-template-columns: 1fr;
+    }
+
+    @include md {
+      gap: 20px;
+    }
   }
 
   .media-wrapper {
@@ -50,8 +85,21 @@
       text-align: left;
     }
 
+    @include sm {
+      order: initial;
+      padding-block: 0;
+    }
+
+    @include md {
+      line-height: 1.25;
+    }
+
     :where(:not(meta, span) + *) {
       margin-block-start: 13px;
+
+      @include md {
+        margin-block-start: 10px;
+      }
     }
   }
 }

@@ -11,7 +11,7 @@
 }
 @media screen and (min-width: 1000px) {
   .shopify-section--video .content-over-media video-media {
-    --content-over-media-height: 2.13333;
+    --default-aspect-ratio: 2.13333;
   }
 }
 .shopify-section--video .play-button {

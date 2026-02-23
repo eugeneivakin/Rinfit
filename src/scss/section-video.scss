@@ -13,9 +13,9 @@
 
     video-media {
       --default-aspect-ratio: 0.9211;
-
+      
       @include md {
-        --content-over-media-height: 2.13333;
+        --default-aspect-ratio: 2.13333;
       }
     }
   }
