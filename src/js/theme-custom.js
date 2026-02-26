@@ -1,3 +1,4 @@
+// ...existing code...
 // Function to clear selected sizes and lock button
 function clearSizeSelectionAndDisableBuyBtn() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -103,31 +104,31 @@ class SizeChartButton extends HTMLElement {
   }
 
   connectedCallback() {
-    this.addEventListener('click', this._onClick);
+    this.addEventListener("click", this._onClick);
   }
 
   disconnectedCallback() {
-    this.removeEventListener('click', this._onClick);
+    this.removeEventListener("click", this._onClick);
   }
 
   _onClick(e) {
     if (this._loaded) return;
     this._loaded = true;
-    const url = this.getAttribute('data-url');
+    const url = this.getAttribute("data-url");
     if (!url) {
-      console.warn('No data-url attribute found on size-chart-button');
+      console.warn("No data-url attribute found on size-chart-button");
       return;
     }
     const sizeChartSelectors = [
-      '.shopify-section--guide',
-      '.shopify-section--size-calculator',
+      ".shopify-section--guide",
+      ".shopify-section--size-calculator",
       // Add additional selectors here as needed
     ];
     fetch(url)
       .then((response) => response.text())
       .then((html) => {
         const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+        const doc = parser.parseFromString(html, "text/html");
         let found = false;
         let guideSection = null;
         let sizeCalculatorSection = null;
@@ -136,10 +137,10 @@ class SizeChartButton extends HTMLElement {
           const sections = doc.querySelectorAll(selector);
           if (sections.length > 0) {
             sections.forEach((section) => {
-              if (section.classList.contains('shopify-section--guide')) {
+              if (section.classList.contains("shopify-section--guide")) {
                 guideSection = section;
               }
-              if (section.classList.contains('shopify-section--size-calculator')) {
+              if (section.classList.contains("shopify-section--size-calculator")) {
                 sizeCalculatorSection = section;
               }
             });
@@ -148,20 +149,20 @@ class SizeChartButton extends HTMLElement {
         // If both sections are found, move the size-calculator inside guide
         if (guideSection && sizeCalculatorSection) {
           // We are looking for a multi-column tag inside guideSection
-          const multiColumn = guideSection.querySelector('multi-column');
+          const multiColumn = guideSection.querySelector("multi-column");
           if (multiColumn) {
             // Clone sizeCalculatorSection for insertion
             const sizeCalculatorClone = sizeCalculatorSection.cloneNode(true);
             // Insert a clone after multi-column
-            multiColumn.insertAdjacentElement('afterend', sizeCalculatorClone);
+            multiColumn.insertAdjacentElement("afterend", sizeCalculatorClone);
             // Removing the original from the DOM
             sizeCalculatorSection.remove();
           }
         }
         // Now we collect html for insertion
-        const target = document.querySelector('[data-size-chart-page-content]');
+        const target = document.querySelector("[data-size-chart-page-content]");
         if (target) {
-          let htmlContent = '';
+          let htmlContent = "";
           // Add guideSection (if found)
           if (guideSection) {
             // Updating header
@@ -183,10 +184,7 @@ class SizeChartButton extends HTMLElement {
             if (sections.length > 0) {
               sections.forEach((section) => {
                 // Add only those that have not been moved
-                if (
-                  !section.classList.contains('shopify-section--guide') &&
-                  !section.classList.contains('shopify-section--size-calculator')
-                ) {
+                if (!section.classList.contains("shopify-section--guide") && !section.classList.contains("shopify-section--size-calculator")) {
                   htmlContent += section.outerHTML;
                 }
               });
@@ -196,7 +194,7 @@ class SizeChartButton extends HTMLElement {
           found = true;
         }
         if (!found) {
-          console.warn('Section for size chart not found by selectors:', sizeChartSelectors);
+          console.warn("Section for size chart not found by selectors:", sizeChartSelectors);
         }
       });
   }
@@ -204,4 +202,119 @@ class SizeChartButton extends HTMLElement {
 
 if (!window.customElements.get("size-chart-button")) {
   customElements.define("size-chart-button", SizeChartButton);
+}
+
+class BundleFrequently extends HTMLElement {
+  constructor() {
+    super();
+    this._onRemoveClick = this._onRemoveClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.addEventListener("click", this._onRemoveClick);
+    this._setupVariantImageSwitcher();
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener("click", this._onRemoveClick);
+  }
+
+  _setupVariantImageSwitcher() {
+    this.querySelectorAll('product-card').forEach(card => {
+      const select = card.querySelector('select[data-variants]');
+      if (!select) return;
+      select.addEventListener('change', function() {
+        const selectedOption = select.options[select.selectedIndex];
+        if (!selectedOption) return;
+        const imageUrl = selectedOption.getAttribute('image-url');
+        if (!imageUrl) return;
+        // Update src and srcset of the image
+        const img = card.querySelector('.product-card__image--primary');
+        if (img) {
+          img.src = imageUrl;
+          img.srcset = imageUrl;
+        }
+      });
+    });
+  }
+
+  _onRemoveClick(e) {
+    const removeBtn = e.target.closest("[data-remove-from-bundle]");
+    if (removeBtn && this.contains(removeBtn)) {
+      const productCard = removeBtn.closest(".product-card");
+      if (productCard) {
+        productCard.remove();
+        this._recalculateTotal();
+      }
+    }
+  }
+
+  _recalculateTotal() {
+    // We collect all the remaining cards with data-price
+    const productCards = this.querySelectorAll(".product-card[data-price]");
+    let total = 0;
+    productCards.forEach((card) => {
+      let priceStr = card.getAttribute("data-price");
+      if (priceStr) {
+        // Remove all characters except numbers, periods and commas
+        priceStr = priceStr.replace(/[^\d.,]/g, "");
+        // Replace the comma with a dot, if any.
+        priceStr = priceStr.replace(",", ".");
+        const price = parseFloat(priceStr);
+        if (!isNaN(price)) {
+          total += price;
+        }
+      }
+    });
+
+    // Checking for the presence of a product-card with data-position="0"
+    const hasMainProduct = !!this.querySelector('.product-card[data-position="0"]');
+
+    // Getting the discount percentage from data-discount-value
+    let discountPercent = 0;
+    const discountAttr = this.getAttribute("data-discount-value");
+    if (discountAttr) {
+      discountPercent = parseFloat(discountAttr);
+      if (isNaN(discountPercent)) discountPercent = 0;
+    }
+
+    // We calculate the discounted amount only if there is a main product
+    let saleTotal = total;
+    if (hasMainProduct && discountPercent > 0 && discountPercent < 100) {
+      saleTotal = total * (1 - discountPercent / 100);
+    } else {
+      saleTotal = total;
+    }
+
+    // Update compare-at-price and sale-price inside data-price-total
+    const priceTotal = this.querySelector("[data-price-total]");
+    if (priceTotal) {
+      const compareAt = priceTotal.querySelector("compare-at-price");
+      const salePrice = priceTotal.querySelector("sale-price");
+      if (hasMainProduct && discountPercent > 0 && discountPercent < 100) {
+        // Discount applies: we show both prices and class
+        if (compareAt) {
+          compareAt.innerHTML = `$${total.toFixed(2)}`;
+          compareAt.style.display = '';
+        }
+        if (salePrice) {
+          salePrice.innerHTML = `$${saleTotal.toFixed(2)}`;
+          salePrice.classList.add('text-on-sale');
+        }
+      } else {
+        // The discount does not apply: we remove compare-at-price and the text-on-sale class
+        if (compareAt) {
+          compareAt.remove();
+        }
+        if (salePrice) {
+          salePrice.innerHTML = `$${saleTotal.toFixed(2)}`;
+          salePrice.classList.remove('text-on-sale');
+        }
+      }
+    }
+  }
+}
+
+if (!window.customElements.get("bundle-frequently")) {
+  customElements.define("bundle-frequently", BundleFrequently);
 }

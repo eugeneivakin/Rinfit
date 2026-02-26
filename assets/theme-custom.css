@@ -37,6 +37,21 @@
   transform: translateY(-50%);
 }
 
+.form-control:has(.select)::before {
+  display: none;
+}
+
+.form-control:has(.select) .relative::before {
+  content: "";
+  width: calc(var(--input-padding-inline) * 2 + 35px);
+  background-image: linear-gradient(to var(--transform-origin-start), rgb(var(--background)) calc(var(--input-padding-inline) + 20px), rgb(var(--background-without-opacity)/0));
+  pointer-events: none;
+  height: calc(100% - 2px);
+  position: absolute;
+  inset-block-start: 1px;
+  inset-inline-end: 1px;
+}
+
 .section-header {
   display: flex;
   flex-direction: row;

@@ -1,6 +1,7 @@
 <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
 {{ 'product-card.css' | asset_url | stylesheet_tag }}
 {{ 'featured-collections.css' | asset_url | stylesheet_tag }}
+{{ 'frequently-bought-together.css' | asset_url | stylesheet_tag }}
 
 <product-recommendations
   class="block"
@@ -44,57 +45,47 @@
     <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
       <div class="container">
         <div class="section-stack">
+          {%- assign updated_content = section.settings.content | replace: '|| amount ||', section.settings.discount -%}
+          {%- assign total_original_price = product.selected_or_first_available_variant.price | default: 0 -%}
+
           {%- render 'section-header',
             subheading: section.settings.subheading,
             heading: section.settings.title,
-            content: section.settings.content
+            content: updated_content
           -%}
 
           {%- capture product_list -%}
-            {%- for product in recommendations.products -%}
-              {%- render 'x-product-card', product: product, reveal: settings.stagger_products_apparition, position: forloop.index, hide_product_information: section.settings.hide_product_information -%}
+            {%- render 'x-product-card-bundle', product: product, reveal: settings.stagger_products_apparition, position: '0' -%}
+
+            {%- for product in recommendations.products limit: section.settings.recommendations_count -%}
+              {%- assign total_original_price = total_original_price | plus: product.selected_or_first_available_variant.price -%}
+              {%- render 'x-product-card-bundle', product: product, reveal: settings.stagger_products_apparition, position: forloop.index -%}
             {%- endfor -%}
           {%- endcapture -%}
 
-          {%- if section.settings.stack_products -%}
-            <product-list class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} justify-center">
+          <bundle-frequently data-discount-value="{{ section.settings.discount }}">
+            <product-list class="product-list justify-center">
               {{- product_list -}}
             </product-list>
-          {%- else -%}
-            {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
-            <product-list class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
-              <carousel-prev-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
-                <button
-                  type="button"
-                  class="prev-next-button prev-next-button--prev circle-button hover:animate-icon-inline"
-                  disabled
-                >
-                  <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-                  {%- render 'icon' with 'arrow-left', direction_aware: true -%}
-                </button>
-              </carousel-prev-button>
-
-              <scroll-carousel
-                id="{{ carousel_id }}"
-                group-cells
-                allow-drag
-                class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed"
-              >
-                {{- product_list -}}
-              </scroll-carousel>
-
-              <carousel-next-button class="floating-controls-container__control" aria-controls="{{ carousel_id }}">
-                <button
-                  type="button"
-                  class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline"
-                >
-                  <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-                  {%- render 'icon' with 'arrow-right', direction_aware: true -%}
-                </button>
-              </carousel-next-button>
-            </product-list>
-          {%- endif -%}
+            <div class="v-stack gap-4 text-center p-5">
+              <div data-price-total>
+                total price
+                <price-list class="price-list">
+                  <sale-price class="h6 text-on-sale">
+                    <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
+                    {% assign percent = 100 | minus: section.settings.discount | divided_by: 100.0 %}
+                    {{- total_original_price | times: percent | money -}}
+                  </sale-price>
+                  <compare-at-price class="h6 text-subdued line-through">
+                    <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
+                    {{- total_original_price | money -}}
+                  </compare-at-price>
+                </price-list>
+              </div>
+              <div><button class="button">add selected to cart</button></div>
+            </div>
+          </bundle-frequently>
         </div>
       </div>
     </div>
@@ -107,7 +98,7 @@
   "enabled_on": {
     "templates": ["product"]
   },
-  "class": "shopify-section--related-products",
+  "class": "shopify-section--frequently-bought",
   "tag": "section",
   "settings": [
     {
@@ -127,20 +118,8 @@
       "default": true
     },
     {
-      "type": "checkbox",
-      "id": "hide_product_information",
-      "label": "t:global.product_list.hide_product_information",
-      "info": "t:global.product_list.hide_product_information_info"
-    },
-    {
       "type": "header",
       "content": "t:global.product_list.product_list_category"
-    },
-    {
-      "type": "checkbox",
-      "id": "stack_products",
-      "label": "t:global.product_list.stack_products",
-      "default": false
     },
     {
       "type": "range",
@@ -148,56 +127,7 @@
       "min": 2,
       "max": 10,
       "label": "t:sections.frequently_bought_together.recommendations_count",
-      "default": 10
-    },
-    {
-      "type": "select",
-      "id": "products_per_row_mobile",
-      "label": "t:global.product_list.products_per_row_mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "1"
-        },
-        {
-          "value": "2",
-          "label": "2"
-        }
-      ],
-      "default": "2",
-      "visible_if": "{{ section.settings.stack_products }}"
-    },
-    {
-      "type": "range",
-      "id": "products_per_row_desktop",
-      "min": 2,
-      "max": 6,
-      "label": "t:global.product_list.products_per_row_desktop",
-      "default": 4,
-      "visible_if": "{{ section.settings.stack_products }}"
-    },
-    {
-      "type": "header",
-      "content": "t:global.product_list.spacing_category",
-      "info": "t:global.product_list.spacing_category_info"
-    },
-    {
-      "type": "range",
-      "min": 0.2,
-      "max": 2,
-      "step": 0.1,
-      "id": "horizontal_spacing_factor",
-      "label": "t:global.product_list.horizontal_spacing_factor",
-      "default": 1
-    },
-    {
-      "type": "range",
-      "min": 0.2,
-      "max": 2,
-      "step": 0.1,
-      "id": "vertical_spacing_factor",
-      "label": "t:global.product_list.vertical_spacing_factor",
-      "default": 1
+      "default": 2
     },
     {
       "type": "header",
@@ -212,12 +142,22 @@
       "type": "inline_richtext",
       "id": "title",
       "label": "t:global.text.heading",
-      "default": "Related products"
+      "default": "Frequently Bought Together"
     },
     {
       "type": "richtext",
       "id": "content",
       "label": "t:global.text.content"
+    },
+    {
+      "type": "range",
+      "id": "discount",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Discount amount",
+      "default": 15
     }
   ],
   "presets": [

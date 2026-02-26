@@ -537,5 +537,8 @@
   "popup": {
     "loading_html": "Loading <strong><em>content</em></strong>...",
     "size_calculator_heading_html": "calculate <strong><em>my size</em></strong>"
+  },
+  "frequently_bought_together": {
+    "product_card_select_label": "Select option"
   }
 }

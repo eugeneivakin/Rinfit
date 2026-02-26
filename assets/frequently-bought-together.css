@@ -1,0 +1,29 @@
+.shopify-section--frequently-bought .section-header,
+.shopify-section--frequently-bought .section-header h2 {
+  text-align: left;
+}
+.shopify-section--frequently-bought .product-list {
+  --product-list-calculated-column-gap: 20px;
+  --product-list-calculated-row-gap: 50px;
+  --product-list-card-width: 100%;
+}
+.shopify-section--frequently-bought .product-list product-card:first-child::before {
+  display: none;
+}
+.shopify-section--frequently-bought .product-list product-card:before {
+  bottom: 100%;
+  content: "+";
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-weight: 100;
+  line-height: 1;
+  left: 0;
+  height: var(--product-list-calculated-row-gap);
+  position: absolute;
+  width: 100%;
+}

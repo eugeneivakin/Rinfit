@@ -204,7 +204,6 @@
         "accordion_metafield_xQ8Vwh",
         "size_calculator_pNdTGU"
       ],
-      "disabled": true,
       "settings": {
         "color_scheme": "",
         "container_size": "xl",
@@ -225,17 +224,12 @@
       "name": "t:sections.frequently_bought_together.presets.related_products.name",
       "settings": {
         "color_scheme": "",
-        "separate_section_with_border": true,
-        "hide_product_information": false,
-        "stack_products": false,
-        "recommendations_count": 10,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
+        "separate_section_with_border": false,
+        "recommendations_count": 2,
         "subheading": "",
-        "title": "Related products",
-        "content": ""
+        "title": "Frequently Bought Together",
+        "content": "<p>Save || amount ||% on this bundle!</p>",
+        "discount": 15
       }
     },
     "featured_collections_qCkzh3": {
