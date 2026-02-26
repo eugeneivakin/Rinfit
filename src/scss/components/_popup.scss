@@ -1,0 +1,48 @@
+@use "mixins/media" as *;
+
+size-chart-button {
+  cursor: pointer;
+}
+
+.modal::part(content) {
+  border-radius: 10px;
+}
+
+.modal--size-chart::part(header) {
+  --heading-text-transform: capitalize;
+}
+
+.modal--size-chart {
+  .shopify-section--guide {
+    .container {
+      --container-gutter: 1rem;
+    }
+  }
+
+  .shopify-section--guide {
+    .section-header {
+      display: none;
+    }
+  }
+
+  .shopify-section--size-calculator {
+    .section-spacing {
+      --section-vertical-spacing: 0;
+    }
+
+    .color-scheme {
+      background: none;
+      color: inherit;
+    }
+
+    .form-control:has(.select)::before {
+      background: none;
+    }
+
+    .fieldset-row {
+      &[data-result] {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

@@ -88,67 +88,22 @@
             <span class="variant-picker__selected-variant">{{ option.selected_value }}</span>
           </div>
 
-          {% comment %}
-            {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
-              <span id="openModal" class="main-table-size-guide main-modal-size-guide link">
-                {{- 'product.general.size_chart' | t -}}
-                <script>
-                  fetch('{{ size_chart_page.url }}')
-                    .then((response) => response.text())
-                    .then((html) => {
-                      console.log('Size chart page content:', html);
-                    });
-                </script>
-              </span>
-            {%- endif -%}
-          {% endcomment %}
-
           {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
             {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
-
-            <script>
-              // Selectors for finding the required sections
-              const sizeChartSelectors = [
-                '.shopify-section--guide',
-                '.shopify-section--size-calculator',
-                // Add additional selectors here as needed
-              ];
-
-              fetch('{{ size_chart_page.url }}')
-                .then((response) => response.text())
-                .then((html) => {
-                  const parser = new DOMParser();
-                  const doc = parser.parseFromString(html, 'text/html');
-                  let found = false;
-                  for (const selector of sizeChartSelectors) {
-                    const sections = doc.querySelectorAll(selector);
-                    if (sections.length > 0) {
-                      const target = document.querySelector('[data-size-chart-page-content]');
-                      if (target) {
-                        let htmlContent = '';
-                        sections.forEach(section => {
-                          htmlContent += section.outerHTML;
-                        });
-                        target.innerHTML += htmlContent;
-                        found = true;
-                      }
-                    }
-                  }
-                  if (!found) {
-                    console.warn('Section for size chart not found by selectors:', sizeChartSelectors);
-                  }
-                });
-            </script>
-
-            <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
+            <size-chart-button
+              data-url="{{ size_chart_page.url }}"
+              type="button"
+              class="link"
+              aria-controls="{{ id | escape }}"
+              aria-expanded="false"
+            >
               {{- 'product.general.size_chart' | t -}}
-            </button>
+            </size-chart-button>
 
-            <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
-              <span class="h5" slot="header">{{ size_chart_page.title }}</span>
+            <x-modal id="{{ id | escape }}" class="modal modal--lg modal--size-chart color-scheme color-scheme--dialog">
+              <span class="h2" slot="header">{{ 'popup.size_calculator_heading_html' | t }}</span>
 
-              <div class="" data-size-chart-page-content>
-              </div>
+              <div data-size-chart-page-content></div>
             </x-modal>
           {%- endif -%}
         </div>
@@ -288,7 +243,3 @@
     {%- endunless -%}
   </variant-picker>
 {%- endunless -%}
-
-{% comment %} {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
-  {% render 'xx-variant-picker-size-calculator', block: block %}
-{%- endif -%} {% endcomment %}
