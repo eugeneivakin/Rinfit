@@ -1,0 +1,170 @@
+<script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+{{ 'featured-collections.css' | asset_url | stylesheet_tag }}
+{{ 'frequently-bought-together.css' | asset_url | stylesheet_tag }}
+
+<product-recommendations
+  class="block"
+  product="{{ product.id }}"
+  limit="{{ section.settings.recommendations_count }}"
+  intent="related"
+>
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    <style>
+      #shopify-section-{{ section.id }} {
+        --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
+        --product-list-horizontal-spacing-factor: {{ section.settings.horizontal_spacing_factor }};
+        --product-list-vertical-spacing-factor: {{ section.settings.vertical_spacing_factor }};
+      }
+
+      #shopify-section-{{ section.id }} .product-list--carousel {
+        --product-list-calculated-column-gap: 10px;
+        --product-list-calculated-row-gap: 10px;
+      }
+
+      @media screen and (max-width: 699px) {
+        #shopify-section-{{ section.id }} .product-list--carousel {
+          --product-list-calculated-column-gap: 10px;
+          --product-list-calculated-row-gap: 10px;
+          --product-list-card-width: min(300px, calc((100% / {{ section.settings.products_per_row_mobile }}) - var(--product-list-calculated-column-gap) / 2));
+        }
+      }
+
+      @media screen and (min-width: 700px) {
+        #shopify-section-{{ section.id }} {
+          --product-list-items-per-row: {{ section.settings.products_per_row_desktop }};
+        }
+      }
+    </style>
+
+    {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+      | default: section.settings.color_scheme.settings.background
+      | md5
+    -%}
+
+    <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+      <div class="container">
+        <div class="section-stack">
+          {%- assign updated_content = section.settings.content | replace: '|| amount ||', section.settings.discount -%}
+          {%- assign total_original_price = product.selected_or_first_available_variant.price | default: 0 -%}
+
+          {%- render 'section-header',
+            subheading: section.settings.subheading,
+            heading: section.settings.title,
+            content: updated_content
+          -%}
+
+          {%- capture product_list -%}
+            {%- render 'x-product-card-bundle', product: product, reveal: settings.stagger_products_apparition, position: '0' -%}
+
+            {%- for product in recommendations.products limit: section.settings.recommendations_count -%}
+              {%- assign total_original_price = total_original_price | plus: product.selected_or_first_available_variant.price -%}
+              {%- render 'x-product-card-bundle', product: product, reveal: settings.stagger_products_apparition, position: forloop.index -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+
+          <bundle-frequently data-discount-value="{{ section.settings.discount }}">
+            <product-list class="product-list justify-center">
+              {{- product_list -}}
+            </product-list>
+
+            <div class="v-stack gap-4 text-center p-5">
+              <div data-price-total>
+                total price
+                <price-list class="price-list">
+                  <sale-price class="h6 text-on-sale">
+                    <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
+                    {% assign percent = 100 | minus: section.settings.discount | divided_by: 100.0 %}
+                    {{- total_original_price | times: percent | money -}}
+                  </sale-price>
+                  <compare-at-price class="h6 text-subdued line-through">
+                    <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
+                    {{- total_original_price | money -}}
+                  </compare-at-price>
+                </price-list>
+              </div>
+              <div><button class="button">add selected to cart</button></div>
+            </div>
+          </bundle-frequently>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</product-recommendations>
+
+{% schema %}
+{
+  "name": "t:sections.frequently_bought_together.name",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "class": "shopify-section--frequently-bought",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.frequently_bought_together.info"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "t:global.section.separate_section_with_border",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:global.product_list.product_list_category"
+    },
+    {
+      "type": "range",
+      "id": "recommendations_count",
+      "min": 2,
+      "max": 10,
+      "label": "t:sections.frequently_bought_together.recommendations_count",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "t:global.section.header_category"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:global.text.subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.heading",
+      "default": "Frequently Bought Together"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content"
+    },
+    {
+      "type": "range",
+      "id": "discount",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Discount amount",
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.frequently_bought_together.presets.related_products.name",
+      "category": "t:global.categories.products"
+    }
+  ]
+}
+{% endschema %}

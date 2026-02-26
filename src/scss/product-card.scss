@@ -171,3 +171,19 @@
     margin-top: auto;
   }
 }
+
+.x-product-card-bundle {
+  border-radius: 10px;
+  border: 1px solid rgb(var(--text-color) / 0.2);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 10px;
+
+  .product-card__info {
+    justify-content: space-between;
+  }
+
+  .product-title.h6 {
+    --line-clamp-count: auto;
+  }
+}
