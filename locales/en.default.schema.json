@@ -1806,6 +1806,16 @@
           "name": "Size calculator"
         }
       }
+    },
+    "frequently_bought_together": {
+      "name": "Frequently Bought Together",
+      "info": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations).",
+      "recommendations_count": "Dynamic recommendations count",
+      "presets": {
+        "related_products": {
+          "name": "Frequently Bought Together"
+        }
+      }
     }
   }
 }
