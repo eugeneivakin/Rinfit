@@ -166,6 +166,38 @@
   min-height: 57px;
 }
 
+size-chart-button {
+  cursor: pointer;
+}
+
+.modal::part(content) {
+  border-radius: 10px;
+}
+
+.modal--size-chart::part(header) {
+  --heading-text-transform: capitalize;
+}
+
+.modal--size-chart .shopify-section--guide .container {
+  --container-gutter: 1rem;
+}
+.modal--size-chart .shopify-section--guide .section-header {
+  display: none;
+}
+.modal--size-chart .shopify-section--size-calculator .section-spacing {
+  --section-vertical-spacing: 0;
+}
+.modal--size-chart .shopify-section--size-calculator .color-scheme {
+  background: none;
+  color: inherit;
+}
+.modal--size-chart .shopify-section--size-calculator .form-control:has(.select)::before {
+  background: none;
+}
+.modal--size-chart .shopify-section--size-calculator .fieldset-row[data-result] {
+  grid-template-columns: 1fr;
+}
+
 body {
   line-height: 1.4286;
   min-width: 320px;

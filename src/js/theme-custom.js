@@ -94,3 +94,114 @@ class SizeCalculator extends HTMLElement {
 if (!window.customElements.get("size-calculator")) {
   customElements.define("size-calculator", SizeCalculator);
 }
+
+class SizeChartButton extends HTMLElement {
+  constructor() {
+    super();
+    this._onClick = this._onClick.bind(this);
+    this._loaded = false;
+  }
+
+  connectedCallback() {
+    this.addEventListener('click', this._onClick);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('click', this._onClick);
+  }
+
+  _onClick(e) {
+    if (this._loaded) return;
+    this._loaded = true;
+    const url = this.getAttribute('data-url');
+    if (!url) {
+      console.warn('No data-url attribute found on size-chart-button');
+      return;
+    }
+    const sizeChartSelectors = [
+      '.shopify-section--guide',
+      '.shopify-section--size-calculator',
+      // Add additional selectors here as needed
+    ];
+    fetch(url)
+      .then((response) => response.text())
+      .then((html) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        let found = false;
+        let guideSection = null;
+        let sizeCalculatorSection = null;
+        // First we look for the necessary sections
+        for (const selector of sizeChartSelectors) {
+          const sections = doc.querySelectorAll(selector);
+          if (sections.length > 0) {
+            sections.forEach((section) => {
+              if (section.classList.contains('shopify-section--guide')) {
+                guideSection = section;
+              }
+              if (section.classList.contains('shopify-section--size-calculator')) {
+                sizeCalculatorSection = section;
+              }
+            });
+          }
+        }
+        // If both sections are found, move the size-calculator inside guide
+        if (guideSection && sizeCalculatorSection) {
+          // We are looking for a multi-column tag inside guideSection
+          const multiColumn = guideSection.querySelector('multi-column');
+          if (multiColumn) {
+            // Clone sizeCalculatorSection for insertion
+            const sizeCalculatorClone = sizeCalculatorSection.cloneNode(true);
+            // Insert a clone after multi-column
+            multiColumn.insertAdjacentElement('afterend', sizeCalculatorClone);
+            // Removing the original from the DOM
+            sizeCalculatorSection.remove();
+          }
+        }
+        // Now we collect html for insertion
+        const target = document.querySelector('[data-size-chart-page-content]');
+        if (target) {
+          let htmlContent = '';
+          // Add guideSection (if found)
+          if (guideSection) {
+            // Updating header
+            // const header = guideSection.querySelector('.section-header h2');
+            // if (header) {
+            //   const modal = target.closest('.modal');
+            //   if (modal) {
+            //     const headerSpan = modal.querySelector('span.h2[slot="header"]');
+            //     if (headerSpan) {
+            //       headerSpan.innerHTML = header.outerHTML;
+            //     }
+            //   }
+            // }
+            htmlContent += guideSection.outerHTML;
+          }
+          // If guideSection is not found, add the remaining sections
+          for (const selector of sizeChartSelectors) {
+            const sections = doc.querySelectorAll(selector);
+            if (sections.length > 0) {
+              sections.forEach((section) => {
+                // Add only those that have not been moved
+                if (
+                  !section.classList.contains('shopify-section--guide') &&
+                  !section.classList.contains('shopify-section--size-calculator')
+                ) {
+                  htmlContent += section.outerHTML;
+                }
+              });
+            }
+          }
+          target.innerHTML += htmlContent;
+          found = true;
+        }
+        if (!found) {
+          console.warn('Section for size chart not found by selectors:', sizeChartSelectors);
+        }
+      });
+  }
+}
+
+if (!window.customElements.get("size-chart-button")) {
+  customElements.define("size-chart-button", SizeChartButton);
+}

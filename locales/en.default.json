@@ -533,5 +533,9 @@
     "button_submit": "Calculate",
     "form_message": "The result will appear here.",
     "message_heading": "Ring size"
+  },
+  "popup": {
+    "loading_html": "Loading <strong><em>content</em></strong>...",
+    "size_calculator_heading_html": "calculate <strong><em>my size</em></strong>"
   }
 }
