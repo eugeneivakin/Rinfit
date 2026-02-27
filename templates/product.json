@@ -219,19 +219,6 @@
         "max_image_zoom_level": 3
       }
     },
-    "frequently_bought_together_Q3iHRh": {
-      "type": "frequently-bought-together",
-      "name": "t:sections.frequently_bought_together.presets.related_products.name",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": false,
-        "recommendations_count": 2,
-        "subheading": "",
-        "title": "Frequently Bought Together",
-        "content": "<p>Save || amount ||% on this bundle!</p>",
-        "discount": 15
-      }
-    },
     "featured_collections_qCkzh3": {
       "type": "featured-collections",
       "blocks": {
@@ -331,7 +318,6 @@
   },
   "order": [
     "main",
-    "frequently_bought_together_Q3iHRh",
     "featured_collections_qCkzh3",
     "1771243654d36364aa",
     "related-products",
