@@ -65,6 +65,9 @@
           {{- variant.compare_at_price | money -}}
         {%- endif -%}
       </compare-at-price>
+      {%- assign discount_amount = variant.compare_at_price | minus: variant.price -%}
+      {%- assign discount_percent = discount_amount | times: 100 | divided_by: variant.compare_at_price -%}
+      <span class="price-discount h4">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- elsif line_item != blank -%}
     {%- comment -%}
@@ -92,6 +95,9 @@
           {{- line_item.original_price | money -}}
         {%- endif -%}
       </compare-at-price>
+      {%- assign discount_amount = variant.compare_at_price | minus: variant.price -%}
+      {%- assign discount_percent = discount_amount | times: 100 | divided_by: variant.compare_at_price -%}
+      <span class="price-discount h4">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- elsif product != blank -%}
     {%- comment -%}
@@ -145,6 +151,9 @@
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
         {{- variant_compare_at_price -}}
       </compare-at-price>
+      {%- assign discount_amount = variant.compare_at_price | minus: variant.price -%}
+      {%- assign discount_percent = discount_amount | times: 100 | divided_by: variant.compare_at_price -%}
+      <span class="price-discount h4">-{{ discount_percent | round }}%</span>
     {%- endif -%}
   {%- else -%}
     {%- comment -%}
