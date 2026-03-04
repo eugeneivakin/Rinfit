@@ -24,6 +24,10 @@ function clearSizeSelectionAndDisableBuyBtn() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  clearSizeSelectionAndDisableBuyBtn();
+});
+
 class SizeCalculator extends HTMLElement {
   constructor() {
     super();
@@ -220,16 +224,16 @@ class BundleFrequently extends HTMLElement {
   }
 
   _setupVariantImageSwitcher() {
-    this.querySelectorAll('product-card').forEach(card => {
-      const select = card.querySelector('select[data-variants]');
+    this.querySelectorAll("product-card").forEach((card) => {
+      const select = card.querySelector("select[data-variants]");
       if (!select) return;
-      select.addEventListener('change', function() {
+      select.addEventListener("change", function () {
         const selectedOption = select.options[select.selectedIndex];
         if (!selectedOption) return;
-        const imageUrl = selectedOption.getAttribute('image-url');
+        const imageUrl = selectedOption.getAttribute("image-url");
         if (!imageUrl) return;
         // Update src and srcset of the image
-        const img = card.querySelector('.product-card__image--primary');
+        const img = card.querySelector(".product-card__image--primary");
         if (img) {
           img.src = imageUrl;
           img.srcset = imageUrl;
@@ -295,11 +299,11 @@ class BundleFrequently extends HTMLElement {
         // Discount applies: we show both prices and class
         if (compareAt) {
           compareAt.innerHTML = `$${total.toFixed(2)}`;
-          compareAt.style.display = '';
+          compareAt.style.display = "";
         }
         if (salePrice) {
           salePrice.innerHTML = `$${saleTotal.toFixed(2)}`;
-          salePrice.classList.add('text-on-sale');
+          salePrice.classList.add("text-on-sale");
         }
       } else {
         // The discount does not apply: we remove compare-at-price and the text-on-sale class
@@ -308,7 +312,7 @@ class BundleFrequently extends HTMLElement {
         }
         if (salePrice) {
           salePrice.innerHTML = `$${saleTotal.toFixed(2)}`;
-          salePrice.classList.remove('text-on-sale');
+          salePrice.classList.remove("text-on-sale");
         }
       }
     }

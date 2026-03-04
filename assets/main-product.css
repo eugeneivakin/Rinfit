@@ -244,6 +244,9 @@
 .product-info__block-list .variant-picker__option:last-of-type {
   border-bottom-width: 0;
 }
+.product-info__block-list .variant-picker__option[data-option-type=size] ~ [data-option-type=size] size-chart-button {
+  display: none;
+}
 .product-info__block-list .variant-picker__option-info legend {
   font-weight: 500;
 }
@@ -252,6 +255,7 @@
 }
 .product-info__block-list .variant-picker__option-info .link {
   color: rgb(var(--text-color)/0.4);
+  text-transform: capitalize;
 }
 .product-info__block-list .variant-picker__option-values {
   -moz-column-gap: 0.625rem;

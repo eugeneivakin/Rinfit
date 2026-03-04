@@ -209,6 +209,10 @@ size-chart-button {
 .modal--size-chart .shopify-section--size-calculator .form-control:has(.select)::before {
   background: none;
 }
+.modal--size-chart .shopify-section--size-calculator .select,
+.modal--size-chart .shopify-section--size-calculator .input {
+  background: rgb(var(--background));
+}
 .modal--size-chart .shopify-section--size-calculator .fieldset-row[data-result] {
   grid-template-columns: 1fr;
 }

@@ -39,6 +39,11 @@ size-chart-button {
       background: none;
     }
 
+    .select,
+    .input {
+      background: rgb(var(--background));
+    }
+
     .fieldset-row {
       &[data-result] {
         grid-template-columns: 1fr;

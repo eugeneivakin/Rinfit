@@ -209,6 +209,11 @@
     max-width: 88px;
     padding-inline: 5px;
   }
+
+  size-chart-button {
+    color: rgb(var(--text-color) / 0.4);
+    text-transform: capitalize;
+  }
 }
 
 .quick-buy-modal__product-info {

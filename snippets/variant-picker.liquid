@@ -21,7 +21,7 @@
 
 {%- liquid
   assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
-  assign size_label_list = 'general.label.size' | t | replace: ', ', ',' | downcase | split: ','
+  assign size_label_list = 'general.label.size' | t | replace: ', ', ',' | downcase
   assign variant_image_options = variant_image_options | replace: ', ', ',' | downcase | split: ','
 
   if context == 'main_product'
@@ -49,7 +49,7 @@
 
     {%- for option in product.options_with_values -%}
       {% liquid
-        assign option_downcase = option.name | downcase
+        assign option_downcase = option.name | downcase | remove: ':'
         assign resolved_option_selector_style = selector_style
 
         assign swatch_count = option.values | map: 'swatch' | compact | size
@@ -88,7 +88,7 @@
             <span class="variant-picker__selected-variant">{{ option.selected_value }}</span>
           </div>
 
-          {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
+          {%- if size_chart_page != blank and option_downcase contains size_label_list -%}
             {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
             <size-chart-button
               data-url="{{ size_chart_page.url }}"
