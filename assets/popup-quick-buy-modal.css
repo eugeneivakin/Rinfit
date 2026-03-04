@@ -190,6 +190,10 @@
   max-width: 88px;
   padding-inline: 5px;
 }
+.quick-buy-modal__content size-chart-button {
+  color: rgb(var(--text-color)/0.4);
+  text-transform: capitalize;
+}
 
 .quick-buy-modal__product-info {
   grid-template-columns: 1fr 140px;

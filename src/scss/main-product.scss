@@ -257,6 +257,14 @@
     &:last-of-type {
       border-bottom-width: 0;
     }
+
+    &[data-option-type="size"] {
+      ~ [data-option-type="size"] {
+        size-chart-button {
+          display: none;
+        }
+      }
+    }
   }
 
   .variant-picker__option-info {
@@ -270,6 +278,7 @@
 
     .link {
       color: rgb(var(--text-color) / 0.4);
+      text-transform: capitalize;
     }
   }
 
