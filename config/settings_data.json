@@ -50,6 +50,13 @@
         "type": "shopify://apps/privy-pop-ups-email-sms/blocks/privy-convert-production/1d8599fa-4edf-4071-bda6-4d5d6d82de9c",
         "disabled": true,
         "settings": {}
+      },
+      "2238419563789013784": {
+        "type": "shopify://apps/shop-chat-agent/blocks/chat-interface/019b8a35-795a-7ac4-add9-4d74ab1c791a",
+        "disabled": false,
+        "settings": {
+          "welcome_message": "👋 Hi there! How can I help you today?"
+        }
       }
     },
     "color_schemes": {
