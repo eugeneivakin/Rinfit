@@ -164,8 +164,8 @@ class SizeChartButton extends HTMLElement {
           }
         }
         // Now we collect html for insertion
-        const target = document.querySelector("[data-size-chart-page-content]");
-        if (target) {
+        const targets = document.querySelectorAll("[data-size-chart-page-content]");
+        if (targets.length > 0) {
           let htmlContent = "";
           // Add guideSection (if found)
           if (guideSection) {
@@ -194,7 +194,10 @@ class SizeChartButton extends HTMLElement {
               });
             }
           }
-          target.innerHTML += htmlContent;
+          // Add content to all targets
+          targets.forEach((target) => {
+            target.innerHTML += htmlContent;
+          });
           found = true;
         }
         if (!found) {
