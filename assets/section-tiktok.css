@@ -1,3 +1,6 @@
+.shopify-section--tiktok {
+  overflow: hidden;
+}
 .shopify-section--tiktok .section-spacing {
   --section-vertical-spacing: 12px;
 }
@@ -169,11 +172,13 @@
   font-weight: 500;
 }
 .shopify-section--tiktok .floating-controls-container__control {
-  --floating-controls-inset-inline: 0;
+  --floating-controls-inset-inline: 1rem;
   transform: none;
 }
-.shopify-section--tiktok .floating-controls-container__control ~ .floating-controls-container__control {
-  right: 0;
+@media screen and (min-width: 1000px) {
+  .shopify-section--tiktok .floating-controls-container__control {
+    --floating-controls-inset-inline: 2.875rem;
+  }
 }
 .shopify-section--tiktok .circle-button {
   --circle-button-size: 26px;

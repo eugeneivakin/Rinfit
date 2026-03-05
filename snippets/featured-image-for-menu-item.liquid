@@ -64,7 +64,22 @@
   {% when 'policy_link' %}
 
   {% when 'product_link' %}
+    {% liquid
+      assign handle = link.url | remove: '/products/'
+      assign link_object = all_products[handle]
+    %}
 
+    <div class="menu-item__featured-image">
+      <a href="{{ link.url }}">
+        {% if link_object.metafields.custom.menu_featured_image != blank %}
+          {{ link_object.metafields.custom.menu_featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+        {% elsif link_object.featured_image != blank %}
+          {{ link_object.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {% endif %}
+      </a>
+    </div>
   {% when 'search_link' %}
 
   {% else %}

@@ -8,6 +8,12 @@
     --text-h1: 59px;
   }
 }
+.shopify-section--main-page-heading .section-spacing {
+  padding-block-end: 0;
+}
+.shopify-section--main-page-heading .section-spacing:has(.section-content) {
+  padding-block-end: var(--section-vertical-spacing-override, var(--section-vertical-spacing));
+}
 .shopify-section--main-page-heading .color-scheme {
   border-radius: 15px;
 }
