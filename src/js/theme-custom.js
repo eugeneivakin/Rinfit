@@ -24,9 +24,9 @@ function clearSizeSelectionAndDisableBuyBtn() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  clearSizeSelectionAndDisableBuyBtn();
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   clearSizeSelectionAndDisableBuyBtn();
+// });
 
 class SizeCalculator extends HTMLElement {
   constructor() {

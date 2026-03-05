@@ -2,7 +2,11 @@
 
 .horizontal-product-card {
   .horizontal-product-card__figure {
-    width: 130px;
+    width: 80px;
+
+    @include xs {
+      width: 130px;
+    }
   }
 
   .product-title {

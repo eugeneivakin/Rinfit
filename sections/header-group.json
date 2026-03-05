@@ -57,9 +57,9 @@
             "menu_item": "Shop",
             "images_position": "right",
             "image_1": "shopify://shop_images/daVinci155.jpg",
-            "image_1_heading": "",
+            "image_1_heading": "new <em><strong>arrivals</strong></em>",
             "image_1_text": "",
-            "image_1_link": "",
+            "image_1_link": "shopify://collections/new-arrivals",
             "image_2_heading": "",
             "image_2_text": "",
             "image_2_link": ""

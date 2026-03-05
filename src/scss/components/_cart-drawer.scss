@@ -4,6 +4,9 @@
   --text-h4: 16px;
   text-transform: uppercase;
 }
+.cart-drawer::part(content) {
+  --drawer-max-width: 486px;
+}
 
 .cart-drawer__items {
   --text-h6: 16px;
@@ -15,7 +18,11 @@
   }
 
   .line-item {
-    --line-item-media-width: 130px;
+    --line-item-media-width: 80px;
+
+    @include xs {
+      --line-item-media-width: 130px;
+    }
   }
 
   .line-item-info__heading-wrapper {

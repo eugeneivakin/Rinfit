@@ -21,19 +21,21 @@
       </div>
     {% endif %}
 
-    <div class="container section-content">
-      {% if section.settings.subheading != blank %}
-        <h2 class="h2">
-          {{ section.settings.subheading | downcase }}
-        </h2>
-      {% endif %}
+    {% if section.settings.subheading != blank or section.settings.content != blank %}
+      <div class="container section-content">
+        {% if section.settings.subheading != blank %}
+          <h2 class="h2">
+            {{ section.settings.subheading | downcase }}
+          </h2>
+        {% endif %}
 
-      {% if section.settings.content != blank %}
-        <div class="prose">
-          {{ section.settings.content }}
-        </div>
-      {% endif %}
-    </div>
+        {% if section.settings.content != blank %}
+          <div class="prose">
+            {{ section.settings.content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </div>
 

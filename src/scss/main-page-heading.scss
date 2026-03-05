@@ -9,6 +9,14 @@
     --text-h1: 59px;
   }
 
+  .section-spacing {
+    padding-block-end: 0;
+    
+    &:has(.section-content) {
+      padding-block-end: var(--section-vertical-spacing-override, var(--section-vertical-spacing));
+    }
+  }
+
   .color-scheme {
     border-radius: 15px;
 

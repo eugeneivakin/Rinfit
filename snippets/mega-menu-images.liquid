@@ -27,7 +27,7 @@ Supported variables
     {%- endif -%}
 
     {%- if block.settings[heading_setting] != blank or block.settings[text_setting] != blank -%}
-      <div class="v-stack text-center {% if context == 'menu' %}gap-2.5{% else %}gap-0.5{% endif %}">
+      <div class="mega-menu__promo-item-content-wrapper v-stack {% if context == 'menu' %}gap-2.5{% else %}gap-0.5{% endif %}">
         {%- if block.settings[heading_setting] != blank -%}
           <p class="h6">{{ block.settings[heading_setting] }}</p>
         {%- endif -%}
@@ -41,11 +41,11 @@ Supported variables
 
   {%- if image_content != blank -%}
     {%- if block.settings[link_setting] != blank -%}
-      <a href="{{ block.settings[link_setting] }}" class="mega-menu__promo-item v-stack justify-items-center gap-4 sm:gap-5 group">
+      <a href="{{ block.settings[link_setting] }}" class="mega-menu__promo-item relative v-stack justify-items-center gap-4 sm:gap-5 group">
         {{- image_content -}}
       </a>
     {%- else -%}
-      <div class="mega-menu__promo-item v-stack justify-items-center gap-4 sm:gap-5 group">
+      <div class="mega-menu__promo-item relative v-stack justify-items-center gap-4 sm:gap-5 group">
         {{- image_content -}}
       </div>
     {%- endif -%}

@@ -91,6 +91,7 @@
 
 .product-gallery__carousel {
   border-radius: 10px;
+  max-height: none !important;
 }
 
 .product-gallery__thumbnail-scroller {
@@ -283,8 +284,8 @@
   }
 
   .variant-picker__option-values {
-    column-gap: 0.625rem;
-    row-gap: 0.25rem;
+    // column-gap: 0.625rem;
+    // row-gap: 0.25rem;
 
     :checked + .color-swatch,
     .color-swatch.is-selected {

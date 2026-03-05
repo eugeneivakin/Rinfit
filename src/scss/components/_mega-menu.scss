@@ -63,4 +63,30 @@
     aspect-ratio: 1.06553911205074;
     border-radius: 10px;
   }
+
+  .mega-menu__promo-item-content-wrapper {
+    --text-h6: 25px;
+    --heading-text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: stretch;
+    align-items: stretch;
+    color: rgb(var(--background));
+    height: 100%;
+    left: 0;
+    position: absolute;
+    padding: 16px 26px;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    .h6 {
+      > em,
+      > strong {
+        display: block;
+      }
+    }
+  }
 }
