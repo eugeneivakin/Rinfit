@@ -182,11 +182,30 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
   width: 100%;
 }
 
+.header__menu-disclosure::before {
+  background: rgb(var(--page-overlay));
+  content: "";
+  height: 100vh;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: var(--header-height);
+  transition: ease-in-out opacity 0.3s;
+  width: 100%;
+  z-index: 1;
+}
+.header__menu-disclosure[aria-expanded=true]::before {
+  opacity: 1;
+}
+
 .mega-menu {
   border-block-end-width: 0;
+  overflow: visible;
   padding-inline-start: 0;
   padding-inline-end: 0;
   padding-block: 40px;
+  z-index: 10;
 }
 .mega-menu .menu-item__featured-image {
   aspect-ratio: 1;
@@ -199,6 +218,9 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+}
+.mega-menu .link-faded {
+  text-transform: capitalize;
 }
 
 .mega-menu__wrapper {
@@ -223,6 +245,10 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
 .mega-menu__linklist .link,
 .mega-menu__linklist .link-faded {
   color: rgb(var(--text-color)/0.7);
+}
+.mega-menu__linklist .link:hover,
+.mega-menu__linklist .link-faded:hover {
+  color: rgb(var(--text-color)/1);
 }
 .mega-menu__linklist ul {
   padding: 11px 0 0;
