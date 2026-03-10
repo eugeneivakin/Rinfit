@@ -1,0 +1,47 @@
+@use "mixins/media" as *;
+
+#privy-container {
+  .privy-popup-inner-content-wrap {
+    // @include sm-max {
+    //   width: 100% ;
+    // }
+  }
+  
+  .privy-popup-content {
+    @include sm-max {
+      // height: 700px !important;
+      margin: 200px 0 0;
+      overflow: visible !important;
+    }
+
+    .privy-image-element-wrapper {
+      @include sm-max {
+        bottom: 100%;
+        height: 200px !important;
+        top: auto !important;
+        width: 100% !important;
+      }
+
+      > img {
+        @include sm-max {
+          object-fit: cover;
+        }
+      }
+    }
+
+    .privy-button-element-wrapper,
+    .privy-form-element-wrapper,
+    .privy-text-element-wrapper {
+      @include sm-max {
+        left: 50% !important;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
+
+#privy-container #privy-inner-container .privy-popup-container .privy-popup-content-wrap .privy-popup-inner-content-wrap {
+  @include sm-max {
+    overflow: hidden !important;
+  }
+}
