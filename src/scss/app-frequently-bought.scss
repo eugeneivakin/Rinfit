@@ -2,17 +2,17 @@
 
 .cbb-frequently-bought-container {
   --section-vertical-spacing: 12px;
-  margin-inline-start: auto;
-  margin-inline-end: auto;
-  margin-block: 0 !important;
-  max-width: var(--container-max-width) !important;
-  padding-inline-start: var(--container-gutter);
-  padding-inline-end: var(--container-gutter);
+  // margin-inline-start: auto;
+  // margin-inline-end: auto;
+  // margin-block: 0 !important;
+  // max-width: var(--container-max-width) !important;
+  // padding-inline-start: var(--container-gutter);
+  // padding-inline-end: var(--container-gutter);
 
-  padding-block-start: calc(
-    var(--section-vertical-spacing-override, var(--section-vertical-spacing)) + var(--section-vertical-spacing-block-start-compensation, 0px)
-  );
-  padding-block-end: var(--section-vertical-spacing-override, var(--section-vertical-spacing));
+  // padding-block-start: calc(
+  //   var(--section-vertical-spacing-override, var(--section-vertical-spacing)) + var(--section-vertical-spacing-block-start-compensation, 0px)
+  // );
+  // padding-block-end: var(--section-vertical-spacing-override, var(--section-vertical-spacing));
 }
 
 .cbb-frequently-bought-title {

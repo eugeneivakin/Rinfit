@@ -1,44 +1,43 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-OPTION VALUE
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  OPTION VALUE
+  ----------------------------------------------------------------------------------------------------------------------
 
-This component renders a single option value. It is a generic component that is used both on product and collection
-pages (for metaobject filtering). It ca be used to render a swatch, a block, a thumbnail or an image. As of today,
-the "image_filter" type is only used for filters.
+  This component renders a single option value. It is a generic component that is used both on product and collection
+  pages (for metaobject filtering). It ca be used to render a swatch, a block, a thumbnail or an image. As of today,
+  the "image_filter" type is only used for filters.
 
-********************************************
-Supported variables
-********************************************
+  ********************************************
+  Supported variables
+  ********************************************
 
-* type: control the presentational type of the option value. Can be "swatch", "block", "thumbnail" or "image_filter". [REQUIRED]
-* form: the form ID to which the option value belongs. [REQUIRED FOR PRODUCT OPTION]
-* option_value: in the case of a product option, the option_value object. [REQUIRED FOR PRODUCT OPTION]
-* filter_value: in the case of a collection filter option, the filter_value object. [REQUIRED FOR COLLECTION FILTER]
-* param_name: the param_name attribute when field is submitted to the server [REQUIRED FOR PRODUCT OPTION, NOT NEEDED FOR COLLECTION FILTER]
-* option_position: the position of the option in the list of options [REQUIRED FOR PRODUCT OPTION]
-* output_variant_media: if set to true, the variant media will be outputted as a data attribute of the associated form control. This is
-                        done on card swatches to allow for a quick preview of the variant media.
-* url: if defined, option value will be used as a plain link tag instead of an input. If passing an option_value object, the product_url
-       will be used as the link target automatically. [OPTIONAL]
-* reload_page_for_combined_products: if set to true, when a given option value is connected to a combined product, the option will be generated
-                                     as a link instead, and will reload the whole page. This is needed for main page product, as other sections
-                                     might be different based on the other sections.
-* hide_if_disabled: if true, the option value will not be rendered if the option value is disabled. [OPTIONAL]
-* id_prefix: an optional prefix to be used to dissociate the ID
+  * type: control the presentational type of the option value. Can be "swatch", "block", "thumbnail" or "image_filter". [REQUIRED]
+  * form: the form ID to which the option value belongs. [REQUIRED FOR PRODUCT OPTION]
+  * option_value: in the case of a product option, the option_value object. [REQUIRED FOR PRODUCT OPTION]
+  * filter_value: in the case of a collection filter option, the filter_value object. [REQUIRED FOR COLLECTION FILTER]
+  * param_name: the param_name attribute when field is submitted to the server [REQUIRED FOR PRODUCT OPTION, NOT NEEDED FOR COLLECTION FILTER]
+  * option_position: the position of the option in the list of options [REQUIRED FOR PRODUCT OPTION]
+  * output_variant_media: if set to true, the variant media will be outputted as a data attribute of the associated form control. This is
+                          done on card swatches to allow for a quick preview of the variant media.
+  * url: if defined, option value will be used as a plain link tag instead of an input. If passing an option_value object, the product_url
+         will be used as the link target automatically. [OPTIONAL]
+  * reload_page_for_combined_products: if set to true, when a given option value is connected to a combined product, the option will be generated
+                                       as a link instead, and will reload the whole page. This is needed for main page product, as other sections
+                                       might be different based on the other sections.
+  * hide_if_disabled: if true, the option value will not be rendered if the option value is disabled. [OPTIONAL]
+  * id_prefix: an optional prefix to be used to dissociate the ID
 
-Block specific parameters
+  Block specific parameters
 
-* show_swatch: if set to true, show the colors as a small tile.
+  * show_swatch: if set to true, show the colors as a small tile.
 
-Color swatch specific parameters:
+  Color swatch specific parameters:
 
-* show_tooltip: if set to true, display a tooltip on hover
+  * show_tooltip: if set to true, display a tooltip on hover
 
-Thumbnail specific parameters:
+  Thumbnail specific parameters:
 
-* image: a specific image to use for the thumbnail. Most of the time this must not be set explicitly, as the theme will use the variant image as a default.
-
+  * image: a specific image to use for the thumbnail. Most of the time this must not be set explicitly, as the theme will use the variant image as a default.
 {%- endcomment -%}
 
 {%- liquid
@@ -81,6 +80,8 @@ Thumbnail specific parameters:
       assign swatch_style = '--swatch-background: url(' | append: swatch_image | append: ')'
     elsif swatch.color != blank
       assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: swatch.color | append: ', ' | append: swatch.color | append: ')'
+    elsif swatch.color != 'Multicolor'
+      assign swatch_style = '--swatch-background: linear-gradient(to right, #ff0000 0%, #ff7f00 16.6%, #ffff00 33.3%, #00ff00 50%, #0000ff 66.6%, #4b0082 83.3%, #8b00ff 100%);'
     else
       # When color or image is not explicitly passed, we parse the config
       assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />'
@@ -138,9 +139,42 @@ Thumbnail specific parameters:
     {%- endif -%}
   {%- endcapture -%}
 
-  <input class="sr-only" type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}" name="{{ param_name }}" id="{{ id | escape }}" value="{{ value | escape }}" {% if form %}form="{{ form }}"{% endif %} {% if selected %}checked="checked"{% endif %} {% if hide_if_disabled and disabled and selected == false %}disabled{% endif %} {% if option_value and option_value.product_url %}data-product-url="{{ option_value.product_url | escape }}"{% endif %} {% if option_position %}data-option-position="{{ option_position }}"{% endif %} {{ variant_attributes }}>
+  <input
+    class="sr-only"
+    type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}"
+    name="{{ param_name }}"
+    id="{{ id | escape }}"
+    value="{{ value | escape }}"
+    {% if form %}
+      form="{{ form }}"
+    {% endif %}
+    {% if selected %}
+      checked="checked"
+    {% endif %}
+    {% if hide_if_disabled and disabled and selected == false %}
+      disabled
+    {% endif %}
+    {% if option_value and option_value.product_url %}
+      data-product-url="{{ option_value.product_url | escape }}"
+    {% endif %}
+    {% if option_position %}
+      data-option-position="{{ option_position }}"
+    {% endif %}
+    {{ variant_attributes }}
+  >
 {%- elsif option_value and option_value.selected -%}
-  <input class="sr-only" type="radio" name="{{ param_name }}" id="{{ id | escape }}" value="{{ value | escape }}" data-option-position="{{ option_position }}" {% if form %}form="{{ form }}"{% endif %} checked="checked">
+  <input
+    class="sr-only"
+    type="radio"
+    name="{{ param_name }}"
+    id="{{ id | escape }}"
+    value="{{ value | escape }}"
+    data-option-position="{{ option_position }}"
+    {% if form %}
+      form="{{ form }}"
+    {% endif %}
+    checked="checked"
+  >
 {%- endif -%}
 
 {%- case type -%}
@@ -148,12 +182,22 @@ Thumbnail specific parameters:
     {%- assign image = image | default: variant.featured_media | default: variant.product.featured_media -%}
 
     {%- if image != blank -%}
-      <{{ option_value_tag }} class="thumbnail-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
+      <{{ option_value_tag }}
+        class="thumbnail-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}"
+        {{ attributes }}
+      >
         <span class="sr-only">{{ label | default: value }}</span>
-        {{- image | image_url: width: image.width | image_tag: sizes: '(max-width: 699px) 48px, 68px', widths: '48,68,96,136', class: 'object-contain' -}}
+        {{-
+          image
+          | image_url: width: image.width
+          | image_tag: sizes: '(max-width: 699px) 48px, 68px', widths: '48,68,96,136', class: 'object-contain'
+        -}}
       </{{ option_value_tag }}>
     {%- else -%}
-      <{{ option_value_tag }} class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
+      <{{ option_value_tag }}
+        class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}"
+        {{ attributes }}
+      >
         {{ label | default: value }}
       </{{ option_value_tag }}>
     {%- endif -%}
@@ -161,9 +205,15 @@ Thumbnail specific parameters:
   {%- when 'block' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-    <{{ option_value_tag }} class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
+    <{{ option_value_tag }}
+      class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}"
+      {{ attributes }}
+    >
       {%- if show_swatch -%}
-        <span class="block-swatch__color {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" style="{{ swatch_style }}"></span>
+        <span
+          class="block-swatch__color {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}"
+          style="{{ swatch_style }}"
+        ></span>
       {%- endif -%}
 
       <span>{{ label | default: value }}</span>
@@ -172,14 +222,25 @@ Thumbnail specific parameters:
   {%- when 'swatch' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-    <{{ option_value_tag }} class="color-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" {{ attributes }} {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
+    <{{ option_value_tag }}
+      class="color-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label or label == 'Clear' %}border{% endif %} {% if label == 'Multicolor' %}multicolor{% endif %}"
+      {{ attributes }}
+      {% if show_tooltip %}
+        data-tooltip="{{ label | default: value | escape }}"
+      {% endif %}
+      style="{{ swatch_style }}"
+    >
       <span class="sr-only">{{ label | default: value }}</span>
     </{{ option_value_tag }}>
 
   {%- when 'image_filter' -%}
     <label class="image-filter {% if disabled %}is-disabled{% endif %}" for="{{ id | escape }}">
       {%- if filter_value.image -%}
-        {{- filter_value.image | image_url: width: filter_value.image.width | image_tag: loading: 'lazy', sizes: '48px', widths: '48,96,144', class: 'image-filter__image' -}}
+        {{-
+          filter_value.image
+          | image_url: width: filter_value.image.width
+          | image_tag: loading: 'lazy', sizes: '48px', widths: '48,96,144', class: 'image-filter__image'
+        -}}
       {%- endif -%}
 
       <span class="image-filter__label link-faded">{{ filter_value.label }}</span>

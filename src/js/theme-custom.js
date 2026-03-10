@@ -1,20 +1,35 @@
 // ...existing code...
+function querySelectorAllDeep(selector, root = document) {
+  const result = [];
+
+  if (root.querySelectorAll) {
+    result.push(...root.querySelectorAll(selector));
+    root.querySelectorAll("*").forEach((node) => {
+      if (node.shadowRoot) {
+        result.push(...querySelectorAllDeep(selector, node.shadowRoot));
+      }
+    });
+  }
+
+  return result;
+}
+
 // Function to clear selected sizes and lock button
 function clearSizeSelectionAndDisableBuyBtn() {
   const urlParams = new URLSearchParams(window.location.search);
   if (!urlParams.has("variant")) {
-    // Remove checked from radio inputs of size inside .product-info
-    const sizeSwatches = document.querySelectorAll('.product-info .variant-picker__option[data-option-type="size"] input[type="radio"][checked]');
+    // Remove checked from radio inputs of size inside .product-info (including shadow DOM)
+    const sizeSwatches = querySelectorAllDeep('.product-info .variant-picker__option[data-option-type="size"] input[type="radio"][checked]');
     if (sizeSwatches.length > 0) {
       sizeSwatches.forEach(function (input) {
         input.removeAttribute("checked");
       });
-      // Clearing the selected size option
-      document.querySelectorAll('.product-info .variant-picker__option[data-option-type="size"] .variant-picker__selected-variant').forEach(function (el) {
+      // Clearing the selected size option (including shadow DOM)
+      querySelectorAllDeep('.product-info .variant-picker__option[data-option-type="size"] .variant-picker__selected-variant').forEach(function (el) {
         el.textContent = "";
       });
       // Deactivate the buy button if there is one
-      var buyBtn = document.querySelector('.product-info .buy-buttons button[type="submit"]');
+      var buyBtn = querySelectorAllDeep('.product-info .buy-buttons button[type="submit"]')[0];
       if (buyBtn) {
         buyBtn.disabled = true;
         buyBtn.innerHTML = window.themeStrings.addedToCartDisabled;
@@ -26,6 +41,25 @@ function clearSizeSelectionAndDisableBuyBtn() {
 
 document.addEventListener("DOMContentLoaded", () => {
   clearSizeSelectionAndDisableBuyBtn();
+});
+
+function runClearSizeSelectionWithRetry(retries = 8, delay = 80) {
+  let attempt = 0;
+
+  const tick = () => {
+    clearSizeSelectionAndDisableBuyBtn();
+    attempt += 1;
+
+    if (attempt < retries) {
+      setTimeout(tick, delay);
+    }
+  };
+
+  tick();
+}
+
+document.addEventListener("theme:loading:end", () => {
+  runClearSizeSelectionWithRetry();
 });
 
 class SizeCalculator extends HTMLElement {

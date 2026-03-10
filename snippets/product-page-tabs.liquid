@@ -1,0 +1,152 @@
+product_tabs {{ product_tabs }}
+<div class="product-tabs__wrapper">
+  <ul class="product-tabs__switchers-list">
+    {% for tab in product_tabs %}
+      <li><button data-ta-opener="{{ block.id }}" class="product-tabs__switcher">{{ tab.settings.heading }}</button></li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+<div class="tabs product-tabs js-tabs" data-type="horizontal">
+  <div class="tabs__head" data-js-tabs-head>
+    <div class="tabs__slider" data-js-tabs-slider>
+      {%- assign active_tab = ' data-active="true"' -%}
+      
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
+          {{ 'products.product.tabs.reviews' | t }}
+          <i class="spr-icon-star spr-icon-star--tab"></i>
+        </div>
+        {%- assign active_tab = null -%}
+      
+      {%- if product.description != blank -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
+          <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
+          {%- assign active_tab = null -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if metafields.tab.title and metafields.tab.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- if metafields.tab1.title and metafields.tab1.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- if metafields.tab2.title and metafields.tab2.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- if metafields.tab3.title and metafields.tab3.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+    </div>
+    <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
+      {% comment %} <i>{% include 'icon-theme-006' %}</i> {% endcomment %}
+    </div>
+    <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
+      {% comment %} <i>{% include 'icon-theme-007' %}</i> {% endcomment %}
+    </div>
+  </div>
+  <div class="tabs__body">
+    {%- if show_tab_reviews -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- 'products.product.tabs.reviews' | t }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content" data-js-tabs-content>
+          <div class="tabs-review">
+            {% comment %}
+              <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
+            {% endcomment %}
+            <div id="looxReviews" data-product-id="{{product.id}}" class="loox-reviews-default">
+              {{ product.metafields.loox.reviews }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+    {%- if show_tab_description and description != blank -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- 'products.product.tabs.description' | t }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {{ description }}
+        </div>
+      </div>
+    {%- endif -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
+        <div data-js-tabs-tab>
+          <span data-js-tabs-btn-mobile>
+            {{- block.settings.title }}
+            {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+          >
+          <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+            {%- if block.settings.page_content != blank -%}
+              {% comment %} {% include 'content-load-template', content: pages[block.settings.page_content].content %} {% endcomment %}
+            {%- else -%}
+              {% comment %} {% include 'content-load-template', content: block.settings.content %} {% endcomment %}
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if metafields.tab.title and metafields.tab.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab.content %} {% endcomment %}
+        </div>
+      </div>
+    {%- endif -%}
+    {%- if metafields.tab1.title and metafields.tab1.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab1.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab1.content %} {% endcomment %}
+        </div>
+      </div>
+    {%- endif -%}
+    {%- if metafields.tab2.title and metafields.tab2.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab2.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab2.content %} {% endcomment %}
+        </div>
+      </div>
+    {%- endif -%}
+    {%- if metafields.tab3.title and metafields.tab3.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab3.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab3.content %} {% endcomment %}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  Loader.require({ type: 'script', name: 'tabs' });
+</script>

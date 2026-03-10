@@ -1,10 +1,33 @@
 @use "mixins/media" as *;
 
+.header__menu-disclosure {
+  &::before {
+    background: rgb(var(--page-overlay));
+    content: "";
+    height: 100vh;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: var(--header-height);
+    transition: ease-in-out opacity 0.3s;
+    width: 100%;
+    z-index: 1;
+  }
+  &[aria-expanded="true"] {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
 .mega-menu {
   border-block-end-width: 0;
+  overflow: visible;
   padding-inline-start: 0;
   padding-inline-end: 0;
   padding-block: 40px;
+  z-index: 10;
 
   .menu-item__featured-image {
     aspect-ratio: 1;
@@ -18,6 +41,10 @@
       width: 100%;
     }
   }
+
+  .link-faded {
+    text-transform: capitalize;
+  }
 }
 
 .mega-menu__wrapper {
@@ -28,6 +55,8 @@
   padding-inline-start: var(--container-gutter);
   padding-inline-end: var(--container-gutter);
   gap: 20px;
+  // position: relative;
+  // z-index: 5;
 }
 
 .mega-menu__linklist {
@@ -41,9 +70,14 @@
       font-weight: 600;
     }
   }
+
   .link,
   .link-faded {
     color: rgb(var(--text-color) / 0.7);
+
+    &:hover {
+      color: rgb(var(--text-color) / 1);
+    }
   }
 
   ul {
@@ -55,7 +89,6 @@
   .mega-menu__promo-item {
     &:only-child {
       max-width: none;
-      // width: 100%;
     }
   }
 
