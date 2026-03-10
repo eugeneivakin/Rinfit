@@ -377,3 +377,31 @@
 .product-info__block-group.feature-badge-list .icon {
   color: #f793be;
 }
+
+.product-tabs__switchers-list {
+  border-bottom: 1px solid rgb(var(--text-color)/0.2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  list-style: none;
+  margin-inline-start: 0;
+  margin: 0 0 -1px;
+  padding: 0 20px;
+}
+
+.product-tabs__switcher {
+  color: rgb(var(--text-color)/0.7);
+  border: 1px solid transparent;
+  padding: 6px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.product-tabs__switcher.active, .product-tabs__switcher:hover {
+  color: rgb(var(--text-color)/1);
+  border-top-color: rgb(var(--text-color)/0.2);
+  border-right-color: rgb(var(--text-color)/0.2);
+  border-left-color: rgb(var(--text-color)/0.2);
+}

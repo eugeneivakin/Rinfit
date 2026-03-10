@@ -1,942 +1,152 @@
-{%- case layout -%}
-  {%- when '1' -%}
-    <div class="tabs product-tabs js-tabs" data-type="horizontal">
-      <div class="tabs__head" data-js-tabs-head>
-        <div class="tabs__slider" data-js-tabs-slider>
-          {%- assign active_tab = ' data-active="true"' -%}
-          {%- if show_tab_reviews -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
-              {{ 'products.product.tabs.reviews' | t }}
-              <i class="spr-icon-star spr-icon-star--tab"></i>
-            </div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if show_tab_description and description != blank -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-              <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
-              {%- assign active_tab = null -%}
-            {%- endif -%}
-          {%- endfor -%}
-          {%- if metafields.tab.title and metafields.tab.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab1.title and metafields.tab1.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab2.title and metafields.tab2.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab3.title and metafields.tab3.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
+product_tabs {{ product_tabs }}
+<div class="product-tabs__wrapper">
+  <ul class="product-tabs__switchers-list">
+    {% for tab in product_tabs %}
+      <li><button data-ta-opener="{{ block.id }}" class="product-tabs__switcher">{{ tab.settings.heading }}</button></li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+<div class="tabs product-tabs js-tabs" data-type="horizontal">
+  <div class="tabs__head" data-js-tabs-head>
+    <div class="tabs__slider" data-js-tabs-slider>
+      {%- assign active_tab = ' data-active="true"' -%}
+      
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
+          {{ 'products.product.tabs.reviews' | t }}
+          <i class="spr-icon-star spr-icon-star--tab"></i>
         </div>
-        <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
-          <i>{% include 'icon-theme-006' %}</i>
-        </div>
-        <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
-          <i>{% include 'icon-theme-007' %}</i>
-        </div>
-      </div>
-      <div class="tabs__body">
-        {%- if show_tab_reviews -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.reviews' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content" data-js-tabs-content>
-              <div class="tabs-review">
-                {% comment %}
-                  <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
-                {% endcomment %}
-                <div id="looxReviews" data-product-id="{{product.id}}" class="loox-reviews-default">
-                  {{ product.metafields.loox.reviews }}
-                </div>
-              </div>
-            </div>
-          </div>
+        {%- assign active_tab = null -%}
+      
+      {%- if product.description != blank -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
+          <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
+          {%- assign active_tab = null -%}
         {%- endif -%}
-        {%- if show_tab_description and description != blank -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.description' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {{ description }}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-            <div data-js-tabs-tab>
-              <span data-js-tabs-btn-mobile>
-                {{- block.settings.title }}
-                <i>{% include 'icon-theme-188' %}</i></span
-              >
-              <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-                {%- if block.settings.page_content != blank -%}
-                  {% include 'content-load-template', content: pages[block.settings.page_content].content %}
-                {%- else -%}
-                  {% include 'content-load-template', content: block.settings.content %}
-                {%- endif -%}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-        {%- if metafields.tab.title and metafields.tab.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab1.title and metafields.tab1.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab1.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab1.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab2.title and metafields.tab2.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab2.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab2.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab3.title and metafields.tab3.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab3.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab3.content %}
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
+      {%- endfor -%}
+      {%- if metafields.tab.title and metafields.tab.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- if metafields.tab1.title and metafields.tab1.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- if metafields.tab2.title and metafields.tab2.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
+      {%- if metafields.tab3.title and metafields.tab3.content -%}
+        <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
+        {%- assign active_tab = null -%}
+      {%- endif -%}
     </div>
-  {%- when '2' -%}
-    <div class="tabs product-tabs js-tabs" data-type="mobile">
-      <div class="tabs__head" data-js-tabs-head>
-        <div class="tabs__slider" data-js-tabs-slider>
-          {%- assign active_tab = ' data-active="true"' -%}
-          {%- if show_tab_description and description != blank -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-              <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
-              {%- assign active_tab = null -%}
-            {%- endif -%}
-          {%- endfor -%}
-          {%- if metafields.tab.title and metafields.tab.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab1.title and metafields.tab1.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab2.title and metafields.tab2.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab3.title and metafields.tab3.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if show_tab_reviews -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
-              {{ 'products.product.tabs.reviews' | t }}
-            </div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-        </div>
-        <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
-          <i>{% include 'icon-theme-006' %}</i>
-        </div>
-        <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
-          <i>{% include 'icon-theme-007' %}</i>
-        </div>
-      </div>
-      <div class="tabs__body">
-        {%- if show_tab_description and description != blank -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.description' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {{ description }}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-            <div data-js-tabs-tab>
-              <span data-js-tabs-btn-mobile>
-                {{- block.settings.title }}
-                <i>{% include 'icon-theme-188' %}</i></span
-              >
-              <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-                {%- if block.settings.page_content != blank -%}
-                  {% include 'content-load-template', content: pages[block.settings.page_content].content %}
-                {%- else -%}
-                  {% include 'content-load-template', content: block.settings.content %}
-                {%- endif -%}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-        {%- if metafields.tab.title and metafields.tab.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab1.title and metafields.tab1.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab1.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab1.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab2.title and metafields.tab2.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab2.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab2.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab3.title and metafields.tab3.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab3.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab3.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if show_tab_reviews -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.reviews' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content" data-js-tabs-content>
-              <div class="tabs-review">
-                <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
+    <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
+      {% comment %} <i>{% include 'icon-theme-006' %}</i> {% endcomment %}
     </div>
-  {%- when '3' -%}
-    <div class="tabs product-tabs js-tabs" data-type="horizontal">
-      <div class="tabs__head" data-js-tabs-head>
-        <div class="tabs__slider" data-js-tabs-slider>
-          {%- assign active_tab = ' data-active="true"' -%}
-          {%- if show_tab_description and description != blank -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-              <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
-              {%- assign active_tab = null -%}
-            {%- endif -%}
-          {%- endfor -%}
-          {%- if metafields.tab.title and metafields.tab.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab1.title and metafields.tab1.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab2.title and metafields.tab2.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab3.title and metafields.tab3.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if show_tab_reviews -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
-              {{ 'products.product.tabs.reviews' | t }}
-            </div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-        </div>
-        <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
-          <i>{% include 'icon-theme-006' %}</i>
-        </div>
-        <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
-          <i>{% include 'icon-theme-007' %}</i>
-        </div>
-      </div>
-      <div class="tabs__body">
-        {%- if show_tab_description and description != blank -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.description' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {{ description }}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-            <div data-js-tabs-tab>
-              <span data-js-tabs-btn-mobile>
-                {{- block.settings.title }}
-                <i>{% include 'icon-theme-188' %}</i></span
-              >
-              <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-                {%- if block.settings.page_content != blank -%}
-                  {% include 'content-load-template', content: pages[block.settings.page_content].content %}
-                {%- else -%}
-                  {% include 'content-load-template', content: block.settings.content %}
-                {%- endif -%}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-        {%- if metafields.tab.title and metafields.tab.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab1.title and metafields.tab1.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab1.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab1.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab2.title and metafields.tab2.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab2.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab2.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab3.title and metafields.tab3.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab3.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab3.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if show_tab_reviews -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.reviews' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content" data-js-tabs-content>
-              <div class="tabs-review">
-                <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
+    <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
+      {% comment %} <i>{% include 'icon-theme-007' %}</i> {% endcomment %}
     </div>
-  {%- when '4' -%}
-    <div class="tabs product-tabs js-tabs" data-type="mobile">
-      <div class="tabs__head" data-js-tabs-head>
-        <div class="tabs__slider" data-js-tabs-slider>
-          {%- assign active_tab = ' data-active="true"' -%}
-          {%- if show_tab_description and description != blank -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-              <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
-              {%- assign active_tab = null -%}
+  </div>
+  <div class="tabs__body">
+    {%- if show_tab_reviews -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- 'products.product.tabs.reviews' | t }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content" data-js-tabs-content>
+          <div class="tabs-review">
+            {% comment %}
+              <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
+            {% endcomment %}
+            <div id="looxReviews" data-product-id="{{product.id}}" class="loox-reviews-default">
+              {{ product.metafields.loox.reviews }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+    {%- if show_tab_description and description != blank -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- 'products.product.tabs.description' | t }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {{ description }}
+        </div>
+      </div>
+    {%- endif -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
+        <div data-js-tabs-tab>
+          <span data-js-tabs-btn-mobile>
+            {{- block.settings.title }}
+            {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+          >
+          <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+            {%- if block.settings.page_content != blank -%}
+              {% comment %} {% include 'content-load-template', content: pages[block.settings.page_content].content %} {% endcomment %}
+            {%- else -%}
+              {% comment %} {% include 'content-load-template', content: block.settings.content %} {% endcomment %}
             {%- endif -%}
-          {%- endfor -%}
-          {%- if metafields.tab.title and metafields.tab.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab1.title and metafields.tab1.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab2.title and metafields.tab2.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab3.title and metafields.tab3.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if show_tab_reviews -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
-              {{ 'products.product.tabs.reviews' | t }}
-            </div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
+          </div>
         </div>
-        <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
-          <i>{% include 'icon-theme-006' %}</i>
-        </div>
-        <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
-          <i>{% include 'icon-theme-007' %}</i>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if metafields.tab.title and metafields.tab.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab.content %} {% endcomment %}
         </div>
       </div>
-      <div class="tabs__body">
-        {%- if show_tab_description and description != blank -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.description' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {{ description }}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-            <div data-js-tabs-tab>
-              <span data-js-tabs-btn-mobile>
-                {{- block.settings.title }}
-                <i>{% include 'icon-theme-188' %}</i></span
-              >
-              <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-                {%- if block.settings.page_content != blank -%}
-                  {% include 'content-load-template', content: pages[block.settings.page_content].content %}
-                {%- else -%}
-                  {% include 'content-load-template', content: block.settings.content %}
-                {%- endif -%}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-        {%- if metafields.tab.title and metafields.tab.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab1.title and metafields.tab1.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab1.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab1.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab2.title and metafields.tab2.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab2.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab2.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab3.title and metafields.tab3.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab3.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab3.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if show_tab_reviews -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.reviews' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content" data-js-tabs-content>
-              <div class="tabs-review">
-                <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- when '5' -%}
-    <div class="tabs product-tabs js-tabs" data-type="mobile">
-      <div class="tabs__head" data-js-tabs-head>
-        <div class="tabs__slider" data-js-tabs-slider>
-          {%- assign active_tab = ' data-active="true"' -%}
-          {%- if show_tab_description and description != blank -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-              <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
-              {%- assign active_tab = null -%}
-            {%- endif -%}
-          {%- endfor -%}
-          {%- if metafields.tab.title and metafields.tab.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab1.title and metafields.tab1.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab2.title and metafields.tab2.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab3.title and metafields.tab3.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if show_tab_reviews -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
-              {{ 'products.product.tabs.reviews' | t }}
-            </div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-        </div>
-        <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
-          <i>{% include 'icon-theme-006' %}</i>
-        </div>
-        <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
-          <i>{% include 'icon-theme-007' %}</i>
+    {%- endif -%}
+    {%- if metafields.tab1.title and metafields.tab1.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab1.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab1.content %} {% endcomment %}
         </div>
       </div>
-      <div class="tabs__body">
-        {%- if show_tab_description and description != blank -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.description' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {{ description }}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-            <div data-js-tabs-tab>
-              <span data-js-tabs-btn-mobile>
-                {{- block.settings.title }}
-                <i>{% include 'icon-theme-188' %}</i></span
-              >
-              <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-                {%- if block.settings.page_content != blank -%}
-                  {% include 'content-load-template', content: pages[block.settings.page_content].content %}
-                {%- else -%}
-                  {% include 'content-load-template', content: block.settings.content %}
-                {%- endif -%}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-        {%- if metafields.tab.title and metafields.tab.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab1.title and metafields.tab1.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab1.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab1.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab2.title and metafields.tab2.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab2.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab2.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab3.title and metafields.tab3.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab3.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab3.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if show_tab_reviews -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.reviews' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content" data-js-tabs-content>
-              <div class="tabs-review">
-                <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- when '6' -%}
-    <div class="tabs product-tabs js-tabs" data-type="horizontal">
-      <div class="tabs__head" data-js-tabs-head>
-        <div class="tabs__slider" data-js-tabs-slider>
-          {%- assign active_tab = ' data-active="true"' -%}
-          {%- if show_tab_description and description != blank -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ 'products.product.tabs.description' | t }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-              <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ block.settings.title }}</div>
-              {%- assign active_tab = null -%}
-            {%- endif -%}
-          {%- endfor -%}
-          {%- if metafields.tab.title and metafields.tab.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab1.title and metafields.tab1.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab1.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab2.title and metafields.tab2.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab2.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if metafields.tab3.title and metafields.tab3.content -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }}>{{ metafields.tab3.title }}</div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-          {%- if show_tab_reviews -%}
-            <div class="tabs__btn" data-js-tabs-btn{{ active_tab }} data-tab="reviews">
-              {{ 'products.product.tabs.reviews' | t }}
-            </div>
-            {%- assign active_tab = null -%}
-          {%- endif -%}
-        </div>
-        <div class="tabs__nav tabs__nav--prev" data-js-tabs-nav-prev>
-          <i>{% include 'icon-theme-006' %}</i>
-        </div>
-        <div class="tabs__nav tabs__nav--next" data-js-tabs-nav-next>
-          <i>{% include 'icon-theme-007' %}</i>
+    {%- endif -%}
+    {%- if metafields.tab2.title and metafields.tab2.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab2.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab2.content %} {% endcomment %}
         </div>
       </div>
-      <div class="tabs__body">
-        {%- if show_tab_description and description != blank -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.description' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {{ description }}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'tab_custom_html' or block.type == 'tab_custom_text' -%}
-            <div data-js-tabs-tab>
-              <span data-js-tabs-btn-mobile>
-                {{- block.settings.title }}
-                <i>{% include 'icon-theme-188' %}</i></span
-              >
-              <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-                {%- if block.settings.page_content != blank -%}
-                  {% include 'content-load-template', content: pages[block.settings.page_content].content %}
-                {%- else -%}
-                  {% include 'content-load-template', content: block.settings.content %}
-                {%- endif -%}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-        {%- if metafields.tab.title and metafields.tab.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab1.title and metafields.tab1.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab1.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab1.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab2.title and metafields.tab2.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab2.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab2.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if metafields.tab3.title and metafields.tab3.content -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- metafields.tab3.title }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
-              {% include 'content-load-template', content: metafields.tab3.content %}
-            </div>
-          </div>
-        {%- endif -%}
-        {%- if show_tab_reviews -%}
-          <div data-js-tabs-tab>
-            <span data-js-tabs-btn-mobile>
-              {{- 'products.product.tabs.reviews' | t }}
-              <i>{% include 'icon-theme-188' %}</i></span
-            >
-            <div class="tabs__content" data-js-tabs-content>
-              <div class="tabs-review">
-                <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ metafields.spr.reviews }}</div>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
+    {%- endif -%}
+    {%- if metafields.tab3.title and metafields.tab3.content -%}
+      <div data-js-tabs-tab>
+        <span data-js-tabs-btn-mobile>
+          {{- metafields.tab3.title }}
+          {% comment %} <i>{% include 'icon-theme-188' %}</i></span {% endcomment %}
+        >
+        <div class="tabs__content rte overflow-hidden" data-js-tabs-content>
+          {% comment %} {% include 'content-load-template', content: metafields.tab3.content %} {% endcomment %}
+        </div>
       </div>
-    </div>
-{%- endcase -%}
+    {%- endif -%}
+  </div>
+</div>
 
 <script>
   Loader.require({ type: 'script', name: 'tabs' });
 </script>
-
-{% comment %}Example product info{% endcomment %}
-{% comment %}
-  <h4>Sample Paragraph Text</h4>
-  <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-  <h4>Sample Paragraph Text With Images</h4>
-  <div class="overflow-hidden"><img src="//cdn.shopify.com/s/files/1/0026/2956/6516/files/09_135c04ce-0c74-489e-9660-a4dc239c84c5_large.png?v=1538408527" alt="" class="mr-30 mb-25" width="470" height="343" style="float: left;" />
-      <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-      <p><em>Sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</em></p>
-  </div>
-  <div class="overflow-hidden"><img src="//cdn.shopify.com/s/files/1/0026/2956/6516/files/10_77ecb486-c28c-49b6-929f-170a4bf0f496_large.png?v=1538409807" alt="" class="ml-30 mb-25" width="270" height="197" style="float: right;" />
-      <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  </div>
-  <div class="overflow-hidden">
-      <div class="row">
-          <div class="col-12 col-md-6">
-              <h4>Sample Unordered List</h4>
-              <ul>
-                  <li>Fabric 1: 100% Polyester</li>
-                  <li>Fabric 2: 100% Polyester,Lining: 100% Polyester</li>
-                  <li>Fabric 3: 75% Polyester, 20% Viscose, 5% Elastane</li>
-              </ul>
-          </div>
-          <div class="col-12 col-md-6">
-              <h4>Sample Numbered List</h4>
-              <ol>
-                  <li>Fabric 1: 75% Polyester, 20% Viscose, 5% Elastane</li>
-                  <li>Fabric 2: 100% Polyester,Lining: 100% Polyester</li>
-                  <li>Fabric 3: 100% Polyester</li>
-              </ol>
-          </div>
-      </div>
-  </div>
-{% endcomment %}
-{% comment %}Example product sizes{% endcomment %}
-{% comment %}
-  <table class="table-product-sizes responsive-table">
-      <tr>
-          <td>HEIGHT:</td><td>180 cm - 5' 11”</td>
-      </tr>
-      <tr>
-          <td>BUST:</td><td>83 cm - 32”</td>
-      </tr>
-      <tr>
-          <td>WAIST:</td><td>57 cm - 22”</td>
-      </tr>
-      <tr>
-          <td>HIPS:</td><td>88 cm - 35</td>
-      </tr>
-      <tr>
-          <td>SHOE SIZE:</td><td>39 - 6</td>
-      </tr>
-  </table>
-{% endcomment %}
-{% comment %}Example custom tab{% endcomment %}
-{% comment %}
-  <div class="material-info">
-      <div class="mb-30 mb-lg-55">
-          <div class="material-info__head-icons d-flex justify-content-between align-items-center mx-auto mb-15">
-              <i class="icon-Dry-06"></i>
-              <i class="icon-Dry-37"></i>
-              <i class="icon-Dry-24"></i>
-              <i class="icon-Dry-20"></i>
-          </div>
-          <p class="text-center">LT01: 70% wool, 15% polyester, 10% polyamide, 5% acrylic 900 Grms/mt</p>
-      </div>
-      <div class="material-info__list row">
-          <div class="col-12 col-sm-6 col-lg-3">
-              <ul class="list-unstyled list-unstyled--lg">
-                  <li><i class="icon-Dry-01"></i>Machine wash</li>
-                  <li><i class="icon-Dry-02"></i>Mashine wash, permanent press</li>
-                  <li><i class="icon-Dry-03"></i>Machine wash, gentle or delicate</li>
-                  <li><i class="icon-Dry-04"></i>Hand wash</li>
-                  <li><i class="icon-Dry-05"></i>Do not wash</li>
-                  <li><i class="icon-Dry-06"></i>30°C or 80°F</li>
-                  <li><i class="icon-Dry-07"></i>40°C or 105°</li>
-                  <li><i class="icon-Dry-08"></i>50°C or 120°F</li>
-                  <li><i class="icon-Dry-09"></i>60°C or 140°F</li>
-                  <li><i class="icon-Dry-10"></i>70°C or 160°F</li>
-                  <li><i class="icon-Dry-11"></i>95°C or 200°F</li>
-                  <li><i class="icon-Dry-12"></i>30°C or 80°F</li>
-              </ul>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-3">
-              <ul class="list-unstyled list-unstyled--lg">
-                  <li><i class="icon-Dry-13"></i>40°C or 105°F</li>
-                  <li><i class="icon-Dry-14"></i>50°C or 120°F</li>
-                  <li><i class="icon-Dry-15"></i>60°C or 140°F</li>
-                  <li><i class="icon-Dry-16"></i>70°C or 160°F</li>
-                  <li><i class="icon-Dry-17"></i>95°C or 200°F</li>
-                  <li><i class="icon-Dry-18"></i>Do not wring</li>
-                  <li><i class="icon-Dry-19"></i>Bleach if needed</li>
-                  <li><i class="icon-Dry-20"></i>Do not Bleach</li>
-                  <li><i class="icon-Dry-21"></i>Non-chlorine bleach if needed</li>
-                  <li><i class="icon-Dry-22"></i>Non-chlorine bleach if needed</li>
-                  <li><i class="icon-Dry-23"></i>Trumble dry</li>
-                  <li><i class="icon-Dry-24"></i>Dry normal, low heat</li>
-              </ul>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-3">
-              <ul class="list-unstyled list-unstyled--lg">
-                  <li><i class="icon-Dry-25"></i>Dry normal, mediun heat</li>
-                  <li><i class="icon-Dry-26"></i>Dry normal, high heat</li>
-                  <li><i class="icon-Dry-27"></i>Dry normal, not heat</li>
-                  <li><i class="icon-Dry-28"></i>Hanf to dry</li>
-                  <li><i class="icon-Dry-29"></i>Drip dry</li>
-                  <li><i class="icon-Dry-30"></i>Dry flat°</li>
-                  <li><i class="icon-Dry-31"></i>Dry in the shade</li>
-                  <li><i class="icon-Dry-32"></i>Don not dry</li>
-                  <li><i class="icon-Dry-33"></i>Don not tumble dry</li>
-                  <li><i class="icon-Dry-34"></i>Dry</li>
-                  <li><i class="icon-Dry-35"></i>Do not dry Clean</li>
-                  <li><i class="icon-Dry-36"></i>Iron any temp, steam</li>
-              </ul>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-3">
-              <ul class="list-unstyled list-unstyled--lg">
-                  <li><i class="icon-Dry-37"></i>Do not iron</li>
-                  <li><i class="icon-Dry-38"></i>Maximum 110°C or 230°F</li>
-                  <li><i class="icon-Dry-39"></i>Maximum 150°C or 300°F</li>
-                  <li><i class="icon-Dry-40"></i>Maximum 200°C or 390°F</li>
-                  <li><i class="icon-Dry-41"></i>No steam</li>
-                  <li><i class="icon-Dry-42"></i>Dryclean</li>
-                  <li><i class="icon-Dry-43"></i>Any solvent</li>
-                  <li><i class="icon-Dry-44"></i>Except tetrachlorethylene</li>
-                  <li><i class="icon-Dry-45"></i>Petroleum solvent only</li>
-                  <li><i class="icon-Dry-46"></i>Wet cleaning</li>
-              </ul>
-          </div>
-      </div>
-  </div>
-{% endcomment %}

@@ -121,7 +121,10 @@
       </div>
     </product-rerender>
 
-    {% render 'product-page-tabs' %}
+    {% assign product_tabs = section.blocks | where: 'type', 'product_tab' %}
+    {%- unless product_tabs.size == 0 -%}
+      {% render 'product-page-tabs', product_tabs: product_tabs %}
+    {%- endunless -%}
   </div>
 </div>
 
@@ -1960,6 +1963,28 @@
           "type": "richtext",
           "id": "main_subtitle_4",
           "label": "Subtitle"
+        }
+      ]
+    },
+    {
+      "type": "product_tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page content"
+        },
+        {
+          "type": "html",
+          "id": "html",
+          "label": "Custom HTML content"
         }
       ]
     }
