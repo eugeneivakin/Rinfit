@@ -438,22 +438,48 @@
   align-items: flex-start;
   list-style: none;
   margin-inline-start: 0;
-  margin: 0 0 -1px;
   padding: 0 20px;
 }
 
 .product-tabs__switcher {
   color: rgb(var(--text-color) / 0.7);
-  border: 1px solid transparent;
-  padding: 6px 20px;
   cursor: pointer;
+  border: 1px solid transparent;
+  margin: 0 0 -1px;
+  padding: 6px 20px;
   text-transform: uppercase;
 
   &.active,
   &:hover {
-    color: rgb(var(--text-color) / 1);
+    background: #fff;
     border-top-color: rgb(var(--text-color) / 0.2);
     border-right-color: rgb(var(--text-color) / 0.2);
     border-left-color: rgb(var(--text-color) / 0.2);
+    color: rgb(var(--text-color) / 1);
+  }
+}
+
+.product-tabs__content {
+  .product-tabs__panel {
+    display: none;
+    padding: 20px 0;
+
+    @include md {
+      padding: 35px 0;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+
+  p{
+    margin: 0 0 20px;
+  }
+
+  #div-bullet-points {
+    img {
+      display: inline;
+    }
   }
 }
