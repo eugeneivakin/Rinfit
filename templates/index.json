@@ -131,7 +131,7 @@
           "type": "collection",
           "settings": {
             "collection": "best-sellers",
-            "products_count": 8,
+            "products_count": 20,
             "title": "Best <em><strong>Sellers</strong></em>",
             "link_url": "",
             "link_text": "SHOP ALL"
@@ -161,7 +161,7 @@
           "type": "collection",
           "settings": {
             "collection": "new-arrivals",
-            "products_count": 8,
+            "products_count": 20,
             "title": "New <em><strong>Arrivals</strong></em>",
             "link_url": "",
             "link_text": "Shop all"
@@ -230,6 +230,7 @@
         "image": "shopify://shop_images/gemstone_collection.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
+        "text_alignment": "center",
         "image_overlap": false,
         "content_width": "sm",
         "remove_vertical_spacing": false
@@ -453,7 +454,7 @@
           "type": "collection",
           "settings": {
             "collection": "couture-collection",
-            "products_count": 8,
+            "products_count": 20,
             "title": "Save With <em><strong>Sets</strong></em>",
             "link_url": "",
             "link_text": "SHOP ALL"
@@ -515,6 +516,7 @@
         "image": "shopify://shop_images/Smart_ring_banner.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
+        "text_alignment": "center",
         "image_overlap": true,
         "content_width": "sm",
         "remove_vertical_spacing": false
