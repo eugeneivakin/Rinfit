@@ -125,7 +125,7 @@
 }
 @media screen and (max-width: 999px) {
   .quick-buy-modal__content .product-gallery__carousel-with-arrows .product-gallery__media {
-    width: auto;
+    width: calc(100vw - var(--container-gutter) * 2);
   }
 }
 .quick-buy-modal__content .product-title {

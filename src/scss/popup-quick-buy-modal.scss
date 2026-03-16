@@ -135,7 +135,7 @@
 
   .product-gallery__carousel-with-arrows .product-gallery__media {
     @include md-max {
-      width: auto;
+      width: calc(100vw - var(--container-gutter) * 2);
     }
   }
   .product-title {
