@@ -309,7 +309,7 @@
                       <accordion-disclosure>
                         <details
                           class="accordion__disclosure group"
-                          {% if open_second_level_menus %}
+                          {% if open_second_level_menus or forloop.first %}
                             open
                           {% endif %}
                         >

@@ -78,7 +78,7 @@
         "reduce_padding": false,
         "logo": "shopify://shop_images/Rinfit_Main_Logo.svg",
         "logo_max_width": 165,
-        "logo_mobile_max_width": 85,
+        "logo_mobile_max_width": 120,
         "menu": "header-menu-miledev",
         "sidebar_menu_collection_list": [
           "stone",

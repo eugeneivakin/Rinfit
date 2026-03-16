@@ -119,7 +119,7 @@
       {%- assign text_class = 'h6' -%}
     {%- endif -%}
 
-    {%- if show_rating -%}
+    {%- if show_rating and product.metafields.loox.avg_rating > 0 -%}
       {%- render 'x-product-rating',
         product: product,
         show_empty: settings.show_product_rating_if_empty,
