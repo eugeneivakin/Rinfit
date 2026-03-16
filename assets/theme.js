@@ -682,8 +682,15 @@ var CarouselPrevButton = class extends HTMLElement {
     }
     this.#abortController = new AbortController();
     this.addEventListener("click", () => this.carousel.previous(), { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "start", { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "start" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
+    const isLoopingScrollCarousel = this.carousel.tagName === "SCROLL-CAROUSEL" && !this.carousel.hasAttribute("no-loop");
+    const disableOnEdge = !isLoopingScrollCarousel;
+    if (disableOnEdge) {
+      this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "start", { signal: this.#abortController.signal });
+      this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "start" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
+    } else {
+      this.firstElementChild.disabled = false;
+      this.firstElementChild.removeAttribute("disabled");
+    }
   }
   disconnectedCallback() {
     this.#abortController.abort();
@@ -700,8 +707,15 @@ var CarouselNextButton = class extends HTMLElement {
     }
     this.#abortController = new AbortController();
     this.addEventListener("click", () => this.carousel.next(), { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "end", { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "end" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
+    const isLoopingScrollCarousel = this.carousel.tagName === "SCROLL-CAROUSEL" && !this.carousel.hasAttribute("no-loop");
+    const disableOnEdge = !isLoopingScrollCarousel;
+    if (disableOnEdge) {
+      this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "end", { signal: this.#abortController.signal });
+      this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "end" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
+    } else {
+      this.firstElementChild.disabled = false;
+      this.firstElementChild.removeAttribute("disabled");
+    }
   }
   disconnectedCallback() {
     this.#abortController.abort();
@@ -1020,6 +1034,9 @@ var ScrollCarousel = class extends HTMLElement {
   get adaptiveHeight() {
     return this.hasAttribute("adaptive-height");
   }
+  get loop() {
+    return !this.hasAttribute("no-loop");
+  }
   get isScrollable() {
     const differenceWidth = this.scrollWidth - this.clientWidth;
     const differenceHeight = this.scrollHeight - this.clientHeight;
@@ -1031,10 +1048,12 @@ var ScrollCarousel = class extends HTMLElement {
    * -------------------------------------------------------------------------------------------------------------------
    */
   previous({ instant = false } = {}) {
-    this.select(Math.max(__privateGet(this, _targetIndex2) - this.groupCells, 0), { instant });
+    const newIndex = this.loop ? (__privateGet(this, _targetIndex2) - this.groupCells + this.cells.length) % this.cells.length : Math.max(__privateGet(this, _targetIndex2) - this.groupCells, 0);
+    this.select(newIndex, { instant });
   }
   next({ instant = false } = {}) {
-    this.select(Math.min(__privateGet(this, _targetIndex2) + this.groupCells, this.cells.length - 1), { instant });
+    const newIndex = this.loop ? (__privateGet(this, _targetIndex2) + this.groupCells) % this.cells.length : Math.min(__privateGet(this, _targetIndex2) + this.groupCells, this.cells.length - 1);
+    this.select(newIndex, { instant });
   }
   select(index, { instant = false } = {}) {
     if (!(index in this.cells)) {
