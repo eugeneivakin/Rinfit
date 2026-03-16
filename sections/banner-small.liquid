@@ -10,6 +10,9 @@
 <div
   class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} container"
 >
+  {% unless section.settings.link == blank %}
+    <a href="{{ section.settings.link }}" class="banner__link"></a>
+  {% endunless %}
   <div class="banner-grid">
     <div class="banner-grid__item banner-grid__item--left">
       {% unless section.settings.heading_left == blank %}
@@ -68,6 +71,11 @@
       "label": "Image"
     },
     {
+      "type": "url",
+      "id": "link",
+      "label": "Banner link"
+    },
+    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -90,11 +98,6 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Banner link"
     }
   ],
   "presets": [
