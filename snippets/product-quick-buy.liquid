@@ -58,7 +58,7 @@
             %}
           {%- endif -%}
 
-          {%- if product != blank -%}
+          {%- if product != blank and product.metafields.loox.avg_rating > 0 -%}
             {%- render 'x-product-rating',
               product: product,
               show_empty: block.settings.show_empty,

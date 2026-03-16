@@ -120,7 +120,7 @@
       </h2>
     {%- endif -%}
 
-    {%- if product != blank -%}
+    {%- if product != blank and product.metafields.loox.avg_rating > 0 -%}
       {%- render 'x-product-rating',
         product: product,
         show_empty: block.settings.show_empty,
@@ -155,7 +155,7 @@
       </div>
     {%- endif -%}
   </div>
-  
+
   {%- if enable_image_zoom -%}
     <open-lightbox-button class="contents">
       <button class="product-gallery__zoom-button circle-button circle-button--sm md:hidden">
