@@ -3448,6 +3448,15 @@ var _VariantPicker = class _VariantPicker extends HTMLElement {
         window.history.replaceState({ path: newUrl.toString() }, "", newUrl.toString());
       }
     }
+    const manuallySelectedInputs = Array.from(__privateGet(this, _form).elements).filter((item) => item.matches("input[data-option-position][data-manually]"));
+    if (manuallySelectedInputs.length > 0) {
+      Array.from(newContent.querySelectorAll("input[data-option-position]")).forEach((newInput) => {
+        const hasManualMarker = manuallySelectedInputs.some((oldInput) => oldInput.name === newInput.name && oldInput.value === newInput.value);
+        if (hasManualMarker) {
+          newInput.setAttribute("data-manually", "true");
+        }
+      });
+    }
     __privateGet(this, _form).dispatchEvent(new CustomEvent("product:rerender", {
       detail: {
         htmlFragment: newContent,
@@ -3490,6 +3499,10 @@ onOptionChanged_fn = async function(event) {
   if (!event.target.name.includes("option")) {
     return;
   }
+  Array.from(__privateGet(this, _form).elements).filter((item) => item.matches(`input[data-option-position][name="${event.target.name}"]`)).forEach((input) => {
+    input.removeAttribute("data-manually");
+  });
+  event.target.setAttribute("data-manually", "true");
   this.selectCombination({
     optionValues: __privateMethod(this, _VariantPicker_instances, getActiveOptionValues_fn).call(this),
     productChange: event.target.hasAttribute("data-product-url")

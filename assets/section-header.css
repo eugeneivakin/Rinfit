@@ -350,9 +350,22 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
   display: none;
 }
 
+@media screen and (max-width: 999px) {
+  .header__logo {
+    aspect-ratio: 6;
+    overflow: hidden;
+    width: var(--header-logo-width);
+  }
+}
 @media screen and (min-width: 1000px) {
   .header__logo {
     justify-self: center;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .header__logo-image {
+    width: 100%;
   }
 }
 

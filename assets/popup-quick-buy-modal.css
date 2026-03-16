@@ -168,9 +168,6 @@
   font-size: 12px;
   line-height: 1;
 }
-.quick-buy-modal__content .loox-rating .loox-rating__counter {
-  display: none;
-}
 .quick-buy-modal__content .loox-rating .loox-rating-content {
   gap: 3px;
   order: -1;

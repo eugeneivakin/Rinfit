@@ -138,6 +138,7 @@
       width: calc(100vw - var(--container-gutter) * 2);
     }
   }
+  
   .product-title {
     --text-h6: 14px;
     --heading-font-weight: 600;
@@ -181,10 +182,6 @@
     gap: 6px;
     font-size: 12px;
     line-height: 1;
-
-    .loox-rating__counter {
-      display: none;
-    }
 
     .loox-rating-content {
       gap: 3px;

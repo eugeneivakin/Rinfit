@@ -188,8 +188,6 @@
           {%- when 'rating' -%}
             {%- if product != blank and product.metafields.loox.avg_rating > 0 -%}
               {%- render 'x-product-rating', product: product, show_empty: block.settings.show_empty, display_mode: block.settings.rating_mode, show_placeholder: false -%}
-            {%- else -%}
-              {%- render 'product-rating', show_placeholder: true -%}
             {%- endif -%}
 
           {%- when 'separator' -%}

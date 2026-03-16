@@ -1,65 +1,223 @@
-// // ...existing code...
-// function querySelectorAllDeep(selector, root = document) {
-//   const result = [];
+function querySelectorAllDeep(selector, root = document) {
+  const result = [];
 
-//   if (root.querySelectorAll) {
-//     result.push(...root.querySelectorAll(selector));
-//     root.querySelectorAll("*").forEach((node) => {
-//       if (node.shadowRoot) {
-//         result.push(...querySelectorAllDeep(selector, node.shadowRoot));
-//       }
-//     });
-//   }
+  if (root.querySelectorAll) {
+    result.push(...root.querySelectorAll(selector));
+    root.querySelectorAll("*").forEach((node) => {
+      if (node.shadowRoot) {
+        result.push(...querySelectorAllDeep(selector, node.shadowRoot));
+      }
+    });
+  }
 
-//   return result;
-// }
+  return result;
+}
 
-// // Function to clear selected sizes and lock button
-// function clearSizeSelectionAndDisableBuyBtn() {
-//   const urlParams = new URLSearchParams(window.location.search);
-//   if (!urlParams.has("variant")) {
-//     // Remove checked from radio inputs of size inside .product-info (including shadow DOM)
-//     const sizeSwatches = querySelectorAllDeep('.product-info .variant-picker__option[data-option-type="size"] input[type="radio"][checked]');
-//     if (sizeSwatches.length > 0) {
-//       sizeSwatches.forEach(function (input) {
-//         input.removeAttribute("checked");
-//       });
-//       // Clearing the selected size option (including shadow DOM)
-//       querySelectorAllDeep('.product-info .variant-picker__option[data-option-type="size"] .variant-picker__selected-variant').forEach(function (el) {
-//         el.textContent = "";
-//       });
-//       // Deactivate the buy button if there is one
-//       var buyBtn = querySelectorAllDeep('.product-info .buy-buttons button[type="submit"]')[0];
-//       if (buyBtn) {
-//         buyBtn.disabled = true;
-//         buyBtn.innerHTML = window.themeStrings.addedToCartDisabled;
-//         buyBtn.classList.add("buy-button--disabled");
-//       }
-//     }
-//   }
-// }
+function escapeCssValue(value) {
+  if (window.CSS && typeof window.CSS.escape === "function") {
+    return window.CSS.escape(value);
+  }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   clearSizeSelectionAndDisableBuyBtn();
-// });
+  return String(value).replace(/"/g, '\\"');
+}
 
-// function runClearSizeSelectionWithRetry(retries = 8, delay = 80) {
-//   let attempt = 0;
+function getBuyButtonForVariantPicker(variantPicker) {
+  const contextRoot =
+    variantPicker.closest("product-rerender") ||
+    variantPicker.closest("quick-buy-modal") ||
+    variantPicker.closest("form") ||
+    variantPicker;
 
-//   const tick = () => {
-//     clearSizeSelectionAndDisableBuyBtn();
-//     attempt += 1;
+  return querySelectorAllDeep('.buy-buttons button[type="submit"]', contextRoot)[0] || null;
+}
 
-//     if (attempt < retries) {
-//       setTimeout(tick, delay);
-//     }
-//   };
+function updateBuyButtonStateForVariantPicker(variantPicker) {
+  const sizeOptionBlocks = querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker);
+  if (sizeOptionBlocks.length === 0) return;
 
-//   tick();
-// }
+  const isEverySizeSelected = sizeOptionBlocks.every((sizeOptionBlock) => {
+    return querySelectorAllDeep('input[type="radio"]:checked', sizeOptionBlock).length > 0;
+  });
 
-document.addEventListener("theme:loading:end", () => {
-  runClearSizeSelectionWithRetry();
+  const buyBtn = getBuyButtonForVariantPicker(variantPicker);
+  if (!buyBtn) return;
+
+  if (!buyBtn.dataset.originalLabel) {
+    buyBtn.dataset.originalLabel = buyBtn.innerHTML;
+  }
+
+  if (isEverySizeSelected) {
+    buyBtn.disabled = false;
+    buyBtn.classList.remove("buy-button--disabled");
+    buyBtn.innerHTML = buyBtn.dataset.originalLabel;
+  } else {
+    buyBtn.disabled = true;
+    buyBtn.classList.add("buy-button--disabled");
+    if (window.themeStrings?.addedToCartDisabled) {
+      buyBtn.innerHTML = window.themeStrings.addedToCartDisabled;
+    }
+  }
+}
+
+function resetSizeOptionsForVariantPicker(variantPicker) {
+  const sizeOptionBlocks = querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker);
+  if (sizeOptionBlocks.length === 0) return;
+
+  sizeOptionBlocks.forEach((sizeOptionBlock) => {
+    querySelectorAllDeep('input[type="radio"]', sizeOptionBlock).forEach((input) => {
+      const shouldPreserve = input.hasAttribute("data-manually");
+
+      if (shouldPreserve) {
+        input.checked = true;
+        input.setAttribute("checked", "checked");
+      } else {
+        input.checked = false;
+        input.removeAttribute("checked");
+      }
+    });
+
+    const hasSelectedInBlock = querySelectorAllDeep('input[type="radio"]:checked', sizeOptionBlock).length > 0;
+    if (!hasSelectedInBlock) {
+      querySelectorAllDeep(".variant-picker__selected-variant", sizeOptionBlock).forEach((el) => {
+        el.textContent = "";
+      });
+    }
+  });
+
+  updateBuyButtonStateForVariantPicker(variantPicker);
+}
+
+function processAllVariantPickers(scopeRoot = document) {
+  querySelectorAllDeep("variant-picker", scopeRoot).forEach((variantPicker) => {
+    resetSizeOptionsForVariantPicker(variantPicker);
+  });
+}
+
+function getVariantPickersForFormId(formId) {
+  if (!formId) return [];
+
+  let rerenderScopes = querySelectorAllDeep(`product-rerender[observe-form="${escapeCssValue(formId)}"]`);
+  if (rerenderScopes.length === 0) {
+    rerenderScopes = querySelectorAllDeep("product-rerender");
+  }
+
+  let variantPickers = [];
+  rerenderScopes.forEach((scope) => {
+    variantPickers.push(...querySelectorAllDeep("variant-picker", scope));
+  });
+
+  if (variantPickers.length === 0) {
+    variantPickers = querySelectorAllDeep(`variant-picker[form-id="${escapeCssValue(formId)}"]`);
+  }
+
+  return variantPickers;
+}
+
+function runSizeResetForFormId(formId, reason) {
+  const variantPickers = getVariantPickersForFormId(formId);
+
+  console.log(`[Size reset] ${reason}`, {
+    formId,
+    variantPickersFound: variantPickers.length,
+  });
+
+  variantPickers.forEach((variantPicker) => {
+    resetSizeOptionsForVariantPicker(variantPicker);
+  });
+}
+
+function onVariantPickerChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return;
+  if (target.type !== "radio") return;
+
+  const variantPicker = target.closest("variant-picker");
+  if (!variantPicker) return;
+  const form = target.form || target.closest("form");
+  if (!form) return;
+
+  // Mark only the option actually chosen by user for this option group.
+  Array.from(form.elements).forEach((item) => {
+    if (!(item instanceof HTMLInputElement)) return;
+    if (item.type !== "radio") return;
+    if (!item.matches("input[data-option-position]")) return;
+    if (item.name !== target.name) return;
+    item.removeAttribute("data-manually");
+  });
+  target.setAttribute("data-manually", "true");
+
+  const isSizeOption = Boolean(target.closest('.variant-picker__option[data-option-type*="size"]'));
+
+  if (!isSizeOption) {
+    return;
+  }
+
+  if (!target.checked) return;
+
+  updateBuyButtonStateForVariantPicker(variantPicker);
+}
+
+document.addEventListener("change", onVariantPickerChange, true);
+
+function onVariantChanged(event) {
+  const form = event.target instanceof HTMLFormElement ? event.target : null;
+  const formId = form?.id || event.detail?.formId || null;
+
+  runSizeResetForFormId(formId, "variant:change");
+}
+
+document.addEventListener("variant:change", onVariantChanged);
+
+function onProductRerender(event) {
+  const form = event.target instanceof HTMLFormElement ? event.target : null;
+  const formId = form?.id || null;
+  if (!formId) return;
+
+  // Wait one tick so replaced nodes are in DOM before scanning.
+  setTimeout(() => {
+    runSizeResetForFormId(formId, "product:rerender");
+  }, 0);
+}
+
+document.addEventListener("product:rerender", onProductRerender);
+
+function setupQuickBuySizeReset() {
+  querySelectorAllDeep("quick-buy-modal").forEach((quickBuyModal) => {
+    if (quickBuyModal.dataset.sizeResetAttached === "true") return;
+
+    quickBuyModal.dataset.sizeResetAttached = "true";
+
+    let mutationTimerId = null;
+    const scheduleModalRecheck = (reason) => {
+      if (mutationTimerId) {
+        clearTimeout(mutationTimerId);
+      }
+
+      mutationTimerId = setTimeout(() => {
+        processAllVariantPickers(quickBuyModal);
+        mutationTimerId = null;
+      }, 0);
+    };
+
+    quickBuyModal.addEventListener("dialog:after-show", () => {
+      scheduleModalRecheck("dialog:after-show");
+    });
+
+    const observer = new MutationObserver((mutationList) => {
+      const hasStructuralChanges = mutationList.some((mutation) => mutation.type === "childList" && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0));
+
+      if (hasStructuralChanges) {
+        scheduleModalRecheck("mutation");
+      }
+    });
+
+    observer.observe(quickBuyModal, { childList: true, subtree: true });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  processAllVariantPickers(document);
+  setupQuickBuySizeReset();
 });
 
 class SizeCalculator extends HTMLElement {
