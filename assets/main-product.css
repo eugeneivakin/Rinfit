@@ -80,7 +80,7 @@
 }
 @media screen and (max-width: 999px) {
   .product-gallery__carousel-with-arrows .product-gallery__media {
-    width: auto;
+    width: calc(100vw - var(--container-gutter) * 2);
   }
 }
 
