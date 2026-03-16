@@ -1,3 +1,12 @@
+{% liquid
+  assign num_reviews = product.metafields.loox.num_reviews
+  assign goal = 1000.0
+
+  if num_reviews >= goal
+    assign num_reviews = num_reviews | divided_by: goal | append: 'K'
+  endif
+%}
+
 <div
   class="loox-rating"
   data-id="{{ product.id }}"
@@ -7,6 +16,6 @@
 >
   <div>
     <span class="loox-rating__value">{{ product.metafields.loox.avg_rating }}/5.00</span>
-    <span class="loox-rating__counter">({{ product.metafields.loox.num_reviews }} reviews)</span>
+    <span class="loox-rating__counter">{{ num_reviews }}</span>
   </div>
 </div>

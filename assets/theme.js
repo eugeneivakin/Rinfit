@@ -3848,11 +3848,6 @@ _CustomDetails_instances = new WeakSet();
  */
 onSummaryClicked_fn = function(event) {
   event.preventDefault();
-  const target = event.target instanceof Element ? event.target : null;
-  const clickedIcon = target?.closest("svg, .icon") !== null;
-  if (this.disclosureElement.open && this.summaryElement.hasAttribute("data-follow-link") && !clickedIcon) {
-    return window.location.href = this.summaryElement.getAttribute("data-follow-link");
-  }
   this.toggle();
 };
 
