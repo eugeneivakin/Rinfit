@@ -127,8 +127,6 @@
         display_mode: block.settings.rating_mode,
         show_placeholder: false
       -%}
-    {%- else -%}
-      {%- render 'product-rating', show_placeholder: true -%}
     {%- endif -%}
 
     {%- if product.selected_or_first_available_variant != null -%}

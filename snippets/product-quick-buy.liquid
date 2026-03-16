@@ -65,13 +65,10 @@
               display_mode: block.settings.rating_mode,
               show_placeholder: false
             -%}
-          {%- else -%}
-            {%- render 'product-rating', show_placeholder: true -%}
           {%- endif -%}
           {%- if product.available -%}
             {% liquid
               assign variant = product.selected_or_first_available_variant
-
               render 'quantity-selector', variant: variant, form: product_form_id
             %}
           {%- endif -%}
