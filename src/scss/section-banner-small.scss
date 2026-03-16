@@ -10,23 +10,31 @@
     border-radius: 10px;
     overflow: hidden;
     max-width: none;
+    position: relative;
 
     @include md {
       border-radius: 30px;
     }
   }
 
+  .banner__link {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+  }
+
   .banner-grid {
     display: grid;
-    // grid-template-columns: repeat(2, min-content) 1fr;
     grid-template-columns: 1fr min-content 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     align-items: center;
-
-    // @include sm {
-    //   grid-template-columns: 1fr min-content 1fr;
-    // }
+    position: relative;
+    z-index: 1;
   }
 
   .banner-grid__item {
@@ -37,8 +45,6 @@
 
   .banner-grid__item--left {
     text-align: right;
-    // @include sm {
-    // }
 
     .h1 {
       em {
@@ -80,7 +86,6 @@
 
   .h1 {
     font-size: 36px;
-    // line-height: 1;
     overflow-wrap: normal;
 
     @include md {
