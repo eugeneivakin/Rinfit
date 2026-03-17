@@ -120,6 +120,7 @@
         "heading_left": "<em>Explore </em>Our",
         "heading_right": "<em><strong>Best Sellers</strong></em>",
         "heading_image": "shopify://shop_images/Best_sellers_banner.jpg",
+        "link": "shopify://collections/best-sellers",
         "padding_top": 12,
         "padding_bottom": 12
       }

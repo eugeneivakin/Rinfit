@@ -12,6 +12,7 @@
   --modal-header-padding-block: 17px;
   --modal-header-padding-inline: 10px;
   border-block-end: 0;
+  z-index: 10;
 }
 @media screen and (min-width: 1000px) {
   .modal::part(header) {
@@ -125,7 +126,7 @@
 }
 @media screen and (max-width: 999px) {
   .quick-buy-modal__content .product-gallery__carousel-with-arrows .product-gallery__media {
-    width: calc(100vw - var(--container-gutter) * 2);
+    width: 100%;
   }
 }
 .quick-buy-modal__content .product-title {
@@ -240,6 +241,9 @@
   display: none;
 }
 .quick-buy-modal__info-wrapper .variant-picker__option[data-option-type=color] .variant-picker__option-info {
+  display: none;
+}
+.quick-buy-modal__info-wrapper .variant-picker__option[data-option-type=size] ~ [data-option-type=size] size-chart-button {
   display: none;
 }
 .quick-buy-modal__info-wrapper .variant-picker__option-values {

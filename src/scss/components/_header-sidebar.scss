@@ -140,6 +140,13 @@
   }
 }
 
+.header-sidebar__nested-linklist {
+  a,
+  .link-faded-reverse {
+    text-transform: capitalize;
+  }
+}
+
 .header-sidebar__footer {
   --drawer-footer-padding-inline: 20px;
   display: grid;

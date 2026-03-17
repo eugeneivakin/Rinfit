@@ -90,6 +90,11 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
   color: rgb(var(--text-color)/0.9);
 }
 
+.header-sidebar__nested-linklist a,
+.header-sidebar__nested-linklist .link-faded-reverse {
+  text-transform: capitalize;
+}
+
 .header-sidebar__footer {
   --drawer-footer-padding-inline: 20px;
   display: grid;
@@ -350,22 +355,9 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
   display: none;
 }
 
-@media screen and (max-width: 999px) {
-  .header__logo {
-    aspect-ratio: 6;
-    overflow: hidden;
-    width: var(--header-logo-width);
-  }
-}
 @media screen and (min-width: 1000px) {
   .header__logo {
     justify-self: center;
-  }
-}
-
-@media screen and (max-width: 999px) {
-  .header__logo-image {
-    width: 100%;
   }
 }
 

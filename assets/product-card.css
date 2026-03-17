@@ -49,17 +49,8 @@
   line-height: 1;
 }
 .x-product-card .loox-rating svg.loox-icon {
-  display: none;
   height: auto;
   width: 14px;
-}
-@media screen and (min-width: 1000px) {
-  .x-product-card .loox-rating svg.loox-icon {
-    display: inline;
-  }
-}
-.x-product-card .loox-rating svg.loox-icon:first-child {
-  display: inline;
 }
 .x-product-card .loox-rating-content {
   color: rgb(222, 174, 74);
