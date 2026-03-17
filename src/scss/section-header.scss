@@ -84,20 +84,8 @@
 }
 
 .header__logo {
-  @include md-max {
-    aspect-ratio: 6;
-    overflow: hidden;
-    width: var(--header-logo-width);
-  }
-
   @include md {
     justify-self: center;
-  }
-}
-
-.header__logo-image {
-  @include md-max {
-    width: 100%;
   }
 }
 

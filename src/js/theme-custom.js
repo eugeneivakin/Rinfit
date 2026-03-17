@@ -63,6 +63,28 @@ function getQuickBuyRerenderScope(node) {
   return rerenderScope;
 }
 
+function getQuickBuySelectedSizePositions(rerenderScope) {
+  const rawValue = rerenderScope?.dataset.quickBuySelectedSizePosition || "";
+
+  return rawValue
+    .split(",")
+    .map((position) => position.trim())
+    .filter(Boolean);
+}
+
+function setQuickBuySelectedSizePositions(rerenderScope, positions) {
+  if (!rerenderScope) return;
+
+  const uniquePositions = Array.from(new Set((positions || []).filter(Boolean)));
+
+  if (uniquePositions.length === 0) {
+    delete rerenderScope.dataset.quickBuySelectedSizePosition;
+    return;
+  }
+
+  rerenderScope.dataset.quickBuySelectedSizePosition = uniquePositions.join(",");
+}
+
 function rememberQuickBuySizePosition(sizeInput) {
   const rerenderScope = getQuickBuyRerenderScope(sizeInput);
   if (!rerenderScope) return;
@@ -73,7 +95,12 @@ function rememberQuickBuySizePosition(sizeInput) {
   const sizeOptionPosition = sizeOptionBlock.getAttribute("data-option-position") || "";
   if (!sizeOptionPosition) return;
 
-  rerenderScope.dataset.quickBuySelectedSizePosition = sizeOptionPosition;
+  const selectedPositions = getQuickBuySelectedSizePositions(rerenderScope);
+  if (!selectedPositions.includes(sizeOptionPosition)) {
+    selectedPositions.push(sizeOptionPosition);
+  }
+
+  setQuickBuySelectedSizePositions(rerenderScope, selectedPositions);
 }
 
 function resetSizeOptionsForVariantPicker(variantPicker) {
@@ -81,11 +108,11 @@ function resetSizeOptionsForVariantPicker(variantPicker) {
   if (sizeOptionBlocks.length === 0) return;
 
   const rerenderScope = getQuickBuyRerenderScope(variantPicker);
-  const selectedQuickBuySizePosition = rerenderScope?.dataset.quickBuySelectedSizePosition || "";
+  const selectedQuickBuySizePositions = getQuickBuySelectedSizePositions(rerenderScope);
 
   sizeOptionBlocks.forEach((sizeOptionBlock) => {
     const blockPosition = sizeOptionBlock.getAttribute("data-option-position") || "";
-    const shouldPreserveByQuickBuyMarker = Boolean(selectedQuickBuySizePosition) && blockPosition === selectedQuickBuySizePosition;
+    const shouldPreserveByQuickBuyMarker = selectedQuickBuySizePositions.includes(blockPosition);
 
     querySelectorAllDeep('input[type="radio"]', sizeOptionBlock).forEach((input) => {
       if (shouldPreserveByQuickBuyMarker) {

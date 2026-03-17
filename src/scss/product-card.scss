@@ -57,17 +57,8 @@
     line-height: 1;
 
     svg.loox-icon {
-      display: none;
       height: auto;
       width: 14px;
-
-      @include md {
-        display: inline;
-      }
-
-      &:first-child {
-        display: inline;
-      }
     }
   }
 
