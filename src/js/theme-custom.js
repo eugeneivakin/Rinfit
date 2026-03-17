@@ -22,11 +22,7 @@ function escapeCssValue(value) {
 }
 
 function getBuyButtonForVariantPicker(variantPicker) {
-  const contextRoot =
-    variantPicker.closest("product-rerender") ||
-    variantPicker.closest("quick-buy-modal") ||
-    variantPicker.closest("form") ||
-    variantPicker;
+  const contextRoot = variantPicker.closest("product-rerender") || variantPicker.closest("quick-buy-modal") || variantPicker.closest("form") || variantPicker;
 
   return querySelectorAllDeep('.buy-buttons button[type="submit"]', contextRoot)[0] || null;
 }
@@ -59,12 +55,55 @@ function updateBuyButtonStateForVariantPicker(variantPicker) {
   }
 }
 
+function getQuickBuyRerenderScope(node) {
+  const rerenderScope = node?.closest?.("product-rerender");
+  if (!rerenderScope) return null;
+  if (!rerenderScope.closest("quick-buy-modal")) return null;
+
+  return rerenderScope;
+}
+
+function rememberQuickBuySizePosition(sizeInput) {
+  const rerenderScope = getQuickBuyRerenderScope(sizeInput);
+  if (!rerenderScope) return;
+
+  const sizeOptionBlock = sizeInput.closest('.variant-picker__option[data-option-type*="size"]');
+  if (!sizeOptionBlock) return;
+
+  const sizeOptionPosition = sizeOptionBlock.getAttribute("data-option-position") || "";
+  if (!sizeOptionPosition) return;
+
+  rerenderScope.dataset.quickBuySelectedSizePosition = sizeOptionPosition;
+}
+
 function resetSizeOptionsForVariantPicker(variantPicker) {
   const sizeOptionBlocks = querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker);
   if (sizeOptionBlocks.length === 0) return;
 
+  const rerenderScope = getQuickBuyRerenderScope(variantPicker);
+  const selectedQuickBuySizePosition = rerenderScope?.dataset.quickBuySelectedSizePosition || "";
+
   sizeOptionBlocks.forEach((sizeOptionBlock) => {
+    const blockPosition = sizeOptionBlock.getAttribute("data-option-position") || "";
+    const shouldPreserveByQuickBuyMarker = Boolean(selectedQuickBuySizePosition) && blockPosition === selectedQuickBuySizePosition;
+
     querySelectorAllDeep('input[type="radio"]', sizeOptionBlock).forEach((input) => {
+      if (shouldPreserveByQuickBuyMarker) {
+        const shouldStayChecked = input.checked || input.hasAttribute("checked") || input.hasAttribute("data-manually");
+
+        if (shouldStayChecked) {
+          input.checked = true;
+          input.setAttribute("checked", "checked");
+          input.setAttribute("data-manually", "true");
+        } else {
+          input.checked = false;
+          input.removeAttribute("checked");
+          input.removeAttribute("data-manually");
+        }
+
+        return;
+      }
+
       const shouldPreserve = input.hasAttribute("data-manually");
 
       if (shouldPreserve) {
@@ -113,13 +152,8 @@ function getVariantPickersForFormId(formId) {
   return variantPickers;
 }
 
-function runSizeResetForFormId(formId, reason) {
+function runSizeResetForFormId(formId) {
   const variantPickers = getVariantPickersForFormId(formId);
-
-  console.log(`[Size reset] ${reason}`, {
-    formId,
-    variantPickersFound: variantPickers.length,
-  });
 
   variantPickers.forEach((variantPicker) => {
     resetSizeOptionsForVariantPicker(variantPicker);
@@ -152,6 +186,8 @@ function onVariantPickerChange(event) {
     return;
   }
 
+  rememberQuickBuySizePosition(target);
+
   if (!target.checked) return;
 
   updateBuyButtonStateForVariantPicker(variantPicker);
@@ -163,7 +199,7 @@ function onVariantChanged(event) {
   const form = event.target instanceof HTMLFormElement ? event.target : null;
   const formId = form?.id || event.detail?.formId || null;
 
-  runSizeResetForFormId(formId, "variant:change");
+  runSizeResetForFormId(formId);
 }
 
 document.addEventListener("variant:change", onVariantChanged);
@@ -175,11 +211,24 @@ function onProductRerender(event) {
 
   // Wait one tick so replaced nodes are in DOM before scanning.
   setTimeout(() => {
-    runSizeResetForFormId(formId, "product:rerender");
+    runSizeResetForFormId(formId);
   }, 0);
 }
 
 document.addEventListener("product:rerender", onProductRerender);
+
+function onProductRerenderFull(event) {
+  const rerenderElement = event.target;
+  const quickBuyModal = rerenderElement.closest("quick-buy-modal");
+  if (!quickBuyModal) return;
+
+  // Wait one tick so replaced nodes are fully painted before scanning.
+  setTimeout(() => {
+    processAllVariantPickers(rerenderElement);
+  }, 0);
+}
+
+document.addEventListener("product:rerender:full", onProductRerenderFull);
 
 function setupQuickBuySizeReset() {
   querySelectorAllDeep("quick-buy-modal").forEach((quickBuyModal) => {
@@ -204,7 +253,9 @@ function setupQuickBuySizeReset() {
     });
 
     const observer = new MutationObserver((mutationList) => {
-      const hasStructuralChanges = mutationList.some((mutation) => mutation.type === "childList" && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0));
+      const hasStructuralChanges = mutationList.some(
+        (mutation) => mutation.type === "childList" && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0),
+      );
 
       if (hasStructuralChanges) {
         scheduleModalRecheck("mutation");
