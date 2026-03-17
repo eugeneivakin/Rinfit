@@ -3324,9 +3324,14 @@ onRerender_fn = function(event) {
   if (!matchingElement) {
     return;
   }
+  const quickBuySelectedSizePosition = this.dataset.quickBuySelectedSizePosition;
+  if (quickBuySelectedSizePosition) {
+    matchingElement.dataset.quickBuySelectedSizePosition = quickBuySelectedSizePosition;
+  }
   const focusedElement = document.activeElement;
   if (!this.hasAttribute("allow-partial-rerender") || event.detail.productChange) {
     this.replaceWith(matchingElement);
+    matchingElement.dispatchEvent(new CustomEvent("product:rerender:full", { bubbles: true, detail: { element: matchingElement } }));
   } else {
     const blockTypes = ["sku", "badges", "quantity-selector", "volume-pricing", "price", "payment-terms", "variant-picker", "inventory", "buy-buttons", "pickup-availability", "liquid"];
     blockTypes.forEach((blockType) => {
