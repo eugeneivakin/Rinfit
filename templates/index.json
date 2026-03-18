@@ -553,7 +553,7 @@
             "subheading": "",
             "title": "{{ block.settings.collection.title }}",
             "button_text": "",
-            "button_link": "",
+            "button_link": "shopify://collections/glowstone",
             "button_style": "solid",
             "overlay_color": "#000000",
             "overlay_opacity": 0
@@ -789,7 +789,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "image": "shopify://shop_images/DSC_7376.jpg",
+            "image": "shopify://shop_images/DSC_8925_1620x2025_d3bef676-6650-4316-9c4f-dc8f8ffaa473.jpg",
             "column_count": "4",
             "row_count": 2,
             "title": "",
