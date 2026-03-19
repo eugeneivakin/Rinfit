@@ -409,7 +409,7 @@
           "type": "collection",
           "settings": {
             "color_scheme": "scheme-1",
-            "collection": "ring-bundles",
+            "collection": "ring-protector",
             "image": "shopify://shop_images/Smart_ring_banner.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-center text-center",
