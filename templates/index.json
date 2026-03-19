@@ -119,7 +119,7 @@
         "color_scheme": "scheme-2",
         "heading_left": "<em>Explore </em>Our",
         "heading_right": "<em><strong>Best Sellers</strong></em>",
-        "heading_image": "shopify://shop_images/Best_sellers_banner.jpg",
+        "heading_image": "shopify://shop_images/Best_Sellers_Desktop_Banner.jpg",
         "link": "shopify://collections/best-sellers",
         "padding_top": 12,
         "padding_bottom": 12
