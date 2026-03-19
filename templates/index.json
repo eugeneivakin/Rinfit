@@ -526,28 +526,11 @@
     "collection_list_r7KetV": {
       "type": "collection-list",
       "blocks": {
-        "collection_GjYgBK": {
-          "type": "collection",
-          "disabled": true,
-          "settings": {
-            "color_scheme": "scheme-1",
-            "collection": "emerald-frame-2",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
-            "title": "Stone",
-            "button_text": "",
-            "button_link": "",
-            "button_style": "solid",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
         "collection_4KLtKH": {
           "type": "collection",
           "settings": {
             "color_scheme": "",
-            "collection": "stone",
+            "collection": "glowstone",
             "image": "shopify://shop_images/Emerald_Cut_Solitaire_Collection_2.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
@@ -555,6 +538,23 @@
             "title": "{{ block.settings.collection.title }}",
             "button_text": "",
             "button_link": "shopify://collections/glowstone",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_6EBNYP": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "metal-framed-collection",
+            "image": "shopify://shop_images/Emerald_Collection_1.jpg",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "{{ block.settings.collection.title }}",
+            "button_text": "",
+            "button_link": "",
             "button_style": "solid",
             "overlay_color": "#000000",
             "overlay_opacity": 0
@@ -577,27 +577,12 @@
             "overlay_opacity": 0
           }
         },
-        "collection_6EBNYP": {
-          "type": "collection",
-          "settings": {
-            "color_scheme": "scheme-4",
-            "collection": "metal-heart",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
-            "title": "{{ block.settings.collection.title }}",
-            "button_text": "",
-            "button_link": "",
-            "button_style": "solid",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
         "collection_ebji9p": {
           "type": "collection",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "infinity",
+            "collection": "metal-accent",
+            "image": "shopify://shop_images/Metal_Infinity_Collection_f7336717-d7c0-474e-b833-ece5b6c7e922.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -613,7 +598,8 @@
           "type": "collection",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "stars",
+            "collection": "classic-rings",
+            "image": "shopify://shop_images/Infinity_Collection_5e05a888-96b8-4d56-bb49-ac0838d506b1.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -629,7 +615,8 @@
           "type": "collection",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "round",
+            "collection": "diamond-collection-sale",
+            "image": "shopify://shop_images/Pear_Collection_2ae26e18-87ca-4d2c-bb90-8585b623ca09.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -641,11 +628,29 @@
             "overlay_opacity": 0
           }
         },
+        "collection_WDUDLF": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "ring-protector",
+            "image": "shopify://shop_images/M8_dce74e55-9f60-43ba-a039-1dfd525b6cd2.jpg",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "{{ block.settings.collection.title }}",
+            "button_text": "",
+            "button_link": "shopify://collections/glowstone",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
         "collection_gKiN3j": {
           "type": "collection",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "pear-frame",
+            "collection": "silicone-ring-dish",
+            "image": "shopify://shop_images/Dish_1.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -662,6 +667,7 @@
           "settings": {
             "color_scheme": "scheme-4",
             "collection": "gift-card",
+            "image": "shopify://shop_images/Gift_Card-01.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -675,13 +681,13 @@
         }
       },
       "block_order": [
-        "collection_GjYgBK",
         "collection_4KLtKH",
-        "collection_WT4dA9",
         "collection_6EBNYP",
+        "collection_WT4dA9",
         "collection_ebji9p",
         "collection_XVxiFt",
         "collection_nQJmtP",
+        "collection_WDUDLF",
         "collection_gKiN3j",
         "collection_iLTrpV"
       ],
