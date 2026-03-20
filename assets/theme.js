@@ -682,15 +682,8 @@ var CarouselPrevButton = class extends HTMLElement {
     }
     this.#abortController = new AbortController();
     this.addEventListener("click", () => this.carousel.previous(), { signal: this.#abortController.signal });
-    const isLoopingScrollCarousel = this.carousel.tagName === "SCROLL-CAROUSEL" && !this.carousel.hasAttribute("no-loop");
-    const disableOnEdge = !isLoopingScrollCarousel;
-    if (disableOnEdge) {
-      this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "start", { signal: this.#abortController.signal });
-      this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "start" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
-    } else {
-      this.firstElementChild.disabled = false;
-      this.firstElementChild.removeAttribute("disabled");
-    }
+    this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "start", { signal: this.#abortController.signal });
+    this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "start" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
   }
   disconnectedCallback() {
     this.#abortController.abort();
@@ -707,15 +700,8 @@ var CarouselNextButton = class extends HTMLElement {
     }
     this.#abortController = new AbortController();
     this.addEventListener("click", () => this.carousel.next(), { signal: this.#abortController.signal });
-    const isLoopingScrollCarousel = this.carousel.tagName === "SCROLL-CAROUSEL" && !this.carousel.hasAttribute("no-loop");
-    const disableOnEdge = !isLoopingScrollCarousel;
-    if (disableOnEdge) {
-      this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "end", { signal: this.#abortController.signal });
-      this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "end" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
-    } else {
-      this.firstElementChild.disabled = false;
-      this.firstElementChild.removeAttribute("disabled");
-    }
+    this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "end", { signal: this.#abortController.signal });
+    this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "end" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
   }
   disconnectedCallback() {
     this.#abortController.abort();
@@ -1034,9 +1020,6 @@ var ScrollCarousel = class extends HTMLElement {
   get adaptiveHeight() {
     return this.hasAttribute("adaptive-height");
   }
-  get loop() {
-    return !this.hasAttribute("no-loop");
-  }
   get isScrollable() {
     const differenceWidth = this.scrollWidth - this.clientWidth;
     const differenceHeight = this.scrollHeight - this.clientHeight;
@@ -1048,12 +1031,10 @@ var ScrollCarousel = class extends HTMLElement {
    * -------------------------------------------------------------------------------------------------------------------
    */
   previous({ instant = false } = {}) {
-    const newIndex = this.loop ? (__privateGet(this, _targetIndex2) - this.groupCells + this.cells.length) % this.cells.length : Math.max(__privateGet(this, _targetIndex2) - this.groupCells, 0);
-    this.select(newIndex, { instant });
+    this.select(Math.max(__privateGet(this, _targetIndex2) - this.groupCells, 0), { instant });
   }
   next({ instant = false } = {}) {
-    const newIndex = this.loop ? (__privateGet(this, _targetIndex2) + this.groupCells) % this.cells.length : Math.min(__privateGet(this, _targetIndex2) + this.groupCells, this.cells.length - 1);
-    this.select(newIndex, { instant });
+    this.select(Math.min(__privateGet(this, _targetIndex2) + this.groupCells, this.cells.length - 1), { instant });
   }
   select(index, { instant = false } = {}) {
     if (!(index in this.cells)) {
@@ -3324,14 +3305,9 @@ onRerender_fn = function(event) {
   if (!matchingElement) {
     return;
   }
-  const quickBuySelectedSizePosition = this.dataset.quickBuySelectedSizePosition;
-  if (quickBuySelectedSizePosition) {
-    matchingElement.dataset.quickBuySelectedSizePosition = quickBuySelectedSizePosition;
-  }
   const focusedElement = document.activeElement;
   if (!this.hasAttribute("allow-partial-rerender") || event.detail.productChange) {
     this.replaceWith(matchingElement);
-    matchingElement.dispatchEvent(new CustomEvent("product:rerender:full", { bubbles: true, detail: { element: matchingElement } }));
   } else {
     const blockTypes = ["sku", "badges", "quantity-selector", "volume-pricing", "price", "payment-terms", "variant-picker", "inventory", "buy-buttons", "pickup-availability", "liquid"];
     blockTypes.forEach((blockType) => {
@@ -3453,15 +3429,6 @@ var _VariantPicker = class _VariantPicker extends HTMLElement {
         window.history.replaceState({ path: newUrl.toString() }, "", newUrl.toString());
       }
     }
-    const manuallySelectedInputs = Array.from(__privateGet(this, _form).elements).filter((item) => item.matches("input[data-option-position][data-manually]"));
-    if (manuallySelectedInputs.length > 0) {
-      Array.from(newContent.querySelectorAll("input[data-option-position]")).forEach((newInput) => {
-        const hasManualMarker = manuallySelectedInputs.some((oldInput) => oldInput.name === newInput.name && oldInput.value === newInput.value);
-        if (hasManualMarker) {
-          newInput.setAttribute("data-manually", "true");
-        }
-      });
-    }
     __privateGet(this, _form).dispatchEvent(new CustomEvent("product:rerender", {
       detail: {
         htmlFragment: newContent,
@@ -3504,10 +3471,6 @@ onOptionChanged_fn = async function(event) {
   if (!event.target.name.includes("option")) {
     return;
   }
-  Array.from(__privateGet(this, _form).elements).filter((item) => item.matches(`input[data-option-position][name="${event.target.name}"]`)).forEach((input) => {
-    input.removeAttribute("data-manually");
-  });
-  event.target.setAttribute("data-manually", "true");
   this.selectCombination({
     optionValues: __privateMethod(this, _VariantPicker_instances, getActiveOptionValues_fn).call(this),
     productChange: event.target.hasAttribute("data-product-url")
@@ -3866,6 +3829,9 @@ _CustomDetails_instances = new WeakSet();
  */
 onSummaryClicked_fn = function(event) {
   event.preventDefault();
+  if (this.disclosureElement.open && this.summaryElement.hasAttribute("data-follow-link")) {
+    return window.location.href = this.summaryElement.getAttribute("data-follow-link");
+  }
   this.toggle();
 };
 

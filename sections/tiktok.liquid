@@ -67,23 +67,23 @@
         -%}
 
         <div class="bleed floating-controls-container floating-controls-container--on-hover relative">
-          <carousel-prev-button class="floating-controls-container__control">
+          <button class="floating-controls-container__control">
             <div class="prev-next-button prev-next-button--prev circle-button circle-button--lg hover:animate-icon-inline">
               <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
               {%- render 'icons', icon: 'chevron-left' -%}
             </div>
-          </carousel-prev-button>
+          </button>
           <div class="swiper section-slider is-scrollable">
             <div class="swiper-wrapper">
               {{ collection_list_swiper }}
             </div>
           </div>
-          <carousel-next-button class="floating-controls-container__control">
+          <button class="floating-controls-container__control">
             <div class="prev-next-button prev-next-button--next circle-button circle-button--lg hover:animate-icon-inline">
               <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
               {%- render 'icons', icon: 'chevron-right' -%}
             </div>
-          </carousel-next-button>
+          </button>
         </div>
       </div>
     </div>
@@ -120,8 +120,8 @@
       spaceBetween: 0,
       // Navigation arrows
       navigation: {
-        prevEl: '.prev-next-button--prev',
-        nextEl: '.prev-next-button--next',
+        prevEl: '#shopify-section-{{ section.id }} .prev-next-button--prev',
+        nextEl: '#shopify-section-{{ section.id }} .prev-next-button--next',
       },
       a11y: false,
       breakpoints: {
