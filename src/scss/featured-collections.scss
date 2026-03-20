@@ -73,12 +73,12 @@
       transform: none;
 
       @include sm {
-        --floating-controls-inset-inline: -2.125rem;
+        --floating-controls-inset-inline: -2.5rem;
       }
     }
 
     .circle-button {
-      --circle-button-size: 26px;
+      --circle-button-size: 34px;
       color: rgba(55, 57, 54, 0.6);
       border: 1px solid rgba(55, 57, 54, 0.2);
       box-shadow: none;
