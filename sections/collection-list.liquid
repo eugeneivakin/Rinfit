@@ -150,11 +150,11 @@
             {%- endcapture -%}
 
             {%- if collection_url != blank -%}
-              <a href="{{ collection_url }}" class="collection-card {% if block.settings.expand_collection %}grow{% endif %} {% unless stack_mobile_and_desktop %}shrink-0 snap-center{% endunless %} {% if forloop.first %}is-selected{% endif %} group" {{ block.shopify_attributes }}>
+              <a href="{{ collection_url }}" class="collection-card {% if block.settings.expand_collection %}grow{% endif %} {% unless stack_mobile_and_desktop %}shrink-0 snap-start{% endunless %} {% if forloop.first %}is-selected{% endif %} group" {{ block.shopify_attributes }}>
                 {{- collection_card_content -}}
               </a>
             {%- else -%}
-              <div class="collection-card {% if block.settings.expand_collection %}grow{% endif %} {% unless stack_mobile_and_desktop %}shrink-0 snap-center{% endunless %} {% if forloop.first %}is-selected{% endif %} group" {{ block.shopify_attributes }}>
+              <div class="collection-card {% if block.settings.expand_collection %}grow{% endif %} {% unless stack_mobile_and_desktop %}shrink-0 snap-start{% endunless %} {% if forloop.first %}is-selected{% endif %} group" {{ block.shopify_attributes }}>
                 {{- collection_card_content -}}
               </div>
             {%- endif -%}
@@ -179,7 +179,6 @@
               <button
                 type="button"
                 class="prev-next-button prev-next-button--prev circle-button circle-button--lg hover:animate-icon-inline"
-                disabled
               >
                 <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
                 {%- render 'icons', icon: 'chevron-left' -%}
@@ -188,7 +187,7 @@
 
             <scroll-carousel
               id="{{ carousel_id }}"
-              group-cells
+              group-cells="1"
               allow-drag
               class="collection-list scroll-area {% if section.settings.show_text_outside %}collection-list--text-outside{% endif %} bleed lg:unbleed"
             >

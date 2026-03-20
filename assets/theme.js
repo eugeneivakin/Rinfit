@@ -682,8 +682,6 @@ var CarouselPrevButton = class extends HTMLElement {
     }
     this.#abortController = new AbortController();
     this.addEventListener("click", () => this.carousel.previous(), { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "start", { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "start" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
   }
   disconnectedCallback() {
     this.#abortController.abort();
@@ -700,8 +698,6 @@ var CarouselNextButton = class extends HTMLElement {
     }
     this.#abortController = new AbortController();
     this.addEventListener("click", () => this.carousel.next(), { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-nearing", (event) => this.firstElementChild.disabled = event.detail.position === "end", { signal: this.#abortController.signal });
-    this.carousel.addEventListener("scroll:edge-leaving", (event) => this.firstElementChild.disabled = event.detail.position === "end" ? false : this.firstElementChild.disabled, { signal: this.#abortController.signal });
   }
   disconnectedCallback() {
     this.#abortController.abort();
@@ -1031,10 +1027,15 @@ var ScrollCarousel = class extends HTMLElement {
    * -------------------------------------------------------------------------------------------------------------------
    */
   previous({ instant = false } = {}) {
-    this.select(Math.max(__privateGet(this, _targetIndex2) - this.groupCells, 0), { instant });
+    const normalizedScrollLeft = Math.round(Math.abs(this.scrollLeft));
+    const targetIndex = normalizedScrollLeft <= 1 ? this.cells.length - 1 : Math.max(__privateGet(this, _targetIndex2) - this.groupCells, 0);
+    this.select(targetIndex, { instant });
   }
   next({ instant = false } = {}) {
-    this.select(Math.min(__privateGet(this, _targetIndex2) + this.groupCells, this.cells.length - 1), { instant });
+    const normalizedScrollLeft = Math.round(Math.abs(this.scrollLeft));
+    const maxScrollLeft = Math.max(this.scrollWidth - this.clientWidth, 0);
+    const targetIndex = normalizedScrollLeft >= maxScrollLeft - 1 ? 0 : Math.min(__privateGet(this, _targetIndex2) + this.groupCells, this.cells.length - 1);
+    this.select(targetIndex, { instant });
   }
   select(index, { instant = false } = {}) {
     if (!(index in this.cells)) {

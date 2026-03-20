@@ -104,7 +104,6 @@
                   <button
                     type="button"
                     class="prev-next-button prev-next-button--prev circle-button hover:animate-icon-inline"
-                    disabled
                   >
                     <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
                     {%- render 'icons', icon: 'chevron-left' -%}
@@ -113,7 +112,7 @@
 
                 <scroll-carousel
                   id="{{ product_carousel_id }}"
-                  group-cells
+                  group-cells="1"
                   allow-drag
                   class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed"
                 >
