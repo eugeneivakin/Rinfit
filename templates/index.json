@@ -712,6 +712,13 @@
     "tiktok_63qDmQ": {
       "type": "tiktok",
       "blocks": {
+        "video_priXEU": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Untitled design (17).mp4",
+            "product": "glowstoneemerald"
+          }
+        },
         "video_tAmwEt": {
           "type": "video",
           "settings": {
@@ -724,13 +731,6 @@
           "settings": {
             "video": "shopify://files/videos/Untitled design (14).mp4",
             "product": "metal-stone-silicone-rings"
-          }
-        },
-        "video_priXEU": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/Untitled design (17).mp4",
-            "product": "glowstoneemerald"
           }
         },
         "video_8AeAUG": {
@@ -770,9 +770,9 @@
         }
       },
       "block_order": [
+        "video_priXEU",
         "video_tAmwEt",
         "video_zqmqzG",
-        "video_priXEU",
         "video_8AeAUG",
         "video_A6Jyic",
         "video_rjHk63",
