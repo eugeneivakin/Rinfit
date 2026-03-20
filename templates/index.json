@@ -565,7 +565,7 @@
           "settings": {
             "color_scheme": "",
             "collection": "gemstones",
-            "image": "shopify://shop_images/5_91631a8c-0f3e-46f2-b594-4b1e79d52fc6.png",
+            "image": "shopify://shop_images/Gemstones_Collection_5ea6fa05-763d-476f-8b88-59184f9b7184.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -582,7 +582,7 @@
           "settings": {
             "color_scheme": "scheme-4",
             "collection": "metal-accent",
-            "image": "shopify://shop_images/Metal_Infinity_Collection_f7336717-d7c0-474e-b833-ece5b6c7e922.jpg",
+            "image": "shopify://shop_images/Metal_Infinity_Collection_3a8c9d9f-de07-4c86-af7a-42176ad280e1.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -616,7 +616,7 @@
           "settings": {
             "color_scheme": "scheme-4",
             "collection": "diamond-collection-sale",
-            "image": "shopify://shop_images/Pear_Collection_2ae26e18-87ca-4d2c-bb90-8585b623ca09.jpg",
+            "image": "shopify://shop_images/Pear_Collection_62816f05-e4a3-443e-8a4a-18232c41c2c2.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -632,8 +632,25 @@
           "type": "collection",
           "settings": {
             "color_scheme": "",
+            "collection": "stackables",
+            "image": "shopify://shop_images/Thin.jpg",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "{{ block.settings.collection.title }}",
+            "button_text": "",
+            "button_link": "shopify://collections/glowstone",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_9PbLPE": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
             "collection": "ring-protector",
-            "image": "shopify://shop_images/M8_dce74e55-9f60-43ba-a039-1dfd525b6cd2.jpg",
+            "image": "shopify://shop_images/Protector.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-start text-start",
             "subheading": "",
@@ -688,6 +705,7 @@
         "collection_XVxiFt",
         "collection_nQJmtP",
         "collection_WDUDLF",
+        "collection_9PbLPE",
         "collection_gKiN3j",
         "collection_iLTrpV"
       ],
