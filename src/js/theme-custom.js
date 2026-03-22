@@ -55,247 +55,151 @@ function updateBuyButtonStateForVariantPicker(variantPicker) {
   }
 }
 
-function getQuickBuyRerenderScope(node) {
-  const rerenderScope = node?.closest?.("product-rerender");
-  if (!rerenderScope) return null;
-  if (!rerenderScope.closest("quick-buy-modal")) return null;
-
-  return rerenderScope;
-}
-
-function getQuickBuySelectedSizePositions(rerenderScope) {
-  const rawValue = rerenderScope?.dataset.quickBuySelectedSizePosition || "";
-
+function getManuallySelectedSizePositions(scopeRoot) {
+  if (!scopeRoot) return [];
+  
+  const rawValue = scopeRoot.dataset.selectedSizePositions || "";
   return rawValue
     .split(",")
-    .map((position) => position.trim())
+    .map((pos) => pos.trim())
     .filter(Boolean);
 }
 
-function setQuickBuySelectedSizePositions(rerenderScope, positions) {
-  if (!rerenderScope) return;
+function addManuallySelectedSizePosition(scopeRoot, position) {
+  if (!scopeRoot || !position) return;
 
-  const uniquePositions = Array.from(new Set((positions || []).filter(Boolean)));
-
-  if (uniquePositions.length === 0) {
-    delete rerenderScope.dataset.quickBuySelectedSizePosition;
-    return;
+  const positions = getManuallySelectedSizePositions(scopeRoot);
+  if (!positions.includes(position)) {
+    positions.push(position);
   }
 
-  rerenderScope.dataset.quickBuySelectedSizePosition = uniquePositions.join(",");
+  scopeRoot.dataset.selectedSizePositions = positions.join(",");
 }
 
-function rememberQuickBuySizePosition(sizeInput) {
-  const rerenderScope = getQuickBuyRerenderScope(sizeInput);
-  if (!rerenderScope) return;
+function clearSizeCheckedStates(scopeRoot = document) {
+  // Get manually selected positions from the scope
+  const manuallySelectedPositions = getManuallySelectedSizePositions(scopeRoot);
+  // Track already cleared positions to avoid clearing the same block multiple times
+  const clearedPositions = new Set();
 
-  const sizeOptionBlock = sizeInput.closest('.variant-picker__option[data-option-type*="size"]');
-  if (!sizeOptionBlock) return;
-
-  const sizeOptionPosition = sizeOptionBlock.getAttribute("data-option-position") || "";
-  if (!sizeOptionPosition) return;
-
-  const selectedPositions = getQuickBuySelectedSizePositions(rerenderScope);
-  if (!selectedPositions.includes(sizeOptionPosition)) {
-    selectedPositions.push(sizeOptionPosition);
-  }
-
-  setQuickBuySelectedSizePositions(rerenderScope, selectedPositions);
-}
-
-function resetSizeOptionsForVariantPicker(variantPicker) {
-  const sizeOptionBlocks = querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker);
-  if (sizeOptionBlocks.length === 0) return;
-
-  const rerenderScope = getQuickBuyRerenderScope(variantPicker);
-  const selectedQuickBuySizePositions = getQuickBuySelectedSizePositions(rerenderScope);
-
-  sizeOptionBlocks.forEach((sizeOptionBlock) => {
-    const blockPosition = sizeOptionBlock.getAttribute("data-option-position") || "";
-    const shouldPreserveByQuickBuyMarker = selectedQuickBuySizePositions.includes(blockPosition);
-
-    querySelectorAllDeep('input[type="radio"]', sizeOptionBlock).forEach((input) => {
-      if (shouldPreserveByQuickBuyMarker) {
-        const shouldStayChecked = input.checked || input.hasAttribute("checked") || input.hasAttribute("data-manually");
-
-        if (shouldStayChecked) {
-          input.checked = true;
-          input.setAttribute("checked", "checked");
-          input.setAttribute("data-manually", "true");
-        } else {
-          input.checked = false;
-          input.removeAttribute("checked");
-          input.removeAttribute("data-manually");
-        }
-
+  querySelectorAllDeep('variant-picker', scopeRoot).forEach((variantPicker) => {
+    querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker).forEach((sizeOptionBlock) => {
+      const position = sizeOptionBlock.getAttribute("data-option-position");
+      
+      // Skip if already processed
+      if (position && clearedPositions.has(position)) {
         return;
       }
 
-      const shouldPreserve = input.hasAttribute("data-manually");
+      // Skip if this position was manually selected
+      if (position && manuallySelectedPositions.includes(position)) {
+        clearedPositions.add(position);
+        return;
+      }
 
-      if (shouldPreserve) {
-        input.checked = true;
-        input.setAttribute("checked", "checked");
-      } else {
+      // Clear checked state for all radio inputs
+      querySelectorAllDeep('input[type="radio"]', sizeOptionBlock).forEach((input) => {
         input.checked = false;
         input.removeAttribute("checked");
-      }
-    });
+      });
 
-    const hasSelectedInBlock = querySelectorAllDeep('input[type="radio"]:checked', sizeOptionBlock).length > 0;
-    if (!hasSelectedInBlock) {
+      // Clear selected variant display
       querySelectorAllDeep(".variant-picker__selected-variant", sizeOptionBlock).forEach((el) => {
         el.textContent = "";
       });
-    }
-  });
 
-  updateBuyButtonStateForVariantPicker(variantPicker);
-}
-
-function processAllVariantPickers(scopeRoot = document) {
-  querySelectorAllDeep("variant-picker", scopeRoot).forEach((variantPicker) => {
-    resetSizeOptionsForVariantPicker(variantPicker);
-  });
-}
-
-function getVariantPickersForFormId(formId) {
-  if (!formId) return [];
-
-  let rerenderScopes = querySelectorAllDeep(`product-rerender[observe-form="${escapeCssValue(formId)}"]`);
-  if (rerenderScopes.length === 0) {
-    rerenderScopes = querySelectorAllDeep("product-rerender");
-  }
-
-  let variantPickers = [];
-  rerenderScopes.forEach((scope) => {
-    variantPickers.push(...querySelectorAllDeep("variant-picker", scope));
-  });
-
-  if (variantPickers.length === 0) {
-    variantPickers = querySelectorAllDeep(`variant-picker[form-id="${escapeCssValue(formId)}"]`);
-  }
-
-  return variantPickers;
-}
-
-function runSizeResetForFormId(formId) {
-  const variantPickers = getVariantPickersForFormId(formId);
-
-  variantPickers.forEach((variantPicker) => {
-    resetSizeOptionsForVariantPicker(variantPicker);
-  });
-}
-
-function onVariantPickerChange(event) {
-  const target = event.target;
-  if (!(target instanceof HTMLInputElement)) return;
-  if (target.type !== "radio") return;
-
-  const variantPicker = target.closest("variant-picker");
-  if (!variantPicker) return;
-  const form = target.form || target.closest("form");
-  if (!form) return;
-
-  // Mark only the option actually chosen by user for this option group.
-  Array.from(form.elements).forEach((item) => {
-    if (!(item instanceof HTMLInputElement)) return;
-    if (item.type !== "radio") return;
-    if (!item.matches("input[data-option-position]")) return;
-    if (item.name !== target.name) return;
-    item.removeAttribute("data-manually");
-  });
-  target.setAttribute("data-manually", "true");
-
-  const isSizeOption = Boolean(target.closest('.variant-picker__option[data-option-type*="size"]'));
-
-  if (!isSizeOption) {
-    return;
-  }
-
-  rememberQuickBuySizePosition(target);
-
-  if (!target.checked) return;
-
-  updateBuyButtonStateForVariantPicker(variantPicker);
-}
-
-document.addEventListener("change", onVariantPickerChange, true);
-
-function onVariantChanged(event) {
-  const form = event.target instanceof HTMLFormElement ? event.target : null;
-  const formId = form?.id || event.detail?.formId || null;
-
-  runSizeResetForFormId(formId);
-}
-
-document.addEventListener("variant:change", onVariantChanged);
-
-function onProductRerender(event) {
-  const form = event.target instanceof HTMLFormElement ? event.target : null;
-  const formId = form?.id || null;
-  if (!formId) return;
-
-  // Wait one tick so replaced nodes are in DOM before scanning.
-  setTimeout(() => {
-    runSizeResetForFormId(formId);
-  }, 0);
-}
-
-document.addEventListener("product:rerender", onProductRerender);
-
-function onProductRerenderFull(event) {
-  const rerenderElement = event.target;
-  const quickBuyModal = rerenderElement.closest("quick-buy-modal");
-  if (!quickBuyModal) return;
-
-  // Wait one tick so replaced nodes are fully painted before scanning.
-  setTimeout(() => {
-    processAllVariantPickers(rerenderElement);
-  }, 0);
-}
-
-document.addEventListener("product:rerender:full", onProductRerenderFull);
-
-function setupQuickBuySizeReset() {
-  querySelectorAllDeep("quick-buy-modal").forEach((quickBuyModal) => {
-    if (quickBuyModal.dataset.sizeResetAttached === "true") return;
-
-    quickBuyModal.dataset.sizeResetAttached = "true";
-
-    let mutationTimerId = null;
-    const scheduleModalRecheck = (reason) => {
-      if (mutationTimerId) {
-        clearTimeout(mutationTimerId);
-      }
-
-      mutationTimerId = setTimeout(() => {
-        processAllVariantPickers(quickBuyModal);
-        mutationTimerId = null;
-      }, 0);
-    };
-
-    quickBuyModal.addEventListener("dialog:after-show", () => {
-      scheduleModalRecheck("dialog:after-show");
+      clearedPositions.add(position);
     });
 
-    const observer = new MutationObserver((mutationList) => {
+    // Disable buy button since sizes might be unchecked
+    updateBuyButtonStateForVariantPicker(variantPicker);
+  });
+}
+
+function setupContentUpdateListeners() {
+  // Setup MutationObserver for main product section
+  const mainProductSection = document.querySelector(".shopify-section--main-product");
+  if (mainProductSection) {
+    const mainProductObserver = new MutationObserver((mutationList) => {
       const hasStructuralChanges = mutationList.some(
         (mutation) => mutation.type === "childList" && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0),
       );
 
       if (hasStructuralChanges) {
-        scheduleModalRecheck("mutation");
+        // Wait one tick for new content to be rendered
+        setTimeout(() => {
+          clearSizeCheckedStates(mainProductSection);
+        }, 0);
       }
     });
 
-    observer.observe(quickBuyModal, { childList: true, subtree: true });
+    mainProductObserver.observe(mainProductSection, { childList: true, subtree: true });
+  }
+
+  // Setup MutationObserver for quick-buy-modal
+  querySelectorAllDeep("quick-buy-modal").forEach((quickBuyModal) => {
+    const quickBuyObserver = new MutationObserver((mutationList) => {
+      const hasStructuralChanges = mutationList.some(
+        (mutation) => mutation.type === "childList" && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0),
+      );
+
+      if (hasStructuralChanges) {
+        // Wait one tick for new content to be rendered
+        setTimeout(() => {
+          clearSizeCheckedStates(quickBuyModal);
+        }, 0);
+      }
+    });
+
+    quickBuyObserver.observe(quickBuyModal, { childList: true, subtree: true });
   });
 }
 
+function onSizeOptionChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return;
+  if (target.type !== "radio") return;
+
+  const sizeOptionBlock = target.closest('.variant-picker__option[data-option-type*="size"]');
+  if (!sizeOptionBlock) return;
+
+  const variantPicker = target.closest("variant-picker");
+  if (!variantPicker) return;
+
+  // Get the scope (main-product section or quick-buy-modal)
+  const mainProductSection = sizeOptionBlock.closest(".shopify-section--main-product");
+  const quickBuyModal = sizeOptionBlock.closest("quick-buy-modal");
+  const scopeRoot = mainProductSection || quickBuyModal;
+
+  // Get the position of this size block
+  const sizePosition = sizeOptionBlock.getAttribute("data-option-position");
+
+  // Remember that this position was manually selected
+  if (scopeRoot && sizePosition && target.checked) {
+    addManuallySelectedSizePosition(scopeRoot, sizePosition);
+  }
+
+  // Update buy button state when size is selected
+  updateBuyButtonStateForVariantPicker(variantPicker);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  processAllVariantPickers(document);
-  setupQuickBuySizeReset();
+  // Clear main product section on page load
+  const mainProductSection = document.querySelector(".shopify-section--main-product");
+  if (mainProductSection) {
+    clearSizeCheckedStates(mainProductSection);
+  }
+  
+  // Clear quick-buy-modals on page load
+  querySelectorAllDeep("quick-buy-modal").forEach((quickBuyModal) => {
+    clearSizeCheckedStates(quickBuyModal);
+  });
+  
+  // Setup listeners for content updates
+  setupContentUpdateListeners();
+  
+  // Setup listener for size selection
+  document.addEventListener("change", onSizeOptionChange, true);
 });
 
 class SizeCalculator extends HTMLElement {
