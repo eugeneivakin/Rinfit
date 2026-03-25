@@ -348,7 +348,7 @@
             "subheading": "",
             "title": "Women’s Rings",
             "button_text": "Shop now",
-            "button_link": "",
+            "button_link": "shopify://collections/women-rings",
             "button_style": "link",
             "overlay_color": "#000000",
             "overlay_opacity": 70
@@ -365,7 +365,7 @@
             "subheading": "",
             "title": "Men’s Rings",
             "button_text": "shop now",
-            "button_link": "",
+            "button_link": "shopify://collections/men-rings",
             "button_style": "link",
             "overlay_color": "#000000",
             "overlay_opacity": 70
@@ -382,7 +382,7 @@
             "subheading": "",
             "title": "Couple Bundles",
             "button_text": "shop now",
-            "button_link": "",
+            "button_link": "shopify://collections/couple-bundle",
             "button_style": "link",
             "overlay_color": "#000000",
             "overlay_opacity": 70
@@ -399,7 +399,7 @@
             "subheading": "",
             "title": "Sets",
             "button_text": "Shop now",
-            "button_link": "",
+            "button_link": "shopify://collections/ring-bundles",
             "button_style": "link",
             "overlay_color": "#000000",
             "overlay_opacity": 70
@@ -416,7 +416,24 @@
             "subheading": "",
             "title": "Ring Protectors",
             "button_text": "shop now",
-            "button_link": "",
+            "button_link": "shopify://collections/ring-protector",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 70
+          }
+        },
+        "collection_cPU9ND": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "collection": "accessories",
+            "image": "shopify://shop_images/MIALL.jpg",
+            "expand_collection": false,
+            "content_position": "place-self-end-center text-center",
+            "subheading": "",
+            "title": "Accessories",
+            "button_text": "shop now",
+            "button_link": "shopify://collections/ring-protector",
             "button_style": "link",
             "overlay_color": "#000000",
             "overlay_opacity": 70
@@ -428,7 +445,8 @@
         "collection_GbAy8c",
         "collection_jkUWLJ",
         "collection_zLE7mc",
-        "collection_pzPtXe"
+        "collection_pzPtXe",
+        "collection_cPU9ND"
       ],
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
