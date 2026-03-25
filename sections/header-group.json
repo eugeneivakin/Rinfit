@@ -81,12 +81,12 @@
         "logo_mobile_max_width": 120,
         "menu": "header-menu-miledev",
         "sidebar_menu_collection_list": [
-          "gift-card",
           "glowstone",
           "gemstones",
-          "classic-rings",
+          "metal-framed-collection",
           "metal-accent",
-          "metal-framed-collection"
+          "classic-rings",
+          "gift-card"
         ],
         "sidebar_menu": "",
         "sidebar_menu_second": "second-menu",
