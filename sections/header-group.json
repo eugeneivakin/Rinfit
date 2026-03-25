@@ -81,14 +81,12 @@
         "logo_mobile_max_width": 120,
         "menu": "header-menu-miledev",
         "sidebar_menu_collection_list": [
-          "stone",
-          "oval-frame",
-          "metal-heart",
-          "infinity",
-          "stars",
-          "round",
-          "pear-frame",
-          "gift-card"
+          "gift-card",
+          "glowstone",
+          "gemstones",
+          "classic-rings",
+          "metal-accent",
+          "metal-framed-collection"
         ],
         "sidebar_menu": "",
         "sidebar_menu_second": "second-menu",
