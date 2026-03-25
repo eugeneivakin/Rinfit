@@ -380,7 +380,7 @@
             "expand_collection": false,
             "content_position": "place-self-end-center text-center",
             "subheading": "",
-            "title": "Couple Bundles",
+            "title": "Couple Sets",
             "button_text": "shop now",
             "button_link": "shopify://collections/couple-bundle",
             "button_style": "link",
@@ -427,7 +427,24 @@
           "settings": {
             "color_scheme": "scheme-1",
             "collection": "accessories",
-            "image": "shopify://shop_images/MIALL.jpg",
+            "image": "shopify://shop_images/5_b56c08d2-7297-4350-a593-b63b3b5b841e.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-center text-center",
+            "subheading": "",
+            "title": "Accessories",
+            "button_text": "shop now",
+            "button_link": "shopify://collections/ring-protector",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 70
+          }
+        },
+        "collection_8Ktqm9": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "collection": "accessories",
+            "image": "shopify://shop_images/5_b56c08d2-7297-4350-a593-b63b3b5b841e.png",
             "expand_collection": false,
             "content_position": "place-self-end-center text-center",
             "subheading": "",
@@ -446,7 +463,8 @@
         "collection_jkUWLJ",
         "collection_zLE7mc",
         "collection_pzPtXe",
-        "collection_cPU9ND"
+        "collection_cPU9ND",
+        "collection_8Ktqm9"
       ],
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
