@@ -393,7 +393,7 @@
           "settings": {
             "color_scheme": "scheme-1",
             "collection": "ring-bundles",
-            "image": "shopify://shop_images/sets_b7bc173d-64bd-4782-b87c-8f7c861820a4.jpg",
+            "image": "shopify://shop_images/DSC_6541.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-center text-center",
             "subheading": "",
@@ -410,7 +410,7 @@
           "settings": {
             "color_scheme": "scheme-1",
             "collection": "ring-protector",
-            "image": "shopify://shop_images/Smart_ring_banner.jpg",
+            "image": "shopify://shop_images/147.png",
             "expand_collection": false,
             "content_position": "place-self-end-center text-center",
             "subheading": "",
@@ -427,7 +427,7 @@
           "settings": {
             "color_scheme": "scheme-1",
             "collection": "accessories",
-            "image": "shopify://shop_images/5_b56c08d2-7297-4350-a593-b63b3b5b841e.png",
+            "image": "shopify://shop_images/13_6a436c1b-9e86-4885-8bfd-faec427ed587.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-center text-center",
             "subheading": "",
@@ -444,13 +444,30 @@
           "settings": {
             "color_scheme": "scheme-1",
             "collection": "accessories",
-            "image": "shopify://shop_images/5_b56c08d2-7297-4350-a593-b63b3b5b841e.png",
+            "image": "shopify://shop_images/Mystery_Bag_3.jpg",
             "expand_collection": false,
             "content_position": "place-self-end-center text-center",
             "subheading": "",
-            "title": "Accessories",
+            "title": "Mystery Bag",
             "button_text": "shop now",
-            "button_link": "shopify://collections/ring-protector",
+            "button_link": "shopify://products/mystery-bag-limited-edition",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 70
+          }
+        },
+        "collection_Utfgmg": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "collection": "accessories",
+            "image": "shopify://shop_images/ChatGPT_Image_Mar_26_2026_08_40_51_AM.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-center text-center",
+            "subheading": "",
+            "title": "Gift Card",
+            "button_text": "shop now",
+            "button_link": "shopify://products/rinfit-silicone-wedding-rings-gift-card",
             "button_style": "link",
             "overlay_color": "#000000",
             "overlay_opacity": 70
@@ -464,7 +481,8 @@
         "collection_zLE7mc",
         "collection_pzPtXe",
         "collection_cPU9ND",
-        "collection_8Ktqm9"
+        "collection_8Ktqm9",
+        "collection_Utfgmg"
       ],
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
