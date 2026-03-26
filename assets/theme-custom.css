@@ -226,6 +226,12 @@ size-chart-button {
   grid-template-columns: 1fr;
 }
 
+@media screen and (min-width: 700px) {
+  .product-sticky-bar {
+    grid-template-columns: minmax(0, 1fr) max-content max-content;
+  }
+}
+
 body {
   line-height: 1.4286;
   min-width: 320px;
