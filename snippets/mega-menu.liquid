@@ -24,7 +24,9 @@
       <ul class="mega-menu__linklist unstyled-list">
         {%- for sub_link in link.links -%}
           <li class="v-stack justify-items-start gap-2">
-            {% render 'featured-image-for-menu-item', link: sub_link %}
+            {% if block.settings.show_menu_items_images %}
+              {% render 'featured-image-for-menu-item', link: sub_link %}
+            {% endif %}
 
             <a href="{{ sub_link.url }}" class="h6">{{ sub_link.title }}</a>
 
