@@ -40,6 +40,7 @@
         "mega_menu_7NWKtk": {
           "type": "mega_menu",
           "settings": {
+            "show_menu_items_images": false,
             "menu_item": "Company",
             "images_position": "right",
             "image_1": "shopify://shop_images/ChatGPT_Image_Mar_26_2026_12_41_25_PM.png",
@@ -54,6 +55,7 @@
         "mega_menu_3CM8q8": {
           "type": "mega_menu",
           "settings": {
+            "show_menu_items_images": false,
             "menu_item": "Shop",
             "images_position": "right",
             "image_1": "shopify://shop_images/BBS75.jpg",
@@ -86,7 +88,9 @@
           "metal-framed-collection",
           "metal-accent",
           "classic-rings",
-          "gift-card"
+          "diamond-collection-sale",
+          "stackables",
+          "ring-protector"
         ],
         "sidebar_menu": "",
         "sidebar_menu_second": "second-menu",
