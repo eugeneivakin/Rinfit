@@ -1,0 +1,41 @@
+@use "mixins/media" as *;
+
+.product-sticky-bar {
+  background: rgb(var(--background));
+  display: grid;
+  gap: 1rem;
+
+  @include sm {
+    grid-template-columns: minmax(0, 1fr) max-content max-content;
+  }
+
+  .product-sticky-bar__info {
+    .price-list {
+      --text-h6: calc(0.85rem * var(--text-heading-size-factor));
+      margin: 0.5rem 0 0;
+    }
+  }
+
+  .variant-picker {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    @include sm {
+      grid-template-columns: 1fr;
+    }
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .variant-picker__option {
+    gap: 0.5rem;
+
+    legend,
+    .variant-picker__selected-variant {
+      font-weight: var(--heading-font-weight);
+    }
+  }
+}

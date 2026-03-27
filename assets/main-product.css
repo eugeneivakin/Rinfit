@@ -258,11 +258,11 @@
   color: rgb(var(--text-color)/0.4);
   text-transform: capitalize;
 }
-.product-info__block-list .variant-picker__option-values :checked + .color-swatch,
+.product-info__block-list .variant-picker__option-values [checked] + .color-swatch,
 .product-info__block-list .variant-picker__option-values .color-swatch.is-selected {
   box-shadow: 0 0 0 var(--swatch-border-size) rgb(var(--text-color)/0.6);
 }
-.product-info__block-list .variant-picker__option-values :checked + .block-swatch,
+.product-info__block-list .variant-picker__option-values [checked] + .block-swatch,
 .product-info__block-list .variant-picker__option-values .block-swatch.is-selected {
   box-shadow: 0 0 0 var(--swatch-border-size) rgb(var(--text-color)/1);
   background: rgb(var(--button-background));

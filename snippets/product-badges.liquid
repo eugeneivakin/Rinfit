@@ -30,7 +30,7 @@ Supported variables
         {%- assign custom_badges = product.metafields.custom.badges.value -%}
 
         {%- for custom_badge in custom_badges -%}
-          <span class="badge badge--custom badge--{{ custom_badge | handle }}">{{ custom_badge }}</span>
+          <span class="badge badge--custom badge--{{ custom_badge.badge_label | handle }}">{{ custom_badge.badge_label }}</span>
         {%- endfor -%}
 
       {%- when 'sold_out' -%}

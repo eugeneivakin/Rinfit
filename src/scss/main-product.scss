@@ -284,12 +284,12 @@
 
   .variant-picker__option-values {
 
-    :checked + .color-swatch,
+    [checked] + .color-swatch,
     .color-swatch.is-selected {
       box-shadow: 0 0 0 var(--swatch-border-size) rgb(var(--text-color) / 0.6);
     }
 
-    :checked + .block-swatch,
+    [checked] + .block-swatch,
     .block-swatch.is-selected {
       box-shadow: 0 0 0 var(--swatch-border-size) rgb(var(--text-color) / 1);
       background: rgb(var(--button-background));

@@ -226,6 +226,43 @@ size-chart-button {
   grid-template-columns: 1fr;
 }
 
+.product-sticky-bar {
+  background: rgb(var(--background));
+  display: grid;
+  gap: 1rem;
+}
+@media screen and (min-width: 700px) {
+  .product-sticky-bar {
+    grid-template-columns: minmax(0, 1fr) max-content max-content;
+  }
+}
+.product-sticky-bar .product-sticky-bar__info .price-list {
+  --text-h6: calc(0.85rem * var(--text-heading-size-factor));
+  margin: 0.5rem 0 0;
+}
+.product-sticky-bar .variant-picker {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media screen and (min-width: 700px) {
+  .product-sticky-bar .variant-picker {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .product-sticky-bar .variant-picker {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.product-sticky-bar .variant-picker__option {
+  gap: 0.5rem;
+}
+.product-sticky-bar .variant-picker__option legend,
+.product-sticky-bar .variant-picker__option .variant-picker__selected-variant {
+  font-weight: var(--heading-font-weight);
+}
+
 body {
   line-height: 1.4286;
   min-width: 320px;

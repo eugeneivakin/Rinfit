@@ -131,7 +131,7 @@
 {%- if section.settings.show_sticky_add_to_cart and product.available -%}
   <product-rerender id="{{ product_form_id }}-sticky-bar" observe-form="{{ product_form_id }}">
     <product-sticky-bar form="{{ product_form_id }}" class="product-sticky-bar">
-      <div class="product-sticky-bar__info sm-max:hidden">
+      <div class="product-sticky-bar__info">
         <div class="h-stack gap-6">
           {%- if product.media.size > 0 -%}
             {%- assign default_media = product.selected_or_first_available_variant.featured_media
@@ -145,7 +145,7 @@
           {%- endif -%}
 
           <div class="v-stack">
-            <span class="h6">{{ product.title }}</span>
+            <span class="h4">{{ product.title }}</span>
 
             {%- if product.selected_or_first_available_variant != null -%}
               {%- render 'price-list',
@@ -157,6 +157,23 @@
           </div>
         </div>
       </div>
+
+      {%- assign block_variant_picker = section.blocks | where: 'type', 'variant_picker' -%}
+
+      {%- if product != blank -%}
+        {%- render 'x-variant-picker',
+          block: block_variant_picker,
+          product: product,
+          context: 'sticky-bar',
+          form_id: product_form_id,
+          hide_sold_out_variants: block_variant_picker.settings.hide_sold_out_variants,
+          selector_style: 'dropdown',
+          swatch_selector_style: 'none',
+          variant_image_options: block_variant_picker.settings.variant_image_options,
+          show_measurement: block_variant_picker.settings.show_measurement,
+          size_chart_page: block_variant_picker.settings.size_chart_page
+        -%}
+      {%- endif -%}
 
       <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ product_form_id }}">
         {%- liquid
