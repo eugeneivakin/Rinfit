@@ -90,6 +90,11 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
   color: rgb(var(--text-color)/0.9);
 }
 
+.header-sidebar__nested-linklist {
+  font-size: 16px;
+  row-gap: 1rem;
+  margin-block-start: 10px;
+}
 .header-sidebar__nested-linklist a,
 .header-sidebar__nested-linklist .link-faded-reverse {
   text-transform: capitalize;

@@ -14,7 +14,7 @@
   }
 
   .h6 {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     text-transform: uppercase;
 
@@ -25,12 +25,11 @@
   }
 
   .h1 {
-    font-size: 36px;
-    // line-height: 1;
+    font-size: 44px;
     margin-block-start: 3px;
 
     @include md {
-      font-size: 59px;
+      font-size: 66px;
       line-height: 0.9661;
     }
   }

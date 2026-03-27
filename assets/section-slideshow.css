@@ -11,7 +11,7 @@
   }
 }
 .shopify-section--slideshow .h6 {
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -22,12 +22,12 @@
   }
 }
 .shopify-section--slideshow .h1 {
-  font-size: 36px;
+  font-size: 44px;
   margin-block-start: 3px;
 }
 @media screen and (min-width: 1000px) {
   .shopify-section--slideshow .h1 {
-    font-size: 59px;
+    font-size: 66px;
     line-height: 0.9661;
   }
 }
