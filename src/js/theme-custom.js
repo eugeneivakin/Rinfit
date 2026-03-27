@@ -31,8 +31,18 @@ function updateBuyButtonStateForVariantPicker(variantPicker) {
   const sizeOptionBlocks = querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker);
   if (sizeOptionBlocks.length === 0) return;
 
+  const scopeRoot =
+    variantPicker.closest(".shopify-section--main-product") ||
+    variantPicker.closest("quick-buy-modal") ||
+    variantPicker.closest("product-rerender") ||
+    document;
+  const manuallySelectedPositions = getManuallySelectedSizePositions(scopeRoot);
+
   const isEverySizeSelected = sizeOptionBlocks.every((sizeOptionBlock) => {
-    return querySelectorAllDeep('input[type="radio"]:checked', sizeOptionBlock).length > 0;
+    const position = sizeOptionBlock.getAttribute("data-option-position");
+    const hasCheckedInput = querySelectorAllDeep('input[type="radio"]:checked', sizeOptionBlock).length > 0;
+
+    return hasCheckedInput || (position && manuallySelectedPositions.includes(position));
   });
 
   const buyBtn = getBuyButtonForVariantPicker(variantPicker);
@@ -76,24 +86,42 @@ function addManuallySelectedSizePosition(scopeRoot, position) {
   scopeRoot.dataset.selectedSizePositions = positions.join(",");
 }
 
+function getSizeNotSelectedLabel() {
+  return window.themeStrings?.addedToCartDisabled || "";
+}
+
+function getSizeLabelFromInput(input, sizeOptionBlock) {
+  if (!(input instanceof HTMLInputElement)) return "";
+
+  let optionLabel = null;
+  if (input.id) {
+    optionLabel = querySelectorAllDeep(`label[for="${escapeCssValue(input.id)}"]`, sizeOptionBlock)[0] || null;
+  }
+
+  const labelText = optionLabel?.querySelector("span")?.textContent?.trim();
+  return labelText || input.value || "";
+}
+
+function setSizeDisplayText(sizeOptionBlock, text) {
+  querySelectorAllDeep(".variant-picker__selected-variant", sizeOptionBlock).forEach((el) => {
+    el.textContent = text;
+  });
+
+  querySelectorAllDeep('button.select [id$="-selected-value"]', sizeOptionBlock).forEach((el) => {
+    el.textContent = text;
+  });
+}
+
 function clearSizeCheckedStates(scopeRoot = document) {
   // Get manually selected positions from the scope
   const manuallySelectedPositions = getManuallySelectedSizePositions(scopeRoot);
-  // Track already cleared positions to avoid clearing the same block multiple times
-  const clearedPositions = new Set();
 
   querySelectorAllDeep('variant-picker', scopeRoot).forEach((variantPicker) => {
     querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker).forEach((sizeOptionBlock) => {
       const position = sizeOptionBlock.getAttribute("data-option-position");
-      
-      // Skip if already processed
-      if (position && clearedPositions.has(position)) {
-        return;
-      }
 
       // Skip if this position was manually selected
       if (position && manuallySelectedPositions.includes(position)) {
-        clearedPositions.add(position);
         return;
       }
 
@@ -103,12 +131,8 @@ function clearSizeCheckedStates(scopeRoot = document) {
         input.removeAttribute("checked");
       });
 
-      // Clear selected variant display
-      querySelectorAllDeep(".variant-picker__selected-variant", sizeOptionBlock).forEach((el) => {
-        el.textContent = "";
-      });
-
-      clearedPositions.add(position);
+      // Clear selected variant display in both legend and dropdown-style selector.
+      setSizeDisplayText(sizeOptionBlock, getSizeNotSelectedLabel());
     });
 
     // Disable buy button since sizes might be unchecked
@@ -179,8 +203,20 @@ function onSizeOptionChange(event) {
     addManuallySelectedSizePosition(scopeRoot, sizePosition);
   }
 
-  // Update buy button state when size is selected
-  updateBuyButtonStateForVariantPicker(variantPicker);
+  // Keep UI text in sync for dropdown-style size selectors.
+  if (target.checked) {
+    setSizeDisplayText(sizeOptionBlock, getSizeLabelFromInput(target, sizeOptionBlock));
+  }
+
+  // Update buy button state for all variant pickers in the same scope
+  // (main product + optional sticky bar, or a quick-buy modal).
+  if (scopeRoot) {
+    querySelectorAllDeep("variant-picker", scopeRoot).forEach((picker) => {
+      updateBuyButtonStateForVariantPicker(picker);
+    });
+  } else {
+    updateBuyButtonStateForVariantPicker(variantPicker);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

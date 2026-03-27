@@ -21,7 +21,7 @@ function compilescss() {
 }
 
 function jsmin() {
-  return src("src/js/*.js").pipe(terser()).pipe(dest("assets"));
+  return src("src/js/*.js")./*pipe(terser()).*/pipe(dest("assets"));
 }
 
 function minifyAssetsJS() {
@@ -52,5 +52,5 @@ function watchTask() {
   watch("src/images/*.{jpg,png}", optimizeImg);
 }
 
-exports.default = series(compilescss, fonts, jsmin, optimizeImg, watchTask);
+exports.default = series(compilescss, jsmin, watchTask);
 exports.minifyAssetsJS = minifyAssetsJS;

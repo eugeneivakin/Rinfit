@@ -117,11 +117,7 @@
 
             <button type="button" class="select" aria-controls="{{ popover_id }}" aria-expanded="false">
               <span id="{{ popover_id }}-selected-value">
-                {%- if option.name contains 'Size' -%}
-                  {{- 'product.general.added_to_cart_disabled' | t -}}
-                {%- else -%}
-                  {{- option.selected_value -}}
-                {%- endif -%}
+                {{- option.selected_value -}}
               </span>
               {%- render 'icon' with 'dropdown-chevron' -%}
             </button>
@@ -137,6 +133,13 @@
                 {%- assign param_name = form_id | append: '-option' | append: option.position -%}
 
                 {%- for option_value in option.values -%}
+                  {%- assign option_input_id = param_name
+                    | append: '-'
+                    | append: option_value.id
+                    | append: '--'
+                    | append: context
+                  -%}
+
                   {%- capture option_markup -%}
                     <span>{{- option_value -}}</span>
 
@@ -158,7 +161,7 @@
                           <input
                             class="sr-only"
                             type="radio"
-                            id="{{ param_name }}-{{ option_value.id }}"
+                            id="{{ option_input_id }}"
                             form="{{ form_id }}"
                             name="{{ param_name }}"
                             data-option-position="{{ option.position }}"
@@ -177,13 +180,13 @@
                     {%- else -%}
                       <label
                         class="popover__value-option h-stack justify-between gap-2"
-                        for="{{ param_name }}-{{ option_value.id }}"
+                        for="{{ option_input_id }}"
                       >
                         <input
                           class="sr-only"
                           form="{{ form_id }}"
                           type="radio"
-                          id="{{ param_name }}-{{ option_value.id }}"
+                          id="{{ option_input_id }}"
                           name="{{ param_name }}"
                           {% if option_value.product_url != blank %}
                             data-product-url="{{ option_value.product_url | escape }}"
@@ -220,13 +223,17 @@
               for option_value in option.values
                 case resolved_option_selector_style
                   when 'variant_image'
-                    render 'option-value', type: 'thumbnail', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                    assign option_id_prefix = context | append: '-' | append: forloop.index
+                    render 'option-value', type: 'thumbnail', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: option_id_prefix
                   when 'swatch'
-                    render 'x-option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, data_option_type: data_option_type
+                    assign option_id_prefix = context | append: '-' | append: forloop.index
+                    render 'x-option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: option_id_prefix, data_option_type: data_option_type
                   when 'block'
-                    render 'x-option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, data_option_type: data_option_type
+                    assign option_id_prefix = context | append: '-' | append: forloop.index
+                    render 'x-option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: option_id_prefix, data_option_type: data_option_type
                   when 'block_swatch'
-                    render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                    assign option_id_prefix = context | append: '-' | append: forloop.index
+                    render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: option_id_prefix
                 endcase
               endfor
             %}
