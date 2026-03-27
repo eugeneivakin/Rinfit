@@ -148,7 +148,7 @@
                         <ul class="v-stack gap-3 unstyled-list" role="list">
                           {%- for link in menu.links -%}
                             <li>
-                              <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
+                              <a href="{{ link.url }}" class="link-faded" data-title="{{ link.title }}">{{ link.title }}</a>
                             </li>
                           {%- endfor -%}
                         </ul>

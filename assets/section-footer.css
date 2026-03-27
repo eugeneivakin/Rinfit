@@ -20,6 +20,29 @@
 }
 .footer .link-faded {
   color: rgb(var(--text-color)/1);
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+.footer .link-faded:before {
+  content: attr(data-title);
+  width: -moz-max-content;
+  width: max-content;
+  height: 2px;
+  transform-origin: var(--transform-origin-start);
+  background: rgb(var(--text-color));
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  inset-block-end: -6px;
+  transform: scaleX(0);
+}
+.footer .link-faded:hover:before {
+  transform: scaleX(1);
 }
 .footer .localization-selectors:has(:only-child) {
   justify-content: flex-start;
