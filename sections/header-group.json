@@ -39,6 +39,7 @@
       "blocks": {
         "mega_menu_7NWKtk": {
           "type": "mega_menu",
+          "disabled": true,
           "settings": {
             "show_menu_items_images": false,
             "menu_item": "Company",
