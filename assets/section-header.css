@@ -203,6 +203,9 @@ header:has(x-header.is-solid) ~ .header-sidebar::part(base) {
 .header__menu-disclosure[aria-expanded=true]::before {
   opacity: 1;
 }
+.header__menu-disclosure .header__dropdown-menu {
+  z-index: 10;
+}
 
 .mega-menu {
   border-block-end-width: 0;
