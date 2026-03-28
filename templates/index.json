@@ -204,7 +204,7 @@
         "richtext_wmfpUm": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Designed to shine with every move, these rings bring a bold, jewel-like look with the comfort of silicone. Perfect for everyday elegance with zero compromise.</p>"
+            "content": "<p>Shine with every move in rings that blend bold, jewel-like style with the flexible comfort of silicone for everyday wear.</p>"
           }
         },
         "button_PqqaDc": {
@@ -212,7 +212,7 @@
           "settings": {
             "style": "solid",
             "text": "SHOP ALL",
-            "url": "shopify://collections/gemstones",
+            "url": "shopify://collections/glowstone",
             "background": "",
             "text_color": ""
           }
