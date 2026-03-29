@@ -40,6 +40,7 @@
         },
         "links_fFLErh": {
           "type": "links",
+          "disabled": true,
           "settings": {
             "menu": "collections",
             "show_menu_title": true,
