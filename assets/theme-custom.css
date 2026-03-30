@@ -226,6 +226,10 @@ size-chart-button {
   grid-template-columns: 1fr;
 }
 
+#PBarNextFrameWrapper {
+  display: none !important;
+}
+
 .product-sticky-bar {
   background: rgb(var(--background));
   display: grid;
@@ -261,6 +265,27 @@ size-chart-button {
 .product-sticky-bar .variant-picker__option legend,
 .product-sticky-bar .variant-picker__option .variant-picker__selected-variant {
   font-weight: var(--heading-font-weight);
+}
+.product-sticky-bar .variant-picker__option-info {
+  display: none;
+}
+.product-sticky-bar .variant-picker__option-values label,
+.product-sticky-bar .variant-picker__option-values img {
+  border-radius: 100%;
+}
+.product-sticky-bar [data-bar-close] {
+  border: 0;
+  border-radius: 100%;
+  min-height: 0;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: auto;
+}
+.product-sticky-bar [data-bar-close]:not([disabled]):hover {
+  background: none;
+  color: rgb(var(--button-background, var(--text-color)));
 }
 
 body {

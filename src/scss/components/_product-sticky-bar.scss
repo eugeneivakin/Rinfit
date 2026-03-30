@@ -1,5 +1,9 @@
 @use "mixins/media" as *;
 
+#PBarNextFrameWrapper {
+  display: none !important;
+}
+
 .product-sticky-bar {
   background: rgb(var(--background));
   display: grid;
@@ -36,6 +40,33 @@
     legend,
     .variant-picker__selected-variant {
       font-weight: var(--heading-font-weight);
+    }
+  }
+
+  .variant-picker__option-info {
+    display: none;
+  }
+
+  .variant-picker__option-values {
+    label,
+    img {
+      border-radius: 100%;
+    }
+  }
+
+  [data-bar-close] {
+    border: 0;
+    border-radius: 100%;
+    min-height: 0;
+    padding: 0;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: auto;
+
+    &:not([disabled]):hover {
+      background: none;
+      color: rgb(var(--button-background, var(--text-color)));
     }
   }
 }

@@ -145,7 +145,7 @@
           {%- endif -%}
 
           <div class="v-stack">
-            <span class="h4">{{ product.title }}</span>
+            <span class="h4 line-clamp" style="--line-clamp-count: 1">{{ product.title }}</span>
 
             {%- if product.selected_or_first_available_variant != null -%}
               {%- render 'price-list',
@@ -167,8 +167,8 @@
           context: 'sticky-bar',
           form_id: product_form_id,
           hide_sold_out_variants: block_variant_picker.settings.hide_sold_out_variants,
-          selector_style: 'dropdown',
-          swatch_selector_style: 'none',
+          selector_style: 'block',
+          swatch_selector_style: 'swatch',
           variant_image_options: block_variant_picker.settings.variant_image_options,
           show_measurement: block_variant_picker.settings.show_measurement,
           size_chart_page: block_variant_picker.settings.size_chart_page
@@ -205,6 +205,10 @@
           disabled: button_disabled
         -%}
       </buy-buttons>
+
+      <button data-bar-close class="button button--outline">
+        {%- render 'icon' with 'close' -%}
+      </button>
     </product-sticky-bar>
   </product-rerender>
 {%- endif -%}
