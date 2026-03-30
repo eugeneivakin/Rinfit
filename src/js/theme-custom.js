@@ -67,7 +67,7 @@ function updateBuyButtonStateForVariantPicker(variantPicker) {
 
 function getManuallySelectedSizePositions(scopeRoot) {
   if (!scopeRoot) return [];
-  
+
   const rawValue = scopeRoot.dataset.selectedSizePositions || "";
   return rawValue
     .split(",")
@@ -116,7 +116,7 @@ function clearSizeCheckedStates(scopeRoot = document) {
   // Get manually selected positions from the scope
   const manuallySelectedPositions = getManuallySelectedSizePositions(scopeRoot);
 
-  querySelectorAllDeep('variant-picker', scopeRoot).forEach((variantPicker) => {
+  querySelectorAllDeep("variant-picker", scopeRoot).forEach((variantPicker) => {
     querySelectorAllDeep('.variant-picker__option[data-option-type*="size"]', variantPicker).forEach((sizeOptionBlock) => {
       const position = sizeOptionBlock.getAttribute("data-option-position");
 
@@ -225,15 +225,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (mainProductSection) {
     clearSizeCheckedStates(mainProductSection);
   }
-  
+
   // Clear quick-buy-modals on page load
   querySelectorAllDeep("quick-buy-modal").forEach((quickBuyModal) => {
     clearSizeCheckedStates(quickBuyModal);
   });
-  
+
   // Setup listeners for content updates
   setupContentUpdateListeners();
-  
+
   // Setup listener for size selection
   document.addEventListener("change", onSizeOptionChange, true);
 });
