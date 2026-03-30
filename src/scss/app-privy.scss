@@ -1,15 +1,39 @@
 @use "mixins/media" as *;
 
 #privy-container {
-  .privy-popup-inner-content-wrap {
-    // @include sm-max {
-    //   width: 100% ;
-    // }
+  #privy-inner-container {
+    .privy-popup-container .privy-popup-content-wrap .privy-popup-inner-content-wrap {
+      @include sm-max {
+        overflow: hidden !important;
+      }
+    }
+
+    .privy-custom-tab-close {
+      animation: privy-bounce-in 450ms 1 ease-in-out;
+      background: rgba(0, 0, 0, 0.7);
+      border: 0;
+      border-radius: 100%;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      height: 20px;
+      left: 12px;
+      padding: 0 0 4px;
+      pointer-events: auto;
+      position: absolute;
+      top: 4px;
+      width: 20px;
+      z-index: 11001000;
+
+      &:hover {
+        background: #c44536;
+      }
+    }
   }
-  
+
   .privy-popup-content {
     @include sm-max {
-      // height: 700px !important;
       margin: 200px 0 0;
       overflow: visible !important;
     }
@@ -37,11 +61,5 @@
         transform: translateX(-50%);
       }
     }
-  }
-}
-
-#privy-container #privy-inner-container .privy-popup-container .privy-popup-content-wrap .privy-popup-inner-content-wrap {
-  @include sm-max {
-    overflow: hidden !important;
   }
 }

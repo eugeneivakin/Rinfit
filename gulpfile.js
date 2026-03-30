@@ -21,7 +21,7 @@ function compilescss() {
 }
 
 function jsmin() {
-  return src("src/js/*.js")./*pipe(terser()).*/pipe(dest("assets"));
+  return src(["src/js/*.js", "!src/js/_*.js"])./*pipe(terser()).*/pipe(dest("assets"));
 }
 
 function minifyAssetsJS() {
