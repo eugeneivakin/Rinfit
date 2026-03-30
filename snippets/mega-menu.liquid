@@ -28,7 +28,7 @@
               {% render 'featured-image-for-menu-item', link: sub_link %}
             {% endif %}
 
-            <a href="{{ sub_link.url }}" class="h6">{{ sub_link.title }}</a>
+            <span class="h6">{{ sub_link.title }}</span>
 
             {%- if sub_link.links.size > 0 -%}
               <ul class="v-stack gap-2 unstyled-list">
