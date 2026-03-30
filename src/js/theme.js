@@ -3830,6 +3830,10 @@ _CustomDetails_instances = new WeakSet();
  */
 onSummaryClicked_fn = function(event) {
   event.preventDefault();
+  if (this.disclosureElement.open && event.target.closest(".icon")) {
+    this.toggle(false);
+    return;
+  }
   if (this.disclosureElement.open && this.summaryElement.hasAttribute("data-follow-link")) {
     return window.location.href = this.summaryElement.getAttribute("data-follow-link");
   }
