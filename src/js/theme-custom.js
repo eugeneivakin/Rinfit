@@ -219,6 +219,20 @@ function onSizeOptionChange(event) {
   }
 }
 
+function setupProductStickyBarClose() {
+  document.addEventListener("click", (event) => {
+    const closeButton = event.target.closest("[data-bar-close]");
+    if (!(closeButton instanceof HTMLElement)) return;
+
+    const stickyBar = closeButton.closest("product-sticky-bar");
+    if (!(stickyBar instanceof HTMLElement)) return;
+
+    event.preventDefault();
+    stickyBar.classList.remove("is-visible");
+    stickyBar.hidden = true;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Clear main product section on page load
   const mainProductSection = document.querySelector(".shopify-section--main-product");
@@ -233,6 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Setup listeners for content updates
   setupContentUpdateListeners();
+
+  // Setup sticky bar close button behavior
+  setupProductStickyBarClose();
 
   // Setup listener for size selection
   document.addEventListener("change", onSizeOptionChange, true);

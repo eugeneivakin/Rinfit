@@ -226,6 +226,7 @@
         "richtext_wmfpUm",
         "button_PqqaDc"
       ],
+      "disabled": true,
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
         "color_scheme": "scheme-2",
@@ -237,6 +238,45 @@
         "image_overlap": false,
         "content_width": "sm",
         "remove_vertical_spacing": false
+      }
+    },
+    "x_shop_the_look_fENAmm": {
+      "type": "x-shop-the-look",
+      "blocks": {
+        "look_9bA4cM": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/gemstone_collection.jpg",
+            "hot_spots_background": "#ffffff",
+            "product_1": "glowstoneemerald",
+            "product_1_horizontal_position": 46,
+            "product_1_vertical_position": 47,
+            "product_2": "glowstoneround",
+            "product_2_horizontal_position": 71,
+            "product_2_vertical_position": 59,
+            "product_3": "glowstoneoval",
+            "product_3_horizontal_position": 51,
+            "product_3_vertical_position": 58,
+            "product_4": "",
+            "product_4_horizontal_position": 85,
+            "product_4_vertical_position": 85
+          }
+        }
+      },
+      "block_order": [
+        "look_9bA4cM"
+      ],
+      "name": "t:sections.x-shop_the_look.presets.x-shop_the_look.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "subheading": "NEW DROP IS here",
+        "title": "Glowstone <em><strong>Collection</strong></em>",
+        "content": "<p>Shine with every move in rings that blend bold, jewel-like style with the flexible comfort of silicone for everyday wear.</p>",
+        "popover_title": "",
+        "button_style": "solid",
+        "button_text": "SHOP all",
+        "button_url": "shopify://collections/glowstone"
       }
     },
     "social_proof_QADQyE": {
@@ -566,6 +606,7 @@
         "richtext_zLhw4F",
         "button_zDXARH"
       ],
+      "disabled": true,
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
         "color_scheme": "scheme-2",
@@ -577,6 +618,45 @@
         "image_overlap": true,
         "content_width": "sm",
         "remove_vertical_spacing": false
+      }
+    },
+    "x_shop_the_look_BNLrck": {
+      "type": "x-shop-the-look",
+      "blocks": {
+        "look_Qih9Kp": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/Smart_ring_banner.jpg",
+            "hot_spots_background": "#ffffff",
+            "product_1": "classicfit-protector",
+            "product_1_horizontal_position": 48,
+            "product_1_vertical_position": 47,
+            "product_2": "",
+            "product_2_horizontal_position": 70,
+            "product_2_vertical_position": 30,
+            "product_3": "",
+            "product_3_horizontal_position": 60,
+            "product_3_vertical_position": 65,
+            "product_4": "",
+            "product_4_horizontal_position": 85,
+            "product_4_vertical_position": 85
+          }
+        }
+      },
+      "block_order": [
+        "look_Qih9Kp"
+      ],
+      "name": "t:sections.x_shop_the_look.presets.x_shop_the_look.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "subheading": "",
+        "title": "Enhance Your Smart Ring With <em><strong>Silicone Comfort</strong></em>",
+        "content": "<p>Introducing the Smart Ring Enhancer, the perfect accessory for your smart ring. Designed with precision and innovation, our Smart Ring Enhancer provides exceptional protection and style.</p>",
+        "popover_title": "",
+        "button_style": "solid",
+        "button_text": "SHOP ALL",
+        "button_url": "shopify://collections"
       }
     },
     "collection_list_r7KetV": {
@@ -1025,11 +1105,13 @@
     "featured_collections_86pKrm",
     "featured_collections_JqYYei",
     "image_with_text_cmE4EL",
+    "x_shop_the_look_fENAmm",
     "social_proof_QADQyE",
     "scrolling_content_BBxw3Q",
     "collection_list_9AgkVf",
     "featured_collections_g8fKJT",
     "image_with_text_GLtEhj",
+    "x_shop_the_look_BNLrck",
     "collection_list_r7KetV",
     "tiktok_63qDmQ",
     "media_grid_social_TNqyKQ"
