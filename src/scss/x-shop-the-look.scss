@@ -1,0 +1,41 @@
+@use "mixins/media" as *;
+
+.shopify-section--shop-the-look {
+  .section-header {
+    .h6 {
+      --heading-text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.2857;
+    }
+
+    .h1 {
+      --heading-text-transform: capitalize;
+      font-size: 30px;
+      margin-block-start: -3px;
+
+      @include md {
+        font-size: 40px;
+        margin-block-start: -1px;
+      }
+
+      > em,
+      > strong {
+        font-size: 1.2em;
+
+        @include md {
+          font-size: 1.15em;
+        }
+      }
+    }
+
+    .section-header__richtext {
+      color: rgb(var(--text-color) / 0.6);
+      margin-block-start: 1em;
+    }
+  }
+
+  .shop-the-look__image-wrapper {
+    border-radius: 10px;
+  }
+}

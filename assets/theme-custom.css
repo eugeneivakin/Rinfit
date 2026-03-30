@@ -226,10 +226,6 @@ size-chart-button {
   grid-template-columns: 1fr;
 }
 
-#PBarNextFrameWrapper {
-  display: none !important;
-}
-
 .product-sticky-bar {
   background: rgb(var(--background));
   display: grid;

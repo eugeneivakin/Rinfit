@@ -1,9 +1,5 @@
 @use "mixins/media" as *;
 
-#PBarNextFrameWrapper {
-  display: none !important;
-}
-
 .product-sticky-bar {
   background: rgb(var(--background));
   display: grid;
