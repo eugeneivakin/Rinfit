@@ -1260,13 +1260,23 @@ onMutate_fn = function() {
   __privateSet(this, _forceChangeEvent, true);
 };
 adaptHeight_fn = function() {
-  if (this.clientHeight === this.selectedCell.clientHeight) {
+  if (!this.selectedCell) {
     return;
   }
-  this.style.maxHeight = null;
-  if (this.isScrollable) {
-    this.style.maxHeight = `${this.selectedCell.clientHeight}px`;
+  if (!this.isScrollable) {
+    this.style.maxHeight = null;
+    return;
   }
+  const targetHeight = `${this.selectedCell.clientHeight}px`;
+  if (this.style.maxHeight === targetHeight || this.clientHeight === this.selectedCell.clientHeight) {
+    return;
+  }
+  if (!this.style.maxHeight) {
+    this.style.maxHeight = `${this.clientHeight}px`;
+  }
+  requestAnimationFrame(() => {
+    this.style.maxHeight = targetHeight;
+  });
 };
 preloadImages_fn2 = function() {
   requestAnimationFrame(() => {
