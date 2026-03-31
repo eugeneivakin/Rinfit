@@ -86,7 +86,9 @@
 
 .product-gallery__carousel {
   border-radius: 10px;
-  max-height: none !important;
+}
+.product-gallery__carousel[adaptive-height] {
+  transition: max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 @media screen and (min-width: 1000px) {

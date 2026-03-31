@@ -91,7 +91,10 @@
 
 .product-gallery__carousel {
   border-radius: 10px;
-  max-height: none !important;
+
+  &[adaptive-height] {
+    transition: max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
 }
 
 .product-gallery__thumbnail-scroller {
