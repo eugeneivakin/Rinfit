@@ -552,3 +552,44 @@ class BundleFrequently extends HTMLElement {
 if (!window.customElements.get("bundle-frequently")) {
   customElements.define("bundle-frequently", BundleFrequently);
 }
+
+class ReadMoreLines extends HTMLElement {
+  constructor() {
+    super();
+    this._onClick = this._onClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.addEventListener("click", this._onClick);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener("click", this._onClick);
+  }
+
+  _onClick(event) {
+    const button = event.target.closest("button[read-more]");
+    if (!button || !this.contains(button)) return;
+
+    this.classList.toggle("active");
+  }
+
+  connectedCallback() {
+    this.addEventListener("click", this._onClick);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener("click", this._onClick);
+  }
+
+  _onClick(event) {
+    const button = event.target.closest("button[read-more]");
+    if (!button || !this.contains(button)) return;
+
+    this.classList.toggle("active");
+  }
+}
+
+if (!window.customElements.get("read-more-lines")) {
+  customElements.define("read-more-lines", ReadMoreLines);
+}

@@ -30,9 +30,25 @@
   {%- endif -%}
 
   {%- if section.settings.show_collection_description -%}
-    <div class="collection-description">
-      {{- collection.description -}}
-    </div>
+    {%- if section.settings.short_collection_description -%}
+      {{ 'x-component-read-more-lines.css' | asset_url | stylesheet_tag }}
+      <read-more-lines>
+        <div 
+          class="collection-description line-clamp"
+          style="--line-clamp-count: {{ section.settings.short_collection_description_lines }}"
+        >
+          {{- collection.description -}}
+        </div>
+        <button read-more class="link">
+          <span more>Read more</span>
+          <span less>Read less</span>
+        </button>
+      </read-more-lines>  
+    {%- else -%}
+      <div class="collection-description">
+        {{- collection.description -}}
+      </div>
+    {%- endif -%}
   {%- endif -%}
 {%- endcapture -%}
 
@@ -44,7 +60,15 @@
     }
   </style>
 
-  <collection-banner {% if section.settings.reveal %}reveal-on-scroll="true"{% endif %} class="collection-banner color-scheme color-scheme--{{ section.settings.color_scheme.id }}" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+  <collection-banner
+    {% if section.settings.reveal %}
+      reveal-on-scroll="true"
+    {% endif %}
+    class="collection-banner color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+    {% if section.settings.allow_transparent_header %}
+      allow-transparent-header
+    {% endif %}
+  >
     {%- unless section.settings.allow_transparent_header -%}
       {{- collection_breadcrumb -}}
     {%- endunless -%}
@@ -74,7 +98,7 @@
         {{- picture_content -}}
       {%- endif -%}
 
-      <div class="prose text-center">
+      <div class="prose text-{{ section.settings.text_align }}">
         {{ collection_content }}
       </div>
     </div>
@@ -85,7 +109,7 @@
       <div class="container container--{{ section.settings.content_width }}">
         {{- collection_breadcrumb -}}
 
-        <div class="prose text-center">
+        <div class="prose text-{{ section.settings.text_align }}">
           {{- collection_content -}}
         </div>
       </div>
@@ -188,6 +212,22 @@
     },
     {
       "type": "checkbox",
+      "id": "short_collection_description",
+      "label": "Short collection description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "short_collection_description_lines",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Visible lines",
+      "default": 2,
+      "visible_if": "{{ section.settings.short_collection_description }}"
+    },
+    {
+      "type": "checkbox",
       "id": "show_breadcrumb",
       "label": "t:sections.collection_banner.show_breadcrumb",
       "default": true
@@ -219,6 +259,26 @@
         }
       ],
       "default": "xs"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "header",

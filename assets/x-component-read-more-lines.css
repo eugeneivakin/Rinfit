@@ -1,0 +1,15 @@
+read-more-lines {
+  display: block;
+}
+read-more-lines.active .line-clamp {
+  --line-clamp-count: auto !important;
+}
+read-more-lines.active [read-more] [more] {
+  display: none;
+}
+read-more-lines.active [read-more] [less] {
+  display: inline;
+}
+read-more-lines [read-more] [less] {
+  display: none;
+}
