@@ -1,7 +1,3 @@
-#PBarNextFrameWrapper {
-  display: none !important;
-}
-
 .quick-buy-modal::part(content) {
   border-radius: 10px;
 }
