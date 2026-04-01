@@ -1,17 +1,15 @@
 @use "mixins/media" as *;
 
-/*
-*******************
-*/
-.modal::part(base) {
-  // place-items: start;
+#PBarNextFrameWrapper {
+  display: none !important;
 }
-/*
-*******************
-*/
 
 .quick-buy-modal::part(content) {
   border-radius: 10px;
+
+  @include sm-max {
+    --modal-body-max-width: 100%;
+  }
 }
 
 .modal::part(header) {
@@ -45,11 +43,14 @@
   align-content: center;
   align-items: center;
   opacity: 1;
+  transform: scale(1.4);
+  transform-origin: 100% 50%;
   width: 20px;
 }
 
 .quick-buy-modal {
   --modal-body-max-width: 390px;
+  z-index: 100000000;
 
   @include sm {
     --modal-body-max-width: 780px;
@@ -62,7 +63,7 @@
 
 .quick-buy-modal__title {
   --heading-font-weight: 600;
-  --text-h5: 16px;
+  --text-h5: 20px;
   --heading-text-transform: capitalize;
   text-align: left;
 
