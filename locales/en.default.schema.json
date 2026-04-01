@@ -1839,6 +1839,50 @@
           "name": "Frequently Bought Together"
         }
       }
+    },
+    "promotion": {
+      "name": "Promotion",
+      "image_size_recommendation": "2000 x 1400px .jpg recommended.",
+      "mobile_image_size_recommendation": "1000 x 1000px .jpg recommended. Default to desktop image.",
+      "image_position": "Image position",
+      "blocks": {
+        "subheading": {
+          "name": "Subheading"
+        },
+        "heading": {
+          "name": "Heading"
+        },
+        "paragraph": {
+          "name": "Paragraph"
+        },
+        "page": {
+          "name": "Page"
+        },
+        "liquid": {
+          "name": "Liquid"
+        },
+        "link": {
+          "name": "Link"
+        },
+        "button": {
+          "name": "Button"
+        },
+        "form": {
+          "name": "Form",
+          "settings": {
+            "placeholder": "Placeholder text",
+            "submit": "Submit button text"
+          }
+        },
+        "note": {
+          "name": "Note"
+        }
+      },
+      "presets": {
+        "promotion": {
+          "name": "Promotion"
+        }
+      }
     }
   }
 }
