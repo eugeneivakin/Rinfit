@@ -540,5 +540,8 @@
   },
   "frequently_bought_together": {
     "product_card_select_label": "Select option"
+  },
+  "pagination": {
+    "loading": "Loading more products..."
   }
 }
