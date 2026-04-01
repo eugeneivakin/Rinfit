@@ -1,4 +1,7 @@
 <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+{% if section.settings.grid_type == 'infinite' %}
+  <script src="{{ 'infinite-pagination-loader.js' | asset_url }}" defer="defer"></script>
+{% endif %}
 {{ 'product-card.css' | asset_url | stylesheet_tag }}
 {{- 'main-collection.css' | asset_url | stylesheet_tag -}}
 
@@ -65,6 +68,7 @@
   #shopify-section-{{ section.id }} .product-list {
     --product-list-max-items-per-row-allowed: 99 !important; {% comment %}On collection page, we explicitly set a number of items so we don't want this{% endcomment %}
   }
+
 
   @media screen and (min-width: 700px) {
     #shopify-section-{{ section.id }} {
@@ -333,7 +337,32 @@
                   {%- endfor -%}
                 </product-list>
 
-                {%- render 'pagination', paginate: paginate, facet: true -%}
+                {%- if section.settings.grid_type == 'infinite' -%}
+                  <div
+                    class="js-collection-infinite-scroll"
+                    data-enabled="true"
+                    data-section-id="{{ section.id }}"
+                    {% if paginate.next.is_link %}
+                      data-next-url="{{ paginate.next.url | escape }}"
+                    {% endif %}
+                  >
+                    <div
+                      class="js-collection-infinite-scroll-status collection-infinite-scroll__status"
+                      aria-live="polite"
+                      hidden
+                    >
+                      <span class="collection-infinite-scroll__spinner" aria-hidden="true"></span>
+                      <span>{{ 'pagination.loading' | t }}</span>
+                    </div>
+                    <div class="js-collection-infinite-scroll-sentinel" aria-hidden="true" style="height: 1px;"></div>
+
+                    <div class="js-collection-infinite-scroll-pagination">
+                      {%- render 'pagination', paginate: paginate, facet: true -%}
+                    </div>
+                  </div>
+                {%- else -%}
+                  {%- render 'pagination', paginate: paginate, facet: true -%}
+                {%- endif -%}
               </div>
             {%- endif -%}
           {%- endpaginate -%}
@@ -440,6 +469,22 @@
       "id": "vertical_spacing_factor",
       "label": "t:global.product_list.vertical_spacing_factor",
       "default": 1
+    },
+    {
+      "type": "select",
+      "id": "grid_type",
+      "label": "Grid type",
+      "options": [
+        {
+          "value": "infinite",
+          "label": "Infinite scroll"
+        },
+        {
+          "value": "pagination",
+          "label": "Pagination"
+        }
+      ],
+      "default": "pagination"
     },
     {
       "type": "header",

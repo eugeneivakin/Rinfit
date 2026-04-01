@@ -39,6 +39,7 @@
         "show_grid_mode_selector": true,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
+        "grid_type": "pagination",
         "filter_layout": "sidebar",
         "quick_links_menu": "",
         "show_sort_by": true,
