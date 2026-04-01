@@ -226,7 +226,6 @@
         "richtext_wmfpUm",
         "button_PqqaDc"
       ],
-      "disabled": true,
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
         "color_scheme": "scheme-2",
@@ -266,6 +265,7 @@
       "block_order": [
         "look_9bA4cM"
       ],
+      "disabled": true,
       "name": "t:sections.x-shop_the_look.presets.x-shop_the_look.name",
       "settings": {
         "color_scheme": "scheme-2",
@@ -606,7 +606,6 @@
         "richtext_zLhw4F",
         "button_zDXARH"
       ],
-      "disabled": true,
       "name": "t:sections.image_with_text.presets.image_with_text.name",
       "settings": {
         "color_scheme": "scheme-2",
@@ -646,6 +645,7 @@
       "block_order": [
         "look_Qih9Kp"
       ],
+      "disabled": true,
       "name": "t:sections.x_shop_the_look.presets.x_shop_the_look.name",
       "settings": {
         "color_scheme": "scheme-2",
