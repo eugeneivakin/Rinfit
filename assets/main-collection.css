@@ -21,3 +21,28 @@
 .facets-sidebar .accordion__toggle {
   font-weight: normal;
 }
+
+.collection-infinite-scroll__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  color: rgb(var(--text-color));
+  font-size: 0.9rem;
+}
+
+.collection-infinite-scroll__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgb(var(--text-color)/0.2);
+  border-top-color: rgb(var(--text-color));
+  border-radius: 50%;
+  animation: collection-infinite-spin 0.7s linear infinite;
+}
+
+@keyframes collection-infinite-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

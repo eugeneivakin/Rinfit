@@ -1,0 +1,27 @@
+@use "mixins/media" as *;
+
+read-more-lines {
+  display: block;
+
+  &.active {
+    .line-clamp {
+      --line-clamp-count: auto !important;
+    }
+
+    [read-more] {
+      [more] {
+        display: none;
+      }
+
+      [less] {
+        display: inline;
+      }
+    }
+  }
+
+  [read-more] {
+    [less] {
+      display: none;
+    }
+  }
+}
