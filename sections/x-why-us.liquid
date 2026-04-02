@@ -1,19 +1,24 @@
 {%- if section.blocks.size > 0 -%}
-  {{ 'x-text-with-icons-banner.css' | asset_url | stylesheet_tag }}
+  {{ 'x-why-us.css' | asset_url | stylesheet_tag }}
 
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
     | default: section.settings.color_scheme.settings.background
     | md5
   -%}
 
-  <div class="section-spacing section-spacing--tight">
-    <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
-      <div class="container">
-        <div class="v-stack gap-8">
-          {%- capture section_content -%}
+  <div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+    <div class="container">
+      {%- render 'section-header',
+        subheading: section.settings.subheading,
+        heading: section.settings.title,
+        content: section.settings.content
+      -%}
+
+      <div class="v-stack gap-8">
+        {%- capture section_content -%}
           {%- for block in section.blocks -%}
             <div class="text-with-icons__item {% if forloop.first %}is-selected{% endif %} {% unless section.settings.stack_on_mobile %}snap-center{% endunless %}" role="group" aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}" {{ block.shopify_attributes }}>
-              <div class="v-stack gap-1 justify-items-center sm:justify-items-{{ section.settings.text_alignment }}">
+              <div class="h-stack gap-3 justify-items-center sm:justify-items-{{ section.settings.text_alignment }} sm:gap-6">
                 {%- liquid
                   assign loading_strategy = nil
 
@@ -28,14 +33,17 @@
                   {%- capture style -%}--image-mobile-max-width: {{ block.settings.mobile_icon_width }}px; --image-max-width: {{ block.settings.icon_width }}px{%- endcapture -%}
                   {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: loading_strategy, sizes: sizes, widths: widths, class: 'constrained-image', style: style -}}
                 {%- else -%}
-                  <div style="{% render 'surface', text_color: section.settings.icon_color %}">
-                    {%- render 'icon-promo', icon: block.settings.icon, width: block.settings.mobile_icon_width, class: 'sm:hidden' -%}
-                    {%- render 'icon-promo', icon: block.settings.icon, width: block.settings.icon_width, class: 'hidden sm:block' -%}
+                  <div
+                    style="{% render 'surface', text_color: section.settings.icon_color %}"
+                    class="text-with-icons__icon-wrapper"
+                  >
+                    {%- render 'icon-promo', icon: block.settings.icon, width: block.settings.mobile_icon_width, class: 'md:hidden' -%}
+                    {%- render 'icon-promo', icon: block.settings.icon, width: block.settings.icon_width, class: 'hidden md:block' -%}
                   </div>
                 {%- endif -%}
 
                 {%- if block.settings.title != blank or block.settings.content != blank -%}
-                  <div class="v-stack gap-2 text-center sm:text-{{ section.settings.text_alignment }}">
+                  <div class="v-stack gap-2 text-start sm:text-{{ section.settings.text_alignment }}">
                     {%- if block.settings.title != blank -%}
                       <p class="h6">{{ block.settings.title }}</p>
                     {%- endif -%}
@@ -52,39 +60,38 @@
           {%- endfor -%}
         {%- endcapture -%}
 
-          {%- if section.settings.stack_on_mobile -%}
-            <div
-              class="text-with-icons text-with-icons--stacked"
-              role="region"
-              style="{% render 'surface', text_color: section.settings.text_color %}"
-            >
-              {{- section_content -}}
-            </div>
-          {%- else -%}
-            {%- assign carousel_id = 'text-with-icons-' | append: section.id -%}
+        {%- if section.settings.stack_on_mobile -%}
+          <div
+            class="text-with-icons text-with-icons--stacked"
+            role="region"
+            style="{% render 'surface', text_color: section.settings.text_color %}"
+          >
+            {{- section_content -}}
+          </div>
+        {%- else -%}
+          {%- assign carousel_id = 'text-with-icons-' | append: section.id -%}
 
-            <text-with-icons-carousel
-              disabled-on="sm"
-              allow-swipe
-              id="{{ carousel_id }}"
-              class="text-with-icons full-bleed sm:unbleed"
-              role="region"
-              style="{% render 'surface', text_color: section.settings.text_color %}"
-            >
-              {{- section_content -}}
-            </text-with-icons-carousel>
+          <text-with-icons-carousel
+            disabled-on="sm"
+            allow-swipe
+            id="{{ carousel_id }}"
+            class="text-with-icons full-bleed sm:unbleed"
+            role="region"
+            style="{% render 'surface', text_color: section.settings.text_color %}"
+          >
+            {{- section_content -}}
+          </text-with-icons-carousel>
 
-            {%- if section.blocks.size > 1 -%}
-              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots sm:hidden">
-                {%- for i in (1..section.blocks.size) -%}
-                  <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                    <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
-                  </button>
-                {%- endfor -%}
-              </carousel-navigation>
-            {%- endif -%}
+          {%- if section.blocks.size > 1 -%}
+            <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots sm:hidden">
+              {%- for i in (1..section.blocks.size) -%}
+                <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                  <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+                </button>
+              {%- endfor -%}
+            </carousel-navigation>
           {%- endif -%}
-        </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -92,8 +99,8 @@
 
 {% schema %}
 {
-  "name": "t:sections.text_with_icons_banner.name",
-  "class": "shopify-section--text-with-icons shopify-section--text-with-icons-banner",
+  "name": "t:sections.why_us.name",
+  "class": "shopify-section--text-with-icons shopify-section--why-us",
   "tag": "section",
   "max_blocks": 5,
   "disabled_on": {
@@ -115,13 +122,13 @@
     {
       "type": "checkbox",
       "id": "stack_on_mobile",
-      "label": "t:sections.text_with_icons_banner.stack_on_mobile",
+      "label": "t:sections.why_us.stack_on_mobile",
       "default": false
     },
     {
       "type": "color",
       "id": "icon_color",
-      "label": "t:sections.text_with_icons_banner.icon_color"
+      "label": "t:sections.why_us.icon_color"
     },
     {
       "type": "color",
@@ -147,12 +154,28 @@
         }
       ],
       "default": "center"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:global.text.subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.heading",
+      "default": "Why Join Rinfit?"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content"
     }
   ],
   "blocks": [
     {
       "type": "item",
-      "name": "t:sections.text_with_icons_banner.blocks.item.name",
+      "name": "t:sections.why_us.blocks.item.name",
       "settings": [
         {
           "type": "select",
@@ -194,18 +217,18 @@
         {
           "type": "range",
           "id": "icon_width",
-          "min": 30,
-          "max": 72,
+          "min": 16,
+          "max": 64,
           "step": 2,
           "unit": "px",
           "label": "t:global.icons.icon_width",
-          "default": 30
+          "default": 24
         },
         {
           "type": "range",
           "id": "mobile_icon_width",
           "min": 16,
-          "max": 100,
+          "max": 64,
           "step": 2,
           "unit": "px",
           "label": "t:global.icons.mobile_icon_width",
@@ -228,31 +251,31 @@
   ],
   "presets": [
     {
-      "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
-      "category": "t:global.categories.banners",
+      "name": "t:sections.why_us.presets.why_us.name",
+      "category": "t:global.categories.trust_social",
       "blocks": [
         {
           "type": "item",
           "settings": {
-            "icon": "men",
-            "title": "Free shipping",
-            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+            "icon": "clock",
+            "title": "Early Access",
+            "content": "<p>Be the first to shop new collections</p>"
           }
         },
         {
           "type": "item",
           "settings": {
-            "icon": "award",
-            "title": "Customer service",
-            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+            "icon": "sale",
+            "title": "Exclusive Offers",
+            "content": "<p>Private deals you won’t find anywhere else</p>"
           }
         },
         {
           "type": "item",
           "settings": {
-            "icon": "heart",
-            "title": "Secure payment",
-            "content": "<p>Your payment information is processed securely.</p>"
+            "icon": "bell",
+            "title": "New Drops First",
+            "content": "<p>Get notified before everyone else</p>"
           }
         }
       ]

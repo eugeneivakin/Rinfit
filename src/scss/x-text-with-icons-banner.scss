@@ -1,13 +1,5 @@
 @use "mixins/media" as *;
 
-// body {
-//   max-width: 398px;
-
-//   @include xs {
-//     max-width: none;
-//   }
-// }
-
 .shopify-section--text-with-icons-banner {
   .color-scheme {
     border-radius: 20px;

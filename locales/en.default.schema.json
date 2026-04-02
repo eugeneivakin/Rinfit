@@ -1768,6 +1768,21 @@
         }
       }
     },
+    "why_us": {
+      "name": "Why us",
+      "stack_on_mobile": "Stack on mobile",
+      "icon_color": "Icon color",
+      "blocks": {
+        "item": {
+          "name": "Text with icon"
+        }
+      },
+      "presets": {
+        "why_us": {
+          "name": "Why us"
+        }
+      }
+    },
     "timeline": {
       "name": "Timeline",
       "item_color_scheme": "Item color scheme",

@@ -61,6 +61,7 @@
         "form_dhaGim",
         "note_FfxTL9"
       ],
+      "disabled": true,
       "name": "t:sections.promotion.presets.promotion.name",
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
@@ -111,6 +112,7 @@
         "item_MhmitJ",
         "item_DQwwDE"
       ],
+      "disabled": true,
       "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
       "settings": {
         "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
@@ -120,11 +122,64 @@
         "text_color": "",
         "text_alignment": "start"
       }
+    },
+    "x_why_us_VpJaW4": {
+      "type": "x-why-us",
+      "blocks": {
+        "item_W7dnpr": {
+          "type": "item",
+          "settings": {
+            "icon": "clock",
+            "icon_width": 48,
+            "mobile_icon_width": 32,
+            "title": "Early Access",
+            "content": "<p>Be the first to shop new collections</p>"
+          }
+        },
+        "item_pJNMKQ": {
+          "type": "item",
+          "settings": {
+            "icon": "sale",
+            "icon_width": 46,
+            "mobile_icon_width": 30,
+            "title": "Exclusive Offers",
+            "content": "<p>Private deals you won’t find anywhere else</p>"
+          }
+        },
+        "item_6Y8jcK": {
+          "type": "item",
+          "settings": {
+            "icon": "bell",
+            "icon_width": 40,
+            "mobile_icon_width": 26,
+            "title": "New Drops First",
+            "content": "<p>Get notified before everyone else</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_W7dnpr",
+        "item_pJNMKQ",
+        "item_6Y8jcK"
+      ],
+      "name": "t:sections.why_us.presets.why_us.name",
+      "settings": {
+        "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
+        "separate_section_with_border": false,
+        "stack_on_mobile": true,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Why Join Rinfit?",
+        "content": ""
+      }
     }
   },
   "order": [
     "main",
     "promotion_bLFtYP",
-    "text_with_icons_banner_XWGFaB"
+    "text_with_icons_banner_XWGFaB",
+    "x_why_us_VpJaW4"
   ]
 }
