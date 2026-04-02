@@ -1,3 +1,222 @@
 @use "mixins/media" as *;
 
-.shopify-section--promotion {}
+// body {
+//   max-width: 398px;
+
+//   @include xs {
+//     max-width: none;
+//   }
+// }
+
+.shopify-section--promotion {
+  font-size: 20px;
+  line-height: 1.1;
+
+  @include md {
+    font-size: 26px;
+    line-height: 1.1667;
+  }
+
+  .color-scheme {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .image-with-text {
+    @include sm {
+      align-items: stretch;
+    }
+
+    @include md {
+      --image-with-text-gap: 1.5rem;
+    }
+
+    > .prose {
+      @include sm {
+        //   margin-block-start: 109px;
+        margin-block-end: 1.5rem;
+      }
+
+      @include md {
+        margin-block-start: 109px;
+        margin-block-end: 87px;
+      }
+    }
+  }
+
+  .heading,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  .prose :where(h1, h2, h3, h4, h5, h6) {
+    --heading-font-family: "Playfair Display";
+    --heading-font-weight: 300;
+    --heading-text-transform: capitalize;
+    --text-h1: 62px;
+    --text-h6: 20px;
+
+    letter-spacing: 1px;
+
+    @include md {
+      --text-h1: 132px;
+      --text-h6: 37.5px;
+      --heading-text-transform: none;
+    }
+  }
+
+  .prose {
+    margin-block-end: 5px;
+    position: relative;
+    z-index: 5;
+
+    :where(:not(meta, span) + *) {
+      margin-block-start: 0.6875rem;
+
+      @include md {
+        margin-block-start: 10px;
+      }
+    }
+
+    .h6 {
+      --heading-font-family: "Kumbh Sans";
+      --heading-text-transform: none;
+      letter-spacing: 0.1px;
+    }
+
+    .h1 {
+      margin-block-start: 1rem;
+
+      @include md {
+        margin-block-start: -21px;
+      }
+
+      > strong {
+        display: block;
+        font-family: "Kumbh Sans";
+        font-size: 70px;
+        font-weight: 200;
+        letter-spacing: -7px;
+        margin-block-start: -7px !important;
+        text-transform: uppercase;
+
+        @include md {
+          font-size: 146px;
+          letter-spacing: -14px;
+          margin-block-start: 12px !important;
+        }
+      }
+    }
+
+    :is(.input, .textarea, .select)::placeholder {
+      color: rgb(var(--input-text-color, var(--text-color)) / 1);
+    }
+
+    .input,
+    .textarea,
+    .select {
+      --input-border-radius: 8px;
+      --border-color: var(--text-color);
+      --input-padding-block: 9px;
+      background: #fff;
+      border-width: 2px;
+      font-size: 14px;
+      padding-inline-start: 40px;
+
+      @include md {
+        --input-border-radius: 12px;
+        --input-padding-block: 14px;
+        font-size: 21px;
+        padding-inline-start: 59px;
+      }
+    }
+  }
+
+  .image-with-text__richtext {
+    @include md {
+      padding-inline: 50px;
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    gap: 10px;
+    margin-block-start: 22px;
+
+    @include md {
+      margin-block-start: 13px;
+    }
+
+    .form-control__wrapper {
+      position: relative;
+    }
+
+    .form-control {
+      margin-block-start: 0 !important;
+    }
+
+    .icon {
+      left: 14px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      z-index: 5;
+
+      @include md {
+        left: 19px;
+        width: 32px;
+      }
+    }
+
+    .button {
+      --text-base: 25px;
+      --button-border-radius: 8px;
+      margin-block-start: 0;
+
+      @include md {
+        --text-base: 21px;
+        --button-border-radius: 10px;
+        font-weight: 500;
+        margin-block-start: 11px !important;
+        min-height: 57px;
+      }
+    }
+  }
+
+  .note {
+    font-size: 12px;
+    font-family: "Playfair Display", var(--text-font-family);
+    margin-block-start: 5px;
+    text-transform: capitalize;
+
+    @include md {
+      font-size: 16px;
+      margin-block-start: 15px;
+      text-align: left;
+    }
+  }
+
+  .image-with-text__media-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: stretch;
+    align-items: stretch;
+    padding-inline-start: var(--container-gutter);
+    padding-inline-end: var(--container-gutter);
+
+    @include sm {
+      --container-gutter: 0;
+      margin-inline-start: -30px;
+    }
+  }
+}

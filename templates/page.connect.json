@@ -30,7 +30,7 @@
         "heading_xBznFB": {
           "type": "heading",
           "settings": {
-            "text": "get your <strong>20%Off</strong>",
+            "text": "get your <strong>20% Off</strong>",
             "heading_tag": "h1"
           }
         },
@@ -50,7 +50,7 @@
         "note_FfxTL9": {
           "type": "note",
           "settings": {
-            "content": "<p>No Spam</p>"
+            "content": "<p><em>You’re signing up to receive Rinfit emails. No spam. Unsubscribe anytime.</em></p>"
           }
         }
       },
@@ -68,7 +68,7 @@
         "image": "shopify://shop_images/Promotion-banner.jpg",
         "reveal_on_scroll": true,
         "image_position": "end",
-        "content_width": "sm",
+        "content_width": "md",
         "remove_vertical_spacing": true
       }
     }
