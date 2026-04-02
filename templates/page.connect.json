@@ -64,17 +64,67 @@
       "name": "t:sections.promotion.presets.promotion.name",
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
-        "separate_section_with_border": false,
+        "separate_section_with_border": true,
         "image": "shopify://shop_images/Promotion-banner.jpg",
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "md",
         "remove_vertical_spacing": true
       }
+    },
+    "text_with_icons_banner_XWGFaB": {
+      "type": "text-with-icons-banner",
+      "blocks": {
+        "item_zNJJ3i": {
+          "type": "item",
+          "settings": {
+            "icon": "men",
+            "icon_width": 68,
+            "mobile_icon_width": 50,
+            "title": "<strong>1M+</strong> Happy Customers",
+            "content": ""
+          }
+        },
+        "item_MhmitJ": {
+          "type": "item",
+          "settings": {
+            "icon": "award",
+            "icon_width": 36,
+            "mobile_icon_width": 34,
+            "title": "<strong>U.S. Design</strong> Patent Protected",
+            "content": ""
+          }
+        },
+        "item_DQwwDE": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "icon_width": 52,
+            "mobile_icon_width": 44,
+            "title": "<strong>Loved across</strong> the U.S.",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_zNJJ3i",
+        "item_MhmitJ",
+        "item_DQwwDE"
+      ],
+      "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
+      "settings": {
+        "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
+        "separate_section_with_border": false,
+        "stack_on_mobile": true,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "start"
+      }
     }
   },
   "order": [
     "main",
-    "promotion_bLFtYP"
+    "promotion_bLFtYP",
+    "text_with_icons_banner_XWGFaB"
   ]
 }

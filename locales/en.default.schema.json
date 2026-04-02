@@ -1753,6 +1753,21 @@
         }
       }
     },
+    "text_with_icons_banner": {
+      "name": "Text with icons banner",
+      "stack_on_mobile": "Stack on mobile",
+      "icon_color": "Icon color",
+      "blocks": {
+        "item": {
+          "name": "Text with icon"
+        }
+      },
+      "presets": {
+        "text_with_icons_banner": {
+          "name": "Text with icons banner"
+        }
+      }
+    },
     "timeline": {
       "name": "Timeline",
       "item_color_scheme": "Item color scheme",

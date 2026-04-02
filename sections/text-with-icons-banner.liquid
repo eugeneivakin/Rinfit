@@ -1,0 +1,250 @@
+{%- if section.blocks.size > 0 -%}
+  {{ 'x-text-with-icons-banner.css' | asset_url | stylesheet_tag }}
+
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
+
+  <div class="section-spacing section-spacing--tight">
+    <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+      <div class="container">
+        <div class="v-stack gap-8">
+          {%- capture section_content -%}
+          {%- for block in section.blocks -%}
+            <div class="text-with-icons__item {% if forloop.first %}is-selected{% endif %} {% unless section.settings.stack_on_mobile %}snap-center{% endunless %}" role="group" aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}" {{ block.shopify_attributes }}>
+              <div class="v-stack gap-1 justify-items-center sm:justify-items-{{ section.settings.text_alignment }}">
+                {%- liquid
+                  assign loading_strategy = nil
+
+                  if section.index <= 3 and forloop.position <= 3
+                    assign loading_strategy = 'eager'
+                  endif
+                -%}
+
+                {%- if block.settings.custom_icon != blank -%}
+                  {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
+                  {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
+                  {%- capture style -%}--image-mobile-max-width: {{ block.settings.mobile_icon_width }}px; --image-max-width: {{ block.settings.icon_width }}px{%- endcapture -%}
+                  {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: loading_strategy, sizes: sizes, widths: widths, class: 'constrained-image', style: style -}}
+                {%- else -%}
+                  <div style="{% render 'surface', text_color: section.settings.icon_color %}">
+                    {%- render 'icon-promo', icon: block.settings.icon, width: block.settings.mobile_icon_width, class: 'sm:hidden' -%}
+                    {%- render 'icon-promo', icon: block.settings.icon, width: block.settings.icon_width, class: 'hidden sm:block' -%}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.title != blank or block.settings.content != blank -%}
+                  <div class="v-stack gap-2 text-center sm:text-{{ section.settings.text_alignment }}">
+                    {%- if block.settings.title != blank -%}
+                      <p class="h6">{{ block.settings.title }}</p>
+                    {%- endif -%}
+
+                    {%- if block.settings.content != blank -%}
+                      <div class="prose">
+                        {{- block.settings.content -}}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endcapture -%}
+
+          {%- if section.settings.stack_on_mobile -%}
+            <div
+              class="text-with-icons text-with-icons--stacked"
+              role="region"
+              style="{% render 'surface', text_color: section.settings.text_color %}"
+            >
+              {{- section_content -}}
+            </div>
+          {%- else -%}
+            {%- assign carousel_id = 'text-with-icons-' | append: section.id -%}
+
+            <text-with-icons-carousel
+              disabled-on="sm"
+              allow-swipe
+              id="{{ carousel_id }}"
+              class="text-with-icons full-bleed sm:unbleed"
+              role="region"
+              style="{% render 'surface', text_color: section.settings.text_color %}"
+            >
+              {{- section_content -}}
+            </text-with-icons-carousel>
+
+            {%- if section.blocks.size > 1 -%}
+              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots sm:hidden">
+                {%- for i in (1..section.blocks.size) -%}
+                  <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                    <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+                  </button>
+                {%- endfor -%}
+              </carousel-navigation>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.text_with_icons_banner.name",
+  "class": "shopify-section--text-with-icons shopify-section--text-with-icons-banner",
+  "tag": "section",
+  "max_blocks": 5,
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "t:global.section.separate_section_with_border",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_on_mobile",
+      "label": "t:sections.text_with_icons_banner.stack_on_mobile",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "t:sections.text_with_icons_banner.icon_color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:global.text.text"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "t:global.text.alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "t:global.position.left"
+        },
+        {
+          "value": "center",
+          "label": "t:global.position.center"
+        },
+        {
+          "value": "end",
+          "label": "t:global.position.right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "t:sections.text_with_icons_banner.blocks.item.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "t:global.icons.icon",
+          "options": [
+            {
+              "value": "men",
+              "label": "Men"
+            },
+            {
+              "value": "award",
+              "label": "Award"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "t:global.icons.custom_icon",
+          "info": "t:global.icons.custom_icon_info"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 30,
+          "max": 72,
+          "step": 2,
+          "unit": "px",
+          "label": "t:global.icons.icon_width",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "mobile_icon_width",
+          "min": 16,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "t:global.icons.mobile_icon_width",
+          "default": 24
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:global.text.heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:global.text.content",
+          "default": "<p>Short content about your store</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
+      "category": "t:global.categories.banners",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "title": "Free shipping",
+            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "title": "Customer service",
+            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "title": "Secure payment",
+            "content": "<p>Your payment information is processed securely.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

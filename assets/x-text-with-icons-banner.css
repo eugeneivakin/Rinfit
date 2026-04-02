@@ -1,0 +1,88 @@
+.shopify-section--text-with-icons-banner .color-scheme {
+  border-radius: 20px;
+}
+.shopify-section--text-with-icons-banner .container {
+  --container-gutter: 10px;
+}
+.shopify-section--text-with-icons-banner .text-with-icons {
+  --text-with-icons-items-per-row: 3;
+  --text-with-icons-column-gap: 1px;
+  --text-with-icons-row-gap: 1rem;
+  padding-block-start: 21px;
+  padding-block-end: 16px;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons-banner .text-with-icons {
+    --text-with-icons-column-gap: 40px;
+    padding-block-start: 52px;
+    padding-block-end: 54px;
+  }
+}
+.shopify-section--text-with-icons-banner .text-with-icons .h1,
+.shopify-section--text-with-icons-banner .text-with-icons .h2,
+.shopify-section--text-with-icons-banner .text-with-icons .h3,
+.shopify-section--text-with-icons-banner .text-with-icons .h4,
+.shopify-section--text-with-icons-banner .text-with-icons .h5,
+.shopify-section--text-with-icons-banner .text-with-icons .h6 {
+  --text-h6: 17px;
+  --heading-font-weight: 300;
+  line-height: 1.1176470588;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons-banner .text-with-icons .h1,
+  .shopify-section--text-with-icons-banner .text-with-icons .h2,
+  .shopify-section--text-with-icons-banner .text-with-icons .h3,
+  .shopify-section--text-with-icons-banner .text-with-icons .h4,
+  .shopify-section--text-with-icons-banner .text-with-icons .h5,
+  .shopify-section--text-with-icons-banner .text-with-icons .h6 {
+    --text-h6: 21px;
+    line-height: 1.2857142857;
+  }
+}
+.shopify-section--text-with-icons-banner .text-with-icons .h1 strong,
+.shopify-section--text-with-icons-banner .text-with-icons .h2 strong,
+.shopify-section--text-with-icons-banner .text-with-icons .h3 strong,
+.shopify-section--text-with-icons-banner .text-with-icons .h4 strong,
+.shopify-section--text-with-icons-banner .text-with-icons .h5 strong,
+.shopify-section--text-with-icons-banner .text-with-icons .h6 strong {
+  font-family: inherit;
+  font-weight: 500;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons-banner .text-with-icons .h1 strong,
+  .shopify-section--text-with-icons-banner .text-with-icons .h2 strong,
+  .shopify-section--text-with-icons-banner .text-with-icons .h3 strong,
+  .shopify-section--text-with-icons-banner .text-with-icons .h4 strong,
+  .shopify-section--text-with-icons-banner .text-with-icons .h5 strong,
+  .shopify-section--text-with-icons-banner .text-with-icons .h6 strong {
+    display: block;
+  }
+}
+.shopify-section--text-with-icons-banner .text-with-icons__item {
+  position: relative;
+}
+.shopify-section--text-with-icons-banner .text-with-icons__item:nth-child(3n):before {
+  display: none;
+}
+.shopify-section--text-with-icons-banner .text-with-icons__item:before {
+  background: currentColor;
+  bottom: -7px;
+  content: "";
+  display: none;
+  position: absolute;
+  right: calc(var(--text-with-icons-column-gap) / -2 - 1px);
+  top: -7px;
+  width: 2px;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons-banner .text-with-icons__item:before {
+    display: block;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons-banner .text-with-icons__item > .v-stack {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+  }
+}
