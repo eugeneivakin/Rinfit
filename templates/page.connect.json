@@ -1,0 +1,185 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "md"
+      }
+    },
+    "promotion_bLFtYP": {
+      "type": "promotion",
+      "blocks": {
+        "subheading_jYUr4p": {
+          "type": "subheading",
+          "settings": {
+            "text": "Thank you for your order"
+          }
+        },
+        "heading_xBznFB": {
+          "type": "heading",
+          "settings": {
+            "text": "get your <strong>20% Off</strong>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_6yhEnh": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Enter your email to get your code instantly + early access to new drops and exclusive offers.</p>"
+          }
+        },
+        "form_dhaGim": {
+          "type": "form",
+          "settings": {
+            "placeholder": "Enter your Email",
+            "submit_text": "Get my 20% off"
+          }
+        },
+        "note_FfxTL9": {
+          "type": "note",
+          "settings": {
+            "content": "<p><em>You’re signing up to receive Rinfit emails. No spam. Unsubscribe anytime.</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_jYUr4p",
+        "heading_xBznFB",
+        "richtext_6yhEnh",
+        "form_dhaGim",
+        "note_FfxTL9"
+      ],
+      "disabled": true,
+      "name": "t:sections.promotion.presets.promotion.name",
+      "settings": {
+        "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/Promotion-banner.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "md",
+        "remove_vertical_spacing": true
+      }
+    },
+    "text_with_icons_banner_XWGFaB": {
+      "type": "text-with-icons-banner",
+      "blocks": {
+        "item_zNJJ3i": {
+          "type": "item",
+          "settings": {
+            "icon": "men",
+            "icon_width": 68,
+            "mobile_icon_width": 50,
+            "title": "<strong>1M+</strong> Happy Customers",
+            "content": ""
+          }
+        },
+        "item_MhmitJ": {
+          "type": "item",
+          "settings": {
+            "icon": "award",
+            "icon_width": 36,
+            "mobile_icon_width": 34,
+            "title": "<strong>U.S. Design</strong> Patent Protected",
+            "content": ""
+          }
+        },
+        "item_DQwwDE": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "icon_width": 52,
+            "mobile_icon_width": 44,
+            "title": "<strong>Loved across</strong> the U.S.",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_zNJJ3i",
+        "item_MhmitJ",
+        "item_DQwwDE"
+      ],
+      "disabled": true,
+      "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
+      "settings": {
+        "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
+        "separate_section_with_border": false,
+        "stack_on_mobile": true,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "start"
+      }
+    },
+    "x_why_us_VpJaW4": {
+      "type": "x-why-us",
+      "blocks": {
+        "item_W7dnpr": {
+          "type": "item",
+          "settings": {
+            "icon": "clock",
+            "icon_width": 48,
+            "mobile_icon_width": 32,
+            "title": "Early Access",
+            "content": "<p>Be the first to shop new collections</p>"
+          }
+        },
+        "item_pJNMKQ": {
+          "type": "item",
+          "settings": {
+            "icon": "sale",
+            "icon_width": 46,
+            "mobile_icon_width": 30,
+            "title": "Exclusive Offers",
+            "content": "<p>Private deals you won’t find anywhere else</p>"
+          }
+        },
+        "item_6Y8jcK": {
+          "type": "item",
+          "settings": {
+            "icon": "bell",
+            "icon_width": 40,
+            "mobile_icon_width": 26,
+            "title": "New Drops First",
+            "content": "<p>Get notified before everyone else</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_W7dnpr",
+        "item_pJNMKQ",
+        "item_6Y8jcK"
+      ],
+      "name": "t:sections.why_us.presets.why_us.name",
+      "settings": {
+        "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
+        "separate_section_with_border": false,
+        "stack_on_mobile": true,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Why Join Rinfit?",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "promotion_bLFtYP",
+    "text_with_icons_banner_XWGFaB",
+    "x_why_us_VpJaW4"
+  ]
+}

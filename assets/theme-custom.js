@@ -573,21 +573,6 @@ class ReadMoreLines extends HTMLElement {
 
     this.classList.toggle("active");
   }
-
-  connectedCallback() {
-    this.addEventListener("click", this._onClick);
-  }
-
-  disconnectedCallback() {
-    this.removeEventListener("click", this._onClick);
-  }
-
-  _onClick(event) {
-    const button = event.target.closest("button[read-more]");
-    if (!button || !this.contains(button)) return;
-
-    this.classList.toggle("active");
-  }
 }
 
 if (!window.customElements.get("read-more-lines")) {

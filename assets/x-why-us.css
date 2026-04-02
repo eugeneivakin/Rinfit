@@ -1,0 +1,73 @@
+.shopify-section--why-us {
+  --heading-font-family: var(--heading-font-family-alternate);
+  --heading-font-weight: 400;
+  --text-h2: 27px;
+  --text-h6: 22px;
+  font-size: 18px;
+  line-height: 1;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us {
+    --text-h2: 40px;
+    --text-h6: 27px;
+    font-size: 22.5px;
+    line-height: 1.6;
+  }
+}
+.shopify-section--why-us .h2,
+.shopify-section--why-us :where(.prose h2) {
+  font-size: var(--text-h2);
+}
+.shopify-section--why-us .section-header {
+  margin: 0 0 19px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .section-header {
+    margin: 0 0 68px;
+  }
+}
+.shopify-section--why-us .text-with-icons {
+  --text-with-icons-items-per-row: 1;
+  --text-with-icons-column-gap: 18px;
+  --text-with-icons-row-gap: var(--text-with-icons-column-gap);
+  padding-inline: 41px;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--why-us .text-with-icons {
+    padding-inline: 0;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .text-with-icons {
+    --text-with-icons-items-per-row: 3;
+  }
+}
+.shopify-section--why-us .text-with-icons > * {
+  flex-basis: min(27rem, 100% / var(--text-with-icons-items-per-row) - var(--text-with-icons-column-gap, 0px) * (var(--text-with-icons-items-per-row) - 1) / var(--text-with-icons-items-per-row));
+}
+@media screen and (max-width: 700px) {
+  .shopify-section--why-us .text-with-icons > * {
+    flex-basis: 100%;
+  }
+}
+.shopify-section--why-us .text-with-icons__item > .h-stack {
+  align-items: start;
+}
+.shopify-section--why-us .text-with-icons__icon-wrapper {
+  aspect-ratio: 1;
+  background: rgb(var(--button-background));
+  border-radius: 100%;
+  color: rgb(var(--button-text-color));
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  min-width: 68px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .text-with-icons__icon-wrapper {
+    min-width: 102px;
+  }
+}

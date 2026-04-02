@@ -1753,6 +1753,36 @@
         }
       }
     },
+    "text_with_icons_banner": {
+      "name": "Text with icons banner",
+      "stack_on_mobile": "Stack on mobile",
+      "icon_color": "Icon color",
+      "blocks": {
+        "item": {
+          "name": "Text with icon"
+        }
+      },
+      "presets": {
+        "text_with_icons_banner": {
+          "name": "Text with icons banner"
+        }
+      }
+    },
+    "why_us": {
+      "name": "Why us",
+      "stack_on_mobile": "Stack on mobile",
+      "icon_color": "Icon color",
+      "blocks": {
+        "item": {
+          "name": "Text with icon"
+        }
+      },
+      "presets": {
+        "why_us": {
+          "name": "Why us"
+        }
+      }
+    },
     "timeline": {
       "name": "Timeline",
       "item_color_scheme": "Item color scheme",
@@ -1837,6 +1867,50 @@
       "presets": {
         "related_products": {
           "name": "Frequently Bought Together"
+        }
+      }
+    },
+    "promotion": {
+      "name": "Promotion",
+      "image_size_recommendation": "2000 x 1400px .jpg recommended.",
+      "mobile_image_size_recommendation": "1000 x 1000px .jpg recommended. Default to desktop image.",
+      "image_position": "Image position",
+      "blocks": {
+        "subheading": {
+          "name": "Subheading"
+        },
+        "heading": {
+          "name": "Heading"
+        },
+        "paragraph": {
+          "name": "Paragraph"
+        },
+        "page": {
+          "name": "Page"
+        },
+        "liquid": {
+          "name": "Liquid"
+        },
+        "link": {
+          "name": "Link"
+        },
+        "button": {
+          "name": "Button"
+        },
+        "form": {
+          "name": "Form",
+          "settings": {
+            "placeholder": "Placeholder text",
+            "submit": "Submit button text"
+          }
+        },
+        "note": {
+          "name": "Note"
+        }
+      },
+      "presets": {
+        "promotion": {
+          "name": "Promotion"
         }
       }
     }

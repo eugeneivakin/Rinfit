@@ -1,8 +1,8 @@
 @use "mixins/media" as *;
 
-#PBarNextFrameWrapper {
-  display: none !important;
-}
+// #PBarNextFrameWrapper {
+//   display: none !important;
+// }
 
 .quick-buy-modal::part(content) {
   border-radius: 10px;

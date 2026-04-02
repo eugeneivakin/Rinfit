@@ -1,0 +1,83 @@
+@use "mixins/media" as *;
+
+.shopify-section--text-with-icons-banner {
+  .color-scheme {
+    border-radius: 20px;
+  }
+
+  .container {
+    --container-gutter: 10px;
+  }
+
+  .text-with-icons {
+    --text-with-icons-items-per-row: 3;
+    --text-with-icons-column-gap: 1px;
+    --text-with-icons-row-gap: 1rem;
+    padding-block-start: 21px;
+    padding-block-end: 16px;
+
+    @include sm {
+      --text-with-icons-column-gap: 40px;
+      padding-block-start: 52px;
+      padding-block-end: 54px;
+    }
+
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+      --text-h6: 17px;
+      --heading-font-weight: 300;
+      line-height: 1.117647058823529;
+
+      @include sm {
+        --text-h6: 21px;
+        line-height: 1.285714285714286;
+      }
+
+      strong {
+        font-family: inherit;
+        font-weight: 500;
+
+        @include sm {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .text-with-icons__item {
+    position: relative;
+
+    &:nth-child(3n) {
+      &:before {
+        display: none;
+      }
+    }
+
+    &:before {
+      background: currentColor;
+      bottom: -7px;
+      content: "";
+      display: none;
+      position: absolute;
+      right: calc(var(--text-with-icons-column-gap) / -2 - 1px);
+      top: -7px;
+      width: 2px;
+
+      @include sm {
+        display: block;
+      }
+    }
+
+    > .v-stack {
+      @include sm {
+        align-items: center;
+        display: flex;
+        gap: 18px;
+      }
+    }
+  }
+}
