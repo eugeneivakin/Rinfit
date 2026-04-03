@@ -1913,6 +1913,40 @@
           "name": "Promotion"
         }
       }
+    },
+    "x_join_community": {
+      "name": "X: Join the Community",
+      "image_size_recommendation": "2000 x 1400px .jpg recommended.",
+      "mobile_image_size_recommendation": "1000 x 1000px .jpg recommended. Default to desktop image.",
+      "image_position": "Image position",
+      "blocks": {
+        "subheading": {
+          "name": "Subheading"
+        },
+        "heading": {
+          "name": "Heading"
+        },
+        "paragraph": {
+          "name": "Paragraph"
+        },
+        "page": {
+          "name": "Page"
+        },
+        "liquid": {
+          "name": "Liquid"
+        },
+        "link": {
+          "name": "Link"
+        },
+        "button": {
+          "name": "Button"
+        }
+      },
+      "presets": {
+        "x_join_community": {
+          "name": "X: Join the Community"
+        }
+      }
     }
   }
 }

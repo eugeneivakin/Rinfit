@@ -1,0 +1,47 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  SOCIAL MEDIA
+  ----------------------------------------------------------------------------------------------------------------------
+
+  Output a list of social media icons based on the social URL settings.
+
+  * layout: either support "list" or "block" (default to list)
+{%- endcomment -%}
+
+{%- capture social_media -%}
+  {%- if settings.social_instagram != blank or shop.brand.metafields.social_links.instagram != blank -%}
+    <li class="social-media__item branding-colors--instagram">
+      <a
+        href="{{ settings.social_instagram | default: shop.brand.metafields.social_links.instagram }}"
+        class="button button--outline"
+        target="_blank"
+        rel="noopener"
+        aria-label="{{ 'general.social.follow_on' | t: social_media: 'Instagram' }}"
+      >
+        {%- render 'icons', icon: 'instagram' -%}
+        {{ 'general.social.follow_on' | t: social_media: 'Instagram' }}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_tiktok != blank or shop.brand.metafields.social_links.tiktok != blank -%}
+    <li class="social-media__item branding-colors--tiktok">
+      <a
+        href="{{ settings.social_tiktok | default: shop.brand.metafields.social_links.tiktok }}"
+        class="button button--outline"
+        target="_blank"
+        rel="noopener"
+        aria-label="{{ 'general.social.follow_on' | t: social_media: 'TikTok' }}"
+      >
+        {%- render 'icons', icon: 'tiktok' -%}
+        {{ 'general.social.follow_on' | t: social_media: 'TikTok' }}
+      </a>
+    </li>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if social_media != blank -%}
+  <ul class="social-media social-media--{{ layout | default: 'list' }} unstyled-list" role="list">
+    {{- social_media -}}
+  </ul>
+{%- endif -%}
