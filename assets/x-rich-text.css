@@ -1,0 +1,68 @@
+.template--connect main > .shopify-section--newsletter {
+  display: none !important;
+}
+
+.shopify-section--x-rich-text {
+  --text-h1: 28px;
+  --heading-font-family: var(--heading-font-family-alternate);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--x-rich-text {
+    --text-h1: 42px;
+    font-size: 30px;
+  }
+}
+.shopify-section--x-rich-text .color-scheme {
+  border-radius: 20px;
+  overflow: hidden;
+}
+@media screen and (max-width: 700px) {
+  .shopify-section--x-rich-text .prose {
+    text-align: center;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--x-rich-text .prose {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+.shopify-section--x-rich-text .prose :where(:not(meta, span) + *) {
+  margin-block-start: 3px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--x-rich-text .prose :where(:not(meta, span) + *) {
+    margin-block-start: 6px;
+  }
+}
+.shopify-section--x-rich-text .prose strong {
+  font-weight: 500;
+}
+.shopify-section--x-rich-text .button-group {
+  margin-block-start: 17px !important;
+}
+@media screen and (max-width: 700px) {
+  .shopify-section--x-rich-text .button-group {
+    justify-content: center;
+  }
+}
+.shopify-section--x-rich-text .button {
+  --button-border-radius: 8px;
+  padding-inline: 20px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--x-rich-text .button {
+    --button-border-radius: 11px;
+    font-size: 21px;
+    min-height: 57px;
+    padding-inline: 30px;
+  }
+}

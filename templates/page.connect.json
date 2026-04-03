@@ -248,6 +248,47 @@
         "content_width": "md",
         "remove_vertical_spacing": true
       }
+    },
+    "x_rich_text_4DcArB": {
+      "type": "x-rich-text",
+      "blocks": {
+        "heading_LNRXY6": {
+          "type": "heading",
+          "settings": {
+            "text": "Questions?",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_GibPR8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>We’re here to help.</p><p><a href=\"mailto:support@rinfit.com\" target=\"_blank\" title=\"mailto:support@rinfit.com\"><strong>support@rinfit.com</strong></a></p>"
+          }
+        },
+        "button_jPEgJC": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "CONTACT us",
+            "url": "shopify://pages/contact-us",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_LNRXY6",
+        "richtext_GibPR8",
+        "button_jPEgJC"
+      ],
+      "name": "t:sections.x_rich_text.presets.x_rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "start",
+        "remove_vertical_spacing": false
+      }
     }
   },
   "order": [
@@ -256,6 +297,7 @@
     "text_with_icons_banner_XWGFaB",
     "x_why_us_VpJaW4",
     "x_promotion_banner_aaMKcx",
-    "x_join_community_nDpiqD"
+    "x_join_community_nDpiqD",
+    "x_rich_text_4DcArB"
   ]
 }
