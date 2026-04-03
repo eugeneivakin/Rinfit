@@ -1,0 +1,81 @@
+@use "mixins/media" as *;
+
+// body {
+//   max-width: 398px;
+
+//   @include xs {
+//     max-width: none;
+//   }
+// }
+
+.template--connect {
+  main > .shopify-section--newsletter {
+    display: none !important;
+  }
+}
+
+.shopify-section--x-rich-text {
+  --text-h1: 28px;
+  --heading-font-family: var(--heading-font-family-alternate);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+
+  @include md {
+    --text-h1: 42px;
+    font-size: 30px;
+  }
+
+  .color-scheme {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .prose {
+    @include sm-max {
+      text-align: center;
+    }
+
+    @include sm {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    :where(:not(meta, span) + *) {
+      margin-block-start: 3px;
+
+      @include md {
+        margin-block-start: 6px;
+      }
+    }
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  .button-group {
+    margin-block-start: 17px !important;
+
+    @include sm-max {
+      justify-content: center;
+    }
+  }
+
+  .button {
+    --button-border-radius: 8px;
+    padding-inline: 20px;
+
+    @include md {
+      --button-border-radius: 11px;
+      font-size: 21px;
+      min-height: 57px;
+      padding-inline: 30px;
+    }
+  }
+}

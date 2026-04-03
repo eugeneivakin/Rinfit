@@ -1913,6 +1913,79 @@
           "name": "Promotion"
         }
       }
+    },
+    "x_join_community": {
+      "name": "X: Join the Community",
+      "image_size_recommendation": "2000 x 1400px .jpg recommended.",
+      "mobile_image_size_recommendation": "1000 x 1000px .jpg recommended. Default to desktop image.",
+      "image_position": "Image position",
+      "blocks": {
+        "subheading": {
+          "name": "Subheading"
+        },
+        "heading": {
+          "name": "Heading"
+        },
+        "paragraph": {
+          "name": "Paragraph"
+        },
+        "page": {
+          "name": "Page"
+        },
+        "liquid": {
+          "name": "Liquid"
+        },
+        "link": {
+          "name": "Link"
+        },
+        "button": {
+          "name": "Button"
+        }
+      },
+      "presets": {
+        "x_join_community": {
+          "name": "X: Join the Community"
+        }
+      }
+    },
+    "x_rich_text": {
+      "name": "X: Rich text",
+      "blocks": {
+        "subheading": {
+          "name": "Subheading"
+        },
+        "heading": {
+          "name": "Heading"
+        },
+        "paragraph": {
+          "name": "Paragraph"
+        },
+        "page": {
+          "name": "Page",
+          "page": "Page"
+        },
+        "image": {
+          "name": "Image",
+          "image_size_recommendation": "1600 x 800px .jpg recommended"
+        },
+        "video": {
+          "name": "Video"
+        },
+        "link": {
+          "name": "Link"
+        },
+        "button": {
+          "name": "Button"
+        },
+        "liquid": {
+          "name": "Liquid"
+        }
+      },
+      "presets": {
+        "x_rich_text": {
+          "name": "X: Rich text"
+        }
+      }
     }
   }
 }

@@ -1,0 +1,156 @@
+@use "mixins/media" as *;
+
+.shopify-section--join-us {
+  --text-h1: 27px;
+  --heading-font-family: var(--heading-font-family-alternate);
+  --heading-font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+
+  @include md {
+    --text-h1: 40px;
+    font-size: 30px;
+  }
+
+  .color-scheme {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .image-with-text {
+    @include sm {
+      grid-template-columns: 39.5% 1fr;
+    }
+
+    > .prose {
+      --container-gutter: 56px;
+      box-sizing: border-box;
+      font-weight: 300;
+      margin-block-start: 0;
+      margin-block-end: 31px;
+      position: relative;
+      width: 100%;
+      z-index: 5;
+
+      @include sm {
+        margin-block: 46px;
+      }
+
+      @include md {
+        margin-block: 92px;
+      }
+    }
+  }
+
+  .image-with-text__media-wrapper {
+    aspect-ratio: 1.15;
+    position: relative;
+    z-index: 1;
+
+    @include sm {
+      aspect-ratio: auto;
+      min-height: 434px;
+      width: 100%;
+    }
+
+    img {
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      @include sm {
+        height: 100%;
+        max-width: none;
+        width: auto;
+      }
+    }
+  }
+
+  .prose :where(:not(meta, span) + *) {
+    margin-block-start: 11px;
+
+    @include md {
+      margin-block-start: 20px;
+    }
+  }
+
+  .nickname {
+    font: 27px/1 var(--heading-font-family-alternate);
+    margin-block-start: 15px;
+
+    @include md {
+      font-size: 40px;
+      margin-block-start: 24px;
+    }
+  }
+
+  .social-media {
+    margin-block-start: 24px;
+
+    @include md {
+      margin-block-start: 31px;
+    }
+  }
+
+  .social-media--list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    gap: 27px;
+
+    @include md {
+      flex-direction: row;
+      align-content: center;
+      align-items: center;
+      gap: 31px;
+    }
+
+    li {
+      margin-block-start: 0;
+    }
+  }
+
+  .button {
+    --button-text-transform: none;
+    --button-border-radius: 8px;
+    --button-letter-spacing: -0.7px;
+    border-width: 2px;
+    column-gap: 12px;
+    font-size: 24px;
+    font-weight: 300;
+    justify-content: flex-start;
+    min-height: 61px;
+    padding-block: 10px;
+    padding-inline-start: 15px;
+    padding-inline-end: 10px;
+    width: 100%;
+
+    @include md {
+      --button-letter-spacing: 0;
+      font-size: 21px;
+      min-height: 57px;
+      min-width: 266px;
+    }
+
+    &:has(svg) {
+      text-align: left;
+    }
+
+    svg {
+      height: 33px;
+      width: auto;
+
+      @include md {
+        height: 30px;
+      }
+    }
+  }
+
+  .button--outline {
+    --button-outline-color: var(--button-background);
+  }
+}

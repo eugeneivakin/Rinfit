@@ -1,0 +1,113 @@
+@use "mixins/media" as *;
+
+.shopify-section--promotion-banner {
+  font-size: 25px;
+  line-height: 1.16;
+
+  @include md {
+    font-size: 37.5px;
+  }
+
+  .color-scheme {
+    --background: 244 234 231 / 1;
+    border-radius: 20px;
+
+    @include md {
+      --background-gradient: linear-gradient(90deg, rgba(244, 234, 230, 1) 0%, rgba(222, 193, 187, 1) 100%);
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    gap: 10px;
+    padding-block: 23px;
+
+    @include md {
+      padding-block: 10px;
+    }
+
+    @include sm {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-content: center;
+      align-items: center;
+    }
+  }
+
+  .promotion-banner__media-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    @include md {
+      min-width: 36.74%;
+    }
+
+    img {
+      height: 122px;
+      margin-inline-start: -33px;
+      width: auto;
+
+      @include md {
+        height: 183px;
+        margin-inline-start: -48px;
+      }
+
+      &:first-child {
+        margin-inline-start: 0;
+      }
+    }
+  }
+
+  .promotion-banner__content-wrapper {
+    @include md {
+      padding-inline-start: 2.5%;
+    }
+  }
+
+  .section-header {
+    --text-h2: 30px;
+    --heading-text-transform: uppercase;
+    --heading-font-weight: 500;
+
+    @include sm {
+      text-align: left;
+    }
+
+    @include md {
+      --text-h2: 45px;
+    }
+
+    h2 {
+      font-size: var(--text-h2);
+      text-align: inherit !important;
+      text-transform: var(--heading-text-transform);
+    }
+  }
+
+  .prose {
+    font-weight: 300;
+
+    :where(:not(meta, span) + *) {
+      margin-block-start: 5px;
+
+      @include md {
+        margin-block-start: 0;
+      }
+    }
+
+    strong {
+      font-weight: 500;
+    }
+  }
+}

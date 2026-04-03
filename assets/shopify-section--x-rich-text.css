@@ -1,0 +1,14 @@
+.shopify-section--x-rich-text {
+  --text-h1: 28px;
+  --heading-font-family: var(--heading-font-family--alternate);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 30px;
+}
+.shopify-section--x-rich-text .color-scheme {
+  border-radius: 20px;
+  overflow: hidden;
+}
+.shopify-section--x-rich-text .prose strong {
+  font-weight: 500;
+}

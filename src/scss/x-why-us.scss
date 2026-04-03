@@ -1,13 +1,5 @@
 @use "mixins/media" as *;
 
-// body {
-//   max-width: 398px;
-
-//   @include xs {
-//     max-width: none;
-//   }
-// }
-
 .shopify-section--why-us {
   --heading-font-family: var(--heading-font-family-alternate);
   --heading-font-weight: 400;
