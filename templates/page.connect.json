@@ -61,7 +61,6 @@
         "form_dhaGim",
         "note_FfxTL9"
       ],
-      "disabled": true,
       "name": "t:sections.promotion.presets.promotion.name",
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
@@ -112,7 +111,6 @@
         "item_MhmitJ",
         "item_DQwwDE"
       ],
-      "disabled": true,
       "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
       "settings": {
         "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
@@ -174,12 +172,44 @@
         "title": "Why Join Rinfit?",
         "content": ""
       }
+    },
+    "x_promotion_banner_aaMKcx": {
+      "type": "x-promotion-banner",
+      "blocks": {
+        "image_pJrQrp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Promotion-banner-ring-01.png"
+          }
+        },
+        "image_XPrJLb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Promotion-banner-ring-02.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_pJrQrp",
+        "image_XPrJLb"
+      ],
+      "name": "X: Promotion banner",
+      "settings": {
+        "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
+        "separate_section_with_border": true,
+        "subheading": "",
+        "title": "Limited-time offer",
+        "content": "<p>Your <strong>20%OFF</strong> is reserved for you now.</p>",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "promotion_bLFtYP",
     "text_with_icons_banner_XWGFaB",
-    "x_why_us_VpJaW4"
+    "x_why_us_VpJaW4",
+    "x_promotion_banner_aaMKcx"
   ]
 }

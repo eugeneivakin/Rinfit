@@ -1,0 +1,103 @@
+.shopify-section--promotion-banner {
+  font-size: 25px;
+  line-height: 1.16;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--promotion-banner {
+    font-size: 37.5px;
+  }
+}
+.shopify-section--promotion-banner .color-scheme {
+  border-radius: 20px;
+}
+.shopify-section--promotion-banner .container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  gap: 10px;
+  padding-block: 23px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--promotion-banner .container {
+    padding-block: 10px;
+  }
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--promotion-banner .container {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+  }
+}
+.shopify-section--promotion-banner .promotiob-banner__media-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--promotion-banner .promotiob-banner__media-wrapper {
+    min-width: 36.74%;
+  }
+}
+.shopify-section--promotion-banner .promotiob-banner__media-wrapper img {
+  height: 122px;
+  margin-inline-start: -33px;
+  width: auto;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--promotion-banner .promotiob-banner__media-wrapper img {
+    height: 183px;
+    margin-inline-start: -48px;
+  }
+}
+.shopify-section--promotion-banner .promotiob-banner__media-wrapper img:first-child {
+  margin-inline-start: 0;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--promotion-banner .promotiob-banner__content-wrapper {
+    padding-inline-start: 2.5%;
+  }
+}
+.shopify-section--promotion-banner .section-header {
+  --text-h2: 30px;
+  --heading-text-transform: uppercase;
+  --heading-font-weight: 500;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--promotion-banner .section-header {
+    text-align: left;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--promotion-banner .section-header {
+    --text-h2: 45px;
+  }
+}
+.shopify-section--promotion-banner .section-header h2 {
+  font-size: var(--text-h2);
+  text-align: inherit !important;
+  text-transform: var(--heading-text-transform);
+}
+.shopify-section--promotion-banner .prose {
+  font-weight: 300;
+}
+.shopify-section--promotion-banner .prose :where(:not(meta, span) + *) {
+  margin-block-start: 5px;
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--promotion-banner .prose :where(:not(meta, span) + *) {
+    margin-block-start: 0;
+  }
+}
+.shopify-section--promotion-banner .prose strong {
+  font-weight: 500;
+}
