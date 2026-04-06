@@ -149,6 +149,7 @@
     align-items: stretch;
     gap: 10px;
     margin-block-start: 22px;
+    width: 100%;
 
     @include md {
       margin-block-start: 13px;
