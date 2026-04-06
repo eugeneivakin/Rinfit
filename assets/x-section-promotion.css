@@ -10,6 +10,8 @@
 }
 .shopify-section--promotion .color-scheme {
   border-radius: 20px;
+  max-width: 1440px;
+  margin-inline: auto;
   overflow: hidden;
 }
 @media screen and (min-width: 700px) {
@@ -49,6 +51,20 @@
   letter-spacing: 1px;
 }
 @media screen and (min-width: 1000px) {
+  .shopify-section--promotion .heading,
+  .shopify-section--promotion .h1,
+  .shopify-section--promotion .h2,
+  .shopify-section--promotion .h3,
+  .shopify-section--promotion .h4,
+  .shopify-section--promotion .h5,
+  .shopify-section--promotion .h6,
+  .shopify-section--promotion .prose :where(h1, h2, h3, h4, h5, h6) {
+    --text-h1: 95px;
+    --text-h6: 29px;
+    --heading-text-transform: none;
+  }
+}
+@media screen and (min-width: 1200px) {
   .shopify-section--promotion .heading,
   .shopify-section--promotion .h1,
   .shopify-section--promotion .h2,
@@ -97,7 +113,7 @@
   margin-block-start: -7px !important;
   text-transform: uppercase;
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1200px) {
   .shopify-section--promotion .prose .h1 > strong {
     font-size: 146px;
     letter-spacing: -14px;

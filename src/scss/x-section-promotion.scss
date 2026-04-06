@@ -1,13 +1,5 @@
 @use "mixins/media" as *;
 
-// body {
-//   max-width: 398px;
-
-//   @include xs {
-//     max-width: none;
-//   }
-// }
-
 .shopify-section--promotion {
   font-size: 20px;
   line-height: 1.1;
@@ -19,6 +11,8 @@
 
   .color-scheme {
     border-radius: 20px;
+    max-width: 1440px;
+    margin-inline: auto;
     overflow: hidden;
   }
 
@@ -57,10 +51,15 @@
     --heading-text-transform: capitalize;
     --text-h1: 62px;
     --text-h6: 20px;
-
     letter-spacing: 1px;
 
     @include md {
+      --text-h1: 95px;
+      --text-h6: 29px;
+      --heading-text-transform: none;
+    }
+
+    @include lg {
       --text-h1: 132px;
       --text-h6: 37.5px;
       --heading-text-transform: none;
@@ -102,7 +101,7 @@
         margin-block-start: -7px !important;
         text-transform: uppercase;
 
-        @include md {
+        @include lg {
           font-size: 146px;
           letter-spacing: -14px;
           margin-block-start: 12px !important;
