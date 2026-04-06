@@ -9,15 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "disabled": true,
-      "settings": {
-        "color_scheme": "",
-        "show_title": true,
-        "page_width": "md"
-      }
-    },
     "promotion_bLFtYP": {
       "type": "promotion",
       "blocks": {
@@ -292,7 +283,6 @@
     }
   },
   "order": [
-    "main",
     "promotion_bLFtYP",
     "text_with_icons_banner_XWGFaB",
     "x_why_us_VpJaW4",
