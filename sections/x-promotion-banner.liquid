@@ -8,20 +8,22 @@
 {%- endstyle -%}
 
 <div
-  class="container color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+  class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
 >
-  <div class="promotion-banner__media-wrapper">
-    {% for block in section.blocks %}
-      {{ block.settings.image | image_url: height: '366' | image_tag: loading: 'lazy' }}
-    {% endfor %}
-  </div>
+  <div class="container">
+    <div class="promotion-banner__media-wrapper">
+      {% for block in section.blocks %}
+        {{ block.settings.image | image_url: height: '366' | image_tag: loading: 'lazy' }}
+      {% endfor %}
+    </div>
 
-  <div class="promotion-banner__content-wrapper">
-    {%- render 'section-header',
-      subheading: section.settings.subheading,
-      heading: section.settings.title,
-      content: section.settings.content
-    -%}
+    <div class="promotion-banner__content-wrapper">
+      {%- render 'section-header',
+        subheading: section.settings.subheading,
+        heading: section.settings.title,
+        content: section.settings.content
+      -%}
+    </div>
   </div>
 </div>
 
