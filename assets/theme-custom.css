@@ -226,6 +226,11 @@ size-chart-button {
   grid-template-columns: 1fr;
 }
 
+.product-sticky-bar--visible #privy-container #privy-inner-container .privy-tab-container.privy-bottom.privy-floating.privy-bottom,
+.product-sticky-bar--visible .shop-ai-chat-container {
+  transform: translateY(calc(var(--product-sticky-bar-height) * -1));
+}
+
 .product-sticky-bar {
   background: rgb(var(--background));
   display: grid;
@@ -233,6 +238,10 @@ size-chart-button {
 }
 @media screen and (min-width: 700px) {
   .product-sticky-bar {
+    border-block-start-width: 1px;
+    border-block-end-width: 0;
+    bottom: 0;
+    inset-block-start: initial;
     grid-template-columns: minmax(0, 1fr) max-content max-content;
   }
 }

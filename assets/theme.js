@@ -5326,7 +5326,18 @@ onFormVisibilityChange_fn = function(entries) {
   if (footerEntry) {
     __privateSet(this, _latestFooterCondition, !footerEntry.isIntersecting);
   }
-  this.classList.toggle("is-visible", __privateGet(this, _latestFooterCondition) && __privateGet(this, _latestFormCondition));
+  const isVisible = __privateGet(this, _latestFooterCondition) && __privateGet(this, _latestFormCondition);
+  this.classList.toggle("is-visible", isVisible);
+  // New class on body
+  document.body.classList.toggle("product-sticky-bar--visible", isVisible);
+  // Variable with panel height -now in html
+  const htmlEl = document.documentElement;
+  if (isVisible) {
+    const height = this.offsetHeight;
+    htmlEl.style.setProperty("--product-sticky-bar-height", height + "px");
+  } else {
+    htmlEl.style.removeProperty("--product-sticky-bar-height");
+  }
 };
 if (!window.customElements.get("product-sticky-bar")) {
   window.customElements.define("product-sticky-bar", ProductStickyBar);
