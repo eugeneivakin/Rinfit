@@ -7,10 +7,9 @@
   -%}
 
   <div class="section-spacing section-spacing--tight">
-    <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
-      <div class="container">
-        <div class="v-stack gap-8">
-          {%- capture section_content -%}
+    <div class="container color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+      <div class="v-stack gap-8">
+        {%- capture section_content -%}
           {%- for block in section.blocks -%}
             <div class="text-with-icons__item {% if forloop.first %}is-selected{% endif %} {% unless section.settings.stack_on_mobile %}snap-center{% endunless %}" role="group" aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}" {{ block.shopify_attributes }}>
               <div class="v-stack gap-1 justify-items-center sm:justify-items-{{ section.settings.text_alignment }}">
@@ -52,39 +51,38 @@
           {%- endfor -%}
         {%- endcapture -%}
 
-          {%- if section.settings.stack_on_mobile -%}
-            <div
-              class="text-with-icons text-with-icons--stacked"
-              role="region"
-              style="{% render 'surface', text_color: section.settings.text_color %}"
-            >
-              {{- section_content -}}
-            </div>
-          {%- else -%}
-            {%- assign carousel_id = 'text-with-icons-' | append: section.id -%}
+        {%- if section.settings.stack_on_mobile -%}
+          <div
+            class="text-with-icons text-with-icons--stacked"
+            role="region"
+            style="{% render 'surface', text_color: section.settings.text_color %}"
+          >
+            {{- section_content -}}
+          </div>
+        {%- else -%}
+          {%- assign carousel_id = 'text-with-icons-' | append: section.id -%}
 
-            <text-with-icons-carousel
-              disabled-on="sm"
-              allow-swipe
-              id="{{ carousel_id }}"
-              class="text-with-icons full-bleed sm:unbleed"
-              role="region"
-              style="{% render 'surface', text_color: section.settings.text_color %}"
-            >
-              {{- section_content -}}
-            </text-with-icons-carousel>
+          <text-with-icons-carousel
+            disabled-on="sm"
+            allow-swipe
+            id="{{ carousel_id }}"
+            class="text-with-icons full-bleed sm:unbleed"
+            role="region"
+            style="{% render 'surface', text_color: section.settings.text_color %}"
+          >
+            {{- section_content -}}
+          </text-with-icons-carousel>
 
-            {%- if section.blocks.size > 1 -%}
-              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots sm:hidden">
-                {%- for i in (1..section.blocks.size) -%}
-                  <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                    <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
-                  </button>
-                {%- endfor -%}
-              </carousel-navigation>
-            {%- endif -%}
+          {%- if section.blocks.size > 1 -%}
+            <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots sm:hidden">
+              {%- for i in (1..section.blocks.size) -%}
+                <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                  <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+                </button>
+              {%- endfor -%}
+            </carousel-navigation>
           {%- endif -%}
-        </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
