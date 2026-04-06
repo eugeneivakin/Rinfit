@@ -13,8 +13,6 @@
 }
 .shopify-section--join-us .color-scheme {
   border-radius: 20px;
-  max-width: 1440px;
-  margin-inline: auto;
   overflow: hidden;
 }
 @media screen and (min-width: 700px) {
