@@ -33,6 +33,14 @@
   .variant-picker__option {
     gap: 0.5rem;
 
+    &.v-stack {
+      align-content: stretch;
+
+      .select {
+        height: 100%;
+      }
+    }
+
     legend,
     .variant-picker__selected-variant {
       font-weight: var(--heading-font-weight);
