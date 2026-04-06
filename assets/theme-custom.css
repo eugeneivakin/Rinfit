@@ -258,6 +258,12 @@ size-chart-button {
 .product-sticky-bar .variant-picker__option {
   gap: 0.5rem;
 }
+.product-sticky-bar .variant-picker__option.v-stack {
+  align-content: stretch;
+}
+.product-sticky-bar .variant-picker__option.v-stack .select {
+  height: 100%;
+}
 .product-sticky-bar .variant-picker__option legend,
 .product-sticky-bar .variant-picker__option .variant-picker__selected-variant {
   font-weight: var(--heading-font-weight);
