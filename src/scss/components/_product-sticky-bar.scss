@@ -10,11 +10,11 @@
 
 .product-sticky-bar {
   background: rgb(var(--background));
+  border-block-start-width: 1px;
   display: grid;
   gap: 1rem;
 
   @include sm {
-    border-block-start-width: 1px;
     border-block-end-width: 0;
     bottom: 0;
     inset-block-start: initial;
