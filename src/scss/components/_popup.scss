@@ -1,5 +1,9 @@
 @use "mixins/media" as *;
 
+:where(.modal, .drawer, .popover, .header-search) {
+  z-index: 100000000;
+}
+
 size-chart-button {
   cursor: pointer;
 }

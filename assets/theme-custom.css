@@ -190,6 +190,10 @@
   min-height: 57px;
 }
 
+:where(.modal, .drawer, .popover, .header-search) {
+  z-index: 100000000;
+}
+
 size-chart-button {
   cursor: pointer;
 }
@@ -233,12 +237,12 @@ size-chart-button {
 
 .product-sticky-bar {
   background: rgb(var(--background));
+  border-block-start-width: 1px;
   display: grid;
   gap: 1rem;
 }
 @media screen and (min-width: 700px) {
   .product-sticky-bar {
-    border-block-start-width: 1px;
     border-block-end-width: 0;
     bottom: 0;
     inset-block-start: initial;

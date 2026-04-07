@@ -142,6 +142,15 @@
                   -%}
 
                   {%- capture option_markup -%}
+                    {% if option.name == 'Color' %}
+                      {% for variant in product.variants %}
+                        {% if variant.option1 == option_value %}
+                          {% assign file_name = variant.featured_image.src | remove: 'files/' %}
+                          {{ variant.featured_image | image_url: width: '60' | image_tag: data-file-name: file_name }}
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
                     <span>{{- option_value -}}</span>
 
                     {%- if option_value.available == false -%}
@@ -180,7 +189,7 @@
                       </div>
                     {%- else -%}
                       <label
-                        class="popover__value-option h-stack justify-between gap-2"
+                        class="popover__value-option h-stack {% if option.name != 'Color' %}justify-between{% endif %} gap-2"
                         for="{{ option_input_id }}"
                       >
                         <input
