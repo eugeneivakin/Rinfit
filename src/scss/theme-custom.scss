@@ -48,3 +48,7 @@ body {
 .floating-controls-container--on-hover > .floating-controls-container__control {
   opacity: 1;
 }
+
+.template--connect {
+  --section-vertical-spacing-override: 12px;
+}
