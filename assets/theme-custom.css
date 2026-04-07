@@ -241,12 +241,22 @@ size-chart-button {
   display: grid;
   gap: 1rem;
 }
+@media screen and (max-width: 700px) {
+  .product-sticky-bar {
+    --container-gutter: 10px;
+  }
+}
 @media screen and (min-width: 700px) {
   .product-sticky-bar {
     border-block-end-width: 0;
     bottom: 0;
     inset-block-start: initial;
     grid-template-columns: minmax(0, 1fr) max-content max-content;
+  }
+}
+@media screen and (max-width: 700px) {
+  .product-sticky-bar .product-sticky-bar__info {
+    padding-inline-end: 1.5rem;
   }
 }
 .product-sticky-bar .product-sticky-bar__info .price-list {
@@ -256,7 +266,7 @@ size-chart-button {
 .product-sticky-bar .variant-picker {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 0.5rem;
 }
 @media screen and (min-width: 700px) {
   .product-sticky-bar .variant-picker {
@@ -266,6 +276,7 @@ size-chart-button {
 @media screen and (min-width: 1000px) {
   .product-sticky-bar .variant-picker {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 .product-sticky-bar .variant-picker__option {
@@ -276,6 +287,11 @@ size-chart-button {
 }
 .product-sticky-bar .variant-picker__option.v-stack .select {
   height: 100%;
+}
+@media screen and (max-width: 700px) {
+  .product-sticky-bar .variant-picker__option.v-stack .select {
+    --input-padding-inline: 5px;
+  }
 }
 .product-sticky-bar .variant-picker__option legend,
 .product-sticky-bar .variant-picker__option .variant-picker__selected-variant {
