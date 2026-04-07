@@ -124,7 +124,7 @@
 
             <x-popover
               id="{{ popover_id }}"
-              class="popover popover--bottom-start color-scheme color-scheme--dialog"
+              class="popover popover--top-start color-scheme color-scheme--dialog"
               close-on-listbox-change
               data-option-position="{{ option.position }}"
             >
@@ -146,7 +146,7 @@
                       {% for variant in product.variants %}
                         {% if variant.option1 == option_value %}
                           {% assign file_name = variant.featured_image.src | remove: 'files/' %}
-                          {{ variant.featured_image | image_url: width: '60' | image_tag: data-file-name: file_name }}
+                          {{ variant.featured_image | image_url: width: '40' | image_tag: data-file-name: file_name }}
                           {% break %}
                         {% endif %}
                       {% endfor %}
