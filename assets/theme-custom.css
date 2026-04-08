@@ -235,6 +235,14 @@ size-chart-button {
   transform: translateY(calc(var(--product-sticky-bar-height) * -1));
 }
 
+.popover:has(.popover__value-list)::part(body) {
+  padding-inline-end: var(--popover-body-padding-inline);
+}
+
+.popover__value-list > :has(:checked) {
+  font-weight: 600;
+}
+
 .product-sticky-bar {
   background: rgb(var(--background));
   border-block-start-width: 1px;
@@ -317,6 +325,18 @@ size-chart-button {
 .product-sticky-bar [data-bar-close]:not([disabled]):hover {
   background: none;
   color: rgb(var(--button-background, var(--text-color)));
+}
+.product-sticky-bar .select > span {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.product-sticky-bar .select[aria-expanded=true] > svg {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 body {

@@ -7,6 +7,14 @@
   }
 }
 
+.popover:has(.popover__value-list)::part(body) {
+  padding-inline-end: var(--popover-body-padding-inline);
+}
+
+.popover__value-list > :has(:checked) {
+  font-weight: 600;
+}
+
 .product-sticky-bar {
   background: rgb(var(--background));
   border-block-start-width: 1px;
@@ -95,6 +103,22 @@
     &:not([disabled]):hover {
       background: none;
       color: rgb(var(--button-background, var(--text-color)));
+    }
+  }
+
+  .select {
+    > span {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    &[aria-expanded="true"] > svg {
+      transform: translateY(-50%) rotate(180deg);
     }
   }
 }

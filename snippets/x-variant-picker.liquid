@@ -117,6 +117,15 @@
 
             <button type="button" class="select" aria-controls="{{ popover_id }}" aria-expanded="false">
               <span id="{{ popover_id }}-selected-value">
+                {% if option.name == 'Color' %}
+                  {% for variant in product.variants %}
+                    {% if variant.option1 == option.selected_value %}
+                      {% assign file_name = variant.featured_image.src | remove: 'files/' %}
+                      {{ variant.featured_image | image_url: width: '40' | image_tag: data-file-name: file_name }}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
                 {{- option.selected_value -}}
               </span>
               {%- render 'icon' with 'dropdown-chevron' -%}
