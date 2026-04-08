@@ -128,7 +128,17 @@
   </div>
 </div>
 
-{%- if section.settings.show_sticky_add_to_cart and product.available -%}
+{% liquid
+  assign couple_bundle_found = false
+  for collection in product.collections
+    if collection.title == 'Couple Bundle'
+      assign couple_bundle_found = true
+      break
+    endif
+  endfor
+%}
+
+{%- if section.settings.show_sticky_add_to_cart and product.available and couple_bundle_found == false -%}
   <product-rerender id="{{ product_form_id }}-sticky-bar" observe-form="{{ product_form_id }}">
     <product-sticky-bar form="{{ product_form_id }}" class="product-sticky-bar">
       <div class="product-sticky-bar__info">

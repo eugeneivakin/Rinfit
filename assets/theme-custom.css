@@ -335,6 +335,9 @@ size-chart-button {
   align-items: center;
   gap: 0.5rem;
 }
+.product-sticky-bar .select img {
+  margin-block: -12px;
+}
 .product-sticky-bar .select[aria-expanded=true] > svg {
   transform: translateY(-50%) rotate(180deg);
 }

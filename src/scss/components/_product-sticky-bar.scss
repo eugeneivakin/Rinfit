@@ -117,6 +117,10 @@
       gap: 0.5rem;
     }
 
+    img {
+      margin-block: -12px;
+    }
+
     &[aria-expanded="true"] > svg {
       transform: translateY(-50%) rotate(180deg);
     }
