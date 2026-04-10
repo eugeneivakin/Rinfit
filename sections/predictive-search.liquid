@@ -16,6 +16,9 @@ Nothing
 {%- endcomment -%}
 
 {%- if predictive_search.performed -%}
+  <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+  {{ 'product-card.css' | asset_url | stylesheet_tag }}
+  
   {%- assign results_count = 0 -%}
 
   {%- for resource in predictive_search.resources -%}

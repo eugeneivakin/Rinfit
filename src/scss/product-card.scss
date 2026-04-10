@@ -112,6 +112,10 @@
 
     @include md {
       gap: 10px;
+
+      .predictive-search__products & {
+        gap: 7px;
+      }
     }
 
     .color-swatch {
