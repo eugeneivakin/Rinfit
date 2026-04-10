@@ -96,6 +96,9 @@
   .x-product-card .product-card__swatches {
     gap: 10px;
   }
+  .predictive-search__products .x-product-card .product-card__swatches {
+    gap: 7px;
+  }
 }
 .x-product-card .product-card__swatches .color-swatch {
   --swatch-size: 26px;
