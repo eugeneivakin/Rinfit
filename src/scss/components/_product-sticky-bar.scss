@@ -73,6 +73,10 @@
   .variant-picker__option {
     gap: 0.5rem;
 
+    &:only-of-type {
+      grid-column: span 2;
+    }
+
     &.v-stack {
       align-content: stretch;
 
