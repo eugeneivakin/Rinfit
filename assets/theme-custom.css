@@ -302,6 +302,9 @@ size-chart-button {
 .product-sticky-bar .variant-picker__option {
   gap: 0.5rem;
 }
+.product-sticky-bar .variant-picker__option:only-of-type {
+  grid-column: span 2;
+}
 .product-sticky-bar .variant-picker__option.v-stack {
   align-content: stretch;
 }
