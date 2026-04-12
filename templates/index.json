@@ -71,12 +71,12 @@
         "image_FKMhm7": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/hero_8.png",
-            "mobile_image": "shopify://shop_images/hero_9.png",
+            "image": "shopify://shop_images/Banner_3_34.jpg",
+            "mobile_image": "shopify://shop_images/Banner_3_Mobile_1_6a411f96-c6a4-47ac-9448-b74eb2396496.jpg",
             "subheading": "Cosmic Vibes.  Everyday Wear.",
             "title": "Meet the New Collection <em><strong>that Sparkles Daily</strong></em>.",
             "mobile_text_position": "place-self-end-start text-start",
-            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
             "content_max_width": 780,
             "button_1_text": "SHOP THE STARLIGHT STACK",
             "button_1_link": "",
