@@ -15,26 +15,28 @@
         "heading_xBznFB": {
           "type": "heading",
           "settings": {
-            "text": "GET PAID",
+            "text": "GET<strong>PAID</strong>",
             "heading_tag": "h1"
           }
         },
         "subheading_jYUr4p": {
           "type": "subheading",
           "settings": {
-            "text": "To Create With Rinfit"
+            "text": "<em>To Create With Rinfit</em>"
           }
         },
         "richtext_6yhEnh": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Promote unique patented rings your audience will actually want to wear.</p>"
+            "content": "<p>Promote unique patented rings your audience will actually want to wear.</p>",
+            "style": "normal"
           }
         },
         "richtext_D97eQK": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Established in 2016 | 2M+ Rings Sold</p>"
+            "content": "<p><strong>Established in 2016</strong> | <strong>2M+ Rings Sold</strong></p>",
+            "style": "large"
           }
         },
         "button_g4iCTH": {
@@ -58,8 +60,10 @@
       "name": "t:sections.promotion.presets.promotion.name",
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "section_style": "style_2",
         "separate_section_with_border": true,
         "image": "shopify://shop_images/Promotion-banner.jpg",
+        "mobile_image": "shopify://shop_images/Promotion-banner-02-mobile.jpg",
         "reveal_on_scroll": true,
         "image_position": "end",
         "content_width": "md",

@@ -230,10 +230,6 @@ size-chart-button {
   grid-template-columns: 1fr;
 }
 
-#PBarNextFrameWrapper {
-  visibility: hidden !important;
-}
-
 .product-sticky-bar--visible #privy-container #privy-inner-container .privy-tab-container.privy-bottom.privy-floating.privy-bottom,
 .product-sticky-bar--visible .shop-ai-chat-container {
   transform: translateY(calc(var(--product-sticky-bar-height) * -1));
@@ -364,6 +360,12 @@ size-chart-button {
 body {
   line-height: 1.4286;
   min-width: 320px;
+  max-width: 398px;
+}
+@media screen and (min-width: 700px) {
+  body {
+    max-width: none;
+  }
 }
 
 .container {
