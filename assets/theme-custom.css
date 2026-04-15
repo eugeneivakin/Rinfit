@@ -418,6 +418,7 @@ body {
   opacity: 1;
 }
 
-.template--connect {
+.template--connect,
+.template--affiliates {
   --section-vertical-spacing-override: 12px;
 }
