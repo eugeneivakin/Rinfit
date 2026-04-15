@@ -67,12 +67,19 @@
     }
   }
 
-  .prose :where(:not(meta, span) + *) {
+  .prose {
+    :where(:not(meta, span) + *) {
     margin-block-start: 11px;
 
     @include md {
       margin-block-start: 20px;
     }
+  }
+
+  > .button {
+    max-width: 318px;
+    width: 100%;
+  }
   }
 
   .nickname {
@@ -114,43 +121,45 @@
     }
   }
 
-  .button {
-    --button-text-transform: none;
-    --button-border-radius: 8px;
-    --button-letter-spacing: -0.7px;
-    border-width: 2px;
-    column-gap: 12px;
-    font-size: 24px;
-    font-weight: 300;
-    justify-content: flex-start;
-    min-height: 61px;
-    padding-block: 10px;
-    padding-inline-start: 15px;
-    padding-inline-end: 10px;
-    width: 100%;
-
-    @include md {
-      --button-letter-spacing: 0;
-      font-size: 21px;
-      min-height: 57px;
-      min-width: 266px;
-    }
-
-    &:has(svg) {
-      text-align: left;
-    }
-
-    svg {
-      height: 33px;
-      width: auto;
+  .social-media {
+    .button {
+      --button-text-transform: none;
+      --button-border-radius: 8px;
+      --button-letter-spacing: -0.7px;
+      border-width: 2px;
+      column-gap: 12px;
+      font-size: 24px;
+      font-weight: 300;
+      justify-content: flex-start;
+      min-height: 61px;
+      padding-block: 10px;
+      padding-inline-start: 15px;
+      padding-inline-end: 10px;
+      width: 100%;
 
       @include md {
-        height: 30px;
+        --button-letter-spacing: 0;
+        font-size: 21px;
+        min-height: 57px;
+        min-width: 266px;
+      }
+
+      &:has(svg) {
+        text-align: left;
+      }
+
+      svg {
+        height: 33px;
+        width: auto;
+
+        @include md {
+          height: 30px;
+        }
       }
     }
-  }
 
-  .button--outline {
-    --button-outline-color: var(--button-background);
+    .button--outline {
+      --button-outline-color: var(--button-background);
+    }
   }
 }

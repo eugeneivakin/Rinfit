@@ -73,6 +73,10 @@
     margin-block-start: 20px;
   }
 }
+.shopify-section--join-us .prose > .button {
+  max-width: 318px;
+  width: 100%;
+}
 .shopify-section--join-us .nickname {
   font: 27px/1 var(--heading-font-family-alternate);
   margin-block-start: 15px;
@@ -111,7 +115,7 @@
 .shopify-section--join-us .social-media--list li {
   margin-block-start: 0;
 }
-.shopify-section--join-us .button {
+.shopify-section--join-us .social-media .button {
   --button-text-transform: none;
   --button-border-radius: 8px;
   --button-letter-spacing: -0.7px;
@@ -128,25 +132,25 @@
   width: 100%;
 }
 @media screen and (min-width: 1000px) {
-  .shopify-section--join-us .button {
+  .shopify-section--join-us .social-media .button {
     --button-letter-spacing: 0;
     font-size: 21px;
     min-height: 57px;
     min-width: 266px;
   }
 }
-.shopify-section--join-us .button:has(svg) {
+.shopify-section--join-us .social-media .button:has(svg) {
   text-align: left;
 }
-.shopify-section--join-us .button svg {
+.shopify-section--join-us .social-media .button svg {
   height: 33px;
   width: auto;
 }
 @media screen and (min-width: 1000px) {
-  .shopify-section--join-us .button svg {
+  .shopify-section--join-us .social-media .button svg {
     height: 30px;
   }
 }
-.shopify-section--join-us .button--outline {
+.shopify-section--join-us .social-media .button--outline {
   --button-outline-color: var(--button-background);
 }

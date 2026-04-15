@@ -44,7 +44,7 @@
           "settings": {
             "style": "solid",
             "text": "Apply now",
-            "url": "shopify://collections",
+            "url": "shopify://pages/connect",
             "background": "",
             "text_color": ""
           }
@@ -241,13 +241,24 @@
         "richtext_NLE4mw": {
           "type": "richtext",
           "settings": {
-            "content": "<p>And start earning with RINFIT</p>"
+            "content": "<p>And start earning with <strong>RINFIT</strong></p>"
+          }
+        },
+        "button_W948D4": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "APPLY NOW",
+            "url": "shopify://pages/connect",
+            "background": "",
+            "text_color": ""
           }
         }
       },
       "block_order": [
         "heading_iFYemP",
-        "richtext_NLE4mw"
+        "richtext_NLE4mw",
+        "button_W948D4"
       ],
       "name": "t:sections.x_join_community.presets.x_join_community.name",
       "settings": {
