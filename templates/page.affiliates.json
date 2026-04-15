@@ -1,0 +1,210 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "promotion_bLFtYP": {
+      "type": "promotion",
+      "blocks": {
+        "heading_xBznFB": {
+          "type": "heading",
+          "settings": {
+            "text": "GET PAID",
+            "heading_tag": "h1"
+          }
+        },
+        "subheading_jYUr4p": {
+          "type": "subheading",
+          "settings": {
+            "text": "To Create With Rinfit"
+          }
+        },
+        "richtext_6yhEnh": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Promote unique patented rings your audience will actually want to wear.</p>"
+          }
+        },
+        "richtext_D97eQK": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Established in 2016 | 2M+ Rings Sold</p>"
+          }
+        },
+        "button_g4iCTH": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Apply now",
+            "url": "shopify://collections",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_xBznFB",
+        "subheading_jYUr4p",
+        "richtext_6yhEnh",
+        "richtext_D97eQK",
+        "button_g4iCTH"
+      ],
+      "name": "t:sections.promotion.presets.promotion.name",
+      "settings": {
+        "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/Promotion-banner.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "md",
+        "remove_vertical_spacing": true
+      }
+    },
+    "text_with_icons_banner_XWGFaB": {
+      "type": "text-with-icons-banner",
+      "blocks": {
+        "item_zNJJ3i": {
+          "type": "item",
+          "settings": {
+            "icon": "men",
+            "icon_width": 68,
+            "mobile_icon_width": 50,
+            "title": "Proven product that converts",
+            "content": ""
+          }
+        },
+        "item_MhmitJ": {
+          "type": "item",
+          "settings": {
+            "icon": "award",
+            "icon_width": 36,
+            "mobile_icon_width": 34,
+            "title": "Simple content that feels natural",
+            "content": ""
+          }
+        },
+        "item_DQwwDE": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "icon_width": 52,
+            "mobile_icon_width": 44,
+            "title": "Earn commission on every sale",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_zNJJ3i",
+        "item_MhmitJ",
+        "item_DQwwDE"
+      ],
+      "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
+      "settings": {
+        "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
+        "separate_section_with_border": false,
+        "stack_on_mobile": true,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "start"
+      }
+    },
+    "x_why_us_VpJaW4": {
+      "type": "x-why-us",
+      "blocks": {
+        "item_W7dnpr": {
+          "type": "item",
+          "settings": {
+            "icon": "clock",
+            "icon_width": 48,
+            "mobile_icon_width": 32,
+            "title": "Patented Designs",
+            "content": "<p>Made for real life.</p>"
+          }
+        },
+        "item_pJNMKQ": {
+          "type": "item",
+          "settings": {
+            "icon": "sale",
+            "icon_width": 46,
+            "mobile_icon_width": 30,
+            "title": "Built For Work",
+            "content": "<p>For everyday wear.</p>"
+          }
+        },
+        "item_6Y8jcK": {
+          "type": "item",
+          "settings": {
+            "icon": "bell",
+            "icon_width": 40,
+            "mobile_icon_width": 26,
+            "title": "Easy To Wear",
+            "content": "<p>Easy to share</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_W7dnpr",
+        "item_pJNMKQ",
+        "item_6Y8jcK"
+      ],
+      "name": "t:sections.why_us.presets.why_us.name",
+      "settings": {
+        "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
+        "separate_section_with_border": false,
+        "stack_on_mobile": true,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "WHY IT SELLS",
+        "content": ""
+      }
+    },
+    "x_join_community_nDpiqD": {
+      "type": "x-join-community",
+      "blocks": {
+        "heading_iFYemP": {
+          "type": "heading",
+          "settings": {
+            "text": "Join the Affiliate Program",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_NLE4mw": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>And start earning with RINFIT</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_iFYemP",
+        "richtext_NLE4mw"
+      ],
+      "name": "t:sections.x_join_community.presets.x_join_community.name",
+      "settings": {
+        "color_scheme": "scheme-6c46320a-45a2-49a4-9185-b85f69516dae",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/Join-us-desktop.jpg",
+        "mobile_image": "shopify://shop_images/Join-us-mobile.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "md",
+        "remove_vertical_spacing": true
+      }
+    }
+  },
+  "order": [
+    "promotion_bLFtYP",
+    "text_with_icons_banner_XWGFaB",
+    "x_why_us_VpJaW4",
+    "x_join_community_nDpiqD"
+  ]
+}
