@@ -6,7 +6,7 @@
     | md5
   -%}
 
-  <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <div class="section-style--{{ section.settings.section_style }} section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
       {%- render 'section-header',
         subheading: section.settings.subheading,
@@ -114,6 +114,22 @@
       "default": "scheme-1"
     },
     {
+      "type": "select",
+      "id": "section_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "style_1",
+          "label": "Style 1"
+        },
+        {
+          "value": "style_2",
+          "label": "Style 2"
+        }
+      ],
+      "default": "style_1"
+    },
+    {
       "type": "checkbox",
       "id": "separate_section_with_border",
       "label": "t:global.section.separate_section_with_border",
@@ -205,6 +221,38 @@
             {
               "value": "bell",
               "label": "Bell"
+            },
+            {
+              "value": "ring",
+              "label": "Ring"
+            },
+            {
+              "value": "feelings",
+              "label": "Feelings"
+            },
+            {
+              "value": "money_up",
+              "label": "Money up"
+            },
+            {
+              "value": "shield_check",
+              "label": "Shield OK"
+            },
+            {
+              "value": "hand",
+              "label": "Hand"
+            },
+            {
+              "value": "pointer_click",
+              "label": "Pointer click"
+            },
+            {
+              "value": "ok_check",
+              "label": "OK check"
+            },
+            {
+              "value": "video_call",
+              "label": "Video call"
             }
           ]
         },

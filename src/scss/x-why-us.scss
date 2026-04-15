@@ -1,7 +1,6 @@
 @use "mixins/media" as *;
 
 .shopify-section--why-us {
-  --heading-font-family: var(--heading-font-family-alternate);
   --heading-font-weight: 400;
   --text-h2: 27px;
   --text-h6: 22px;
@@ -15,6 +14,10 @@
 
     font-size: 22.5px;
     line-height: 1.6;
+  }
+
+  .color-scheme {
+    border-radius: 20px;
   }
 
   .h2,
@@ -60,8 +63,14 @@
   }
 
   .text-with-icons__item {
-    > .h-stack {
-      align-items: start;
+    // > .h-stack {
+    //   align-items: start;
+    // }
+
+    .h6 {
+      &:only-child {
+        --heading-font-weight: 300;
+      }
     }
   }
 
@@ -80,6 +89,18 @@
 
     @include md {
       min-width: 102px;
+    }
+  }
+}
+
+.shopify-section--why-us {
+  .section-style--style_1 {
+    --heading-font-family: var(--heading-font-family-alternate);
+  }
+
+  .section-style--style_2 {
+    .h6 {
+      --heading-font-weight: 500;
     }
   }
 }

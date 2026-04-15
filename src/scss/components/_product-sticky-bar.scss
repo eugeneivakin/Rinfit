@@ -1,9 +1,5 @@
 @use "mixins/media" as *;
 
-#PBarNextFrameWrapper {
-  visibility: hidden !important;
-}
-
 .product-sticky-bar--visible {
   #privy-container #privy-inner-container .privy-tab-container.privy-bottom.privy-floating.privy-bottom,
   .shop-ai-chat-container {

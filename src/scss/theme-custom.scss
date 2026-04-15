@@ -11,9 +11,19 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
+#PBarNextFrameWrapper {
+  // visibility: hidden !important;
+}
+
 body {
   line-height: 1.4286;
   min-width: 320px;
+
+  max-width: 398px;
+
+  @include sm {
+    max-width: none;
+  }
 }
 
 .container {
@@ -49,6 +59,7 @@ body {
   opacity: 1;
 }
 
-.template--connect {
+.template--connect,
+.template--affiliates {
   --section-vertical-spacing-override: 12px;
 }

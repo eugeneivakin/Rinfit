@@ -24,7 +24,7 @@
     | md5
   -%}
 
-  <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <div class="section-style--{{ section.settings.section_style }} {% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <image-with-text class="image-with-text {% if section.settings.image_position == 'end' %}image-with-text--reverse{% endif %}">
       <div class="prose text-center">
         {%- for block in section.blocks -%}
@@ -41,7 +41,7 @@
 
             {%- when 'richtext' -%}
               {%- if block.settings.content != blank -%}
-                <div class="image-with-text__richtext" {{ block.shopify_attributes }}>
+                <div class="image-with-text__richtext image-with-text__richtext--{{ block.settings.style }}" {{ block.shopify_attributes }}>
                   {{- block.settings.content -}}
                 </div>
               {%- endif -%}
@@ -171,6 +171,22 @@
       "id": "color_scheme",
       "label": "t:global.colors.scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "style_1",
+          "label": "Style 1"
+        },
+        {
+          "value": "style_2",
+          "label": "Style 2"
+        }
+      ],
+      "default": "style_1"
     },
     {
       "type": "checkbox",
@@ -304,6 +320,22 @@
           "id": "content",
           "label": "t:global.text.content",
           "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Vertical alignment",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "normal"
         }
       ]
     },

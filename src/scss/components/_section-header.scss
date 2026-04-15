@@ -1,6 +1,8 @@
 @use "mixins/media" as *;
 
 .section-header {
+  --text-h2: 34px;
+  --heading-text-transform: capitalize;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -9,6 +11,10 @@
   align-items: flex-end;
   gap: 1rem;
   max-width: none;
+
+  @include md {
+    --text-h2: 40px;
+  }
 
   &.justify-self-stretch {
     align-self: stretch;
@@ -27,12 +33,9 @@
   }
 
   h2 {
-    font-size: 34px;
     text-align: center;
-    text-transform: capitalize;
 
     @include md {
-      font-size: 40px;
       text-align: left;
     }
 

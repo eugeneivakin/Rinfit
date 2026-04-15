@@ -1,5 +1,4 @@
 .shopify-section--why-us {
-  --heading-font-family: var(--heading-font-family-alternate);
   --heading-font-weight: 400;
   --text-h2: 27px;
   --text-h6: 22px;
@@ -13,6 +12,9 @@
     font-size: 22.5px;
     line-height: 1.6;
   }
+}
+.shopify-section--why-us .color-scheme {
+  border-radius: 20px;
 }
 .shopify-section--why-us .h2,
 .shopify-section--why-us :where(.prose h2) {
@@ -50,8 +52,8 @@
     flex-basis: 100%;
   }
 }
-.shopify-section--why-us .text-with-icons__item > .h-stack {
-  align-items: start;
+.shopify-section--why-us .text-with-icons__item .h6:only-child {
+  --heading-font-weight: 300;
 }
 .shopify-section--why-us .text-with-icons__icon-wrapper {
   aspect-ratio: 1;
@@ -70,4 +72,11 @@
   .shopify-section--why-us .text-with-icons__icon-wrapper {
     min-width: 102px;
   }
+}
+
+.shopify-section--why-us .section-style--style_1 {
+  --heading-font-family: var(--heading-font-family-alternate);
+}
+.shopify-section--why-us .section-style--style_2 .h6 {
+  --heading-font-weight: 500;
 }

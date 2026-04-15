@@ -1,14 +1,6 @@
 @use "mixins/media" as *;
 
 .shopify-section--promotion {
-  font-size: 20px;
-  line-height: 1.1;
-
-  @include md {
-    font-size: 26px;
-    line-height: 1.1667;
-  }
-
   .color-scheme {
     border-radius: 20px;
     overflow: hidden;
@@ -33,34 +25,6 @@
         margin-block-start: 109px;
         margin-block-end: 87px;
       }
-    }
-  }
-
-  .heading,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6,
-  .prose :where(h1, h2, h3, h4, h5, h6) {
-    --heading-font-family: "Playfair Display";
-    --heading-font-weight: 300;
-    --heading-text-transform: capitalize;
-    --text-h1: 62px;
-    --text-h6: 20px;
-    letter-spacing: 1px;
-
-    @include md {
-      --text-h1: 95px;
-      --text-h6: 29px;
-      --heading-text-transform: none;
-    }
-
-    @include lg {
-      --text-h1: 132px;
-      --text-h6: 37.5px;
-      --heading-text-transform: none;
     }
   }
 
@@ -129,11 +93,27 @@
         padding-inline-start: 59px;
       }
     }
+
+    .button {
+      font-size: 26px;
+      margin-block-start: 23px !important;
+      max-width: 318px;
+      width: 100%;
+    }
   }
 
   .image-with-text__richtext {
     @include md {
       padding-inline: 50px;
+    }
+  }
+
+  .image-with-text__richtext--large {
+    font-size: 19px;
+    padding-block-start: 4px;
+
+    strong {
+      font-weight: 500;
     }
   }
 
@@ -215,6 +195,118 @@
     @include sm {
       --container-gutter: 0;
       margin-inline-start: -30px;
+    }
+  }
+}
+
+// custom styles. Parent - affiliates page
+.shopify-section--promotion {
+  .section-style--style_1 {
+    font-size: 20px;
+    line-height: 1.1;
+
+    @include md {
+      font-size: 26px;
+      line-height: 1.1667;
+    }
+
+    .heading,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    .prose :where(h1, h2, h3, h4, h5, h6) {
+      --heading-font-family: var(--heading-font-family-alternate);
+      --heading-font-weight: 300;
+      --heading-text-transform: capitalize;
+      --text-h1: 62px;
+      --text-h6: 20px;
+      letter-spacing: 1px;
+
+      @include md {
+        --text-h1: 95px;
+        --text-h6: 29px;
+        --heading-text-transform: none;
+      }
+
+      @include lg {
+        --text-h1: 132px;
+        --text-h6: 37.5px;
+        --heading-text-transform: none;
+      }
+    }
+  }
+
+  .section-style--style_2 {
+    font-size: 18px;
+    line-height: 1.1111;
+
+    // @include md {
+    //   font-size: 26px;
+    //   line-height: 1.1667;
+    // }
+
+    .heading,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    .prose :where(h1, h2, h3, h4, h5, h6) {
+      --heading-font-family: var(--heading-font-family);
+      --heading-font-weight: 200;
+      --heading-text-transform: capitalize;
+      --text-h1: 54px;
+      --text-h6: 27px;
+      letter-spacing: -1.5px;
+
+      // @include md {
+      //   --text-h1: 95px;
+      //   --text-h6: 29px;
+      //   --heading-text-transform: none;
+      // }
+
+      // @include lg {
+      //   --text-h1: 132px;
+      //   --text-h6: 37.5px;
+      //   --heading-text-transform: none;
+      // }
+    }
+
+    .h1 {
+      > strong {
+        display: inline;
+        font: inherit;
+        font-weight: normal;
+        letter-spacing: -1px;
+      }
+    }
+
+    .h6 {
+      --heading-font-family: var(--heading-font-family-alternate);
+      letter-spacing: 0;
+      margin-block-start: -2px !important;
+    }
+
+    .prose {
+      // margin-block-end: 5px;
+      // position: relative;
+      // z-index: 5;
+
+      :where(:not(meta, span) + *) {
+        margin-block-start: 14px;
+
+        // @include md {
+        //   margin-block-start: 10px;
+        // }
+      }
+    }
+
+    .image-with-text__media-wrapper {
+      padding-inline: 0;
     }
   }
 }
