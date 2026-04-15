@@ -76,9 +76,9 @@
         "item_zNJJ3i": {
           "type": "item",
           "settings": {
-            "icon": "men",
+            "icon": "ring",
             "icon_width": 68,
-            "mobile_icon_width": 50,
+            "mobile_icon_width": 36,
             "title": "Proven product that converts",
             "content": ""
           }
@@ -86,9 +86,9 @@
         "item_MhmitJ": {
           "type": "item",
           "settings": {
-            "icon": "award",
+            "icon": "feelings",
             "icon_width": 36,
-            "mobile_icon_width": 34,
+            "mobile_icon_width": 38,
             "title": "Simple content that feels natural",
             "content": ""
           }
@@ -96,9 +96,9 @@
         "item_DQwwDE": {
           "type": "item",
           "settings": {
-            "icon": "heart",
+            "icon": "money_up",
             "icon_width": 52,
-            "mobile_icon_width": 44,
+            "mobile_icon_width": 26,
             "title": "Earn commission on every sale",
             "content": ""
           }
@@ -116,7 +116,10 @@
         "stack_on_mobile": true,
         "icon_color": "",
         "text_color": "",
-        "text_alignment": "start"
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "WHY RINFIT",
+        "content": ""
       }
     },
     "x_why_us_VpJaW4": {

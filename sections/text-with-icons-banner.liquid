@@ -9,6 +9,12 @@
   <div class="section-spacing">
     <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
       <div class="container">
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          content: section.settings.content
+        -%}
+
         <div class="v-stack gap-8">
           {%- capture section_content -%}
           {%- for block in section.blocks -%}
@@ -147,6 +153,21 @@
         }
       ],
       "default": "center"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:global.text.subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content"
     }
   ],
   "blocks": [
@@ -182,6 +203,38 @@
             {
               "value": "bell",
               "label": "Bell"
+            },
+            {
+              "value": "ring",
+              "label": "Ring"
+            },
+            {
+              "value": "feelings",
+              "label": "Feelings"
+            },
+            {
+              "value": "money_up",
+              "label": "Money up"
+            },
+            {
+              "value": "shield_check",
+              "label": "Shield OK"
+            },
+            {
+              "value": "hand",
+              "label": "Hand"
+            },
+            {
+              "value": "pointer_click",
+              "label": "Pointer click"
+            },
+            {
+              "value": "ok_check",
+              "label": "OK check"
+            },
+            {
+              "value": "video_call",
+              "label": "Video call"
             }
           ]
         },

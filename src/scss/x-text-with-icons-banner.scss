@@ -7,11 +7,16 @@
 
   .container {
     --container-gutter: 10px;
+    padding-block-start: 10px;
+  }
+
+  .section-header {
+    --text-h2: 28px;
   }
 
   .text-with-icons {
     --text-with-icons-items-per-row: 3;
-    --text-with-icons-column-gap: 1px;
+    --text-with-icons-column-gap: 10px;
     --text-with-icons-row-gap: 1rem;
     padding-block-start: 21px;
     padding-block-end: 16px;

@@ -53,6 +53,8 @@
 }
 
 .section-header {
+  --text-h2: 34px;
+  --heading-text-transform: capitalize;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -61,6 +63,11 @@
   align-items: flex-end;
   gap: 1rem;
   max-width: none;
+}
+@media screen and (min-width: 1000px) {
+  .section-header {
+    --text-h2: 40px;
+  }
 }
 .section-header.justify-self-stretch {
   align-self: stretch;
@@ -74,13 +81,10 @@
   }
 }
 .section-header h2 {
-  font-size: 34px;
   text-align: center;
-  text-transform: capitalize;
 }
 @media screen and (min-width: 1000px) {
   .section-header h2 {
-    font-size: 40px;
     text-align: left;
   }
 }
