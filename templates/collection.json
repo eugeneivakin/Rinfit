@@ -9,6 +9,11 @@
  */
 {
   "sections": {
+    "breadcrumbs_9i999W": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {}
+    },
     "main": {
       "type": "main-collection",
       "settings": {
@@ -45,7 +50,7 @@
         "show_collection_description": true,
         "short_collection_description": true,
         "short_collection_description_lines": 2,
-        "show_breadcrumb": true,
+        "show_breadcrumb": false,
         "content_width": "xs",
         "text_align": "start",
         "overlay_color": "#000000",
@@ -54,6 +59,7 @@
     }
   },
   "order": [
+    "breadcrumbs_9i999W",
     "main",
     "collection-banner"
   ]
