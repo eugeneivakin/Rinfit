@@ -1,0 +1,45 @@
+<div class="section-spacing container">
+  <nav class="breadcrumb" aria-label="{{ 'general.breadcrumb.label' | t | escape }}">
+    <ol class="breadcrumb__list unstyled-list">
+      <li class="breadcrumb__list-item">
+        <a href="{{ routes.root_url }}" class="smallcaps {% unless show_image %}link-faded{% endunless %}">
+          {{- 'general.breadcrumb.home' | t -}}
+        </a>
+      </li>
+
+      <li class="breadcrumb__list-item">
+        <a
+          href="{{ routes.all_products_collection_url }}"
+          class="smallcaps {% unless show_image %}link-faded{% endunless %}"
+        >
+          {{- 'general.breadcrumb.shop' | t -}}
+        </a>
+      </li>
+
+      <li class="breadcrumb__list-item">
+        <a
+          href="{{ collection.url }}"
+          aria-current="page"
+          class="smallcaps {% unless show_image %}link-faded{% endunless %}"
+        >
+          {{- collection.title -}}
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+{% schema %}
+{
+  "name": "Breadcrumbs",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "presets": [
+    {
+      "name": "Breadcrumbs"
+    }
+  ]
+}
+{% endschema %}
