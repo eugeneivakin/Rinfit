@@ -63,3 +63,9 @@ body {
 .template--affiliates {
   --section-vertical-spacing-override: 12px;
 }
+
+main > .shopify-section--newsletter {
+  .template--connect & {
+    display: none !important;
+  }
+}

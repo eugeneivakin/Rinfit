@@ -1,17 +1,40 @@
 {%- if section.settings.image != blank or section.blocks.size > 0 -%}
-  {{ 'x-join-community.css' | asset_url | stylesheet_tag }}
-
   {%- comment -%}
     ------------------------------------------------------------------------------------------------------------------------
     CSS
     ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
+  {%- style -%}
+    {% if section.settings.show_on_mobile == false %}
+      @media screen and (max-width:767px) {
+        #shopify-section-{{ section.id }} {
+          display: none;
+        }
+      }
+    {% endif %}
 
-  <style>
+    {% if section.settings.show_on_tablet == false %}
+      @media screen and (min-width:767px) and (max-width: 1024px) {
+        #shopify-section-{{ section.id }} {
+          display: none;
+        }
+      }
+    {% endif %}
+
+    {% if section.settings.show_on_desktop == false %}
+      @media screen and (min-width: 1024px) {
+        #shopify-section-{{ section.id }} {
+          display: none;
+        }
+      }
+    {% endif %}
+
     #shopify-section-{{ section.id }} {
       --image-with-text-content-max-width: {% if section.settings.content_width == 'sm' %}430px{% elsif section.settings.content_width == 'md' %}780px{% else %}100%{% endif %};
     }
-  </style>
+  {%- endstyle -%}
+
+  {{ 'x-join-community.css' | asset_url | stylesheet_tag }}
 
   {%- comment -%}
     ------------------------------------------------------------------------------------------------------------------------
@@ -115,6 +138,24 @@
       "id": "color_scheme",
       "label": "t:global.colors.scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_tablet",
+      "label": "Show on tablet",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_desktop",
+      "label": "Show on desktop",
+      "default": true
     },
     {
       "type": "checkbox",
