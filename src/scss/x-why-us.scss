@@ -99,6 +99,47 @@
   }
 
   .section-style--style_2 {
+    &.color-scheme {
+      @include md {
+        --background: 233 233 233 / 0;
+        --button-background: 245 229 225;
+        --button-text-color: 132 118 115;
+      }
+    }
+
+    .section-header {
+      @include md {
+        margin: 0 0 25px;
+      }
+
+      .h2 {
+        @include md {
+          --background: 248 248 248 / 1;
+          --heading-font-weight: 600;
+          background: rgb(var(--background));
+          border-radius: 26px;
+          display: inline-block;
+          letter-spacing: 0.23px;
+          padding: 12px 80px 13px;
+        }
+      }
+    }
+
+    .text-with-icons__item {
+      > .h-stack {
+        @include md {
+          flex-direction: column;
+        }
+      }
+    }
+      
+      .text-with-icons__icon-wrapper {
+        
+        @include md {
+          min-width: 110px;
+    }
+    }
+
     .h6 {
       --heading-font-weight: 500;
     }
