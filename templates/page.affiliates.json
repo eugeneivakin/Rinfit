@@ -112,6 +112,10 @@
       "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
       "settings": {
         "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
+        "section_style": "style_1",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": false,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
@@ -120,6 +124,62 @@
         "subheading": "",
         "title": "WHY RINFIT",
         "content": ""
+      }
+    },
+    "text_with_icons_banner_MAAzYa": {
+      "type": "text-with-icons-banner",
+      "blocks": {
+        "item_9yyrGk": {
+          "type": "item",
+          "settings": {
+            "icon": "ring",
+            "icon_width": 84,
+            "mobile_icon_width": 24,
+            "title": "Proven product that converts",
+            "content": ""
+          }
+        },
+        "item_WGbj8p": {
+          "type": "item",
+          "settings": {
+            "icon": "feelings",
+            "icon_width": 90,
+            "mobile_icon_width": 24,
+            "title": "Easy content that feels natural",
+            "content": ""
+          }
+        },
+        "item_xVaGWm": {
+          "type": "item",
+          "settings": {
+            "icon": "money_up",
+            "icon_width": 58,
+            "mobile_icon_width": 24,
+            "title": "Earn commission on every sale",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_9yyrGk",
+        "item_WGbj8p",
+        "item_xVaGWm"
+      ],
+      "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
+      "settings": {
+        "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
+        "section_style": "style_2",
+        "show_on_mobile": false,
+        "show_on_tablet": false,
+        "show_on_desktop": true,
+        "separate_section_with_border": false,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "WHY CREATORS CHOOSE RINFIT™",
+        "content": "<p>A proven brand with patented designs and real earning potential.</p>"
       }
     },
     "x_why_us_VpJaW4": {
@@ -276,6 +336,7 @@
   "order": [
     "promotion_bLFtYP",
     "text_with_icons_banner_XWGFaB",
+    "text_with_icons_banner_MAAzYa",
     "x_why_us_VpJaW4",
     "x_why_us_hzk4QX",
     "x_join_community_nDpiqD"
