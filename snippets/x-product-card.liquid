@@ -128,7 +128,7 @@
     {%- endif -%}
 
     {%- if show_title or show_prices or show_vendor and product.vendor != blank -%}
-      <div class="v-stack justify-items-center gap-2">
+      <div class="v-stack gap-2">
         {%- if show_vendor and product.vendor != blank -%}
           {%- capture vendor_class -%}smallcaps {% if settings.product_card_text_font == 'heading' %}heading{% endif %}{% endcapture %}
           {%- render 'vendor' with product.vendor, class: vendor_class -%}
