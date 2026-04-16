@@ -77,6 +77,39 @@
 .shopify-section--why-us .section-style--style_1 {
   --heading-font-family: var(--heading-font-family-alternate);
 }
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .section-style--style_2.color-scheme {
+    --background: 233 233 233 / 0;
+    --button-background: 245 229 225;
+    --button-text-color: 132 118 115;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .section-style--style_2 .section-header {
+    margin: 0 0 25px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .section-style--style_2 .section-header .h2 {
+    --background: 248 248 248 / 1;
+    --heading-font-weight: 600;
+    background: rgb(var(--background));
+    border-radius: 26px;
+    display: inline-block;
+    letter-spacing: 0.23px;
+    padding: 12px 80px 13px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .section-style--style_2 .text-with-icons__item > .h-stack {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .shopify-section--why-us .section-style--style_2 .text-with-icons__icon-wrapper {
+    min-width: 110px;
+  }
+}
 .shopify-section--why-us .section-style--style_2 .h6 {
   --heading-font-weight: 500;
 }

@@ -62,7 +62,7 @@
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
         "section_style": "style_2",
         "separate_section_with_border": true,
-        "image": "shopify://shop_images/Promotion-banner.jpg",
+        "image": "shopify://shop_images/Promotion-banner-02-desktop.jpg",
         "mobile_image": "shopify://shop_images/Promotion-banner-02-mobile.jpg",
         "reveal_on_scroll": true,
         "image_position": "end",
@@ -112,6 +112,10 @@
       "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
       "settings": {
         "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
+        "section_style": "style_1",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": false,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
@@ -120,6 +124,62 @@
         "subheading": "",
         "title": "WHY RINFIT",
         "content": ""
+      }
+    },
+    "text_with_icons_banner_MAAzYa": {
+      "type": "text-with-icons-banner",
+      "blocks": {
+        "item_9yyrGk": {
+          "type": "item",
+          "settings": {
+            "icon": "ring",
+            "icon_width": 84,
+            "mobile_icon_width": 24,
+            "title": "Proven product that converts",
+            "content": ""
+          }
+        },
+        "item_WGbj8p": {
+          "type": "item",
+          "settings": {
+            "icon": "feelings",
+            "icon_width": 90,
+            "mobile_icon_width": 24,
+            "title": "Easy content that feels natural",
+            "content": ""
+          }
+        },
+        "item_xVaGWm": {
+          "type": "item",
+          "settings": {
+            "icon": "money_up",
+            "icon_width": 58,
+            "mobile_icon_width": 24,
+            "title": "Earn commission on every sale",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_9yyrGk",
+        "item_WGbj8p",
+        "item_xVaGWm"
+      ],
+      "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
+      "settings": {
+        "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
+        "section_style": "style_2",
+        "show_on_mobile": false,
+        "show_on_tablet": false,
+        "show_on_desktop": true,
+        "separate_section_with_border": false,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "WHY CREATORS CHOOSE RINFIT™",
+        "content": "<p>A proven brand with patented designs and real earning potential.</p>"
       }
     },
     "x_why_us_VpJaW4": {
@@ -165,6 +225,9 @@
       "settings": {
         "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
         "section_style": "style_2",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": false,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
@@ -175,6 +238,101 @@
         "content": ""
       }
     },
+    "x_promotion_banner_tH7EGH": {
+      "type": "x-promotion-banner",
+      "blocks": {
+        "image_wFdgn4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Promotion-banner-ring-03.png"
+          }
+        },
+        "image_b6aYxL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Promotion-banner-ring-04.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_wFdgn4",
+        "image_b6aYxL"
+      ],
+      "name": "X: Promotion banner",
+      "settings": {
+        "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "section_style": "style_2",
+        "show_on_mobile": false,
+        "show_on_tablet": false,
+        "show_on_desktop": true,
+        "separate_section_with_border": true,
+        "subheading": "",
+        "title": "WHY IT SELLS",
+        "content": "<p>Patented designs made for real life.<br/>Built for work, workouts, travel, and everyday wear.<br/>Easy to wear, easy to style, and easy to share with your audience.</p>",
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
+    "x_multi_column_W3tqWn": {
+      "type": "x-multi-column",
+      "blocks": {
+        "image_with_text_z3jCcB": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/How-you-earn-01.jpg",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_WcJxfa": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/How-you-earn-02.jpg",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_FkX7tb": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/How-you-earn-03.jpg",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_z3jCcB",
+        "image_with_text_WcJxfa",
+        "image_with_text_FkX7tb"
+      ],
+      "name": "t:sections.x_multi_column.presets.x_multi_column.name",
+      "settings": {
+        "color_scheme": "scheme-a96db34f-6d42-4c41-b1e9-6c93d16b2257",
+        "show_on_mobile": false,
+        "show_on_tablet": false,
+        "show_on_desktop": true,
+        "separate_section_with_border": false,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "spacing": "md",
+        "subheading": "",
+        "title": "How you earn",
+        "content": "<p>Earn commission on every sale you generate.</p><p>Top-performing creators can unlock additional opportunities, including bonuses<br/>and increased exposure.</p>"
+      }
+    },
     "x_why_us_hzk4QX": {
       "type": "x-why-us",
       "blocks": {
@@ -182,7 +340,7 @@
           "type": "item",
           "settings": {
             "icon": "pointer_click",
-            "icon_width": 24,
+            "icon_width": 56,
             "mobile_icon_width": 34,
             "title": "Apply to join",
             "content": ""
@@ -192,7 +350,7 @@
           "type": "item",
           "settings": {
             "icon": "ok_check",
-            "icon_width": 24,
+            "icon_width": 50,
             "mobile_icon_width": 30,
             "title": "Get approved",
             "content": ""
@@ -202,7 +360,7 @@
           "type": "item",
           "settings": {
             "icon": "video_call",
-            "icon_width": 24,
+            "icon_width": 44,
             "mobile_icon_width": 28,
             "title": "Start creating andearning",
             "content": ""
@@ -218,6 +376,9 @@
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
         "section_style": "style_2",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
@@ -263,6 +424,9 @@
       "name": "t:sections.x_join_community.presets.x_join_community.name",
       "settings": {
         "color_scheme": "scheme-6c46320a-45a2-49a4-9185-b85f69516dae",
+        "show_on_mobile": true,
+        "show_on_tablet": false,
+        "show_on_desktop": false,
         "separate_section_with_border": false,
         "image": "shopify://shop_images/Join-us-desktop.jpg",
         "mobile_image": "shopify://shop_images/Join-us-mobile.jpg",
@@ -271,13 +435,54 @@
         "content_width": "md",
         "remove_vertical_spacing": true
       }
+    },
+    "x_rich_text_qtwx3E": {
+      "type": "x-rich-text",
+      "blocks": {
+        "richtext_bkgdBj": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Join the affiliate program and start earning with Rinfit.</p>"
+          }
+        },
+        "button_rhyMm4": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "APPLY NOW",
+            "url": "shopify://pages/connect",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "richtext_bkgdBj",
+        "button_rhyMm4"
+      ],
+      "name": "t:sections.x_rich_text.presets.x_rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "section_style": "style_2",
+        "show_on_mobile": false,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
     }
   },
   "order": [
     "promotion_bLFtYP",
     "text_with_icons_banner_XWGFaB",
+    "text_with_icons_banner_MAAzYa",
     "x_why_us_VpJaW4",
+    "x_promotion_banner_tH7EGH",
+    "x_multi_column_W3tqWn",
     "x_why_us_hzk4QX",
-    "x_join_community_nDpiqD"
+    "x_join_community_nDpiqD",
+    "x_rich_text_qtwx3E"
   ]
 }

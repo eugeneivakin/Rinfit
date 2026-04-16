@@ -364,12 +364,6 @@ size-chart-button {
 body {
   line-height: 1.4286;
   min-width: 320px;
-  max-width: 398px;
-}
-@media screen and (min-width: 700px) {
-  body {
-    max-width: none;
-  }
 }
 
 .container {
@@ -421,4 +415,8 @@ body {
 .template--connect,
 .template--affiliates {
   --section-vertical-spacing-override: 12px;
+}
+
+.template--connect main > .shopify-section--newsletter {
+  display: none !important;
 }

@@ -2,7 +2,6 @@
   border-radius: 20px;
 }
 .shopify-section--text-with-icons-banner .container {
-  --container-gutter: 10px;
   padding-block-start: 10px;
 }
 .shopify-section--text-with-icons-banner .section-header {
@@ -89,4 +88,51 @@
     display: flex;
     gap: 18px;
   }
+}
+
+.shopify-section--text-with-icons-banner .section-style--style_1 .container {
+  --container-gutter: 10px;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .section-header {
+  --text-h2: 40px;
+  --heading-font-weight: 600;
+  --heading-text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.25;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .section-header .prose:not(.prose--tight) :where(:not(meta, span) + *) {
+  margin-block-start: 14px;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .section-header .h2 {
+  background: #f8f8f8;
+  border-radius: 26px;
+  display: inline-block;
+  letter-spacing: 0.23px;
+  padding: 12px 38px 13px;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .text-with-icons {
+  justify-content: space-between;
+}
+@media screen and (min-width: 700px) {
+  .shopify-section--text-with-icons-banner .section-style--style_2 .text-with-icons {
+    --text-with-icons-column-gap: 20px;
+    padding-block-start: 38px;
+    padding-block-end: 24px;
+  }
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .text-with-icons > * {
+  flex-grow: 1;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .text-with-icons .h6 {
+  --text-h6: 28px;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .text-with-icons__item::before {
+  display: none;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .text-with-icons__item > .v-stack {
+  flex-direction: column;
+}
+.shopify-section--text-with-icons-banner .section-style--style_2 .text-with-icons__item > .gap-1 {
+  gap: 13px;
 }

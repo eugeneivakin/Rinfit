@@ -17,7 +17,6 @@
 
     > .prose {
       @include sm {
-        //   margin-block-start: 109px;
         margin-block-end: 1.5rem;
       }
 
@@ -111,6 +110,16 @@
   .image-with-text__richtext--large {
     font-size: 19px;
     padding-block-start: 4px;
+
+    @include md {
+      font-size: 26px;
+      margin-block-start: -1px !important;
+      padding-block-start: 0;
+    }
+
+    @include xl {
+      font-size: 33px;
+    }
 
     strong {
       font-weight: 500;
@@ -243,10 +252,31 @@
     font-size: 18px;
     line-height: 1.1111;
 
-    // @include md {
-    //   font-size: 26px;
-    //   line-height: 1.1667;
-    // }
+    @include md {
+      font-size: 23px;
+    }
+
+    @include xl {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2857;
+    }
+
+    &.color-scheme {
+      @include sm {
+        --background: 245 229 225 / 1;
+        --text-color: 178 145 140;
+        --button-background: 178 145 140;
+        --button-text-color: 245 229 225;
+      }
+    }
+
+    .image-with-text > .prose {
+      @include md {
+        margin-block-start: 62px;
+        margin-block-end: 44px;
+      }
+    }
 
     .heading,
     .h1,
@@ -263,25 +293,33 @@
       --text-h6: 27px;
       letter-spacing: -1.5px;
 
-      // @include md {
-      //   --text-h1: 95px;
-      //   --text-h6: 29px;
-      //   --heading-text-transform: none;
-      // }
+      @include md {
+        --text-h1: 95px;
+        --text-h6: 29px;
+      }
 
-      // @include lg {
-      //   --text-h1: 132px;
-      //   --text-h6: 37.5px;
-      //   --heading-text-transform: none;
-      // }
+      @include xl {
+        --text-h1: 150px;
+        --text-h6: 66px;
+        letter-spacing: -4.5px;
+      }
     }
 
     .h1 {
+      @include md {
+        --heading-font-weight: 100;
+      }
+
       > strong {
         display: inline;
         font: inherit;
         font-weight: normal;
         letter-spacing: -1px;
+
+        @include md {
+          font-weight: 300;
+          letter-spacing: -5px;
+        }
       }
     }
 
@@ -289,24 +327,83 @@
       --heading-font-family: var(--heading-font-family-alternate);
       letter-spacing: 0;
       margin-block-start: -2px !important;
+
+      @include md {
+        margin-block-start: -7px !important;
+      }
+
+      @include lg {
+        margin-block-start: -12px !important;
+      }
     }
 
     .prose {
-      // margin-block-end: 5px;
-      // position: relative;
-      // z-index: 5;
+      @include sm {
+        --image-with-text-content-max-width: 620px;
+        text-align: left;
+      }
 
       :where(:not(meta, span) + *) {
         margin-block-start: 14px;
 
-        // @include md {
-        //   margin-block-start: 10px;
-        // }
+        @include md {
+          margin-block-start: 25px;
+        }
+
+        @include lg {
+          margin-block-start: 36px;
+        }
+      }
+
+      .button {
+        @include md {
+          --button-border-radius: 8px;
+          font-size: 33px;
+          min-height: 59px;
+        }
+
+        @include xl {
+          --button-border-radius: 12px;
+          font-size: 40px;
+          font-weight: 500;
+          margin-block-start: 44px !important;
+          max-width: none;
+          min-height: 80px;
+          width: auto;
+        }
+      }
+    }
+
+    .image-with-text__richtext {
+      @include md {
+        padding-inline: 0;
       }
     }
 
     .image-with-text__media-wrapper {
       padding-inline: 0;
+      position: relative;
+
+      @include sm {
+        margin-inline-start: 0;
+      }
+
+      picture {
+        @include sm {
+          height: 100%;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        img {
+          @include sm {
+            height: 100%;
+            max-width: none;
+            width: auto;
+          }
+        }
+      }
     }
   }
 }
