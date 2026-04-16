@@ -225,6 +225,9 @@
       "settings": {
         "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
         "section_style": "style_2",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": false,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
@@ -233,6 +236,41 @@
         "subheading": "",
         "title": "WHY IT SELLS",
         "content": ""
+      }
+    },
+    "x_promotion_banner_tH7EGH": {
+      "type": "x-promotion-banner",
+      "blocks": {
+        "image_wFdgn4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Promotion-banner-ring-03.png"
+          }
+        },
+        "image_b6aYxL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Promotion-banner-ring-04.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_wFdgn4",
+        "image_b6aYxL"
+      ],
+      "name": "X: Promotion banner",
+      "settings": {
+        "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "section_style": "style_2",
+        "show_on_mobile": false,
+        "show_on_tablet": false,
+        "show_on_desktop": true,
+        "separate_section_with_border": true,
+        "subheading": "",
+        "title": "WHY IT SELLS",
+        "content": "<p>Patented designs made for real life.<br/>Built for work, workouts, travel, and everyday wear.<br/>Easy to wear, easy to style, and easy to share with your audience.</p>",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "x_why_us_hzk4QX": {
@@ -278,6 +316,9 @@
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
         "section_style": "style_2",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
@@ -338,6 +379,7 @@
     "text_with_icons_banner_XWGFaB",
     "text_with_icons_banner_MAAzYa",
     "x_why_us_VpJaW4",
+    "x_promotion_banner_tH7EGH",
     "x_why_us_hzk4QX",
     "x_join_community_nDpiqD"
   ]

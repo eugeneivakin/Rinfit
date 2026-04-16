@@ -9,12 +9,7 @@
   }
 
   .color-scheme {
-    --background: 244 234 231 / 1;
     border-radius: 20px;
-
-    @include md {
-      --background-gradient: linear-gradient(90deg, rgba(244, 234, 230, 1) 0%, rgba(222, 193, 187, 1) 100%);
-    }
   }
 
   .container {
@@ -108,6 +103,37 @@
 
     strong {
       font-weight: 500;
+    }
+  }
+}
+
+.shopify-section--promotion-banner {
+  .section-style--style_1 {
+    .color-scheme {
+      --background: 244 234 231 / 1;
+
+      @include md {
+        --background-gradient: linear-gradient(90deg, rgba(244, 234, 230, 1) 0%, rgba(222, 193, 187, 1) 100%);
+      }
+    }
+  }
+
+  .section-style--style_2 {
+    font-size: 28px;
+    line-height: 1.25;
+
+    .container {
+      @include md {
+        padding-block: 45px;
+      }
+    }
+
+    .section-header {
+      --text-h2: 40px;
+    }
+
+    .prose :where(:not(meta, span) + *) {
+      margin-block-start: 26px;
     }
   }
 }
