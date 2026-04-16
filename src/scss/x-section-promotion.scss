@@ -17,7 +17,6 @@
 
     > .prose {
       @include sm {
-        //   margin-block-start: 109px;
         margin-block-end: 1.5rem;
       }
 
@@ -339,10 +338,6 @@
     }
 
     .prose {
-      // margin-block-end: 5px;
-      // position: relative;
-      // z-index: 5;
-
       @include sm {
         --image-with-text-content-max-width: 620px;
         text-align: left;
