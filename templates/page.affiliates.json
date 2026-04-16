@@ -269,8 +269,68 @@
         "subheading": "",
         "title": "WHY IT SELLS",
         "content": "<p>Patented designs made for real life.<br/>Built for work, workouts, travel, and everyday wear.<br/>Easy to wear, easy to style, and easy to share with your audience.</p>",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
+    "x_multi_column_W3tqWn": {
+      "type": "x-multi-column",
+      "blocks": {
+        "image_with_text_z3jCcB": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/How-you-earn-01.jpg",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_WcJxfa": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/How-you-earn-02.jpg",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_FkX7tb": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/How-you-earn-03.jpg",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_z3jCcB",
+        "image_with_text_WcJxfa",
+        "image_with_text_FkX7tb"
+      ],
+      "name": "t:sections.x_multi_column.presets.x_multi_column.name",
+      "settings": {
+        "color_scheme": "scheme-a96db34f-6d42-4c41-b1e9-6c93d16b2257",
+        "show_on_mobile": false,
+        "show_on_tablet": false,
+        "show_on_desktop": true,
+        "separate_section_with_border": false,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "spacing": "md",
+        "subheading": "",
+        "title": "How you earn",
+        "content": "<p>Earn commission on every sale you generate.</p><p>Top-performing creators can unlock additional opportunities, including bonuses<br/>and increased exposure.</p>"
       }
     },
     "x_why_us_hzk4QX": {
@@ -420,6 +480,7 @@
     "text_with_icons_banner_MAAzYa",
     "x_why_us_VpJaW4",
     "x_promotion_banner_tH7EGH",
+    "x_multi_column_W3tqWn",
     "x_why_us_hzk4QX",
     "x_join_community_nDpiqD",
     "x_rich_text_qtwx3E"

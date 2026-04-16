@@ -1,0 +1,46 @@
+@use "mixins/media" as *;
+
+.shopify-section--multi-column {
+  --section-vertical-spacing-override: 43px;
+  --section-stack-gap: 27px;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.1786;
+
+  // .section-stack {
+  //   padding-block-start: 50px;
+  // }
+
+  .section-header {
+    --text-h2: 40px;
+    --heading-font-weight: 600;
+    --heading-text-transform: uppercase;
+
+    .h2 {
+      background: rgb(var(--button-background));
+      border-radius: 26px;
+      display: inline-block;
+      letter-spacing: 0.23px;
+      padding: 12px 72px 13px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .multi-column {
+    --multi-column-gap: 0.5rem;
+
+    + .section-header {
+      margin-block-start: -8px;
+    }
+  }
+
+  .multi-column__media-wrapper {
+    aspect-ratio: 1;
+    border-radius: 100%;
+    margin-inline: auto;
+    max-width: 250px;
+  }
+}
