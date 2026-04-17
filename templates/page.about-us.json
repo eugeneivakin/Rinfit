@@ -77,7 +77,8 @@
         "image": "shopify://shop_images/RFR3_322.jpg",
         "reveal_on_scroll": true,
         "image_position": "end",
-        "text_alignment": "center",
+        "image_link": "",
+        "text_alignment": "start",
         "image_overlap": false,
         "content_width": "sm",
         "remove_vertical_spacing": false
@@ -111,7 +112,8 @@
         "image": "shopify://shop_images/daVinci071.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
-        "text_alignment": "center",
+        "image_link": "",
+        "text_alignment": "start",
         "image_overlap": false,
         "content_width": "sm",
         "remove_vertical_spacing": false
