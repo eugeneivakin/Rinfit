@@ -55,3 +55,14 @@ size-chart-button {
     }
   }
 }
+
+#sort-by-popover.popover {
+  --popover-body-padding-inline: 17px;
+  width: calc(100% + 2px);
+
+  &::part(content) {
+    @include md {
+      width: 100%;
+    }
+  }
+}
