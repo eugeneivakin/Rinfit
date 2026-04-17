@@ -234,6 +234,16 @@ size-chart-button {
   grid-template-columns: 1fr;
 }
 
+#sort-by-popover.popover {
+  --popover-body-padding-inline: 17px;
+  width: calc(100% + 2px);
+}
+@media screen and (min-width: 1000px) {
+  #sort-by-popover.popover::part(content) {
+    width: 100%;
+  }
+}
+
 .product-sticky-bar--visible #privy-container #privy-inner-container .privy-tab-container.privy-bottom.privy-floating.privy-bottom,
 .product-sticky-bar--visible .shop-ai-chat-container {
   transform: translateY(calc(var(--product-sticky-bar-height) * -1));
