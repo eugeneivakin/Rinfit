@@ -98,7 +98,12 @@
 }
 @media screen and (min-width: 1000px) {
   .shopify-section--image-with-text .image-with-text__richtext {
-    margin-block-start: -1px;
+    margin-block-start: 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .shopify-section--image-with-text .image-with-text__richtext {
+    margin-block-start: 36px;
   }
 }
 .shopify-section--image-with-text .image-with-text__links {
