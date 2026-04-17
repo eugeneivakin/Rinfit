@@ -158,7 +158,7 @@
           "settings": {
             "style": "solid",
             "text": "Download Our Size Tool",
-            "url": "https://cdn.shopify.com/s/files/1/1471/8740/files/RingSizingTool_65eefb9c-46fc-4055-91af-ff4dbde3847d.pdf?v=1757517537",
+            "url": "https://cdn.shopify.com/s/files/1/1471/8740/files/RingSizingTool.pdf?v=1679586354",
             "background": "",
             "text_color": ""
           }
@@ -205,7 +205,7 @@
           "settings": {
             "style": "solid",
             "text": "Download Our Size Tool",
-            "url": "https://cdn.shopify.com/s/files/1/1471/8740/files/RingSizingTool_65eefb9c-46fc-4055-91af-ff4dbde3847d.pdf?v=1757517537",
+            "url": "https://cdn.shopify.com/s/files/1/1471/8740/files/MeasureYourRing.pdf?v=1679586354",
             "background": "",
             "text_color": ""
           }
@@ -252,7 +252,7 @@
           "settings": {
             "style": "solid",
             "text": "Download Our Size Tool",
-            "url": "https://cdn.shopify.com/s/files/1/1471/8740/files/RingSizingTool_65eefb9c-46fc-4055-91af-ff4dbde3847d.pdf?v=1757517537",
+            "url": "https://cdn.shopify.com/s/files/1/1471/8740/files/RingSizingTool.pdf?v=1679586354",
             "background": "",
             "text_color": ""
           }
@@ -365,6 +365,7 @@
       "name": "t:sections.image_with_text_overlay.presets.image_with_text_overlay.name",
       "settings": {
         "color_scheme": "scheme-1",
+        "section_width": "full",
         "image_size": "design",
         "image": "shopify://shop_images/Emerald_frame_copia.jpg",
         "mobile_image": "shopify://shop_images/Emerald_frame_Mobile_copia.jpg",
@@ -418,6 +419,7 @@
         "image": "shopify://shop_images/2259fb4291792bb63e64b6fa1620e46d0580b91f_bdcbf73c-be55-4a5d-b0cb-a7bbcd6a93b9.jpg",
         "reveal_on_scroll": true,
         "image_position": "start",
+        "image_link": "",
         "text_alignment": "start",
         "image_overlap": false,
         "content_width": "sm",
