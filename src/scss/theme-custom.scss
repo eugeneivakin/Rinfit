@@ -65,7 +65,8 @@ body {
 }
 
 main > .shopify-section--newsletter {
-  .template--connect & {
+  .template--connect &,
+  .template--affiliates & {
     display: none !important;
   }
 }

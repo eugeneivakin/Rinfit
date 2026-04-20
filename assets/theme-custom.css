@@ -427,6 +427,6 @@ body {
   --section-vertical-spacing-override: 12px;
 }
 
-.template--connect main > .shopify-section--newsletter {
+.template--connect main > .shopify-section--newsletter, .template--affiliates main > .shopify-section--newsletter {
   display: none !important;
 }
