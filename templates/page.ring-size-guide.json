@@ -155,6 +155,7 @@
         },
         "button_Jh8Qim": {
           "type": "button",
+          "disabled": true,
           "settings": {
             "style": "solid",
             "text": "Download Our Size Tool",
