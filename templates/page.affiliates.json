@@ -44,7 +44,7 @@
           "settings": {
             "style": "solid",
             "text": "Apply now",
-            "url": "shopify://pages/connect",
+            "url": "",
             "background": "",
             "text_color": ""
           }
@@ -450,7 +450,7 @@
           "settings": {
             "style": "solid",
             "text": "APPLY NOW",
-            "url": "shopify://pages/connect",
+            "url": "https://af.uppromote.com/rinfit/register",
             "background": "",
             "text_color": ""
           }
