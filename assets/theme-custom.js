@@ -320,7 +320,7 @@ class SizeCalculator extends HTMLElement {
       return;
     }
 
-    const key = type === "diameter" ? (unit === "mm" ? "dia_mm" : "dia_in") : unit === "mm" ? "cir_mm" : "cir_in";
+    const key = type.toLowerCase() === "diameter" ? (unit === "mm" ? "dia_mm" : "dia_in") : unit === "mm" ? "cir_mm" : "cir_in";
 
     let closest = null;
     let minDiff = Infinity;
