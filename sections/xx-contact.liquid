@@ -211,11 +211,27 @@
         <div class="fieldset ">
           <div>
             <div class="main-contact-container">Full name {{ 'xx-Vector123.svg' | asset_url | img_tag }}</div>
-            {%- render 'input', type: 'text', name: 'contact[name]', label: 'Enter Your Name', value: customer.name, autocomplete: 'name', classInput: 'required-field contact-name', required: true -%}
+            {%- render 'input',
+              type: 'text',
+              name: 'contact[name]',
+              label: 'Enter Your Name',
+              value: customer.name,
+              autocomplete: 'name',
+              classInput: 'required-field contact-name',
+              required: true
+            -%}
           </div>
           <div>
             <div class="main-contact-container">Email {{ 'xx-Vector123.svg' | asset_url | img_tag }}</div>
-            {%- render 'input', type: 'email', name: 'contact[email]', label: 'Enter Your Email', value: customer.email, autocomplete: 'email', classInput: 'required-field contact-email', required: true -%}
+            {%- render 'input',
+              type: 'email',
+              name: 'contact[email]',
+              label: 'Enter Your Email',
+              value: customer.email,
+              autocomplete: 'email',
+              classInput: 'required-field contact-email',
+              required: true
+            -%}
           </div>
           <div>
             <div class="main-contact-container">Order # <span>(optional)</span></div>
@@ -238,7 +254,15 @@
           </div>
           <div class="form-field">
             <label for="contact-file">Attach files</label>
-            <input type="hidden" role="uploadcare-uploader" name="contact[uploaded_file]" data-clearable="true">
+            <input
+              type="hidden"
+              role="uploadcare-uploader"
+              name="contact[uploaded_file]"
+              data-clearable="true"
+              data-multiple="true"
+              data-multiple-max="10"
+              data-tabs="file camera"
+            >
             <span class="text-field">Attach up to 10 files. The maximum allowed size per file is 10 MB.</span>
           </div>
         </div>
