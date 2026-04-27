@@ -43,6 +43,7 @@
         },
         "faq_QbNhJd": {
           "type": "faq",
+          "disabled": true,
           "settings": {
             "category": "Orders",
             "heading": "How long does international shipping and processing take?",
