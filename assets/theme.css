@@ -352,6 +352,7 @@ height-observer {
   all: revert;
 }
 
+.uploadcare--widget__button_type_remove,
 .button, .shopify-challenge__button, .shopify-payment-button__button--unbranded {
   --initial-gradient: linear-gradient(rgb(var(--button-background)), rgb(var(--button-background)));
   --hover-gradient: linear-gradient(transparent, transparent);
@@ -407,6 +408,7 @@ height-observer {
   border-color: rgb(var(--border-color));
 }
 
+.uploadcare--widget__button_type_remove,
 .button--sm {
   font-size: var(--text-xs);
   padding: .5rem .75rem;
