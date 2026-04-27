@@ -99,4 +99,10 @@
       width: auto;
     }
   }
+
+  .section-heading__view-all {
+    @include sm-max {
+      display: none;
+    }
+  }
 }

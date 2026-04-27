@@ -255,27 +255,27 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("change", onSizeOptionChange, true);
 
   //---Save the size selection in the popup (popover-variant-dropdown) ---
-  document.addEventListener("change", function(e) {
-    // We check that the event occurred in the size selection popup (id starts with popover-variant-dropdown)
-    const popover = e.target.closest('[id^="popover-variant-dropdown"]');
-    if (
-      popover &&
-      e.target.matches('input[type="radio"][data-option-position]') &&
-      e.target.checked
-    ) {
-      // We are looking for scopeRoot: first we look for the main container of the product, then quick-buy-modal, then the popup itself
-      const scopeRoot =
-        popover.closest('.shopify-section--main-product') ||
-        popover.closest('quick-buy-modal') ||
-        document.querySelector('.shopify-section--main-product') ||
-        document.querySelector('quick-buy-modal') ||
-        popover;
-      const position = e.target.getAttribute('data-option-position');
-      if (scopeRoot && position) {
-        addManuallySelectedSizePosition(scopeRoot, position);
+  document.addEventListener(
+    "change",
+    function (e) {
+      // We check that the event occurred in the size selection popup (id starts with popover-variant-dropdown)
+      const popover = e.target.closest('[id^="popover-variant-dropdown"]');
+      if (popover && e.target.matches('input[type="radio"][data-option-position]') && e.target.checked) {
+        // We are looking for scopeRoot: first we look for the main container of the product, then quick-buy-modal, then the popup itself
+        const scopeRoot =
+          popover.closest(".shopify-section--main-product") ||
+          popover.closest("quick-buy-modal") ||
+          document.querySelector(".shopify-section--main-product") ||
+          document.querySelector("quick-buy-modal") ||
+          popover;
+        const position = e.target.getAttribute("data-option-position");
+        if (scopeRoot && position) {
+          addManuallySelectedSizePosition(scopeRoot, position);
+        }
       }
-    }
-  }, true);
+    },
+    true,
+  );
 });
 
 class SizeCalculator extends HTMLElement {
@@ -320,7 +320,7 @@ class SizeCalculator extends HTMLElement {
       return;
     }
 
-    const key = type === "diameter" ? (unit === "mm" ? "dia_mm" : "dia_in") : unit === "mm" ? "cir_mm" : "cir_in";
+    const key = type.toLowerCase() === "diameter" ? (unit === "mm" ? "dia_mm" : "dia_in") : unit === "mm" ? "cir_mm" : "cir_in";
 
     let closest = null;
     let minDiff = Infinity;
