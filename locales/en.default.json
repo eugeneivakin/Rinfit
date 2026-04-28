@@ -88,7 +88,7 @@
       "secondary_navigation": "Secondary navigation",
       "menu": "Navigation menu",
       "sign_in": "Sign in",
-      "register_promo": "Join for 15%off",
+      "register_promo": "Join for 10%off",
       "track_order": "Track my order"
     }
   },
@@ -112,7 +112,7 @@
       "view_in_space": "View in your space",
       "taxes_included": "Tax included.",
       "taxes_excluded": "Tax excluded.",
-      "shipping_policy_html": "<a href=\"{{ link }}\" class=\"link\">Shipping calculated<\/a> at checkout",
+      "shipping_policy_html": "<a href=\"{{ link }}\" class=\"link\">Shipping calculated</a> at checkout",
       "size_chart": "Calculate my size",
       "available_colors_count": {
         "one": "{{ count }} color available",
