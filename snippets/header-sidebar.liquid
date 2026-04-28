@@ -220,18 +220,33 @@
             {%- endif -%}
           </a>
 
-          {% unless customer %}
-            <a
-              href="{{ routes.account_register_url }}"
-              class="text-with-icon sm:hidden"
-            >
-              <span class="icon__wrapper">
-                {%- render 'icon' with 'star' -%}
-              </span>
+          <button
+            data-privy-open
+            class="text-with-icon sm:hidden"
+          >
+            <span class="icon__wrapper">
+              {%- render 'icon' with 'star' -%}
+            </span>
 
-              {{- 'header.general.register_promo' | t -}}
-            </a>
-          {% endunless %}
+            {{- 'header.general.register_promo' | t -}}
+          </button>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              document.body.addEventListener('click', function (e) {
+                // Checking the click on a button with data-privy-open
+                const btn = e.target.closest('[data-privy-open]');
+                if (btn) {
+                  // Looking for the Privy button
+                  const privyBtn = document.querySelector('.privy-tab');
+                  if (privyBtn) {
+                    privyBtn.click();
+                  }
+                  e.preventDefault();
+                }
+              });
+            });
+          </script>
 
           <a
             href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
