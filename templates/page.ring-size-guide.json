@@ -402,7 +402,7 @@
           "settings": {
             "style": "solid",
             "text": "shop the collection",
-            "url": "shopify://collections/gemstones",
+            "url": "shopify://collections/glowstone",
             "background": "",
             "text_color": ""
           }
