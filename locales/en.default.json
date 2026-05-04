@@ -532,7 +532,9 @@
     "form_placeholder": "For example: 18.1",
     "button_submit": "Calculate",
     "form_message": "The result will appear here.",
-    "message_heading": "Ring size"
+    "message_heading": "Ring size",
+    "message_heading_less": "Ring size: less than {{ min }}",
+    "message_heading_more": "Ring size: {{ max }}+"
   },
   "popup": {
     "loading_html": "Loading <strong><em>content</em></strong>...",
