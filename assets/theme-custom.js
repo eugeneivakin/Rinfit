@@ -322,9 +322,49 @@ class SizeCalculator extends HTMLElement {
 
     const key = type.toLowerCase() === "diameter" ? (unit === "mm" ? "dia_mm" : "dia_in") : unit === "mm" ? "cir_mm" : "cir_in";
 
+    const ringData = window.ringData || [];
+    if (!ringData.length) {
+      resultDiv.innerHTML = `<p>Size data not available.</p>`;
+      return;
+    }
+
+    // Get an array of values ​​for the selected key
+    const values = ringData.map(r => r[key]).filter(v => typeof v === 'number' && !isNaN(v));
+    if (!values.length) {
+      resultDiv.innerHTML = `<p>Size data not available.</p>`;
+      return;
+    }
+      const minObj = ringData.reduce((min, r) => (r[key] < min[key] ? r : min), ringData[0]);
+      const maxObj = ringData.reduce((max, r) => (r[key] > max[key] ? r : max), ringData[0]);
+      const minValue = minObj[key];
+      const maxValue = maxObj[key];
+      const minSize = minObj.size !== undefined ? minObj.size : minValue;
+      const maxSize = maxObj.size !== undefined ? maxObj.size : maxValue;
+
+      if (value < minValue) {
+        let headingLess = window.themeStrings.sizeCalculatorHeadingLess || '';
+        if (headingLess.includes('{{ min }}')) {
+          headingLess = headingLess.replace(/\{\{\s*min\s*\}\}/g, minSize);
+        }
+        resultDiv.innerHTML = `
+          <h3>${headingLess}</h3>
+        `;
+        return;
+      }
+      if (value > maxValue) {
+        let headingMore = window.themeStrings.sizeCalculatorHeadingMore || "";
+        if (headingMore.includes("{{ max }}")) {
+          headingMore = headingMore.replace(/\{\{\s*max\s*\}\}/g, maxSize);
+        }
+        resultDiv.innerHTML = `
+          <h3>${headingMore}</h3>
+        `;
+        return;
+      }
+
     let closest = null;
     let minDiff = Infinity;
-    (window.ringData || []).forEach((r) => {
+    ringData.forEach((r) => {
       const diff = Math.abs(r[key] - value);
       if (diff < minDiff) {
         minDiff = diff;
