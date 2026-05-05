@@ -861,7 +861,7 @@
         "subheading": "",
         "title": "Shop By <em><strong>Collections</strong></em>",
         "content": "",
-        "button_url": "shopify://collections",
+        "button_url": "shopify://collections/silicone-rings",
         "button_text": "shop all"
       }
     },
