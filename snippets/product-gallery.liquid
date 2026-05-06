@@ -213,7 +213,7 @@
 
           {%- for media in product.media -%}
             <div
-              class="product-gallery__media snap-center {% if media == default_media %}is-initial{% endif %}"
+              class="product-gallery__media snap-center {% if forloop.first %}is-initial{% endif %}"
               data-media-type="{{ media.media_type }}"
               data-media-id="{{ media.id }}"
               role="group"
@@ -341,7 +341,7 @@
                 data-media-type="{{ media.media_type }}"
                 data-media-position="{{ media.position }}"
                 data-media-id="{{ media.id }}"
-                aria-current="{% if media == default_media %}true{% else %}false{% endif %}"
+                aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
                 aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}"
               >
                 {{-
