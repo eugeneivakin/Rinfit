@@ -59,36 +59,40 @@
         content: section.settings.content
       -%}
 
-      {%- assign newsletter_form_id = 'newsletter-form-' | append: section.id -%}
+      <div class="privy-embed-form" data-campaign="4622435"></div>
 
-      {%- form 'customer', id: newsletter_form_id, class: 'form justify-self-center' -%}
-        {%- if form.posted_successfully? -%}
-          {%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
-          {%- render 'banner', content: success_message, status: 'success', text_alignment: 'center' -%}
-        {%- else -%}
-          {%- if form.errors -%}
-            {%- capture error_message -%}{{ form.errors.translated_fields['email'] }} {{ form.errors.messages['email'] }}{%- endcapture -%}
-            {%- render 'banner', content: error_message, status: 'error', text_alignment: 'center' -%}
+      {%- comment -%}
+        {%- assign newsletter_form_id = 'newsletter-form-' | append: section.id -%}
+
+        {%- form 'customer', id: newsletter_form_id, class: 'form justify-self-center' -%}
+          {%- if form.posted_successfully? -%}
+            {%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
+            {%- render 'banner', content: success_message, status: 'success', text_alignment: 'center' -%}
+          {%- else -%}
+            {%- if form.errors -%}
+              {%- capture error_message -%}{{ form.errors.translated_fields['email'] }} {{ form.errors.messages['email'] }}{%- endcapture -%}
+              {%- render 'banner', content: error_message, status: 'error', text_alignment: 'center' -%}
+            {%- endif -%}
+
+            <input type="hidden" name="contact[tags]" value="newsletter">
+
+            <div class="form-row">
+              {%- assign input_label = 'general.newsletter.email' | t -%}
+
+              {%- render 'input',
+                name: 'contact[email]',
+                label: input_label,
+                label_hidden: true,
+                type: 'email',
+                required: true,
+                autocomplete: 'email',
+                enterkeyhint: 'send'
+              -%}
+              {%- render 'button', type: 'submit', icon: 'arrow-right' -%}
+            </div>
           {%- endif -%}
-
-          <input type="hidden" name="contact[tags]" value="newsletter">
-
-          <div class="form-row">
-            {%- assign input_label = 'general.newsletter.email' | t -%}
-
-            {%- render 'input',
-              name: 'contact[email]',
-              label: input_label,
-              label_hidden: true,
-              type: 'email',
-              required: true,
-              autocomplete: 'email',
-              enterkeyhint: 'send'
-            -%}
-            {%- render 'button', type: 'submit', icon: 'arrow-right' -%}
-          </div>
-        {%- endif -%}
-      {%- endform -%}
+        {%- endform -%}
+      {%- endcomment -%}
     </div>
   </div>
 </div>

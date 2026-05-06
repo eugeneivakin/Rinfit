@@ -1,54 +1,60 @@
-@media screen and (max-width: 700px) {
-  #privy-container #privy-inner-container .privy-popup-container .privy-popup-content-wrap .privy-popup-inner-content-wrap {
-    overflow: hidden !important;
-  }
+[class^=privy-embedded-form-] {
+  max-width: 385px !important;
 }
-#privy-container #privy-inner-container .privy-custom-tab-close {
-  animation: privy-bounce-in 450ms 1 ease-in-out;
-  background: rgba(0, 0, 0, 0.7);
-  border: 0;
-  border-radius: 100%;
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 1;
-  height: 20px;
-  left: 12px;
-  padding: 0 0 4px;
-  pointer-events: auto;
+[class^=privy-embedded-form-]:focus-visible {
+  outline: 0 !important;
+}
+
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus #privy-container #privy-inner-container [tabindex]:focus {
+  outline: 0 !important;
+}
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  position: relative;
+}
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container > div {
+  margin: 0 !important;
+}
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container .privy-form-element-wrapper {
+  flex-grow: 1;
+}
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container .privy-button-element-wrapper {
+  bottom: 0;
+  height: auto !important;
   position: absolute;
-  top: 4px;
-  width: 20px;
-  z-index: 11001000;
+  right: 0;
+  top: 0;
+  z-index: 5 !important;
 }
-#privy-container #privy-inner-container .privy-custom-tab-close:hover {
-  background: #c44536;
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container .privy-email-input {
+  border-color: rgba(55, 58, 54, 0.2);
+  color: rgb(55, 58, 54);
+  font-family: "Kumbh Sans", Lato, sans-serif;
 }
-@media screen and (max-width: 700px) {
-  #privy-container .privy-popup-content {
-    margin: 200px 0 0;
-    overflow: visible !important;
-  }
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container .privy-email-input::-moz-placeholder {
+  color: rgba(55, 58, 54, 0.4);
 }
-@media screen and (max-width: 700px) {
-  #privy-container .privy-popup-content .privy-image-element-wrapper {
-    bottom: 100%;
-    height: 200px !important;
-    top: auto !important;
-    width: 100% !important;
-  }
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container .privy-email-input::placeholder {
+  color: rgba(55, 58, 54, 0.4);
 }
-@media screen and (max-width: 700px) {
-  #privy-container .privy-popup-content .privy-image-element-wrapper > img {
-    -o-object-fit: cover;
-       object-fit: cover;
-  }
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy #embedded-form-container .privy-button-element {
+  aspect-ratio: 1;
+  background: none !important;
+  color: rgba(55, 58, 54, 0.6) !important;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0;
 }
-@media screen and (max-width: 700px) {
-  #privy-container .privy-popup-content .privy-button-element-wrapper,
-  #privy-container .privy-popup-content .privy-form-element-wrapper,
-  #privy-container .privy-popup-content .privy-text-element-wrapper {
-    left: 50% !important;
-    transform: translateX(-50%);
-  }
+.privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy .privy-element.privy-button-element.privy-button-flat {
+  height: auto;
 }

@@ -1,64 +1,139 @@
 @use "mixins/media" as *;
 
-#privy-container {
-  #privy-inner-container {
-    .privy-popup-container .privy-popup-content-wrap .privy-popup-inner-content-wrap {
-      @include sm-max {
-        overflow: hidden !important;
-      }
-    }
+// #privy-container {
+//   #privy-inner-container {
+//     .privy-popup-container .privy-popup-content-wrap .privy-popup-inner-content-wrap {
+//       @include sm-max {
+//         overflow: hidden !important;
+//       }
+//     }
 
-    .privy-custom-tab-close {
-      animation: privy-bounce-in 450ms 1 ease-in-out;
-      background: rgba(0, 0, 0, 0.7);
-      border: 0;
-      border-radius: 100%;
-      color: #fff;
-      cursor: pointer;
-      font-size: 16px;
-      line-height: 1;
-      height: 20px;
-      left: 12px;
-      padding: 0 0 4px;
-      pointer-events: auto;
-      position: absolute;
-      top: 4px;
-      width: 20px;
-      z-index: 11001000;
+//     .privy-custom-tab-close {
+//       animation: privy-bounce-in 450ms 1 ease-in-out;
+//       background: rgba(0, 0, 0, 0.7);
+//       border: 0;
+//       border-radius: 100%;
+//       color: #fff;
+//       cursor: pointer;
+//       font-size: 16px;
+//       line-height: 1;
+//       height: 20px;
+//       left: 12px;
+//       padding: 0 0 4px;
+//       pointer-events: auto;
+//       position: absolute;
+//       top: 4px;
+//       width: 20px;
+//       z-index: 11001000;
 
-      &:hover {
-        background: #c44536;
-      }
-    }
+//       &:hover {
+//         background: #c44536;
+//       }
+//     }
+//   }
+
+//   .privy-popup-content {
+//     @include sm-max {
+//       margin: 200px 0 0;
+//       overflow: visible !important;
+//     }
+
+//     .privy-image-element-wrapper {
+//       @include sm-max {
+//         bottom: 100%;
+//         height: 200px !important;
+//         top: auto !important;
+//         width: 100% !important;
+//       }
+
+//       > img {
+//         @include sm-max {
+//           object-fit: cover;
+//         }
+//       }
+//     }
+
+//     .privy-button-element-wrapper,
+//     .privy-form-element-wrapper,
+//     .privy-text-element-wrapper {
+//       @include sm-max {
+//         left: 50% !important;
+//         transform: translateX(-50%);
+//       }
+//     }
+//   }
+// }
+
+[class^="privy-embedded-form-"] {
+  // margin: 0 auto !important;
+  max-width: 385px !important;
+
+  &:focus-visible {
+    outline: 0 !important;
   }
+}
 
-  .privy-popup-content {
-    @include sm-max {
-      margin: 200px 0 0;
-      overflow: visible !important;
-    }
-
-    .privy-image-element-wrapper {
-      @include sm-max {
-        bottom: 100%;
-        height: 200px !important;
-        top: auto !important;
-        width: 100% !important;
+.privy-embedded-form-4622435 {
+  #privy-container #privy-inner-container {
+    [tabindex]:focus {
+      #privy-container #privy-inner-container [tabindex]:focus {
+        outline: 0 !important;
       }
+      .privy {
+        #embedded-form-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          align-content: stretch;
+          align-items: stretch;
+          position: relative;
 
-      > img {
-        @include sm-max {
-          object-fit: cover;
+          > div {
+            margin: 0 !important;
+          }
+
+          .privy-form-element-wrapper {
+            flex-grow: 1;
+          }
+
+          .privy-button-element-wrapper {
+            bottom: 0;
+            height: auto !important;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 5 !important ;
+          }
+
+          .privy-email-input {
+            border-color: rgb(55 58 54 / 0.2);
+            color: rgb(55 58 54);
+            font-family: "Kumbh Sans", Lato, sans-serif;
+
+            &::placeholder {
+              color: rgb(55 58 54 / 0.4);
+            }
+          }
+
+          .privy-button-element {
+            aspect-ratio: 1;
+            background: none !important;
+            color: rgb(55 58 54 / 0.6) !important;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0;
+          }
         }
-      }
-    }
 
-    .privy-button-element-wrapper,
-    .privy-form-element-wrapper,
-    .privy-text-element-wrapper {
-      @include sm-max {
-        left: 50% !important;
-        transform: translateX(-50%);
+        .privy-element.privy-button-element.privy-button-flat {
+          height: auto;
+        }
       }
     }
   }
