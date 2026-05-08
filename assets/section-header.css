@@ -1,11 +1,6 @@
 .header-sidebar {
-  --drawer-max-width: 390px;
+  --drawer-max-width: 100%;
   --header-linklist-padding-block: 24px;
-}
-@media screen and (min-width: 576px) {
-  .header-sidebar {
-    --drawer-max-width: 100%;
-  }
 }
 @media screen and (min-width: 1000px) {
   .header-sidebar {
