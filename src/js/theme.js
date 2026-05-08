@@ -500,7 +500,7 @@ var Player = class extends EventTarget {
     }
     clearTimeout(__privateGet(this, _timer));
     __privateSet(this, _state, "paused");
-    __privateSet(this, _remainingTime, __privateGet(this, _remainingTime) - (/* @__PURE__ */ new Date().getTime() - __privateGet(this, _startTime)));
+    __privateSet(this, _remainingTime, __privateGet(this, _remainingTime) - /* @__PURE__ */ (new Date().getTime() - __privateGet(this, _startTime)));
     this.dispatchEvent(new CustomEvent("player:pause"));
   }
   resume(restartTimer = false) {
@@ -3842,6 +3842,19 @@ var QuickBuyModal = class extends Modal {
     Array.from(quickBuyContent.querySelectorAll("noscript")).forEach((noScript) => noScript.remove());
     this.replaceChildren(quickBuyContent);
     Shopify?.PaymentButton?.init();
+    // Initializing Swiper for the gallery inside quick-buy
+    console.log('>>>>>>>>>>>>>>>> ??');
+    setTimeout(() => {
+      if (typeof pdpSwiperInit === "function") {
+        console.log('>>>>>>>>>>>>>>>> if');
+        pdpSwiperInit(this);
+      } else if (window.pdpSwiperInit) {
+        console.log('>>>>>>>>>>>>>>>> else');
+        window.pdpSwiperInit(this);
+      } else {
+        console.log('>>>>>>>>>>>>>>>> ?');
+      }
+    }, 1000);
     return super.show();
   }
 };

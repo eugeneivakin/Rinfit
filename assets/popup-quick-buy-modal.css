@@ -85,51 +85,41 @@
 .quick-buy-modal__content .product-info__mobile {
   display: none;
 }
-.quick-buy-modal__content .product-gallery .page-dots {
+.quick-buy-modal__content .product-gallery .product-thumbs-gallery__swiper {
   display: none;
 }
-.quick-buy-modal__content .product-gallery__carousel-with-arrows {
-  position: relative;
+.quick-buy-modal__content .product-gallery__swiper {
+  width: 100%;
 }
-.quick-buy-modal__content carousel-prev-button,
-.quick-buy-modal__content carousel-next-button {
-  left: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-}
-.quick-buy-modal__content carousel-prev-button button,
-.quick-buy-modal__content carousel-next-button button {
+.quick-buy-modal__content .product-gallery__swiper .swiper-button-prev,
+.quick-buy-modal__content .product-gallery__swiper .swiper-button-next {
+  --swiper-navigation-size: auto;
   aspect-ratio: 1;
-  background: rgb(var(--circle-button-background));
+  background: rgb(var(--background-without-opacity)/0.6);
+  border-color: transparent;
   border-radius: 100%;
-  color: rgb(var(--circle-button-text-color));
+  color: rgb(var(--text-color)/0.4);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   align-content: center;
   align-items: center;
-  width: 42px;
+  transform: translateY(-50%);
+  width: 32px;
+  margin-top: 0;
 }
-.quick-buy-modal__content carousel-prev-button button:hover,
-.quick-buy-modal__content carousel-next-button button:hover {
-  background: rgb(var(--circle-button-text-color));
-  color: rgb(var(--circle-button-background));
+.quick-buy-modal__content .product-gallery__swiper .swiper-button-prev:hover,
+.quick-buy-modal__content .product-gallery__swiper .swiper-button-next:hover {
+  background: rgb(var(--background-without-opacity)/1);
 }
-.quick-buy-modal__content carousel-next-button {
-  left: auto;
-  right: 0;
-}
-.quick-buy-modal__content .product-gallery__carousel {
-  --product-gallery-carousel-gap: 5px;
-  --product-gallery-carousel-grid: auto / auto-flow 100%;
-}
-@media screen and (max-width: 999px) {
-  .quick-buy-modal__content .product-gallery__carousel-with-arrows .product-gallery__media {
-    width: 100%;
-  }
+.quick-buy-modal__content .product-gallery__swiper .swiper-button-prev svg,
+.quick-buy-modal__content .product-gallery__swiper .swiper-button-next svg {
+  fill: none;
+  height: auto;
+  -o-object-fit: none;
+     object-fit: none;
+  width: auto;
 }
 .quick-buy-modal__content .product-title {
   --text-h6: 14px;

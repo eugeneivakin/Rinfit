@@ -38,6 +38,9 @@
     --product-gallery-gap: 20px;
     --product-gallery-thumbnail-size: 88px;
     --product-gallery-thumbnail-list-gap: 20px;
+    --product-gallery-thumbnail-list-max-height: calc(
+      (var(--product-gallery-thumbnail-size) + var(--product-gallery-thumbnail-list-gap)) * 6 - var(--product-gallery-thumbnail-list-gap)
+    );
   }
 }
 
@@ -94,14 +97,6 @@
 
   &[adaptive-height] {
     transition: max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-  }
-}
-
-.product-gallery__thumbnail-scroller {
-  @include md {
-    --product-gallery-thumbnail-list-max-height: calc(
-      (var(--product-gallery-thumbnail-size) + var(--product-gallery-thumbnail-list-gap)) * 6 - var(--product-gallery-thumbnail-list-gap)
-    );
   }
 }
 
@@ -286,7 +281,6 @@
   }
 
   .variant-picker__option-values {
-
     [checked] + .color-swatch,
     .color-swatch.is-selected {
       box-shadow: 0 0 0 var(--swatch-border-size) rgb(var(--text-color) / 0.6);
@@ -466,13 +460,66 @@
     }
   }
 
-  p{
+  p {
     margin: 0 0 20px;
   }
 
   #div-bullet-points {
     img {
       display: inline;
+    }
+  }
+}
+
+.product-gallery__swiper {
+  width: 100%;
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    --swiper-navigation-size: auto;
+    aspect-ratio: 1;
+    background: rgb(var(--background-without-opacity) / 0.6);
+    border-color: transparent;
+    border-radius: 100%;
+    color: rgb(var(--text-color) / 0.4);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+    width: 32px;
+
+    margin-top: 0;
+
+    &:hover {
+      background: rgb(var(--background-without-opacity) / 1);
+    }
+
+    svg {
+      fill: none;
+      height: auto;
+      object-fit: none;
+      width: auto;
+    }
+  }
+}
+
+.product-thumbs-gallery__swiper {
+  flex-shrink: 0;
+  max-height: var(--product-gallery-thumbnail-list-max-height, none);
+  max-width: 100%;
+
+  .product-gallery__thumbnail {
+    width: var(--product-gallery-thumbnail-size);
+
+    &[aria-current="true"] {
+      border-color: transparent;
+    }
+
+    &.swiper-slide-thumb-active {
+      border-color: currentColor;
     }
   }
 }
