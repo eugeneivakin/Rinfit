@@ -641,3 +641,50 @@ class ReadMoreLines extends HTMLElement {
 if (!window.customElements.get("read-more-lines")) {
   customElements.define("read-more-lines", ReadMoreLines);
 }
+
+
+
+  function pdpSwiperInit(parent = document) {
+    // parent: A DOM element or selector
+    if (typeof parent === 'string') parent = document.querySelector(parent);
+    if (!parent) return;
+
+    const thumbsEl = parent.querySelector('.product-thumbs-gallery__swiper');
+    const mainEl = parent.querySelector('.product-gallery__swiper');
+    if (!thumbsEl || !mainEl) return;
+
+    // Delete old Swiper instances, if any
+    if (thumbsEl.swiper) thumbsEl.swiper.destroy(true, true);
+    if (mainEl.swiper) mainEl.swiper.destroy(true, true);
+
+    const swiper_thumbs = new Swiper(thumbsEl, {
+      spaceBetween: 8,
+      slidesPerView: 'auto',
+      freeMode: true,
+      watchSlidesProgress: true,
+      breakpoints: {
+        1000: {
+          direction: 'vertical',
+          spaceBetween: 20,
+        },
+      },
+    });
+
+    const swiper_main = new Swiper(mainEl, {
+      loop: true,
+      autoHeight: true,
+      thumbs: {
+        swiper: swiper_thumbs,
+      },
+      navigation: {
+        nextEl: parent.querySelector('.swiper-button-next'),
+        prevEl: parent.querySelector('.swiper-button-prev'),
+      },
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // For main section
+    const mainSection = document.querySelector('.shopify-section--main-product') || document;
+    pdpSwiperInit(mainSection);
+  });
