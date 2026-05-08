@@ -645,7 +645,6 @@ if (!window.customElements.get("read-more-lines")) {
 
 
   function pdpSwiperInit(parent = document) {
-    console.log('>>>>>>>>>>>>>>>>>>>swiper');
     // parent: A DOM element or selector
     if (typeof parent === 'string') parent = document.querySelector(parent);
     if (!parent) return;

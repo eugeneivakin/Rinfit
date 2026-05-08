@@ -3843,18 +3843,13 @@ var QuickBuyModal = class extends Modal {
     this.replaceChildren(quickBuyContent);
     Shopify?.PaymentButton?.init();
     // Initializing Swiper for the gallery inside quick-buy
-    console.log('>>>>>>>>>>>>>>>> ??');
     setTimeout(() => {
       if (typeof pdpSwiperInit === "function") {
-        console.log('>>>>>>>>>>>>>>>> if');
         pdpSwiperInit(this);
       } else if (window.pdpSwiperInit) {
-        console.log('>>>>>>>>>>>>>>>> else');
         window.pdpSwiperInit(this);
-      } else {
-        console.log('>>>>>>>>>>>>>>>> ?');
       }
-    }, 1000);
+    }, 100);
     return super.show();
   }
 };
