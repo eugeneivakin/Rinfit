@@ -71,15 +71,15 @@
         "image_FKMhm7": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Banner_10_Desktop.jpg",
-            "mobile_image": "shopify://shop_images/Banner_10_Mobile_2.jpg",
+            "image": "shopify://shop_images/Banner_9_Desktop_a10f1ba1-b45a-485f-a8c6-95d6ba992c06.jpg",
+            "mobile_image": "shopify://shop_images/Banner_9_Mobile_2.jpg",
             "subheading": "",
             "title": "",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-center sm:text-center",
             "content_max_width": 780,
             "button_1_text": "",
-            "button_1_link": "shopify://collections/glowstone",
+            "button_1_link": "shopify://collections/set-39-99",
             "button_1_style": "solid",
             "button_1_background": "#ffffff",
             "button_1_text_color": "#373a36",
