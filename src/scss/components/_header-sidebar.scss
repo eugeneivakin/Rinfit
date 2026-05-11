@@ -2,11 +2,8 @@
 
 .header-sidebar {
   --drawer-max-width: 390px;
+  --drawer-max-width: 100%;
   --header-linklist-padding-block: 24px;
-
-  @include xs {
-    --drawer-max-width: 100%;
-  }
 
   @include md {
     display: none !important;
