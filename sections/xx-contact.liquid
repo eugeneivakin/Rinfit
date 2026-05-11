@@ -243,6 +243,18 @@
             -%}
           </div>
           <div>
+              <div class="main-contact-container">Reason</div>
+              <div class="form-field">
+                <select name="contact[reason]" class="required-field contact-reason" required style="width:100%;padding:10px;border-radius:4px;font-family:'Kumbh Sans',sans-serif;font-size:14px;">
+                  <option value="" disabled selected>Select a reason</option>
+                  <option value="question">Product question</option>
+                  <option value="order">Question about ordering</option>
+                  <option value="wholesale">Wholesale cooperation</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+          </div>
+          <div>
             <div class="main-contact-container">Message {{ 'xx-Vector123.svg' | asset_url | img_tag }}</div>
             {%- render 'input',
               name: 'contact[body]',
