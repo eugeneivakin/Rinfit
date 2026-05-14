@@ -288,6 +288,32 @@
       </div>
     {%- endfor -%}
   </div>
+
+  {%- comment -%}
+    Структурированные данные FAQPage для SEO (schema.org)
+    Генерируется только если есть хотя бы один блок типа faq
+  {%- endcomment -%}
+  {%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+  {%- if faq_blocks.size > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {%- for block in faq_blocks -%}
+            {
+              "@type": "Question",
+              "name": {{ block.settings.heading | strip_newlines | strip | json }},
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": {{ block.settings.answer | strip_newlines | strip | json }}
+              }
+            }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+  {%- endif -%}
 </section>
 
 <script>
