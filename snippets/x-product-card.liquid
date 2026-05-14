@@ -74,11 +74,11 @@
         {%- endcapture -%}
 
         {%- liquid
-          assign main_media_loading_strategy = null
+          # assign main_media_loading_strategy = null
 
-          if section.index > 3 or position > 3
+          # if section.index > 3 or position > 3
             assign main_media_loading_strategy = 'lazy'
-          endif
+          # endif
         -%}
 
         {%- capture main_image_classes -%}product-card__image product-card__image--primary {% if settings.product_image_aspect_ratio contains 'crop' %}object-cover{% endif %} aspect-{{ settings.product_image_aspect_ratio | split: '_' | first }}{%- endcapture -%}

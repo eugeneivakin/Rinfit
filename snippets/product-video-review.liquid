@@ -1,7 +1,7 @@
 {% if product.available %}
   <div class="product-video-review shrink-0">
     <div class="product-video-review__media">
-      {{ video | video_tag: autoplay: false, loop: false, muted: false, controls: false, image_size: '312x' }}
+      {{ video | video_tag: autoplay: false, loop: false, muted: false, controls: false, image_size: '312x', aria-label: product.title }}
       <div class="product-video-review__play">
         {% render 'icons', icon: 'play' %}
         {% render 'icons', icon: 'pause' %}
@@ -13,14 +13,15 @@
     </div>
     <div class="product-video-review__content">
       <div>
+        {%- assign alt_text = product.title -%}
         {% if product.metafields.custom.transparent_featured_image.value != blank %}
           {{
             product.metafields.custom.transparent_featured_image
             | image_url: width: 140
-            | image_tag: loading: 'lazy'
+            | image_tag: loading: 'lazy', alt: alt_text
           }}
         {% else %}
-          {{ product.featured_image | image_url: width: 140 | image_tag: loading: 'lazy' }}
+          {{ product.featured_image | image_url: width: 140 | image_tag: loading: 'lazy', alt: alt_text }}
         {% endif %}
       </div>
       <div>

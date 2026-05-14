@@ -1048,7 +1048,7 @@ preloadImages_fn = function () {
   const previousSlide = this.cells[(this.selectedIndex - 1 + this.cells.length) % this.cells.length],
     nextSlide = this.cells[(this.selectedIndex + 1 + this.cells.length) % this.cells.length];
   [previousSlide, this.selectedCell, nextSlide].forEach((item) => {
-    Array.from(item.querySelectorAll('img[loading="lazy"]')).forEach((img) => img.removeAttribute("loading"));
+    // Array.from(item.querySelectorAll('img[loading="lazy"]')).forEach((img) => img.removeAttribute("loading"));
     Array.from(item.querySelectorAll('video[preload="none"]')).forEach((video) => video.setAttribute("preload", "metadata"));
   });
 };
@@ -1457,7 +1457,7 @@ preloadImages_fn2 = function () {
     [previousSlide, this.selectedCell, nextSlide]
       .filter((item) => item !== null)
       .forEach((item) => {
-        Array.from(item.querySelectorAll('img[loading="lazy"]')).forEach((img) => img.removeAttribute("loading"));
+        // Array.from(item.querySelectorAll('img[loading="lazy"]')).forEach((img) => img.removeAttribute("loading"));
         Array.from(item.querySelectorAll('video[preload="none"]')).forEach((video) => video.setAttribute("preload", "metadata"));
       });
   });
