@@ -85,7 +85,7 @@
             {{ shop.name }}
           {% endif %}
           </span>
-        {%- assign alt_text = section.settings.logo.alt -%}
+        {%- assign alt_text = section.settings.logo.alt | default: shop.name -%}
         {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, alt: alt_text, class: 'header__logo-image' -}}
 
         {%- if section.settings.transparent_logo -%}
