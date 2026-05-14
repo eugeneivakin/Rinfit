@@ -37,11 +37,58 @@
         "title": "",
         "content": "<p>We’re happy to answer any questions you have or provide any assistance. Just send us a message in the form below or use our email <a href=\"mailto:support@rinfit.com\" title=\"mailto:support@rinfit.com\">support@rinfit.com,</a> and we’ll get back to you as soon as possible!</p>"
       }
+    },
+    "x_map_with_text_gEXb6f": {
+      "type": "x-map-with-text",
+      "blocks": {
+        "heading_wdgGzy": {
+          "type": "heading",
+          "settings": {
+            "text": "Adress",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_ECUjK7": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>IRENCY LLC, 8 Edgewater Dr E, Falmouth Massachusetts 02536, United States</p>"
+          }
+        },
+        "heading_w99rzA": {
+          "type": "heading",
+          "settings": {
+            "text": "Contacts",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_a4rmk8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Phone: <a href=\"tel:+17818185111\" target=\"_blank\" title=\"tel:+17818185111\">7818185111</a><br/>Mon-Fri: 09:00 AM - 06:00 PM</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_wdgGzy",
+        "richtext_ECUjK7",
+        "heading_w99rzA",
+        "richtext_a4rmk8"
+      ],
+      "name": "t:sections.x_map_with_text.presets.x_map_with_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "html_embed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4930.833495741401!2d-70.53587817097026!3d41.57862345821919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e4d156c9f1fe6f%3A0xd9c32d9dec448355!2zOCBFZGdld2F0ZXIgRHIgRSwgRWFzdCBGYWxtb3V0aCwgTUEgMDI1MzYsINCh0KjQkA!5e1!3m2!1sru!2sua!4v1778769556113!5m2!1sru!2sua\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+        "map_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": false
+      }
     }
   },
   "order": [
     "title_contact_TKHeAK",
     "main",
-    "contact-form"
+    "contact-form",
+    "x_map_with_text_gEXb6f"
   ]
 }
