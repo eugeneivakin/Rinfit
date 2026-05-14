@@ -1,3 +1,30 @@
+#privy-container #privy-inner-container .privy-custom-tab-close {
+  animation: privy-bounce-in 450ms 1 ease-in-out;
+  background: rgba(0, 0, 0, 0.7);
+  border: 0;
+  border-radius: 100%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  height: 20px;
+  left: 12px;
+  padding: 0 0 4px;
+  pointer-events: auto;
+  position: absolute;
+  top: 4px;
+  width: 20px;
+  z-index: 11001000;
+}
+#privy-container #privy-inner-container .privy-custom-tab-close::before {
+  content: "";
+  position: absolute;
+  inset: -0.75rem;
+}
+#privy-container #privy-inner-container .privy-custom-tab-close:hover {
+  background: #c44536;
+}
+
 [class^=privy-embedded-form-] {
   max-width: 385px !important;
 }
@@ -57,4 +84,10 @@
 }
 .privy-embedded-form-4622435 #privy-container #privy-inner-container [tabindex]:focus .privy .privy-element.privy-button-element.privy-button-flat {
   height: auto;
+}
+
+#privy-container #privy-inner-container div.privy-tab.privy-floating .privy-floating-notification::before {
+  content: "";
+  position: absolute;
+  inset: -0.75rem;
 }
