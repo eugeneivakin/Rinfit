@@ -109,6 +109,12 @@
             {%- if section.settings.show_social_media -%}
               {%- render 'social-media', layout: 'list' -%}
             {%- endif -%}
+
+            <div class="prose text-subdued">
+              {{ shop.address.address1 }}, {{ shop.address.city }}, {{ shop.address.province }}, {{ shop.address.zip }},
+              {{ shop.address.country }}
+            </div>
+
             {%- if section.settings.show_policies_links -%}
               {%- render 'policies-links' -%}
             {%- endif -%}

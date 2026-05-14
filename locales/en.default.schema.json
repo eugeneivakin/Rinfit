@@ -2007,6 +2007,40 @@
           "name": "X: Rich text"
         }
       }
+    },
+    "x_map_with_text": {
+      "name": "X: Map with text",
+      // "image_size_recommendation": "2000 x 1400px .jpg recommended.",
+      // "mobile_image_size_recommendation": "1000 x 1000px .jpg recommended. Default to desktop image.",
+      "map_position": "Map position",
+      "blocks": {
+        "subheading": {
+          "name": "Subheading"
+        },
+        "heading": {
+          "name": "Heading"
+        },
+        "paragraph": {
+          "name": "Paragraph"
+        },
+        "page": {
+          "name": "Page"
+        },
+        "liquid": {
+          "name": "Liquid"
+        },
+        "link": {
+          "name": "Link"
+        },
+        "button": {
+          "name": "Button"
+        }
+      },
+      "presets": {
+        "x_map_with_text": {
+          "name": "X: Map with text"
+        }
+      }
     }
   }
 }
