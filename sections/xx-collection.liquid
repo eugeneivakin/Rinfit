@@ -1,6 +1,6 @@
-{{ 'xx-quick-buy.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'xx-quick-buy.css' | asset_url }}" media="print" onload="this.media='all'">
 <script src="{{ 'xx-swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
-{{ 'xx-swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'xx-swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <style>
   .button-next-collection-{{section.id }}{

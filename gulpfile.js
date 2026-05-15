@@ -13,7 +13,7 @@ function compilescss() {
     src("src/scss/**/*.scss")
       .pipe(sass())
       .pipe(prefix())
-      // .pipe(minify())
+      .pipe(minify())
       .pipe(wait(1000))
       .pipe(rename({ dirname: "" }))
       .pipe(dest("assets"))

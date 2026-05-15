@@ -31,7 +31,7 @@
 
   {%- if section.settings.show_collection_description -%}
     {%- if section.settings.short_collection_description -%}
-      {{ 'x-component-read-more-lines.css' | asset_url | stylesheet_tag }}
+      <link rel="stylesheet" href="{{ 'x-component-read-more-lines.css' | asset_url }}" media="print" onload="this.media='all'">
       <read-more-lines>
         <div 
           class="collection-description line-clamp"

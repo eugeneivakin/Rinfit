@@ -1,5 +1,5 @@
 {%- if section.settings.image != blank or section.blocks.size > 0 -%}
-  {{- 'section-image-with-text.css' | asset_url | stylesheet_tag -}}
+  <link rel="stylesheet" href="{{ 'section-image-with-text.css' | asset_url }}" media="print" onload="this.media='all'">
 
   {%- comment -%}
     ------------------------------------------------------------------------------------------------------------------------
