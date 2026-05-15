@@ -6,6 +6,14 @@
     overflow: hidden;
   }
 
+  [class^="privy-embedded-form-"] {
+    max-width: none !important;
+
+    &:focus-visible {
+      outline: 0 !important;
+    }
+  }
+
   .image-with-text {
     @include sm {
       align-items: stretch;
@@ -94,9 +102,6 @@
     }
 
     .button {
-      font-size: 26px;
-      margin-block-start: 23px !important;
-      max-width: 318px;
       width: 100%;
     }
   }
@@ -142,6 +147,7 @@
     }
 
     .form-control__wrapper {
+      margin: 0;
       position: relative;
     }
 

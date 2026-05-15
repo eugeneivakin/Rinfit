@@ -28,14 +28,22 @@
         "richtext_6yhEnh": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Enter your email to get your code instantly + early access to new drops and exclusive offers.</p>"
+            "content": "<p>Enter your email to get your code instantly + early access to new drops and exclusive offers.</p>",
+            "style": "normal"
           }
         },
         "form_dhaGim": {
           "type": "form",
+          "disabled": true,
           "settings": {
             "placeholder": "Enter your Email",
             "submit_text": "Get my 20% off"
+          }
+        },
+        "form_embed_GDTCVU": {
+          "type": "form_embed",
+          "settings": {
+            "form_embed": "<div class=\"privy-embed-form\" data-campaign=\"4624297\"></div>"
           }
         },
         "note_FfxTL9": {
@@ -50,11 +58,13 @@
         "heading_xBznFB",
         "richtext_6yhEnh",
         "form_dhaGim",
+        "form_embed_GDTCVU",
         "note_FfxTL9"
       ],
       "name": "t:sections.promotion.presets.promotion.name",
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "section_style": "style_1",
         "separate_section_with_border": true,
         "image": "shopify://shop_images/Promotion-banner.jpg",
         "reveal_on_scroll": true,
@@ -105,11 +115,18 @@
       "name": "t:sections.text_with_icons_banner.presets.text_with_icons_banner.name",
       "settings": {
         "color_scheme": "scheme-ccc90142-a087-490f-9252-376a779d4419",
+        "section_style": "style_1",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
         "text_color": "",
-        "text_alignment": "start"
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "",
+        "content": ""
       }
     },
     "x_why_us_VpJaW4": {
@@ -154,6 +171,10 @@
       "name": "t:sections.why_us.presets.why_us.name",
       "settings": {
         "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
+        "section_style": "style_1",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
         "separate_section_with_border": false,
         "stack_on_mobile": true,
         "icon_color": "",
@@ -187,6 +208,10 @@
       "name": "X: Promotion banner",
       "settings": {
         "color_scheme": "scheme-4e4bb27f-3ac0-4203-b01f-3e5170d7968b",
+        "section_style": "style_1",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
         "separate_section_with_border": true,
         "subheading": "",
         "title": "Limited-time offer",
@@ -231,6 +256,9 @@
       "name": "t:sections.x_join_community.presets.x_join_community.name",
       "settings": {
         "color_scheme": "scheme-6c46320a-45a2-49a4-9185-b85f69516dae",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
         "separate_section_with_border": false,
         "image": "shopify://shop_images/Join-us-desktop.jpg",
         "mobile_image": "shopify://shop_images/Join-us-mobile.jpg",
@@ -275,6 +303,10 @@
       "name": "t:sections.x_rich_text.presets.x_rich_text.name",
       "settings": {
         "color_scheme": "scheme-8688ad98-0d63-498a-855e-5735be2280d2",
+        "section_style": "style_1",
+        "show_on_mobile": true,
+        "show_on_tablet": true,
+        "show_on_desktop": true,
         "separate_section_with_border": false,
         "content_width": "sm",
         "text_position": "start",
