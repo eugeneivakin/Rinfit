@@ -4,7 +4,7 @@
     ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
-{{- 'section-size-calculator.css' | asset_url | stylesheet_tag -}}
+<link rel="stylesheet" href="{{ 'section-size-calculator.css' | asset_url }}" media="print" onload="this.media='all'">
 
 {%- assign remove_vertical_spacing = false -%}
 

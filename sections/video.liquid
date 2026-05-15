@@ -1,5 +1,5 @@
 {%- if section.settings.video != blank or section.settings.external_video_url != blank -%}
-  {{- 'section-video.css' | asset_url | stylesheet_tag -}}
+  <link rel="stylesheet" href="{{ 'section-video.css' | asset_url }}" media="print" onload="this.media='all'">
 
   <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} {% if section.settings.content_width == 'container' %}container{% endif %}">
     <div

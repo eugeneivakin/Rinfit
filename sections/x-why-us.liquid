@@ -25,7 +25,7 @@
     {% endif %}
   {%- endstyle -%}
 
-  {{ 'x-why-us.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="{{ 'x-why-us.css' | asset_url }}" media="print" onload="this.media='all'">
 
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
     | default: section.settings.color_scheme.settings.background

@@ -17,7 +17,7 @@ Nothing
 
 {%- if predictive_search.performed -%}
   <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
-  {{ 'product-card.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="{{ 'product-card.css' | asset_url }}" media="print" onload="this.media='all'">
   
   {%- assign results_count = 0 -%}
 

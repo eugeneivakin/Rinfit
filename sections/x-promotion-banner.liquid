@@ -1,4 +1,4 @@
-{{- 'x-promotion-banner.css' | asset_url | stylesheet_tag -}}
+<link rel="stylesheet" href="{{ 'x-promotion-banner.css' | asset_url }}" media="print" onload="this.media='all'">
 
 {%- style -%}
   {% if section.settings.show_on_mobile == false %}

@@ -1,5 +1,4 @@
-{{ 'xx-size-calculator.css' | asset_url | stylesheet_tag }}
-
+<link rel="stylesheet" href="{{ 'xx-size-calculator.css' | asset_url }}" media="print" onload="this.media='all'">
 <style>
   .section-modal-size .modal-content-size.modal-content {
     max-width: 784px;
