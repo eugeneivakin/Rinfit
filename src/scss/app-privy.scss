@@ -70,15 +70,7 @@
   // }
 }
 
-[class^="privy-embedded-form-"] {
-  // margin: 0 auto !important;
-  max-width: 385px !important;
-
-  &:focus-visible {
-    outline: 0 !important;
-  }
-}
-
+// form in newsletter section
 .privy-embedded-form-4622435 {
   #privy-container #privy-inner-container {
     [tabindex]:focus {
@@ -150,5 +142,74 @@
     content: "";
     position: absolute;
     inset: -0.75rem;
+  }
+}
+
+// @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+.privy-embedded-form-4624297 {
+  #privy-container #privy-inner-container {
+    .privy {
+      padding: 0 !important;
+
+      #embedded-form-container {
+        .privy-email-group {
+          position: relative;
+
+          &::before {
+            aspect-ratio: 1.466666666666667;
+            background: url("https://cdn.shopify.com/s/files/1/1471/8740/files/icon-email.png?v=1778840102") no-repeat;
+            background-size: contain;
+            content: "";
+            left: 14px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            z-index: 5;
+
+            @media screen and (min-width: 420px) {
+              left: 19px;
+              width: 32px;
+            }
+          }
+        }
+
+        .privy-email-input {
+          font-family: "Kumbh Sans", Lato, sans-serif;
+          padding-inline-start: 40px;
+
+          @media screen and (min-width: 420px) {
+            border-radius: 12px;
+            font-size: 21px;
+            height: 58px;
+            padding-inline-start: 59px;
+          }
+
+          &::placeholder {
+            font: inherit;
+          }
+        }
+
+        .privy-button-element-wrapper {
+          height: auto;
+        }
+
+        .privy-button-element {
+          font:
+            600 26px/1 "Kumbh Sans",
+            Lato,
+            sans-serif !important;
+          text-transform: uppercase;
+
+          @media screen and (min-width: 420px) {
+            border-radius: 10px !important;
+            font-size: 21px !important;
+            font-weight: 500 !important;
+            min-height: 57px;
+          }
+        }
+      }
+    }
   }
 }
