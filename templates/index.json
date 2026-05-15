@@ -71,15 +71,15 @@
         "image_FKMhm7": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Banner_10_Desktop.jpg",
-            "mobile_image": "shopify://shop_images/Banner_10_Mobile_2.jpg",
+            "image": "shopify://shop_images/Banner_11_Desktop.jpg",
+            "mobile_image": "shopify://shop_images/Banner_11_Mobile_0eef5b6c-7536-4425-a028-bdf38a6847fd.jpg",
             "subheading": "",
             "title": "",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-center sm:text-center",
             "content_max_width": 780,
             "button_1_text": "",
-            "button_1_link": "shopify://collections/glowstone",
+            "button_1_link": "https://www.rinfit.com/products/silicone-ring-12x8-mm-black-oval-cut-cz-patented-design-glowstone-collection",
             "button_1_style": "solid",
             "button_1_background": "#ffffff",
             "button_1_text_color": "#373a36",
@@ -135,7 +135,7 @@
           "settings": {
             "collection": "best-sellers",
             "products_count": 20,
-            "title": "Best <em><strong>Sellers</strong></em>",
+            "title": "Best <em><strong>Sellers Rings</strong></em>",
             "link_url": "",
             "link_text": "SHOP ALL"
           }
@@ -476,7 +476,7 @@
             "subheading": "",
             "title": "Accessories",
             "button_text": "shop now",
-            "button_link": "shopify://collections/ring-protector",
+            "button_link": "shopify://collections/rinfit-accessories",
             "button_style": "link",
             "overlay_color": "#000000",
             "overlay_opacity": 70

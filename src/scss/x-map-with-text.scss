@@ -1,0 +1,19 @@
+@use "mixins/media" as *;
+
+.shopify-section--map-with-text {
+  .image-with-text > :is(iframe) {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-with-text--reverse > :is(iframe) {
+    @include sm {
+      order: 9999;
+    }
+  }
+
+  iframe:focus-visible {
+    outline: 0;
+  }
+}

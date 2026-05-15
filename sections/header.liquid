@@ -78,7 +78,13 @@
         {%- capture sizes -%}{{ section.settings.logo_max_width }}px{%- endcapture -%}
         {%- capture widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.logo.width }}{%- endcapture -%}
 
-        <span class="sr-only">{{ shop.name }}</span>
+        <span class="sr-only">
+          {% if settings.seo_main_title != blank %}
+            {{ settings.seo_main_title }}
+          {% else %}
+            {{ shop.name }}
+          {% endif %}
+          </span>
         {%- assign alt_text = section.settings.logo.alt | default: shop.name -%}
         {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, alt: alt_text, class: 'header__logo-image' -}}
 

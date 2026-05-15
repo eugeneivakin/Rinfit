@@ -1,6 +1,12 @@
 .shopify-section--newsletter {
   --content-over-media-content-max-width: none;
 }
+.shopify-section--newsletter [class^=privy-embedded-form-] {
+  max-width: 385px !important;
+}
+.shopify-section--newsletter [class^=privy-embedded-form-]:focus-visible {
+  outline: 0 !important;
+}
 .shopify-section--newsletter .section-stack {
   --section-stack-gap: 20px;
 }

@@ -829,5 +829,15 @@
         "info": "t:theme_settings.favicon.image_info"
       }
     ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "text",
+        "id": "seo_main_title",
+        "label": "SEO main title"
+      }
+    ]
   }
 ]
