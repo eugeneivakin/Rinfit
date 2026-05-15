@@ -41,7 +41,10 @@
 
             {%- when 'richtext' -%}
               {%- if block.settings.content != blank -%}
-                <div class="image-with-text__richtext image-with-text__richtext--{{ block.settings.style }}" {{ block.shopify_attributes }}>
+                <div
+                  class="image-with-text__richtext image-with-text__richtext--{{ block.settings.style }}"
+                  {{ block.shopify_attributes }}
+                >
                   {{- block.settings.content -}}
                 </div>
               {%- endif -%}
@@ -114,6 +117,9 @@
                   {%- render 'button', content: button_content, type: 'submit' -%}
                 {%- endif -%}
               {%- endform -%}
+
+            {%- when 'form_embed' -%}
+              {{ block.settings.form_embed }}
 
             {%- when 'note' -%}
               {%- if block.settings.content != blank -%}
@@ -437,6 +443,17 @@
           "id": "submit_text",
           "label": "t:sections.promotion.blocks.form.settings.submit",
           "default": "Get my 20% off"
+        }
+      ]
+    },
+    {
+      "type": "form_embed",
+      "name": "Form embed",
+      "settings": [
+        {
+          "type": "html",
+          "id": "form_embed",
+          "label": "Form embed"
         }
       ]
     },
