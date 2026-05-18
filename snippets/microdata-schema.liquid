@@ -204,3 +204,28 @@
     ]
   </script>
 {%- endif -%}
+
+{%- if request.page_type == 'collection' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": {{ collection.title | json }},
+      "url": "{{ shop.url }}{{ collection.url }}",
+      "description": {{ collection.description | strip_html | json }},
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {% for product in collection.products %}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.index }},
+              "url": "{{ shop.url }}{{ product.url }}",
+              "name": {{ product.title | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }
+    }
+  </script>
+{%- endif -%}
