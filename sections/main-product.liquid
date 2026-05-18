@@ -1,5 +1,5 @@
-{{- 'main-product.css' | asset_url | stylesheet_tag -}}
-{{- 'app-frequently-bought.css' | asset_url | stylesheet_tag -}}
+<link rel="stylesheet" href="{{ 'main-product.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'app-frequently-bought.css' | asset_url }}" media="print" onload="this.media='all'">
 
 {%- liquid
   assign has_content_below_gallery = false

@@ -29,15 +29,15 @@
     {%- endif -%}
 
     {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
-    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {% comment %} <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin> {% endcomment %}
 
-    {%- unless settings.heading_font.system? -%}
+    {% comment %} {%- unless settings.heading_font.system? -%}
       <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
     {%- endunless -%}
 
     {%- unless settings.text_font.system? -%}
       <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
-    {%- endunless -%}
+    {%- endunless -%} {% endcomment %}
 
     {%- render 'social-meta-tags' -%}
     {%- render 'microdata-schema' -%}
@@ -54,8 +54,6 @@
         "imports": {
           "vendor": "{{ 'vendor.min.js' | asset_url }}",
           "theme": "{{ 'theme.js' | asset_url }}",
-          "theme": "{{ 'theme-custom.js' | asset_url }}",
-          "theme": "{{ 'privy-custom.js' | asset_url }}",
           "photoswipe": "{{ 'photoswipe.min.js' | asset_url }}"
         }
       }
@@ -86,14 +84,16 @@
 
     <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
     <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
-    <script src="{{ 'theme-custom.js' | asset_url }}"></script>
-    <script src="{{ 'privy-custom.js' | asset_url }}"></script>
+    <script src="{{ 'theme-custom.js' | asset_url }}" defer></script>
+    <script src="{{ 'privy-custom.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
-    {{- 'theme-custom.css' | asset_url | stylesheet_tag -}}
-    {{- 'app-privy.css' | asset_url | stylesheet_tag -}}
+    <link rel="stylesheet" href="{{ 'theme-custom.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'app-privy.css' | asset_url }}" media="print" onload="this.media='all'">
+    {% comment %} {{- 'theme-custom.css' | asset_url | stylesheet_tag -}}
+    {{- 'app-privy.css' | asset_url | stylesheet_tag -}} {% endcomment %}
   </head>
 
   {% liquid

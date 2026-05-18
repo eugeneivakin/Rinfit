@@ -5,7 +5,7 @@
   }
 {% endstyle %}
 
-{{- 'main-page-heading.css' | asset_url | stylesheet_tag -}}
+<link rel="stylesheet" href="{{  'main-page-heading.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <div class="section-spacing">
   <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">

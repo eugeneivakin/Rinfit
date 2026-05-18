@@ -7,7 +7,32 @@
 
 {%- if request.page_type == 'product' -%}
   <script type="application/ld+json">
-    {{- product | structured_data -}}
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "image": {{ product.featured_image | img_url: 'master' | json }},
+      "description": {{ product.description | strip_html | json }},
+      "sku": {{ product.selected_or_first_available_variant.sku | json }},
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "{{ shop.currency }}",
+        "price": "{{ product.selected_or_first_available_variant.price | money_without_currency }}",
+        "availability": "http://schema.org/{% if product.selected_or_first_available_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+        "url": "{{ shop.url }}{{ product.url }}"
+      }{% if product.metafields.loox.avg_rating and product.metafields.loox.num_reviews %},
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.metafields.loox.avg_rating }}",
+        "reviewCount": "{{ product.metafields.loox.num_reviews }}",
+        "bestRating": "5"
+      }
+      {% endif %}
+    }
   </script>
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">

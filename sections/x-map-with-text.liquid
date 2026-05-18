@@ -5,7 +5,7 @@
     ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
-  {{ 'x-map-with-text.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="{{ 'x-map-with-text.css'  | asset_url }}" media="print" onload="this.media='all'">
 
   <style>
     #shopify-section-{{ section.id }} {

@@ -35,7 +35,7 @@
     -%}
 
     {%- if cross_sell_products_count > 0 -%}
-      {{ 'product-card-horizontal.css' | asset_url | stylesheet_tag }}
+      <link rel="stylesheet" href="{{ 'product-card-horizontal.css' | asset_url }}" media="print" onload="this.media='all'">
       <div class="cart-drawer__complementary-products complementary-products">
         {%- assign carousel_id = 'complementary-products-carousel-' | append: section.id -%}
 
@@ -90,7 +90,7 @@
     -%}
 
     {%- if cross_sell_products_count > 0 -%}
-      {{ 'product-card-horizontal.css' | asset_url | stylesheet_tag }}
+      <link rel="stylesheet" href="{{ 'product-card-horizontal.css' | asset_url }}" media="print" onload="this.media='all'">
       <div class="cart-drawer__complementary-products complementary-products">
         {%- assign carousel_id = 'complementary-products-carousel-' | append: section.id -%}
 
