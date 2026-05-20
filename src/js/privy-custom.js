@@ -21,10 +21,19 @@
 		}
 	};
 
+
+	const INVISIBLE_CLASS = "invisible";
+
 	const hideTab = (tabContainer) => {
 		if (!tabContainer) return;
-		tabContainer.hidden = true;
+		tabContainer.classList.add(INVISIBLE_CLASS);
 		tabContainer.setAttribute("aria-hidden", "true");
+	};
+
+	const showTab = (tabContainer) => {
+		if (!tabContainer) return;
+		tabContainer.classList.remove(INVISIBLE_CLASS);
+		tabContainer.removeAttribute("aria-hidden");
 	};
 
 	const ensureCloseButton = (tabContainer) => {
@@ -56,6 +65,8 @@
 
 		if (isTabClosedForSession()) {
 			hideTab(tabContainer);
+		} else {
+			showTab(tabContainer);
 		}
 	};
 
