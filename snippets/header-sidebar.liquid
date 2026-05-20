@@ -241,6 +241,16 @@
                   const privyBtn = document.querySelector('.privy-tab');
                   if (privyBtn) {
                     privyBtn.click();
+                    // Try to close the sidebar menu
+                    const sidebar = document.querySelector('header-sidebar');
+                    if (sidebar) {
+                      if (typeof sidebar.close === 'function') {
+                        sidebar.close();
+                      } else {
+                        sidebar.removeAttribute('open');
+                        // Alternatively you can add a hiding class if required
+                      }
+                    }
                   }
                   e.preventDefault();
                 }
