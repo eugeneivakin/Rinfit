@@ -70,3 +70,8 @@ main > .shopify-section--newsletter {
     display: none !important;
   }
 }
+
+.privy-tab-container.invisible {
+  pointer-events: none;
+  opacity: 0;
+}
