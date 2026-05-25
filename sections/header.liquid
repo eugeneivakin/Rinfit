@@ -292,7 +292,7 @@
             <a
               href="{{ routes.search_url }}"
               aria-controls="header-search-{{ section.id }}"
-              class="header__button-icon"
+              class="header__button-icon tap-area"
             >
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
 
@@ -315,7 +315,7 @@
           <li class="header__account-link">
             <a
               href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
-              class="header__button-icon"
+              class="header__button-icon tap-area"
             >
               <span class="sr-only">
                 {%- if customer -%}
@@ -352,7 +352,7 @@
               aria-controls="cart-drawer"
             {% endif %}
             data-no-instant
-            class="header__button-icon"
+            class="header__button-icon tap-area"
           >
             <span class="sr-only">{{ 'header.general.cart' | t }}</span>
 
