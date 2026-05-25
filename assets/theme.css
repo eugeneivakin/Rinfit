@@ -3555,9 +3555,9 @@ tr[onclick]:hover {
   transition-delay: 0s;
 }
 
-.breadcrumb {
+/* .breadcrumb {
   display: none;
-}
+} */
 
 .breadcrumb__list {
   align-items: center;
