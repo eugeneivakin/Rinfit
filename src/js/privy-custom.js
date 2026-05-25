@@ -1,113 +1,123 @@
 (() => {
-	const PRIVY_CONTAINER_ID = "privy-container";
-	const PRIVY_TAB_SELECTOR = ".privy-tab-container";
-	const CLOSE_BUTTON_CLASS = "privy-custom-tab-close";
-	const SESSION_STORAGE_KEY = "privy-tab-closed";
-	const INIT_FLAG = "privyCustomInit";
+  const PRIVY_CONTAINER_ID = "privy-container";
+  const PRIVY_TAB_SELECTOR = ".privy-tab-container";
+  const CLOSE_BUTTON_CLASS = "privy-custom-tab-close";
+  const SESSION_STORAGE_KEY = "privy-tab-closed";
+  const INIT_FLAG = "privyCustomInit";
 
-	const isTabClosedForSession = () => {
-		try {
-			return window.sessionStorage.getItem(SESSION_STORAGE_KEY) === "1";
-		} catch (error) {
-			return false;
-		}
-	};
+  const isTabClosedForSession = () => {
+    try {
+      return window.sessionStorage.getItem(SESSION_STORAGE_KEY) === "1";
+    } catch (error) {
+      return false;
+    }
+  };
 
-	const setTabClosedForSession = () => {
-		try {
-			window.sessionStorage.setItem(SESSION_STORAGE_KEY, "1");
-		} catch (error) {
-			// Ignore storage errors.
-		}
-	};
+  const setTabClosedForSession = () => {
+    try {
+      window.sessionStorage.setItem(SESSION_STORAGE_KEY, "1");
+    } catch (error) {
+      // Ignore storage errors.
+    }
+  };
 
-	const hideTab = (tabContainer) => {
-		if (!tabContainer) return;
-		tabContainer.hidden = true;
-		tabContainer.setAttribute("aria-hidden", "true");
-	};
+  const INVISIBLE_CLASS = "invisible";
 
-	const ensureCloseButton = (tabContainer) => {
-		if (!tabContainer) return;
-		if (tabContainer.querySelector(`.${CLOSE_BUTTON_CLASS}`)) {
-			return;
-		}
+  const hideTab = (tabContainer) => {
+    if (!tabContainer) return;
+    tabContainer.classList.add(INVISIBLE_CLASS);
+    // Don't add aria-hidden
+  };
 
-		const closeButton = document.createElement("button");
-		closeButton.type = "button";
-		closeButton.className = CLOSE_BUTTON_CLASS;
-		closeButton.setAttribute("aria-label", "Close tab");
-		closeButton.textContent = "×";
+  const showTab = (tabContainer) => {
+    if (!tabContainer) return;
+    tabContainer.classList.remove(INVISIBLE_CLASS);
+    // We don't remove aria-hidden because we don't add it
+  };
 
-		closeButton.addEventListener("click", () => {
-			hideTab(tabContainer);
-			setTabClosedForSession();
-		});
+  const ensureCloseButton = (tabContainer) => {
+    if (!tabContainer) return;
+    if (tabContainer.querySelector(`.${CLOSE_BUTTON_CLASS}`)) {
+      return;
+    }
 
-		tabContainer.appendChild(closeButton);
-	};
+    const closeButton = document.createElement("button");
+    closeButton.type = "button";
+    closeButton.className = CLOSE_BUTTON_CLASS;
+    closeButton.setAttribute("aria-label", "Close tab");
+    closeButton.textContent = "×";
 
-	const processContainer = (container) => {
-		if (!container) return;
-		const tabContainer = container.querySelector(PRIVY_TAB_SELECTOR);
-		if (!tabContainer) return;
+    closeButton.addEventListener("click", () => {
+      hideTab(tabContainer);
+      setTabClosedForSession();
+    });
 
-		ensureCloseButton(tabContainer);
+    tabContainer.appendChild(closeButton);
+  };
 
-		if (isTabClosedForSession()) {
-			hideTab(tabContainer);
-		}
-	};
+  const processContainer = (container) => {
+    if (!container) return;
+    const tabContainer = container.querySelector(PRIVY_TAB_SELECTOR);
+    if (!tabContainer) return;
 
-	const start = () => {
-		if (window[INIT_FLAG]) {
-			return;
-		}
+    ensureCloseButton(tabContainer);
 
-		window[INIT_FLAG] = true;
+    if (isTabClosedForSession()) {
+      hideTab(tabContainer);
+    } else {
+      showTab(tabContainer);
+    }
+  };
 
-		let containerObserver = null;
+  const start = () => {
+    if (window[INIT_FLAG]) {
+      return;
+    }
 
-		const attachToContainer = (container) => {
-			if (!container) return;
+    window[INIT_FLAG] = true;
 
-			processContainer(container);
+    let containerObserver = null;
 
-			if (!containerObserver) {
-				containerObserver = new MutationObserver(() => {
-					processContainer(container);
-				});
+    const attachToContainer = (container) => {
+      if (!container) return;
 
-				containerObserver.observe(container, {
-					childList: true,
-					subtree: true,
-				});
-			}
-		};
+      processContainer(container);
 
-		const existingContainer = document.getElementById(PRIVY_CONTAINER_ID);
-		if (existingContainer) {
-			attachToContainer(existingContainer);
-			return;
-		}
+      if (!containerObserver) {
+        containerObserver = new MutationObserver(() => {
+          processContainer(container);
+        });
 
-		const observer = new MutationObserver(() => {
-			const container = document.getElementById(PRIVY_CONTAINER_ID);
-			if (!container) return;
+        containerObserver.observe(container, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    };
 
-			observer.disconnect();
-			attachToContainer(container);
-		});
+    const existingContainer = document.getElementById(PRIVY_CONTAINER_ID);
+    if (existingContainer) {
+      attachToContainer(existingContainer);
+      return;
+    }
 
-		observer.observe(document.documentElement, {
-			childList: true,
-			subtree: true,
-		});
-	};
+    const observer = new MutationObserver(() => {
+      const container = document.getElementById(PRIVY_CONTAINER_ID);
+      if (!container) return;
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", start, { once: true });
-	} else {
-		start();
-	}
+      observer.disconnect();
+      attachToContainer(container);
+    });
+
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start, { once: true });
+  } else {
+    start();
+  }
 })();

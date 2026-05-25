@@ -1,3 +1,9 @@
+@mixin xxs {
+  @media screen and (min-width: 480px) {
+    @content;
+  }
+}
+
 @mixin xs {
   @media screen and (min-width: 576px) {
     @content;
