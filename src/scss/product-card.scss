@@ -122,6 +122,14 @@
       --swatch-offset: 0;
       border-radius: 100%;
       overflow: hidden;
+
+      .template-collection & {
+        &::before {
+          content: "";
+          position: absolute;
+          inset: -0.5rem;
+        }
+      }
     }
 
     :checked + .color-swatch {
