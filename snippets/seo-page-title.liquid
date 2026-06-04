@@ -1,0 +1,10 @@
+<title>
+  {% if request.path == '/collections/all' %}
+    {{ settings.seo_collections_all_title }}
+  {% elsif page_title == blank -%}
+    {{- shop.name -}}
+  {%- else -%}
+    {{- page_title -}}
+    {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+  {%- endif %}
+</title>

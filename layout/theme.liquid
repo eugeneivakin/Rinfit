@@ -8,18 +8,9 @@
       content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0"
     >
 
-    <title>
-      {% if page_title == blank -%}
-        {{- shop.name -}}
-      {%- else -%}
-        {{- page_title -}}
-        {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
-      {%- endif %}
-    </title>
+    {% render 'seo-page-title' %}
 
-    {%- if page_description -%}
-      <meta name="description" content="{{ page_description | escape }}">
-    {%- endif -%}
+    {% render 'seo-page-description' %}
 
     <link rel="canonical" href="{{ canonical_url }}">
 
@@ -35,13 +26,15 @@
     {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
     {% comment %} <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin> {% endcomment %}
 
-    {% comment %} {%- unless settings.heading_font.system? -%}
-      <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
-    {%- endunless -%}
+    {% comment %}
+      {%- unless settings.heading_font.system? -%}
+        <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
+      {%- endunless -%}
 
-    {%- unless settings.text_font.system? -%}
-      <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
-    {%- endunless -%} {% endcomment %}
+      {%- unless settings.text_font.system? -%}
+        <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
+      {%- endunless -%}
+    {% endcomment %}
 
     {%- render 'social-meta-tags' -%}
     {%- render 'microdata-schema' -%}
@@ -96,8 +89,10 @@
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
     <link rel="stylesheet" href="{{ 'theme-custom.css' | asset_url }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ 'app-privy.css' | asset_url }}" media="print" onload="this.media='all'">
-    {% comment %} {{- 'theme-custom.css' | asset_url | stylesheet_tag -}}
-    {{- 'app-privy.css' | asset_url | stylesheet_tag -}} {% endcomment %}
+    {% comment %}
+      {{- 'theme-custom.css' | asset_url | stylesheet_tag -}}
+      {{- 'app-privy.css' | asset_url | stylesheet_tag -}}
+    {% endcomment %}
   </head>
 
   {% liquid
