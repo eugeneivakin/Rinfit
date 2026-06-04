@@ -837,6 +837,16 @@
         "type": "text",
         "id": "seo_main_title",
         "label": "SEO main title"
+      },
+      {
+        "type": "text",
+        "id": "seo_collections_all_title",
+        "label": "Collections All title"
+      },
+      {
+        "type": "text",
+        "id": "seo_collections_all_description",
+        "label": "Collections All description"
       }
     ]
   }
