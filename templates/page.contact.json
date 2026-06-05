@@ -13,7 +13,7 @@
       "type": "xx-title-contact",
       "name": "Title contact",
       "settings": {
-        "title": "<p>Contact Us</p>",
+        "title": "<h1>Contact Us</h1>",
         "background_color": "#e9e9e9",
         "top_padding": 20,
         "bottom_padding": 0
