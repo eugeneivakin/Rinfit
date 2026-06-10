@@ -23,7 +23,7 @@
   <p class="quick-buy-modal__title h5" slot="header">{{ 'product.quick_add.heading' | t }}</p>
 
   <div class="quick-buy-modal__content">
-    <product-rerender id="quick-buy-modal-content" observe-form="{{ product_form_id }}">
+    <product-rerender id="quick-buy-modal-content" observe-form="{{ product_form_id }}" allow-partial-rerender>
       <dialog-close-button class="contents">
         <button type="button" class="quick-buy-modal__close-button sm-max:hidden">
           <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
