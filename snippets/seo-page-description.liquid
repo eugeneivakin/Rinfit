@@ -1,5 +1,3 @@
-{%- if request.path == '/collections/all' -%}
-  <meta name="description" content="{{ settings.seo_collections_all_description | escape | truncate: 155 }}">
-{%- elsif page_description -%}
-  <meta name="description" content="{{ page_description | escape | truncate: 155 }}">
+{%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}">
 {%- endif -%}

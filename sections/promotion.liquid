@@ -1,5 +1,5 @@
 {%- if section.settings.image != blank or section.blocks.size > 0 -%}
-<link rel="stylesheet" href="{{ 'x-section-promotion.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'x-section-promotion.css' | asset_url }}" media="print" onload="this.media='all'">
 
   {%- comment -%}
     ------------------------------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@
 
             {%- when 'heading' -%}
               {%- if block.settings.text != blank -%}
-                <{{ block.settings.heading_tag }} class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</{{ block.settings.heading_tag }}>
+                <p class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
               {%- endif -%}
 
             {%- when 'richtext' -%}
