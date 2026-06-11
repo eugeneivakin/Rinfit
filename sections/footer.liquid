@@ -110,10 +110,10 @@
               {%- render 'social-media', layout: 'list' -%}
             {%- endif -%}
 
-            <div class="prose text-subdued">
+            {% comment %} <div class="prose text-subdued">
               {{ shop.address.address1 }}, {{ shop.address.city }}, {{ shop.address.province }}, {{ shop.address.zip }},
               {{ shop.address.country }}
-            </div>
+            </div> {% endcomment %}
 
             {%- if section.settings.show_policies_links -%}
               {%- render 'policies-links' -%}
