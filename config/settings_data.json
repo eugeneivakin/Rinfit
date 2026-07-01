@@ -30,6 +30,8 @@
     "product_title_max_lines": 2,
     "product_card_text_font": "heading",
     "cart_type": "drawer",
+    "cart_show_free_shipping_bar": true,
+    "cart_free_shipping_threshold": "70",
     "social_facebook": "https://www.facebook.com/SiliconeWeddingBand/",
     "social_pinterest": "https://in.pinterest.com/rinfitrings/",
     "social_instagram": "https://www.instagram.com/rinfitrings/",
