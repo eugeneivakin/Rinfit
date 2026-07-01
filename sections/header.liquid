@@ -78,13 +78,7 @@
         {%- capture sizes -%}{{ section.settings.logo_max_width }}px{%- endcapture -%}
         {%- capture widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.logo.width }}{%- endcapture -%}
 
-        <span class="sr-only">
-          {% if settings.seo_main_title != blank %}
-            {{ settings.seo_main_title }}
-          {% else %}
-            {{ shop.name }}
-          {% endif %}
-          </span>
+        <span class="sr-only">{{ shop.name }}</span>
         {%- assign alt_text = section.settings.logo.alt | default: shop.name -%}
         {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, alt: alt_text, class: 'header__logo-image' -}}
 
@@ -292,7 +286,7 @@
             <a
               href="{{ routes.search_url }}"
               aria-controls="header-search-{{ section.id }}"
-              class="header__button-icon tap-area"
+              class="header__button-icon"
             >
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
 
@@ -315,7 +309,7 @@
           <li class="header__account-link">
             <a
               href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
-              class="header__button-icon tap-area"
+              class="header__button-icon"
             >
               <span class="sr-only">
                 {%- if customer -%}
@@ -352,7 +346,7 @@
               aria-controls="cart-drawer"
             {% endif %}
             data-no-instant
-            class="header__button-icon tap-area"
+            class="header__button-icon"
           >
             <span class="sr-only">{{ 'header.general.cart' | t }}</span>
 

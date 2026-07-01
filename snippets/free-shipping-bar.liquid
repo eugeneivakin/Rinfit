@@ -1,10 +1,10 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-FREE SHIPPING BAR
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  FREE SHIPPING BAR
+  ----------------------------------------------------------------------------------------------------------------------
 
-Renders the free shipping bar component. It is used on cart page and cart drawer to render the remaining amount before
-being eligible for free shipping.
+  Renders the free shipping bar component. It is used on cart page and cart drawer to render the remaining amount before
+  being eligible for free shipping.
 {%- endcomment -%}
 
 {%- liquid
@@ -28,8 +28,30 @@ being eligible for free shipping.
 -%}
 
 {%- if cart.requires_shipping -%}
-  <free-shipping-bar class="free-shipping-bar" threshold="{{ settings.cart_free_shipping_threshold }}" total-price="{{ calculated_total_price }}" reached-message="{{ 'cart.free_shipping_bar.limit_reached_html' | t | escape }}" unreached-message="{{ 'cart.free_shipping_bar.limit_unreached_html' | t | escape }}">
+  {% liquid
+    assign threshold_amount = settings.cart_free_shipping_threshold | times: 100
+    assign progress_value = 0
+
+    if threshold_amount > 0
+      assign progress_value = calculated_total_price | times: 100 | divided_by: threshold_amount
+    endif
+
+    if progress_value < 0
+      assign progress_value = 0
+    elsif progress_value > 100
+      assign progress_value = 100
+    endif
+  %}
+
+  <free-shipping-bar
+    class="free-shipping-bar"
+    threshold="{{ settings.cart_free_shipping_threshold }}"
+    total-price="{{ calculated_total_price }}"
+    reached-message="{{ 'cart.free_shipping_bar.limit_reached_html' | t | escape }}"
+    unreached-message="{{ 'cart.free_shipping_bar.limit_unreached_html' | t | escape }}"
+  >
     {%- comment -%}The span below is the placeholder where the content will be inserted in JS{%- endcomment -%}
     <span class="text-subdued">&nbsp;</span>
+    <progress id="file" max="100" value="{{ progress_value }}"></progress>
   </free-shipping-bar>
 {%- endif -%}
